@@ -9,6 +9,7 @@ from email.utils import parsedate_to_datetime
 import hashlib
 import json
 import re
+import posixpath
 from urllib.parse import urlsplit
 
 from .sources import KEYRING, official_source, paragraphs
@@ -73,6 +74,29 @@ def source_identity(record):
     if not match:
         raise ValueError("SOURCE_IDENTITY_MALFORMED")
     return match[1], match[2] or record["Version"]
+
+
+def metadata_only_archive(archive):
+    """Positive classification from a complete signed payload, not empty inventory."""
+    entries = archive.get('payload_entries')
+    if not archive.get('control_metadata_complete') or not isinstance(entries,dict) or not entries:
+        return False
+    controls=archive.get('control_files')
+    if not isinstance(controls,dict) or set(controls)&{'preinst','postinst','prerm','postrm','config','triggers'}:
+        return False
+    roots = ('/usr/share/doc/','/usr/share/bug/','/usr/share/lintian/')
+    files = 0
+    for path, entry in entries.items():
+        if entry['kind']=='directory': continue
+        files += 1
+        if not path.startswith(roots): return False
+        if entry['kind'] in {'symlink','hardlink'}:
+            target = entry['link_target']
+            resolved = posixpath.normpath(target if target.startswith('/') else posixpath.join(posixpath.dirname(path),target))
+            if not resolved.startswith(roots): return False
+        elif entry['kind']!='regular':
+            return False
+    return files>0 and not archive['files']
 
 
 def release_deadline(raw, suite, codename):
@@ -175,6 +199,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
         reasons = []
         verified_files = {}
         archive_hash = None
+        metadata_only = False
         if len(hashes) != 1:
             reasons.append("INSTALLED_VERSION_NOT_UNIQUELY_AUTHENTICATED")
         else:
@@ -198,6 +223,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
                     reasons.append("ARCHIVE_CONTROL_IDENTITY_MISMATCH")
                     continue
                 archive_hash = fingerprint["sha256"]
+                metadata_only = package.sapi=='component_or_unknown' and metadata_only_archive(archive)
                 for filename, expected in archive["files"].items():
                     actual = probe("fingerprint", filename)
                     if actual is None or actual["sha256"] != expected:
@@ -207,9 +233,9 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
                 break
             if archive_hash is None:
                 reasons.append("AUTHENTICATED_CACHED_DEB_UNAVAILABLE")
-            elif not verified_files:
+            elif not verified_files and not metadata_only:
                 reasons.append("NO_AUTHENTICATED_RUNTIME_FILES")
-        installed.append({"package_id": package.id, "status": "AUTHENTICATED_RUNTIME_FILES" if not reasons else "UNKNOWN",
+        installed.append({"package_id": package.id, "status": ("AUTHENTICATED_METADATA_ONLY_ARCHIVE" if metadata_only else "AUTHENTICATED_RUNTIME_FILES") if not reasons else "UNKNOWN",
                           "archive_sha256": archive_hash, "files": verified_files, "blockers": sorted(set(reasons)),
                           "evidence_ids": [package.evidence_id, *chain_evidence_ids,
                                            *[e.id for e in collector.evidence[package_evidence_start:]]]})

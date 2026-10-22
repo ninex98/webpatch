@@ -62,10 +62,11 @@ def build_coverage(inventory, evidence, trust):
     for package in inventory.packages:
         package_ref = ref("package", package.id)
         identity = installed.get(package.id, {})
-        verified = identity.get("status") == "AUTHENTICATED_RUNTIME_FILES"
+        verified = identity.get("status") in {"AUTHENTICATED_RUNTIME_FILES", "AUTHENTICATED_METADATA_ONLY_ARCHIVE"}
         add("installed_package_files", "VERIFIED" if verified else "UNKNOWN", [package_ref],
             identity.get("evidence_ids", [package.evidence_id]),
-            "Authenticated archive runtime files match disk; this says nothing about running processes." if verified
+            ("Authenticated archive contains only documentation/metadata payload, not a runtime image." if identity.get('status')=='AUTHENTICATED_METADATA_ONLY_ARCHIVE' else
+             "Authenticated archive runtime files match disk; this says nothing about running processes.") if verified
             else "Installed file identity is incomplete: " + ", ".join(identity.get("blockers", ["archive evidence unavailable"])),
             "Provide authenticated matching archives and verify every relevant installed runtime file.", blocks=not verified)
         runtimes = [r for r in inventory.runtimes if package.id in r.package_ids]

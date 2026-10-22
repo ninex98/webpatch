@@ -258,7 +258,7 @@ class LocalSystem:
 
     def _parse_archive(self, descriptor, expected_sha256):
         from .sources import paragraphs
-        result = {"files": {}, "payload_files": {}, "control_files": {}, "control_metadata_complete": True,
+        result = {"files": {}, "payload_files": {}, "payload_entries": {}, "control_files": {}, "control_metadata_complete": True,
                   "archive_sha256": expected_sha256}
         try:
             for option in ("--ctrl-tarfile", "--fsys-tarfile"):
@@ -272,6 +272,11 @@ class LocalSystem:
                         if name in seen or name.startswith("/") or ".." in name.split("/") or len(seen) > 16384:
                             raise ProbeError("PACKAGE_ARCHIVE_PATH_INVALID")
                         seen.add(name)
+                        if option == '--fsys-tarfile' and name:
+                            kind = ('regular' if member.isfile() else 'directory' if member.isdir() else
+                                    'symlink' if member.issym() else 'hardlink' if member.islnk() else 'other')
+                            result['payload_entries']['/'+name.rstrip('/')] = {
+                                'kind':kind, 'mode':member.mode, 'link_target':member.linkname if member.issym() or member.islnk() else None}
                         if option == "--ctrl-tarfile" and not (member.isfile() or member.isdir()):
                             raise ProbeError("CONTROL_ARCHIVE_TYPE_UNSUPPORTED")
                         if member.isfile():
@@ -295,8 +300,8 @@ class LocalSystem:
                                 result["payload_files"]["/" + name] = file_hash
                                 if name.startswith(("usr/bin/", "usr/sbin/", "usr/lib/")):
                                     result["files"]["/" + name] = file_hash
-            if "control" not in result or not result["files"]:
-                raise ProbeError("PACKAGE_RUNTIME_FILES_MISSING")
+            if "control" not in result:
+                raise ProbeError("PACKAGE_CONTROL_MISSING")
             return result
         except (tarfile.TarError, ValueError, UnicodeError, IndexError) as exc:
             raise ProbeError("PACKAGE_ARCHIVE_MALFORMED") from exc

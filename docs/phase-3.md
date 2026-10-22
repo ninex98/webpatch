@@ -73,3 +73,13 @@ prepare-plan 只读取证据，列出精确服务、每个 FPM pool 的显式 co
 验证通过后由本机 0600 随机密钥认证 controlled_startup receipt，绑定 scope、代码/静态输入、实例和证据期限；非 root 调用者无法仅修改 JSON 后重算普通摘要来伪造该记录。它不是 root 妥协证明。独立探针仍默认五分钟，已验证只读配置视图的受控启动证据最多三十分钟，且不得超过计划、规则或索引期限。apply 的包执行仍禁用，收据本身不等于修复授权。
 
 retire-preparation 需要同一主机密钥、相同 scope 和精确收据摘要，只移除收据拥有且内容未变的 runtime 定义并重新加载 manager。它不重启服务，当前只读视图一直保留到进程退出；未来启动使用正式配置。失败准备返回 PARTIAL 及可用的签名 ownership/recovery receipt，并记录阶段；不承诺自动恢复服务。四格 VM 会在原有只读不变检查之后单独执行准备/清理，恢复标准 unit 并重新启动测试服务；开发宿主不会运行控制器。
+
+## 3E.1 执行输入审计与同源组件
+
+`plan/review-maintenance/review-execution --source-cohort php8.1 --dry-run` 可显式选择同一 PHP 源码分支的全部已安装包，包括同源组件；与 --target-package 互斥。默认仍只规划 engine 包。计划 schema 4 新增 target_policy，省略时按 ENGINE_PACKAGES 解读，组件计划使用 EXPLICIT_SOURCE_COMPONENTS 并在 verify-plan 中保留；仍然阻断包执行。
+
+完整、认证且没有控制脚本/trigger、payload 仅含文档/元数据的包可以标为 AUTHENTICATED_METADATA_ONLY_ARCHIVE；这仅是归档内容分类，不是空发现证明或运行时安全。任意 runtime 路径、越界 symlink、空 payload 或控制脚本都不能获得该分类，engine 空 payload 仍 UNKNOWN。
+
+review-execution 同时核对磁盘 /var/lib/dpkg/info 下旧维护脚本/trigger 与认证旧归档的字节、所有者和权限；归档中缺少脚本时，磁盘上也必须明确缺少。dpkg 特殊配置、已有 policy-rc.d、未完成 trigger 活动和不可读 registry 保持阻断。文件 trigger 候选按完整 payload 路径列出，多个 handler 均保留；维护脚本的命名 trigger 激活仍需要显式审阅。READY_FOR_EXECUTION_POLICY_REVIEW 不是执行准入。
+
+这些输入为受限执行器提供事实；未来不能直接把 APT 模拟与安装等价。实际执行策略须在确认计划中明确维护脚本、trigger 处理、服务启动策略、锁与异常状态。

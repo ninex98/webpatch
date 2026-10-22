@@ -122,7 +122,7 @@ def lock_blockers(collector):
     return blockers
 
 
-def choose_targets(report, collector, now, requested=None):
+def choose_targets(report, collector, now, requested=None, include_components=False):
     candidates = (report.package_trust or {}).get("candidates", [])
     targets, blockers = [], []
     rules = RuleEngine()
@@ -131,7 +131,7 @@ def choose_targets(report, collector, now, requested=None):
     comparator = DpkgComparator(collector)
     for package in report.inventory.packages:
         if requested is not None and package.id not in requested: continue
-        if package.sapi not in {"cli", "fpm", "apache2", "cgi"}: continue
+        if package.sapi not in {"cli", "fpm", "apache2", "cgi"} and not include_components: continue
         rule = next((r for r in rules.data["rules"] if (r["os_id"], r["codename"], r["source_name"])
                      == (report.inventory.environment.os_id, report.inventory.environment.codename, package.source_name)), None)
         if not rule or package.status != "install ok installed":
@@ -220,7 +220,7 @@ def dependency_blockers(changes, targets, report, collector):
     return blockers
 
 
-def plan(report: Report, *, system=None, simulator=None, now=None, target_package_ids=None) -> Plan:
+def plan(report: Report, *, system=None, simulator=None, now=None, target_package_ids=None, include_components=False) -> Plan:
     now = now or datetime.now(timezone.utc)
     if now.tzinfo is None:
         raise ValueError("TIMEZONE_REQUIRED")
@@ -256,7 +256,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
     collector = Collector(system, evidence_prefix="p") if system else None
     supported = report.inventory.environment.os_id == "ubuntu" and report.inventory.environment.codename in {"jammy", "noble"}
     if collector and simulator and supported and report.inventory.environment.scope != "container":
-        targets, candidate_blockers = choose_targets(report, collector, now, requested)
+        targets, candidate_blockers = choose_targets(report, collector, now, requested, include_components)
         blockers.extend(candidate_blockers)
         if targets and bindings:
             blockers.extend(lock_blockers(collector))
@@ -297,7 +297,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
                        "Downtime duration is UNKNOWN until reviewed with service owners; loaded config and health require verification."),
         bindings=bindings, evidence=evidence,
         scope=plan_scope(report.inventory, requested, targets, changes), coverage=tuple(report.inventory.coverage),
-        scan_evidence=tuple(report.evidence))
+        scan_evidence=tuple(report.evidence), target_policy='EXPLICIT_SOURCE_COMPONENTS' if include_components else 'ENGINE_PACKAGES')
     gates = review_gates(report, result, now)
     result = replace(result, gates=gates, review_status=review_status(gates),
                      blockers=tuple(sorted(set(result.blockers) | {"GATE:" + g.id for g in gates if g.status != "PASS"})))
@@ -312,7 +312,8 @@ def validate_plan(saved: Plan, report: Report, *, system, simulator, now):
     if now < datetime.fromisoformat(saved.created_at) or now >= datetime.fromisoformat(saved.expires_at):
         blockers.append("PLAN_EXPIRED_OR_CLOCK_REVERSED")
     current = plan(report, system=system, simulator=simulator, now=now,
-                   target_package_ids=saved.scope.requested_package_ids if saved.scope else None)
+                   target_package_ids=saved.scope.requested_package_ids if saved.scope else None,
+                   include_components=saved.target_policy=='EXPLICIT_SOURCE_COMPONENTS')
     if current.scope != saved.scope:
         blockers.append("PLAN_SCOPE_DRIFT")
     if gate_semantics([asdict(g) for g in current.gates]) != gate_semantics([asdict(g) for g in saved.gates]):
@@ -334,6 +335,8 @@ def verify_document(saved, current: Plan, now):
             return ("PLAN_SCHEMA_RESCAN_REQUIRED",)
         if saved["schema_version"] != 4 or saved["executable"] is not False:
             return ("INVALID_PLAN_DOCUMENT",)
+        if saved.get('target_policy','ENGINE_PACKAGES') not in {'ENGINE_PACKAGES','EXPLICIT_SOURCE_COMPONENTS'}:
+            return ('INVALID_PLAN_DOCUMENT',)
         expected = dict(saved, plan_sha256="")
         blockers = []
         if saved["status"] != "BLOCKED" or saved["actions"] != [] or saved.get("admission_status", "BLOCKED") != "BLOCKED":
@@ -349,6 +352,8 @@ def verify_document(saved, current: Plan, now):
             blockers.append("PLAN_INPUT_STATE_DRIFT")
         if json.loads(json.dumps(asdict(current.scope))) != saved["scope"]:
             blockers.append("PLAN_SCOPE_DRIFT")
+        if current.target_policy != saved.get('target_policy','ENGINE_PACKAGES'):
+            blockers.append('PLAN_TARGET_POLICY_DRIFT')
         current_gates = json.loads(json.dumps([asdict(g) for g in current.gates]))
         if gate_semantics(current_gates) != gate_semantics(saved["gates"]):
             blockers.append("PLAN_GATE_DRIFT")

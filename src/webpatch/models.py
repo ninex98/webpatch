@@ -254,3 +254,4 @@ class Plan:
     gates: tuple[ReviewGate, ...] = ()
     review_status: str = "INCOMPLETE"
     admission_status: str = "BLOCKED"
+    target_policy: str = "ENGINE_PACKAGES"

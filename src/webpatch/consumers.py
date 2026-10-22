@@ -55,6 +55,8 @@ def census(report, *, system, package_ids, now=None):
     installed = {i['package_id']:i for i in (report.package_trust or {}).get('installed', [])}
     for package_id in sorted(selected):
         identity = installed.get(package_id)
+        if identity and identity['status']=='AUTHENTICATED_METADATA_ONLY_ARCHIVE':
+            continue
         if not identity or identity['status'] != 'AUTHENTICATED_RUNTIME_FILES' or not identity.get('files'):
             reasons.append('CONSUMER_PACKAGE_FILE_IDENTITY_UNKNOWN:' + package_id)
             continue

@@ -2,6 +2,7 @@ import argparse
 from dataclasses import asdict
 from datetime import datetime, timezone
 import json
+import re
 import sys
 
 from . import __version__
@@ -19,20 +20,23 @@ from .transaction import AuditJournal
 from .planning import digest
 from .discovery import environment
 from .system import Collector
+from .execution_inputs import audit_execution_inputs
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, journal=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
                            help="read existing .deb files for signed archive identity verification; never downloads")
-        if command in {"plan", "review-maintenance"}:
-            child.add_argument("--target-package", action="append", dest="target_package_ids",
+        if command in {"plan", "review-maintenance", "review-execution"}:
+            selection = child.add_mutually_exclusive_group()
+            selection.add_argument("--target-package", action="append", dest="target_package_ids",
                                help="binary:architecture target; scan and shared-package impact remain scope-wide")
+            selection.add_argument('--source-cohort',help='explicitly select all installed packages from one PHP source branch')
             child.add_argument("--dry-run", action="store_true", required=True,
                                help="simulate exact trusted Ubuntu candidates without installing or refreshing indexes")
         if command == "audit-consumers":
@@ -123,10 +127,18 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
         if args.command == "verify-plan" and (not isinstance(saved, dict) or not isinstance(saved.get("scope", {}), dict)):
             raise ValueError("INVALID_PLAN_DOCUMENT")
         requested = saved.get("scope", {}).get("requested_package_ids") if isinstance(saved, dict) else getattr(args, "target_package_ids", None)
-        result = plan(report, system=reader, simulator=backend, now=now, target_package_ids=requested) if args.command in {"plan", "verify-plan"} else report
-        if args.command == "review-maintenance":
-            proposal = plan(report, system=reader, simulator=backend, now=now, target_package_ids=args.target_package_ids)
+        components = isinstance(saved,dict) and saved.get('target_policy')=='EXPLICIT_SOURCE_COMPONENTS'
+        if getattr(args,'source_cohort',None):
+            if not re.fullmatch(r'php[0-9]+\.[0-9]+',args.source_cohort): raise ValueError('INVALID_PHP_SOURCE_COHORT')
+            requested = [p.id for p in report.inventory.packages if p.source_name==args.source_cohort]
+            components = True
+        result = plan(report, system=reader, simulator=backend, now=now, target_package_ids=requested,
+                      include_components=components) if args.command in {"plan", "verify-plan"} else report
+        if args.command in {"review-maintenance", "review-execution"}:
+            proposal = plan(report, system=reader, simulator=backend, now=now, target_package_ids=requested,include_components=components)
             review = inspect_maintenance(report, proposal, system=reader, package_cache=args.package_cache, now=now)
+            if args.command=='review-execution':
+                review={'plan':asdict(proposal),'maintenance':review,'execution_inputs':audit_execution_inputs(review,system=reader)}
             print(json.dumps(review, ensure_ascii=True, indent=2))
             return 4
         if args.command == "verify-plan":
