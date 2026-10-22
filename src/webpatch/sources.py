@@ -8,7 +8,7 @@ import shlex
 from urllib.parse import urlsplit
 
 from .system import DPKG_QUERY
-from .archive_policy import UBUNTU_KEYRING,DEBIAN_KEYRING,archive_keyring,supported_archive
+from .archive_policy import UBUNTU_KEYRING,DEBIAN_KEYRING,archive_keyring,archive_keyrings,supported_archive
 
 
 KEYRING = UBUNTU_KEYRING
@@ -99,7 +99,7 @@ def official_source(source, codename, os_id='ubuntu'):
         return (supported_archive(os_id,codename) and official and url.scheme in {'http','https'}
                 and not url.username and not url.password and not url.query and not url.fragment and url.port is None
                 and source.suite in {codename,codename+'-security',codename+'-updates'}
-                and bool(source.components) and set(source.components)<={'main'} and source.signed_by==DEBIAN_KEYRING)
+                and bool(source.components) and set(source.components)<={'main'} and source.signed_by in archive_keyrings('debian'))
     if os_id!='ubuntu': return False
     official = host in {"archive.ubuntu.com", "security.ubuntu.com", "ports.ubuntu.com"} or host.endswith(".archive.ubuntu.com")
     return (official and url.scheme in {"http", "https"} and not url.username and not url.password

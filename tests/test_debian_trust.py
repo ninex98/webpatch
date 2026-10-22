@@ -5,11 +5,11 @@ import pytest
 
 from conftest import NOW
 from test_trust import trust_fixture,RELEASE,INDEX,DEB,EXECUTABLE
-from webpatch.archive_policy import DEBIAN_KEYS,DEBIAN_KEYRING
+from webpatch.archive_policy import DEBIAN_KEYS,DEBIAN_KEYRING,DEBIAN_KEYRING_PGP
 from webpatch.service import scan
 from webpatch.sources import Source,official_source,parse_sources
 from webpatch.system import CommandResult,DPKG_QUERY,validate_command,PolicyError,ProbeError
-from webpatch.trust import signature_command,valid_primary_signers
+from webpatch.trust import signature_command,valid_primary_signers,verified_release
 
 
 def fixture(codename='bookworm'):
@@ -81,3 +81,23 @@ def test_debian_keyring_command_is_fixed_and_parser_uses_the_vendor_default():
     command=signature_command('/var/lib/apt/lists/deb.debian.org_debian_dists_bookworm_InRelease','debian')
     validate_command(command)
     with pytest.raises(PolicyError): validate_command((*command[:3],'/tmp/unreviewed.gpg',command[-1]))
+
+
+def test_bookworm_updates_without_valid_until_still_has_a_seven_day_limit():
+    fake,path=fixture()
+    raw=fake.reads[path].replace('Debian-Security','Debian').replace('bookworm-security','bookworm-updates').replace('oldstable-security','oldstable-updates')
+    raw='\n'.join(line for line in raw.splitlines() if not line.startswith('Valid-Until:'))+'\n'
+    result=fake.commands[signature_command(path,'debian')]
+    result=replace(result,stdout=result.stdout.replace(DEBIAN_KEYS['bookworm']['security'],DEBIAN_KEYS['bookworm']['archive']))
+    assert verified_release(raw,result,'bookworm-updates','bookworm',NOW,'debian')
+    with pytest.raises(ValueError,match='RELEASE_TOO_OLD'):
+        verified_release(raw.replace('Date: Thu, 22','Date: Wed, 14'),result,'bookworm-updates','bookworm',NOW,'debian')
+
+
+def test_trixie_pgp_keyring_path_uses_the_same_pinned_primary_key_policy():
+    fake,path=fixture('trixie')
+    fake.reads['/etc/apt/sources.list']=fake.reads['/etc/apt/sources.list'].replace(DEBIAN_KEYRING,DEBIAN_KEYRING_PGP)
+    fake.commands[signature_command(path,'debian',DEBIAN_KEYRING_PGP)]=fake.commands.pop(signature_command(path,'debian'))
+    result=scan(fake,now=NOW)
+    assert result.package_trust['status']=='VERIFIED_INDEX_CHAIN'
+    validate_command(signature_command(path,'debian',DEBIAN_KEYRING_PGP))

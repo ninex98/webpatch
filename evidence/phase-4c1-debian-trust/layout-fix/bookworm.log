@@ -1,0 +1,704 @@
+﻿2026-10-22T23:06:12.7883603Z Current runner version: '2.338.0'
+2026-10-22T23:06:12.7910930Z ##[group]Runner Image Provisioner
+2026-10-22T23:06:12.7911942Z Hosted Compute Agent
+2026-10-22T23:06:12.7912589Z Version: 20261012.601
+2026-10-22T23:06:12.7913263Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-22T23:06:12.7914077Z Build Date: 2026-10-12T17:48:21Z
+2026-10-22T23:06:12.7914806Z Worker ID: {ed675b69-dc62-4cfb-b441-46c03ce3580b}
+2026-10-22T23:06:12.7916056Z Region: northcentralus
+2026-10-22T23:06:12.7916749Z Cloud: Azure
+2026-10-22T23:06:12.7917360Z ##[endgroup]
+2026-10-22T23:06:12.7919068Z ##[group]Operating System
+2026-10-22T23:06:12.7919736Z Ubuntu
+2026-10-22T23:06:12.7920314Z 24.04.5
+2026-10-22T23:06:12.7920941Z LTS
+2026-10-22T23:06:12.7921494Z ##[endgroup]
+2026-10-22T23:06:12.7922101Z ##[group]Runner Image
+2026-10-22T23:06:12.7922761Z Image: ubuntu-24.04
+2026-10-22T23:06:12.7923400Z Version: 20261012.334.1
+2026-10-22T23:06:12.7924797Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-22T23:06:12.7926418Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-22T23:06:12.7927453Z ##[endgroup]
+2026-10-22T23:06:12.7929306Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T23:06:12.7931627Z Contents: read
+2026-10-22T23:06:12.7932294Z Metadata: read
+2026-10-22T23:06:12.7932980Z ##[endgroup]
+2026-10-22T23:06:12.7935210Z Secret source: Actions
+2026-10-22T23:06:12.7936245Z Cache mode: write
+2026-10-22T23:06:12.7937187Z Prepare workflow directory
+2026-10-22T23:06:12.8473266Z Prepare all required actions
+2026-10-22T23:06:12.8542500Z Getting action download info
+2026-10-22T23:06:13.0862784Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-22T23:06:13.1789194Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T23:06:13.3861004Z Complete job name: debian-trust (12)
+2026-10-22T23:06:13.4599170Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-22T23:06:13.4600278Z with:
+2026-10-22T23:06:13.4600732Z   repository: ninex98/webpatch
+2026-10-22T23:06:13.4604894Z   token: ***
+2026-10-22T23:06:13.4605340Z   ssh-strict: true
+2026-10-22T23:06:13.4605789Z   ssh-user: git
+2026-10-22T23:06:13.4606256Z   persist-credentials: true
+2026-10-22T23:06:13.4606767Z   clean: true
+2026-10-22T23:06:13.4607244Z   sparse-checkout-cone-mode: true
+2026-10-22T23:06:13.4607767Z   fetch-depth: 1
+2026-10-22T23:06:13.4608208Z   fetch-tags: false
+2026-10-22T23:06:13.4608659Z   show-progress: true
+2026-10-22T23:06:13.4609260Z   lfs: false
+2026-10-22T23:06:13.4609678Z   submodules: false
+2026-10-22T23:06:13.4610139Z   set-safe-directory: true
+2026-10-22T23:06:13.4610648Z   allow-unsafe-pr-checkout: false
+2026-10-22T23:06:13.4611384Z ##[endgroup]
+2026-10-22T23:06:13.5628055Z Syncing repository: ninex98/webpatch
+2026-10-22T23:06:13.5630915Z ##[group]Getting Git version info
+2026-10-22T23:06:13.5632087Z Working directory is '/home/runner/work/webpatch/webpatch'
+2026-10-22T23:06:13.5633746Z [command]/usr/bin/git version
+2026-10-22T23:06:13.5649134Z git version 2.55.0
+2026-10-22T23:06:13.5668865Z ##[endgroup]
+2026-10-22T23:06:13.5684033Z Temporarily overriding HOME='/home/runner/work/_temp/2a023822-6dcd-4f07-a248-366f1d64b2d6' before making global git config changes
+2026-10-22T23:06:13.5686397Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T23:06:13.5688668Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-22T23:06:13.5739370Z Deleting the contents of '/home/runner/work/webpatch/webpatch'
+2026-10-22T23:06:13.5747745Z ##[group]Initializing the repository
+2026-10-22T23:06:13.5766955Z [command]/usr/bin/git init /home/runner/work/webpatch/webpatch
+2026-10-22T23:06:13.5868224Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T23:06:13.5870888Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T23:06:13.5872662Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T23:06:13.5874043Z hint: call:
+2026-10-22T23:06:13.5875074Z hint:
+2026-10-22T23:06:13.5875984Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T23:06:13.5877064Z hint:
+2026-10-22T23:06:13.5878056Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T23:06:13.5879687Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T23:06:13.5880463Z hint:
+2026-10-22T23:06:13.5880896Z hint: 	git branch -m <name>
+2026-10-22T23:06:13.5881526Z hint:
+2026-10-22T23:06:13.5882152Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T23:06:13.5883125Z Initialized empty Git repository in /home/runner/work/webpatch/webpatch/.git/
+2026-10-22T23:06:13.5884885Z [command]/usr/bin/git remote add origin https://github.com/ninex98/webpatch
+2026-10-22T23:06:13.5927618Z ##[endgroup]
+2026-10-22T23:06:13.5928587Z ##[group]Disabling automatic garbage collection
+2026-10-22T23:06:13.5932539Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-22T23:06:13.5966864Z ##[endgroup]
+2026-10-22T23:06:13.5967753Z ##[group]Setting up auth
+2026-10-22T23:06:13.5973897Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T23:06:13.6010469Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T23:06:13.6352866Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T23:06:13.6403186Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T23:06:13.6668622Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T23:06:13.6708476Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T23:06:13.6950215Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T23:06:13.6993704Z ##[endgroup]
+2026-10-22T23:06:13.6994520Z ##[group]Fetching the repository
+2026-10-22T23:06:13.7005453Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +788f42fb062963cff0dfeafef2247110cdb5484a:refs/remotes/origin/main
+2026-10-22T23:06:15.4645116Z From https://github.com/ninex98/webpatch
+2026-10-22T23:06:15.4656497Z  * [new ref]         788f42fb062963cff0dfeafef2247110cdb5484a -> origin/main
+2026-10-22T23:06:15.4660119Z ##[endgroup]
+2026-10-22T23:06:15.4661284Z ##[group]Determining the checkout info
+2026-10-22T23:06:15.4662659Z ##[endgroup]
+2026-10-22T23:06:15.4665281Z [command]/usr/bin/git sparse-checkout disable
+2026-10-22T23:06:15.4724498Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T23:06:15.4764110Z ##[group]Checking out the ref
+2026-10-22T23:06:15.4769581Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-22T23:06:15.8192904Z Switched to a new branch 'main'
+2026-10-22T23:06:15.8195361Z branch 'main' set up to track 'origin/main'.
+2026-10-22T23:06:15.8256789Z ##[endgroup]
+2026-10-22T23:06:15.8305887Z [command]/usr/bin/git log -1 --format=%H
+2026-10-22T23:06:15.8335538Z 788f42fb062963cff0dfeafef2247110cdb5484a
+2026-10-22T23:06:15.8639682Z ##[group]Run mkdir -p ci-evidence
+2026-10-22T23:06:15.8640343Z [36;1mmkdir -p ci-evidence[0m
+2026-10-22T23:06:15.8641314Z [36;1mdocker build -f tests/integration/DebianTrust.Dockerfile --build-arg BASE=debian:12 -t webpatch-debian-trust . 2>&1 | tee ci-evidence/build.log[0m
+2026-10-22T23:06:15.8642695Z [36;1mdocker image inspect webpatch-debian-trust > ci-evidence/image.json[0m
+2026-10-22T23:06:15.8644009Z [36;1mdocker run --rm --read-only --tmpfs /tmp:rw,noexec,nosuid,size=16m --network none --cap-drop ALL --security-opt no-new-privileges webpatch-debian-trust | tee ci-evidence/result.json[0m
+2026-10-22T23:06:15.8644867Z [36;1mpython3 scripts/evidence_manifest.py ci-evidence[0m
+2026-10-22T23:06:16.1471690Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T23:06:16.1472164Z ##[endgroup]
+2026-10-22T23:06:16.6807102Z #0 building with "default" instance using docker driver
+2026-10-22T23:06:16.6807729Z 
+2026-10-22T23:06:16.6808156Z #1 [internal] load build definition from DebianTrust.Dockerfile
+2026-10-22T23:06:16.6808987Z #1 transferring dockerfile: 459B done
+2026-10-22T23:06:16.6809390Z #1 DONE 0.0s
+2026-10-22T23:06:16.6809581Z 
+2026-10-22T23:06:16.6809847Z #2 [auth] library/debian:pull token for registry-1.docker.io
+2026-10-22T23:06:16.6810506Z #2 DONE 0.0s
+2026-10-22T23:06:16.6810716Z 
+2026-10-22T23:06:16.6810937Z #3 [internal] load metadata for docker.io/library/debian:12
+2026-10-22T23:06:16.8798478Z #3 DONE 0.4s
+2026-10-22T23:06:16.9965551Z 
+2026-10-22T23:06:16.9966698Z #4 [internal] load .dockerignore
+2026-10-22T23:06:16.9967216Z #4 transferring context: 146B done
+2026-10-22T23:06:16.9967658Z #4 DONE 0.0s
+2026-10-22T23:06:16.9967882Z 
+2026-10-22T23:06:16.9968032Z #5 [internal] load build context
+2026-10-22T23:06:16.9968559Z #5 transferring context: 749.72kB 0.0s done
+2026-10-22T23:06:16.9969148Z #5 DONE 0.0s
+2026-10-22T23:06:16.9969335Z 
+2026-10-22T23:06:16.9970043Z #6 [1/5] FROM docker.io/library/debian:12@sha256:854dd8ab51d62866dbd8f5431d15ce77b12983a2a4a1e1fe43a2395dc7ef9f61
+2026-10-22T23:06:16.9971335Z #6 resolve docker.io/library/debian:12@sha256:854dd8ab51d62866dbd8f5431d15ce77b12983a2a4a1e1fe43a2395dc7ef9f61 done
+2026-10-22T23:06:16.9972536Z #6 sha256:8a051559ff62acdfa1af9916c3c67673d946bb71f81cb8f30c565fa647cb6a77 8.39MB / 48.52MB 0.1s
+2026-10-22T23:06:17.1459939Z #6 sha256:8a051559ff62acdfa1af9916c3c67673d946bb71f81cb8f30c565fa647cb6a77 47.19MB / 48.52MB 0.2s
+2026-10-22T23:06:17.1461979Z #6 sha256:854dd8ab51d62866dbd8f5431d15ce77b12983a2a4a1e1fe43a2395dc7ef9f61 5.63kB / 5.63kB done
+2026-10-22T23:06:17.1463047Z #6 sha256:f9c4778ec75d6b054367315b1eb4f3992ee5866b50de6d591a33e8904cba3f17 1.02kB / 1.02kB done
+2026-10-22T23:06:17.1464081Z #6 sha256:4f29e12c1f15cff3ebc2314175667876529e886c5130658a22c997da28acd1db 453B / 453B done
+2026-10-22T23:06:17.1464913Z #6 extracting sha256:8a051559ff62acdfa1af9916c3c67673d946bb71f81cb8f30c565fa647cb6a77
+2026-10-22T23:06:17.2511570Z #6 sha256:8a051559ff62acdfa1af9916c3c67673d946bb71f81cb8f30c565fa647cb6a77 48.52MB / 48.52MB 0.2s done
+2026-10-22T23:06:18.7477442Z #6 extracting sha256:8a051559ff62acdfa1af9916c3c67673d946bb71f81cb8f30c565fa647cb6a77 1.6s done
+2026-10-22T23:06:18.9291360Z #6 DONE 1.9s
+2026-10-22T23:06:18.9291742Z 
+2026-10-22T23:06:18.9292262Z #7 [2/5] RUN apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli gpgv ca-certificates
+2026-10-22T23:06:18.9454743Z #7 0.167 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+2026-10-22T23:06:19.0706286Z #7 0.177 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+2026-10-22T23:06:19.0707420Z #7 0.177 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+2026-10-22T23:06:19.2676293Z #7 0.236 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+2026-10-22T23:06:19.2677296Z #7 0.291 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+2026-10-22T23:06:19.2679034Z #7 0.338 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [355 kB]
+2026-10-22T23:06:19.9102672Z #7 1.131 Fetched 9394 kB in 1s (9618 kB/s)
+2026-10-22T23:06:20.3273568Z #7 1.131 Reading package lists...
+2026-10-22T23:06:20.7752786Z #7 1.567 Reading package lists...
+2026-10-22T23:06:20.8963030Z #7 2.007 Building dependency tree...
+2026-10-22T23:06:21.0039603Z #7 2.117 Reading state information...
+2026-10-22T23:06:21.0040906Z #7 2.225 gpgv is already the newest version (2.2.40-1.1+deb12u2).
+2026-10-22T23:06:21.0041597Z #7 2.225 gpgv set to manually installed.
+2026-10-22T23:06:21.0043909Z #7 2.225 The following additional packages will be installed:
+2026-10-22T23:06:21.1564952Z #7 2.225   dmsetup libapparmor1 libargon2-1 libbsd0 libcryptsetup12 libdevmapper1.02.1
+2026-10-22T23:06:21.1565915Z #7 2.225   libedit2 libexpat1 libfdisk1 libgssapi-krb5-2 libicu72 libip4tc2 libjson-c5
+2026-10-22T23:06:21.1566778Z #7 2.225   libk5crypto3 libkeyutils1 libkmod2 libkrb5-3 libkrb5support0 libmagic-mgc
+2026-10-22T23:06:21.1567599Z #7 2.225   libmagic1 libncursesw6 libnsl2 libproc2-0 libpython3-stdlib
+2026-10-22T23:06:21.1568264Z #7 2.225   libpython3.11-minimal libpython3.11-stdlib libreadline8 libsodium23
+2026-10-22T23:06:21.1569225Z #7 2.226   libsqlite3-0 libssl3 libsystemd-shared libtirpc-common libtirpc3 libxml2
+2026-10-22T23:06:21.1569941Z #7 2.226   media-types openssl php-common php8.2-cli php8.2-common php8.2-fpm
+2026-10-22T23:06:21.1570737Z #7 2.226   php8.2-opcache php8.2-readline procps psmisc python3-minimal python3.11
+2026-10-22T23:06:21.1571493Z #7 2.226   python3.11-minimal readline-common sensible-utils systemd ucf
+2026-10-22T23:06:21.1572047Z #7 2.227 Suggested packages:
+2026-10-22T23:06:21.1572598Z #7 2.227   krb5-doc krb5-user file php-pear python3-doc python3-tk python3-venv
+2026-10-22T23:06:21.1573360Z #7 2.227   python3.11-venv python3.11-doc binutils binfmt-support readline-doc
+2026-10-22T23:06:21.1574062Z #7 2.227   systemd-container systemd-homed systemd-userdbd systemd-boot
+2026-10-22T23:06:21.1574820Z #7 2.227   systemd-resolved libfido2-1 libqrencode4 libtss2-esys-3.0.2-0 libtss2-mu0
+2026-10-22T23:06:21.1575487Z #7 2.227   libtss2-rc0 polkitd | policykit-1
+2026-10-22T23:06:21.1575948Z #7 2.227 Recommended packages:
+2026-10-22T23:06:21.1576489Z #7 2.227   krb5-locales libgpm2 default-dbus-system-bus | dbus-system-bus
+2026-10-22T23:06:21.1577078Z #7 2.227   systemd-timesyncd | time-daemon
+2026-10-22T23:06:21.2743750Z #7 2.495 The following NEW packages will be installed:
+2026-10-22T23:06:21.3749649Z #7 2.496   ca-certificates dmsetup libapparmor1 libargon2-1 libbsd0 libcryptsetup12
+2026-10-22T23:06:21.3751020Z #7 2.496   libdevmapper1.02.1 libedit2 libexpat1 libfdisk1 libgssapi-krb5-2 libicu72
+2026-10-22T23:06:21.3751861Z #7 2.496   libip4tc2 libjson-c5 libk5crypto3 libkeyutils1 libkmod2 libkrb5-3
+2026-10-22T23:06:21.3752562Z #7 2.496   libkrb5support0 libmagic-mgc libmagic1 libncursesw6 libnsl2 libproc2-0
+2026-10-22T23:06:21.3753292Z #7 2.496   libpython3-stdlib libpython3.11-minimal libpython3.11-stdlib libreadline8
+2026-10-22T23:06:21.3754207Z #7 2.497   libsodium23 libsqlite3-0 libssl3 libsystemd-shared libtirpc-common libtirpc3
+2026-10-22T23:06:21.3754958Z #7 2.497   libxml2 media-types openssl php-cli php-common php-fpm php8.2-cli
+2026-10-22T23:06:21.3755855Z #7 2.497   php8.2-common php8.2-fpm php8.2-opcache php8.2-readline procps psmisc
+2026-10-22T23:06:21.3756723Z #7 2.497   python3 python3-minimal python3.11 python3.11-minimal readline-common
+2026-10-22T23:06:21.3757359Z #7 2.497   sensible-utils systemd ucf
+2026-10-22T23:06:21.3757931Z #7 2.518 0 upgraded, 55 newly installed, 0 to remove and 0 not upgraded.
+2026-10-22T23:06:21.3758515Z #7 2.518 Need to get 33.1 MB of archives.
+2026-10-22T23:06:21.3759886Z #7 2.518 After this operation, 127 MB of additional disk space will be used.
+2026-10-22T23:06:21.3761103Z #7 2.518 Get:1 http://deb.debian.org/debian-security bookworm-security/main amd64 libssl3 amd64 3.0.22-1~deb12u1 [2039 kB]
+2026-10-22T23:06:21.3767211Z #7 2.534 Get:2 http://deb.debian.org/debian bookworm/main amd64 libargon2-1 amd64 0~20171227-0.3+deb12u1 [19.4 kB]
+2026-10-22T23:06:21.3768468Z #7 2.534 Get:3 http://deb.debian.org/debian bookworm/main amd64 dmsetup amd64 2:1.02.185-2 [82.0 kB]
+2026-10-22T23:06:21.3771694Z #7 2.535 Get:4 http://deb.debian.org/debian bookworm/main amd64 libdevmapper1.02.1 amd64 2:1.02.185-2 [133 kB]
+2026-10-22T23:06:21.3773456Z #7 2.536 Get:5 http://deb.debian.org/debian bookworm/main amd64 libjson-c5 amd64 0.16-2 [44.1 kB]
+2026-10-22T23:06:21.3774756Z #7 2.537 Get:6 http://deb.debian.org/debian bookworm/main amd64 libcryptsetup12 amd64 2:2.6.1-4~deb12u2 [223 kB]
+2026-10-22T23:06:21.3776068Z #7 2.538 Get:7 http://deb.debian.org/debian bookworm/main amd64 libfdisk1 amd64 2.38.1-5+deb12u3 [194 kB]
+2026-10-22T23:06:21.3777340Z #7 2.540 Get:8 http://deb.debian.org/debian bookworm/main amd64 libkmod2 amd64 30+20221128-1 [57.9 kB]
+2026-10-22T23:06:21.3778649Z #7 2.540 Get:9 http://deb.debian.org/debian bookworm/main amd64 libapparmor1 amd64 3.0.8-3 [41.2 kB]
+2026-10-22T23:06:21.3780024Z #7 2.541 Get:10 http://deb.debian.org/debian bookworm/main amd64 libip4tc2 amd64 1.8.9-2 [19.0 kB]
+2026-10-22T23:06:21.3781240Z #7 2.541 Get:11 http://deb.debian.org/debian bookworm/main amd64 libsystemd-shared amd64 252.39-1~deb12u2 [1696 kB]
+2026-10-22T23:06:21.3782530Z #7 2.549 Get:12 http://deb.debian.org/debian bookworm/main amd64 systemd amd64 252.39-1~deb12u2 [3044 kB]
+2026-10-22T23:06:21.3783954Z #7 2.563 Get:13 http://deb.debian.org/debian-security bookworm-security/main amd64 libpython3.11-minimal amd64 3.11.2-6+deb12u9 [821 kB]
+2026-10-22T23:06:21.3785571Z #7 2.565 Get:14 http://deb.debian.org/debian-security bookworm-security/main amd64 libexpat1 amd64 2.5.0-1+deb12u5 [108 kB]
+2026-10-22T23:06:21.3787130Z #7 2.566 Get:15 http://deb.debian.org/debian-security bookworm-security/main amd64 python3.11-minimal amd64 3.11.2-6+deb12u9 [2055 kB]
+2026-10-22T23:06:21.3789383Z #7 2.571 Get:16 http://deb.debian.org/debian bookworm/main amd64 python3-minimal amd64 3.11.2-1+b1 [26.3 kB]
+2026-10-22T23:06:21.3790458Z #7 2.572 Get:17 http://deb.debian.org/debian bookworm/main amd64 media-types all 10.0.0 [26.1 kB]
+2026-10-22T23:06:21.3791453Z #7 2.572 Get:18 http://deb.debian.org/debian bookworm/main amd64 libncursesw6 amd64 6.4-4 [134 kB]
+2026-10-22T23:06:21.3792518Z #7 2.573 Get:19 http://deb.debian.org/debian bookworm/main amd64 libkrb5support0 amd64 1.20.1-2+deb12u5 [33.2 kB]
+2026-10-22T23:06:21.3793644Z #7 2.573 Get:20 http://deb.debian.org/debian bookworm/main amd64 libk5crypto3 amd64 1.20.1-2+deb12u5 [79.7 kB]
+2026-10-22T23:06:21.3794680Z #7 2.574 Get:21 http://deb.debian.org/debian bookworm/main amd64 libkeyutils1 amd64 1.6.3-2 [8808 B]
+2026-10-22T23:06:21.3795674Z #7 2.574 Get:22 http://deb.debian.org/debian bookworm/main amd64 libkrb5-3 amd64 1.20.1-2+deb12u5 [332 kB]
+2026-10-22T23:06:21.3796756Z #7 2.576 Get:23 http://deb.debian.org/debian bookworm/main amd64 libgssapi-krb5-2 amd64 1.20.1-2+deb12u5 [135 kB]
+2026-10-22T23:06:21.3797833Z #7 2.577 Get:24 http://deb.debian.org/debian bookworm/main amd64 libtirpc-common all 1.3.3+ds-1 [14.0 kB]
+2026-10-22T23:06:21.3799090Z #7 2.577 Get:25 http://deb.debian.org/debian bookworm/main amd64 libtirpc3 amd64 1.3.3+ds-1 [85.2 kB]
+2026-10-22T23:06:21.3800062Z #7 2.578 Get:26 http://deb.debian.org/debian bookworm/main amd64 libnsl2 amd64 1.3.0-2 [39.5 kB]
+2026-10-22T23:06:21.3801037Z #7 2.578 Get:27 http://deb.debian.org/debian bookworm/main amd64 readline-common all 8.2-1.3 [69.0 kB]
+2026-10-22T23:06:21.3802024Z #7 2.578 Get:28 http://deb.debian.org/debian bookworm/main amd64 libreadline8 amd64 8.2-1.3 [166 kB]
+2026-10-22T23:06:21.3803033Z #7 2.579 Get:29 http://deb.debian.org/debian bookworm/main amd64 libsqlite3-0 amd64 3.40.1-2+deb12u2 [839 kB]
+2026-10-22T23:06:21.3804300Z #7 2.583 Get:30 http://deb.debian.org/debian-security bookworm-security/main amd64 libpython3.11-stdlib amd64 3.11.2-6+deb12u9 [1798 kB]
+2026-10-22T23:06:21.3805652Z #7 2.587 Get:31 http://deb.debian.org/debian-security bookworm-security/main amd64 python3.11 amd64 3.11.2-6+deb12u9 [575 kB]
+2026-10-22T23:06:21.3807026Z #7 2.588 Get:32 http://deb.debian.org/debian bookworm/main amd64 libpython3-stdlib amd64 3.11.2-1+b1 [9312 B]
+2026-10-22T23:06:21.3808200Z #7 2.589 Get:33 http://deb.debian.org/debian bookworm/main amd64 python3 amd64 3.11.2-1+b1 [26.3 kB]
+2026-10-22T23:06:21.3809330Z #7 2.589 Get:34 http://deb.debian.org/debian bookworm/main amd64 libproc2-0 amd64 2:4.0.2-3 [62.8 kB]
+2026-10-22T23:06:21.3810472Z #7 2.590 Get:35 http://deb.debian.org/debian bookworm/main amd64 procps amd64 2:4.0.2-3 [709 kB]
+2026-10-22T23:06:21.3811450Z #7 2.593 Get:36 http://deb.debian.org/debian bookworm/main amd64 sensible-utils all 0.0.17+nmu1 [19.0 kB]
+2026-10-22T23:06:21.3812627Z #7 2.593 Get:37 http://deb.debian.org/debian-security bookworm-security/main amd64 openssl amd64 3.0.22-1~deb12u1 [1442 kB]
+2026-10-22T23:06:21.3813897Z #7 2.596 Get:38 http://deb.debian.org/debian-security bookworm-security/main amd64 ca-certificates all 20250419~deb12u2 [161 kB]
+2026-10-22T23:06:21.5286448Z #7 2.598 Get:39 http://deb.debian.org/debian bookworm/main amd64 ucf all 3.0043+nmu1+deb12u1 [55.3 kB]
+2026-10-22T23:06:21.5288138Z #7 2.598 Get:40 http://deb.debian.org/debian bookworm/main amd64 libbsd0 amd64 0.11.7-2 [117 kB]
+2026-10-22T23:06:21.5289979Z #7 2.598 Get:41 http://deb.debian.org/debian bookworm/main amd64 libedit2 amd64 3.1-20221030-2 [93.0 kB]
+2026-10-22T23:06:21.5291671Z #7 2.599 Get:42 http://deb.debian.org/debian bookworm/main amd64 libicu72 amd64 72.1-3+deb12u1 [9376 kB]
+2026-10-22T23:06:21.5292890Z #7 2.635 Get:43 http://deb.debian.org/debian bookworm/main amd64 libmagic-mgc amd64 1:5.44-3 [305 kB]
+2026-10-22T23:06:21.5294183Z #7 2.636 Get:44 http://deb.debian.org/debian bookworm/main amd64 libmagic1 amd64 1:5.44-3 [104 kB]
+2026-10-22T23:06:21.5295247Z #7 2.637 Get:45 http://deb.debian.org/debian bookworm/main amd64 libsodium23 amd64 1.0.18-1+deb12u1 [162 kB]
+2026-10-22T23:06:21.5296320Z #7 2.638 Get:46 http://deb.debian.org/debian bookworm/main amd64 libxml2 amd64 2.9.14+dfsg-1.3~deb12u6 [689 kB]
+2026-10-22T23:06:21.5297359Z #7 2.641 Get:47 http://deb.debian.org/debian bookworm/main amd64 psmisc amd64 23.6-1 [259 kB]
+2026-10-22T23:06:21.5298338Z #7 2.642 Get:48 http://deb.debian.org/debian bookworm/main amd64 php-common all 2:93 [13.1 kB]
+2026-10-22T23:06:21.5299745Z #7 2.642 Get:49 http://deb.debian.org/debian-security bookworm-security/main amd64 php8.2-common amd64 8.2.35-1~deb12u1 [693 kB]
+2026-10-22T23:06:21.5301051Z #7 2.644 Get:50 http://deb.debian.org/debian-security bookworm-security/main amd64 php8.2-opcache amd64 8.2.35-1~deb12u1 [346 kB]
+2026-10-22T23:06:21.5302358Z #7 2.645 Get:51 http://deb.debian.org/debian-security bookworm-security/main amd64 php8.2-readline amd64 8.2.35-1~deb12u1 [12.5 kB]
+2026-10-22T23:06:21.5303607Z #7 2.645 Get:52 http://deb.debian.org/debian-security bookworm-security/main amd64 php8.2-cli amd64 8.2.35-1~deb12u1 [1756 kB]
+2026-10-22T23:06:21.5304679Z #7 2.649 Get:53 http://deb.debian.org/debian bookworm/main amd64 php-cli all 2:8.2+93 [4108 B]
+2026-10-22T23:06:21.5305770Z #7 2.650 Get:54 http://deb.debian.org/debian-security bookworm-security/main amd64 php8.2-fpm amd64 8.2.35-1~deb12u1 [1766 kB]
+2026-10-22T23:06:21.5306876Z #7 2.653 Get:55 http://deb.debian.org/debian bookworm/main amd64 php-fpm all 2:8.2+93 [3712 B]
+2026-10-22T23:06:21.5307739Z #7 2.748 debconf: delaying package configuration, since apt-utils is not installed
+2026-10-22T23:06:21.6895239Z #7 2.768 Fetched 33.1 MB in 0s (222 MB/s)
+2026-10-22T23:06:21.6895955Z #7 2.780 Selecting previously unselected package libssl3:amd64.
+2026-10-22T23:06:21.6896514Z #7 2.780 (Reading database ... 
+2026-10-22T23:06:21.6896831Z (Reading database ... 5%
+2026-10-22T23:06:21.6897086Z (Reading database ... 10%
+2026-10-22T23:06:21.6897344Z (Reading database ... 15%
+2026-10-22T23:06:21.6897567Z (Reading database ... 20%
+2026-10-22T23:06:21.6897786Z (Reading database ... 25%
+2026-10-22T23:06:21.6898005Z (Reading database ... 30%
+2026-10-22T23:06:21.6898222Z (Reading database ... 35%
+2026-10-22T23:06:21.6898446Z (Reading database ... 40%
+2026-10-22T23:06:21.6899307Z (Reading database ... 45%
+2026-10-22T23:06:21.6899637Z (Reading database ... 50%
+2026-10-22T23:06:21.6899858Z (Reading database ... 55%
+2026-10-22T23:06:21.6900077Z (Reading database ... 60%
+2026-10-22T23:06:21.6900304Z (Reading database ... 65%
+2026-10-22T23:06:21.6900538Z (Reading database ... 70%
+2026-10-22T23:06:21.6900763Z (Reading database ... 75%
+2026-10-22T23:06:21.6901154Z (Reading database ... 80%
+2026-10-22T23:06:21.6901375Z (Reading database ... 85%
+2026-10-22T23:06:21.6901602Z (Reading database ... 90%
+2026-10-22T23:06:21.6901820Z (Reading database ... 95%
+2026-10-22T23:06:21.6902042Z (Reading database ... 100%
+2026-10-22T23:06:21.6902387Z (Reading database ... 6096 files and directories currently installed.)
+2026-10-22T23:06:21.6902859Z #7 2.786 Preparing to unpack .../00-libssl3_3.0.22-1~deb12u1_amd64.deb ...
+2026-10-22T23:06:21.6903262Z #7 2.788 Unpacking libssl3:amd64 (3.0.22-1~deb12u1) ...
+2026-10-22T23:06:21.6903650Z #7 2.911 Selecting previously unselected package libargon2-1:amd64.
+2026-10-22T23:06:21.8107130Z #7 2.913 Preparing to unpack .../01-libargon2-1_0~20171227-0.3+deb12u1_amd64.deb ...
+2026-10-22T23:06:21.8108001Z #7 2.915 Unpacking libargon2-1:amd64 (0~20171227-0.3+deb12u1) ...
+2026-10-22T23:06:21.8108840Z #7 2.928 Selecting previously unselected package dmsetup.
+2026-10-22T23:06:21.8109562Z #7 2.930 Preparing to unpack .../02-dmsetup_2%3a1.02.185-2_amd64.deb ...
+2026-10-22T23:06:21.8110226Z #7 2.931 Unpacking dmsetup (2:1.02.185-2) ...
+2026-10-22T23:06:21.8110872Z #7 2.959 Selecting previously unselected package libdevmapper1.02.1:amd64.
+2026-10-22T23:06:21.8111678Z #7 2.961 Preparing to unpack .../03-libdevmapper1.02.1_2%3a1.02.185-2_amd64.deb ...
+2026-10-22T23:06:21.8112399Z #7 2.962 Unpacking libdevmapper1.02.1:amd64 (2:1.02.185-2) ...
+2026-10-22T23:06:21.8113075Z #7 2.983 Selecting previously unselected package libjson-c5:amd64.
+2026-10-22T23:06:21.8113763Z #7 2.985 Preparing to unpack .../04-libjson-c5_0.16-2_amd64.deb ...
+2026-10-22T23:06:21.8114375Z #7 2.986 Unpacking libjson-c5:amd64 (0.16-2) ...
+2026-10-22T23:06:21.8114999Z #7 3.001 Selecting previously unselected package libcryptsetup12:amd64.
+2026-10-22T23:06:21.8115766Z #7 3.003 Preparing to unpack .../05-libcryptsetup12_2%3a2.6.1-4~deb12u2_amd64.deb ...
+2026-10-22T23:06:21.8116479Z #7 3.004 Unpacking libcryptsetup12:amd64 (2:2.6.1-4~deb12u2) ...
+2026-10-22T23:06:21.8117116Z #7 3.032 Selecting previously unselected package libfdisk1:amd64.
+2026-10-22T23:06:22.0359373Z #7 3.034 Preparing to unpack .../06-libfdisk1_2.38.1-5+deb12u3_amd64.deb ...
+2026-10-22T23:06:22.0360638Z #7 3.035 Unpacking libfdisk1:amd64 (2.38.1-5+deb12u3) ...
+2026-10-22T23:06:22.0362220Z #7 3.060 Selecting previously unselected package libkmod2:amd64.
+2026-10-22T23:06:22.0363085Z #7 3.062 Preparing to unpack .../07-libkmod2_30+20221128-1_amd64.deb ...
+2026-10-22T23:06:22.0363936Z #7 3.063 Unpacking libkmod2:amd64 (30+20221128-1) ...
+2026-10-22T23:06:22.0364587Z #7 3.079 Selecting previously unselected package libapparmor1:amd64.
+2026-10-22T23:06:22.0365327Z #7 3.081 Preparing to unpack .../08-libapparmor1_3.0.8-3_amd64.deb ...
+2026-10-22T23:06:22.0365929Z #7 3.082 Unpacking libapparmor1:amd64 (3.0.8-3) ...
+2026-10-22T23:06:22.0366507Z #7 3.097 Selecting previously unselected package libip4tc2:amd64.
+2026-10-22T23:06:22.0367140Z #7 3.100 Preparing to unpack .../09-libip4tc2_1.8.9-2_amd64.deb ...
+2026-10-22T23:06:22.0367693Z #7 3.100 Unpacking libip4tc2:amd64 (1.8.9-2) ...
+2026-10-22T23:06:22.0368085Z #7 3.113 Selecting previously unselected package libsystemd-shared:amd64.
+2026-10-22T23:06:22.0368579Z #7 3.115 Preparing to unpack .../10-libsystemd-shared_252.39-1~deb12u2_amd64.deb ...
+2026-10-22T23:06:22.0369384Z #7 3.116 Unpacking libsystemd-shared:amd64 (252.39-1~deb12u2) ...
+2026-10-22T23:06:22.0369954Z #7 3.257 Setting up libssl3:amd64 (3.0.22-1~deb12u1) ...
+2026-10-22T23:06:22.2349900Z #7 3.279 Selecting previously unselected package systemd.
+2026-10-22T23:06:22.2350779Z #7 3.279 (Reading database ... 
+2026-10-22T23:06:22.2351373Z (Reading database ... 5%
+2026-10-22T23:06:22.2352025Z (Reading database ... 10%
+2026-10-22T23:06:22.2352320Z (Reading database ... 15%
+2026-10-22T23:06:22.2352546Z (Reading database ... 20%
+2026-10-22T23:06:22.2352772Z (Reading database ... 25%
+2026-10-22T23:06:22.2352993Z (Reading database ... 30%
+2026-10-22T23:06:22.2353209Z (Reading database ... 35%
+2026-10-22T23:06:22.2353597Z (Reading database ... 40%
+2026-10-22T23:06:22.2353822Z (Reading database ... 45%
+2026-10-22T23:06:22.2354041Z (Reading database ... 50%
+2026-10-22T23:06:22.2354257Z (Reading database ... 55%
+2026-10-22T23:06:22.2354474Z (Reading database ... 60%
+2026-10-22T23:06:22.2354690Z (Reading database ... 65%
+2026-10-22T23:06:22.2354909Z (Reading database ... 70%
+2026-10-22T23:06:22.2355127Z (Reading database ... 75%
+2026-10-22T23:06:22.2355357Z (Reading database ... 80%
+2026-10-22T23:06:22.2355569Z (Reading database ... 85%
+2026-10-22T23:06:22.2355785Z (Reading database ... 90%
+2026-10-22T23:06:22.2356001Z (Reading database ... 95%
+2026-10-22T23:06:22.2356230Z (Reading database ... 100%
+2026-10-22T23:06:22.2356572Z (Reading database ... 6182 files and directories currently installed.)
+2026-10-22T23:06:22.2357048Z #7 3.288 Preparing to unpack .../systemd_252.39-1~deb12u2_amd64.deb ...
+2026-10-22T23:06:22.2357447Z #7 3.306 Unpacking systemd (252.39-1~deb12u2) ...
+2026-10-22T23:06:22.3212439Z #7 3.543 Selecting previously unselected package libpython3.11-minimal:amd64.
+2026-10-22T23:06:22.4270843Z #7 3.545 Preparing to unpack .../libpython3.11-minimal_3.11.2-6+deb12u9_amd64.deb ...
+2026-10-22T23:06:22.4271692Z #7 3.546 Unpacking libpython3.11-minimal:amd64 (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:22.4272374Z #7 3.626 Selecting previously unselected package libexpat1:amd64.
+2026-10-22T23:06:22.4273037Z #7 3.628 Preparing to unpack .../libexpat1_2.5.0-1+deb12u5_amd64.deb ...
+2026-10-22T23:06:22.4273665Z #7 3.629 Unpacking libexpat1:amd64 (2.5.0-1+deb12u5) ...
+2026-10-22T23:06:22.4274280Z #7 3.648 Selecting previously unselected package python3.11-minimal.
+2026-10-22T23:06:22.5779349Z #7 3.651 Preparing to unpack .../python3.11-minimal_3.11.2-6+deb12u9_amd64.deb ...
+2026-10-22T23:06:22.5779888Z #7 3.654 Unpacking python3.11-minimal (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:22.5780330Z #7 3.799 Setting up libpython3.11-minimal:amd64 (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:22.7341863Z #7 3.803 Setting up libexpat1:amd64 (2.5.0-1+deb12u5) ...
+2026-10-22T23:06:22.7342585Z #7 3.805 Setting up python3.11-minimal (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:23.1460641Z #7 4.367 Selecting previously unselected package python3-minimal.
+2026-10-22T23:06:23.2471431Z #7 4.367 (Reading database ... 
+2026-10-22T23:06:23.2472004Z (Reading database ... 5%
+2026-10-22T23:06:23.2472260Z (Reading database ... 10%
+2026-10-22T23:06:23.2472508Z (Reading database ... 15%
+2026-10-22T23:06:23.2472832Z (Reading database ... 20%
+2026-10-22T23:06:23.2473134Z (Reading database ... 25%
+2026-10-22T23:06:23.2473360Z (Reading database ... 30%
+2026-10-22T23:06:23.2473721Z (Reading database ... 35%
+2026-10-22T23:06:23.2473974Z (Reading database ... 40%
+2026-10-22T23:06:23.2474197Z (Reading database ... 45%
+2026-10-22T23:06:23.2474436Z (Reading database ... 50%
+2026-10-22T23:06:23.2474681Z (Reading database ... 55%
+2026-10-22T23:06:23.2475053Z (Reading database ... 60%
+2026-10-22T23:06:23.2475656Z (Reading database ... 65%
+2026-10-22T23:06:23.2476267Z (Reading database ... 70%
+2026-10-22T23:06:23.2476574Z (Reading database ... 75%
+2026-10-22T23:06:23.2477005Z (Reading database ... 80%
+2026-10-22T23:06:23.2477291Z (Reading database ... 85%
+2026-10-22T23:06:23.2477639Z (Reading database ... 90%
+2026-10-22T23:06:23.2477999Z (Reading database ... 95%
+2026-10-22T23:06:23.2478266Z (Reading database ... 100%
+2026-10-22T23:06:23.2478609Z (Reading database ... 7346 files and directories currently installed.)
+2026-10-22T23:06:23.2479336Z #7 4.374 Preparing to unpack .../00-python3-minimal_3.11.2-1+b1_amd64.deb ...
+2026-10-22T23:06:23.2479780Z #7 4.375 Unpacking python3-minimal (3.11.2-1+b1) ...
+2026-10-22T23:06:23.2480393Z #7 4.390 Selecting previously unselected package media-types.
+2026-10-22T23:06:23.2480821Z #7 4.392 Preparing to unpack .../01-media-types_10.0.0_all.deb ...
+2026-10-22T23:06:23.2481177Z #7 4.393 Unpacking media-types (10.0.0) ...
+2026-10-22T23:06:23.2481554Z #7 4.406 Selecting previously unselected package libncursesw6:amd64.
+2026-10-22T23:06:23.2482150Z #7 4.408 Preparing to unpack .../02-libncursesw6_6.4-4_amd64.deb ...
+2026-10-22T23:06:23.2482519Z #7 4.408 Unpacking libncursesw6:amd64 (6.4-4) ...
+2026-10-22T23:06:23.2482905Z #7 4.429 Selecting previously unselected package libkrb5support0:amd64.
+2026-10-22T23:06:23.2483384Z #7 4.431 Preparing to unpack .../03-libkrb5support0_1.20.1-2+deb12u5_amd64.deb ...
+2026-10-22T23:06:23.2483823Z #7 4.432 Unpacking libkrb5support0:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:23.2484225Z #7 4.446 Selecting previously unselected package libk5crypto3:amd64.
+2026-10-22T23:06:23.2484661Z #7 4.448 Preparing to unpack .../04-libk5crypto3_1.20.1-2+deb12u5_amd64.deb ...
+2026-10-22T23:06:23.2485083Z #7 4.449 Unpacking libk5crypto3:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:23.2485465Z #7 4.466 Selecting previously unselected package libkeyutils1:amd64.
+2026-10-22T23:06:23.2485871Z #7 4.469 Preparing to unpack .../05-libkeyutils1_1.6.3-2_amd64.deb ...
+2026-10-22T23:06:23.3582652Z #7 4.469 Unpacking libkeyutils1:amd64 (1.6.3-2) ...
+2026-10-22T23:06:23.3583328Z #7 4.482 Selecting previously unselected package libkrb5-3:amd64.
+2026-10-22T23:06:23.3583845Z #7 4.484 Preparing to unpack .../06-libkrb5-3_1.20.1-2+deb12u5_amd64.deb ...
+2026-10-22T23:06:23.3584300Z #7 4.485 Unpacking libkrb5-3:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:23.3584735Z #7 4.520 Selecting previously unselected package libgssapi-krb5-2:amd64.
+2026-10-22T23:06:23.3585239Z #7 4.522 Preparing to unpack .../07-libgssapi-krb5-2_1.20.1-2+deb12u5_amd64.deb ...
+2026-10-22T23:06:23.3585702Z #7 4.523 Unpacking libgssapi-krb5-2:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:23.3586132Z #7 4.543 Selecting previously unselected package libtirpc-common.
+2026-10-22T23:06:23.3586576Z #7 4.546 Preparing to unpack .../08-libtirpc-common_1.3.3+ds-1_all.deb ...
+2026-10-22T23:06:23.3586979Z #7 4.546 Unpacking libtirpc-common (1.3.3+ds-1) ...
+2026-10-22T23:06:23.3587354Z #7 4.559 Selecting previously unselected package libtirpc3:amd64.
+2026-10-22T23:06:23.3587767Z #7 4.561 Preparing to unpack .../09-libtirpc3_1.3.3+ds-1_amd64.deb ...
+2026-10-22T23:06:23.3588157Z #7 4.562 Unpacking libtirpc3:amd64 (1.3.3+ds-1) ...
+2026-10-22T23:06:23.3588554Z #7 4.580 Selecting previously unselected package libnsl2:amd64.
+2026-10-22T23:06:23.4728000Z #7 4.582 Preparing to unpack .../10-libnsl2_1.3.0-2_amd64.deb ...
+2026-10-22T23:06:23.4728637Z #7 4.582 Unpacking libnsl2:amd64 (1.3.0-2) ...
+2026-10-22T23:06:23.4729435Z #7 4.597 Selecting previously unselected package readline-common.
+2026-10-22T23:06:23.4730142Z #7 4.599 Preparing to unpack .../11-readline-common_8.2-1.3_all.deb ...
+2026-10-22T23:06:23.4730747Z #7 4.599 Unpacking readline-common (8.2-1.3) ...
+2026-10-22T23:06:23.4731378Z #7 4.616 Selecting previously unselected package libreadline8:amd64.
+2026-10-22T23:06:23.4732052Z #7 4.617 Preparing to unpack .../12-libreadline8_8.2-1.3_amd64.deb ...
+2026-10-22T23:06:23.4732634Z #7 4.618 Unpacking libreadline8:amd64 (8.2-1.3) ...
+2026-10-22T23:06:23.4733220Z #7 4.641 Selecting previously unselected package libsqlite3-0:amd64.
+2026-10-22T23:06:23.4733933Z #7 4.643 Preparing to unpack .../13-libsqlite3-0_3.40.1-2+deb12u2_amd64.deb ...
+2026-10-22T23:06:23.4734582Z #7 4.644 Unpacking libsqlite3-0:amd64 (3.40.1-2+deb12u2) ...
+2026-10-22T23:06:23.4735234Z #7 4.694 Selecting previously unselected package libpython3.11-stdlib:amd64.
+2026-10-22T23:06:23.6055212Z #7 4.696 Preparing to unpack .../14-libpython3.11-stdlib_3.11.2-6+deb12u9_amd64.deb ...
+2026-10-22T23:06:23.6056032Z #7 4.697 Unpacking libpython3.11-stdlib:amd64 (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:23.6056696Z #7 4.827 Selecting previously unselected package python3.11.
+2026-10-22T23:06:23.7696736Z #7 4.829 Preparing to unpack .../15-python3.11_3.11.2-6+deb12u9_amd64.deb ...
+2026-10-22T23:06:23.7697415Z #7 4.830 Unpacking python3.11 (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:23.7697876Z #7 4.853 Selecting previously unselected package libpython3-stdlib:amd64.
+2026-10-22T23:06:23.7698403Z #7 4.855 Preparing to unpack .../16-libpython3-stdlib_3.11.2-1+b1_amd64.deb ...
+2026-10-22T23:06:23.7699264Z #7 4.856 Unpacking libpython3-stdlib:amd64 (3.11.2-1+b1) ...
+2026-10-22T23:06:23.7699652Z #7 4.873 Setting up python3-minimal (3.11.2-1+b1) ...
+2026-10-22T23:06:23.7700026Z #7 4.991 Selecting previously unselected package python3.
+2026-10-22T23:06:23.8951449Z #7 4.991 (Reading database ... 
+2026-10-22T23:06:23.8951927Z (Reading database ... 5%
+2026-10-22T23:06:23.8952314Z (Reading database ... 10%
+2026-10-22T23:06:23.8952683Z (Reading database ... 15%
+2026-10-22T23:06:23.8953038Z (Reading database ... 20%
+2026-10-22T23:06:23.8953384Z (Reading database ... 25%
+2026-10-22T23:06:23.8953728Z (Reading database ... 30%
+2026-10-22T23:06:23.8954118Z (Reading database ... 35%
+2026-10-22T23:06:23.8954471Z (Reading database ... 40%
+2026-10-22T23:06:23.8954843Z (Reading database ... 45%
+2026-10-22T23:06:23.8955191Z (Reading database ... 50%
+2026-10-22T23:06:23.8955539Z (Reading database ... 55%
+2026-10-22T23:06:23.8955881Z (Reading database ... 60%
+2026-10-22T23:06:23.8956241Z (Reading database ... 65%
+2026-10-22T23:06:23.8956588Z (Reading database ... 70%
+2026-10-22T23:06:23.8956934Z (Reading database ... 75%
+2026-10-22T23:06:23.8957280Z (Reading database ... 80%
+2026-10-22T23:06:23.8957625Z (Reading database ... 85%
+2026-10-22T23:06:23.8957949Z (Reading database ... 90%
+2026-10-22T23:06:23.8958279Z (Reading database ... 95%
+2026-10-22T23:06:23.8958623Z (Reading database ... 100%
+2026-10-22T23:06:23.8959547Z (Reading database ... 7854 files and directories currently installed.)
+2026-10-22T23:06:23.8960253Z #7 4.998 Preparing to unpack .../00-python3_3.11.2-1+b1_amd64.deb ...
+2026-10-22T23:06:23.8960821Z #7 5.001 Unpacking python3 (3.11.2-1+b1) ...
+2026-10-22T23:06:23.8961376Z #7 5.020 Selecting previously unselected package libproc2-0:amd64.
+2026-10-22T23:06:23.8962034Z #7 5.022 Preparing to unpack .../01-libproc2-0_2%3a4.0.2-3_amd64.deb ...
+2026-10-22T23:06:23.8962599Z #7 5.022 Unpacking libproc2-0:amd64 (2:4.0.2-3) ...
+2026-10-22T23:06:23.8963115Z #7 5.039 Selecting previously unselected package procps.
+2026-10-22T23:06:23.8963685Z #7 5.041 Preparing to unpack .../02-procps_2%3a4.0.2-3_amd64.deb ...
+2026-10-22T23:06:23.8964191Z #7 5.049 Unpacking procps (2:4.0.2-3) ...
+2026-10-22T23:06:24.0335359Z #7 5.116 Selecting previously unselected package sensible-utils.
+2026-10-22T23:06:24.0335902Z #7 5.119 Preparing to unpack .../03-sensible-utils_0.0.17+nmu1_all.deb ...
+2026-10-22T23:06:24.0336317Z #7 5.120 Unpacking sensible-utils (0.0.17+nmu1) ...
+2026-10-22T23:06:24.0336678Z #7 5.137 Selecting previously unselected package openssl.
+2026-10-22T23:06:24.0337080Z #7 5.139 Preparing to unpack .../04-openssl_3.0.22-1~deb12u1_amd64.deb ...
+2026-10-22T23:06:24.0337493Z #7 5.140 Unpacking openssl (3.0.22-1~deb12u1) ...
+2026-10-22T23:06:24.0337860Z #7 5.255 Selecting previously unselected package ca-certificates.
+2026-10-22T23:06:24.1470286Z #7 5.257 Preparing to unpack .../05-ca-certificates_20250419~deb12u2_all.deb ...
+2026-10-22T23:06:24.1470822Z #7 5.258 Unpacking ca-certificates (20250419~deb12u2) ...
+2026-10-22T23:06:24.1471225Z #7 5.300 Selecting previously unselected package ucf.
+2026-10-22T23:06:24.1471616Z #7 5.303 Preparing to unpack .../06-ucf_3.0043+nmu1+deb12u1_all.deb ...
+2026-10-22T23:06:24.1471986Z #7 5.304 Moving old data out of the way
+2026-10-22T23:06:24.1472267Z #7 5.306 Unpacking ucf (3.0043+nmu1+deb12u1) ...
+2026-10-22T23:06:24.1472624Z #7 5.326 Selecting previously unselected package libbsd0:amd64.
+2026-10-22T23:06:24.1473047Z #7 5.328 Preparing to unpack .../07-libbsd0_0.11.7-2_amd64.deb ...
+2026-10-22T23:06:24.1473451Z #7 5.328 Unpacking libbsd0:amd64 (0.11.7-2) ...
+2026-10-22T23:06:24.1474044Z #7 5.348 Selecting previously unselected package libedit2:amd64.
+2026-10-22T23:06:24.1474480Z #7 5.350 Preparing to unpack .../08-libedit2_3.1-20221030-2_amd64.deb ...
+2026-10-22T23:06:24.1474864Z #7 5.350 Unpacking libedit2:amd64 (3.1-20221030-2) ...
+2026-10-22T23:06:24.1475217Z #7 5.368 Selecting previously unselected package libicu72:amd64.
+2026-10-22T23:06:24.3003256Z #7 5.371 Preparing to unpack .../09-libicu72_72.1-3+deb12u1_amd64.deb ...
+2026-10-22T23:06:24.3004134Z #7 5.371 Unpacking libicu72:amd64 (72.1-3+deb12u1) ...
+2026-10-22T23:06:24.6152463Z #7 5.836 Selecting previously unselected package libmagic-mgc.
+2026-10-22T23:06:24.7632937Z #7 5.839 Preparing to unpack .../10-libmagic-mgc_1%3a5.44-3_amd64.deb ...
+2026-10-22T23:06:24.7633615Z #7 5.840 Unpacking libmagic-mgc (1:5.44-3) ...
+2026-10-22T23:06:24.7634189Z #7 5.882 Selecting previously unselected package libmagic1:amd64.
+2026-10-22T23:06:24.7634860Z #7 5.884 Preparing to unpack .../11-libmagic1_1%3a5.44-3_amd64.deb ...
+2026-10-22T23:06:24.7635469Z #7 5.885 Unpacking libmagic1:amd64 (1:5.44-3) ...
+2026-10-22T23:06:24.7636038Z #7 5.905 Selecting previously unselected package libsodium23:amd64.
+2026-10-22T23:06:24.7636726Z #7 5.907 Preparing to unpack .../12-libsodium23_1.0.18-1+deb12u1_amd64.deb ...
+2026-10-22T23:06:24.7637354Z #7 5.908 Unpacking libsodium23:amd64 (1.0.18-1+deb12u1) ...
+2026-10-22T23:06:24.7637938Z #7 5.931 Selecting previously unselected package libxml2:amd64.
+2026-10-22T23:06:24.7638593Z #7 5.933 Preparing to unpack .../13-libxml2_2.9.14+dfsg-1.3~deb12u6_amd64.deb ...
+2026-10-22T23:06:24.7639484Z #7 5.934 Unpacking libxml2:amd64 (2.9.14+dfsg-1.3~deb12u6) ...
+2026-10-22T23:06:24.7640048Z #7 5.985 Selecting previously unselected package psmisc.
+2026-10-22T23:06:24.9027827Z #7 5.987 Preparing to unpack .../14-psmisc_23.6-1_amd64.deb ...
+2026-10-22T23:06:24.9028395Z #7 5.988 Unpacking psmisc (23.6-1) ...
+2026-10-22T23:06:24.9029036Z #7 6.032 Selecting previously unselected package php-common.
+2026-10-22T23:06:24.9029639Z #7 6.034 Preparing to unpack .../15-php-common_2%3a93_all.deb ...
+2026-10-22T23:06:24.9030136Z #7 6.035 Unpacking php-common (2:93) ...
+2026-10-22T23:06:24.9030601Z #7 6.052 Selecting previously unselected package php8.2-common.
+2026-10-22T23:06:24.9031190Z #7 6.054 Preparing to unpack .../16-php8.2-common_8.2.35-1~deb12u1_amd64.deb ...
+2026-10-22T23:06:24.9031810Z #7 6.056 Unpacking php8.2-common (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:24.9032398Z #7 6.124 Selecting previously unselected package php8.2-opcache.
+2026-10-22T23:06:25.0920766Z #7 6.126 Preparing to unpack .../17-php8.2-opcache_8.2.35-1~deb12u1_amd64.deb ...
+2026-10-22T23:06:25.0921450Z #7 6.128 Unpacking php8.2-opcache (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:25.0922001Z #7 6.164 Selecting previously unselected package php8.2-readline.
+2026-10-22T23:06:25.0922646Z #7 6.166 Preparing to unpack .../18-php8.2-readline_8.2.35-1~deb12u1_amd64.deb ...
+2026-10-22T23:06:25.0923296Z #7 6.168 Unpacking php8.2-readline (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:25.0923899Z #7 6.182 Selecting previously unselected package php8.2-cli.
+2026-10-22T23:06:25.0924533Z #7 6.184 Preparing to unpack .../19-php8.2-cli_8.2.35-1~deb12u1_amd64.deb ...
+2026-10-22T23:06:25.0925018Z #7 6.185 Unpacking php8.2-cli (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:25.0925594Z #7 6.312 Selecting previously unselected package php-cli.
+2026-10-22T23:06:25.2377812Z #7 6.314 Preparing to unpack .../20-php-cli_2%3a8.2+93_all.deb ...
+2026-10-22T23:06:25.2378470Z #7 6.315 Unpacking php-cli (2:8.2+93) ...
+2026-10-22T23:06:25.2379663Z #7 6.328 Selecting previously unselected package php8.2-fpm.
+2026-10-22T23:06:25.2380329Z #7 6.331 Preparing to unpack .../21-php8.2-fpm_8.2.35-1~deb12u1_amd64.deb ...
+2026-10-22T23:06:25.2380943Z #7 6.336 Unpacking php8.2-fpm (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:25.2381478Z #7 6.459 Selecting previously unselected package php-fpm.
+2026-10-22T23:06:25.4342093Z #7 6.461 Preparing to unpack .../22-php-fpm_2%3a8.2+93_all.deb ...
+2026-10-22T23:06:25.4342664Z #7 6.462 Unpacking php-fpm (2:8.2+93) ...
+2026-10-22T23:06:25.4343271Z #7 6.482 Setting up libip4tc2:amd64 (1.8.9-2) ...
+2026-10-22T23:06:25.4343610Z #7 6.483 Setting up media-types (10.0.0) ...
+2026-10-22T23:06:25.4343931Z #7 6.486 Setting up libkeyutils1:amd64 (1.6.3-2) ...
+2026-10-22T23:06:25.4344252Z #7 6.487 Setting up libapparmor1:amd64 (3.0.8-3) ...
+2026-10-22T23:06:25.4344590Z #7 6.489 Setting up libsodium23:amd64 (1.0.18-1+deb12u1) ...
+2026-10-22T23:06:25.4345117Z #7 6.491 Setting up libicu72:amd64 (72.1-3+deb12u1) ...
+2026-10-22T23:06:25.4345543Z #7 6.492 Setting up libmagic-mgc (1:5.44-3) ...
+2026-10-22T23:06:25.4345998Z #7 6.494 Setting up psmisc (23.6-1) ...
+2026-10-22T23:06:25.4346304Z #7 6.497 Setting up libtirpc-common (1.3.3+ds-1) ...
+2026-10-22T23:06:25.4346661Z #7 6.499 Setting up libargon2-1:amd64 (0~20171227-0.3+deb12u1) ...
+2026-10-22T23:06:25.4347043Z #7 6.501 Setting up libsqlite3-0:amd64 (3.40.1-2+deb12u2) ...
+2026-10-22T23:06:25.4347383Z #7 6.502 Setting up libmagic1:amd64 (1:5.44-3) ...
+2026-10-22T23:06:25.4347761Z #7 6.505 Setting up libkrb5support0:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:25.4348114Z #7 6.507 Setting up libproc2-0:amd64 (2:4.0.2-3) ...
+2026-10-22T23:06:25.4348436Z #7 6.509 Setting up libncursesw6:amd64 (6.4-4) ...
+2026-10-22T23:06:25.4349012Z #7 6.510 Setting up libk5crypto3:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:25.4349376Z #7 6.512 Setting up libfdisk1:amd64 (2.38.1-5+deb12u3) ...
+2026-10-22T23:06:25.4349715Z #7 6.514 Setting up sensible-utils (0.0.17+nmu1) ...
+2026-10-22T23:06:25.4350035Z #7 6.516 Setting up procps (2:4.0.2-3) ...
+2026-10-22T23:06:25.4350454Z #7 6.537 Setting up libkrb5-3:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:25.4350825Z #7 6.538 Setting up openssl (3.0.22-1~deb12u1) ...
+2026-10-22T23:06:25.4351143Z #7 6.542 Setting up libbsd0:amd64 (0.11.7-2) ...
+2026-10-22T23:06:25.4351564Z #7 6.543 Setting up libjson-c5:amd64 (0.16-2) ...
+2026-10-22T23:06:25.4351973Z #7 6.546 Setting up readline-common (8.2-1.3) ...
+2026-10-22T23:06:25.4352300Z #7 6.550 Setting up libxml2:amd64 (2.9.14+dfsg-1.3~deb12u6) ...
+2026-10-22T23:06:25.4352658Z #7 6.552 Setting up libkmod2:amd64 (30+20221128-1) ...
+2026-10-22T23:06:25.4353090Z #7 6.554 Setting up php-common (2:93) ...
+2026-10-22T23:06:25.4354040Z #7 6.655 Created symlink /etc/systemd/system/timers.target.wants/phpsessionclean.timer → /lib/systemd/system/phpsessionclean.timer.
+2026-10-22T23:06:25.4354856Z 
+2026-10-22T23:06:25.5929265Z #7 6.660 Setting up libedit2:amd64 (3.1-20221030-2) ...
+2026-10-22T23:06:25.5929918Z #7 6.662 Setting up libreadline8:amd64 (8.2-1.3) ...
+2026-10-22T23:06:25.5930826Z #7 6.664 Setting up ca-certificates (20250419~deb12u2) ...
+2026-10-22T23:06:25.8931789Z #7 7.114 Updating certificates in /etc/ssl/certs...
+2026-10-22T23:06:26.4475725Z #7 7.669 148 added, 0 removed; done.
+2026-10-22T23:06:26.8859183Z #7 8.107 Setting up libgssapi-krb5-2:amd64 (1.20.1-2+deb12u5) ...
+2026-10-22T23:06:27.0508308Z #7 8.110 Setting up libsystemd-shared:amd64 (252.39-1~deb12u2) ...
+2026-10-22T23:06:27.0509107Z #7 8.112 Setting up ucf (3.0043+nmu1+deb12u1) ...
+2026-10-22T23:06:27.0509676Z #7 8.174 Setting up libtirpc3:amd64 (1.3.3+ds-1) ...
+2026-10-22T23:06:27.0510204Z #7 8.176 Setting up php8.2-common (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:27.0510645Z #7 8.272 
+2026-10-22T23:06:27.0511153Z #7 8.272 Creating config file /etc/php/8.2/mods-available/calendar.ini with new version
+2026-10-22T23:06:27.2436470Z #7 8.464 
+2026-10-22T23:06:27.2437176Z #7 8.464 Creating config file /etc/php/8.2/mods-available/ctype.ini with new version
+2026-10-22T23:06:27.4307364Z #7 8.652 
+2026-10-22T23:06:27.4307810Z #7 8.652 Creating config file /etc/php/8.2/mods-available/exif.ini with new version
+2026-10-22T23:06:27.6213308Z #7 8.843 
+2026-10-22T23:06:27.6213979Z #7 8.843 Creating config file /etc/php/8.2/mods-available/fileinfo.ini with new version
+2026-10-22T23:06:27.8143807Z #7 9.036 
+2026-10-22T23:06:27.8144314Z #7 9.036 Creating config file /etc/php/8.2/mods-available/ffi.ini with new version
+2026-10-22T23:06:28.0098560Z #7 9.230 
+2026-10-22T23:06:28.0099597Z #7 9.230 Creating config file /etc/php/8.2/mods-available/ftp.ini with new version
+2026-10-22T23:06:28.2069310Z #7 9.428 
+2026-10-22T23:06:28.2069972Z #7 9.428 Creating config file /etc/php/8.2/mods-available/gettext.ini with new version
+2026-10-22T23:06:28.4092827Z #7 9.631 
+2026-10-22T23:06:28.4093307Z #7 9.631 Creating config file /etc/php/8.2/mods-available/iconv.ini with new version
+2026-10-22T23:06:28.6097601Z #7 9.831 
+2026-10-22T23:06:28.6098266Z #7 9.831 Creating config file /etc/php/8.2/mods-available/pdo.ini with new version
+2026-10-22T23:06:28.8100314Z #7 10.03 
+2026-10-22T23:06:28.8100963Z #7 10.03 Creating config file /etc/php/8.2/mods-available/phar.ini with new version
+2026-10-22T23:06:29.0106054Z #7 10.23 
+2026-10-22T23:06:29.0106731Z #7 10.23 Creating config file /etc/php/8.2/mods-available/posix.ini with new version
+2026-10-22T23:06:29.2077565Z #7 10.43 
+2026-10-22T23:06:29.2078205Z #7 10.43 Creating config file /etc/php/8.2/mods-available/shmop.ini with new version
+2026-10-22T23:06:29.4057862Z #7 10.63 
+2026-10-22T23:06:29.4058564Z #7 10.63 Creating config file /etc/php/8.2/mods-available/sockets.ini with new version
+2026-10-22T23:06:29.6065139Z #7 10.83 
+2026-10-22T23:06:29.6066013Z #7 10.83 Creating config file /etc/php/8.2/mods-available/sysvmsg.ini with new version
+2026-10-22T23:06:29.8093008Z #7 11.03 
+2026-10-22T23:06:29.8093665Z #7 11.03 Creating config file /etc/php/8.2/mods-available/sysvsem.ini with new version
+2026-10-22T23:06:30.0111200Z #7 11.23 
+2026-10-22T23:06:30.0111817Z #7 11.23 Creating config file /etc/php/8.2/mods-available/sysvshm.ini with new version
+2026-10-22T23:06:30.2140937Z #7 11.44 
+2026-10-22T23:06:30.2141623Z #7 11.44 Creating config file /etc/php/8.2/mods-available/tokenizer.ini with new version
+2026-10-22T23:06:30.3252908Z #7 11.55 Setting up php8.2-opcache (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:30.5318400Z #7 11.64 
+2026-10-22T23:06:30.5320313Z #7 11.64 Creating config file /etc/php/8.2/mods-available/opcache.ini with new version
+2026-10-22T23:06:30.5320870Z #7 11.75 Setting up php8.2-readline (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:30.7400717Z #7 11.85 
+2026-10-22T23:06:30.7401316Z #7 11.85 Creating config file /etc/php/8.2/mods-available/readline.ini with new version
+2026-10-22T23:06:30.7402042Z #7 11.96 Setting up libnsl2:amd64 (1.3.0-2) ...
+2026-10-22T23:06:30.8408636Z #7 11.96 Setting up php8.2-cli (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:30.8409653Z #7 11.97 update-alternatives: using /usr/bin/php8.2 to provide /usr/bin/php (php) in auto mode
+2026-10-22T23:06:30.8410415Z #7 11.97 update-alternatives: using /usr/bin/phar8.2 to provide /usr/bin/phar (phar) in auto mode
+2026-10-22T23:06:30.8411232Z #7 11.97 update-alternatives: using /usr/bin/phar.phar8.2 to provide /usr/bin/phar.phar (phar.phar) in auto mode
+2026-10-22T23:06:30.8411882Z #7 12.06 
+2026-10-22T23:06:30.8412284Z #7 12.06 Creating config file /etc/php/8.2/cli/php.ini with new version
+2026-10-22T23:06:31.2142494Z #7 12.44 Setting up libpython3.11-stdlib:amd64 (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:31.3761786Z #7 12.44 Setting up php-cli (2:8.2+93) ...
+2026-10-22T23:06:31.3762591Z #7 12.44 update-alternatives: using /usr/bin/php.default to provide /usr/bin/php (php) in auto mode
+2026-10-22T23:06:31.3763270Z #7 12.44 update-alternatives: using /usr/bin/phar.default to provide /usr/bin/phar (phar) in auto mode
+2026-10-22T23:06:31.3763986Z #7 12.44 update-alternatives: using /usr/bin/phar.phar.default to provide /usr/bin/phar.phar (phar.phar) in auto mode
+2026-10-22T23:06:31.3764561Z #7 12.45 Setting up libpython3-stdlib:amd64 (3.11.2-1+b1) ...
+2026-10-22T23:06:31.3764914Z #7 12.45 Setting up python3.11 (3.11.2-6+deb12u9) ...
+2026-10-22T23:06:31.8379777Z #7 13.06 Setting up python3 (3.11.2-1+b1) ...
+2026-10-22T23:06:31.9382494Z #7 13.14 Setting up libdevmapper1.02.1:amd64 (2:1.02.185-2) ...
+2026-10-22T23:06:31.9383031Z #7 13.14 Setting up dmsetup (2:1.02.185-2) ...
+2026-10-22T23:06:31.9383577Z #7 13.14 Setting up libcryptsetup12:amd64 (2:2.6.1-4~deb12u2) ...
+2026-10-22T23:06:31.9384147Z #7 13.14 Setting up systemd (252.39-1~deb12u2) ...
+2026-10-22T23:06:31.9385358Z #7 13.16 Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+2026-10-22T23:06:31.9385822Z 
+2026-10-22T23:06:31.9386287Z #7 13.16 Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+2026-10-22T23:06:31.9386908Z 
+2026-10-22T23:06:32.0979751Z #7 13.16 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /lib/systemd/system/systemd-pstore.service.
+2026-10-22T23:06:32.0980325Z 
+2026-10-22T23:06:32.0980490Z #7 13.17 Initializing machine ID from random generator.
+2026-10-22T23:06:32.0980834Z 
+2026-10-22T23:06:32.0980985Z #7 13.19 Creating group 'systemd-journal' with GID 999.
+2026-10-22T23:06:32.0981219Z 
+2026-10-22T23:06:32.0981361Z #7 13.19 Creating group 'systemd-network' with GID 998.
+2026-10-22T23:06:32.0981683Z 
+2026-10-22T23:06:32.0981972Z #7 13.19 Creating user 'systemd-network' (systemd Network Management) with UID 998 and GID 998.
+2026-10-22T23:06:32.0982417Z 
+2026-10-22T23:06:32.0982554Z #7 13.22 Setting up php8.2-fpm (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:32.0982865Z #7 13.32 
+2026-10-22T23:06:32.0983246Z #7 13.32 Creating config file /etc/php/8.2/fpm/php.ini with new version
+2026-10-22T23:06:32.5582482Z #7 13.78 Created symlink /etc/systemd/system/multi-user.target.wants/php8.2-fpm.service → /lib/systemd/system/php8.2-fpm.service.
+2026-10-22T23:06:32.5583058Z 
+2026-10-22T23:06:32.7486346Z #7 13.80 invoke-rc.d: could not determine current runlevel
+2026-10-22T23:06:32.7486989Z #7 13.80 invoke-rc.d: policy-rc.d denied execution of start.
+2026-10-22T23:06:32.7487474Z #7 13.80 Setting up php-fpm (2:8.2+93) ...
+2026-10-22T23:06:32.7488076Z #7 13.81 Processing triggers for libc-bin (2.36-9+deb12u14) ...
+2026-10-22T23:06:32.7488905Z #7 13.82 Processing triggers for ca-certificates (20250419~deb12u2) ...
+2026-10-22T23:06:32.7489552Z #7 13.82 Updating certificates in /etc/ssl/certs...
+2026-10-22T23:06:33.0225384Z #7 14.24 0 added, 0 removed; done.
+2026-10-22T23:06:33.0225813Z #7 14.24 Running hooks in /etc/ca-certificates/update.d...
+2026-10-22T23:06:33.1855410Z #7 14.24 done.
+2026-10-22T23:06:33.1855940Z #7 14.25 Processing triggers for php8.2-cli (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:33.1856383Z #7 14.25 Processing triggers for php8.2-fpm (8.2.35-1~deb12u1) ...
+2026-10-22T23:06:33.1856816Z #7 14.25 invoke-rc.d: could not determine current runlevel
+2026-10-22T23:06:33.1857231Z #7 14.26 invoke-rc.d: policy-rc.d denied execution of restart.
+2026-10-22T23:06:33.4867093Z #7 DONE 14.7s
+2026-10-22T23:06:33.6376996Z 
+2026-10-22T23:06:33.6377773Z #8 [3/5] RUN mkdir /cache && cd /cache && apt-get download $(dpkg-query -W -f='${binary:Package}=${Version}\n' 'php[0-9]*-fpm')
+2026-10-22T23:06:34.1547873Z #8 0.667 Get:1 http://deb.debian.org/debian-security bookworm-security/main amd64 php8.2-fpm amd64 8.2.35-1~deb12u1 [1766 kB]
+2026-10-22T23:06:34.3872725Z #8 0.686 W: Download is performed unsandboxed as root as file '/cache/php8.2-fpm_8.2.35-1~deb12u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+2026-10-22T23:06:34.3873940Z #8 0.686 Fetched 1766 kB in 0s (50.7 MB/s)
+2026-10-22T23:06:34.3874337Z #8 DONE 0.7s
+2026-10-22T23:06:34.3874527Z 
+2026-10-22T23:06:34.3874652Z #9 [4/5] WORKDIR /work
+2026-10-22T23:06:34.3874973Z #9 DONE 0.0s
+2026-10-22T23:06:34.3875162Z 
+2026-10-22T23:06:34.3875286Z #10 [5/5] COPY . /work
+2026-10-22T23:06:34.3875616Z #10 DONE 0.0s
+2026-10-22T23:06:34.3875782Z 
+2026-10-22T23:06:34.3875916Z #11 exporting to image
+2026-10-22T23:06:34.3876238Z #11 exporting layers
+2026-10-22T23:06:35.2806359Z #11 exporting layers 1.0s done
+2026-10-22T23:06:35.2931420Z #11 writing image sha256:90a7039476a10ae3285be6eabda260738445de8ae28ffe82540eb947f03af9b1 done
+2026-10-22T23:06:35.2933401Z #11 naming to docker.io/library/webpatch-debian-trust done
+2026-10-22T23:06:35.2934129Z #11 DONE 1.0s
+2026-10-22T23:06:37.9283962Z Traceback (most recent call last):
+2026-10-22T23:06:37.9285009Z   File "/work/tests/integration/debian_trust_check.py", line 18, in <module>
+2026-10-22T23:06:37.9285873Z     assert report.package_trust['status']=='VERIFIED_INDEX_CHAIN',report.package_trust['blockers']
+2026-10-22T23:06:37.9286565Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-22T23:06:37.9287195Z AssertionError: ['RELEASE_AUTHENTICATION_OR_FRESHNESS_FAILED:bookworm-updates']
+2026-10-22T23:06:37.9865074Z ##[error]Process completed with exit code 1.
+2026-10-22T23:06:37.9950829Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-22T23:06:37.9951238Z with:
+2026-10-22T23:06:37.9951453Z   name: debian-trust-12
+2026-10-22T23:06:37.9951683Z   path: ci-evidence/
+2026-10-22T23:06:37.9951912Z   if-no-files-found: warn
+2026-10-22T23:06:37.9952147Z   compression-level: 6
+2026-10-22T23:06:37.9952363Z   overwrite: false
+2026-10-22T23:06:37.9952587Z   include-hidden-files: false
+2026-10-22T23:06:37.9952838Z ##[endgroup]
+2026-10-22T23:06:38.1553342Z (node:11877) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T23:06:38.1554235Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T23:06:38.1630555Z With the provided path, there will be 3 files uploaded
+2026-10-22T23:06:38.1631321Z Artifact name is valid!
+2026-10-22T23:06:38.1631744Z Root directory input is valid!
+2026-10-22T23:06:38.4357610Z Beginning upload of artifact content to blob storage
+2026-10-22T23:06:38.4577989Z (node:11877) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T23:06:38.5748382Z Uploaded bytes 7800
+2026-10-22T23:06:38.6143979Z Finished uploading artifact content to blob storage!
+2026-10-22T23:06:38.6145040Z SHA256 digest of uploaded artifact zip is 9bb68c4b40f9c967cb57becd2b6eda28b4d4a3ee6ec14a5a4e691ef73d9b5454
+2026-10-22T23:06:38.6146243Z Finalizing artifact upload
+2026-10-22T23:06:39.0932970Z Artifact debian-trust-12.zip successfully finalized. Artifact ID 12464714835
+2026-10-22T23:06:39.0934004Z Artifact debian-trust-12 has been successfully uploaded! Final size is 7800 bytes. Artifact ID is 12464714835
+2026-10-22T23:06:39.0941040Z Artifact download URL: https://github.com/ninex98/webpatch/actions/runs/39869554306/artifacts/12464714835
+2026-10-22T23:06:39.1187657Z Post job cleanup.
+2026-10-22T23:06:39.2042828Z [command]/usr/bin/git version
+2026-10-22T23:06:39.2087811Z git version 2.55.0
+2026-10-22T23:06:39.2129261Z Temporarily overriding HOME='/home/runner/work/_temp/d732b0a2-1fdb-4fb4-b99f-41eabe06229c' before making global git config changes
+2026-10-22T23:06:39.2130461Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T23:06:39.2135516Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-22T23:06:39.2179772Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T23:06:39.2221927Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T23:06:39.2496724Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T23:06:39.2528052Z http.https://github.com/.extraheader
+2026-10-22T23:06:39.2540534Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T23:06:39.2594224Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T23:06:39.2866089Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T23:06:39.2911454Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T23:06:39.3382740Z Cleaning up orphan processes
+2026-10-22T23:06:39.3712390Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

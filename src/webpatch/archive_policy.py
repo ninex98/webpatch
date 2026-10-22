@@ -1,6 +1,7 @@
 """Reviewed distribution archive boundaries, independent of CVE version rules."""
 UBUNTU_KEYRING='/usr/share/keyrings/ubuntu-archive-keyring.gpg'
 DEBIAN_KEYRING='/usr/share/keyrings/debian-archive-keyring.gpg'
+DEBIAN_KEYRING_PGP='/usr/share/keyrings/debian-archive-keyring.pgp'
 UBUNTU_SIGNER='F6ECB3762474EDA9D21B7022871920D1991BC93C'
 REVIEWED_AT='2026-10-22T22:49:54+00:00'
 REFERENCES=('https://ftp-master.debian.org/keys.html',
@@ -27,6 +28,10 @@ def archive_keyring(os_id):
     raise ValueError('ARCHIVE_VENDOR_UNSUPPORTED')
 
 
+def archive_keyrings(os_id):
+    return {DEBIAN_KEYRING,DEBIAN_KEYRING_PGP} if os_id=='debian' else {archive_keyring(os_id)}
+
+
 def release_policy(os_id,codename,suite):
     if not supported_archive(os_id,codename) or suite not in {codename,codename+'-updates',codename+'-security'}:
         raise ValueError('ARCHIVE_SCOPE_UNSUPPORTED')
@@ -38,4 +43,4 @@ def release_policy(os_id,codename,suite):
     return {'origin':'Debian','label':'Debian-Security' if security else 'Debian',
             'suite':keys['suite']+suffix,'codename':suite,
             'signers':{keys['security']} if security else ({keys['archive'],keys['release']} if not suffix else {keys['archive']}),
-            'valid_until_required':bool(suffix)}
+            'valid_until_required':security or (codename=='trixie' and bool(suffix))}

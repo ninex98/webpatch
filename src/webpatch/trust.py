@@ -13,15 +13,17 @@ import posixpath
 from urllib.parse import urlsplit
 
 from .sources import KEYRING, official_source, paragraphs
-from .archive_policy import UBUNTU_SIGNER,archive_keyring,release_policy,supported_archive
+from .archive_policy import UBUNTU_SIGNER,archive_keyring,archive_keyrings,release_policy,supported_archive
 
 
 LISTS = "/var/lib/apt/lists"
 SHA256 = re.compile(r"[a-f0-9]{64}\Z")
 
 
-def signature_command(path,os_id='ubuntu'):
-    return ("/usr/bin/gpgv", "--status-fd=1", "--keyring", archive_keyring(os_id), path)
+def signature_command(path,os_id='ubuntu',keyring=None):
+    keyring=keyring or archive_keyring(os_id)
+    if keyring not in archive_keyrings(os_id): raise ValueError('ARCHIVE_KEYRING_UNSUPPORTED')
+    return ("/usr/bin/gpgv", "--status-fd=1", "--keyring", keyring, path)
 
 
 def valid_primary_signers(result):
@@ -153,7 +155,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
         if raw is None:
             blockers.append("SIGNED_RELEASE_UNAVAILABLE:" + source.suite)
             continue
-        signature = probe("run", signature_command(release_path,inventory.environment.os_id))
+        signature = probe("run", signature_command(release_path,inventory.environment.os_id,source.signed_by))
         if probe("read_text", release_path) != raw:
             blockers.append("RELEASE_CHANGED_DURING_VERIFICATION")
             continue
