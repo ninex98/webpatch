@@ -51,6 +51,26 @@ class RuntimeHint:
 
 
 @dataclass(frozen=True)
+class RuntimeFile:
+    path: str
+    role: str
+    package_ids: tuple[str, ...]
+    sha256: str | None
+    device: int | None
+    inode: int | None
+    status: str
+    evidence_ids: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class RuntimeEndpoint:
+    path: str
+    socket_inode: str
+    network_namespace: str
+    evidence_ids: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class RuntimeInstance:
     pid: int
     sapi: str
@@ -62,6 +82,12 @@ class RuntimeInstance:
     association: str
     blockers: tuple[str, ...]
     evidence_ids: tuple[str, ...]
+    files: tuple[RuntimeFile, ...] = ()
+    endpoints: tuple[RuntimeEndpoint, ...] = ()
+    mapping_sha256: str | None = None
+    mapping_status: str = "NOT_CHECKED"
+    endpoint_status: str = "NOT_CHECKED"
+    namespace_sha256: str | None = None
 
 
 @dataclass(frozen=True)
@@ -72,6 +98,7 @@ class ConfigRelation:
     target: str
     status: str
     evidence_ids: tuple[str, ...]
+    constraints: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)

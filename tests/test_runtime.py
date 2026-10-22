@@ -15,6 +15,11 @@ def runtime_fixture(apache=False):
                        "processes": [{"pid": 42, "comm": "apache2" if apache else "php-fpm8.1", "exe": path}]})
     fake.reads["/proc/42/stat"] = "42 (name (with spaces)) S " + "0 " * 18 + "123 0"
     fake.links["/proc/42/ns/pid"] = "pid:[1]"
+    fake.links["/proc/42/ns/net"] = "net:[1]"
+    fake.dirs["/proc/42/fd"] = ["8"]
+    fake.links["/proc/42/fd/8"] = "socket:[1234]"
+    fake.reads["/proc/42/net/unix"] = "Num RefCount Protocol Flags Type St Inode Path\n000: 00000002 00000000 00010000 0001 01 1234 /run/php/php8.1-fpm.sock\n"
+    fake.reads["/proc/42/maps"] = f"100-200 r-xp 00000000 00:01 5 {path}\n"
     fake.identities["/proc/42/root"] = fake.identities["/"]
     identity = {"device": 1, "inode": 5, "size": 10, "sha256": "a" * 64}
     fake.fingerprints.update({"/proc/42/exe": identity, path: identity})

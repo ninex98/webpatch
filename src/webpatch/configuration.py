@@ -35,21 +35,29 @@ class ConfigurationAdapter:
                     elif "=" in line:
                         key, value = (v.strip() for v in line.split("=", 1))
                         if key == "listen" and section != "global":
-                            if section in pools or not re.fullmatch(r"/[A-Za-z0-9_./-]+|(?:127\.0\.0\.1|\[::1\]):[0-9]+", value):
+                            ambiguous = section in pools or not re.fullmatch(r"/[A-Za-z0-9_./-]+|(?:127\.0\.0\.1|\[::1\]):[0-9]+", value)
+                            if ambiguous:
                                 inventory.coverage_gaps.append("FPM_POOL_LISTENER_AMBIGUOUS_OR_UNSUPPORTED")
                             pools[section] = value
                             inventory.config_relations.append(ConfigRelation(
-                                "fpm_pool", path, section, value if "$" not in value else "UNRESOLVED",
-                                "CONFIGURED_NOT_PROVEN_LOADED", (ident,)))
+                                "fpm_pool", path, section, value if not ambiguous else "UNRESOLVED",
+                                "CONFIGURED_NOT_PROVEN_LOADED", tuple(d[2] for d in documents),
+                                ("AMBIGUOUS_OR_UNSUPPORTED_LISTENER",) if ambiguous else ()))
                         if key in {"chroot", "include"} and (key == "chroot" or "$" in value):
                             inventory.coverage_gaps.append("FPM_DYNAMIC_OR_CHROOT_CONFIGURATION")
             if not pools:
                 inventory.coverage_gaps.append(f"FPM_POOLS_UNRESOLVED:{branch}")
             # PHP extensions and per-pool directives can change loaded behavior.
-            self.php_inputs(collector, inventory, root)
+        for branch, sapi in sorted({(p.source_name[3:], p.sapi) for p in inventory.packages
+                                   if re.fullmatch(r"php[0-9]+\.[0-9]+", p.source_name)
+                                   and p.sapi in {"fpm", "apache2", "cli", "cgi"}}):
+            self.php_inputs(collector, inventory, f"/etc/php/{branch}/{sapi}")
         for root, initial, kind in (("/etc/nginx", "nginx.conf", "nginx"),
                                     ("/etc/apache2", "apache2.conf", "apache")):
             docs = self.tree(collector, inventory, f"{root}/{initial}", root, kind, optional=True)
+            conditional = any(re.search(r"<(?:If\w*|Else)\b|\bif\s*\(", raw, re.I) for _, raw, _ in docs)
+            if conditional:
+                inventory.coverage_gaps.append("CONDITIONAL_WEB_CONFIGURATION_UNRESOLVED:" + root)
             for path, raw, ident in docs:
                 for line in raw.splitlines():
                     stripped = line.strip()
@@ -63,7 +71,8 @@ class ConfigurationAdapter:
                         target = endpoint[0] if endpoint else (target if re.fullmatch(r"(?:127\.0\.0\.1:[0-9]+|unix:/[A-Za-z0-9_./-]+)", target) else "UNRESOLVED")
                         inventory.config_relations.append(ConfigRelation(
                             "configured_web_handler", path, kind, target,
-                            "CONFIGURED_ROUTE_ONLY", (ident,)))
+                            "CONFIGURED_ROUTE_ONLY", tuple(d[2] for d in docs),
+                            ("CONDITIONAL_CONTEXT_UNRESOLVED",) if conditional else ()))
                         if target == "UNRESOLVED":
                             inventory.coverage_gaps.append("DYNAMIC_WEB_HANDLER_UNRESOLVED")
             if docs:
@@ -121,4 +130,8 @@ class ConfigurationAdapter:
                 else:
                     visit(target, depth + 1, "includeoptional" in line.lower())
         visit(initial, missing_ok=optional)
+        for path, raw, _ in documents:
+            current, _ = collector.probe("read_text", path)
+            if current != raw:
+                inventory.coverage_gaps.append("CONFIG_CHANGED_DURING_SCAN:" + path)
         return documents

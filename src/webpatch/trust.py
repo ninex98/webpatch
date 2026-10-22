@@ -100,6 +100,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
         release_path = LISTS + "/" + prefix + "_InRelease"
         if release_path in seen: continue
         seen.add(release_path)
+        release_evidence_start = len(collector.evidence)
         raw = probe("read_text", release_path)
         if raw is None:
             blockers.append("SIGNED_RELEASE_UNAVAILABLE:" + source.suite)
@@ -114,6 +115,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
             blockers.append("RELEASE_AUTHENTICATION_OR_FRESHNESS_FAILED:" + source.suite)
             continue
         release_hash = hashlib.sha256(raw.encode()).hexdigest()
+        release_evidence_ids = [e.id for e in collector.evidence[release_evidence_start:]]
         # Sources for the same suite may list different components in separate stanzas.
         components = set(c for s in sources.sources if s.uri == source.uri and s.suite == source.suite for c in s.components)
         for component in sorted(components):
@@ -126,6 +128,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
                     blockers.append("INDEX_MISSING_OR_AMBIGUOUS:" + source.suite + ":" + relative)
                     continue
                 index = probe("package_index", LISTS + "/" + matches[0])
+                index_evidence_id = collector.evidence[-1].id
                 if index is None or (index.get("sha256"), index.get("size")) != entries[relative]:
                     blockers.append("INDEX_SHA256_OR_SIZE_MISMATCH:" + relative)
                     continue
@@ -143,19 +146,20 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
                                            "filename": record["Filename"], "suite": source.suite,
                                            "fresh_for_plan": source.suite != inventory.environment.codename,
                                            "release_sha256": release_hash, "index_sha256": index["sha256"],
+                                           "evidence_ids": [*release_evidence_ids, index_evidence_id],
                                            "signer": UBUNTU_SIGNER})
                     except (KeyError, ValueError):
                         blockers.append("AUTHENTICATED_INDEX_RECORD_MALFORMED")
     if not candidates:
         blockers.append("NO_AUTHENTICATED_PACKAGE_CANDIDATES")
     archive_names = probe("listdir", package_cache)
-    chain_evidence_ids = [e.id for e in collector.evidence[start:]]
     for package in inventory.packages:
         package_evidence_start = len(collector.evidence)
         if package.sapi not in {"fpm", "apache2", "cli", "cgi", "component_or_unknown"}: continue
         matching = [c for c in candidates if (c["name"], c["version"], c["architecture"], c["source_name"], c["source_version"])
                     == (package.name.split(":")[0], package.version, package.architecture, package.source_name, package.source_version)]
         hashes = {c["sha256"] for c in matching}
+        chain_evidence_ids = sorted({e for c in matching for e in c["evidence_ids"]})
         reasons = []
         verified_files = {}
         archive_hash = None

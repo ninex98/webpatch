@@ -12,6 +12,7 @@ from .rules import DpkgComparator, RuleEngine
 from .system import Collector, DPKG_QUERY, ProbeError
 from .runtime import start_ticks
 from .coverage import plan_scope
+from .runtime_evidence import php_mapping_rows, mapping_digest, unix_listeners
 
 
 def digest(value):
@@ -36,7 +37,13 @@ def stable_bindings(report):
 
 
 def state_digest(report, bindings):
-    runtimes = [{k: v for k, v in asdict(r).items() if k != "evidence_ids"} for r in report.inventory.runtimes]
+    def without_ids(value):
+        if isinstance(value, dict):
+            return {k: without_ids(v) for k, v in value.items() if k != "evidence_ids"}
+        if isinstance(value, (tuple, list)):
+            return [without_ids(v) for v in value]
+        return value
+    runtimes = [without_ids(asdict(r)) for r in report.inventory.runtimes]
     return digest({"environment": asdict(report.inventory.environment), "bindings": [asdict(b) for b in bindings],
                    "runtimes": runtimes, "rules": report.rule_sha256})
 
@@ -54,6 +61,24 @@ def check_bindings(collector, bindings, report=None):
             path, _ = collector.probe("readlink", f"/proc/{runtime.pid}/exe")
             if not runtime.start_ticks or start_ticks(stat) != runtime.start_ticks or path != runtime.path:
                 return False
+            values = [collector.probe(op, target)[0] for op, target in (
+                ("readlink", f"/proc/{runtime.pid}/ns/mnt"), ("readlink", f"/proc/{runtime.pid}/ns/pid"),
+                ("identity", f"/proc/{runtime.pid}/root"))]
+            if mapping_digest(values) != runtime.namespace_sha256:
+                return False
+            if runtime.mapping_sha256 is not None:
+                maps, _ = collector.probe("read_text", f"/proc/{runtime.pid}/maps")
+                if mapping_digest(php_mapping_rows(maps)) != runtime.mapping_sha256:
+                    return False
+            for file in runtime.files:
+                current, _ = collector.probe("fingerprint", f"/proc/{runtime.pid}/exe" if file.role.endswith("executable") else file.path)
+                if current is None or (current.get("device"), current.get("inode"), current.get("sha256")) != (file.device, file.inode, file.sha256):
+                    return False
+            if runtime.endpoint_status == "OBSERVED":
+                endpoints, status = unix_listeners(collector, runtime.pid, [])
+                values = lambda items: [(e.path, e.socket_inode, e.network_namespace) for e in items]
+                if status != "OBSERVED" or values(endpoints) != values(runtime.endpoints):
+                    return False
         # Account for newly started PHP/web processes, not only previously observed PIDs.
         pids, _ = collector.probe("listdir", "/proc")
         if pids is None or sum(p.isdigit() for p in pids) > 4096:

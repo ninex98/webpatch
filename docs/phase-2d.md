@@ -11,3 +11,15 @@
 迁移：读取报告的消费者可继续读取旧字段，但应按 schema 2 使用结构化覆盖；旧 schema 2 计划不能补字段后执行或验证为新计划，verify-plan 返回 PLAN_SCHEMA_RESCAN_REQUIRED，必须重新扫描/生成 schema 3 计划并重新审阅。验证结果依旧 BLOCKED、executable=false、退出码 4。所有 apply 调用继续拒绝。
 
 本小阶段不增加运行时证明能力；映射/配置/路由连接及统一计划门禁分别在 2D.2/2D.3。静态文件、包认证、局部关联均不代表运行时安全。
+
+## 2D.2 运行文件、监听端点与静态路由
+
+RuntimeInstance 增加 files、endpoints、mapping_sha256、namespace_sha256 和各自观察状态。files 将主映像和标准 `/usr/lib/php/` / `libphp*.so` 映射分开，记录 device/inode/sha256、包引用与证据。文件认证要求稳定映像/映射与受信任归档中的路径及字节相符；不认证进程内存，也不穷举自定义扩展或所有原生依赖。Apache 主程序本身不在 PHP 归档身份链内，明确保持 UNKNOWN。
+
+FPM 的 UNIX socket 关联同时检查进程 fd 所持 inode、该进程网络命名空间的 UNIX 表、监听标记/类型/状态和重复读取一致性。TCP listener、外部网络命名空间及不可读 fd 仍 UNKNOWN。socket 所属进程证明不等于 pool 名称已加载。
+
+配置树只解析有限静态 include，观察 pool/handler 并关联服务与候选进程；所有关系保留 CONFIGURED 状态。条件块、重复/动态 listener、未解析 include、扫描中配置变化均有缺口。加载配置 UNKNOWN，请求归属 NOT_CHECKED。默认不执行 PHP/FPM/Apache 配置、不部署诊断页面、不发 HTTP 请求。现有 VM 普通标记页仍只验证测试环境行为，不输入归属判定。
+
+计划重查 namespace/root、进程 starttime、映像身份、PHP 映射摘要和已观察 listener。对证据变化的检测不是并发锁或内存完整性证明。纯只读证据无法解除 loaded configuration / request attribution 门禁。
+
+真实环境验收新增实际映射文件删除/替换的无害 mmap helper，以及修改配置但不重启服务的反例；只在 GitHub-hosted 临时 VM 中运行并恢复配置。此处的无害映射数据不是漏洞二进制或真实漏洞利用。

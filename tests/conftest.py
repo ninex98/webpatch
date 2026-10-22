@@ -31,6 +31,7 @@ class FakeSystem:
         }
         self.links = {"/proc/self/ns/mnt": "mnt:[1]"}
         self.links["/proc/self/ns/pid"] = "pid:[1]"
+        self.links["/proc/self/ns/net"] = "net:[1]"
         self.identities = {"/": {"device": 1, "inode": 1}}
         self.fingerprints = {}
         self.indexes = {}
@@ -56,6 +57,8 @@ class FakeSystem:
             self.links[f"/proc/{pid}/ns/mnt"] = (ProbeError(proc["ns_error"]) if "ns_error" in proc
                                                  else proc.get("ns", "mnt:[1]"))
             self.links[f"/proc/{pid}/ns/pid"] = missing
+            self.links[f"/proc/{pid}/ns/net"] = missing
+            self.reads[f"/proc/{pid}/maps"] = missing
             self.reads[f"/proc/{pid}/stat"] = missing
             self.identities[f"/proc/{pid}/root"] = missing
         if "proc_error" in case:
@@ -65,8 +68,10 @@ class FakeSystem:
                                      else CommandResult(case.get("query_rc", 0), raw, case.get("query_stderr", "")))}
         import re
         for row in case.get("packages", []):
-            if re.fullmatch(r"php[0-9]+\.[0-9]+", row[3]) and row[0].split(":")[0].endswith("-fpm"):
-                root = f"/etc/php/{row[3][3:]}/fpm"
+            from webpatch.discovery import sapi_for
+            sapi = sapi_for(row[0])
+            if re.fullmatch(r"php[0-9]+\.[0-9]+", row[3]) and sapi in {'fpm', 'apache2', 'cli', 'cgi'}:
+                root = f"/etc/php/{row[3][3:]}/{sapi}"
                 self.reads[root + "/php-fpm.conf"] = missing
                 self.reads[root + "/php.ini"] = missing
                 self.dirs[root + "/conf.d"] = missing

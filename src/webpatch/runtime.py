@@ -3,8 +3,9 @@
 import os
 import re
 
-from .models import RuntimeInstance
+from .models import RuntimeInstance, RuntimeFile
 from .system import SAFE_PATH, service_command
+from .runtime_evidence import mapped_php_files, unix_listeners, mapping_digest
 
 
 def start_ticks(raw):
@@ -92,6 +93,9 @@ class RuntimeAdapter:
                 blockers.append("DELETED_RUNNING_IMAGE")
             path = hint.path
             file_hash = None
+            files, endpoints = (), ()
+            mapping_hash = None
+            mapping_status = endpoint_status = "NOT_CHECKED"
             owners = ()
             service = process_service(probe, pid) if not blockers else None
             # systemd PrivateTmp creates a mount namespace even for official units.
@@ -150,6 +154,17 @@ class RuntimeAdapter:
                     blockers.append("PACKAGE_OWNERSHIP_UNVERIFIED")
                 if not service:
                     blockers.append("SYSTEMD_SERVICE_UNVERIFIED")
+                executable = RuntimeFile(path, "webserver_executable" if sapi == "apache2" else "php_executable",
+                    () if sapi == "apache2" else owners, file_hash, disk.get("device") if disk else None,
+                    disk.get("inode") if disk else None, "VERIFIED_LOCAL_FILE" if file_hash else "UNKNOWN", tuple(evidence))
+                modules, module_blockers, mapping_hash = mapped_php_files(
+                    collector, inventory, pid, hint.scope == "foreign", evidence, package_owners)
+                files = (executable, *modules)
+                owners = tuple(sorted(set(owners).union(p for f in modules for p in f.package_ids)))
+                blockers.extend(module_blockers)
+                mapping_status = "OBSERVED" if not module_blockers else "UNKNOWN"
+                if sapi == "fpm":
+                    endpoints, endpoint_status = unix_listeners(collector, pid, evidence)
                 if probe("fingerprint", path) != disk:
                     blockers.append("DISK_IMAGE_CHANGED_DURING_SCAN")
                 if process_service(probe, pid) != service:
@@ -165,7 +180,8 @@ class RuntimeAdapter:
             inventory.runtimes.append(RuntimeInstance(
                 pid, sapi, path, owners, service, initial, file_hash,
                 "VERIFIED_LOCAL_ASSOCIATION" if not blockers else "UNKNOWN",
-                tuple(sorted(set(blockers))), tuple(evidence)))
+                tuple(sorted(set(blockers))), tuple(evidence), files, endpoints,
+                mapping_hash, mapping_status, endpoint_status, mapping_digest([initial_ns, pid_ns, root])))
             inventory.coverage_gaps.extend(f"RUNTIME:{pid}:{b}" for b in blockers)
         if len({p.source_name for p in inventory.packages if p.sapi in {"cli", "fpm", "apache2"}}) > 1:
             inventory.coverage_gaps.append("MULTIPLE_PHP_BRANCHES_REQUIRE_SEPARATE_REVIEW")

@@ -5,6 +5,7 @@ Legacy string gaps remain in inventory for consumers of report schema 1.
 """
 import hashlib
 import json
+import re
 from dataclasses import replace
 
 from .models import CoverageCheck, EntityRef, PackageImpact, PlanScope, ScanScope
@@ -84,10 +85,61 @@ def build_coverage(inventory, evidence, trust):
         add("loaded_configuration", "UNKNOWN", subjects, runtime.evidence_ids,
             "Local association does not prove which configuration this process loaded.",
             "Supply process-bound loaded-configuration evidence through an explicit reviewed interface.")
+        for file in runtime.files:
+            authenticated = [installed.get(p, {}) for p in file.package_ids]
+            verified_file = (file.status == "VERIFIED_LOCAL_FILE" and runtime.association == "VERIFIED_LOCAL_ASSOCIATION"
+                and bool(authenticated) and all(i.get("status") == "AUTHENTICATED_RUNTIME_FILES"
+                    and i.get("files", {}).get(file.path) == file.sha256 for i in authenticated))
+            add("runtime_file_identity", "VERIFIED" if verified_file else "UNKNOWN",
+                [ref("runtime", runtime_id(inventory, runtime)), ref("file", file.path),
+                 *[ref("package", p) for p in file.package_ids]],
+                [*file.evidence_ids, *[e for i in authenticated for e in i.get("evidence_ids", [])]],
+                "Authenticated disk bytes match the stable executable/mapped file identity; memory contents are not attested." if verified_file
+                else "Runtime file lacks a complete stable mapping/executable and authenticated archive chain (" + file.role + ").",
+                "Resolve deleted/replaced/unreadable images and authenticate the exact owning package archive.", blocks=not verified_file)
+        add("php_module_coverage", "UNKNOWN", subjects, runtime.evidence_ids,
+            "Standard /usr/lib/php and libphp mappings: " + runtime.mapping_status + "; custom extensions/native dependencies are not exhaustively authenticated.",
+            "Reconcile loaded PHP/native modules with the deployment inventory; authenticate custom module paths separately.")
+        if runtime.sapi == "fpm":
+            for endpoint in runtime.endpoints:
+                stable = runtime.association == "VERIFIED_LOCAL_ASSOCIATION"
+                add("process_unix_listener", "VERIFIED" if stable else "UNKNOWN", [ref("runtime", runtime_id(inventory, runtime)),
+                    ref("endpoint", endpoint.network_namespace + ":" + endpoint.path + ":" + endpoint.socket_inode)], endpoint.evidence_ids,
+                    "This process holds a listening UNIX socket inode in the scanner's network namespace.",
+                    "Separately establish stable process identity, loaded pool configuration and request attribution.", blocks=not stable)
+            if runtime.endpoint_status != "OBSERVED" or not runtime.endpoints:
+                add("process_unix_listener", "UNKNOWN", subjects, runtime.evidence_ids,
+                    "No stable owned UNIX listener observed; TCP and other namespaces are not covered.",
+                    "Resolve procfs permissions and listener ownership; TCP needs a separately validated interface.")
     for relation in inventory.config_relations:
         add("static_configuration", "OBSERVED", [relation_ref(relation), ref("file", relation.path)], relation.evidence_ids,
             "Configuration text observed: " + relation.status,
             "Bind the pool/handler to a stable runtime and separately prove loaded state and request attribution.")
+        related = []
+        if relation.kind == "fpm_pool":
+            branch = re.match(r"/etc/php/([0-9]+\.[0-9]+)/fpm/", relation.path)
+            related = [r for r in inventory.runtimes if branch and r.service == f"php{branch[1]}-fpm.service"
+                       and any(e.path == relation.target for e in r.endpoints)]
+        else:
+            pools = [p for p in inventory.config_relations if p.kind == "fpm_pool" and relation.target == "unix:" + p.target]
+            for pool in pools:
+                branch = re.match(r"/etc/php/([0-9]+\.[0-9]+)/fpm/", pool.path)
+                related.extend(r for r in inventory.runtimes if branch and r.service == f"php{branch[1]}-fpm.service"
+                               and any(e.path == pool.target for e in r.endpoints))
+            if relation.target == "application/x-httpd-php" or relation.target.startswith("/usr/lib/apache2/modules/libphp"):
+                related.extend(r for r in inventory.runtimes if r.sapi == "apache2" and r.service == "apache2.service"
+                               and any(f.role == "php_module" and (relation.target == "application/x-httpd-php" or f.path == relation.target) for f in r.files))
+        related = {runtime_id(inventory, r): r for r in related}
+        add("configured_runtime_link", "OBSERVED" if related and not relation.constraints else "UNKNOWN",
+            [relation_ref(relation), *[ref("runtime", identity) for identity in related],
+             *[ref("service", r.service) for r in related.values() if r.service]],
+            [*relation.evidence_ids, *[e for r in related.values() for e in r.evidence_ids]],
+            "Static endpoint/module matches observed runtime candidates; neither pool identity nor route activation is proven. " + ", ".join(relation.constraints),
+            "Prove the loaded configuration and selected handler for a specific request; includes/conditions/overrides remain unresolved.")
+        if relation.kind == "configured_web_handler":
+            add("request_attribution", "NOT_CHECKED", [relation_ref(relation)], [],
+                "Default scan sends no requests and installs no diagnostic page. A 200 or ordinary marker is not instance attribution.",
+                "Provide explicit request evidence bound to scope, process starttime, executable/mappings and loaded-config digest; define a reviewed probe first.")
     for hint in inventory.runtime_hints:
         if hint.pid is None and hint.path and not hint.path.startswith("/etc/php/"):
             add("custom_installation", "UNSUPPORTED", [ref("installation", hint.path)], hint.evidence_ids,

@@ -16,7 +16,7 @@ from webpatch.system import ProbeError
 def test_shared_package_processes_remain_visible_when_target_selected():
     fake = runtime_fixture()
     fake.dirs['/proc'].append('43')
-    for mapping in (fake.reads, fake.links, fake.identities, fake.fingerprints):
+    for mapping in (fake.reads, fake.links, fake.identities, fake.fingerprints, fake.dirs):
         for path, value in list(mapping.items()):
             if path.startswith('/proc/42/'):
                 mapping[path.replace('/42/', '/43/')] = value

@@ -89,7 +89,7 @@ snapshot() {
 from pathlib import Path
 import hashlib
 h = hashlib.sha256()
-for root in ('/etc/php', '/etc/apache2', '/etc/apt', '/var/lib/apt/lists'):
+for root in ('/etc/php', '/etc/apache2', '/etc/nginx', '/etc/apt', '/var/lib/apt/lists'):
     for p in sorted(Path(root).rglob('*')):
         if p.is_file():
             h.update(str(p).encode())
@@ -145,6 +145,9 @@ PY
 PYTHONPATH=src python3 tests/integration/crypto_check.py
 PYTHONPATH=src python3 tests/integration/apt_check.py "$package"
 sudo systemctl is-active --quiet "$service"
+[[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
+[[ "$before" == "$(snapshot)" ]]
+sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/runtime_check.py "$package" "$sapi" "$pid_before" "$package_cache"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]
 sudo systemctl show "$service" --property=ActiveState,SubState,MainPID > ci-evidence/vm-service.txt
