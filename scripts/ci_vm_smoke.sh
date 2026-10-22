@@ -23,6 +23,20 @@ else
   service=apache2.service
 fi
 mkdir -p ci-evidence
+# The hosted image injects a dpkg post-invoke needrestart hook. The bounded
+# positive fixture deliberately has no special dpkg hooks; retain its identity
+# and relocate it before any read-only baseline. Product policy still rejects it.
+sudo python3 - <<'PY'
+from pathlib import Path
+import hashlib, json, shutil, tempfile
+path=Path('/etc/dpkg/dpkg.cfg.d/needrestart')
+record={'path':str(path),'present':path.exists(),'action':'NONE'}
+if path.exists():
+    record.update(sha256=hashlib.sha256(path.read_bytes()).hexdigest(),action='RELOCATED_IN_DISPOSABLE_FIXTURE')
+    backup=Path(tempfile.mkdtemp(prefix='webpatch-vm-original-dpkg-hook-'))/path.name
+    shutil.move(path,backup)
+Path('ci-evidence/original-dpkg-hook.json').write_text(json.dumps(record,indent=2)+'\n')
+PY
 # Hosted images use mirror+file and third-party feeds. Set up the explicitly
 # supported direct official repository fixture, only inside this disposable VM.
 sudo python3 - <<'PY'
