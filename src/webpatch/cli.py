@@ -22,17 +22,20 @@ from .discovery import environment
 from .system import Collector
 from .execution_inputs import audit_execution_inputs
 from .prepared_verification import verify_prepared_scope
+from .container_rebuild import rebuild_advice
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, journal=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation", "verify-preparation"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation", "verify-preparation", "rebuild-plan"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
                            help="read existing .deb files for signed archive identity verification; never downloads")
+        if command=='rebuild-plan':
+            child.add_argument('--image',required=True,help='declared image@sha256:digest; does not authenticate registry or deployment identity')
         if command in {"plan", "review-maintenance", "review-execution"}:
             selection = child.add_mutually_exclusive_group()
             selection.add_argument("--target-package", action="append", dest="target_package_ids",
@@ -104,6 +107,10 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             return 4 if result.get('status') in {'BLOCKED','PARTIAL'} else 0
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command=='rebuild-plan':
+            result=rebuild_advice(report,image_reference=args.image,now=now)
+            print(json.dumps(result,ensure_ascii=True,indent=2))
+            return 4
         if args.command == 'verify-preparation':
             saved=json.loads(reader.read_plan_document(args.path))
             if digest(saved)!=args.expect_sha256: raise ValueError('PREPARED_RECEIPT_DIGEST_MISMATCH')

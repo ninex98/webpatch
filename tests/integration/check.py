@@ -80,6 +80,11 @@ def main():
     assert proposal['admission_status'] == 'BLOCKED'
     assert any(g['category'] == 'execution_authorization' and g['status'] == 'NOT_RUN' for g in proposal['gates'])
     run(["webpatch", "apply"], {4})
+    rebuild=json.loads(run(['webpatch','rebuild-plan','--image','example.invalid/php@sha256:'+'a'*64],{4}).stdout)
+    assert rebuild['kind']=='container_image_rebuild_advice' and rebuild['vendor_constraints']
+    assert rebuild['image_identity']=='DECLARED_NOT_AUTHENTICATED_BY_LOCAL_SCAN'
+    assert rebuild['build_execution']==rebuild['rollout_execution']=='NOT_RUN'
+    assert not rebuild['executable'] and not rebuild['safe']
     assert before == state_hash(), "scan/plan/apply changed package metadata or configuration"
     # Installed entry point must work independently of cwd and PYTHONPATH.
     result = subprocess.run(["/usr/bin/webpatch", "--version"], cwd="/", capture_output=True, text=True, check=True)
@@ -87,6 +92,7 @@ def main():
     print(json.dumps({"result": "PASS", "python": sys.version, "environment": report["inventory"]["environment"],
                       "dpkg_comparison_vectors": len(pairs), "state_sha256": before,
                       "packages": packages, "rule_sha256": report["rule_sha256"],
+                      "container_rebuild_advice":{'result':'PASS','status':rebuild['status'],'advice_sha256':rebuild['advice_sha256']},
                       "source_sha256": source_hashes}, indent=2))
 
 
