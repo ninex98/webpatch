@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.19, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/ninex/Projects/hll-ecosystem/apps/webpatch
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-6.3.0
+collected 243 items
+
+tests/test_boundaries.py ................................                [ 13%]
+tests/test_environments.py ............................................. [ 31%]
+...............................................................          [ 57%]
+tests/test_planning.py ................................                  [ 70%]
+tests/test_runtime.py .........................                          [ 81%]
+tests/test_sources.py ....................                               [ 89%]
+tests/test_trust.py ..........................                           [100%]
+
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/phase-2c/retry-local.xml -
+============================= 243 passed in 0.64s ==============================

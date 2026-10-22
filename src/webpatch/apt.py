@@ -60,7 +60,8 @@ class LocalAptSimulator:
     def simulate(self, targets):
         command = simulation_command(targets)
         # Only tool-owned temporary files are written; system APT dirs stay read-only.
-        with tempfile.TemporaryDirectory(prefix="webpatch-apt-simulation-") as directory:
+        # Linux-only backend: a fixed parent keeps TMPDIR text out of apt.conf.
+        with tempfile.TemporaryDirectory(prefix="webpatch-apt-simulation-", dir="/tmp") as directory:
             root = Path(directory)
             for name in ("parts", "cache", "archives", "log"):
                 (root / name).mkdir()

@@ -21,7 +21,7 @@ def stable_bindings(report):
     bindings = {}
     for evidence in report.evidence:
         op, path = evidence.operation, evidence.target
-        keep = op in {"read_text", "listdir", "fingerprint", "package_index"} and not path.startswith("/proc/")
+        keep = op in {"read_text", "listdir", "fingerprint", "package_index"} and path != "/proc" and not path.startswith("/proc/")
         keep |= path in {"/proc/self/ns/mnt", "/proc/sys/kernel/random/boot_id"}
         keep |= op == "run" and path == json.dumps(DPKG_QUERY)
         keep |= op == "run" and path.startswith('["/usr/bin/systemctl",')

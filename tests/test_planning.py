@@ -138,6 +138,7 @@ def test_simulator_only_accepts_pinned_package_identifiers(targets):
 
 
 def test_simulator_uses_empty_hook_config_and_fixed_environment(monkeypatch):
+    monkeypatch.setenv('TMPDIR', '/invalid/";hook;')
     original = subprocess.Popen
     observed = []
     def child(command, **kwargs):
@@ -191,6 +192,19 @@ def test_new_runtime_blocks_simulation_before_solver():
     result = plan(report, system=fake, simulator=simulator, now=NOW)
     assert result.apt_simulation == 'NOT_RUN' and not simulator.calls
     assert 'STATE_DRIFT_BEFORE_SIMULATION' in result.blockers
+
+
+def test_scanner_pid_and_unrelated_process_churn_do_not_invalidate_plan():
+    fake, _, simulator = setup_plan()
+    fake.dirs['/proc'] = ['41']
+    fake.reads['/proc/41/comm'] = 'python3'
+    report = scan(fake, now=NOW)
+    saved = plan(report, system=fake, simulator=simulator, now=NOW)
+    fake.dirs['/proc'] = ['42']
+    fake.reads['/proc/42/comm'] = 'python3'
+    current = scan(fake, now=NOW)
+    assert validate_plan(saved, current, system=fake, simulator=simulator, now=NOW) == ()
+    assert all(b.target != '/proc' for b in saved.bindings)
 
 
 def test_extended_apt_state_and_diversions_are_bound():
