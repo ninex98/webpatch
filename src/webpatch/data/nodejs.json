@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "revision": "nodejs-debian-2026-10-23.1",
+  "reviewed_at": "2026-10-22T19:55:00+00:00",
+  "valid_until": "2026-10-29T00:00:00+00:00",
+  "scope": "Two reviewed Node.js runtime CVEs only; not a complete vulnerability catalog or npm dependency audit.",
+  "cves": ["CVE-2026-21714", "CVE-2026-48618"],
+  "rules": [
+    {
+      "os_id": "debian", "version_id": "12", "codename": "bookworm", "source_name": "nodejs",
+      "version_pattern": "18\\.20\\.4\\+dfsg-1~deb12u[0-9]+",
+      "fixes": {"CVE-2026-21714": "18.20.4+dfsg-1~deb12u2", "CVE-2026-48618": "18.20.4+dfsg-1~deb12u3"},
+      "references": {
+        "CVE-2026-21714": ["https://security-tracker.debian.org/tracker/CVE-2026-21714", "https://security-tracker.debian.org/tracker/DSA-6272-1"],
+        "CVE-2026-48618": ["https://security-tracker.debian.org/tracker/CVE-2026-48618", "https://security-tracker.debian.org/tracker/DLA-4809-1"]
+      }
+    },
+    {
+      "os_id": "debian", "version_id": "13", "codename": "trixie", "source_name": "nodejs",
+      "version_pattern": "20\\.19\\.2\\+dfsg-1(?:\\+deb13u[0-9]+)?",
+      "fixes": {"CVE-2026-21714": "20.19.2+dfsg-1+deb13u2", "CVE-2026-48618": "20.19.2+dfsg-1+deb13u3"},
+      "references": {
+        "CVE-2026-21714": ["https://security-tracker.debian.org/tracker/CVE-2026-21714", "https://security-tracker.debian.org/tracker/DSA-6183-1"],
+        "CVE-2026-48618": ["https://security-tracker.debian.org/tracker/CVE-2026-48618", "https://security-tracker.debian.org/tracker/DSA-6517-1"]
+      }
+    }
+  ]
+}

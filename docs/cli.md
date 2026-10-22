@@ -129,3 +129,9 @@ webpatch scan
 ```
 
 Do not use installation or service tests to modify the developer host. See [CONTRIBUTING.md](../CONTRIBUTING.md) and the [design](design.md) for validation boundaries.
+
+## Independent runtime and container extensions
+
+`webpatch scan-node --format json` discovers Node packages/processes without running Node or npm. The separately dated rules cover two reviewed runtime CVEs for Debian 12/13; unsupported vendor/version families remain UNKNOWN. This does not audit npm dependencies or enable Node repair.
+
+Inside the target container, `webpatch rebuild-plan --image registry.example/team/php@sha256:<64-hex-digest> --format json` returns scoped image rebuild guidance (exit 4). The image reference is declared, not authenticated by the scan. It does not build, push, roll out or install packages in place. See [extension boundaries and evidence](phase-4.md).

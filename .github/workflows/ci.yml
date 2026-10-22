@@ -72,3 +72,24 @@ jobs:
             ci-evidence/
             vm-smoke.log
             dist/*.deb
+  node-containers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        release: ['12', '13']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Verify the independent Node adapter
+        run: |
+          mkdir -p ci-evidence
+          docker build -f tests/integration/Node.Dockerfile --build-arg BASE=debian:${{ matrix.release }} -t webpatch-node . 2>&1 | tee ci-evidence/node-build.log
+          docker image inspect webpatch-node > ci-evidence/node-image.json
+          docker run --rm --read-only --network none --cap-drop ALL --security-opt no-new-privileges webpatch-node | tee ci-evidence/node-result.json
+          python3 scripts/evidence_manifest.py ci-evidence
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: node-debian-${{ matrix.release }}
+          path: ci-evidence/

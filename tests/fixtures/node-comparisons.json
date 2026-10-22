@@ -1,0 +1,10 @@
+[
+  ["18.20.4+dfsg-1~deb12u1", "18.20.4+dfsg-1~deb12u2", false],
+  ["18.20.4+dfsg-1~deb12u2", "18.20.4+dfsg-1~deb12u2", true],
+  ["18.20.4+dfsg-1~deb12u2", "18.20.4+dfsg-1~deb12u3", false],
+  ["18.20.4+dfsg-1~deb12u3", "18.20.4+dfsg-1~deb12u3", true],
+  ["20.19.2+dfsg-1+deb13u1", "20.19.2+dfsg-1+deb13u2", false],
+  ["20.19.2+dfsg-1+deb13u2", "20.19.2+dfsg-1+deb13u2", true],
+  ["20.19.2+dfsg-1+deb13u2", "20.19.2+dfsg-1+deb13u3", false],
+  ["20.19.2+dfsg-1+deb13u3", "20.19.2+dfsg-1+deb13u3", true]
+]
