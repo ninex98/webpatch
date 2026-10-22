@@ -1,5 +1,7 @@
 # 阶段 2D 接口与验收 / Phase 2D contracts
 
+当前接口为报告 schema 2、计划 schema 4；下文按小阶段记录，早期计划 schema 3 已被 2D.3 替代。最终验收见 evidence/phase-2d4/current-source-validation.json。
+
 ## 2D.1 覆盖和作用域
 
 报告 schema 从 1 升至 2：原字段、coverage_gaps 字符串、safe=false 和退出码语义保留，新增 inventory.coverage 与 scan_scope。覆盖项包含稳定 ID、requirement、status、subjects(kind/id)、evidence_ids、reason、next_step 和 blocks_repair。VERIFIED 只证明该项命名的局部关系；OBSERVED 是文件/元数据观察；UNKNOWN 是缺失或冲突的证据；UNSUPPORTED 是超出支持范围；NOT_CHECKED 是适配器未执行。未知、观察和未检查项不授予执行权限。空清单仍是 UNKNOWN，扫描没有完整性证明。

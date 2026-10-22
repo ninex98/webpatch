@@ -1,0 +1,115 @@
+{
+  "result": "PASS",
+  "source_commit": "efb122d9415ad2819c02fb958209b0e771d4715b",
+  "run": "https://github.com/ninex98/webpatch/actions/runs/39763873264",
+  "source_files_matched": 42,
+  "artifact_hashes_matched": 83,
+  "python_tests": {
+    "3.10": 336,
+    "3.12": 336
+  },
+  "containers": {
+    "jammy": {
+      "status": "PASS",
+      "environment": {
+        "os_id": "ubuntu",
+        "version_id": "22.04",
+        "codename": "jammy",
+        "scope": "container",
+        "mount_namespace": "mnt:[4026532220]",
+        "scope_sha256": "c567d52bf148d927673925a3b99a1f4db483e52dde1cecbe16bd65b3485bc7bf"
+      },
+      "image_id": "sha256:11bcad54b7caf3c6c1822872c3ab385a6bc514793c6e4c17305e68246624dffa"
+    },
+    "noble": {
+      "status": "PASS",
+      "environment": {
+        "os_id": "ubuntu",
+        "version_id": "24.04",
+        "codename": "noble",
+        "scope": "container",
+        "mount_namespace": "mnt:[4026532266]",
+        "scope_sha256": "515adb2417a3209b6667117f3bcbb2ed3e488b9c07520cc26b838cbf55557c8d"
+      },
+      "image_id": "sha256:42912c2c81e91cac29db1f91f8154b4968c42371483c382dbcd30c0e60b7f0f7"
+    },
+    "bookworm": {
+      "status": "PASS",
+      "environment": {
+        "os_id": "debian",
+        "version_id": "12",
+        "codename": "bookworm",
+        "scope": "container",
+        "mount_namespace": "mnt:[4026532262]",
+        "scope_sha256": "f3f6c8cd01de801cfacbd1920e535f0198db82d8d0deb1da20285eb76725f1b4"
+      },
+      "image_id": "sha256:86ca06cdc22630a37deb234d1ae57d016126387366a536b837a9814673cb0842"
+    }
+  },
+  "vm_cells": {
+    "vm-ubuntu-22.04-fpm": {
+      "status": "PASS",
+      "apt_simulation": "PASS",
+      "verification_drift": [],
+      "stable_process_count": 3,
+      "negative_cases": [
+        "configuration_changed_without_restart",
+        "deleted_mapped_file",
+        "replaced_mapped_file"
+      ],
+      "plan_sha256": "0752e64ec12156e53387060d8bb158bc90d36586a1e75fb9c44e1851254e52f9",
+      "expires_at": "2026-10-22T11:04:16.680235+00:00"
+    },
+    "vm-ubuntu-22.04-apache": {
+      "status": "PASS",
+      "apt_simulation": "PASS",
+      "verification_drift": [],
+      "stable_process_count": 9,
+      "negative_cases": [
+        "configuration_changed_without_restart",
+        "deleted_mapped_file",
+        "replaced_mapped_file"
+      ],
+      "plan_sha256": "9f4569643fd765635998f363d46b3bbe1e79d7582240bd9d848657c0237d19a3",
+      "expires_at": "2026-10-22T11:05:03.282355+00:00"
+    },
+    "vm-ubuntu-24.04-fpm": {
+      "status": "PASS",
+      "apt_simulation": "PASS",
+      "verification_drift": [],
+      "stable_process_count": 3,
+      "negative_cases": [
+        "configuration_changed_without_restart",
+        "deleted_mapped_file",
+        "replaced_mapped_file"
+      ],
+      "plan_sha256": "185a38f2b5abd773284dc86cbed445334502e60b482d57061733533bbe5cb07e",
+      "expires_at": "2026-10-22T11:04:58.482451+00:00"
+    },
+    "vm-ubuntu-24.04-apache": {
+      "status": "PASS",
+      "apt_simulation": "PASS",
+      "verification_drift": [],
+      "stable_process_count": 9,
+      "negative_cases": [
+        "configuration_changed_without_restart",
+        "deleted_mapped_file",
+        "replaced_mapped_file"
+      ],
+      "plan_sha256": "44e4c724e927eae5d4a6d11f94c90a2fb2c9603693f9131add454f46b609fa4d",
+      "expires_at": "2026-10-22T11:06:13.366992+00:00"
+    }
+  },
+  "runtime_safety": "UNKNOWN",
+  "repair_execution": "NOT_RUN_DISABLED",
+  "remaining_admission": [
+    "Complete consumer inventory",
+    "Loaded configuration",
+    "Request attribution",
+    "Installation equivalence",
+    "Maintainer scripts/triggers/conffile policy",
+    "Downtime approval",
+    "Plan-hash authorization",
+    "Locked transaction and post-repair health/failure verification"
+  ]
+}

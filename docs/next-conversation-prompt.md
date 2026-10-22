@@ -1,89 +1,28 @@
-# 下一阶段开发提示词：阶段 2D
+# 下一轮开发交接：阶段三前置接口 / Next development handoff
 
-请继续实现 WebPatch 的功能，工作目录：
-`/Users/ninex/Projects/hll-ecosystem/apps/webpatch`
-仓库：`ninex98/webpatch`。复用已有 Git、origin、认证、项目虚拟环境和代码，不重新搭脚手架。
+继续开发 `/Users/ninex/Projects/hll-ecosystem/apps/webpatch`（`ninex98/webpatch`）。先完整读取 AGENTS.md、docs/design.md、README.md、docs/development-status.md、docs/phase-2d.md，以及 evidence/phase-2d4/README.md、current-source-validation.json 和 accepted-ci/run.json。检查当前 Git/远端/Actions 与未提交工作，不把历史记录当当前验收。
 
-先完整阅读并遵循：
-- `AGENTS.md`
-- `docs/design.md`（原始四阶段计划，尤其第 2、3、5、6 节）
-- `docs/development-status.md`
-- `README.md`
-- `evidence/phase-2c/README.md`、`evidence/phase-2c/current-source-validation.json` 和相关 accepted-ci/run.json
+## 当前基线
 
-然后检查当前工作区、分支、远端和 GitHub Actions。历史记录不代表当前状态。已有其他 README/视觉/文档改动时保留，不重置、不覆盖、不混入本轮功能提交。
+阶段 2D 已实现结构化覆盖/作用域、运行文件和标准 PHP 模块证据、FPM UNIX listener 与静态 pool/handler 候选关系、统一计划门禁及有效期/漂移核对。最终报告 schema 2，计划 schema 4；旧计划必须重新扫描。有限诊断输入可以 READY_FOR_REVIEW，但执行准入始终 BLOCKED，apply 拒绝。准确源码与 CI 结果以 current-source-validation.json 为准。
 
-## 已完成基线与当前位置
+首次 2D.2 四格 VM 因保存计划超过普通 1 MiB 文本读取限制失败，完整失败记录在 evidence/phase-2d2/first-ci。现有独立 16 MiB 计划读取接口，不放宽配置/procfs 限制。不要重新搭建或重复实现 2D.1。
 
-本提示词整理时，实现基线为 `7495d77`，功能源码为 `37dc9d9`。阶段 1 和云端基线已完成；阶段 2A/2B/2C 各自声明的只读范围已验收：运行实例本地关联、Ubuntu 官方源/签名索引/缓存包/运行文件身份链、真实 APT dry-run、完整依赖变化解析、冻结计划与 verify-plan 漂移检查。
+## 下一步必须先闭合的契约
 
-历史验收：Python 3.10/3.12 各 243 tests；三组 Docker；Ubuntu 22.04/24.04 × FPM/mod_php 四格 VM。Actions 39749809257 和后续 39752379977 均最终成功。新的代码必须重新验收，不能照抄这些通过结果。
+仍位于原阶段二末尾/阶段三前置接口，不是可自动修复产品。先实现一个独立可验收的 3A 小阶段：明确部署清单与显式应用证据接口及其验证规则。不得仅凭调用者声明把 UNKNOWN 改成 PASS。
 
-当前尚未达到原阶段三的全部执行准入条件：配置仅有静态观察，不能证明运行服务实际加载状态；动态路由、未覆盖实例和部分身份/环境仍 UNKNOWN。`apply` 的执行器尚未实现，所有计划仍 BLOCKED/executable=false。现在位于原阶段二末尾。
+- 作用域与消费者：明确操作者审阅的 host/container/boot 范围；对共享包的全部服务、CLI 任务、pool 和自定义安装逐项核对。缺失/未识别消费者继续阻断。
+- 加载配置与请求归属：设计独立、显式选择、无副作用的证据/探针能力；绑定 scope、boot、PID、starttime、执行映像、相关模块、配置摘要、请求上下文、采集时间和到期时间。必须验证信任来源和防重放/状态漂移。静态文件、mtime、监听 socket、HTTP 200、普通标记页都不是实例归属证明。先在四格 disposable VM 证明有限范围；默认 scan 仍不执行配置脚本、不写诊断页、不发请求。
+- 后续执行条件：完整且获批的依赖变化、候选维护脚本/triggers/conffile 行为、所有受影响实例的停机预算、plan hash 显式确认、持锁事务前重查、执行后运行时/路由/健康验证和失败审计。APT 不保证事务回滚。
 
-## 本轮目标：阶段 2D——修复前证据与门禁补全
+本交接不授权直接跳过这些门禁接入实际修复。应先报告首个小阶段的范围/验收，然后实施、测试、留证并立即提交；后续执行器阶段须按原设计在隔离 VM 验证，生产目标仍须 reviewed dry-run 和显式确认。
 
-“2D”是对原阶段二剩余工作的拆分。直接实施下列功能，按独立可验收小阶段逐项交付，不只给出方案，也不要跳过剩余门禁启用实际修复。
+## 持续约束
 
-### 2D.1：结构化覆盖与明确作用域
-
-- 梳理现有 Inventory、RuntimeInstance、ConfigRelation、package_trust、Plan 和 coverage_gaps，建立缺口与具体 package/runtime/service/pool/route 的结构化关联及 evidence IDs。
-- 明确区分已验证关系、仅配置观察、UNKNOWN、不支持、未检查，给出具体原因和可操作的下一步验证要求。不要把字符串 blocker 简单改名后声称功能完成。
-- 明确扫描与计划作用域。多 PHP 版本、CLI/FPM 不一致、共用同一待更新包的多个服务/进程必须独立呈现；选定一个目标不能隐藏同一包更新会影响的其他实例。
-- 保持原 JSON/退出码语义，必要的 schema 变更须明确版本和迁移方式。
-- 验收：正常与异常 fixtures；权限不足、未覆盖、自定义/foreign namespace、空清单均不会得到错误的完整覆盖或安全结论。
-
-### 2D.2：连接运行映像、配置和路由证据
-
-- 在明确声明的 Ubuntu 22.04/php8.1、24.04/php8.3 官方 FPM/mod_php 范围内，连接已认证包文件、运行映像及相关 PHP 映射、systemd 服务、FPM pool/监听端点与 Web handler。
-- 补充旧/删除映像、替换文件、进程变化、配置修改、多个 pool/socket/版本、include/条件配置和权限失败的处理。对相关已加载模块保留身份和覆盖证据，不只检查 CLI 或主二进制。
-- 严格区分“文件里这样配置”“运行进程已加载该配置”“请求实际由该实例处理”。不能用 config mtime、端口打开、HTTP 200 或 CI 中某个普通标记响应替代实例归属证明。
-- 默认 scan 仍不执行 PHP/FPM/Apache 配置脚本，不部署诊断页面，不发送 HTTP 请求。确需额外应用证据时，先定义独立、显式选择的探针/证据接口；本轮真实调用和任何测试页面准备仅限 disposable VM，生产目标不自动探测或写入。
-- 只读接口无法证明的关系继续 UNKNOWN，并说明缺少何种证据；不能为通过测试编造“已加载/已安全”状态。
-- 验收：fixtures 覆盖失败路径；四格 VM 中验证有限配置范围的真实关联和对应负向情况。证明不了的边界如实记录。
-
-### 2D.3：统一计划门禁与可审阅结果
-
-- 将版本规则、归档/文件身份、实例覆盖、配置/路由、依赖变化、pin/hold、锁、特殊 APT 配置、维护脚本/conffile 及预计中断等门禁汇总为可追踪的审阅结果；每项说明证据、原因和如何解除阻断。
-- 区分诊断模拟成功与未来执行所需的准入状态。当前模拟省略系统 hooks/部分特殊配置，不能声称与真实安装效果等价，也不能简单删掉这些 blocker。
-- 核对作用域、目标/依赖身份、规则及索引时效、配置与运行实例摘要，确保计划过期、状态变化、新实例或未经批准依赖变化可被拒绝；有效期不得超过依赖证据的有效边界。
-- 继续拒绝移除、降级、跨 PHP 主次分支/发行版迁移、不可信来源及未批准的依赖变化。不能以版本达标、缓存包一致或无变更模拟推导运行时安全。
-- 本轮可以新增审阅状态和阶段三接口契约，但 `executable=false`、apply 拒绝及默认只读行为必须保持。不接入真实 APT 安装/重启执行器。
-- 验收：可审阅的有限范围正向案例与未知/冲突/篡改/过期/漂移反例；所有 UNKNOWN 均阻断自动修复。不能只靠永远拒绝全部输入来代替各门禁的实际判断。
-
-### 2D.4：真实环境验收和下一步准入清单
-
-- 复用并扩展现有 CI，不重新搭测试框架。更新 Python 3.10/3.12 fixtures、所需 Docker 和四格 Ubuntu VM 检查。
-- 保留扫描/模拟前后服务 PID、配置、APT/dpkg 状态不变检查；安装、服务准备和任何故障注入只在隔离环境执行。不要使用真实漏洞利用。
-- 保存本次源码的日志/JUnit、平台/镜像、源码与制品 SHA256、运行链接；区分 PASS、FAIL、NOT_RUN、BLOCKED。外部镜像同步或网络失败可保留证据后重跑，不能禁用签名/哈希校验。
-- 更新 docs/development-status.md、相关设计/使用说明及阶段证据，准确列出阶段三已具备与尚缺的准入条件。只宣布通过实际验收的范围，不把测试站点扩张为任意生产环境保证。
-
-## 安全、授权与范围
-
-- 不修改开发者宿主 PHP、APT 软件源、系统包或服务。依赖放项目虚拟环境，安装/服务测试仅用 disposable Docker 或 GitHub 托管临时 VM；禁止 privileged、宿主 root/proc/socket 挂载和自托管 runner。
-- 保持环境适配器、可注入系统 I/O、证据模型、厂商规则、身份链、规划、执行与验证的解耦。严格 fake I/O 不得回退宿主。
-- 只用官方 PHP/Ubuntu/Debian 公告；规则记录 provenance、review time、expiry。现有规则有效至 2026-10-29 00:00 UTC，若时间已变化或需改规则，必须重新审阅，不能只延长日期。
-- 不顺带扩展 Node.js、Debian 修复、PPA/Sury、ESM、镜像重建自动化、公开 APT 仓库或正式 Release；这些仍是后续工作。
-- 允许自主配置项目工具、虚拟环境、Git/CI，复用既有认证，正常推送已验收提交与明确标记的 CI 待验收检查点并运行 Actions，不必逐项询问。不得强推、覆盖远端历史、发布正式版本或对宿主/生产系统执行修复。
-- CI 通知降噪不是本轮主目标；若确需调整触发范围，单独交付，保证代码/依赖/CI 配置变化仍验证，不修改账户级通知设置。
-
-## 每完成一部分功能，立即 Git 提交
-
-每个独立可验证的小阶段都必须：
-1. 先简短说明范围和验收条件，再实施。
-2. 完成对应检查并保存本次源码证据；查看 diff，仅暂存该阶段内容，保留其他改动；不提交环境、缓存、凭据或二进制安装包。
-3. 验收通过后立即提交，不积攒到整轮结束。标题和正文都必须包含中文和英文。
-4. 报告 commit hash、实际验证结果、证据位置和未覆盖限制，再推进下一小阶段。
-5. 云端 CI 必须先推送时，先完成本地检查，提交明确标记“CI 待验收 / CI pending”的检查点；失败用后续提交修复，必要门禁全部通过后才能宣布该阶段完成。
-
-提交模板：
-
-    feat(phase-2d1): 关联覆盖缺口与运行实例 / link coverage gaps to runtime instances
-
-    中文：说明问题、实现范围及不支持边界。
-    English: Explain the problem, implementation scope and unsupported boundaries.
-
-    验证 / Validation: 记录实际命令、结果及本次证据路径。
-    限制 / Limitations: 明确未运行、阻断或尚未证明的能力。
-
-先简短报告现状与首个小阶段，然后直接开始 2D.1，实现、测试、留证并提交。本轮结束时给出对应原计划的进度、提交列表和阶段三剩余门禁；不要把任务停在调研或计划阶段。
+- 不修改开发宿主 PHP、APT、系统包或服务；不访问生产目标执行修复。安装/服务准备/故障注入仅用 disposable Docker 或 GitHub-hosted Ubuntu VM，禁止 privileged、自托管 runner 和宿主 root/proc/socket 挂载。
+- 保持适配器、注入 I/O、证据、规则、规划、执行与验证解耦；严格 fake I/O 不回退宿主。UNKNOWN 可行动且阻断自动修复。
+- 规则有效至 2026-10-29 00:00 UTC。若已过期或需要修改，重新查阅官方 PHP/Ubuntu/Debian 来源，记录 review/provenance/expiry；禁止仅延长日期。不用真实漏洞利用。
+- 不顺带扩展 Node.js、Debian 修复、PPA/Sury、ESM、自动镜像重建、公开 APT 仓库或正式 Release。
+- 复用项目虚拟环境、Git identity/auth/origin。允许正常推送和运行 Actions；不强推、不重写远端历史。保留无关用户工作。
+- 每个独立小阶段先定验收条件，通过后立即 Git 提交；标题和正文都包含中文与英文，记录命令、PASS/FAIL/NOT_RUN/BLOCKED、当前源码/制品摘要与证据路径。云端必须先推送时，使用明确的 CI 待验收检查点；失败用后续提交修复，所有必要门禁通过后才宣布完成。

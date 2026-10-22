@@ -1,53 +1,50 @@
 # 开发进度与下一阶段 / Development status and next stage
 
-核对日期：2026-10-22（Asia/Shanghai）。本记录的实现基线为 `7495d77`，运行时代码对应已验收源码 `37dc9d9`。这是一份时间点记录；开始新开发前仍须检查当前 Git/远端/CI。
+核对日期：2026-10-22（Asia/Shanghai）。最新验收功能/测试/CI 源码为 `efb122d9415ad2819c02fb958209b0e771d4715b`；Actions [39763873264](https://github.com/ninex98/webpatch/actions/runs/39763873264) 全部 9 项 PASS。对应源码/制品哈希、JUnit、平台与 VM 结果见 [2D.4 当前源码核对](../evidence/phase-2d4/current-source-validation.json)。文档/证据提交可以晚于该源码；后续开发仍须重新检查 Git、CI 和源码摘要。
 
-## 原始计划与当前位置
+## 对应原始计划的位置
 
-原始架构、支持矩阵和四阶段计划在 [design.md](design.md)，第 5 节定义阶段及验收门槛；其初始版本保存在 Git 提交 `75e3870`。第 6 节是后续阶段二实现补充，不能把最初的“阶段一”描述当成当前实现。
+原始四阶段计划见 [design.md](design.md) 第 5 节，初始版本为 `75e3870`。“2D”是原阶段二剩余门禁的拆分，不能解释为原计划阶段三已完成。
 
-| 原计划 | 当前状态 | 证据与剩余边界 |
+| 原计划 | 当前状态 | 证据与边界 |
 |---|---|---|
-| 阶段 1：只读基础 | 已完成，后续补齐云端基线 | [阶段一](../evidence/phase-1.md)、[CI 基线](../evidence/ci-baseline/README.md) |
-| 阶段 2：可信发现与真实 dry-run | 2A/2B/2C 各自声明的只读范围已验收；完整修复准入条件尚未闭合 | [2A](../evidence/phase-2a/README.md)、[2B 源审计](../evidence/phase-2b-sources/README.md)、[2B 身份链](../evidence/phase-2b-trust/README.md)、[2C](../evidence/phase-2c/README.md) |
-| 阶段 3：有限修复 | 尚未实现 | 计划确认、真实执行、维护脚本/服务中断管理、修复后运行时与健康验证、失败审计待开发；apply 直接拒绝 |
-| 阶段 4：扩展 | 核心扩展未实现 | Debian 修复、Node.js、镜像重建自动化等待单独认证；目前已有容器重建建议，不代表自动重建 |
+| 阶段 1：只读基础 | 已完成 | 阶段一与云端基线证据保留 |
+| 阶段 2：可信发现与真实 dry-run | 2A/2B/2C 及本轮 2D 各自限定的只读范围已验收；完整执行准入尚未闭合 | [2C](../evidence/phase-2c/README.md)、[2D.4](../evidence/phase-2d4/README.md)；完整消费者、加载配置和请求归属等仍 UNKNOWN |
+| 阶段 3：有限修复 | 未实现 | 没有 executor，apply 始终拒绝；计划确认、受控执行、修复后健康验证和失败审计待开发 |
+| 阶段 4：扩展 | 未实现核心扩展 | Debian 修复、Node.js、自动镜像重建和公开签名仓库仍需独立开发/认证 |
 
-准确位置是**阶段二末尾，正在补齐进入阶段三前的证据与门禁**，不是完整自动修复产品已经完成。下一轮称为“阶段 2D”，这是对原阶段二剩余工作的新增拆分，不是原文已有的编号。
+准确位置仍是**原阶段二末尾、阶段三前置证据接口之前**。当前可以审阅有明确范围和证据的诊断计划，不能自动修复生产系统。
 
-## 已验收事实
+## 本轮分阶段交付
 
-- Python 3.10/3.12 各 243 tests；三个容器环境和 Ubuntu 22.04/24.04 × FPM/mod_php 四格 VM 已通过。
-- [37dc9d9 的功能验收](https://github.com/ninex98/webpatch/actions/runs/39749809257) 重跑后 9/9 PASS；[7495d77 的后续 CI](https://github.com/ninex98/webpatch/actions/runs/39752379977) 也成功。
-- 四格 VM 检查真实 APT 模拟、保存计划再次核对、签名/运行文件身份、服务关联与状态不变；合成旧状态下实际求解了 31–34 个 PHP 同源包升级。
-- 合成状态只存在于临时副本，没有安装旧漏洞二进制或执行 WebPatch 修复。普通标记 HTTP 请求仅证明测试站点的行为。
-- [current-source-validation.json](../evidence/phase-2c/current-source-validation.json) 记录 35 个源码/测试/CI 文件的对应校验。历史失败、镜像同步异常和重跑记录均保留。
-
-## 阶段 2D：修复前证据与门禁补全
-
-目标：让每个计划明确说明“目标及受影响实例有哪些、每项证据证明了什么、哪些缺口必须先解决”，为后续有限执行建立可审查的输入；本阶段仍禁用 apply。
-
-| 小阶段 | 实现目标 | 验收重点 |
+| 小阶段 | 提交 | 实际验收 |
 |---|---|---|
-| 2D.1 结构化覆盖与作用域 | 将关键缺口关联到 runtime/package/service/pool/route 和证据；明确已验证、仅观察到、未知及不支持 | 未发现不等于不存在；选择目标不能隐藏共用待更新包的其他实例；JSON 兼容/迁移有说明 |
-| 2D.2 运行时与路由证据 | 对有限 Ubuntu 官方 FPM/mod_php 配置，连接包字节、运行映像/相关映射、服务、pool/监听端点与静态路由 | 区分配置文件内容、实际加载状态和 HTTP 所用实例；删除映像、配置变化、条件/include/权限问题保持 UNKNOWN；普通 200 响应不能证明归属 |
-| 2D.3 计划门禁与审阅结果 | 统一解释身份、作用域、依赖、时效、状态漂移、特殊 APT 配置/维护行为及中断的阻断原因 | 不删除全局 blocker 来制造通过；诊断模拟不等于可执行计划；过期和新增/变化实例阻断；apply 仍无写操作 |
-| 2D.4 真实环境验收 | 更新 fixtures 与四格 VM，验证上述新功能及失败路径，输出阶段三准入清单 | 对应本次源码的日志/JUnit/摘要；区分 PASS/FAIL/NOT_RUN/BLOCKED；不能复用旧测试数量作为新验收 |
+| 2D.1 结构化覆盖与作用域 | `4a632e0` | 303 本地 tests PASS；[39759702439](https://github.com/ninex98/webpatch/actions/runs/39759702439) 9/9 PASS |
+| 2D.2 运行映像、模块与静态路由证据 | `0833be6`（CI 待验收检查点） | 322 本地 tests PASS；首轮四格 VM 在读取保存计划时 FAIL，完整保留；修正后由后续两轮四格 VM 验收 |
+| 2D.3 统一门禁与时效 | `d5447b3` | 336 本地 tests PASS；[39763556960](https://github.com/ninex98/webpatch/actions/runs/39763556960) 9/9 PASS |
+| 2D.4 真实环境与反例 | `efb122d` | 336 本地 tests PASS；[39763873264](https://github.com/ninex98/webpatch/actions/runs/39763873264) 9/9 PASS |
 
-无法仅靠允许的只读接口证明的加载状态或动态路由，应明确列为剩余阻断项，并说明需要哪类额外证据。不能要求无限拓扑穷举，也不能把未经验证的声明、文件时间或系统版本当成证明。通过某个有明确边界的测试范围，不代表所有生产环境已认证。
+最终 Python 3.10/3.12 各 336 tests；Docker Ubuntu 22.04、24.04、Debian 12 三格 PASS；Ubuntu 22.04/php8.1、24.04/php8.3 × FPM/mod_php 四格 VM PASS。新验收包括多个 FPM pool/socket、标准 PHP 映射的文件身份、门禁引用、真实无害映射删除/替换、配置变化反例，以及扫描/模拟前后相关 PHP/Apache PID/starttime、配置/APT/dpkg 状态不变。
 
-更广环境支持、自动在线规则更新、公开签名 APT 仓库和正式发布也尚未完成，暂不混入 2D。CI 触发范围/通知降噪可单独交付，不是修复安全门禁；不要更改用户账户通知偏好。
+首次 2D.2 失败原因是 FPM 约 1.45 MiB、Apache 约 3.82 MiB 的保存计划超过通用 1 MiB 文本限制。修正为独立 16 MiB 计划读取接口，配置/procfs 限制保持；未降低签名、哈希或门禁要求。失败日志/制品在 [first-ci](../evidence/phase-2d2/first-ci/)，后续成功记录独立保留。测试没有漏洞利用、旧漏洞二进制安装或 WebPatch 实际修复。
 
-## 交付纪律
+## 当前接口与尚缺准入
 
-每个独立功能小阶段先定范围和验收条件，完成后保存本次源码证据、审阅 diff、**立即提交**，标题和正文都包含中文与英文，并报告 hash、验证及限制。云端验收可用明确标记“CI 待验收”的检查点，必要门禁未通过不得宣布完成。具体安全边界和提交模板以 [AGENTS.md](../AGENTS.md) 为准。
+报告 schema 2、计划 schema 4；旧 schema 2/3 计划须重新扫描。实体覆盖包含 VERIFIED、OBSERVED、UNKNOWN、UNSUPPORTED、NOT_CHECKED，均带明确主体、证据、原因和下一步。选择包不会缩小扫描范围或隐藏同包消费者。精确的文件认证、进程本地关联、监听 socket、静态配置、实际加载状态和请求归属相互独立。
 
-本次核对发现 README、README.zh-CN.md、CONTRIBUTING.md、assets/、docs/cli.md 和 evidence/readme-design/ 有其他未提交工作。下一轮须重新核实并保留，不得混入功能提交。
+READY_FOR_REVIEW 仅表示诊断输入可审阅；所有计划仍 `admission_status=BLOCKED`、`executable=false`。规则与索引时效、配置/映像/namespace/新实例、目标/依赖和门禁语义漂移会拒绝保存计划；不把安装成功、版本达标、缓存包一致或无变更模拟当运行时安全。
 
-## 2026-10-22 阶段 2D 实施追加（CI 待验收）
+阶段三仍须依次闭合：
 
-上述基线段落是 2D 开发前记录。现已交付 2D.1 `4a632e0`（303 本地 fixtures，Actions 39759702439 的 9 项全部 PASS）；2D.2 `0833be6`（322 本地 fixtures，首次四格 VM 因计划文档超过通用 1 MiB 读取上限而 FAIL）；2D.3 `d5447b3`（336 本地 fixtures，独立 16 MiB 计划读取接口及统一门禁，云端验收进行中）。本轮没有改动规则或延长规则期限。
+1. 经审阅的完整消费者清单和明确目标作用域，覆盖隐藏/空闲实例、自定义安装与共享包影响。
+2. 显式且可信的加载配置/请求归属证据接口，绑定 scope/boot/PID/starttime/映像/模块/配置/时效；默认扫描仍不执行配置、不发 HTTP、不部署页面。
+3. 全部获批依赖变化、候选维护脚本/triggers/conffile 策略、真实安装与隔离模拟的差异审阅，以及所有受影响服务的停机预算和人工恢复方案。
+4. 具体 plan hash 的显式确认、持锁事务及执行前复核、修复后运行时/路由/健康验证和 FAILED/PARTIAL 等失败审计；不承诺 APT 自动回滚。
 
-2D.4 检查点扩展第二 FPM pool/socket、门禁证据引用及全部相关进程 PID/starttime 不变断言，等待当前源码完整 CI。阶段二剩余运行事实已经以结构化 UNKNOWN/NOT_RUN 显示；它们尚未解除。进入阶段三仍需明确作用域的完整消费者清单、加载配置/请求归属证据、已批准依赖和维护行为/停机预算、plan hash 确认、锁及执行前重查、执行后健康与失败审计。实际修复 NOT_RUN_DISABLED。
+只读证据未证明的关系继续阻断；TCP listener、自定义模块/原生依赖的穷举、外部 namespace、第三方/PPA/Sury/ESM、Debian 修复均未因此获得执行支持。有限 VM 测试站点不是任意生产环境保证。规则有效期仍为 2026-10-29 00:00 UTC，本轮未更改或延长。
 
-其他 README/视觉工作已由独立提交 `13c6c9c` 保存，本轮功能提交未覆盖这些工作。最终验收结果将追加本次源码与 CI 对应摘要，保留历史失败。
+## 后续交接与工作区
+
+下一轮入口见 [next-conversation-prompt.md](next-conversation-prompt.md)，接口/迁移见 [phase-2d.md](phase-2d.md) 和 [CLI 使用说明](cli.md)。遵循 AGENTS.md：小阶段先定验收，保存当前源码证据后立即双语提交；云端检查点明确 CI pending，失败后续修正，不强推。
+
+开工时 README、双语文档和视觉资源的未提交工作已由独立提交 `13c6c9c` 保存，本轮功能提交没有覆盖这些内容。开发宿主 PHP、APT、系统包和服务未被修改；安装、服务准备和故障注入仅发生在隔离 CI 环境。

@@ -13,7 +13,7 @@ WebPatch 0.1.0 requires Python 3.10+. Commands below assume the source installat
 
 Run on the target system without root. WebPatch does not execute PHP, probe websites or access container daemons. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
 
-The text view shows environment, rule revision, package assessments and coverage gaps. JSON (`schema_version=1`) also includes package versions, runtime instances, static configuration relationships, source audit, package trust, references and evidence digests.
+The text view shows environment, rule revision, package assessments and structured coverage requirements. JSON (`schema_version=2`) also includes package versions, runtime files and mappings, observed UNIX listeners, static configuration relationships, source audit, package trust, references and evidence digests. Legacy `coverage_gaps` strings remain available. Each structured check names its subjects, evidence, reason and next verification step; `VERIFIED` describes only that specific relationship. `OBSERVED`, `UNKNOWN`, `UNSUPPORTED` and `NOT_CHECKED` cannot authorize repair.
 
 | Field / value | Interpretation |
 | :--- | :--- |
@@ -44,9 +44,17 @@ Authentication currently covers direct official Ubuntu 22.04 / 24.04 sources wit
 
 `plan` requires `--dry-run`. On supported Ubuntu hosts, authenticated same-branch targets can reach real `apt-get --simulate --no-remove --only-upgrade`. The simulator uses isolated temporary APT configuration, retains relevant system inputs, does not run system hooks, and does not refresh indexes, download or install. Special configuration and hooks still appear as blockers. Containers receive rebuild recommendations and do not enter APT simulation.
 
-Plan schema 2 includes exact targets, dependency changes, service-interruption notes, input bindings, hashes and blockers. `apt_simulation` is `PASS`, `FAIL` or `NOT_RUN`; `PASS` does not mean the plan is executable. All plans remain `BLOCKED`, `executable=false`, with no executable actions. Removal, downgrade, new dependencies, cross-branch / release changes and untrusted or unapproved dependency changes block the automatic path.
+Plan schema 4 includes exact targets, dependency changes, complete observed scope, shared-package impact, individual review gates, service-interruption notes, input bindings, hashes and blockers. `apt_simulation` is `PASS`, `FAIL` or `NOT_RUN`; `PASS` does not mean the plan is executable. `READY_FOR_REVIEW` describes diagnostic readiness; execution admission stays `BLOCKED`. All plans remain `BLOCKED`, `executable=false`, with no executable actions. Removal, downgrade, new dependencies, cross-branch / release changes and untrusted or unapproved dependency changes block the automatic path.
 
-Plans bind rules, host / boot scope, packages, configuration, repositories, indexes and observed runtimes. They expire within 30 minutes and no later than the rules. `verify-plan` rescans, repeats applicable simulation and compares saved data for drift; it never executes commands from the file. APT simulation does not hold a system lock, so rechecking is an observation, not a concurrency guarantee or authorization to execute.
+Plans bind rules, host / boot scope, packages, configuration, repositories, indexes and observed runtimes. They expire within 30 minutes of both scan and generation, and no later than the rules or authenticated index validity. `verify-plan` rescans, repeats applicable simulation and compares saved data and gate decisions for drift; it never executes commands from the file. Saved schema 2/3 plans require a fresh scan and schema 4 plan (`PLAN_SCHEMA_RESCAN_REQUIRED`). Plan files have a separate 16 MiB read limit; ordinary configuration/procfs reads remain limited to 1 MiB. APT simulation does not hold a system lock, so rechecking is an observation, not a concurrency guarantee or authorization to execute.
+
+To select packages, repeat `--target-package` with exact binary package and architecture IDs:
+
+```sh
+.venv/bin/webpatch plan --dry-run --target-package php8.1-fpm:amd64 --format json
+```
+
+Selection does not narrow discovery or hide other consumers of the same package. Unresolved instances remain visible and blocking. Static pool/handler matches and a process-owned listening socket do not prove loaded configuration or request attribution. See [the 2D contracts and boundaries](phase-2d.md) and [current-source acceptance evidence](../evidence/phase-2d4/README.md).
 
 ```sh
 .venv/bin/webpatch apply

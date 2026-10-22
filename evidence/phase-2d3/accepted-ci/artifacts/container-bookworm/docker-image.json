@@ -1,0 +1,66 @@
+[
+    {
+        "Id": "sha256:25c235e9993a4d70edc2e02b8dc4d7e0c113efc9366f99213b37f574194a26e2",
+        "RepoTags": [
+            "webpatch-ci:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-22T10:30:37.398822398Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONDONTWRITEBYTECODE=1"
+            ],
+            "Cmd": [
+                "python3",
+                "tests/integration/check.py"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 339691739,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/pjms0hr71p76csr3muht7dw4f/diff:/var/lib/docker/overlay2/8gxgc6t8tfgv3ols6mqp22pge/diff:/var/lib/docker/overlay2/hezxnm4kp7iicgb6pcss4h0md/diff:/var/lib/docker/overlay2/c25070bb1af8f6cb81f0d5f6d4b3ab72bf398aca905f13625b3fe43523413f29/diff",
+                "MergedDir": "/var/lib/docker/overlay2/tvkc7cbclus2y41s4pc03biju/merged",
+                "UpperDir": "/var/lib/docker/overlay2/tvkc7cbclus2y41s4pc03biju/diff",
+                "WorkDir": "/var/lib/docker/overlay2/tvkc7cbclus2y41s4pc03biju/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:bff6114e14f43741aabe79549a5c46135d29da921864159fc2ac757d93d96e2e",
+                "sha256:1eac37d525af605d298562e10a43ffc7669b4e47ac4a567bfadf6a5bf70737fa",
+                "sha256:e4be4bed36c56f674f4983a6a485d8c4e342356777c0113063397b0c2c9ad72f",
+                "sha256:e403a5878ec950fc0935107d15002fe31d909f9d9a4dd4413ce03462b653fbbf",
+                "sha256:865ee70f2c88a1efb514a3aed3f8033a20ab330f82432da9e5c41cb287d5d241"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-22T10:30:38.895480221Z"
+        }
+    }
+]
