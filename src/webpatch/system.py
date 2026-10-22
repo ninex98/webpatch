@@ -397,6 +397,7 @@ class Collector:
         self.system = system
         self.evidence_prefix = evidence_prefix
         self.evidence: list[Evidence] = []
+        self.ownership_queries = {}
 
     def probe(self, operation: str, target):
         ident = f"{self.evidence_prefix}{len(self.evidence) + 1}"

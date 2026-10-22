@@ -20,7 +20,13 @@ def start_ticks(raw):
 def package_owners(collector, path, inventory, evidence):
     if not path or not SAFE_PATH.fullmatch(path) or ".." in path.split("/"):
         return ()
-    result, ident = collector.probe("run", ("/usr/bin/dpkg-query", "-S", path))
+    command=("/usr/bin/dpkg-query","-S",path)
+    # Ownership is a shared filesystem observation, not a per-PID property.
+    # Reuse its evidence inside this scan only; every new scan/revalidation gets
+    # a fresh Collector and queries the current package database again.
+    if command not in collector.ownership_queries:
+        collector.ownership_queries[command]=collector.probe('run',command)
+    result,ident=collector.ownership_queries[command]
     evidence.append(ident)
     if result is None or result.returncode or result.stderr:
         return ()
