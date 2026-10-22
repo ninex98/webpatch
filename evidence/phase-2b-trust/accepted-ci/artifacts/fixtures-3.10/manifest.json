@@ -1,0 +1,42 @@
+{
+  "head": "4effa761d9fdcb3bbd0c63e43b756b38383fd74d",
+  "python": "3.10.22 (main, Oct  1 2026, 14:30:20) [GCC 13.3.0]",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "source_sha256": {
+    ".github/workflows/ci.yml": "283ecb79d26cd2c1df29dbb4f303764afb5092a5dcf507e5b696c473c4b4c46e",
+    "pyproject.toml": "81dfde3d091b0cf02667cf5e27cd6de6a685582bcc67a9d90596154fde0fadbb",
+    "scripts/build_deb.py": "b19eb8b6fd23ec9e2912a1ae8a41f1d992bff4d3a60fbb73b8add137fd2a6aad",
+    "scripts/ci_vm_smoke.sh": "5b0dda72343cbf8cb209e4b236d765a1d38c8dd9eb11785e9e9e9e9ad8d88540",
+    "scripts/collect_ci_evidence.py": "fdf2bc0a2fc6be412429d6e70e76b1e5e86d1c2a24f6e30870bdfcb4e32c4ad5",
+    "scripts/evidence_manifest.py": "cdf8f627e5fb55f0a5d496dad109f868ea70776d00b5c0d84c27d297a752acf0",
+    "src/webpatch/__init__.py": "23bd73f027c02f59823ac5b1311a4f734609d347ebd670e8b595c98fe3a19f9f",
+    "src/webpatch/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/webpatch/cli.py": "309b07791a9ac384c1ccaa9033eec94858252532c054f222d792971909844898",
+    "src/webpatch/configuration.py": "4ccce7f010683b4c64308e2fbf99a631c7d9702b372be19cc3742a20ba5076af",
+    "src/webpatch/data/php2shell.json": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+    "src/webpatch/discovery.py": "d65ca3385fa464138c71e886fceced65ebdf868fac331e35575e51141760fbce",
+    "src/webpatch/models.py": "b2ede6fc82d0b0ff3f7032f7d35802492b20da60070078cd10128693328b2dd5",
+    "src/webpatch/planning.py": "33274308cd8b7be938628969087a23de8cf2a9c0cd42433ef003fa24b185281d",
+    "src/webpatch/rules.py": "344ccbb3586b0e6a9f872c874f66487165e2f7198dc6b695994cf0708c15a9c8",
+    "src/webpatch/runtime.py": "dd17a369b0738940b0dab9f6982eacf7382ab8b45299217d9ac366fdebacc0d7",
+    "src/webpatch/service.py": "1b2012cac01d9593680168a4f744ab8959ec468531a1bdcd595df44cd809c92a",
+    "src/webpatch/sources.py": "3cae882d11fed062e811c81ce068fcabd956bdab338f83a392909d95062f970e",
+    "src/webpatch/system.py": "308b932ec7cba47e020d6dcc7af2a3a7c599e6ca132256bb2322cffb6d241179",
+    "src/webpatch/trust.py": "f2082b72a480245140f3d36e689edcdedb5a95a32c81ae6e1e2e1e3dbc970138",
+    "tests/conftest.py": "c5e669549e2df99214107bcf377545a65f5f3cc2fc2f9847865252c55c424150",
+    "tests/fixtures/README.md": "1778c5cc49e7ad3b18ac3d3ce2ca8ab8801e35e698cb22919727bcc63067998d",
+    "tests/fixtures/comparisons.json": "c4294738e5c5f488af0c5e5884cf498c09ff51f556678aaf045839894a675ca2",
+    "tests/fixtures/environments.json": "dc787cdbb72032211c2b2e23ee91372e016274ca2724bf3a28dfe11674f52db6",
+    "tests/integration/check.py": "80c6b37003b3e8572476e1948526c412984c167edcbb7433a3adef957fd4e148",
+    "tests/integration/crypto_check.py": "053d1155f10ec04ecc785f07476967cdf0680a89f2aa44eb5420d4acb4935942",
+    "tests/test_boundaries.py": "e5979b00220417129126b371049bf838e9f560fe8482e21525077084cbd1515c",
+    "tests/test_environments.py": "acc8ddf2edcf33a2c578035dabbc44bf75012f2436d6ebde57f146d38231557d",
+    "tests/test_runtime.py": "e8bb748acb83d57ba02e332f1a9c3e4ff59f6d0956ffa41a7050ea394be4f7a0",
+    "tests/test_sources.py": "660a70f3480103adc553489760eb577a856388aa2ee5594d0667701d53e536c7",
+    "tests/test_trust.py": "69fcc5849a0a9a41734c2c7e0908802c5325478e0753f401d62747f7aeae3b2f"
+  },
+  "artifact_sha256": {
+    "ci-evidence/pytest.log": "83b5e9ce933f4c5e5c896cd75f3d0511af2fce6e7d2bf0ee66b96e74325b4bff",
+    "ci-evidence/pytest.xml": "069d2d10cc73029f5d6881187944b8b660a226213be9caed441dabfcaf8be25f"
+  }
+}

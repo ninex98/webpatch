@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "BLOCKED",
+  "executable": false,
+  "apt_simulation": "NOT_IMPLEMENTED",
+  "report_sha256": "127cb960c8c2bb148fa2abc9e0e0f6861b0fd5602a219eff423f250d19536e0d",
+  "blockers": [
+    "PHASE_1_HAS_NO_EXECUTOR",
+    "APT_SOURCES_AND_DEPENDENCIES_NOT_VERIFIED",
+    "APT_DRY_RUN_NOT_PERFORMED",
+    "RUNTIME_COVERAGE_NOT_VERIFIED"
+  ],
+  "recommendations": [
+    "Verify every web SAPI, package origin, running image and container separately.",
+    "Obtain a fresh vendor advisory and an authenticated same-branch package candidate.",
+    "Require a reviewed APT dependency simulation and explicit plan confirmation before any repair.",
+    "Schedule service downtime and verify running processes and application health after repair."
+  ],
+  "actions": []
+}

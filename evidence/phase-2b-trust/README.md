@@ -11,3 +11,5 @@
 首次 CI：Actions 39739502752（d3a0d42）四格 VM 身份正向断言 FAIL；已保存 first-ci/ 全部日志、原始报告和制品摘要。报告显示 runner 使用 mirror+file/第三方源，当前策略正确拒绝该未覆盖来源，故无可认证候选。后续证据提交 8be3bf8 的同源码重跑 39739927084 同样失败，不计通过。
 
 修正测试准备：仅 GitHub 临时 VM 中备份并摘要原始 sources，设置 direct Ubuntu archive/security 同发行版源，再更新测试索引。扫描器不自动改源，mirror+file 仍为 UNKNOWN，补充负向 fixture。隔离当前未提交的 2C 后，对该 2B 检查点复跑 211 tests PASS（retry-local.log/xml；retry-local-manifest/），shell syntax PASS。真实四格重跑仍待验收。
+
+最终验收：Actions [39743408335](https://github.com/ninex98/webpatch/actions/runs/39743408335)，源码 `4effa761d9fdcb3bbd0c63e43b756b38383fd74d`，9/9 jobs PASS。两版 Ubuntu × FPM/mod_php 均真实验证 gpgv → InRelease → 解压 Packages → 缓存 deb → control → 已安装运行文件，且真实 gpgv 拒绝篡改后的签名副本。Python 3.10/3.12 各 211 tests、三组 Docker 与四格 VM 全部通过，扫描前后服务/配置/APT/dpkg 状态不变。完整日志、报告、JUnit 和源码/制品摘要见 accepted-ci/。2B.2 在上述明确范围内验收完成；未支持来源继续 UNKNOWN。
