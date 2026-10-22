@@ -90,6 +90,9 @@ class FakeSystem:
     def read_text(self, path):
         return self._get("read_text", self.reads, path)
 
+    def read_plan_document(self, path):
+        return self._get("read_plan_document", self.reads, path)
+
     def readlink(self, path):
         return self._get("readlink", self.links, path)
 

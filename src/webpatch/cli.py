@@ -37,7 +37,7 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
         backend = simulator if simulator is not None else (LocalAptSimulator() if isinstance(reader, LocalSystem) else None)
-        saved = json.loads(reader.read_text(args.path)) if args.command == "verify-plan" else None
+        saved = json.loads(reader.read_plan_document(args.path)) if args.command == "verify-plan" else None
         if args.command == "verify-plan" and (not isinstance(saved, dict) or not isinstance(saved.get("scope", {}), dict)):
             raise ValueError("INVALID_PLAN_DOCUMENT")
         requested = saved.get("scope", {}).get("requested_package_ids") if isinstance(saved, dict) else getattr(args, "target_package_ids", None)
@@ -57,9 +57,12 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
     elif args.command == "plan":
         print(f"BLOCKED — repair disabled; APT dry-run: {result.apt_simulation}.")
         print(f"Plan: {result.plan_sha256}; expires: {result.expires_at}")
+        print(f"Review: {result.review_status}; execution admission: {result.admission_status}")
         print(json.dumps({"scope": asdict(result.scope)}, ensure_ascii=True))
         for change in result.changes:
             print(json.dumps(asdict(change), ensure_ascii=True))
+        for gate in result.gates:
+            print(json.dumps(asdict(gate), ensure_ascii=True))
         for blocker in result.blockers:
             print("  " + json.dumps(blocker, ensure_ascii=True))
         for recommendation in result.recommendations:

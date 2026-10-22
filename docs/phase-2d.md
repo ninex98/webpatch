@@ -23,3 +23,17 @@ FPM 的 UNIX socket 关联同时检查进程 fd 所持 inode、该进程网络�
 计划重查 namespace/root、进程 starttime、映像身份、PHP 映射摘要和已观察 listener。对证据变化的检测不是并发锁或内存完整性证明。纯只读证据无法解除 loaded configuration / request attribution 门禁。
 
 真实环境验收新增实际映射文件删除/替换的无害 mmap helper，以及修改配置但不重启服务的反例；只在 GitHub-hosted 临时 VM 中运行并恢复配置。此处的无害映射数据不是漏洞二进制或真实漏洞利用。
+
+## 2D.3 统一审阅门禁
+
+最终计划 schema 为 **4**（替代 2D.1/2D.2 的 schema 3）；旧 schema 2/3 的保存计划统一返回 PLAN_SCHEMA_RESCAN_REQUIRED，须重新扫描和审阅。报告 schema 仍为 2，退出码不变。
+
+`gates` 将规则、目标选择、源策略、签名链/文件身份、每个实体覆盖要求、依赖变化、pin/hold/dpkg、特殊 APT 配置、锁、状态稳定性、证据时效、模拟、安装等价性、维护脚本/conffile、预计中断和执行授权分开。每项有稳定 ID、实体、证据 ID、原因和解除要求。PASS 只属于该项；UNKNOWN/NOT_RUN/UNSUPPORTED/BLOCKED 均加入阻断项。
+
+`review_status=READY_FOR_REVIEW` 表示目标和诊断依赖解析等基本输入齐全，可开始人工审阅；不是执行准入。已有合法 fixture 能获得多个 PASS，故不是恒定拒绝代替判断。安装等价性、维护脚本/conffile、停机预算、覆盖及加载/请求证明仍阻断。`admission_status=BLOCKED`、`executable=false`，没有安装或重启执行器。
+
+计划保存 `scan_evidence`（e 前缀）和规划 `evidence`（p 前缀），门禁引用可在文档内解析。最大有效期为生成时间+30分钟、扫描时间+30分钟、规则到期、全部已认证索引 Date+7天/Valid-Until 的最早值；base pocket 仍不能成为新鲜修复候选。索引过期、反向时钟、目标/依赖/作用域/配置/运行状态变化都会拒绝；重新计算摘要不能掩盖语义门禁篡改或延长有效期。摘要不是签名或授权证明。
+
+保存计划有独立 16 MiB 有界读取接口；普通配置/procfs 文本仍限 1 MiB。该调整修正首次 2D.2 VM 中合法证据计划约 1.4 MiB 导致 verify-plan 读取失败的问题，不放宽目标配置读取边界。
+
+阶段三必须先实现：按具体 plan hash 的显式确认；受信任、过期受限且绑定 scope/boot/PID/starttime/映像/模块的加载配置与请求证据接口；已批准的完整依赖/维护脚本/conffile 行为；所有消费者的停机预算；锁和事务前复核；修复后进程/路由/健康验证及失败审计。未来探针必须显式选择、无副作用，并证明请求归属到上述实例；普通标记/HTTP 200、监听 socket 或配置 mtime 都不符合接口。当前没有外部声明直接解除门禁的输入入口。

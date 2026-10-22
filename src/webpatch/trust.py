@@ -75,6 +75,17 @@ def source_identity(record):
     return match[1], match[2] or record["Version"]
 
 
+def release_deadline(raw, suite, codename):
+    """Only call after signature/scope/date verification. Base snapshots may not expire."""
+    release = release_payload(raw)
+    bounds = []
+    if suite != codename:
+        bounds.append(parsedate_to_datetime(release["Date"]) + timedelta(days=7))
+    if "Valid-Until" in release:
+        bounds.append(parsedate_to_datetime(release["Valid-Until"]))
+    return min(bounds).isoformat() if bounds else None
+
+
 def authenticate(collector, inventory, sources, now, package_cache="/var/cache/apt/archives"):
     start = len(collector.evidence)
     blockers, candidates, installed = [], [], []
@@ -145,6 +156,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
                                            "sha256": record["SHA256"], "size": int(record["Size"]),
                                            "filename": record["Filename"], "suite": source.suite,
                                            "fresh_for_plan": source.suite != inventory.environment.codename,
+                                           "valid_until": release_deadline(raw, source.suite, inventory.environment.codename),
                                            "release_sha256": release_hash, "index_sha256": index["sha256"],
                                            "evidence_ids": [*release_evidence_ids, index_evidence_id],
                                            "signer": UBUNTU_SIGNER})

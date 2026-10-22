@@ -1,0 +1,27 @@
+........................................................................ [ 22%]
+........................................................................ [ 44%]
+........................................................................ [ 67%]
+............F........................................................... [ 89%]
+..................................                                       [100%]
+=================================== FAILURES ===================================
+_____________ test_verify_saved_json_and_cli_never_runs_saved_argv _____________
+
+capsys = <_pytest.capture.CaptureFixture object at 0x10750e080>
+
+    def test_verify_saved_json_and_cli_never_runs_saved_argv(capsys):
+        from webpatch.cli import main
+        fake, report, simulator = setup_plan()
+        saved = plan(report, system=fake, simulator=simulator, now=NOW)
+        document = json.loads(json.dumps(asdict(saved)))
+        assert verify_document(document, saved, NOW) == ()
+        document['actions'] = ['/bin/sh -c malicious-saved-command']
+        fake.reads['/reviewed-plan.json'] = json.dumps(document)
+        assert main(['verify-plan', '/reviewed-plan.json'], system=fake, simulator=simulator, now=NOW) == 4
+        output = json.loads(capsys.readouterr().out)
+>       assert 'PLAN_DIGEST_MISMATCH' in output['drift'] and not output['executable']
+E       AssertionError: assert ('PLAN_DIGEST_MISMATCH' in ['INVALID_PLAN_DOCUMENT'])
+
+tests/test_planning.py:183: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_planning.py::test_verify_saved_json_and_cli_never_runs_saved_argv
+1 failed, 321 passed in 0.89s

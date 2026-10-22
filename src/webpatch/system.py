@@ -24,6 +24,7 @@ DPKG_QUERY = (
 )
 VERSION = re.compile(r"[0-9][A-Za-z0-9.+:~\-]{0,255}\Z")
 MAX_FILE_BYTES = 1024 * 1024
+MAX_PLAN_BYTES = 16 * 1024 * 1024
 MAX_COMMAND_BYTES = 8 * 1024 * 1024
 MAX_DIRECTORY_ENTRIES = 16384
 COMMAND_TIMEOUT_SECONDS = 10
@@ -47,6 +48,7 @@ class CommandResult:
 class SystemReader(Protocol):
     def run(self, argv: tuple[str, ...]) -> CommandResult: ...
     def read_text(self, path: str) -> str: ...
+    def read_plan_document(self, path: str) -> str: ...
     def listdir(self, path: str) -> list[str]: ...
     def readlink(self, path: str) -> str: ...
     def fingerprint(self, path: str) -> dict: ...
@@ -134,12 +136,19 @@ class LocalSystem:
             raise ProbeError(type(exc).__name__) from exc
 
     def read_text(self, path: str) -> str:
+        return self._read_text(path, MAX_FILE_BYTES)
+
+    def read_plan_document(self, path: str) -> str:
+        """A serialized review can exceed config limits; still bounded and data-only."""
+        return self._read_text(path, MAX_PLAN_BYTES)
+
+    def _read_text(self, path: str, limit: int) -> str:
         try:
             with os.fdopen(os.open(path, os.O_RDONLY | os.O_NONBLOCK), "rb") as stream:
                 if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
                     raise ProbeError("FILE_TYPE_LIMIT")
-                content = stream.read(MAX_FILE_BYTES + 1)
-            if len(content) > MAX_FILE_BYTES:
+                content = stream.read(limit + 1)
+            if len(content) > limit:
                 raise ProbeError("FILE_SIZE_LIMIT")
             return content.decode("utf-8", "strict")
         except (OSError, UnicodeError) as exc:
@@ -240,12 +249,13 @@ class LocalSystem:
 class Collector:
     """Keep digests and failure codes, not raw process/configuration contents."""
 
-    def __init__(self, system: SystemReader):
+    def __init__(self, system: SystemReader, evidence_prefix="e"):
         self.system = system
+        self.evidence_prefix = evidence_prefix
         self.evidence: list[Evidence] = []
 
     def probe(self, operation: str, target):
-        ident = f"e{len(self.evidence) + 1}"
+        ident = f"{self.evidence_prefix}{len(self.evidence) + 1}"
         label = json.dumps(target) if isinstance(target, tuple) else target
         try:
             value = getattr(self.system, operation)(target)

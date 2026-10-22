@@ -1,0 +1,2402 @@
+{
+  "schema_version": 4,
+  "status": "BLOCKED",
+  "executable": false,
+  "apt_simulation": "PASS",
+  "report_sha256": "0bfd517a12e86cbdf6da4dc73bfcfd7031c66f933aa030c9f8fffe0a0436c23e",
+  "blockers": [
+    "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+    "CONFIG_UNREADABLE:/etc/php/8.1/fpm/php-fpm.conf",
+    "COVERAGE:0737e1a3c81ef2a0ece06890603fcdacfba4e823a2bcefac7b7335d5e3eddf39",
+    "COVERAGE:379a0804b7fa49e8f81644f237e83646779c8b8e4cdaa3fbfe15d70d0f84dc0b",
+    "COVERAGE:418c0aa663dcb2891fcbeefea68274db8523ccc258a8db7a7f86b8830a400ad6",
+    "COVERAGE:6349d93173971e741de09301a712bf062c447f51fbbc791bdb642b2cb3b824c2",
+    "COVERAGE:8d102bc4133728787a08b860c9cbfacbddad391b97c18ca1f70f341f0291c045",
+    "COVERAGE:93fff8f186f58eed9694010d039d7aabce977ef2a1d7c49524b935881ec71494",
+    "COVERAGE:a6e7d4f3e5ce0403b1c596be667ff15f3f0097c392c277de87d4b6816a451c8c",
+    "COVERAGE:c45c88ef86d3ff1b862619fd69f6b32f9eb32add3b42d66d7ba9796db34bd3cd",
+    "COVERAGE:d319caabf9442357a89a67edad081a6dd4ca4792b117650a1da0b79da14ed75d",
+    "COVERAGE:d4efefa53a7f913a4973733da869110652d8ad1d4497de98707e90475ad22d8c",
+    "COVERAGE:f5e7bb5aeee758f6a98dffb0c7e3bea70a125d68fa25afe42025d2055de2196b",
+    "DISCOVERY_NOT_EXHAUSTIVE",
+    "FPM_POOLS_UNRESOLVED:8.1",
+    "GATE:13656900a84368bbcfbcf46d63cb566589773b328e92ccbe9771fd0e5ccdb4de",
+    "GATE:20adad3f987c55988a30e6ac9a90fad4dcc2e18e1de7e7685ea49656459bfdc5",
+    "GATE:2e815964c01bfeff93400a23514777287b3c7ec79b850c5dd5e29729f9fbbb83",
+    "GATE:2f14a03ae44904a08144c165f23569eb185e3d4f31e5f89a20b0ba1e5cbf2265",
+    "GATE:3a2e7deb6982a975e653ae39f9936b7535fed534bce6dc557d86bf531bce9cd2",
+    "GATE:3af8646dae3d11f746102a3c14f087b1f905448d25b85fe5f85d597d475e8477",
+    "GATE:3f3426fa1498c6304ab0860023795d387949c1874026221c778fa6cdb86f85c1",
+    "GATE:43ed9719ea1e8ea1f3b170e21dab77f351c403df17f0906150b192302727e65e",
+    "GATE:4e3b38b728a7a66dac4befcdeb77e6e21fe3e00235ee6e13baf782fd916f3432",
+    "GATE:74acde986b5822f1325ef105a008722eb701adfb51102bf6fb080552ba005344",
+    "GATE:95a6642eaead786dfe4a4d9c941608e8634e38a83504e6b61137819d5d8de27e",
+    "GATE:b33c311273fb5051517789bed5df1cd38ea129cd40ef2d4b81eac1bc9a3f7ce5",
+    "GATE:da40e9f9c07b1e4a37fa01d25c10eef4786d05fe78ea21d4f5196a9b82bc5c45",
+    "GATE:e3bf976b55d1de1b828b07a3dcb36a28a27766ac28d8567b6f90cc87df9ee732",
+    "GATE:eb9b87ee59187eb271668e2d2885ac33ea351ee294bfaa3c61cd10e3ccdd3938",
+    "OTHER_CONTAINERS_NOT_INSPECTED",
+    "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+    "PHP_CONFIGURATION_UNREADABLE",
+    "REPAIR_EXECUTION_DISABLED",
+    "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED"
+  ],
+  "recommendations": [
+    "Review every blocker and exact dependency change before any future repair stage.",
+    "Prepare a tested image/snapshot restore and package/configuration backup; rollback is not guaranteed.",
+    "Require explicit approval of the plan hash and repeat state checks and simulation before execution."
+  ],
+  "actions": [],
+  "created_at": "2026-10-22T08:00:00+00:00",
+  "expires_at": "2026-10-22T08:30:00+00:00",
+  "rule_sha256": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+  "state_sha256": "477d9faa56b94902d1068a7a93c2f85d93bbbc7060f57f66eb743538366d8541",
+  "plan_sha256": "efc33b1b74fdfbc527dbd87f422bea8c174d2d443232c3773ff2ff9ded14d99d",
+  "simulation_sha256": "81a8ae2905ff2443420167ef3f52326862886f74812a68c692d0fd724102d412",
+  "targets": [
+    {
+      "name": "php8.1-fpm",
+      "architecture": "amd64",
+      "installed_version": "8.1.2-1ubuntu2.28",
+      "version": "8.1.2-1ubuntu2.28",
+      "archive_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "changes": [],
+  "services": [],
+  "interruptions": [
+    "Package maintainer scripts may stop/restart services and drop requests before explicit restart.",
+    "Downtime duration is UNKNOWN until reviewed with service owners; loaded config and health require verification."
+  ],
+  "bindings": [
+    {
+      "operation": "fingerprint",
+      "target": "/usr/sbin/php-fpm8.1",
+      "outcome": "OK",
+      "sha256": "3fb99976293782fdc198a9dfe0d6b3263370cb65b504a8d59ae50d1544dc83a5"
+    },
+    {
+      "operation": "fingerprint",
+      "target": "/var/cache/apt/archives/php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb",
+      "outcome": "OK",
+      "sha256": "a397e1ea43741f5acce0596738b2607be0726e295b9c7e852bff3a0e39217d70"
+    },
+    {
+      "operation": "listdir",
+      "target": "/etc/apt/apt.conf.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "operation": "listdir",
+      "target": "/etc/apt/preferences.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "operation": "listdir",
+      "target": "/etc/apt/sources.list.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "listdir",
+      "target": "/etc/php/8.1/fpm/conf.d",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "listdir",
+      "target": "/var/cache/apt/archives",
+      "outcome": "OK",
+      "sha256": "3edb005936809de29d5c5e708345dfbef14513d45397c169b82521bf10c33771"
+    },
+    {
+      "operation": "listdir",
+      "target": "/var/lib/apt/lists",
+      "outcome": "OK",
+      "sha256": "35270964bd6b27cfb028cad8c7e44f727580c56585ef3d58314203c84603979c"
+    },
+    {
+      "operation": "listdir",
+      "target": "/var/lib/dpkg/updates",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "package_index",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_main_binary-amd64_Packages.lz4",
+      "outcome": "OK",
+      "sha256": "e4c29e9c53c6421b211914e4f8502bbcaac4b8cf53c1b7ad046a1fcc15a13e79"
+    },
+    {
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/apache2/apache2.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/apt/preferences",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list",
+      "outcome": "OK",
+      "sha256": "3f838746bb62facf0e468d48ad2796066ff3e0ad7492dc9731248f0bc444faf5"
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/machine-id",
+      "outcome": "OK",
+      "sha256": "3c113780e058a1f3ec5bd94d90356a369cd9c39ccd17d1106da6a7d662f3ac19"
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/nginx/nginx.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "f302f81ff8b15c2d5dcca30261374a2af95f4dd4532104495adcdd8a15e77bc4"
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php-fpm.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php.ini",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/proc/sys/kernel/random/boot_id",
+      "outcome": "OK",
+      "sha256": "a903e31492b94590c7a50164a4be4d9e94bf1d5b3a4c1d8c8056a85a286727e5"
+    },
+    {
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/var/lib/apt/extended_states",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_InRelease",
+      "outcome": "OK",
+      "sha256": "e169f7d7345296792f71aeecbd17cbb1fb7a2fd2c6339ebda1f53e0f6c73bac8"
+    },
+    {
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/arch",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/diversions",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/statoverride",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "905e6a93c64ea614a2a7c5df0d3cac68ce668dcd78669765e5d5f24e747297b8"
+    },
+    {
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "18a5b50f15c0815477dc4c4738d2cf7e7617bad71f7f59d80cafb203237ad2ca"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "p1",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "p2",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "p3",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "p4",
+      "operation": "read_text",
+      "target": "/proc/locks",
+      "outcome": "OK",
+      "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+    },
+    {
+      "id": "p5",
+      "operation": "identity",
+      "target": "/var/lib/dpkg/lock",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p6",
+      "operation": "identity",
+      "target": "/var/lib/dpkg/lock-frontend",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p7",
+      "operation": "identity",
+      "target": "/var/lib/apt/lists/lock",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p8",
+      "operation": "identity",
+      "target": "/var/cache/apt/archives/lock",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p9",
+      "operation": "fingerprint",
+      "target": "/usr/sbin/php-fpm8.1",
+      "outcome": "OK",
+      "sha256": "3fb99976293782fdc198a9dfe0d6b3263370cb65b504a8d59ae50d1544dc83a5"
+    },
+    {
+      "id": "p10",
+      "operation": "fingerprint",
+      "target": "/var/cache/apt/archives/php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb",
+      "outcome": "OK",
+      "sha256": "a397e1ea43741f5acce0596738b2607be0726e295b9c7e852bff3a0e39217d70"
+    },
+    {
+      "id": "p11",
+      "operation": "listdir",
+      "target": "/etc/apt/apt.conf.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p12",
+      "operation": "listdir",
+      "target": "/etc/apt/preferences.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p13",
+      "operation": "listdir",
+      "target": "/etc/apt/sources.list.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p14",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p15",
+      "operation": "listdir",
+      "target": "/etc/php/8.1/fpm/conf.d",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p16",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p17",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p18",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p19",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p20",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p21",
+      "operation": "listdir",
+      "target": "/var/cache/apt/archives",
+      "outcome": "OK",
+      "sha256": "3edb005936809de29d5c5e708345dfbef14513d45397c169b82521bf10c33771"
+    },
+    {
+      "id": "p22",
+      "operation": "listdir",
+      "target": "/var/lib/apt/lists",
+      "outcome": "OK",
+      "sha256": "35270964bd6b27cfb028cad8c7e44f727580c56585ef3d58314203c84603979c"
+    },
+    {
+      "id": "p23",
+      "operation": "listdir",
+      "target": "/var/lib/dpkg/updates",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p24",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p25",
+      "operation": "package_index",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_main_binary-amd64_Packages.lz4",
+      "outcome": "OK",
+      "sha256": "e4c29e9c53c6421b211914e4f8502bbcaac4b8cf53c1b7ad046a1fcc15a13e79"
+    },
+    {
+      "id": "p26",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p27",
+      "operation": "read_text",
+      "target": "/etc/apache2/apache2.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p28",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p29",
+      "operation": "read_text",
+      "target": "/etc/apt/preferences",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p30",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list",
+      "outcome": "OK",
+      "sha256": "3f838746bb62facf0e468d48ad2796066ff3e0ad7492dc9731248f0bc444faf5"
+    },
+    {
+      "id": "p31",
+      "operation": "read_text",
+      "target": "/etc/machine-id",
+      "outcome": "OK",
+      "sha256": "3c113780e058a1f3ec5bd94d90356a369cd9c39ccd17d1106da6a7d662f3ac19"
+    },
+    {
+      "id": "p32",
+      "operation": "read_text",
+      "target": "/etc/nginx/nginx.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p33",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "f302f81ff8b15c2d5dcca30261374a2af95f4dd4532104495adcdd8a15e77bc4"
+    },
+    {
+      "id": "p34",
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php-fpm.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p35",
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php.ini",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p36",
+      "operation": "read_text",
+      "target": "/proc/sys/kernel/random/boot_id",
+      "outcome": "OK",
+      "sha256": "a903e31492b94590c7a50164a4be4d9e94bf1d5b3a4c1d8c8056a85a286727e5"
+    },
+    {
+      "id": "p37",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p38",
+      "operation": "read_text",
+      "target": "/var/lib/apt/extended_states",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p39",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_InRelease",
+      "outcome": "OK",
+      "sha256": "e169f7d7345296792f71aeecbd17cbb1fb7a2fd2c6339ebda1f53e0f6c73bac8"
+    },
+    {
+      "id": "p40",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/arch",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p41",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/diversions",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p42",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/statoverride",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p43",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "905e6a93c64ea614a2a7c5df0d3cac68ce668dcd78669765e5d5f24e747297b8"
+    },
+    {
+      "id": "p44",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "18a5b50f15c0815477dc4c4738d2cf7e7617bad71f7f59d80cafb203237ad2ca"
+    },
+    {
+      "id": "p45",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p46",
+      "operation": "apt_simulation",
+      "target": "[\"/usr/bin/apt-get\", \"--simulate\", \"--no-remove\", \"--only-upgrade\", \"--no-install-recommends\", \"install\", \"php8.1-fpm:amd64=8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "81a8ae2905ff2443420167ef3f52326862886f74812a68c692d0fd724102d412"
+    },
+    {
+      "id": "p47",
+      "operation": "fingerprint",
+      "target": "/usr/sbin/php-fpm8.1",
+      "outcome": "OK",
+      "sha256": "3fb99976293782fdc198a9dfe0d6b3263370cb65b504a8d59ae50d1544dc83a5"
+    },
+    {
+      "id": "p48",
+      "operation": "fingerprint",
+      "target": "/var/cache/apt/archives/php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb",
+      "outcome": "OK",
+      "sha256": "a397e1ea43741f5acce0596738b2607be0726e295b9c7e852bff3a0e39217d70"
+    },
+    {
+      "id": "p49",
+      "operation": "listdir",
+      "target": "/etc/apt/apt.conf.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p50",
+      "operation": "listdir",
+      "target": "/etc/apt/preferences.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p51",
+      "operation": "listdir",
+      "target": "/etc/apt/sources.list.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p52",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p53",
+      "operation": "listdir",
+      "target": "/etc/php/8.1/fpm/conf.d",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p54",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p55",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p56",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p57",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p58",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p59",
+      "operation": "listdir",
+      "target": "/var/cache/apt/archives",
+      "outcome": "OK",
+      "sha256": "3edb005936809de29d5c5e708345dfbef14513d45397c169b82521bf10c33771"
+    },
+    {
+      "id": "p60",
+      "operation": "listdir",
+      "target": "/var/lib/apt/lists",
+      "outcome": "OK",
+      "sha256": "35270964bd6b27cfb028cad8c7e44f727580c56585ef3d58314203c84603979c"
+    },
+    {
+      "id": "p61",
+      "operation": "listdir",
+      "target": "/var/lib/dpkg/updates",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p62",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p63",
+      "operation": "package_index",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_main_binary-amd64_Packages.lz4",
+      "outcome": "OK",
+      "sha256": "e4c29e9c53c6421b211914e4f8502bbcaac4b8cf53c1b7ad046a1fcc15a13e79"
+    },
+    {
+      "id": "p64",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p65",
+      "operation": "read_text",
+      "target": "/etc/apache2/apache2.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p66",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p67",
+      "operation": "read_text",
+      "target": "/etc/apt/preferences",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p68",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list",
+      "outcome": "OK",
+      "sha256": "3f838746bb62facf0e468d48ad2796066ff3e0ad7492dc9731248f0bc444faf5"
+    },
+    {
+      "id": "p69",
+      "operation": "read_text",
+      "target": "/etc/machine-id",
+      "outcome": "OK",
+      "sha256": "3c113780e058a1f3ec5bd94d90356a369cd9c39ccd17d1106da6a7d662f3ac19"
+    },
+    {
+      "id": "p70",
+      "operation": "read_text",
+      "target": "/etc/nginx/nginx.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p71",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "f302f81ff8b15c2d5dcca30261374a2af95f4dd4532104495adcdd8a15e77bc4"
+    },
+    {
+      "id": "p72",
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php-fpm.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p73",
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php.ini",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p74",
+      "operation": "read_text",
+      "target": "/proc/sys/kernel/random/boot_id",
+      "outcome": "OK",
+      "sha256": "a903e31492b94590c7a50164a4be4d9e94bf1d5b3a4c1d8c8056a85a286727e5"
+    },
+    {
+      "id": "p75",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p76",
+      "operation": "read_text",
+      "target": "/var/lib/apt/extended_states",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p77",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_InRelease",
+      "outcome": "OK",
+      "sha256": "e169f7d7345296792f71aeecbd17cbb1fb7a2fd2c6339ebda1f53e0f6c73bac8"
+    },
+    {
+      "id": "p78",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/arch",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p79",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/diversions",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p80",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/statoverride",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p81",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "905e6a93c64ea614a2a7c5df0d3cac68ce668dcd78669765e5d5f24e747297b8"
+    },
+    {
+      "id": "p82",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "18a5b50f15c0815477dc4c4738d2cf7e7617bad71f7f59d80cafb203237ad2ca"
+    },
+    {
+      "id": "p83",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "p84",
+      "operation": "read_text",
+      "target": "/proc/locks",
+      "outcome": "OK",
+      "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+    },
+    {
+      "id": "p85",
+      "operation": "identity",
+      "target": "/var/lib/dpkg/lock",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p86",
+      "operation": "identity",
+      "target": "/var/lib/dpkg/lock-frontend",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p87",
+      "operation": "identity",
+      "target": "/var/lib/apt/lists/lock",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "p88",
+      "operation": "identity",
+      "target": "/var/cache/apt/archives/lock",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    }
+  ],
+  "scope": {
+    "scan_scope_id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31",
+    "requested_package_ids": [
+      "php8.1-fpm:amd64"
+    ],
+    "affected_package_ids": [
+      "php8.1-fpm:amd64"
+    ],
+    "observed_runtime_ids": [],
+    "unresolved_runtime_ids": [],
+    "impacts": [
+      {
+        "package_id": "php8.1-fpm:amd64",
+        "runtime_ids": [],
+        "services": [],
+        "coverage_ids": [
+          "d67ec74f157ca664c4776e62221017fea9bd5ff77fd6b7a4d4b4a46e93f043d3",
+          "0737e1a3c81ef2a0ece06890603fcdacfba4e823a2bcefac7b7335d5e3eddf39"
+        ],
+        "completeness": "UNKNOWN"
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "id": "a6e7d4f3e5ce0403b1c596be667ff15f3f0097c392c277de87d4b6816a451c8c",
+      "requirement": "scan_boundary",
+      "status": "OBSERVED",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e5",
+        "e6",
+        "e7"
+      ],
+      "reason": "Current namespace and boot identity only; container/host classification is not exhaustive.",
+      "next_step": "Confirm the intended host/container boundary and inventory other namespaces separately.",
+      "blocks_repair": true
+    },
+    {
+      "id": "f5e7bb5aeee758f6a98dffb0c7e3bea70a125d68fa25afe42025d2055de2196b",
+      "requirement": "discovery_completeness",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e16"
+      ],
+      "reason": "Bounded discovery cannot prove absence of hidden/custom runtimes, even with an empty inventory.",
+      "next_step": "Reconcile all services and custom installations with an operator-supplied deployment inventory.",
+      "blocks_repair": true
+    },
+    {
+      "id": "d67ec74f157ca664c4776e62221017fea9bd5ff77fd6b7a4d4b4a46e93f043d3",
+      "requirement": "installed_package_files",
+      "status": "VERIFIED",
+      "subjects": [
+        {
+          "kind": "package",
+          "id": "php8.1-fpm:amd64"
+        }
+      ],
+      "evidence_ids": [
+        "e35",
+        "e36",
+        "e37",
+        "e38",
+        "e40",
+        "e41",
+        "e42",
+        "e43",
+        "e8"
+      ],
+      "reason": "Authenticated archive runtime files match disk; this says nothing about running processes.",
+      "next_step": "Provide authenticated matching archives and verify every relevant installed runtime file.",
+      "blocks_repair": false
+    },
+    {
+      "id": "0737e1a3c81ef2a0ece06890603fcdacfba4e823a2bcefac7b7335d5e3eddf39",
+      "requirement": "package_runtime_coverage",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "package",
+          "id": "php8.1-fpm:amd64"
+        }
+      ],
+      "evidence_ids": [
+        "e8"
+      ],
+      "reason": "0 locally associated processes observed; unobserved consumers are not excluded.",
+      "next_step": "Account for every consumer of this package, including idle services, pools and CLI jobs.",
+      "blocks_repair": true
+    },
+    {
+      "id": "d4efefa53a7f913a4973733da869110652d8ad1d4497de98707e90475ad22d8c",
+      "requirement": "adapter_limit:CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    },
+    {
+      "id": "379a0804b7fa49e8f81644f237e83646779c8b8e4cdaa3fbfe15d70d0f84dc0b",
+      "requirement": "adapter_limit:CONFIG_UNREADABLE:/etc/php/8.1/fpm/php-fpm.conf",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "CONFIG_UNREADABLE:/etc/php/8.1/fpm/php-fpm.conf",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    },
+    {
+      "id": "6349d93173971e741de09301a712bf062c447f51fbbc791bdb642b2cb3b824c2",
+      "requirement": "adapter_limit:DISCOVERY_NOT_EXHAUSTIVE",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "DISCOVERY_NOT_EXHAUSTIVE",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    },
+    {
+      "id": "c45c88ef86d3ff1b862619fd69f6b32f9eb32add3b42d66d7ba9796db34bd3cd",
+      "requirement": "adapter_limit:FPM_POOLS_UNRESOLVED:8.1",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "FPM_POOLS_UNRESOLVED:8.1",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    },
+    {
+      "id": "93fff8f186f58eed9694010d039d7aabce977ef2a1d7c49524b935881ec71494",
+      "requirement": "adapter_limit:OTHER_CONTAINERS_NOT_INSPECTED",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "OTHER_CONTAINERS_NOT_INSPECTED",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    },
+    {
+      "id": "8d102bc4133728787a08b860c9cbfacbddad391b97c18ca1f70f341f0291c045",
+      "requirement": "adapter_limit:PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    },
+    {
+      "id": "418c0aa663dcb2891fcbeefea68274db8523ccc258a8db7a7f86b8830a400ad6",
+      "requirement": "adapter_limit:PHP_CONFIGURATION_UNREADABLE",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "PHP_CONFIGURATION_UNREADABLE",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    },
+    {
+      "id": "d319caabf9442357a89a67edad081a6dd4ca4792b117650a1da0b79da14ed75d",
+      "requirement": "adapter_limit:RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+      "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+      "blocks_repair": true
+    }
+  ],
+  "scan_evidence": [
+    {
+      "id": "e1",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "f302f81ff8b15c2d5dcca30261374a2af95f4dd4532104495adcdd8a15e77bc4"
+    },
+    {
+      "id": "e2",
+      "operation": "read_text",
+      "target": "/proc/self/cgroup",
+      "outcome": "OK",
+      "sha256": "f9ccfaf64372a8c6ddb845bd6a0e48496ccfae88645df5d136f684734c7e833b"
+    },
+    {
+      "id": "e3",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e4",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e5",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "905e6a93c64ea614a2a7c5df0d3cac68ce668dcd78669765e5d5f24e747297b8"
+    },
+    {
+      "id": "e6",
+      "operation": "read_text",
+      "target": "/proc/sys/kernel/random/boot_id",
+      "outcome": "OK",
+      "sha256": "a903e31492b94590c7a50164a4be4d9e94bf1d5b3a4c1d8c8056a85a286727e5"
+    },
+    {
+      "id": "e7",
+      "operation": "read_text",
+      "target": "/etc/machine-id",
+      "outcome": "OK",
+      "sha256": "3c113780e058a1f3ec5bd94d90356a369cd9c39ccd17d1106da6a7d662f3ac19"
+    },
+    {
+      "id": "e8",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "18a5b50f15c0815477dc4c4738d2cf7e7617bad71f7f59d80cafb203237ad2ca"
+    },
+    {
+      "id": "e9",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e10",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e11",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e12",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e13",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e14",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e15",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e16",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e17",
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php-fpm.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e18",
+      "operation": "read_text",
+      "target": "/etc/php/8.1/fpm/php.ini",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e19",
+      "operation": "listdir",
+      "target": "/etc/php/8.1/fpm/conf.d",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e20",
+      "operation": "read_text",
+      "target": "/etc/nginx/nginx.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e21",
+      "operation": "read_text",
+      "target": "/etc/apache2/apache2.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e22",
+      "operation": "listdir",
+      "target": "/etc/apt/sources.list.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e23",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list",
+      "outcome": "OK",
+      "sha256": "3f838746bb62facf0e468d48ad2796066ff3e0ad7492dc9731248f0bc444faf5"
+    },
+    {
+      "id": "e24",
+      "operation": "listdir",
+      "target": "/etc/apt/preferences.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e25",
+      "operation": "listdir",
+      "target": "/etc/apt/apt.conf.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e26",
+      "operation": "read_text",
+      "target": "/etc/apt/preferences",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e27",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e28",
+      "operation": "read_text",
+      "target": "/var/lib/apt/extended_states",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e29",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/arch",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e30",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/diversions",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e31",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/statoverride",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e32",
+      "operation": "listdir",
+      "target": "/var/lib/dpkg/updates",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e33",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "18a5b50f15c0815477dc4c4738d2cf7e7617bad71f7f59d80cafb203237ad2ca"
+    },
+    {
+      "id": "e34",
+      "operation": "listdir",
+      "target": "/var/lib/apt/lists",
+      "outcome": "OK",
+      "sha256": "35270964bd6b27cfb028cad8c7e44f727580c56585ef3d58314203c84603979c"
+    },
+    {
+      "id": "e35",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_InRelease",
+      "outcome": "OK",
+      "sha256": "e169f7d7345296792f71aeecbd17cbb1fb7a2fd2c6339ebda1f53e0f6c73bac8"
+    },
+    {
+      "id": "e36",
+      "operation": "run",
+      "target": "[\"/usr/bin/gpgv\", \"--status-fd=1\", \"--keyring\", \"/usr/share/keyrings/ubuntu-archive-keyring.gpg\", \"/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_InRelease\"]",
+      "outcome": "EXIT_0",
+      "sha256": "ab1b667c59d862e85a08b0520abf12dae8d0ad213b527cbe11c34b753d0b20a1"
+    },
+    {
+      "id": "e37",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_InRelease",
+      "outcome": "OK",
+      "sha256": "e169f7d7345296792f71aeecbd17cbb1fb7a2fd2c6339ebda1f53e0f6c73bac8"
+    },
+    {
+      "id": "e38",
+      "operation": "package_index",
+      "target": "/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-security_main_binary-amd64_Packages.lz4",
+      "outcome": "OK",
+      "sha256": "e4c29e9c53c6421b211914e4f8502bbcaac4b8cf53c1b7ad046a1fcc15a13e79"
+    },
+    {
+      "id": "e39",
+      "operation": "listdir",
+      "target": "/var/cache/apt/archives",
+      "outcome": "OK",
+      "sha256": "3edb005936809de29d5c5e708345dfbef14513d45397c169b82521bf10c33771"
+    },
+    {
+      "id": "e40",
+      "operation": "fingerprint",
+      "target": "/var/cache/apt/archives/php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb",
+      "outcome": "OK",
+      "sha256": "a397e1ea43741f5acce0596738b2607be0726e295b9c7e852bff3a0e39217d70"
+    },
+    {
+      "id": "e41",
+      "operation": "package_archive",
+      "target": "/var/cache/apt/archives/php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb",
+      "outcome": "OK",
+      "sha256": "91b878f625685796c7bd3fa078fa3f5a4b9140acb2fbd8d40944d13a79fc5cdb"
+    },
+    {
+      "id": "e42",
+      "operation": "fingerprint",
+      "target": "/var/cache/apt/archives/php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb",
+      "outcome": "OK",
+      "sha256": "a397e1ea43741f5acce0596738b2607be0726e295b9c7e852bff3a0e39217d70"
+    },
+    {
+      "id": "e43",
+      "operation": "fingerprint",
+      "target": "/usr/sbin/php-fpm8.1",
+      "outcome": "OK",
+      "sha256": "3fb99976293782fdc198a9dfe0d6b3263370cb65b504a8d59ae50d1544dc83a5"
+    },
+    {
+      "id": "e44",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e45",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    }
+  ],
+  "gates": [
+    {
+      "id": "521fb558464220ca5bb0ba8b8e9caad2ae9b09cbf799d76cf908bf5d0c6173f4",
+      "category": "vendor_rules",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e44",
+        "e45",
+        "e8"
+      ],
+      "reason": "Vendor comparisons have dated rules; BELOW_VENDOR_FIX identifies work, MEETS_VENDOR_FIX is not runtime safety.",
+      "required_action": "Review official advisories, source/release applicability and rule validity; never extend dates without review."
+    },
+    {
+      "id": "f66bf79953fa39567c18dab9c75ed477dfa2bd6fd6678f120d5554fd98f941df",
+      "category": "target_selection",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e1",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16",
+        "e17",
+        "e18",
+        "e19",
+        "e2",
+        "e20",
+        "e21",
+        "e22",
+        "e23",
+        "e24",
+        "e25",
+        "e26",
+        "e27",
+        "e28",
+        "e29",
+        "e3",
+        "e30",
+        "e31",
+        "e32",
+        "e33",
+        "e34",
+        "e35",
+        "e36",
+        "e37",
+        "e38",
+        "e39",
+        "e4",
+        "e40",
+        "e41",
+        "e42",
+        "e43",
+        "e44",
+        "e45",
+        "e5",
+        "e6",
+        "e7",
+        "e8",
+        "e9"
+      ],
+      "reason": "Selected packages and exact same-branch targets are explicit; impact includes all observed consumers.",
+      "required_action": "Select supported package:architecture targets and account for all shared-package consumers."
+    },
+    {
+      "id": "3ea0ffc36ce0928710f86316d5d9d64473aa0a0f5b013901f3e3f810fe760922",
+      "category": "source_policy",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e22",
+        "e23",
+        "e24",
+        "e25",
+        "e26",
+        "e27",
+        "e28",
+        "e29",
+        "e30",
+        "e31",
+        "e32",
+        "e33"
+      ],
+      "reason": "Direct official source policy checked; authentication is a separate gate.",
+      "required_action": "Use reviewed official same-release sources and resolve inaccessible source inputs."
+    },
+    {
+      "id": "cc7cff92b30e571a433b1bd1e2ac392501a7e2679c8d8d7b782c0e6c16068604",
+      "category": "archive_chain",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e34",
+        "e35",
+        "e36",
+        "e37",
+        "e38",
+        "e39",
+        "e40",
+        "e41",
+        "e42",
+        "e43"
+      ],
+      "reason": "Existing signed Release/Packages chain authenticated.",
+      "required_action": "Supply fresh signed indexes and matching archives; do not bypass signatures or hashes."
+    },
+    {
+      "id": "7df3465f9ee87218707f812d40ea1b11573e682040d703f144258aab4b1a1029",
+      "category": "target_identity",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "package",
+          "id": "php8.1-fpm:amd64"
+        }
+      ],
+      "evidence_ids": [
+        "e35",
+        "e36",
+        "e37",
+        "e38"
+      ],
+      "reason": "Every exact target is bound to a signed archive digest.",
+      "required_action": "Authenticate every selected target and reject conflicting archive hashes."
+    },
+    {
+      "id": "3af8646dae3d11f746102a3c14f087b1f905448d25b85fe5f85d597d475e8477",
+      "category": "coverage:scan_boundary",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e5",
+        "e6",
+        "e7"
+      ],
+      "reason": "Current namespace and boot identity only; container/host classification is not exhaustive.",
+      "required_action": "Confirm the intended host/container boundary and inventory other namespaces separately."
+    },
+    {
+      "id": "95a6642eaead786dfe4a4d9c941608e8634e38a83504e6b61137819d5d8de27e",
+      "category": "coverage:discovery_completeness",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e16"
+      ],
+      "reason": "Bounded discovery cannot prove absence of hidden/custom runtimes, even with an empty inventory.",
+      "required_action": "Reconcile all services and custom installations with an operator-supplied deployment inventory."
+    },
+    {
+      "id": "587c6f2d2fd319cf05eca9f01d4cf6223468b929d850ec77ba9b314d28f8f62a",
+      "category": "coverage:installed_package_files",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "package",
+          "id": "php8.1-fpm:amd64"
+        }
+      ],
+      "evidence_ids": [
+        "e35",
+        "e36",
+        "e37",
+        "e38",
+        "e40",
+        "e41",
+        "e42",
+        "e43",
+        "e8"
+      ],
+      "reason": "Authenticated archive runtime files match disk; this says nothing about running processes.",
+      "required_action": "Provide authenticated matching archives and verify every relevant installed runtime file."
+    },
+    {
+      "id": "13656900a84368bbcfbcf46d63cb566589773b328e92ccbe9771fd0e5ccdb4de",
+      "category": "coverage:package_runtime_coverage",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "package",
+          "id": "php8.1-fpm:amd64"
+        }
+      ],
+      "evidence_ids": [
+        "e8"
+      ],
+      "reason": "0 locally associated processes observed; unobserved consumers are not excluded.",
+      "required_action": "Account for every consumer of this package, including idle services, pools and CLI jobs."
+    },
+    {
+      "id": "4e3b38b728a7a66dac4befcdeb77e6e21fe3e00235ee6e13baf782fd916f3432",
+      "category": "coverage:adapter_limit:CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "da40e9f9c07b1e4a37fa01d25c10eef4786d05fe78ea21d4f5196a9b82bc5c45",
+      "category": "coverage:adapter_limit:CONFIG_UNREADABLE:/etc/php/8.1/fpm/php-fpm.conf",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "CONFIG_UNREADABLE:/etc/php/8.1/fpm/php-fpm.conf",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "3f3426fa1498c6304ab0860023795d387949c1874026221c778fa6cdb86f85c1",
+      "category": "coverage:adapter_limit:DISCOVERY_NOT_EXHAUSTIVE",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "DISCOVERY_NOT_EXHAUSTIVE",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "eb9b87ee59187eb271668e2d2885ac33ea351ee294bfaa3c61cd10e3ccdd3938",
+      "category": "coverage:adapter_limit:FPM_POOLS_UNRESOLVED:8.1",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "FPM_POOLS_UNRESOLVED:8.1",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "43ed9719ea1e8ea1f3b170e21dab77f351c403df17f0906150b192302727e65e",
+      "category": "coverage:adapter_limit:OTHER_CONTAINERS_NOT_INSPECTED",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "OTHER_CONTAINERS_NOT_INSPECTED",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "3a2e7deb6982a975e653ae39f9936b7535fed534bce6dc557d86bf531bce9cd2",
+      "category": "coverage:adapter_limit:PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "e3bf976b55d1de1b828b07a3dcb36a28a27766ac28d8567b6f90cc87df9ee732",
+      "category": "coverage:adapter_limit:PHP_CONFIGURATION_UNREADABLE",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "PHP_CONFIGURATION_UNREADABLE",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "2f14a03ae44904a08144c165f23569eb185e3d4f31e5f89a20b0ba1e5cbf2265",
+      "category": "coverage:adapter_limit:RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+      "required_action": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships."
+    },
+    {
+      "id": "298c8180b8eab61c4ae2092d3f2a22a9355ac8d4fe3add3926d79f772f7910e6",
+      "category": "dependency_changes",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "p1",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p14",
+        "p15",
+        "p16",
+        "p17",
+        "p18",
+        "p19",
+        "p2",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p24",
+        "p25",
+        "p26",
+        "p27",
+        "p28",
+        "p29",
+        "p3",
+        "p30",
+        "p31",
+        "p32",
+        "p33",
+        "p34",
+        "p35",
+        "p36",
+        "p37",
+        "p38",
+        "p39",
+        "p4",
+        "p40",
+        "p41",
+        "p42",
+        "p43",
+        "p44",
+        "p45",
+        "p46",
+        "p47",
+        "p48",
+        "p49",
+        "p5",
+        "p50",
+        "p51",
+        "p52",
+        "p53",
+        "p54",
+        "p55",
+        "p56",
+        "p57",
+        "p58",
+        "p59",
+        "p6",
+        "p60",
+        "p61",
+        "p62",
+        "p63",
+        "p64",
+        "p65",
+        "p66",
+        "p67",
+        "p68",
+        "p69",
+        "p7",
+        "p70",
+        "p71",
+        "p72",
+        "p73",
+        "p74",
+        "p75",
+        "p76",
+        "p77",
+        "p78",
+        "p79",
+        "p8",
+        "p80",
+        "p81",
+        "p82",
+        "p83",
+        "p84",
+        "p85",
+        "p86",
+        "p87",
+        "p88",
+        "p9"
+      ],
+      "reason": "All parsed dependency operations match the exact approved target set; no unsupported changes.",
+      "required_action": "Reject removal/downgrade/migration; explicitly review identities and approve an exact target set before regenerating."
+    },
+    {
+      "id": "3e180aa579aa06f7e8d8ff4a1d2f1fe266e19b232d3eea32f3b287dc527418ab",
+      "category": "pin_hold_dpkg",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e22",
+        "e23",
+        "e24",
+        "e25",
+        "e26",
+        "e27",
+        "e28",
+        "e29",
+        "e30",
+        "e31",
+        "e32",
+        "e33"
+      ],
+      "reason": "No observed holds, pins, diversions, pending or unconfigured dpkg states.",
+      "required_action": "Resolve holds/pins and incomplete dpkg state under separate authorization, then rescan."
+    },
+    {
+      "id": "c2936ce877683a8e76c0cae07bd2ec5972d4b00cfd7e1146584577bbbff3a8bb",
+      "category": "apt_special_configuration",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e22",
+        "e23",
+        "e24",
+        "e25",
+        "e26",
+        "e27",
+        "e28",
+        "e29",
+        "e30",
+        "e31",
+        "e32",
+        "e33"
+      ],
+      "reason": "No known special APT hooks/overrides observed by the bounded audit.",
+      "required_action": "Review every hook/override and its install-time effects; isolated simulation deliberately omits these."
+    },
+    {
+      "id": "c88b40808d3767dfbae35ac32eabe1d6fd74947672a80e990ad942d3235f5519",
+      "category": "package_manager_locks",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "p1",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p14",
+        "p15",
+        "p16",
+        "p17",
+        "p18",
+        "p19",
+        "p2",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p24",
+        "p25",
+        "p26",
+        "p27",
+        "p28",
+        "p29",
+        "p3",
+        "p30",
+        "p31",
+        "p32",
+        "p33",
+        "p34",
+        "p35",
+        "p36",
+        "p37",
+        "p38",
+        "p39",
+        "p4",
+        "p40",
+        "p41",
+        "p42",
+        "p43",
+        "p44",
+        "p45",
+        "p46",
+        "p47",
+        "p48",
+        "p49",
+        "p5",
+        "p50",
+        "p51",
+        "p52",
+        "p53",
+        "p54",
+        "p55",
+        "p56",
+        "p57",
+        "p58",
+        "p59",
+        "p6",
+        "p60",
+        "p61",
+        "p62",
+        "p63",
+        "p64",
+        "p65",
+        "p66",
+        "p67",
+        "p68",
+        "p69",
+        "p7",
+        "p70",
+        "p71",
+        "p72",
+        "p73",
+        "p74",
+        "p75",
+        "p76",
+        "p77",
+        "p78",
+        "p79",
+        "p8",
+        "p80",
+        "p81",
+        "p82",
+        "p83",
+        "p84",
+        "p85",
+        "p86",
+        "p87",
+        "p88",
+        "p9"
+      ],
+      "reason": "No held package-manager lock observed at both simulation boundaries; this is not a held execution lock.",
+      "required_action": "Wait for the owning transaction to finish; future execution must acquire locks and recheck state."
+    },
+    {
+      "id": "2183c842e927d805cc06fa0c306d57f85d5a1313c9787f1f396b2fad337306a5",
+      "category": "input_stability",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e1",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16",
+        "e17",
+        "e18",
+        "e19",
+        "e2",
+        "e20",
+        "e21",
+        "e22",
+        "e23",
+        "e24",
+        "e25",
+        "e26",
+        "e27",
+        "e28",
+        "e29",
+        "e3",
+        "e30",
+        "e31",
+        "e32",
+        "e33",
+        "e34",
+        "e35",
+        "e36",
+        "e37",
+        "e38",
+        "e39",
+        "e4",
+        "e40",
+        "e41",
+        "e42",
+        "e43",
+        "e44",
+        "e45",
+        "e5",
+        "e6",
+        "e7",
+        "e8",
+        "e9",
+        "p1",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p14",
+        "p15",
+        "p16",
+        "p17",
+        "p18",
+        "p19",
+        "p2",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p24",
+        "p25",
+        "p26",
+        "p27",
+        "p28",
+        "p29",
+        "p3",
+        "p30",
+        "p31",
+        "p32",
+        "p33",
+        "p34",
+        "p35",
+        "p36",
+        "p37",
+        "p38",
+        "p39",
+        "p4",
+        "p40",
+        "p41",
+        "p42",
+        "p43",
+        "p44",
+        "p45",
+        "p46",
+        "p47",
+        "p48",
+        "p49",
+        "p5",
+        "p50",
+        "p51",
+        "p52",
+        "p53",
+        "p54",
+        "p55",
+        "p56",
+        "p57",
+        "p58",
+        "p59",
+        "p6",
+        "p60",
+        "p61",
+        "p62",
+        "p63",
+        "p64",
+        "p65",
+        "p66",
+        "p67",
+        "p68",
+        "p69",
+        "p7",
+        "p70",
+        "p71",
+        "p72",
+        "p73",
+        "p74",
+        "p75",
+        "p76",
+        "p77",
+        "p78",
+        "p79",
+        "p8",
+        "p80",
+        "p81",
+        "p82",
+        "p83",
+        "p84",
+        "p85",
+        "p86",
+        "p87",
+        "p88",
+        "p9"
+      ],
+      "reason": "Observed inputs and runtime identities agree at simulation boundaries.",
+      "required_action": "Rescan after drift and repeat simulation; concurrent transaction protection is still required."
+    },
+    {
+      "id": "99a9c33113b4e48d8fad1027cfcf4ae2ad7adb1fab192cc4ce9f208e65a4b825",
+      "category": "evidence_freshness",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e34",
+        "e35",
+        "e36",
+        "e37",
+        "e38",
+        "e39",
+        "e40",
+        "e41",
+        "e42",
+        "e43"
+      ],
+      "reason": "Plan deadline is bounded by scan age, vendor rules and every authenticated index validity window: 2026-10-22T08:30:00+00:00",
+      "required_action": "Reacquire authorized evidence and regenerate the plan before the earliest expiry."
+    },
+    {
+      "id": "ac4ba1268e6e475d82a67fd2964394adfe885c67e296ac5311821198d7c1fc05",
+      "category": "diagnostic_simulation",
+      "status": "PASS",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "p1",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p14",
+        "p15",
+        "p16",
+        "p17",
+        "p18",
+        "p19",
+        "p2",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p24",
+        "p25",
+        "p26",
+        "p27",
+        "p28",
+        "p29",
+        "p3",
+        "p30",
+        "p31",
+        "p32",
+        "p33",
+        "p34",
+        "p35",
+        "p36",
+        "p37",
+        "p38",
+        "p39",
+        "p4",
+        "p40",
+        "p41",
+        "p42",
+        "p43",
+        "p44",
+        "p45",
+        "p46",
+        "p47",
+        "p48",
+        "p49",
+        "p5",
+        "p50",
+        "p51",
+        "p52",
+        "p53",
+        "p54",
+        "p55",
+        "p56",
+        "p57",
+        "p58",
+        "p59",
+        "p6",
+        "p60",
+        "p61",
+        "p62",
+        "p63",
+        "p64",
+        "p65",
+        "p66",
+        "p67",
+        "p68",
+        "p69",
+        "p7",
+        "p70",
+        "p71",
+        "p72",
+        "p73",
+        "p74",
+        "p75",
+        "p76",
+        "p77",
+        "p78",
+        "p79",
+        "p8",
+        "p80",
+        "p81",
+        "p82",
+        "p83",
+        "p84",
+        "p85",
+        "p86",
+        "p87",
+        "p88",
+        "p9"
+      ],
+      "reason": "APT dependency resolution only; no download, installation or hook execution.",
+      "required_action": "Resolve diagnostic errors and rerun exact targets in the same scope."
+    },
+    {
+      "id": "74acde986b5822f1325ef105a008722eb701adfb51102bf6fb080552ba005344",
+      "category": "installation_equivalence",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e22",
+        "e23",
+        "e24",
+        "e25",
+        "e26",
+        "e27",
+        "e28",
+        "e29",
+        "e30",
+        "e31",
+        "e32",
+        "e33"
+      ],
+      "reason": "Isolated simulation omits system hooks and parts of special APT configuration; real install behavior is not established.",
+      "required_action": "Review effective installation configuration and its differences from this diagnostic simulator."
+    },
+    {
+      "id": "b33c311273fb5051517789bed5df1cd38ea129cd40ef2d4b81eac1bc9a3f7ce5",
+      "category": "maintainer_scripts_conffiles",
+      "status": "NOT_RUN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [
+        "e34",
+        "e35",
+        "e36",
+        "e37",
+        "e38",
+        "e39",
+        "e40",
+        "e41",
+        "e42",
+        "e43"
+      ],
+      "reason": "Candidate maintainer scripts, triggers and conffile decisions have not been reviewed for installation effects.",
+      "required_action": "Authenticate and review exact candidate control archives, triggers and conffile policy before execution."
+    },
+    {
+      "id": "2e815964c01bfeff93400a23514777287b3c7ec79b850c5dd5e29729f9fbbb83",
+      "category": "service_interruption",
+      "status": "UNKNOWN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "Affected observed services: ; maintainer scripts may restart them before explicit restart.",
+      "required_action": "Approve a downtime budget for every consumer, drain strategy and tested manual recovery; no automatic rollback guarantee."
+    },
+    {
+      "id": "20adad3f987c55988a30e6ac9a90fad4dcc2e18e1de7e7685ea49656459bfdc5",
+      "category": "execution_authorization",
+      "status": "NOT_RUN",
+      "subjects": [
+        {
+          "kind": "scope",
+          "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+        }
+      ],
+      "evidence_ids": [],
+      "reason": "No executor or plan-hash confirmation capability exists in this stage.",
+      "required_action": "Implement the separately reviewed phase-three transaction/confirmation contract; apply remains disabled."
+    }
+  ],
+  "review_status": "READY_FOR_REVIEW",
+  "admission_status": "BLOCKED"
+}

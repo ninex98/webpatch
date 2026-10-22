@@ -216,6 +216,17 @@ class InputBinding:
 
 
 @dataclass(frozen=True)
+class ReviewGate:
+    id: str
+    category: str
+    status: str  # PASS, BLOCKED, UNKNOWN, NOT_RUN, UNSUPPORTED
+    subjects: tuple[EntityRef, ...]
+    evidence_ids: tuple[str, ...]
+    reason: str
+    required_action: str
+
+
+@dataclass(frozen=True)
 class Plan:
     schema_version: int
     status: str
@@ -239,3 +250,7 @@ class Plan:
     evidence: tuple[Evidence, ...] = ()
     scope: PlanScope | None = None
     coverage: tuple[CoverageCheck, ...] = ()
+    scan_evidence: tuple[Evidence, ...] = ()
+    gates: tuple[ReviewGate, ...] = ()
+    review_status: str = "INCOMPLETE"
+    admission_status: str = "BLOCKED"
