@@ -150,6 +150,12 @@ def audit_sources(collector, inventory):
             blockers.append("APT_HOOKS_REQUIRE_REVIEW")
         if re.search(r"#(?:include|clear)|Dir::|AllowUnauthenticated|AllowInsecure|Check-Valid-Until|Check-Date|Default-Release|DPkg::Options|APT::Architecture", raw, re.I):
             blockers.append("APT_CONFIGURATION_OVERRIDE_REQUIRES_REVIEW")
+    for path in ("/var/lib/apt/extended_states", "/var/lib/dpkg/arch", "/var/lib/dpkg/diversions", "/var/lib/dpkg/statoverride"):
+        raw = read(path, optional=True)
+        if raw and path.endswith("/diversions"):
+            blockers.append("DPKG_DIVERSIONS_REQUIRE_REVIEW")
+    if directory("/var/lib/dpkg/updates"):
+        blockers.append("DPKG_PENDING_UPDATES")
     packages, _ = collector.probe("run", DPKG_QUERY)
     inputs.append(("dpkg", collector.evidence[-1].outcome, collector.evidence[-1].sha256))
     if packages is None or packages.returncode or packages.stderr:

@@ -167,7 +167,7 @@ def test_cli_default_and_advisory_text(capsys):
     assert main([], system=FakeSystem({}), now=NOW) == 2
     assert "UNKNOWN" in capsys.readouterr().out
     assert main(["plan", "--dry-run"], system=FakeSystem(CASES[0]), now=NOW) == 4
-    assert "NOT PERFORMED" in capsys.readouterr().out
+    assert "NOT_RUN" in capsys.readouterr().out
 
 
 def test_cli_has_no_yes_or_shell_escape(capsys):

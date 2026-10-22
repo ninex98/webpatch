@@ -19,6 +19,7 @@ class Environment:
     codename: str
     scope: str
     mount_namespace: str | None
+    scope_sha256: str | None = None
 
 
 @dataclass(frozen=True)
@@ -113,6 +114,32 @@ class Report:
 
 
 @dataclass(frozen=True)
+class PackageTarget:
+    name: str
+    architecture: str
+    installed_version: str
+    version: str
+    archive_sha256: str
+
+
+@dataclass(frozen=True)
+class PackageChange:
+    operation: str
+    name: str
+    architecture: str
+    old_version: str | None
+    new_version: str | None
+
+
+@dataclass(frozen=True)
+class InputBinding:
+    operation: str
+    target: str
+    outcome: str
+    sha256: str | None
+
+
+@dataclass(frozen=True)
 class Plan:
     schema_version: int
     status: str
@@ -122,3 +149,15 @@ class Plan:
     blockers: tuple[str, ...]
     recommendations: tuple[str, ...]
     actions: tuple[str, ...] = ()
+    created_at: str = ""
+    expires_at: str = ""
+    rule_sha256: str = ""
+    state_sha256: str = ""
+    plan_sha256: str = ""
+    simulation_sha256: str | None = None
+    targets: tuple[PackageTarget, ...] = ()
+    changes: tuple[PackageChange, ...] = ()
+    services: tuple[str, ...] = ()
+    interruptions: tuple[str, ...] = ()
+    bindings: tuple[InputBinding, ...] = ()
+    evidence: tuple[Evidence, ...] = ()

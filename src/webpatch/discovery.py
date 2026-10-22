@@ -2,6 +2,8 @@
 
 import re
 import shlex
+import hashlib
+import json
 from typing import Protocol
 
 from .models import Environment, Inventory, Package, RuntimeHint
@@ -36,11 +38,14 @@ def environment(collector: Collector) -> Environment:
     docker, _ = collector.probe("read_text", "/.dockerenv")
     podman, _ = collector.probe("read_text", "/run/.containerenv")
     ns, _ = collector.probe("readlink", "/proc/self/ns/mnt")
+    boot, _ = collector.probe("read_text", "/proc/sys/kernel/random/boot_id")
+    machine, _ = collector.probe("read_text", "/etc/machine-id")
+    scope_hash = hashlib.sha256(json.dumps([boot, machine, ns, cgroup]).encode()).hexdigest() if boot and machine and ns else None
     container = (docker is not None or podman is not None
                  or bool(re.search(r"docker|containerd|kubepods|libpod|lxc", cgroup or "")))
     return Environment(data.get("ID", "unknown"), data.get("VERSION_ID", "unknown"),
                        data.get("VERSION_CODENAME", "unknown"),
-                       "container" if container else "host_or_unidentified_container", ns)
+                       "container" if container else "host_or_unidentified_container", ns, scope_hash)
 
 
 def sapi_for(name: str) -> str:

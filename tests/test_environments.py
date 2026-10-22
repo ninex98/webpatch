@@ -38,7 +38,7 @@ def test_environment_decisions_and_no_false_safe(server):
     proposal = plan(report)
     assert proposal.status == "BLOCKED"
     assert proposal.executable is False
-    assert proposal.apt_simulation == "NOT_IMPLEMENTED"
+    assert proposal.apt_simulation == "NOT_RUN"
     assert proposal.actions == ()
     assert "APT_DRY_RUN_NOT_PERFORMED" in proposal.blockers
     assert len(proposal.report_sha256) == 64

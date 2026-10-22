@@ -109,6 +109,12 @@ rc=0
 webpatch plan --dry-run --format json > ci-evidence/vm-plan.json || rc=$?
 [[ "$rc" == 4 ]]
 rc=0
+sudo webpatch plan --dry-run --package-cache "$package_cache" --format json > ci-evidence/vm-root-plan.json || rc=$?
+[[ "$rc" == 4 ]]
+rc=0
+sudo webpatch verify-plan ci-evidence/vm-root-plan.json --package-cache "$package_cache" --format json > ci-evidence/vm-plan-verification.json || rc=$?
+[[ "$rc" == 4 ]]
+rc=0
 webpatch apply > ci-evidence/vm-apply.txt 2>&1 || rc=$?
 [[ "$rc" == 4 ]]
 python3 - "$package" "$sapi" "$pid_before" "$service" <<'PY'
@@ -129,9 +135,15 @@ identity = next(p for p in privileged['package_trust']['installed'] if p['packag
 assert identity['status'] == 'AUTHENTICATED_RUNTIME_FILES', identity
 assert privileged['package_trust']['candidates']
 p = json.load(open('ci-evidence/vm-plan.json'))
-assert not p['executable'] and p['apt_simulation'] == 'NOT_IMPLEMENTED'
+assert not p['executable']
+root_plan = json.load(open('ci-evidence/vm-root-plan.json'))
+assert not root_plan['executable'] and root_plan['apt_simulation'] == 'PASS', root_plan['blockers']
+assert any(e['operation'] == 'apt_simulation' and e['outcome'] == 'EXIT_0' for e in root_plan['evidence'])
+verification = json.load(open('ci-evidence/vm-plan-verification.json'))
+assert verification['drift'] == [], verification
 PY
 PYTHONPATH=src python3 tests/integration/crypto_check.py
+PYTHONPATH=src python3 tests/integration/apt_check.py "$package"
 sudo systemctl is-active --quiet "$service"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]

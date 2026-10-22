@@ -230,7 +230,9 @@ class LocalSystem:
                 if any(getattr(before, f) != getattr(after, f) for f in fields):
                     raise ProbeError("FILE_CHANGED_DURING_READ")
                 return {"device": after.st_dev, "inode": after.st_ino,
-                        "size": after.st_size, "sha256": digest.hexdigest()}
+                        "size": after.st_size, "sha256": digest.hexdigest(),
+                        "mtime_ns": after.st_mtime_ns, "ctime_ns": after.st_ctime_ns,
+                        "mode": after.st_mode, "uid": after.st_uid, "gid": after.st_gid}
         except OSError as exc:
             raise ProbeError(type(exc).__name__) from exc
 

@@ -114,3 +114,14 @@ CLI → ScanService → EnvironmentAdapter registry → SystemReader
 [cache]: https://manpages.debian.org/bookworm/apt/apt-cache.8.en.html
 [prefs]: https://manpages.debian.org/bookworm/apt/apt_preferences.5.en.html
 [ubuntu-blog]: https://ubuntu.com/blog/php2shell-vulnerability-fixes-available
+
+## 6. 阶段二实现补充（2026-10-22）
+
+前文“阶段一”描述是基础版本边界。当前实现增加下列独立能力，验收记录分别见 evidence/phase-2a、phase-2b-sources、phase-2b-trust、phase-2c；以对应源码的实际 CI 证据判断完成状态。
+
+- **运行实例**：稳定 starttime、mount/PID namespace、root identity、加载文件和磁盘 device/inode/SHA256、dpkg owner、systemd ControlGroup 与主进程关联。systemd PrivateTmp 通过相同 root/PID namespace/live unit/文件视图单独验证。FPM pools 和 Web handlers 仅为有边界的静态观察；动态 include、.htaccess、实际 loaded config/应用路由、未覆盖实例仍 UNKNOWN。
+- **来源与身份**：严格解析 sources/deb822，审计 pin/hold、hooks、路径覆盖、dpkg 异常/diversions/pending updates。仅官方 direct Ubuntu jammy/noble 源启用固定 Ubuntu 2018 签名指纹验证；已有 InRelease → 解压 Packages SHA256/长度 → 缓存 deb SHA256/长度 → control 身份 → usr/bin、usr/sbin、usr/lib 常规运行文件的字节验证。扫描从不更新或下载。base pocket 仅用于身份比对，security/updates 要求 Date 不超过七天且未过 Valid-Until。文件认证不等于历史安装来源、maintainer scripts 或内存完整性证明。
+- **APT 模拟**：通过独立 AptSimulator 能力，受限 argv 固定 simulate/no-download/no-remove/only-upgrade，干净环境和独立临时 APT_CONFIG；系统 sources/preferences/status/extended_states 被保留，hooks 不执行，特殊配置仍是阻断原因。解析并计数核对所有安装/配置/移除行；从未获得通用可写命令能力。
+- **不可变计划**：冻结嵌套模型绑定当前作用域、规则、包/配置/源/索引/归档/进程摘要及最长 30 分钟有效期；先后检查快照与锁，保存摘要后可以 verify-plan 重新扫描和求解。APT 不持有系统锁，验证结果只是观察，不提供并发事务保证。未来执行器仍须再次核对全部门禁、显式确认计划 hash，并完成完整运行时/健康验证。
+
+当前所有计划均 BLOCKED，apply 没有实现。密码学认证只覆盖上述 Ubuntu 归档；Debian、第三方、mirror+file、ESM 和自编译不是自动修复支持范围。临时 VM 安装服务与普通标记 HTTP 请求只验证测试环境，不将其扩张为任意生产站点的安全证明。

@@ -26,6 +26,8 @@ class FakeSystem:
             "/.dockerenv": "" if case.get("docker") else missing,
             "/run/.containerenv": "" if case.get("podman") else missing,
             "/proc/self/cgroup": case.get("cgroup", "0::/user.slice"),
+            "/proc/sys/kernel/random/boot_id": "fixture-boot",
+            "/etc/machine-id": "fixture-machine",
         }
         self.links = {"/proc/self/ns/mnt": "mnt:[1]"}
         self.links["/proc/self/ns/pid"] = "pid:[1]"
@@ -40,6 +42,8 @@ class FakeSystem:
         self.reads.update({p: missing for p in ("/etc/apt/sources.list", "/etc/apt/preferences", "/etc/apt/apt.conf")})
         self.dirs.update({p: [] for p in ("/etc/apt/sources.list.d", "/etc/apt/preferences.d", "/etc/apt/apt.conf.d")})
         self.dirs.update({"/var/lib/apt/lists": [], "/var/cache/apt/archives": []})
+        self.reads.update({p: missing for p in ("/var/lib/apt/extended_states", "/var/lib/dpkg/arch", "/var/lib/dpkg/diversions", "/var/lib/dpkg/statoverride")})
+        self.dirs["/var/lib/dpkg/updates"] = []
         self.dirs.update(case.get("directories", {}))
         self.dirs.update({p: ProbeError(e) for p, e in case.get("directory_errors", {}).items()})
         for proc in case.get("processes", []):
