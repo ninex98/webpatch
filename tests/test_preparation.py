@@ -15,6 +15,7 @@ from webpatch.preparation import preparation_plan, execute_preparation, verify_s
 from webpatch.receipts import ReceiptStore
 from webpatch.planning import digest
 from webpatch.service import scan
+from webpatch.system import ProbeError
 
 SERVICE='php8.1-fpm.service'
 ROOT='/etc/php/8.1/fpm'
@@ -171,3 +172,17 @@ def test_readonly_mount_and_inode_are_required_not_just_matching_file_text(monke
     assert verify_snapshot_views(report,material['snapshots'],fake)['status']=='VERIFIED_READONLY_RUNTIME_VIEWS'
     fake.reads['/proc/42/mountinfo']=fake.reads['/proc/42/mountinfo'].replace(ROOT+' ro',ROOT+' rw')
     assert verify_snapshot_views(report,material['snapshots'],fake)['status']=='BLOCKED'
+
+
+@pytest.mark.parametrize('message,expected',[
+    ('PROBE_TRANSPORT_FAILED:HTTPError','PROBE_TRANSPORT_FAILED:HTTPError'),
+    ('PROBE_TRANSPORT_FAILED:contains private text','PREPARATION_FAILED:ProbeError')])
+def test_preparation_preserves_bounded_probe_error_codes_without_arbitrary_text(message,expected,monkeypatch,tmp_path):
+    fake,report,probes=fixture(monkeypatch)
+    proposal=make_plan(fake,report,probes); journal=Journal()
+    class BrokenProbe:
+        def collect(self,*args): raise ProbeError(message)
+    result=execute_preparation(proposal,confirmation_sha256=proposal['preparation_sha256'],system=fake,
+        controller=Controller(fake,tmp_path),probe=BrokenProbe(),journal=journal,clock=lambda:NOW)
+    assert result['status']=='PARTIAL' and result['blockers']==[expected]
+    assert journal.rows[-1]['details']['reason']==expected

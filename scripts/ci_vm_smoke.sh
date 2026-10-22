@@ -59,6 +59,8 @@ if [[ "$sapi" == fpm ]]; then
 user = www-data
 group = www-data
 listen = /run/php/webpatch-ci-extra.sock
+listen.owner = www-data
+listen.group = www-data
 pm = static
 pm.max_children = 1
 EOF

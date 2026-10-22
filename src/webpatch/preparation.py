@@ -200,6 +200,12 @@ def verify_snapshot_views(report, snapshots, system):
 def execute_preparation(saved, *, confirmation_sha256, system, controller, probe, journal, clock=None, scanner=scan):
     clock = clock or (lambda:datetime.now(timezone.utc))
     changed, materialized, audit_failed = False, None, False
+    def failure_reason(exc):
+        value=str(exc)
+        if (isinstance(exc,(ValueError,ProbeError)) and value.startswith(('PREPARATION_','SERVICE_','SNAPSHOT_','PROBE_','KERNEL_'))
+                and re.fullmatch(r'[A-Z][A-Z0-9_]+(?::[A-Za-z]+)?',value)):
+            return value
+        return 'PREPARATION_FAILED:'+type(exc).__name__
     def event(state, detail=None): journal.append({'kind':'preparation','hash':saved.get('preparation_sha256'),
                                                   'state':state,'at':clock().isoformat(),'details':detail or {}})
     @contextmanager
@@ -210,7 +216,8 @@ def execute_preparation(saved, *, confirmation_sha256, system, controller, probe
                 yield
             except Exception as exc:
                 try:
-                    event('PREPARATION_PARTIAL' if changed else 'PREPARATION_ABORTED',{'exception_type':type(exc).__name__})
+                    event('PREPARATION_PARTIAL' if changed else 'PREPARATION_ABORTED',
+                          {'exception_type':type(exc).__name__,'reason':failure_reason(exc)})
                 except Exception:
                     audit_failed = True
                 raise
@@ -284,7 +291,7 @@ def execute_preparation(saved, *, confirmation_sha256, system, controller, probe
             event('PREPARATION_VERIFIED',{'receipt_sha256':digest(document)})
             return {'status':'VERIFIED_CONTROLLED_STARTUP','changed':True,'receipt':document,'recovery_receipt':recovery,'executable':False}
     except (ValueError, KeyError, TypeError, OSError, ProbeError) as exc:
-        reason = str(exc) if isinstance(exc,(ValueError,ProbeError)) and str(exc).startswith(('PREPARATION_','SERVICE_','SNAPSHOT_')) else 'PREPARATION_FAILED:'+type(exc).__name__
+        reason = failure_reason(exc)
         return {'status':'PARTIAL' if changed else 'BLOCKED','changed':changed,'blockers':[reason],
                 'owned_materialization':materialized,'recovery_receipt':locals().get('recovery'),
                 'audit_write_failed':audit_failed,'executable':False}
