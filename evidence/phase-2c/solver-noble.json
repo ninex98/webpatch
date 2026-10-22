@@ -1,0 +1,68 @@
+{
+  "result": "PASS",
+  "scope": "REAL_APT_SYNTHETIC_STATUS_ONLY_NO_BINARY_DOWNGRADE",
+  "status_sha256": "690080777b66da3410a48d924dd35d15a528fa6f84d2ccac54d7d2ae7fee4821",
+  "synthetic_status_sha256": "bdd4dfe4150cb5d73014dead086d054b83c1495d235c5790f7e59d5094e59ca6",
+  "simulation": {
+    "command": [
+      "/usr/bin/apt-get",
+      "--simulate",
+      "--no-remove",
+      "--only-upgrade",
+      "--no-install-recommends",
+      "install",
+      "php8.3-fpm:arm64=8.3.6-0ubuntu0.24.04.13"
+    ],
+    "result": {
+      "returncode": 0,
+      "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  libapache2-mod-php8.3 php8.3-cli php8.3-common php8.3-opcache\n  php8.3-readline\nSuggested packages:\n  php-pear\nRecommended packages:\n  apache2\nThe following packages will be upgraded:\n  libapache2-mod-php8.3 php8.3-cli php8.3-common php8.3-fpm php8.3-opcache\n  php8.3-readline\n6 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.\nInst php8.3-readline [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64]) []\nInst php8.3-opcache [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64]) []\nInst php8.3-fpm [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64]) []\nInst libapache2-mod-php8.3 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64]) []\nInst php8.3-cli [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64]) []\nInst php8.3-common [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64])\nConf php8.3-readline (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64])\nConf php8.3-opcache (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64])\nConf php8.3-fpm (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64])\nConf libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64])\nConf php8.3-cli (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64])\nConf php8.3-common (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [arm64])\n",
+      "stderr": ""
+    },
+    "privileged": true,
+    "configuration": "ISOLATED_NO_HOOKS_SYSTEM_SOURCES_STATUS_AND_PREFERENCES"
+  },
+  "changes": [
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-readline",
+      "architecture": "arm64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-opcache",
+      "architecture": "arm64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-fpm",
+      "architecture": "arm64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "libapache2-mod-php8.3",
+      "architecture": "arm64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-cli",
+      "architecture": "arm64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-common",
+      "architecture": "arm64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    }
+  ]
+}

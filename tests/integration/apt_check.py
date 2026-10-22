@@ -15,7 +15,7 @@ from webpatch.apt import LocalAptSimulator
 from webpatch.planning import parse_simulation
 from webpatch.sources import paragraphs
 
-assert os.environ.get('GITHUB_ACTIONS') == 'true' and os.environ.get('RUNNER_ENVIRONMENT') == 'github-hosted'
+assert Path('/.dockerenv').exists() or (os.environ.get('GITHUB_ACTIONS') == 'true' and os.environ.get('RUNNER_ENVIRONMENT') == 'github-hosted')
 status = Path('/var/lib/dpkg/status').read_text()
 records = paragraphs(status)
 package = next(r for r in records if r['Package'] == sys.argv[1])
@@ -26,8 +26,11 @@ assert old[-1].isdigit() and int(old[-1]) > 0
 older_version = old[0] + '.' + str(int(old[-1]) - 1)
 stanzas = []
 for stanza in status.split('\n\n'):
-    if any(stanza.startswith('Package: ' + name + '\n') for name in changed):
-        stanza = re.sub(r'^Version: .+$', 'Version: ' + older_version, stanza, flags=re.M)
+    rows = paragraphs(stanza)
+    if rows and rows[0].get('Source', rows[0].get('Package', '')).split(' ', 1)[0] == branch:
+        # All siblings from this source must form a coherent older installation:
+        # update both their version and exact same-source dependency constraints.
+        stanza = stanza.replace(package['Version'], older_version)
     stanzas.append(stanza)
 with tempfile.TemporaryDirectory(prefix='webpatch-synthetic-apt-state-') as directory:
     snapshot = Path(directory) / 'status'
@@ -36,7 +39,7 @@ with tempfile.TemporaryDirectory(prefix='webpatch-synthetic-apt-state-') as dire
         def _configuration(self, root):
             return super()._configuration(root).replace('"/var/lib/dpkg/status"', '"' + str(snapshot) + '"')
     result = SnapshotSimulator().simulate((f"{package['Package']}:{package['Architecture']}={package['Version']}",))
-    assert result.result.returncode == 0, result.result.stderr
+    assert result.result.returncode == 0, (result.result.stderr, result.result.stdout)
     changes = parse_simulation(result.result.stdout)
     assert changed <= {c.name for c in changes}, (changed, changes, result.result.stdout)
     assert all(c.operation == 'UPGRADE' for c in changes)
@@ -45,4 +48,6 @@ with tempfile.TemporaryDirectory(prefix='webpatch-synthetic-apt-state-') as dire
               'synthetic_status_sha256': hashlib.sha256(snapshot.read_bytes()).hexdigest(),
               'simulation': asdict(result), 'changes': [asdict(c) for c in changes]}
 assert Path('/var/lib/dpkg/status').read_text() == status
+Path('ci-evidence').mkdir(exist_ok=True)
 Path('ci-evidence/apt-synthetic-upgrade.json').write_text(json.dumps(record, indent=2) + '\n')
+print(json.dumps(record, indent=2))

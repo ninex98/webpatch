@@ -143,7 +143,7 @@ def test_simulator_uses_empty_hook_config_and_fixed_environment(monkeypatch):
     observed = []
     def child(command, **kwargs):
         assert command[:2] == ('/usr/bin/apt-get', '--simulate')
-        assert '--no-download' in command and '--no-remove' in command
+        assert '--simulate' in command and '--no-remove' in command
         env = kwargs['env']
         assert set(env) == {'PATH', 'LC_ALL', 'LANG', 'APT_CONFIG', 'DEBIAN_FRONTEND'}
         config = Path(env['APT_CONFIG']).read_text()

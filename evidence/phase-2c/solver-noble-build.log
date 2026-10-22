@@ -1,0 +1,44 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 181B done
+#1 WARN: InvalidDefaultArgInFrom: Default value for ARG ${BASE} results in empty or invalid base image name (line 2)
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/webpatch-phase1:noble
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 776B done
+#4 DONE 0.0s
+
+#5 [1/4] FROM docker.io/library/webpatch-phase1:noble@sha256:b1833a1730e82854f7befa2f086bafb02a221e941a473143bbd4f41ffae308ba
+#5 resolve docker.io/library/webpatch-phase1:noble@sha256:b1833a1730e82854f7befa2f086bafb02a221e941a473143bbd4f41ffae308ba done
+#5 DONE 0.0s
+
+#6 [2/4] COPY src /work/src
+#6 DONE 0.0s
+
+#7 [3/4] COPY apt_check.py /work/apt_check.py
+#7 DONE 0.0s
+
+#8 [4/4] WORKDIR /tmp
+#8 DONE 0.0s
+
+#9 exporting to image
+#9 exporting layers 0.0s done
+#9 exporting manifest sha256:85290aa748533ca41788f839ad3631c4acfcd1c8e5f627ab7598fa177acf8d33
+#9 exporting manifest sha256:85290aa748533ca41788f839ad3631c4acfcd1c8e5f627ab7598fa177acf8d33 done
+#9 exporting config sha256:7e706b7aa614626a5156d5746200415b1fc2ec8769fa045f7c63c62a8fe525df done
+#9 exporting attestation manifest sha256:085cdf3f91e08f25a98bd212875a66fec107a7010ae409aefbc3e0699f665de5 done
+#9 exporting manifest list sha256:8102ce46a37b4e1960e4f245bc5d2db10135b4063b6c3a63f8219b144fe3c2fe done
+#9 naming to docker.io/library/webpatch-phase2c-solver:noble done
+#9 unpacking to docker.io/library/webpatch-phase2c-solver:noble 0.0s done
+#9 DONE 0.1s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - InvalidDefaultArgInFrom: Default value for ARG ${BASE} results in empty or invalid base image name (line 2)

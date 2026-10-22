@@ -1,0 +1,123 @@
+[
+    {
+        "Id": "sha256:5cf2e9e643609279b115a25491faf4b5c43361ce27d8ab555a40c2204780d02f",
+        "RepoTags": [
+            "webpatch-phase2c-solver:jammy"
+        ],
+        "RepoDigests": [
+            "webpatch-phase2c-solver@sha256:5cf2e9e643609279b115a25491faf4b5c43361ce27d8ab555a40c2204780d02f"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-22T08:38:53.100882834Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONPATH=/work/src"
+            ],
+            "Cmd": [
+                "python3",
+                "tests/integration/check.py"
+            ],
+            "WorkingDir": "/tmp",
+            "Labels": {
+                "org.opencontainers.image.version": "22.04"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 139432433,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:a3979fa7e3e4c597ab5823023a448d917d4ad7ae75204aa6737f4b091d233712",
+                "sha256:098b29ec03a90a37dfdb833c226f73f9ea2be5c1adf72787d78eb66e5830d1ca",
+                "sha256:2bb2414797844f4b7b04c87c0bd0e6ee4d2aaaba717eab5ce323fafaedf839c2",
+                "sha256:759fcaffdcc2a7d69859e5aab36dc56aa6e9418dff64a6628968a76d890a69fd",
+                "sha256:e1f37d28425eb59b3841d740fd45845b0ccdfd0b56eb5a8e19609df5d78315fb",
+                "sha256:2a59225c0e585adf1a88bb7b8770a7ac61b856dec74e8b0ff35566c8772f3dcb",
+                "sha256:9c14665c9c5c0fa892a7a1de7bcdf6327dfc603c4906659b93cd35f85cb45e5c",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-22T08:38:53.163516792Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:5cf2e9e643609279b115a25491faf4b5c43361ce27d8ab555a40c2204780d02f",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "esxx6g9ws4uon5uiqm5dy0412",
+                    "CreatedAt": "2026-10-22T08:38:53.184998959Z"
+                }
+            ]
+        }
+    },
+    {
+        "Id": "sha256:8102ce46a37b4e1960e4f245bc5d2db10135b4063b6c3a63f8219b144fe3c2fe",
+        "RepoTags": [
+            "webpatch-phase2c-solver:noble"
+        ],
+        "RepoDigests": [
+            "webpatch-phase2c-solver@sha256:8102ce46a37b4e1960e4f245bc5d2db10135b4063b6c3a63f8219b144fe3c2fe"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-22T08:39:27.229006002Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONPATH=/work/src"
+            ],
+            "Cmd": [
+                "python3",
+                "tests/integration/check.py"
+            ],
+            "WorkingDir": "/tmp",
+            "Labels": {
+                "org.opencontainers.image.version": "24.04"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 132167588,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:9a354992483c962fa69075527e7a2690fd9103f53d2c10af083fb31f24335256",
+                "sha256:1be4d5784ac507e5f6200dbedf59df179aaa9fc089945d904b17b94916ebe9a5",
+                "sha256:82e236e3c79d9cca3c2e01e8b76b6a71d6e60a9eb6ac9ecd0f4d64fc515ba43b",
+                "sha256:f116ee4fdc65e14fa47c982bc869e0ee66f95310c3c5f38c1dd184d2addf08a9",
+                "sha256:c4e6c83784a6b35a380297e534a6f100713fe79f8d75a32f95c54c6b356852bc",
+                "sha256:04d73760dcc6c7db838f9cec6dff1c4219e716b35d4cc990693dd84c5bc4d7ca",
+                "sha256:2a59225c0e585adf1a88bb7b8770a7ac61b856dec74e8b0ff35566c8772f3dcb",
+                "sha256:8ed00ee0404d868470b337a9dca1e255bcd0697b1c4f9be4a5662706e05c8f24",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-22T08:39:27.290286127Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:8102ce46a37b4e1960e4f245bc5d2db10135b4063b6c3a63f8219b144fe3c2fe",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "ing29ci3fsw7duc5pl7635711",
+                    "CreatedAt": "2026-10-22T08:39:27.307192086Z"
+                }
+            ]
+        }
+    }
+]

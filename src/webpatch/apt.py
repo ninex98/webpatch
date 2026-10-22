@@ -34,7 +34,9 @@ def simulation_command(targets):
         match = re.fullmatch(r"([a-z0-9][a-z0-9+.-]*):([a-z0-9][a-z0-9-]*)=(.+)", target)
         if not match or not VERSION.fullmatch(match[3]):
             raise ProbeError("INVALID_SIMULATION_TARGET")
-    return ("/usr/bin/apt-get", "--simulate", "--no-download", "--no-remove", "--only-upgrade",
+    # --simulate never downloads. --no-download additionally demands cached .debs
+    # even during simulation, preventing valid upgrades with an empty archive cache.
+    return ("/usr/bin/apt-get", "--simulate", "--no-remove", "--only-upgrade",
             "--no-install-recommends", "install", *targets)
 
 

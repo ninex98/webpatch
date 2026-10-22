@@ -1,0 +1,68 @@
+{
+  "result": "PASS",
+  "scope": "REAL_APT_SYNTHETIC_STATUS_ONLY_NO_BINARY_DOWNGRADE",
+  "status_sha256": "9fc1655058436e7ba8a85ab2153d8d389206517b128985650654cb8d14e786f7",
+  "synthetic_status_sha256": "b55305701582c562fe6f6f9ba2d050d3a30c6ba6a1a1c8c35670fa04599b79d8",
+  "simulation": {
+    "command": [
+      "/usr/bin/apt-get",
+      "--simulate",
+      "--no-remove",
+      "--only-upgrade",
+      "--no-install-recommends",
+      "install",
+      "php8.1-fpm:arm64=8.1.2-1ubuntu2.28"
+    ],
+    "result": {
+      "returncode": 0,
+      "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  libapache2-mod-php8.1 php8.1-cli php8.1-common php8.1-opcache\n  php8.1-readline\nSuggested packages:\n  php-pear\nRecommended packages:\n  apache2\nThe following packages will be upgraded:\n  libapache2-mod-php8.1 php8.1-cli php8.1-common php8.1-fpm php8.1-opcache\n  php8.1-readline\n6 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.\nInst php8.1-readline [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64]) []\nInst php8.1-opcache [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64]) []\nInst php8.1-fpm [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64]) []\nInst libapache2-mod-php8.1 [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64]) []\nInst php8.1-cli [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64]) []\nInst php8.1-common [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64])\nConf php8.1-readline (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64])\nConf php8.1-opcache (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64])\nConf php8.1-fpm (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64])\nConf libapache2-mod-php8.1 (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64])\nConf php8.1-cli (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64])\nConf php8.1-common (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [arm64])\n",
+      "stderr": ""
+    },
+    "privileged": true,
+    "configuration": "ISOLATED_NO_HOOKS_SYSTEM_SOURCES_STATUS_AND_PREFERENCES"
+  },
+  "changes": [
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-readline",
+      "architecture": "arm64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-opcache",
+      "architecture": "arm64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-fpm",
+      "architecture": "arm64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "libapache2-mod-php8.1",
+      "architecture": "arm64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-cli",
+      "architecture": "arm64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-common",
+      "architecture": "arm64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    }
+  ]
+}
