@@ -182,11 +182,11 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
             paths = [package_cache.rstrip("/") + "/" + n for n in archive_names or []
                      if n.startswith(candidate["name"] + "_") and n.endswith(".deb")]
             for path in paths[:32]:
-                fingerprint = probe("fingerprint", path)
+                fingerprint = probe("archive_fingerprint", path)
                 if not fingerprint or (fingerprint["sha256"], fingerprint["size"]) != (candidate["sha256"], candidate["size"]):
                     continue
-                archive = probe("package_archive", path)
-                if archive is None or probe("fingerprint", path) != fingerprint:
+                archive = probe("package_archive", (path,candidate["sha256"]))
+                if archive is None or archive.get('archive_sha256') != candidate['sha256'] or probe("archive_fingerprint", path) != fingerprint:
                     reasons.append("ARCHIVE_CHANGED_OR_UNREADABLE")
                     continue
                 control = archive["control"]

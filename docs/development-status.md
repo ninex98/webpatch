@@ -48,3 +48,9 @@ READY_FOR_REVIEW 仅表示诊断输入可审阅；所有计划仍 `admission_sta
 下一轮入口见 [next-conversation-prompt.md](next-conversation-prompt.md)，接口/迁移见 [phase-2d.md](phase-2d.md) 和 [CLI 使用说明](cli.md)。遵循 AGENTS.md：小阶段先定验收，保存当前源码证据后立即双语提交；云端检查点明确 CI pending，失败后续修正，不强推。
 
 开工时 README、双语文档和视觉资源的未提交工作已由独立提交 `13c6c9c` 保存，本轮功能提交没有覆盖这些内容。开发宿主 PHP、APT、系统包和服务未被修改；安装、服务准备和故障注入仅发生在隔离 CI 环境。
+
+## 2026-10-23 活动开发：按原设计四阶段继续
+
+用户已明确授权按原设计四阶段继续，Debian、Node.js 与容器重建扩展分别验收；先闭合有限 Ubuntu PHP 修复。2D 的历史验收不变。当前新增：3A.1 `a0d63da`（354 tests，CI 39767703025 9/9 PASS）；3A.2 `b52b011` 首轮 8/9，既有 helper 寿命问题由 `cc84680` 修正（该独立重跑一格取消，不计通过）；3B `f909217`（395 tests，39776918742 9/9 PASS，包含修正后的真实探针）；3C `5b22ed3`（415 tests，39791877691 9/9 PASS）；3D.1 `66d2e26`（427 tests，39794945409 9/9 PASS）。
+
+新增归档封存检查点在暂存源码隔离目录验证 434 tests，证据见 evidence/phase-3d-archive，Linux 全矩阵待重验。3D.2 受控服务准备/只读配置快照仍在开发，尚未验收。3C 仅是注入后端事务状态机，不能宣称真实修复已完成；实际安装执行器、完整准入与阶段四仍须继续。接口演进见 docs/phase-3.md。

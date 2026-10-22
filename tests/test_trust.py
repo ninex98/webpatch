@@ -25,7 +25,7 @@ def trust_fixture():
     fake.indexes[INDEX] = {"sha256": "a" * 64, "size": 123, "packages": [dict(control, SHA256="b" * 64, Size="456", Filename="pool/main/p/php8.1/php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb")]}
     fake.dirs["/var/cache/apt/archives"] = [DEB.rsplit("/", 1)[1]]
     fake.fingerprints[DEB] = {"sha256": "b" * 64, "size": 456, "device": 1, "inode": 3}
-    fake.archives[DEB] = {"control": control, "files": {EXECUTABLE: "c" * 64}}
+    fake.archives[DEB] = {"control": control, "files": {EXECUTABLE: "c" * 64}, "archive_sha256": "b"*64}
     fake.fingerprints[EXECUTABLE] = {"sha256": "c" * 64, "size": 1234, "device": 1, "inode": 4}
     return fake
 

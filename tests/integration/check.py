@@ -39,6 +39,26 @@ def main():
             relative = path.relative_to("src")
             assert path.read_bytes() == (Path("/usr/lib/webpatch") / relative).read_bytes()
             source_hashes[str(relative)] = hashlib.sha256(path.read_bytes()).hexdigest()
+    # Real Linux sealing and dpkg-deb parsing, without filesystem writes, network,
+    # or vendor-authentication claims about this locally built test package.
+    sys.path.insert(0, '/usr/lib/webpatch')
+    from webpatch.system import LocalSystem, ProbeError
+    reader = LocalSystem()
+    package_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
+    with reader._sealed_archive(str(archive), package_hash) as descriptor:
+        import os
+        try:
+            os.write(descriptor, b'changed')
+            raise AssertionError('sealed archive accepted a write')
+        except OSError:
+            pass
+    parsed = reader.package_archive((str(archive), package_hash))
+    assert parsed['archive_sha256'] == package_hash and parsed['control']['Package'] == 'webpatch'
+    try:
+        reader.package_archive((str(archive), 'f'*64))
+        raise AssertionError('wrong snapshot hash accepted')
+    except ProbeError as exc:
+        assert str(exc) == 'ARCHIVE_SNAPSHOT_SHA256_MISMATCH'
     pairs = json.loads(Path("tests/fixtures/comparisons.json").read_text())
     for installed, fixed, expected in pairs:
         result = run(["/usr/bin/dpkg", "--compare-versions", installed, "ge", fixed], {0, 1})

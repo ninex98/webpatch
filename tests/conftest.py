@@ -108,11 +108,18 @@ class FakeSystem:
     def fingerprint(self, path):
         return self._get("fingerprint", self.fingerprints, path)
 
+    def archive_fingerprint(self, path):
+        return self._get("archive_fingerprint", self.fingerprints, path)
+
     def package_index(self, path):
         return self._get("package_index", self.indexes, path)
 
-    def package_archive(self, path):
-        return self._get("package_archive", self.archives, path)
+    def package_archive(self, request):
+        path, expected = request
+        result = self._get("package_archive", self.archives, path)
+        if result.get('archive_sha256') != expected:
+            raise ProbeError('ARCHIVE_SNAPSHOT_SHA256_MISMATCH')
+        return result
 
 
 @pytest.fixture(params=CASES, ids=lambda c: c["id"])

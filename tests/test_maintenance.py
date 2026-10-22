@@ -95,11 +95,11 @@ def test_archive_reader_retains_control_data_without_running_it(monkeypatch):
                     'postinst':'#!/bin/sh\nprintf never-executed\n', 'conffiles':'/etc/php/test.conf\n'})
     payload = tar({'usr/sbin/php-fpm8.1':'fixture executable bytes','etc/php/test.conf':'config bytes'})
     calls = []
-    def execute(self, argv, limit=None):
+    def execute(self, argv, limit=None, archive_fd=None):
         calls.append(argv)
         return 0, controls if argv[1] == '--ctrl-tarfile' else payload, b''
     monkeypatch.setattr(LocalSystem, '_execute', execute)
-    result = LocalSystem().package_archive('/cache/test.deb')
+    result = LocalSystem()._parse_archive(99, 'a'*64)
     assert result['control_metadata_complete']
     assert 'never-executed' in result['control_files']['postinst']['text']
     assert '/etc/php/test.conf' in result['payload_files']

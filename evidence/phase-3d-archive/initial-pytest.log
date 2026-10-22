@@ -1,0 +1,8 @@
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/test_archive_sealing.py ________________
+tests/test_archive_sealing.py::test_archive_parser_requires_explicit_content_digest: 'request' is a reserved name and cannot be used in @pytest.mark.parametrize
+=========================== short test summary info ============================
+ERROR tests/test_archive_sealing.py - Failed: tests/test_archive_sealing.py::...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.10s

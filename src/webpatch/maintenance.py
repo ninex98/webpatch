@@ -68,12 +68,12 @@ def inspect_maintenance(report, proposal, *, system, package_cache, now=None):
             expected_hash = next(iter(hashes))
             for filename in [n for n in names or [] if n.startswith(name + '_') and n.endswith('.deb')][:32]:
                 path = package_cache.rstrip('/') + '/' + filename
-                before, _ = collector.probe('fingerprint', path)
+                before, _ = collector.probe('archive_fingerprint', path)
                 if not before or before['sha256'] != expected_hash or before['size'] not in {c['size'] for c in candidates}:
                     continue
-                archive, _ = collector.probe('package_archive', path)
-                after, _ = collector.probe('fingerprint', path)
-                if not archive or before != after:
+                archive, _ = collector.probe('package_archive', (path,expected_hash))
+                after, _ = collector.probe('archive_fingerprint', path)
+                if not archive or archive.get('archive_sha256') != expected_hash or before != after:
                     errors.append('CONTROL_ARCHIVE_CHANGED_OR_UNREADABLE')
                     continue
                 control = archive.get('control', {})

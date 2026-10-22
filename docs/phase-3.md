@@ -51,3 +51,11 @@ AuditJournal 使用 0600 普通文件、有界 JSONL、追加写入/fsync 和 ha
 `VERIFIED_ACTIVE_MAPPING_CENSUS` 只证明该时间窗口内的活跃文件消费者被核对，不证明未来任务、空闲服务或不可见的部署范围；idle_and_future_consumers 固定 NOT_PROVEN，executable=false。内核线程或 zombie 的空地址空间与一般读取失败分开；只比较目标文件映射，普通匿名 heap 变化不触发无关漂移。空进程集/无消费者仍不能证明完整覆盖。
 
 四格 VM 以真实 root procfs 做正例，并启动只 mmap 认证包文件的无害 Python helper（comm 不含 PHP）作为额外消费者反例。允许最多三次读取快照以处理正常 PID churn，保存每次结果，不跳过失败项或放宽门禁；不会执行映射的 PHP 二进制。
+
+## 归档解析绑定修正（2026-10-23）
+
+受控启动前补强已认证归档的解析链：调用方必须提供签名索引中的预期 SHA256，读取时将归档字节复制到 Linux memfd 并在摘要相符后施加 WRITE/SHRINK/GROW/SEAL 限制；dpkg-deb 的两次 tar 读取都使用继承的同一封存文件描述符。没有磁盘临时文件或目标系统写入。缓存归档指纹拒绝符号链接，解析输出也保留实际封存字节的摘要，不能用路径读取前后碰巧一致的元数据替代实际解析内容的身份。
+
+普通只读命令接口不接受 `/proc/self/fd/*` 解析命令；只允许内部持有封存 FD 的解析能力传递它。Linux 能力不可用时返回明确 UNKNOWN/未支持原因，不回退到未封存路径。三个只读、禁网容器验证真实 memfd 不可写、真实 dpkg-deb 能读取封存数据、错误摘要在解析前被拒绝。[内核接口说明](https://man7.org/linux/man-pages/man2/memfd_create.2.html)
+
+同一检查点增加只读 service definition 查询及 Apache/nginx 索引身份记录，作为后续受控启动核验的输入；这些接口不能执行服务变更。
