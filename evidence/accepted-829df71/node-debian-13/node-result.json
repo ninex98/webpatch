@@ -1,0 +1,176 @@
+{
+  "result": "PASS",
+  "scope": "Node package comparisons and local process evidence only",
+  "environment": {
+    "os_id": "debian",
+    "version_id": "13",
+    "codename": "trixie",
+    "scope": "container",
+    "mount_namespace": "mnt:[4026532265]",
+    "scope_sha256": null
+  },
+  "runtime": {
+    "pid": 15,
+    "sapi": "node",
+    "path": "/usr/bin/node",
+    "package_ids": [
+      "libnode115:amd64",
+      "nodejs:amd64"
+    ],
+    "service": null,
+    "start_ticks": "29330",
+    "file_sha256": "ca0728526aa1cc4e3056decec848ecc6d2c5391cecdd4e21a0ebd221d665c84e",
+    "association": "VERIFIED_LOCAL_FILE_ASSOCIATION",
+    "blockers": [],
+    "evidence_ids": [
+      "e16",
+      "e17",
+      "e18",
+      "e19",
+      "e20",
+      "e21",
+      "e22",
+      "e23",
+      "e24",
+      "e25",
+      "e26",
+      "e27",
+      "e28",
+      "e29",
+      "e30",
+      "e31",
+      "e32"
+    ],
+    "files": [
+      {
+        "path": "/usr/bin/node",
+        "role": "node_executable",
+        "package_ids": [
+          "nodejs:amd64"
+        ],
+        "sha256": "ca0728526aa1cc4e3056decec848ecc6d2c5391cecdd4e21a0ebd221d665c84e",
+        "device": 49,
+        "inode": 8945449,
+        "status": "VERIFIED_LOCAL_FILE",
+        "evidence_ids": [
+          "e16",
+          "e17",
+          "e18",
+          "e19",
+          "e20",
+          "e21",
+          "e22",
+          "e23",
+          "e24",
+          "e25",
+          "e26"
+        ]
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/libnode.so.115",
+        "role": "node_library",
+        "package_ids": [
+          "libnode115:amd64"
+        ],
+        "sha256": "39d691d5925c7c3854750b552b10c2a7da0d0bc9b3de10c2a0bb7ce48e68e6d5",
+        "device": 49,
+        "inode": 8946101,
+        "status": "OBSERVED_DISK_FILE",
+        "evidence_ids": [
+          "e16",
+          "e17",
+          "e18",
+          "e19",
+          "e20",
+          "e21",
+          "e22",
+          "e23",
+          "e24",
+          "e25",
+          "e26",
+          "e27",
+          "e28",
+          "e29"
+        ]
+      }
+    ],
+    "endpoints": [],
+    "mapping_sha256": null,
+    "mapping_status": "OBSERVED_NODE_LIBRARIES",
+    "endpoint_status": "NOT_CHECKED",
+    "namespace_sha256": "5bb5aa6aca654244baccce66a9ef0c1168db63c70c446ca5e4f5dd9254abcb98"
+  },
+  "assessments": [
+    {
+      "package_id": "nodejs:amd64",
+      "cve": "CVE-2026-21714",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "20.19.2+dfsg-1+deb13u2",
+      "references": [
+        "https://security-tracker.debian.org/tracker/CVE-2026-21714",
+        "https://security-tracker.debian.org/tracker/DSA-6183-1"
+      ],
+      "evidence_ids": [
+        "e8",
+        "e33"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "nodejs:amd64",
+      "cve": "CVE-2026-48618",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "20.19.2+dfsg-1+deb13u3",
+      "references": [
+        "https://security-tracker.debian.org/tracker/CVE-2026-48618",
+        "https://security-tracker.debian.org/tracker/DSA-6517-1"
+      ],
+      "evidence_ids": [
+        "e8",
+        "e34"
+      ],
+      "runtime_status": "UNKNOWN"
+    }
+  ],
+  "source_sha256": {
+    "webpatch/__init__.py": "23bd73f027c02f59823ac5b1311a4f734609d347ebd670e8b595c98fe3a19f9f",
+    "webpatch/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "webpatch/application.py": "44e95285579ca1ca1fb049c8ae3a873c0d96c7e28b4822b5e65b0eb8af5b9182",
+    "webpatch/apt.py": "443d8ddf661b6a9c10624a8369ef67cedf9aad8cca9ce6bac6eb41727b8def20",
+    "webpatch/cli.py": "c4ff76536d16bb3d094b3b9bd09e41ebdb012d727bda6a2427c4ec122096a235",
+    "webpatch/configuration.py": "2107a4612238019bfb0f4e1e2beeb0530048199a118385d8bc45bc8f278e5914",
+    "webpatch/consumers.py": "c9a18c82c69cf9b28bdf96e3f231ddcc02b5a37dbabdef6d9c3fcc1611022cb3",
+    "webpatch/container_rebuild.py": "e7eb24938ae3d49909cd9ea86907c06699dd0fdbdd256030b2ccc8b35080658d",
+    "webpatch/coverage.py": "60fed4b4d336f1db5693c35187925373af12d3d18f6e2f6ec49b0eb845cee58c",
+    "webpatch/data/application_probe.php": "af4fe55ddc0feccdd41112db1f5c409a1f4ea8b73a27a7b231384401c112d103",
+    "webpatch/data/nodejs.json": "fd563d14cba3185a986da68bcec928e736e3d5906932511cdb2a86a68920ace7",
+    "webpatch/data/php2shell.json": "5fee0430b093d1fff8145b727d9d61d0cade94d7b8fe8aa181c5f1b38e2b1c52",
+    "webpatch/deployment.py": "57789be0006146ef8ee50d4ce210f668bcbcedbcde20458dd0ac6b276c90dcb8",
+    "webpatch/discovery.py": "01da1449f43fee020177400d80bb97c5d1563e9949c57bd7fdcd16809ede4694",
+    "webpatch/execution_inputs.py": "5765a9b6d081142ea8e2da2c83902a7b48c38f4e5397d932158c62fbb15f2bdf",
+    "webpatch/gates.py": "c6fe1b162ed92cddb71507e68ca0bd4247794815c60ca7e5faa1528da0ceca24",
+    "webpatch/maintenance.py": "c17365e80d0211f1622d22206964754c88f975746af4ebd1d1d96daf738753ce",
+    "webpatch/models.py": "46df0ebd70813743eb3fe82c3bd2b1fcff1e63c85e4ca54024365a38861c7938",
+    "webpatch/node_adapter.py": "ab47a9046512c34ce82a18e0481702fbf1681ab27252dc1944d3210fc6a6bc1f",
+    "webpatch/node_rules.py": "c60996ee23cbd3a73a58a27ffa6d9199a6e6b4e4bb05a1e65ed8f9a76f31dbfd",
+    "webpatch/package_control.py": "fcf1a2e98d654568623a0ec14010f8312ac0e37c9a7d4787da541057a5bdff71",
+    "webpatch/planning.py": "d3f9f30455b12bcdab2ab8f7d3a9207e8aba87b6087fd0a7156313e5f20ca9d2",
+    "webpatch/platform_proof.py": "e1bf92b2176bb77fb8d26ffad2be32e83cfe8702e66327ba0ef48eccfd6f919d",
+    "webpatch/preparation.py": "ffcae5f5114b3ae4d6dcc25195a31e3015933d662326cb3c313657b93bd5cfb4",
+    "webpatch/prepared_verification.py": "dd4824b939f811b5e4881e0fdfe1a2d9a96008f20fdb35e26fb192d82578ddc8",
+    "webpatch/receipts.py": "2ab08b04d1c5f1cdd3dcc50995df1b87ba3de7b293bff04976744a9e19fda277",
+    "webpatch/rules.py": "344ccbb3586b0e6a9f872c874f66487165e2f7198dc6b695994cf0708c15a9c8",
+    "webpatch/runtime.py": "597fcd244ea1b3f96cf68f3f24ef2d1e40775c6b29eb7098e088d2612d51f5e7",
+    "webpatch/runtime_evidence.py": "02fb699885c3c9ef669c4e887c54afc445b3fb1dba74261d51057f359ba8ac84",
+    "webpatch/service.py": "9aec4e8f8b82d99f730e4f96b468e8b9d8af44860e19415e7ac87d4e9634571c",
+    "webpatch/service_control.py": "d42f0535baf89f6028faf8299f14483a7102fc7041069b8fc7cef8af4e4aa6f8",
+    "webpatch/sources.py": "1b995b31d790311220713c6c63c7b9d0db5f466ff9e2c14d2ce3a20efbaa4015",
+    "webpatch/system.py": "d6a054d71b1a67bcdac3d1e4421ae22749eb0224d455ce2af6fdc61b91107c8d",
+    "webpatch/transaction.py": "64552cf452189064ce1aeae986561b7d9acb3953e8221a2bca57d9f973377ef1",
+    "webpatch/trust.py": "cbf5e956898a13939314562a1f0c148349e94c383a890d278f77070486cf6808"
+  },
+  "rule_sha256": "fd563d14cba3185a986da68bcec928e736e3d5906932511cdb2a86a68920ace7",
+  "state_sha256": "f2abdc5ce669680680fa1a7e777d7ba2f150b26f2ebf9b22a02ec1b405c9aa0e"
+}
