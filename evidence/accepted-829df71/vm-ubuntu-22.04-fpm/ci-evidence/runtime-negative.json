@@ -1,0 +1,194 @@
+{
+  "unprivileged_safe": false,
+  "cases": [
+    {
+      "case": "configuration_changed_without_restart",
+      "result": "PASS",
+      "before_sha256": "c2cbfb6cbe33fe4584895988b4af8376d7a08907a5e33cd81e36275c7be26047",
+      "after_sha256": "e717b65189cfeff4f6bf1a89a8ca53ffa3709a91fbe22042da182d995d849be9",
+      "loaded_configuration": "UNKNOWN"
+    },
+    {
+      "case": "deleted_mapped_file",
+      "result": "PASS",
+      "runtime": {
+        "pid": 42676,
+        "sapi": "php_or_webserver",
+        "path": "/usr/bin/python3.10",
+        "package_ids": [],
+        "service": null,
+        "start_ticks": "40878",
+        "file_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+        "association": "UNKNOWN",
+        "blockers": [
+          "DELETED_PHP_MAPPING",
+          "PACKAGE_OWNERSHIP_UNVERIFIED",
+          "PHP_MAPPING_PACKAGE_UNKNOWN",
+          "SYSTEMD_SERVICE_UNVERIFIED"
+        ],
+        "evidence_ids": [
+          "e187",
+          "e188",
+          "e189",
+          "e1134",
+          "e1135",
+          "e1136",
+          "e1137",
+          "e1138",
+          "e1139",
+          "e1140",
+          "e1141",
+          "e1142",
+          "e1143",
+          "e1144",
+          "e1145",
+          "e1146",
+          "e1147",
+          "e1148",
+          "e1149",
+          "e1150",
+          "e1151",
+          "e1152"
+        ],
+        "files": [
+          {
+            "path": "/usr/bin/python3.10",
+            "role": "php_executable",
+            "package_ids": [],
+            "sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+            "device": 2049,
+            "inode": 6283,
+            "status": "VERIFIED_LOCAL_FILE",
+            "evidence_ids": [
+              "e187",
+              "e188",
+              "e189",
+              "e1134",
+              "e1135",
+              "e1136",
+              "e1137",
+              "e1138",
+              "e1139",
+              "e1140",
+              "e1141",
+              "e1142",
+              "e1143"
+            ]
+          },
+          {
+            "path": "/tmp/webpatch-runtime-negative-0kgav32y/libphp-fixture.so (deleted)",
+            "role": "php_module",
+            "package_ids": [],
+            "sha256": null,
+            "device": null,
+            "inode": null,
+            "status": "UNKNOWN",
+            "evidence_ids": [
+              "e1144"
+            ]
+          }
+        ],
+        "endpoints": [],
+        "mapping_sha256": "1a94d1ed94aaa0b0f4d5904115051b8e6ff674818fc019dbe0ea516186833b25",
+        "mapping_status": "UNKNOWN",
+        "endpoint_status": "NOT_CHECKED",
+        "namespace_sha256": "e627d2c9ddc4e0fa5e8ccbc4247dc5ec8776b679a37bcfbf24ea83d2c7b747e3"
+      }
+    },
+    {
+      "case": "replaced_mapped_file",
+      "result": "PASS",
+      "runtime": {
+        "pid": 42980,
+        "sapi": "php_or_webserver",
+        "path": "/usr/bin/python3.10",
+        "package_ids": [],
+        "service": null,
+        "start_ticks": "44452",
+        "file_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+        "association": "UNKNOWN",
+        "blockers": [
+          "DELETED_PHP_MAPPING",
+          "PACKAGE_OWNERSHIP_UNVERIFIED",
+          "PHP_MAPPING_PACKAGE_UNKNOWN",
+          "SYSTEMD_SERVICE_UNVERIFIED"
+        ],
+        "evidence_ids": [
+          "e186",
+          "e187",
+          "e188",
+          "e1133",
+          "e1134",
+          "e1135",
+          "e1136",
+          "e1137",
+          "e1138",
+          "e1139",
+          "e1140",
+          "e1141",
+          "e1142",
+          "e1143",
+          "e1144",
+          "e1145",
+          "e1146",
+          "e1147",
+          "e1148",
+          "e1149",
+          "e1150",
+          "e1151"
+        ],
+        "files": [
+          {
+            "path": "/usr/bin/python3.10",
+            "role": "php_executable",
+            "package_ids": [],
+            "sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+            "device": 2049,
+            "inode": 6283,
+            "status": "VERIFIED_LOCAL_FILE",
+            "evidence_ids": [
+              "e186",
+              "e187",
+              "e188",
+              "e1133",
+              "e1134",
+              "e1135",
+              "e1136",
+              "e1137",
+              "e1138",
+              "e1139",
+              "e1140",
+              "e1141",
+              "e1142"
+            ]
+          },
+          {
+            "path": "/tmp/webpatch-runtime-negative-0kgav32y/libphp-fixture.so (deleted)",
+            "role": "php_module",
+            "package_ids": [],
+            "sha256": null,
+            "device": null,
+            "inode": null,
+            "status": "UNKNOWN",
+            "evidence_ids": [
+              "e1143"
+            ]
+          }
+        ],
+        "endpoints": [],
+        "mapping_sha256": "da7b56ed85015668595f67de0da9e33f6651923a23be23a22cc9587375358a96",
+        "mapping_status": "UNKNOWN",
+        "endpoint_status": "NOT_CHECKED",
+        "namespace_sha256": "e627d2c9ddc4e0fa5e8ccbc4247dc5ec8776b679a37bcfbf24ea83d2c7b747e3"
+      }
+    }
+  ],
+  "result": "PASS",
+  "observed_at": "2026-10-22T20:26:18.117336+00:00",
+  "config_restored_sha256": "061c1433216510f1d5c68908bf9636519a710366ed2d520b6fe68b52df9d9205",
+  "boundaries": [
+    "No request attribution",
+    "No loaded configuration proof",
+    "No repair"
+  ]
+}
