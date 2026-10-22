@@ -1,0 +1,25 @@
+{
+  "run": "https://github.com/ninex98/webpatch/actions/runs/39867217599",
+  "tested_commit": "553657ad4cc241d7f8c0347834848885f2a800cd",
+  "full_result_sha256": "df0816ed63f57342efd119a85ef3d84308aac843297c9ddbec251ca99d5dc564",
+  "status": "PARTIAL",
+  "reasons": [
+    "REPAIR_POST_EFFECTIVE_CONFIGURATION_CHANGED"
+  ],
+  "consumer_status": "VERIFIED_ACTIVE_MAPPING_CENSUS",
+  "view_status": "VERIFIED_READONLY_RUNTIME_VIEWS",
+  "requests": [
+    {
+      "url": "http://127.0.0.1:18080/webpatch-extra.php",
+      "status": "VERIFIED_PROCESS_RESPONSE",
+      "before_sha256": "c0103f55f7f351d468df773430b78b7920e319cf194fe31a3b0710f0f0c5745c",
+      "after_sha256": "d7b46b43ccacd58b629f7e7fc5f9623d940dd7560414b5f2b4a64de7ba46a222"
+    },
+    {
+      "url": "http://127.0.0.1:18080/webpatch-proof.php",
+      "status": "VERIFIED_PROCESS_RESPONSE",
+      "before_sha256": "c0103f55f7f351d468df773430b78b7920e319cf194fe31a3b0710f0f0c5745c",
+      "after_sha256": "d7b46b43ccacd58b629f7e7fc5f9623d940dd7560414b5f2b4a64de7ba46a222"
+    }
+  ]
+}

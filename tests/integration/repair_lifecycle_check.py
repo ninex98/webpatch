@@ -10,6 +10,8 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import pwd
+import urllib.request
 
 from webpatch.application import LocalApplicationProbe
 from webpatch.apt import LocalAptSimulator
@@ -46,6 +48,31 @@ for key,candidate in old.items():
     assert (archive['control']['Package'],archive['control']['Architecture'],archive['control']['Version'])==(candidate['name'],candidate['architecture'],base_version)
 root=Path('ci-evidence/repair-lifecycle'); root.mkdir(exist_ok=True)
 (root/'official-base-identities.json').write_text(json.dumps(old,indent=2)+'\n')
+# Isolated diagnosis only, never used by admission or shipped in the package.
+# PHP compares salted hashes in its private directory and returns names only.
+diagnostic_dir=Path('/var/lib/webpatch-fixture-settings'); diagnostic_dir.mkdir(mode=0o700,exist_ok=True)
+account=pwd.getpwnam('www-data'); os.chown(diagnostic_dir,account.pw_uid,account.pw_gid)
+Path('/var/www/html/webpatch-fixture-settings.php').write_text('''<?php
+if (($_SERVER['REMOTE_ADDR'] ?? '') !== '127.0.0.1') { http_response_code(403); exit; }
+header('Content-Type: application/json');
+$path='/var/lib/webpatch-fixture-settings/before.json';
+$settings=ini_get_all(null,false); ksort($settings);
+if (($_GET['action'] ?? '') === 'capture') {
+    $salt=bin2hex(random_bytes(32)); $items=[];
+    foreach ($settings as $name=>$value) { $items[$name]=hash_hmac('sha256',json_encode($value),$salt); }
+    file_put_contents($path,json_encode(['salt'=>$salt,'items'=>$items]),LOCK_EX); chmod($path,0600);
+    echo json_encode(['captured_count'=>count($items)]); exit;
+}
+$old=json_decode(file_get_contents($path),true); $items=[];
+foreach ($settings as $name=>$value) { $items[$name]=hash_hmac('sha256',json_encode($value),$old['salt']); }
+$changed=[];
+foreach ($items as $name=>$hash) { if (isset($old['items'][$name]) && $hash !== $old['items'][$name]) { $changed[]=$name; } }
+echo json_encode(['changed'=>$changed,'added'=>array_values(array_diff(array_keys($items),array_keys($old['items']))),
+                 'removed'=>array_values(array_diff(array_keys($old['items']),array_keys($items)))]);
+''')
+def settings_diagnostic(action):
+    with urllib.request.urlopen(f'http://127.0.0.1:{port}/webpatch-fixture-settings.php?action='+action,timeout=10) as response:
+        return json.loads(response.read(65536))
 probes=[{'service':service,'url':f'http://127.0.0.1:{port}/webpatch-proof.php','script':'/var/www/html/webpatch-proof.php',
          'pool_listener':f'/run/php/{source}-fpm.sock' if service!='apache2.service' else None}]
 if service!='apache2.service':
@@ -88,6 +115,7 @@ for case in ('success','post-health-failure'):
     recovery=prepared.get('recovery_receipt')
     try:
         assert prepared['status']=='VERIFIED_CONTROLLED_STARTUP',prepared.get('blockers')
+        settings_diagnostic('capture')
         current=scan(reader,package_cache=cache)
         review=build_repair_review(current,system=reader,simulator=LocalAptSimulator(),controller=controller,probe=capability,
             startup_receipt=prepared['receipt'],source_cohort=source,package_cache=cache,budget_seconds=600)
@@ -102,6 +130,7 @@ for case in ('success','post-health-failure'):
         result=execute_repair_review(document,confirmation_sha256=review.proposal.plan_sha256,system=reader,
             simulator=LocalAptSimulator(),controller=controller,probe=capability,journal=journal)
         (folder/'result.json').write_text(json.dumps(result,indent=2)+'\n')
+        (folder/'effective-ini-difference.json').write_text(json.dumps(settings_diagnostic('compare'),indent=2)+'\n')
         if case=='success':
             assert result['status']=='VERIFIED_WITHIN_DECLARED_SCOPE',result.get('reasons')
         else:
