@@ -88,7 +88,8 @@ def environment_files_command(unit: str) -> tuple[str, ...]:
 def validate_command(argv: tuple[str, ...]) -> None:
     if argv == DPKG_QUERY:
         return
-    if (len(argv) == 5 and argv[:4] == ("/usr/bin/gpgv", "--status-fd=1", "--keyring", "/usr/share/keyrings/ubuntu-archive-keyring.gpg")
+    if (len(argv) == 5 and argv[:3] == ("/usr/bin/gpgv", "--status-fd=1", "--keyring")
+            and argv[3] in {'/usr/share/keyrings/ubuntu-archive-keyring.gpg','/usr/share/keyrings/debian-archive-keyring.gpg'}
             and re.fullmatch(r"/var/lib/apt/lists/[A-Za-z0-9_.%+-]+_InRelease", argv[4])):
         return
     if (len(argv) == 3 and argv[:2] == ("/usr/lib/apt/apt-helper", "cat-file")

@@ -13,15 +13,25 @@ import posixpath
 from urllib.parse import urlsplit
 
 from .sources import KEYRING, official_source, paragraphs
+from .archive_policy import UBUNTU_SIGNER,archive_keyring,release_policy,supported_archive
 
 
-UBUNTU_SIGNER = "F6ECB3762474EDA9D21B7022871920D1991BC93C"
 LISTS = "/var/lib/apt/lists"
 SHA256 = re.compile(r"[a-f0-9]{64}\Z")
 
 
-def signature_command(path):
-    return ("/usr/bin/gpgv", "--status-fd=1", "--keyring", KEYRING, path)
+def signature_command(path,os_id='ubuntu'):
+    return ("/usr/bin/gpgv", "--status-fd=1", "--keyring", archive_keyring(os_id), path)
+
+
+def valid_primary_signers(result):
+    signers=set()
+    for line in result.stdout.splitlines():
+        if not line.startswith('[GNUPG:] VALIDSIG '): continue
+        parts=line.split()
+        fingerprint=parts[11] if len(parts)>=12 else parts[2]
+        if re.fullmatch(r'[0-9A-F]{40}',fingerprint): signers.add(fingerprint)
+    return signers
 
 
 def release_payload(raw):
@@ -35,27 +45,30 @@ def release_payload(raw):
     return rows[0]
 
 
-def verified_release(raw, result, suite, codename, now):
+def verified_release(raw, result, suite, codename, now, os_id='ubuntu'):
     if result is None or result.returncode:
         raise ValueError("RELEASE_SIGNATURE_FAILED")
     statuses = result.stdout.splitlines()
     if any(re.search(r"\b(?:BADSIG|ERRSIG|EXPKEYSIG|EXPSIG|REVKEYSIG|NO_PUBKEY)\b", line) for line in statuses):
         raise ValueError("RELEASE_SIGNATURE_FAILED")
-    if not any(line.startswith("[GNUPG:] VALIDSIG " + UBUNTU_SIGNER + " ") for line in statuses):
+    policy=release_policy(os_id,codename,suite)
+    if not valid_primary_signers(result)&policy['signers']:
         raise ValueError("RELEASE_SIGNER_NOT_PINNED")
     release = release_payload(raw)
-    if release.get("Origin") != "Ubuntu" or release.get("Label") != "Ubuntu" or release.get("Suite") != suite or release.get("Codename") != codename:
+    if any(release.get(k.capitalize())!=policy[k] for k in ('origin','label','suite','codename')):
         raise ValueError("SIGNED_RELEASE_SCOPE_MISMATCH")
     date = parsedate_to_datetime(release["Date"])
     if not date.tzinfo or date > now + timedelta(minutes=5):
         raise ValueError("RELEASE_DATE_INVALID")
-    # Base pockets are immutable release snapshots, never fresh repair candidates.
+    # Base snapshots can establish historical byte identity, never fresh targets.
     if suite != codename and now - date > timedelta(days=7):
         raise ValueError("RELEASE_TOO_OLD")
     if "Valid-Until" in release:
         expiry = parsedate_to_datetime(release["Valid-Until"])
         if not expiry.tzinfo or now >= expiry or expiry <= date:
             raise ValueError("RELEASE_EXPIRED")
+    elif policy['valid_until_required']:
+        raise ValueError('RELEASE_VALID_UNTIL_REQUIRED')
     entries = {}
     for line in release.get("SHA256", "").splitlines():
         fields = line.split()
@@ -115,7 +128,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
     blockers, candidates, installed = [], [], []
     def probe(operation, path):
         return collector.probe(operation, path)[0]
-    if inventory.environment.os_id != "ubuntu" or inventory.environment.codename not in {"jammy", "noble"}:
+    if not supported_archive(inventory.environment.os_id,inventory.environment.codename):
         return {"status": "UNKNOWN", "blockers": ["ARCHIVE_AUTHENTICATION_UNSUPPORTED_RELEASE"], "candidates": [], "installed": [], "evidence_ids": []}
     if not inventory.packages:
         return {"status": "UNKNOWN", "blockers": ["NO_PACKAGES_TO_AUTHENTICATE"], "candidates": [], "installed": [], "evidence_ids": []}
@@ -127,7 +140,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
     seen = set()
     for source in sources.sources:
         try:
-            if not official_source(source, inventory.environment.codename): continue
+            if not official_source(source, inventory.environment.codename,inventory.environment.os_id): continue
         except ValueError:
             continue
         url = urlsplit(source.uri)
@@ -140,12 +153,12 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
         if raw is None:
             blockers.append("SIGNED_RELEASE_UNAVAILABLE:" + source.suite)
             continue
-        signature = probe("run", signature_command(release_path))
+        signature = probe("run", signature_command(release_path,inventory.environment.os_id))
         if probe("read_text", release_path) != raw:
             blockers.append("RELEASE_CHANGED_DURING_VERIFICATION")
             continue
         try:
-            entries = verified_release(raw, signature, source.suite, inventory.environment.codename, now)
+            entries = verified_release(raw, signature, source.suite, inventory.environment.codename, now,inventory.environment.os_id)
         except (ValueError, KeyError, IndexError, TypeError):
             blockers.append("RELEASE_AUTHENTICATION_OR_FRESHNESS_FAILED:" + source.suite)
             continue
@@ -183,7 +196,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
                                            "valid_until": release_deadline(raw, source.suite, inventory.environment.codename),
                                            "release_sha256": release_hash, "index_sha256": index["sha256"],
                                            "evidence_ids": [*release_evidence_ids, index_evidence_id],
-                                           "signer": UBUNTU_SIGNER})
+                                           "signer": sorted(valid_primary_signers(signature)&release_policy(inventory.environment.os_id,inventory.environment.codename,source.suite)['signers'])[0]})
                     except (KeyError, ValueError):
                         blockers.append("AUTHENTICATED_INDEX_RECORD_MALFORMED")
     if not candidates:

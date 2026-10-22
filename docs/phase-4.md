@@ -29,3 +29,13 @@ Debian 修复须独立认证签名根、仓库时效、维护行为和实际升�
 来源：[CVE-2026-21714](https://security-tracker.debian.org/tracker/CVE-2026-21714)、[DSA-6272-1](https://security-tracker.debian.org/tracker/DSA-6272-1)、[DSA-6183-1](https://security-tracker.debian.org/tracker/DSA-6183-1)、[CVE-2026-48618](https://security-tracker.debian.org/tracker/CVE-2026-48618)、[DLA-4809-1](https://security-tracker.debian.org/tracker/DLA-4809-1)、[DSA-6517-1](https://security-tracker.debian.org/tracker/DSA-6517-1)。逐 CVE 来源存于独立 nodejs.json，未从 PHP 公告推导 Node 风险。
 
 VERIFIED_LOCAL_FILE_ASSOCIATION 只表示稳定执行文件和本地磁盘/package owner 关系；libnode 映射与磁盘文件分别保留，未认证的库加载身份不能升级为已修复。厂商归档身份、完整发现和应用健康/路由仍为覆盖缺口；任何包版本达标都保持 runtime_status=UNKNOWN、safe=false。空清单不是 Node 不存在证明。两格独立 Debian 容器会核对真实 dpkg 比较、改名 Node 进程、包中源码一致性及只读状态不变，无漏洞利用。
+
+## 4C.1 Debian 归档认证链（CI 待验收）
+
+Debian 12/bookworm 与 13/trixie 增加独立只读来源策略和归档认证。首个范围为 deb.debian.org/ftp.debian.org 的 codename main 仓库，以及 deb.debian.org/security.debian.org 的对应 debian-security main 仓库；stable/testing 别名、混合 codename、第三方地址、其他组件或自定义 keyring 仍明确阻断。
+
+使用固定 debian-archive-keyring.gpg，并按发行版区分 archive/release/security 主钥指纹。GnuPG VALIDSIG 的签名子钥必须归属已固定的主钥，不能把任意本地 keyring 条目当信任根。Debian 的 Suite 使用已审阅 stable/oldstable 标签，而 Codename 必须精确匹配 source suite；security Label 单独为 Debian-Security。更新/security pocket 要求 Valid-Until，且 Date 不超过七天；base 仅用于签名快照身份，不作为新鲜修复候选。
+
+主钥资料于 2026-10-23 Asia/Shanghai 审阅：[Debian FTP archive keys](https://ftp-master.debian.org/keys.html)、[Debian security FAQ](https://www.debian.org/security/faq)。官方邮件公告链接已记录，但本轮读取返回 403，不能声称成功阅读；真实测试进一步用官方镜像内 debian-archive-keyring 和实际 InRelease 签名交叉验证指纹，保存 keyring 版本及哈希。没有自动下载/导入新信任根。
+
+两格独立 Debian 容器验证真实 Release→Packages→缓存 deb→已安装 FPM 文件、篡改签名拒绝和状态不变。根文件系统只读且禁网，负例只写独立 /tmp tmpfs。此阶段没有扩展 Debian 的执行准入；准备、规划和真实升级生命周期仍须独立完成。

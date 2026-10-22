@@ -93,3 +93,24 @@ jobs:
         with:
           name: node-debian-${{ matrix.release }}
           path: ci-evidence/
+  debian-trust:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        release: ['12', '13']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Authenticate the independent Debian archive scope
+        run: |
+          mkdir -p ci-evidence
+          docker build -f tests/integration/DebianTrust.Dockerfile --build-arg BASE=debian:${{ matrix.release }} -t webpatch-debian-trust . 2>&1 | tee ci-evidence/build.log
+          docker image inspect webpatch-debian-trust > ci-evidence/image.json
+          docker run --rm --read-only --tmpfs /tmp:rw,noexec,nosuid,size=16m --network none --cap-drop ALL --security-opt no-new-privileges webpatch-debian-trust | tee ci-evidence/result.json
+          python3 scripts/evidence_manifest.py ci-evidence
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: debian-trust-${{ matrix.release }}
+          path: ci-evidence/

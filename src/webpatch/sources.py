@@ -8,9 +8,10 @@ import shlex
 from urllib.parse import urlsplit
 
 from .system import DPKG_QUERY
+from .archive_policy import UBUNTU_KEYRING,DEBIAN_KEYRING,archive_keyring,supported_archive
 
 
-KEYRING = "/usr/share/keyrings/ubuntu-archive-keyring.gpg"
+KEYRING = UBUNTU_KEYRING
 
 
 @dataclass(frozen=True)
@@ -52,7 +53,7 @@ def paragraphs(raw):
     return rows
 
 
-def parse_sources(raw, path):
+def parse_sources(raw, path, default_keyring=KEYRING):
     rows = []
     if path.endswith(".sources"):
         for row in paragraphs(raw):
@@ -63,7 +64,7 @@ def parse_sources(raw, path):
                 raise ValueError("UNSUPPORTED_SOURCE_OPTIONS")
             for uri in row.get("URIs", "").split():
                 for suite in row.get("Suites", "").split():
-                    rows.append(Source(uri, suite, tuple(row.get("Components", "").split()), row.get("Signed-By", KEYRING), path))
+                    rows.append(Source(uri, suite, tuple(row.get("Components", "").split()), row.get("Signed-By", default_keyring), path))
             if not row.get("URIs") or not row.get("Suites"):
                 raise ValueError("EMPTY_SOURCE_FIELDS")
     else:
@@ -84,13 +85,22 @@ def parse_sources(raw, path):
                 if key in options or key not in {"signed-by", "arch"}:
                     raise ValueError("UNSUPPORTED_SOURCE_OPTIONS")
                 options[key] = value
-            rows.append(Source(match[3], match[4], tuple(match[5].split()), options.get("signed-by", KEYRING), path))
+            rows.append(Source(match[3], match[4], tuple(match[5].split()), options.get("signed-by", default_keyring), path))
     return rows
 
 
-def official_source(source, codename):
+def official_source(source, codename, os_id='ubuntu'):
     url = urlsplit(source.uri)
     host = url.hostname or ""
+    if os_id=='debian':
+        security=source.suite==codename+'-security'
+        official=(host in {'deb.debian.org','security.debian.org'} and url.path.rstrip('/')=='/debian-security') if security else (
+            host in {'deb.debian.org','ftp.debian.org'} and url.path.rstrip('/')=='/debian')
+        return (supported_archive(os_id,codename) and official and url.scheme in {'http','https'}
+                and not url.username and not url.password and not url.query and not url.fragment and url.port is None
+                and source.suite in {codename,codename+'-security',codename+'-updates'}
+                and bool(source.components) and set(source.components)<={'main'} and source.signed_by==DEBIAN_KEYRING)
+    if os_id!='ubuntu': return False
     official = host in {"archive.ubuntu.com", "security.ubuntu.com", "ports.ubuntu.com"} or host.endswith(".archive.ubuntu.com")
     return (official and url.scheme in {"http", "https"} and not url.username and not url.password
             and not url.query and not url.fragment and url.port is None
@@ -121,14 +131,14 @@ def audit_sources(collector, inventory):
         raw = read(path, optional=path == "/etc/apt/sources.list")
         if raw is None: continue
         try:
-            sources.extend(parse_sources(raw, path))
+            sources.extend(parse_sources(raw, path,archive_keyring(inventory.environment.os_id)))
         except ValueError as exc:
             blockers.append(str(exc) + ":" + path)
-    if inventory.environment.os_id != "ubuntu" or inventory.environment.codename not in {"jammy", "noble"}:
+    if not supported_archive(inventory.environment.os_id,inventory.environment.codename):
         blockers.append("SOURCE_POLICY_UNSUPPORTED_RELEASE")
     for source in sources:
         try:
-            valid = official_source(source, inventory.environment.codename)
+            valid = official_source(source, inventory.environment.codename,inventory.environment.os_id)
         except ValueError:
             valid = False
         if not valid:
