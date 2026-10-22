@@ -46,7 +46,13 @@ deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] http://archive.ub
 deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] http://security.ubuntu.com/ubuntu $codename-security main universe restricted multiverse
 EOF
 sudo apt-get update
-sudo apt-get install -y "$package"
+if [[ "$sapi" == apache ]]; then
+  # The hosted image can contain an older Apache version absent from current
+  # signed indexes. Establish a current official fixture before invariants begin.
+  sudo apt-get install -y "$package" apache2 apache2-bin
+else
+  sudo apt-get install -y "$package"
+fi
 if [[ "$sapi" == fpm ]]; then
   sudo tee "/etc/php/${php_branch}/fpm/pool.d/webpatch-ci-extra.conf" >/dev/null <<EOF
 [webpatch_ci_extra]

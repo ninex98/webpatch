@@ -1,0 +1,754 @@
+﻿2026-10-22T18:33:08.1634496Z Current runner version: '2.338.0'
+2026-10-22T18:33:08.1672560Z ##[group]Runner Image Provisioner
+2026-10-22T18:33:08.1673839Z Hosted Compute Agent
+2026-10-22T18:33:08.1674835Z Version: 20261012.601
+2026-10-22T18:33:08.1675899Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-22T18:33:08.1677483Z Build Date: 2026-10-12T17:48:21Z
+2026-10-22T18:33:08.1678835Z Worker ID: {90146b01-e5d2-489c-ba08-9728faeae4d1}
+2026-10-22T18:33:08.1680125Z Region: eastus
+2026-10-22T18:33:08.1681034Z Cloud: Azure
+2026-10-22T18:33:08.1682075Z ##[endgroup]
+2026-10-22T18:33:08.1685299Z ##[group]Operating System
+2026-10-22T18:33:08.1686505Z Ubuntu
+2026-10-22T18:33:08.1687782Z 24.04.5
+2026-10-22T18:33:08.1688567Z LTS
+2026-10-22T18:33:08.1689468Z ##[endgroup]
+2026-10-22T18:33:08.1690425Z ##[group]Runner Image
+2026-10-22T18:33:08.1691628Z Image: ubuntu-24.04
+2026-10-22T18:33:08.1692589Z Version: 20261012.334.1
+2026-10-22T18:33:08.1694713Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-22T18:33:08.1697784Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-22T18:33:08.1700216Z ##[endgroup]
+2026-10-22T18:33:08.1702038Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T18:33:08.1704989Z Contents: read
+2026-10-22T18:33:08.1705905Z Metadata: read
+2026-10-22T18:33:08.1707249Z ##[endgroup]
+2026-10-22T18:33:08.1710630Z Secret source: Actions
+2026-10-22T18:33:08.1712137Z Cache mode: write
+2026-10-22T18:33:08.1713564Z Prepare workflow directory
+2026-10-22T18:33:08.2301674Z Prepare all required actions
+2026-10-22T18:33:08.2373847Z Getting action download info
+2026-10-22T18:33:08.4337605Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-22T18:33:08.5772566Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T18:33:08.8587857Z Complete job name: vm-install-and-service (ubuntu-24.04, apache)
+2026-10-22T18:33:08.9374628Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-22T18:33:08.9375701Z with:
+2026-10-22T18:33:08.9376144Z   repository: ninex98/webpatch
+2026-10-22T18:33:08.9380616Z   token: ***
+2026-10-22T18:33:08.9381063Z   ssh-strict: true
+2026-10-22T18:33:08.9381513Z   ssh-user: git
+2026-10-22T18:33:08.9381968Z   persist-credentials: true
+2026-10-22T18:33:08.9382464Z   clean: true
+2026-10-22T18:33:08.9382968Z   sparse-checkout-cone-mode: true
+2026-10-22T18:33:08.9383496Z   fetch-depth: 1
+2026-10-22T18:33:08.9383934Z   fetch-tags: false
+2026-10-22T18:33:08.9384384Z   show-progress: true
+2026-10-22T18:33:08.9384836Z   lfs: false
+2026-10-22T18:33:08.9385254Z   submodules: false
+2026-10-22T18:33:08.9385716Z   set-safe-directory: true
+2026-10-22T18:33:08.9386223Z   allow-unsafe-pr-checkout: false
+2026-10-22T18:33:08.9387340Z ##[endgroup]
+2026-10-22T18:33:09.0406491Z Syncing repository: ninex98/webpatch
+2026-10-22T18:33:09.0409787Z ##[group]Getting Git version info
+2026-10-22T18:33:09.0411013Z Working directory is '/home/runner/work/webpatch/webpatch'
+2026-10-22T18:33:09.0412649Z [command]/usr/bin/git version
+2026-10-22T18:33:09.0488501Z git version 2.55.0
+2026-10-22T18:33:09.0521694Z ##[endgroup]
+2026-10-22T18:33:09.0537961Z Temporarily overriding HOME='/home/runner/work/_temp/5bdbd18e-ecd4-4640-b89f-7c56c7a7f728' before making global git config changes
+2026-10-22T18:33:09.0540146Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T18:33:09.0542292Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-22T18:33:09.0598102Z Deleting the contents of '/home/runner/work/webpatch/webpatch'
+2026-10-22T18:33:09.0611986Z ##[group]Initializing the repository
+2026-10-22T18:33:09.0613858Z [command]/usr/bin/git init /home/runner/work/webpatch/webpatch
+2026-10-22T18:33:09.0728115Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T18:33:09.0732426Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T18:33:09.0733927Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T18:33:09.0734710Z hint: call:
+2026-10-22T18:33:09.0735582Z hint:
+2026-10-22T18:33:09.0736199Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T18:33:09.0736824Z hint:
+2026-10-22T18:33:09.0739434Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T18:33:09.0740438Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T18:33:09.0741209Z hint:
+2026-10-22T18:33:09.0741875Z hint: 	git branch -m <name>
+2026-10-22T18:33:09.0742566Z hint:
+2026-10-22T18:33:09.0743668Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T18:33:09.0744918Z Initialized empty Git repository in /home/runner/work/webpatch/webpatch/.git/
+2026-10-22T18:33:09.0747217Z [command]/usr/bin/git remote add origin https://github.com/ninex98/webpatch
+2026-10-22T18:33:09.0816262Z ##[endgroup]
+2026-10-22T18:33:09.0818092Z ##[group]Disabling automatic garbage collection
+2026-10-22T18:33:09.0821175Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-22T18:33:09.0856271Z ##[endgroup]
+2026-10-22T18:33:09.0857975Z ##[group]Setting up auth
+2026-10-22T18:33:09.0866146Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T18:33:09.0928798Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T18:33:09.1352865Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T18:33:09.1390913Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T18:33:09.1635621Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T18:33:09.1675645Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T18:33:09.1938316Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T18:33:09.1985177Z ##[endgroup]
+2026-10-22T18:33:09.1986564Z ##[group]Fetching the repository
+2026-10-22T18:33:09.1996676Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +dfcd025255e213b6d7b88baa3146b893ad940ff6:refs/remotes/origin/main
+2026-10-22T18:33:11.0441953Z From https://github.com/ninex98/webpatch
+2026-10-22T18:33:11.0443984Z  * [new ref]         dfcd025255e213b6d7b88baa3146b893ad940ff6 -> origin/main
+2026-10-22T18:33:11.0449299Z ##[endgroup]
+2026-10-22T18:33:11.0451528Z ##[group]Determining the checkout info
+2026-10-22T18:33:11.0454168Z ##[endgroup]
+2026-10-22T18:33:11.0458714Z [command]/usr/bin/git sparse-checkout disable
+2026-10-22T18:33:11.0516782Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T18:33:11.0552119Z ##[group]Checking out the ref
+2026-10-22T18:33:11.0558008Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-22T18:33:11.3764142Z Switched to a new branch 'main'
+2026-10-22T18:33:11.3768165Z branch 'main' set up to track 'origin/main'.
+2026-10-22T18:33:11.3825937Z ##[endgroup]
+2026-10-22T18:33:11.3876151Z [command]/usr/bin/git log -1 --format=%H
+2026-10-22T18:33:11.3903510Z dfcd025255e213b6d7b88baa3146b893ad940ff6
+2026-10-22T18:33:11.4188487Z ##[group]Run bash scripts/ci_vm_smoke.sh 'apache' 2>&1 | tee vm-smoke.log
+2026-10-22T18:33:11.4191059Z [36;1mbash scripts/ci_vm_smoke.sh 'apache' 2>&1 | tee vm-smoke.log[0m
+2026-10-22T18:33:11.4452196Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T18:33:11.4454180Z ##[endgroup]
+2026-10-22T18:33:11.7912736Z Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-22T18:33:11.8556643Z Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+2026-10-22T18:33:11.9646915Z Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1146 kB]
+2026-10-22T18:33:12.0634918Z Get:4 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+2026-10-22T18:33:12.0792494Z Get:5 http://security.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [11.9 kB]
+2026-10-22T18:33:12.0932389Z Get:6 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1222 kB]
+2026-10-22T18:33:12.1251425Z Get:7 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
+2026-10-22T18:33:12.1400406Z Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [24.2 kB]
+2026-10-22T18:33:12.1541353Z Get:9 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1713 kB]
+2026-10-22T18:33:12.1825090Z Get:10 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [392 kB]
+2026-10-22T18:33:12.1982421Z Get:11 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 c-n-f Metadata [444 B]
+2026-10-22T18:33:12.2123730Z Get:12 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [45.4 kB]
+2026-10-22T18:33:12.2265869Z Get:13 http://security.ubuntu.com/ubuntu noble-security/multiverse Translation-en [12.1 kB]
+2026-10-22T18:33:12.2406397Z Get:14 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 c-n-f Metadata [468 B]
+2026-10-22T18:33:12.2755424Z Get:15 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-22T18:33:12.3820932Z Get:16 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1401 kB]
+2026-10-22T18:33:12.7672360Z Get:17 http://archive.ubuntu.com/ubuntu noble/main Translation-en [513 kB]
+2026-10-22T18:33:12.8673656Z Get:18 http://archive.ubuntu.com/ubuntu noble/main amd64 c-n-f Metadata [30.5 kB]
+2026-10-22T18:33:12.9442706Z Get:19 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [15.0 MB]
+2026-10-22T18:33:13.4801218Z Get:20 http://archive.ubuntu.com/ubuntu noble/universe Translation-en [5982 kB]
+2026-10-22T18:33:13.5926875Z Get:21 http://archive.ubuntu.com/ubuntu noble/universe amd64 c-n-f Metadata [301 kB]
+2026-10-22T18:33:13.6703910Z Get:22 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [93.9 kB]
+2026-10-22T18:33:13.7471320Z Get:23 http://archive.ubuntu.com/ubuntu noble/restricted Translation-en [18.7 kB]
+2026-10-22T18:33:13.8242059Z Get:24 http://archive.ubuntu.com/ubuntu noble/restricted amd64 c-n-f Metadata [416 B]
+2026-10-22T18:33:13.9005413Z Get:25 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [269 kB]
+2026-10-22T18:33:13.9785899Z Get:26 http://archive.ubuntu.com/ubuntu noble/multiverse Translation-en [118 kB]
+2026-10-22T18:33:14.0553064Z Get:27 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 c-n-f Metadata [8328 B]
+2026-10-22T18:33:14.1317499Z Get:28 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1400 kB]
+2026-10-22T18:33:14.3322301Z Get:29 http://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [310 kB]
+2026-10-22T18:33:14.4105952Z Get:30 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [17.7 kB]
+2026-10-22T18:33:14.4872700Z Get:31 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1706 kB]
+2026-10-22T18:33:14.5743481Z Get:32 http://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+2026-10-22T18:33:14.6521793Z Get:33 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [34.9 kB]
+2026-10-22T18:33:14.7288968Z Get:34 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1805 kB]
+2026-10-22T18:33:14.8159436Z Get:35 http://archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [411 kB]
+2026-10-22T18:33:14.8947372Z Get:36 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 c-n-f Metadata [456 B]
+2026-10-22T18:33:14.9706375Z Get:37 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [50.7 kB]
+2026-10-22T18:33:15.0844225Z Get:38 http://archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.0 kB]
+2026-10-22T18:33:15.1608271Z Get:39 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [656 B]
+2026-10-22T18:33:20.0087966Z Fetched 35.4 MB in 4s (8609 kB/s)
+2026-10-22T18:33:20.7476972Z Reading package lists...
+2026-10-22T18:33:20.9611132Z Reading package lists...
+2026-10-22T18:33:21.1506431Z Building dependency tree...
+2026-10-22T18:33:21.1515077Z Reading state information...
+2026-10-22T18:33:21.3456214Z The following additional packages will be installed:
+2026-10-22T18:33:21.3457705Z   php8.3 php8.3-bcmath php8.3-bz2 php8.3-cgi php8.3-cli php8.3-common
+2026-10-22T18:33:21.3458403Z   php8.3-curl php8.3-dba php8.3-dev php8.3-enchant php8.3-fpm php8.3-gd
+2026-10-22T18:33:21.3459050Z   php8.3-gmp php8.3-imap php8.3-interbase php8.3-intl php8.3-ldap
+2026-10-22T18:33:21.3459746Z   php8.3-mbstring php8.3-mysql php8.3-odbc php8.3-opcache php8.3-pgsql
+2026-10-22T18:33:21.3460444Z   php8.3-phpdbg php8.3-pspell php8.3-readline php8.3-snmp php8.3-soap
+2026-10-22T18:33:21.3461120Z   php8.3-sqlite3 php8.3-sybase php8.3-tidy php8.3-xml php8.3-xsl php8.3-zip
+2026-10-22T18:33:21.3465593Z Suggested packages:
+2026-10-22T18:33:21.3466012Z   dh-php
+2026-10-22T18:33:21.3466389Z Recommended packages:
+2026-10-22T18:33:21.3466750Z   pkg-php-tools
+2026-10-22T18:33:21.7722160Z The following NEW packages will be installed:
+2026-10-22T18:33:21.7730373Z   libapache2-mod-php8.3
+2026-10-22T18:33:21.7739336Z The following packages will be upgraded:
+2026-10-22T18:33:21.7740054Z   php8.3 php8.3-bcmath php8.3-bz2 php8.3-cgi php8.3-cli php8.3-common
+2026-10-22T18:33:21.7740931Z   php8.3-curl php8.3-dba php8.3-dev php8.3-enchant php8.3-fpm php8.3-gd
+2026-10-22T18:33:21.7741791Z   php8.3-gmp php8.3-imap php8.3-interbase php8.3-intl php8.3-ldap
+2026-10-22T18:33:21.7742646Z   php8.3-mbstring php8.3-mysql php8.3-odbc php8.3-opcache php8.3-pgsql
+2026-10-22T18:33:21.7743519Z   php8.3-phpdbg php8.3-pspell php8.3-readline php8.3-snmp php8.3-soap
+2026-10-22T18:33:21.7744368Z   php8.3-sqlite3 php8.3-sybase php8.3-tidy php8.3-xml php8.3-xsl php8.3-zip
+2026-10-22T18:33:21.9438007Z 33 upgraded, 1 newly installed, 0 to remove and 63 not upgraded.
+2026-10-22T18:33:21.9438509Z Need to get 12.8 MB of archives.
+2026-10-22T18:33:21.9438926Z After this operation, 6004 kB of additional disk space will be used.
+2026-10-22T18:33:21.9439731Z Get:1 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-bcmath amd64 8.3.6-0ubuntu0.24.04.13 [16.6 kB]
+2026-10-22T18:33:22.0954107Z Get:2 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-zip amd64 8.3.6-0ubuntu0.24.04.13 [29.5 kB]
+2026-10-22T18:33:22.2193775Z Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-xml amd64 8.3.6-0ubuntu0.24.04.13 [127 kB]
+2026-10-22T18:33:22.4593885Z Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-tidy amd64 8.3.6-0ubuntu0.24.04.13 [20.9 kB]
+2026-10-22T18:33:22.5428181Z Get:5 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-sybase amd64 8.3.6-0ubuntu0.24.04.13 [13.0 kB]
+2026-10-22T18:33:22.6239671Z Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-sqlite3 amd64 8.3.6-0ubuntu0.24.04.13 [34.2 kB]
+2026-10-22T18:33:22.7138630Z Get:7 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-soap amd64 8.3.6-0ubuntu0.24.04.13 [137 kB]
+2026-10-22T18:33:22.8662614Z Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-snmp amd64 8.3.6-0ubuntu0.24.04.13 [23.0 kB]
+2026-10-22T18:33:22.9456732Z Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-readline amd64 8.3.6-0ubuntu0.24.04.13 [13.6 kB]
+2026-10-22T18:33:23.0235371Z Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-pspell amd64 8.3.6-0ubuntu0.24.04.13 [9330 B]
+2026-10-22T18:33:23.1004984Z Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-opcache amd64 8.3.6-0ubuntu0.24.04.13 [372 kB]
+2026-10-22T18:33:23.2799993Z Get:12 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-phpdbg amd64 8.3.6-0ubuntu0.24.04.13 [1950 kB]
+2026-10-22T18:33:23.5895046Z Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-pgsql amd64 8.3.6-0ubuntu0.24.04.13 [63.0 kB]
+2026-10-22T18:33:23.6716157Z Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-odbc amd64 8.3.6-0ubuntu0.24.04.13 [35.7 kB]
+2026-10-22T18:33:23.7482960Z Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-mysql amd64 8.3.6-0ubuntu0.24.04.13 [127 kB]
+2026-10-22T18:33:23.8273048Z Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-mbstring amd64 8.3.6-0ubuntu0.24.04.13 [511 kB]
+2026-10-22T18:33:23.9176139Z Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-ldap amd64 8.3.6-0ubuntu0.24.04.13 [33.5 kB]
+2026-10-22T18:33:23.9945328Z Get:18 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-intl amd64 8.3.6-0ubuntu0.24.04.13 [157 kB]
+2026-10-22T18:33:24.1913694Z Get:19 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-interbase amd64 8.3.6-0ubuntu0.24.04.13 [16.6 kB]
+2026-10-22T18:33:24.2678595Z Get:20 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-imap amd64 8.3.6-0ubuntu0.24.04.13 [34.9 kB]
+2026-10-22T18:33:24.3446452Z Get:21 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-gmp amd64 8.3.6-0ubuntu0.24.04.13 [23.4 kB]
+2026-10-22T18:33:24.4213566Z Get:22 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-gd amd64 8.3.6-0ubuntu0.24.04.13 [31.1 kB]
+2026-10-22T18:33:24.4980139Z Get:23 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-fpm amd64 8.3.6-0ubuntu0.24.04.13 [1941 kB]
+2026-10-22T18:33:24.6561909Z Get:24 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-enchant amd64 8.3.6-0ubuntu0.24.04.13 [10.0 kB]
+2026-10-22T18:33:24.7329038Z Get:25 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-dev amd64 8.3.6-0ubuntu0.24.04.13 [529 kB]
+2026-10-22T18:33:24.8163227Z Get:26 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-dba amd64 8.3.6-0ubuntu0.24.04.13 [26.6 kB]
+2026-10-22T18:33:24.8929534Z Get:27 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-curl amd64 8.3.6-0ubuntu0.24.04.13 [40.3 kB]
+2026-10-22T18:33:24.9699033Z Get:28 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-cgi amd64 8.3.6-0ubuntu0.24.04.13 [1884 kB]
+2026-10-22T18:33:25.0729430Z Get:29 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-bz2 amd64 8.3.6-0ubuntu0.24.04.13 [11.7 kB]
+2026-10-22T18:33:25.1495289Z Get:30 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-cli amd64 8.3.6-0ubuntu0.24.04.13 [1932 kB]
+2026-10-22T18:33:25.2574870Z Get:31 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3-common amd64 8.3.6-0ubuntu0.24.04.13 [748 kB]
+2026-10-22T18:33:25.3440539Z Get:32 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libapache2-mod-php8.3 amd64 8.3.6-0ubuntu0.24.04.13 [1863 kB]
+2026-10-22T18:33:25.4472119Z Get:33 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 php8.3 all 8.3.6-0ubuntu0.24.04.13 [9172 B]
+2026-10-22T18:33:25.5235383Z Get:34 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 php8.3-xsl all 8.3.6-0ubuntu0.24.04.13 [8842 B]
+2026-10-22T18:33:25.8250423Z Fetched 12.8 MB in 4s (3416 kB/s)
+2026-10-22T18:33:25.9239572Z (Reading database ... 
+2026-10-22T18:33:25.9240050Z (Reading database ... 5%
+2026-10-22T18:33:25.9240400Z (Reading database ... 10%
+2026-10-22T18:33:25.9241130Z (Reading database ... 15%
+2026-10-22T18:33:25.9241458Z (Reading database ... 20%
+2026-10-22T18:33:25.9242514Z (Reading database ... 25%
+2026-10-22T18:33:25.9242872Z (Reading database ... 30%
+2026-10-22T18:33:25.9243190Z (Reading database ... 35%
+2026-10-22T18:33:25.9243497Z (Reading database ... 40%
+2026-10-22T18:33:25.9244019Z (Reading database ... 45%
+2026-10-22T18:33:25.9244321Z (Reading database ... 50%
+2026-10-22T18:33:25.9680714Z (Reading database ... 55%
+2026-10-22T18:33:26.2726289Z (Reading database ... 60%
+2026-10-22T18:33:26.5330832Z (Reading database ... 65%
+2026-10-22T18:33:26.7900915Z (Reading database ... 70%
+2026-10-22T18:33:27.1070578Z (Reading database ... 75%
+2026-10-22T18:33:27.4768133Z (Reading database ... 80%
+2026-10-22T18:33:28.1185360Z (Reading database ... 85%
+2026-10-22T18:33:28.7492336Z (Reading database ... 90%
+2026-10-22T18:33:29.3285121Z (Reading database ... 95%
+2026-10-22T18:33:29.3285801Z (Reading database ... 100%
+2026-10-22T18:33:29.3286692Z (Reading database ... 203540 files and directories currently installed.)
+2026-10-22T18:33:29.3329293Z Preparing to unpack .../00-php8.3-bcmath_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:29.5741513Z Unpacking php8.3-bcmath (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:29.6213973Z Preparing to unpack .../01-php8.3-zip_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:29.8604708Z Unpacking php8.3-zip (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:29.9170408Z Preparing to unpack .../02-php8.3-xml_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:31.2931234Z Unpacking php8.3-xml (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:31.3457408Z Preparing to unpack .../03-php8.3-tidy_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:31.5826250Z Unpacking php8.3-tidy (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:31.6384939Z Preparing to unpack .../04-php8.3-sybase_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:31.8772286Z Unpacking php8.3-sybase (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:31.9251644Z Preparing to unpack .../05-php8.3-sqlite3_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:32.3949744Z Unpacking php8.3-sqlite3 (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:32.4432357Z Preparing to unpack .../06-php8.3-soap_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:32.6815821Z Unpacking php8.3-soap (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:32.7332810Z Preparing to unpack .../07-php8.3-snmp_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:32.9722785Z Unpacking php8.3-snmp (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:33.0217483Z Preparing to unpack .../08-php8.3-readline_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:33.2624281Z Unpacking php8.3-readline (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:33.3093926Z Preparing to unpack .../09-php8.3-pspell_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:33.5468634Z Unpacking php8.3-pspell (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:33.5966186Z Preparing to unpack .../10-php8.3-opcache_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:33.8395645Z Unpacking php8.3-opcache (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:33.8962114Z Preparing to unpack .../11-php8.3-phpdbg_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:33.9049316Z Unpacking php8.3-phpdbg (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:33.9838237Z Preparing to unpack .../12-php8.3-pgsql_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:34.4491721Z Unpacking php8.3-pgsql (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:34.4949460Z Preparing to unpack .../13-php8.3-odbc_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:34.9652987Z Unpacking php8.3-odbc (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:35.0070278Z Preparing to unpack .../14-php8.3-mysql_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:35.7025114Z Unpacking php8.3-mysql (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:35.7458218Z Preparing to unpack .../15-php8.3-mbstring_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:35.9890090Z Unpacking php8.3-mbstring (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:36.0379137Z Preparing to unpack .../16-php8.3-ldap_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:36.2751892Z Unpacking php8.3-ldap (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:36.3192688Z Preparing to unpack .../17-php8.3-intl_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:36.5581403Z Unpacking php8.3-intl (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:36.6060916Z Preparing to unpack .../18-php8.3-interbase_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:36.8489589Z Unpacking php8.3-interbase (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:36.8882692Z Preparing to unpack .../19-php8.3-imap_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:37.1656461Z Unpacking php8.3-imap (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:37.2133307Z Preparing to unpack .../20-php8.3-gmp_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:37.4558872Z Unpacking php8.3-gmp (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:37.4952726Z Preparing to unpack .../21-php8.3-gd_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:37.7388524Z Unpacking php8.3-gd (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:37.7789280Z Preparing to unpack .../22-php8.3-fpm_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:37.7947299Z Unpacking php8.3-fpm (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:37.8749834Z Preparing to unpack .../23-php8.3-enchant_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:38.1146269Z Unpacking php8.3-enchant (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:38.1576091Z Preparing to unpack .../24-php8.3-dev_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:38.1626149Z Unpacking php8.3-dev (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:38.3072824Z Preparing to unpack .../25-php8.3-dba_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:38.5450215Z Unpacking php8.3-dba (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:38.5855462Z Preparing to unpack .../26-php8.3-curl_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:38.8255171Z Unpacking php8.3-curl (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:38.8656967Z Preparing to unpack .../27-php8.3-cgi_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:38.8742312Z Unpacking php8.3-cgi (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:38.9524748Z Preparing to unpack .../28-php8.3-bz2_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:39.1961189Z Unpacking php8.3-bz2 (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:39.2349343Z Preparing to unpack .../29-php8.3-cli_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:39.2401664Z Unpacking php8.3-cli (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:39.3051727Z Preparing to unpack .../30-php8.3-common_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:43.6989440Z Unpacking php8.3-common (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:43.7570944Z Selecting previously unselected package libapache2-mod-php8.3.
+2026-10-22T18:33:43.7701098Z Preparing to unpack .../31-libapache2-mod-php8.3_8.3.6-0ubuntu0.24.04.13_amd64.deb ...
+2026-10-22T18:33:43.7710581Z Unpacking libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:43.8309651Z Preparing to unpack .../32-php8.3_8.3.6-0ubuntu0.24.04.13_all.deb ...
+2026-10-22T18:33:43.8334902Z Unpacking php8.3 (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:43.8674164Z Preparing to unpack .../33-php8.3-xsl_8.3.6-0ubuntu0.24.04.13_all.deb ...
+2026-10-22T18:33:43.8696243Z Unpacking php8.3-xsl (8.3.6-0ubuntu0.24.04.13) over (8.3.6-0ubuntu0.24.04.11) ...
+2026-10-22T18:33:43.9231383Z Setting up php8.3-common (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:49.4780542Z Setting up php8.3-dba (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:49.8043724Z Setting up php8.3-zip (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:50.1340621Z Setting up php8.3-tidy (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:50.4619446Z Setting up php8.3-mysql (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:51.4367997Z Setting up php8.3-sqlite3 (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:52.0845464Z Setting up php8.3-mbstring (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:52.4143671Z Setting up php8.3-enchant (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:52.7446591Z Setting up php8.3-readline (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:53.0735540Z Setting up php8.3-interbase (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:53.4009248Z Setting up php8.3-gmp (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:53.7294927Z Setting up php8.3-soap (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:54.0604190Z Setting up php8.3-ldap (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:54.3859937Z Setting up php8.3-bcmath (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:54.7163149Z Setting up php8.3-bz2 (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:55.0429218Z Setting up php8.3-xml (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:57.0079884Z Setting up php8.3-pspell (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:57.3358528Z Setting up php8.3-opcache (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:57.6682456Z Setting up php8.3-snmp (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:58.0032753Z Setting up php8.3-gd (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:58.3318529Z Setting up php8.3-odbc (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:58.9963458Z Setting up php8.3-xsl (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:58.9979947Z Setting up php8.3-sybase (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:59.3286437Z Setting up php8.3-curl (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:33:59.6744420Z Setting up php8.3-imap (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:00.0070334Z Setting up php8.3-pgsql (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:00.6630155Z Setting up php8.3-intl (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:00.9940077Z Setting up php8.3-cli (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:02.0038541Z php_invoke pcov: no action - module was disabled by maintainer for PHP 8.3 cli sapi
+2026-10-22T18:34:02.4290168Z Setting up php8.3-cgi (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:03.4324731Z php_invoke pcov: no action - module was disabled by maintainer for PHP 8.3 cgi sapi
+2026-10-22T18:34:03.8596821Z Setting up php8.3 (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:03.8617322Z Setting up php8.3-dev (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:03.8739383Z Setting up libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:04.0460436Z 
+2026-10-22T18:34:04.0461192Z Creating config file /etc/php/8.3/apache2/php.ini with new version
+2026-10-22T18:34:05.8794313Z Module mpm_event disabled.
+2026-10-22T18:34:05.9035773Z Enabling module mpm_prefork.
+2026-10-22T18:34:05.9076072Z apache2_switch_mpm Switch to prefork
+2026-10-22T18:34:06.0594932Z apache2_invoke: Enable module php8.3
+2026-10-22T18:34:06.1068774Z Setting up php8.3-phpdbg (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:07.1446377Z php_invoke pcov: no action - module was disabled by maintainer for PHP 8.3 phpdbg sapi
+2026-10-22T18:34:07.5835955Z Setting up php8.3-fpm (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:08.6254488Z php_invoke pcov: no action - module was disabled by maintainer for PHP 8.3 fpm sapi
+2026-10-22T18:34:09.0553030Z NOTICE: Not enabling PHP 8.3 FPM by default.
+2026-10-22T18:34:09.0567464Z NOTICE: To enable PHP 8.3 FPM in Apache2 do:
+2026-10-22T18:34:09.0581457Z NOTICE: a2enmod proxy_fcgi setenvif
+2026-10-22T18:34:09.0595615Z NOTICE: a2enconf php8.3-fpm
+2026-10-22T18:34:09.0611083Z NOTICE: You are seeing this message because you have apache2 package installed.
+2026-10-22T18:34:09.6005367Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-22T18:34:09.6025444Z Not building database; man-db/auto-update is not 'true'.
+2026-10-22T18:34:09.6039109Z Processing triggers for php8.3-cli (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:09.6066782Z Processing triggers for php8.3-cgi (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:09.6096343Z Processing triggers for libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:09.6704074Z Processing triggers for php8.3-phpdbg (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:09.6734951Z Processing triggers for php8.3-fpm (8.3.6-0ubuntu0.24.04.13) ...
+2026-10-22T18:34:09.8106564Z NOTICE: Not enabling PHP 8.3 FPM by default.
+2026-10-22T18:34:09.8123604Z NOTICE: To enable PHP 8.3 FPM in Apache2 do:
+2026-10-22T18:34:09.8137934Z NOTICE: a2enmod proxy_fcgi setenvif
+2026-10-22T18:34:09.8152303Z NOTICE: a2enconf php8.3-fpm
+2026-10-22T18:34:09.8166743Z NOTICE: You are seeing this message because you have apache2 package installed.
+2026-10-22T18:34:10.9381624Z 
+2026-10-22T18:34:10.9382166Z Running kernel seems to be up-to-date.
+2026-10-22T18:34:10.9382557Z 
+2026-10-22T18:34:10.9382723Z No services need to be restarted.
+2026-10-22T18:34:10.9383019Z 
+2026-10-22T18:34:10.9383202Z No containers need to be restarted.
+2026-10-22T18:34:10.9383499Z 
+2026-10-22T18:34:10.9383713Z No user sessions are running outdated binaries.
+2026-10-22T18:34:10.9384054Z 
+2026-10-22T18:34:10.9384383Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-22T18:34:11.9745963Z Module php8.3 disabled.
+2026-10-22T18:34:11.9746537Z To activate the new configuration, you need to run:
+2026-10-22T18:34:11.9747410Z   systemctl restart apache2
+2026-10-22T18:34:12.0060772Z Considering dependency mpm_prefork for php8.3:
+2026-10-22T18:34:12.0061401Z Considering conflict mpm_event for mpm_prefork:
+2026-10-22T18:34:12.0061890Z Considering conflict mpm_worker for mpm_prefork:
+2026-10-22T18:34:12.0062260Z Module mpm_prefork already enabled
+2026-10-22T18:34:12.0062598Z Considering conflict php5 for php8.3:
+2026-10-22T18:34:12.0062901Z Enabling module php8.3.
+2026-10-22T18:34:12.0094635Z To activate the new configuration, you need to run:
+2026-10-22T18:34:12.0095016Z   systemctl restart apache2
+2026-10-22T18:34:12.7713807Z Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libapache2-mod-php8.3 amd64 8.3.6-0ubuntu0.24.04.13 [1863 kB]
+2026-10-22T18:34:13.7384024Z Fetched 1863 kB in 1s (1469 kB/s)
+2026-10-22T18:34:13.7745910Z dpkg-deb: building package 'webpatch' in '/home/runner/work/webpatch/webpatch/dist/webpatch_0.1.0_all.deb'.
+2026-10-22T18:34:13.8543347Z /home/runner/work/webpatch/webpatch/dist/webpatch_0.1.0_all.deb
+2026-10-22T18:34:13.8988028Z Reading package lists...
+2026-10-22T18:34:14.0995367Z Building dependency tree...
+2026-10-22T18:34:14.1002903Z Reading state information...
+2026-10-22T18:34:14.3219284Z The following NEW packages will be installed:
+2026-10-22T18:34:14.3219655Z   webpatch
+2026-10-22T18:34:14.3333861Z 0 upgraded, 1 newly installed, 0 to remove and 63 not upgraded.
+2026-10-22T18:34:14.3334286Z Need to get 0 B/66.4 kB of archives.
+2026-10-22T18:34:14.3334632Z After this operation, 0 B of additional disk space will be used.
+2026-10-22T18:34:14.3335188Z Get:1 /home/runner/work/webpatch/webpatch/dist/webpatch_0.1.0_all.deb webpatch all 0.1.0 [66.4 kB]
+2026-10-22T18:34:14.6133453Z Selecting previously unselected package webpatch.
+2026-10-22T18:34:14.6189212Z (Reading database ... 
+2026-10-22T18:34:14.6189674Z (Reading database ... 5%
+2026-10-22T18:34:14.6190075Z (Reading database ... 10%
+2026-10-22T18:34:14.6190466Z (Reading database ... 15%
+2026-10-22T18:34:14.6190849Z (Reading database ... 20%
+2026-10-22T18:34:14.6191534Z (Reading database ... 25%
+2026-10-22T18:34:14.6191927Z (Reading database ... 30%
+2026-10-22T18:34:14.6192292Z (Reading database ... 35%
+2026-10-22T18:34:14.6192665Z (Reading database ... 40%
+2026-10-22T18:34:14.6195066Z (Reading database ... 45%
+2026-10-22T18:34:14.6195537Z (Reading database ... 50%
+2026-10-22T18:34:14.6205164Z (Reading database ... 55%
+2026-10-22T18:34:14.6318939Z (Reading database ... 60%
+2026-10-22T18:34:14.6347105Z (Reading database ... 65%
+2026-10-22T18:34:14.6367491Z (Reading database ... 70%
+2026-10-22T18:34:14.6402607Z (Reading database ... 75%
+2026-10-22T18:34:14.6431118Z (Reading database ... 80%
+2026-10-22T18:34:14.6584532Z (Reading database ... 85%
+2026-10-22T18:34:14.6840385Z (Reading database ... 90%
+2026-10-22T18:34:14.6948314Z (Reading database ... 95%
+2026-10-22T18:34:14.6948912Z (Reading database ... 100%
+2026-10-22T18:34:14.6949692Z (Reading database ... 203551 files and directories currently installed.)
+2026-10-22T18:34:14.6995277Z Preparing to unpack .../dist/webpatch_0.1.0_all.deb ...
+2026-10-22T18:34:14.7002999Z Unpacking webpatch (0.1.0) ...
+2026-10-22T18:34:14.7439786Z Setting up webpatch (0.1.0) ...
+2026-10-22T18:34:15.3231968Z 
+2026-10-22T18:34:15.3232647Z Running kernel seems to be up-to-date.
+2026-10-22T18:34:15.3232991Z 
+2026-10-22T18:34:15.3233158Z No services need to be restarted.
+2026-10-22T18:34:15.3233412Z 
+2026-10-22T18:34:15.3233549Z No containers need to be restarted.
+2026-10-22T18:34:15.3233798Z 
+2026-10-22T18:34:15.3233961Z No user sessions are running outdated binaries.
+2026-10-22T18:34:15.3234267Z 
+2026-10-22T18:34:15.3234544Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-22T18:37:33.7757285Z {
+2026-10-22T18:37:33.7757736Z   "result": "PASS",
+2026-10-22T18:37:33.7758406Z   "scope": "REAL_APT_SYNTHETIC_STATUS_ONLY_NO_BINARY_DOWNGRADE",
+2026-10-22T18:37:33.7759193Z   "status_sha256": "59342b12d6470942ab6057827a4adcc0362a9ce5b4d9c2ddc58c5b33c9d24ea6",
+2026-10-22T18:37:33.7761954Z   "synthetic_status_sha256": "7e851f458a02361d690e7aa72e54e26f7e43173b5a5160974932cf128cc22e2f",
+2026-10-22T18:37:33.7764032Z   "simulation": {
+2026-10-22T18:37:33.7764519Z     "command": [
+2026-10-22T18:37:33.7764889Z       "/usr/bin/apt-get",
+2026-10-22T18:37:33.7765286Z       "--simulate",
+2026-10-22T18:37:33.7765635Z       "--no-remove",
+2026-10-22T18:37:33.7766027Z       "--only-upgrade",
+2026-10-22T18:37:33.7766343Z       "--no-install-recommends",
+2026-10-22T18:37:33.7766772Z       "install",
+2026-10-22T18:37:33.7767530Z       "libapache2-mod-php8.3:amd64=8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7768102Z     ],
+2026-10-22T18:37:33.7768428Z     "result": {
+2026-10-22T18:37:33.7768770Z       "returncode": 0,
+2026-10-22T18:37:33.7804482Z       "stdout": "NOTE: This is only a simulation!\n      apt-get needs root privileges for real execution.\n      Keep also in mind that locking is deactivated,\n      so don't depend on the relevance to the real current situation!\nReading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages were automatically installed and are no longer required:\n  liblldb-16t64 liblldb-17t64\nUse 'apt autoremove' to remove them.\nThe following additional packages will be installed:\n  php8.3 php8.3-bcmath php8.3-bz2 php8.3-cgi php8.3-cli php8.3-common\n  php8.3-curl php8.3-dba php8.3-dev php8.3-enchant php8.3-fpm php8.3-gd\n  php8.3-gmp php8.3-imap php8.3-interbase php8.3-intl php8.3-ldap\n  php8.3-mbstring php8.3-mysql php8.3-odbc php8.3-opcache php8.3-pgsql\n  php8.3-phpdbg php8.3-pspell php8.3-readline php8.3-snmp php8.3-soap\n  php8.3-sqlite3 php8.3-sybase php8.3-tidy php8.3-xml php8.3-xsl php8.3-zip\nSuggested packages:\n  dh-php\nRecommended packages:\n  pkg-php-tools\nThe following packages will be upgraded:\n  libapache2-mod-php8.3 php8.3 php8.3-bcmath php8.3-bz2 php8.3-cgi php8.3-cli\n  php8.3-common php8.3-curl php8.3-dba php8.3-dev php8.3-enchant php8.3-fpm\n  php8.3-gd php8.3-gmp php8.3-imap php8.3-interbase php8.3-intl php8.3-ldap\n  php8.3-mbstring php8.3-mysql php8.3-odbc php8.3-opcache php8.3-pgsql\n  php8.3-phpdbg php8.3-pspell php8.3-readline php8.3-snmp php8.3-soap\n  php8.3-sqlite3 php8.3-sybase php8.3-tidy php8.3-xml php8.3-xsl php8.3-zip\n34 upgraded, 0 newly installed, 0 to remove and 63 not upgraded.\nInst php8.3-zip [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-xml [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-tidy [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-sybase [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-sqlite3 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-soap [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-snmp [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-readline [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-pspell [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-opcache [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-phpdbg [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-pgsql [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-odbc [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-mysql [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-mbstring [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-ldap [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-intl [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-interbase [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-imap [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-gmp [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-gd [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-fpm [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-enchant [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-dev [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-dba [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-curl [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-cgi [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-bz2 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-bcmath [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst libapache2-mod-php8.3 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-cli [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-common [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nInst php8.3 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\nInst php8.3-xsl [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\nConf php8.3-zip (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-xml (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-tidy (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-sybase (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-sqlite3 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-soap (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-snmp (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-readline (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-pspell (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-opcache (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-phpdbg (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-pgsql (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-odbc (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-mysql (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-mbstring (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-ldap (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-intl (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-interbase (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-imap (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-gmp (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-gd (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-fpm (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-enchant (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-dev (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-dba (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-curl (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-cgi (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-bz2 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-bcmath (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-cli (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-common (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\nConf php8.3-xsl (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\n",
+2026-10-22T18:37:33.7836667Z       "stderr": ""
+2026-10-22T18:37:33.7836866Z     },
+2026-10-22T18:37:33.7837186Z     "privileged": false,
+2026-10-22T18:37:33.7837544Z     "configuration": "ISOLATED_NO_HOOKS_SYSTEM_SOURCES_STATUS_AND_PREFERENCES"
+2026-10-22T18:37:33.7837926Z   },
+2026-10-22T18:37:33.7838094Z   "changes": [
+2026-10-22T18:37:33.7838272Z     {
+2026-10-22T18:37:33.7838457Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7838692Z       "name": "php8.3-zip",
+2026-10-22T18:37:33.7838923Z       "architecture": "amd64",
+2026-10-22T18:37:33.7839185Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7839490Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7839743Z     },
+2026-10-22T18:37:33.7839903Z     {
+2026-10-22T18:37:33.7840083Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7840313Z       "name": "php8.3-xml",
+2026-10-22T18:37:33.7840542Z       "architecture": "amd64",
+2026-10-22T18:37:33.7840791Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7841081Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7841333Z     },
+2026-10-22T18:37:33.7841496Z     {
+2026-10-22T18:37:33.7841668Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7841902Z       "name": "php8.3-tidy",
+2026-10-22T18:37:33.7842128Z       "architecture": "amd64",
+2026-10-22T18:37:33.7842371Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7842656Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7842906Z     },
+2026-10-22T18:37:33.7843067Z     {
+2026-10-22T18:37:33.7843243Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7843484Z       "name": "php8.3-sybase",
+2026-10-22T18:37:33.7843721Z       "architecture": "amd64",
+2026-10-22T18:37:33.7843964Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7844255Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7844521Z     },
+2026-10-22T18:37:33.7844684Z     {
+2026-10-22T18:37:33.7844864Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7845099Z       "name": "php8.3-sqlite3",
+2026-10-22T18:37:33.7845334Z       "architecture": "amd64",
+2026-10-22T18:37:33.7845576Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7845858Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7846109Z     },
+2026-10-22T18:37:33.7846268Z     {
+2026-10-22T18:37:33.7846443Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7846672Z       "name": "php8.3-soap",
+2026-10-22T18:37:33.7846901Z       "architecture": "amd64",
+2026-10-22T18:37:33.7847285Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7847567Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7847845Z     },
+2026-10-22T18:37:33.7848065Z     {
+2026-10-22T18:37:33.7848244Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7848467Z       "name": "php8.3-snmp",
+2026-10-22T18:37:33.7848688Z       "architecture": "amd64",
+2026-10-22T18:37:33.7848935Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7849212Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7849460Z     },
+2026-10-22T18:37:33.7849616Z     {
+2026-10-22T18:37:33.7849789Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7850018Z       "name": "php8.3-readline",
+2026-10-22T18:37:33.7850253Z       "architecture": "amd64",
+2026-10-22T18:37:33.7850503Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7850777Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7851026Z     },
+2026-10-22T18:37:33.7851281Z     {
+2026-10-22T18:37:33.7851451Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7852014Z       "name": "php8.3-pspell",
+2026-10-22T18:37:33.7852252Z       "architecture": "amd64",
+2026-10-22T18:37:33.7852489Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7852762Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7853011Z     },
+2026-10-22T18:37:33.7853290Z     {
+2026-10-22T18:37:33.7853461Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7853695Z       "name": "php8.3-opcache",
+2026-10-22T18:37:33.7853925Z       "architecture": "amd64",
+2026-10-22T18:37:33.7854160Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7854444Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7854692Z     },
+2026-10-22T18:37:33.7854849Z     {
+2026-10-22T18:37:33.7855019Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7855245Z       "name": "php8.3-phpdbg",
+2026-10-22T18:37:33.7855469Z       "architecture": "amd64",
+2026-10-22T18:37:33.7855707Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7855988Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7856242Z     },
+2026-10-22T18:37:33.7856401Z     {
+2026-10-22T18:37:33.7856572Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7856796Z       "name": "php8.3-pgsql",
+2026-10-22T18:37:33.7857226Z       "architecture": "amd64",
+2026-10-22T18:37:33.7857474Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7857752Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7858000Z     },
+2026-10-22T18:37:33.7858156Z     {
+2026-10-22T18:37:33.7858335Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7858560Z       "name": "php8.3-odbc",
+2026-10-22T18:37:33.7858781Z       "architecture": "amd64",
+2026-10-22T18:37:33.7859018Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7859295Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7859542Z     },
+2026-10-22T18:37:33.7859708Z     {
+2026-10-22T18:37:33.7859877Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7860109Z       "name": "php8.3-mysql",
+2026-10-22T18:37:33.7860331Z       "architecture": "amd64",
+2026-10-22T18:37:33.7860570Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7860847Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7861093Z     },
+2026-10-22T18:37:33.7861252Z     {
+2026-10-22T18:37:33.7861427Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7861654Z       "name": "php8.3-mbstring",
+2026-10-22T18:37:33.7861890Z       "architecture": "amd64",
+2026-10-22T18:37:33.7862132Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7862408Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7862660Z     },
+2026-10-22T18:37:33.7862819Z     {
+2026-10-22T18:37:33.7862988Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7863216Z       "name": "php8.3-ldap",
+2026-10-22T18:37:33.7863439Z       "architecture": "amd64",
+2026-10-22T18:37:33.7863693Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7863975Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7864221Z     },
+2026-10-22T18:37:33.7864383Z     {
+2026-10-22T18:37:33.7864552Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7864773Z       "name": "php8.3-intl",
+2026-10-22T18:37:33.7864993Z       "architecture": "amd64",
+2026-10-22T18:37:33.7865228Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7865507Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7865753Z     },
+2026-10-22T18:37:33.7865911Z     {
+2026-10-22T18:37:33.7866081Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7866310Z       "name": "php8.3-interbase",
+2026-10-22T18:37:33.7866549Z       "architecture": "amd64",
+2026-10-22T18:37:33.7866796Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7867392Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7867718Z     },
+2026-10-22T18:37:33.7867877Z     {
+2026-10-22T18:37:33.7868048Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7868273Z       "name": "php8.3-imap",
+2026-10-22T18:37:33.7868642Z       "architecture": "amd64",
+2026-10-22T18:37:33.7868894Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7869171Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7869422Z     },
+2026-10-22T18:37:33.7869581Z     {
+2026-10-22T18:37:33.7869759Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7870166Z       "name": "php8.3-gmp",
+2026-10-22T18:37:33.7870391Z       "architecture": "amd64",
+2026-10-22T18:37:33.7870632Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7870908Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7871152Z     },
+2026-10-22T18:37:33.7871311Z     {
+2026-10-22T18:37:33.7871483Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7871706Z       "name": "php8.3-gd",
+2026-10-22T18:37:33.7871923Z       "architecture": "amd64",
+2026-10-22T18:37:33.7872160Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7872439Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7872684Z     },
+2026-10-22T18:37:33.7872848Z     {
+2026-10-22T18:37:33.7873019Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7873243Z       "name": "php8.3-fpm",
+2026-10-22T18:37:33.7873463Z       "architecture": "amd64",
+2026-10-22T18:37:33.7873706Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7873985Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7874232Z     },
+2026-10-22T18:37:33.7874389Z     {
+2026-10-22T18:37:33.7874560Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7874786Z       "name": "php8.3-enchant",
+2026-10-22T18:37:33.7875018Z       "architecture": "amd64",
+2026-10-22T18:37:33.7875258Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7875533Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7875780Z     },
+2026-10-22T18:37:33.7875937Z     {
+2026-10-22T18:37:33.7876110Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7876330Z       "name": "php8.3-dev",
+2026-10-22T18:37:33.7876546Z       "architecture": "amd64",
+2026-10-22T18:37:33.7876794Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7877248Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7877498Z     },
+2026-10-22T18:37:33.7877661Z     {
+2026-10-22T18:37:33.7877845Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7878074Z       "name": "php8.3-dba",
+2026-10-22T18:37:33.7878300Z       "architecture": "amd64",
+2026-10-22T18:37:33.7878538Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7878821Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7879068Z     },
+2026-10-22T18:37:33.7879225Z     {
+2026-10-22T18:37:33.7879395Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7879619Z       "name": "php8.3-curl",
+2026-10-22T18:37:33.7879843Z       "architecture": "amd64",
+2026-10-22T18:37:33.7880080Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7880361Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7880610Z     },
+2026-10-22T18:37:33.7880773Z     {
+2026-10-22T18:37:33.7880948Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7881179Z       "name": "php8.3-cgi",
+2026-10-22T18:37:33.7881398Z       "architecture": "amd64",
+2026-10-22T18:37:33.7881637Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7881911Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7882164Z     },
+2026-10-22T18:37:33.7882322Z     {
+2026-10-22T18:37:33.7882497Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7882718Z       "name": "php8.3-bz2",
+2026-10-22T18:37:33.7882940Z       "architecture": "amd64",
+2026-10-22T18:37:33.7883179Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7883455Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7883709Z     },
+2026-10-22T18:37:33.7883868Z     {
+2026-10-22T18:37:33.7884039Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7884264Z       "name": "php8.3-bcmath",
+2026-10-22T18:37:33.7884490Z       "architecture": "amd64",
+2026-10-22T18:37:33.7884849Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7885130Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7885378Z     },
+2026-10-22T18:37:33.7885537Z     {
+2026-10-22T18:37:33.7885709Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7885948Z       "name": "libapache2-mod-php8.3",
+2026-10-22T18:37:33.7886315Z       "architecture": "amd64",
+2026-10-22T18:37:33.7886657Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7887279Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7887679Z     },
+2026-10-22T18:37:33.7887979Z     {
+2026-10-22T18:37:33.7888262Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7888640Z       "name": "php8.3-cli",
+2026-10-22T18:37:33.7888998Z       "architecture": "amd64",
+2026-10-22T18:37:33.7889461Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7890131Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7890703Z     },
+2026-10-22T18:37:33.7890931Z     {
+2026-10-22T18:37:33.7891122Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7891352Z       "name": "php8.3-common",
+2026-10-22T18:37:33.7891577Z       "architecture": "amd64",
+2026-10-22T18:37:33.7891818Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7892097Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7892352Z     },
+2026-10-22T18:37:33.7892511Z     {
+2026-10-22T18:37:33.7892686Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7892910Z       "name": "php8.3",
+2026-10-22T18:37:33.7893121Z       "architecture": "all",
+2026-10-22T18:37:33.7893363Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7893649Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7893900Z     },
+2026-10-22T18:37:33.7894057Z     {
+2026-10-22T18:37:33.7894229Z       "operation": "UPGRADE",
+2026-10-22T18:37:33.7894462Z       "name": "php8.3-xsl",
+2026-10-22T18:37:33.7894683Z       "architecture": "all",
+2026-10-22T18:37:33.7894918Z       "old_version": "8.3.6-0ubuntu0.24.04.12",
+2026-10-22T18:37:33.7895200Z       "new_version": "8.3.6-0ubuntu0.24.04.13"
+2026-10-22T18:37:33.7895449Z     }
+2026-10-22T18:37:33.7895608Z   ]
+2026-10-22T18:37:33.7895771Z }
+2026-10-22T18:40:35.0856901Z PASS: real mapping faults and static configuration drift remain UNKNOWN; no repair.
+2026-10-22T18:41:40.6874137Z PASS: explicit real PHP callback attributed by kernel credentials; replay/PID/ordinary-marker negatives rejected.
+2026-10-22T18:42:51.4274794Z PASS: exact authenticated maintainer/conffile inventory and modified-archive negative; no scripts executed.
+2026-10-22T18:43:56.1907931Z PASS: root process census covers active package mappings; renamed extra mapped-file holder blocks coverage.
+2026-10-22T18:44:59.7720562Z E: Can't find a source to download version '2.4.58-1ubuntu8.16' of 'apache2:amd64'
+2026-10-22T18:44:59.8331866Z Traceback (most recent call last):
+2026-10-22T18:44:59.8333241Z   File "/home/runner/work/webpatch/webpatch/tests/integration/preparation_check.py", line 28, in <module>
+2026-10-22T18:44:59.8334772Z     subprocess.run(['/usr/bin/apt-get','download',installed+'='+version],cwd=cache,check=True,
+2026-10-22T18:44:59.8335812Z   File "/usr/lib/python3.12/subprocess.py", line 571, in run
+2026-10-22T18:44:59.8336591Z     raise CalledProcessError(retcode, process.args,
+2026-10-22T18:44:59.8339355Z subprocess.CalledProcessError: Command '['/usr/bin/apt-get', 'download', 'apache2=2.4.58-1ubuntu8.16']' returned non-zero exit status 100.
+2026-10-22T18:44:59.8609665Z ##[error]Process completed with exit code 1.
+2026-10-22T18:44:59.8696245Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-22T18:44:59.8696692Z with:
+2026-10-22T18:44:59.8696909Z   name: vm-ubuntu-24.04-apache
+2026-10-22T18:44:59.8697495Z   path: ci-evidence/
+vm-smoke.log
+dist/*.deb
+
+2026-10-22T18:44:59.8697809Z   if-no-files-found: warn
+2026-10-22T18:44:59.8698041Z   compression-level: 6
+2026-10-22T18:44:59.8698249Z   overwrite: false
+2026-10-22T18:44:59.8698458Z   include-hidden-files: false
+2026-10-22T18:44:59.8698695Z ##[endgroup]
+2026-10-22T18:45:00.0357641Z (node:54337) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T18:45:00.0358983Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T18:45:00.0467274Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-22T18:45:00.0478857Z The least common ancestor is /home/runner/work/webpatch/webpatch. This will be the root directory of the artifact
+2026-10-22T18:45:00.0479882Z With the provided path, there will be 21 files uploaded
+2026-10-22T18:45:00.0480696Z Artifact name is valid!
+2026-10-22T18:45:00.0481074Z Root directory input is valid!
+2026-10-22T18:45:00.2518045Z Beginning upload of artifact content to blob storage
+2026-10-22T18:45:00.4689377Z (node:54337) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T18:45:00.5502568Z Uploaded bytes 2186454
+2026-10-22T18:45:00.5646432Z Finished uploading artifact content to blob storage!
+2026-10-22T18:45:00.5647785Z SHA256 digest of uploaded artifact zip is 50d80bdd63ececcd7759e6129fbf1390468bf489f6262de4cbc6714251978c54
+2026-10-22T18:45:00.5650023Z Finalizing artifact upload
+2026-10-22T18:45:01.0141106Z Artifact vm-ubuntu-24.04-apache.zip successfully finalized. Artifact ID 12449104402
+2026-10-22T18:45:01.0142639Z Artifact vm-ubuntu-24.04-apache has been successfully uploaded! Final size is 2186454 bytes. Artifact ID is 12449104402
+2026-10-22T18:45:01.0147326Z Artifact download URL: https://github.com/ninex98/webpatch/actions/runs/39832394765/artifacts/12449104402
+2026-10-22T18:45:01.0386853Z Post job cleanup.
+2026-10-22T18:45:01.1240118Z [command]/usr/bin/git version
+2026-10-22T18:45:01.1284774Z git version 2.55.0
+2026-10-22T18:45:01.1325305Z Temporarily overriding HOME='/home/runner/work/_temp/4bd65f22-4839-4f6e-9389-1bf082f70f91' before making global git config changes
+2026-10-22T18:45:01.1327372Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T18:45:01.1331468Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-22T18:45:01.1371929Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T18:45:01.1408303Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T18:45:01.1668986Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T18:45:01.1696345Z http.https://github.com/.extraheader
+2026-10-22T18:45:01.1708976Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T18:45:01.1744115Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T18:45:01.2012421Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T18:45:01.2052687Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T18:45:01.2460084Z Cleaning up orphan processes
+2026-10-22T18:45:01.2787590Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

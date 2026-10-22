@@ -137,3 +137,20 @@ def test_conditional_apache_handlers_and_config_changes_are_explicit_unknowns():
     fake.read_text = changing
     result = scan(fake, now=NOW)
     assert 'CONFIG_CHANGED_DURING_SCAN:/etc/apache2/apache2.conf' in result.inventory.coverage_gaps
+
+
+def test_repeated_static_web_include_is_not_a_recursive_cycle():
+    fake = connected_fixture()
+    fake.reads['/etc/nginx/nginx.conf'] = 'include fastcgi.conf;\ninclude fastcgi.conf;\n'
+    fake.reads['/etc/nginx/fastcgi.conf'] = 'fastcgi_param SCRIPT_FILENAME /var/www/html/webpatch-proof.php;\n'
+    result = scan(fake, now=NOW)
+    assert 'CONFIG_INCLUDE_OUTSIDE_SCOPE_CYCLE_OR_LIMIT' not in result.inventory.coverage_gaps
+    fake.reads['/etc/nginx/fastcgi.conf'] = 'include nginx.conf;\n'
+    assert 'CONFIG_INCLUDE_OUTSIDE_SCOPE_CYCLE_OR_LIMIT' in scan(fake, now=NOW).inventory.coverage_gaps
+
+
+def test_repeated_fpm_include_remains_an_explicit_review_requirement():
+    fake = connected_fixture()
+    fake.reads['/etc/php/8.1/fpm/php-fpm.conf'] += 'include=/etc/php/8.1/fpm/pool.d/www.conf\n'
+    result = scan(fake, now=NOW)
+    assert 'FPM_REPEATED_INCLUDE_REQUIRES_REVIEW' in result.inventory.coverage_gaps

@@ -91,17 +91,25 @@ class ConfigurationAdapter:
                     inventory.coverage_gaps.append("PHP_CONFIGURATION_UNREADABLE")
 
     def tree(self, collector, inventory, initial, root, kind, optional=False):
-        documents, seen = [], set()
+        documents, seen, active = [], set(), set()
         def visit(path, depth=0, missing_ok=False):
             normalized = posixpath.normpath(path)
-            if not normalized.startswith(root + "/") or depth > 16 or len(seen) >= 256 or normalized in seen:
+            if not normalized.startswith(root + "/") or depth > 16 or normalized in active:
+                inventory.coverage_gaps.append("CONFIG_INCLUDE_OUTSIDE_SCOPE_CYCLE_OR_LIMIT")
+                return
+            if normalized in seen:
+                if kind == 'fpm': inventory.coverage_gaps.append('FPM_REPEATED_INCLUDE_REQUIRES_REVIEW')
+                return
+            if len(seen) >= 256:
                 inventory.coverage_gaps.append("CONFIG_INCLUDE_OUTSIDE_SCOPE_CYCLE_OR_LIMIT")
                 return
             seen.add(normalized)
+            active.add(normalized)
             raw, ident = collector.probe("read_text", normalized)
             if raw is None:
                 if not missing_ok or collector.evidence[-1].outcome != "FileNotFoundError":
                     inventory.coverage_gaps.append(f"CONFIG_UNREADABLE:{normalized}")
+                active.remove(normalized)
                 return
             documents.append((normalized, raw, ident))
             for line in raw.splitlines():
@@ -129,6 +137,7 @@ class ConfigurationAdapter:
                             visit(parent + "/" + name, depth + 1)
                 else:
                     visit(target, depth + 1, "includeoptional" in line.lower())
+            active.remove(normalized)
         visit(initial, missing_ok=optional)
         for path, raw, _ in documents:
             current, _ = collector.probe("read_text", path)

@@ -140,7 +140,7 @@ def preparation_plan(report, *, system, services, probes, package_cache, state_d
             if not pools or pools != declared or any(not p.startswith('/') for p in pools):
                 blockers.append('PREPARATION_EVERY_POOL_REQUIRES_EXPLICIT_PROBE:' + service)
     for gap in report.inventory.coverage_gaps:
-        if gap.startswith(('CONFIG_INCLUDE_OUTSIDE','CONFIG_DYNAMIC_INCLUDE','CONFIG_UNREADABLE','FPM_DYNAMIC_OR_CHROOT','CONFIG_CHANGED_DURING_SCAN')):
+        if gap.startswith(('CONFIG_INCLUDE_OUTSIDE','CONFIG_DYNAMIC_INCLUDE','CONFIG_UNREADABLE','FPM_DYNAMIC_OR_CHROOT','FPM_REPEATED_INCLUDE','CONFIG_CHANGED_DURING_SCAN')):
             blockers.append('PREPARATION_CONFIGURATION_COVERAGE:' + gap)
     if not report.inventory.environment.scope_sha256:
         blockers.append('PREPARATION_SCOPE_UNKNOWN')

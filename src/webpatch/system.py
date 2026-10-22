@@ -73,7 +73,7 @@ def service_command(unit: str) -> tuple[str, ...]:
 
 
 def definition_command(unit: str) -> tuple[str, ...]:
-    return ("/usr/bin/systemctl", "show", "--no-pager", f"--property={DEFINITION_PROPERTIES}", unit)
+    return ("/usr/bin/systemctl", "show", "--all", "--no-pager", f"--property={DEFINITION_PROPERTIES}", unit)
 
 
 def validate_command(argv: tuple[str, ...]) -> None:
@@ -94,7 +94,7 @@ def validate_command(argv: tuple[str, ...]) -> None:
     if (len(argv) == 5 and argv == service_command(argv[-1])
             and re.fullmatch(r"(?:php[0-9]+\.[0-9]+-fpm|apache2|nginx)\.service", argv[-1])):
         return
-    if (len(argv) == 5 and argv == definition_command(argv[-1])
+    if (len(argv) == 6 and argv == definition_command(argv[-1])
             and re.fullmatch(r"(?:php[0-9]+\.[0-9]+-fpm|apache2|nginx)\.service", argv[-1])):
         return
     if (len(argv) == 5 and argv[:2] == ("/usr/bin/dpkg", "--compare-versions")
