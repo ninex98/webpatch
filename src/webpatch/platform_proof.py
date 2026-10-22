@@ -4,7 +4,7 @@ import re
 
 from .models import Package
 from .planning import digest
-from .system import Collector, DPKG_QUERY, definition_command
+from .system import Collector, DPKG_QUERY, definition_command, environment_files_command
 from .trust import source_identity
 
 
@@ -65,7 +65,13 @@ def authenticate_service(report, *, system, service, package_cache, allowed_drop
             reasons.append('SERVICE_AUTHENTICATED_ARCHIVE_UNAVAILABLE:' + name)
     definition, _ = collector.probe('run', definition_command(service))
     props = dict(line.split('=',1) for line in definition.stdout.splitlines() if '=' in line) if definition and not definition.returncode and not definition.stderr else {}
-    required = {'Id','FragmentPath','DropInPaths','EnvironmentFiles','RootDirectory','RootImage','PassEnvironment'}
+    # systemctl's structured-array renderer emits no line for an empty
+    # EnvironmentFiles even with --all. Query its typed D-Bus value explicitly.
+    environment_files, _ = collector.probe('run', environment_files_command(service))
+    if (environment_files is None or environment_files.returncode or environment_files.stderr
+            or environment_files.stdout.strip() != 'a(sb) 0'):
+        reasons.append('SERVICE_ENVIRONMENT_FILES_NOT_VERIFIED_EMPTY')
+    required = {'Id','FragmentPath','DropInPaths','RootDirectory','RootImage','PassEnvironment'}
     if not required <= props.keys() or props.get('Id') != service:
         reasons.append('SERVICE_DEFINITION_UNREADABLE')
     if (props.get('DropInPaths') not in {'', allowed_dropin}
@@ -112,6 +118,7 @@ def authenticate_service(report, *, system, service, package_cache, allowed_drop
               'blockers':sorted(set(reasons)), 'files':checks,
               'definition_sha256':digest(props), 'archives':[{k:v for k,v in a.items() if k not in {'payload_files','runtime_files'}} for a in archives],
               'unit_source':unit_source,
+              'observed_property_names':sorted(props),
               'evidence':[asdict(e) for e in collector.evidence], 'proof_sha256':''}
     result['proof_sha256'] = digest(result)
     return result

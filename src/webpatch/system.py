@@ -76,6 +76,14 @@ def definition_command(unit: str) -> tuple[str, ...]:
     return ("/usr/bin/systemctl", "show", "--all", "--no-pager", f"--property={DEFINITION_PROPERTIES}", unit)
 
 
+def environment_files_command(unit: str) -> tuple[str, ...]:
+    if not re.fullmatch(r'(?:php[0-9]+\.[0-9]+-fpm|apache2|nginx)\.service', unit):
+        raise PolicyError('SERVICE_PROPERTY_UNIT_INVALID')
+    escaped = ''.join(c if c.isalnum() else '_%02x' % ord(c) for c in unit)
+    return ('/usr/bin/busctl', '--system', 'get-property', 'org.freedesktop.systemd1',
+            '/org/freedesktop/systemd1/unit/'+escaped, 'org.freedesktop.systemd1.Service', 'EnvironmentFiles')
+
+
 def validate_command(argv: tuple[str, ...]) -> None:
     if argv == DPKG_QUERY:
         return
@@ -96,6 +104,10 @@ def validate_command(argv: tuple[str, ...]) -> None:
         return
     if (len(argv) == 6 and argv == definition_command(argv[-1])
             and re.fullmatch(r"(?:php[0-9]+\.[0-9]+-fpm|apache2|nginx)\.service", argv[-1])):
+        return
+    if (len(argv) == 7 and argv[:4] == ('/usr/bin/busctl','--system','get-property','org.freedesktop.systemd1')
+            and re.fullmatch(r'/org/freedesktop/systemd1/unit/(?:php[0-9]+_2e[0-9]+_2dfpm|apache2|nginx)_2eservice',argv[4])
+            and argv[5:] == ('org.freedesktop.systemd1.Service','EnvironmentFiles')):
         return
     if (len(argv) == 5 and argv[:2] == ("/usr/bin/dpkg", "--compare-versions")
             and argv[3] == "ge" and VERSION.fullmatch(argv[2])

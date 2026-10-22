@@ -7,7 +7,7 @@ from conftest import NOW
 from test_trust import trust_fixture, DEB, EXECUTABLE
 from webpatch.platform_proof import authenticate_service
 from webpatch.service import scan
-from webpatch.system import DPKG_QUERY, CommandResult, definition_command
+from webpatch.system import DPKG_QUERY, CommandResult, definition_command, environment_files_command, validate_command, PolicyError
 
 SERVICE='php8.1-fpm.service'
 UNIT='/lib/systemd/system/'+SERVICE
@@ -34,6 +34,7 @@ def fixture():
     report.package_trust['candidates'].append({'name':'php-common','version':'2:92ubuntu1','architecture':'all',
         'source_name':'php-defaults','source_version':'2:92ubuntu1','sha256':'e'*64,'size':100})
     fake.commands[definition_command(SERVICE)]=CommandResult(0,'Id='+SERVICE+'\nFragmentPath='+UNIT+'\nDropInPaths=\nEnvironmentFiles=\nRootDirectory=\nRootImage=\nPassEnvironment=\n')
+    fake.commands[environment_files_command(SERVICE)]=CommandResult(0,'a(sb) 0\n')
     return fake,report
 
 
@@ -59,3 +60,22 @@ def test_unknown_service_inputs_cannot_authorize_restart(mutation):
     if mutation=='unreadable-definition': fake.commands[definition_command(SERVICE)]=CommandResult(1)
     result=authenticate_service(report,system=fake,service=SERVICE,package_cache='/var/cache/apt/archives')
     assert result['status']=='BLOCKED' and result['blockers']
+
+
+def test_empty_structured_property_requires_typed_bus_observation():
+    fake,report=fixture()
+    cmd=definition_command(SERVICE)
+    fake.commands[cmd]=replace(fake.commands[cmd],stdout=fake.commands[cmd].stdout.replace('EnvironmentFiles=\n',''))
+    assert authenticate_service(report,system=fake,service=SERVICE,package_cache='/var/cache/apt/archives')['status']=='AUTHENTICATED_SERVICE_DEFINITION'
+    for response in (CommandResult(1),CommandResult(0,''),CommandResult(0,'a(sb) 1 "/etc/custom" false\n')):
+        fake.commands[environment_files_command(SERVICE)]=response
+        result=authenticate_service(report,system=fake,service=SERVICE,package_cache='/var/cache/apt/archives')
+        assert 'SERVICE_ENVIRONMENT_FILES_NOT_VERIFIED_EMPTY' in result['blockers']
+
+
+def test_bus_command_only_reads_the_fixed_service_property():
+    argv=environment_files_command(SERVICE)
+    validate_command(argv)
+    assert argv[4].endswith('/php8_2e1_2dfpm_2eservice')
+    with pytest.raises(PolicyError): validate_command((*argv[:-1],'Environment'))
+    with pytest.raises(PolicyError): environment_files_command('ssh.service')
