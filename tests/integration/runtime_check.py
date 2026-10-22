@@ -61,18 +61,19 @@ finally:
 
 # A real process holds a mapped regular file; deleting/replacing the path must
 # never turn its disk metadata into a verified loaded module identity.
-helper = '''import ctypes,mmap,sys,time
+helper = '''import ctypes,mmap,sys
 ctypes.CDLL(None).prctl(15, b"php-fixture", 0, 0, 0)
 f=open(sys.argv[1],"rb")
 m=mmap.mmap(f.fileno(),0,access=mmap.ACCESS_READ)
 print("ready",flush=True)
-time.sleep(90)
+sys.stdin.buffer.read(1)
 '''
 with tempfile.TemporaryDirectory(prefix='webpatch-runtime-negative-') as directory:
     for fault in ('deleted', 'replaced'):
         path = Path(directory) / 'libphp-fixture.so'
         path.write_bytes(b'benign-map-data\n' * 256)
-        child = subprocess.Popen([sys.executable, '-c', helper, str(path)], stdout=subprocess.PIPE, text=True)
+        child = subprocess.Popen([sys.executable, '-c', helper, str(path)], stdin=subprocess.PIPE,
+                                 stdout=subprocess.PIPE, text=True)
         try:
             assert child.stdout.readline().strip() == 'ready'
             path.unlink()
@@ -87,6 +88,8 @@ with tempfile.TemporaryDirectory(prefix='webpatch-runtime-negative-') as directo
         finally:
             child.terminate()
             child.wait(timeout=10)
+            child.stdin.close()
+            child.stdout.close()
 assert config.read_bytes() == original
 negative.update(result='PASS', observed_at=datetime.now(timezone.utc).isoformat(),
                 config_restored_sha256=hashlib.sha256(original).hexdigest(),
