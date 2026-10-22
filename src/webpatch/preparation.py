@@ -276,6 +276,7 @@ def execute_preparation(saved, *, confirmation_sha256, system, controller, probe
             if clock()>=expires: raise ValueError('PREPARATION_PROOF_EXPIRED')
             payload = {'kind':'controlled_startup','scope_sha256':saved['scope_sha256'],'prepared_at':clock().isoformat(),
                 'expires_at':expires.isoformat(),'preparation_sha256':saved['preparation_sha256'],'services':saved['services'],
+                'implementation_sha256':saved['implementation_sha256'],'rule_sha256':saved['rule_sha256'],
                 'state_sha256':state_digest(after,stable_bindings(after)), 'static_inputs_sha256':digest(static_inputs(after)),
                 'runtime_ids':sorted(new_ids),'probes':proofs,**materialized,'status':'VERIFIED_CONTROLLED_STARTUP',
                 'claim':'Read-only snapshot input bytes and effective PHP views for declared probes after controlled restart; not global safety.'}

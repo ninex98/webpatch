@@ -21,13 +21,14 @@ from .planning import digest
 from .discovery import environment
 from .system import Collector
 from .execution_inputs import audit_execution_inputs
+from .prepared_verification import verify_prepared_scope
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, journal=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation", "verify-preparation"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
@@ -49,6 +50,10 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             child.add_argument("path")
             child.add_argument("--confirm-sha256", required=True, help="exact plan or signed receipt document digest")
         if command == 'retire-preparation':
+            child.add_argument('--state-directory',default='/var/lib/webpatch')
+        if command == 'verify-preparation':
+            child.add_argument('path',help='signed startup receipt; repeats its explicitly declared loopback probes')
+            child.add_argument('--expect-sha256',required=True)
             child.add_argument('--state-directory',default='/var/lib/webpatch')
         if command == "verify-plan":
             child.add_argument("path", help="saved plan JSON; only compares data and never runs saved commands")
@@ -99,6 +104,15 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             return 4 if result.get('status') in {'BLOCKED','PARTIAL'} else 0
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command == 'verify-preparation':
+            saved=json.loads(reader.read_plan_document(args.path))
+            if digest(saved)!=args.expect_sha256: raise ValueError('PREPARED_RECEIPT_DIGEST_MISMATCH')
+            controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if isinstance(reader,LocalSystem) else None)
+            capability=probe if probe is not None else (LocalApplicationProbe() if isinstance(reader,LocalSystem) else None)
+            if controller is None or capability is None: raise ValueError('PREPARED_VERIFICATION_CAPABILITIES_REQUIRED')
+            result=verify_prepared_scope(saved,report,system=reader,controller=controller,probe=capability,now=now)
+            print(json.dumps(result,ensure_ascii=True,indent=2))
+            return 0 if result['status']=='VERIFIED_CURRENT_PREPARED_SCOPE' else 4
         if args.command == "prepare-plan":
             result = preparation_plan(report,system=reader,services=args.services,
                 probes=json.loads(reader.read_plan_document(args.probes)),package_cache=args.package_cache,

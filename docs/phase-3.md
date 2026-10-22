@@ -95,3 +95,11 @@ package_control.py 是独立、尚未接入 apply 的可写能力。策略层必
 即使精确版本全部配置完成，结果仍明确 RUNTIME_VERIFICATION_REQUIRED。三个 disposable build 容器用无害合成包验证真实 1→2 升级、维护脚本和文件 trigger 顺序、真实 frontend 锁冲突及 configure 失败后的 changed 状态。这些归档不代表发行版认证或真实 PHP 修复；它们只验收底层执行能力。
 
 参考：2026-10-23 审阅 [dpkg 环境及 trigger 行为](https://manpages.debian.org/bookworm/dpkg/dpkg.1.en.html) 与 [APT 锁实现](https://github.com/Debian/apt/blob/main/apt-pkg/deb/debsystem.cc)。
+
+## 3F.1 受控启动收据的当前复核
+
+`verify-preparation startup-receipt.json --expect-sha256 <整个签名收据的摘要> --state-directory /var/lib/webpatch --package-cache <缓存>` 重新扫描并显式重复收据中的 loopback collector 请求。它不重启、不安装；成功退出 0 仅表示 VERIFIED_CURRENT_PREPARED_SCOPE，executable 仍为 false。
+
+签名收据新增实施代码与规则摘要。复核要求同 scope、有效时间、同静态输入、完全相同的稳定实例集合、当前载入的受控 unit、真实只读 mount 与文件 inode/hash，再取得新的内核绑定请求和同 pool/effective 配置摘要。旧格式缺少来源字段、过期、代码/规则变化、进程替换、配置视图可写或请求失配均阻断；ownership/recovery 收据不能充当成功启动收据。保存的 JSON 自称完整不能替代这些独立观察。
+
+四格 VM 将在成功准备后立即复核真实收据及新请求；这仍是准入前证据，不是包修复完成。

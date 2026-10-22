@@ -10,6 +10,7 @@ from webpatch.application import LocalApplicationProbe
 from webpatch.planning import digest
 from webpatch.platform_proof import service_packages
 from webpatch.preparation import preparation_plan, execute_preparation, verify_snapshot_views
+from webpatch.prepared_verification import verify_prepared_scope
 from webpatch.service import scan
 from webpatch.service_control import LocalServiceControl
 from webpatch.system import LocalSystem
@@ -55,6 +56,9 @@ try:
     views=verify_snapshot_views(current,body['snapshots'],reader)
     assert views['status']=='VERIFIED_READONLY_RUNTIME_VIEWS',views['blockers']
     Path('ci-evidence/preparation-views.json').write_text(json.dumps(views,indent=2)+'\n')
+    fresh=verify_prepared_scope(result['receipt'],current,system=reader,controller=controller,probe=LocalApplicationProbe())
+    Path('ci-evidence/preparation-fresh-verification.json').write_text(json.dumps(fresh,indent=2)+'\n')
+    assert fresh['status']=='VERIFIED_CURRENT_PREPARED_SCOPE',fresh['blockers']
     forged=json.loads(json.dumps(result['receipt']))
     forged['payload']['scope_sha256']='f'*64
     try:
