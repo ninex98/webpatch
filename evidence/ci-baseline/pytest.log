@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.19, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/ninex/Projects/hll-ecosystem/apps/webpatch
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-6.3.0
+collected 140 items
+
+tests/test_boundaries.py ................................                [ 22%]
+tests/test_environments.py ............................................. [ 55%]
+...............................................................          [100%]
+
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/ci-baseline/pytest.xml -
+============================= 140 passed in 0.32s ==============================

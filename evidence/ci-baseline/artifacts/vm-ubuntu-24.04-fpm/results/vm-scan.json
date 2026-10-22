@@ -1,0 +1,3454 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-22T06:51:37.216238+00:00",
+  "rule_revision": "php2shell-2026-10-22.1",
+  "rule_sha256": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+  "rule_valid_until": "2026-10-29T00:00:00+00:00",
+  "inventory": {
+    "environment": {
+      "os_id": "ubuntu",
+      "version_id": "24.04",
+      "codename": "noble",
+      "scope": "host_or_unidentified_container",
+      "mount_namespace": "mnt:[4026531832]"
+    },
+    "packages": [
+      {
+        "name": "php-common",
+        "version": "2:93ubuntu2",
+        "architecture": "all",
+        "source_name": "php-defaults",
+        "source_version": "93ubuntu2",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php-pear",
+        "version": "1:1.10.13+submodules+notgz+2022032202-2build1",
+        "architecture": "all",
+        "source_name": "php-pear",
+        "source_version": "1:1.10.13+submodules+notgz+2022032202-2build1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "all",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-amqp",
+        "version": "1.11.0-5ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-amqp",
+        "source_version": "1.11.0-5ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-apcu",
+        "version": "5.1.22+4.0.11-2ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-apcu",
+        "source_version": "5.1.22+4.0.11-2ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-bcmath",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-bz2",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-cgi",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "cgi",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-cli",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-common",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-curl",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-dba",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-dev",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-enchant",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-fpm",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "fpm",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-gd",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-gmp",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-igbinary",
+        "version": "3.2.13-1ubuntu3",
+        "architecture": "amd64",
+        "source_name": "php-igbinary",
+        "source_version": "3.2.13-1ubuntu3",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-imagick",
+        "version": "3.7.0-4ubuntu3",
+        "architecture": "amd64",
+        "source_name": "php-imagick",
+        "source_version": "3.7.0-4ubuntu3",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-imap",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-interbase",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-intl",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-ldap",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-mbstring",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-memcache",
+        "version": "8.0+4.0.5.2+3.0.9~20170802.e702b5f9+-8ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-memcache",
+        "source_version": "8.0+4.0.5.2+3.0.9~20170802.e702b5f9+-8ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-memcached",
+        "version": "3.2.0+2.2.0-4ubuntu3",
+        "architecture": "amd64",
+        "source_name": "php-memcached",
+        "source_version": "3.2.0+2.2.0-4ubuntu3",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-mongodb",
+        "version": "1.15.0+1.11.1+1.9.2+1.7.5-1ubuntu3",
+        "architecture": "amd64",
+        "source_name": "php-mongodb",
+        "source_version": "1.15.0+1.11.1+1.9.2+1.7.5-1ubuntu3",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-msgpack",
+        "version": "1:2.2.0~rc2-3ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-msgpack",
+        "source_version": "1:2.2.0~rc2-3ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-mysql",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-odbc",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-opcache",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-pcov",
+        "version": "1.0.11-5ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-pcov",
+        "source_version": "1.0.11-5ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-pgsql",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-phpdbg",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "phpdbg",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-pspell",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-readline",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-redis",
+        "version": "5.3.7+4.3.0-3ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-redis",
+        "source_version": "5.3.7+4.3.0-3ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-snmp",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-soap",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-sqlite3",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-sybase",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-tidy",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-xdebug",
+        "version": "3.2.0+3.1.6+2.9.8+2.8.1+2.5.5-3ubuntu1",
+        "architecture": "amd64",
+        "source_name": "xdebug",
+        "source_version": "3.2.0+3.1.6+2.9.8+2.8.1+2.5.5-3ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-xml",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-xsl",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "all",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-yaml",
+        "version": "2.2.2+2.1.0+2.0.4+1.3.2-6ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-yaml",
+        "source_version": "2.2.2+2.1.0+2.0.4+1.3.2-6ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-zip",
+        "version": "8.3.6-0ubuntu0.24.04.13",
+        "architecture": "amd64",
+        "source_name": "php8.3",
+        "source_version": "8.3.6-0ubuntu0.24.04.13",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.3-zmq",
+        "version": "1.1.3-24ubuntu1",
+        "architecture": "amd64",
+        "source_name": "php-zmq",
+        "source_version": "1.1.3-24ubuntu1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "runtime_hints": [
+      {
+        "kind": "installation_path",
+        "path": "/etc/php/8.3",
+        "pid": null,
+        "scope": "current",
+        "evidence_ids": [
+          "e7"
+        ],
+        "deleted": false,
+        "verification": "UNKNOWN"
+      },
+      {
+        "kind": "installation_path",
+        "path": "/usr/local/bin/phpunit",
+        "pid": null,
+        "scope": "current",
+        "evidence_ids": [
+          "e10"
+        ],
+        "deleted": false,
+        "verification": "UNKNOWN"
+      },
+      {
+        "kind": "fpm",
+        "path": null,
+        "pid": 40737,
+        "scope": "unknown",
+        "evidence_ids": [
+          "e177",
+          "e178",
+          "e179"
+        ],
+        "deleted": false,
+        "verification": "UNKNOWN"
+      },
+      {
+        "kind": "fpm",
+        "path": null,
+        "pid": 40738,
+        "scope": "unknown",
+        "evidence_ids": [
+          "e180",
+          "e181",
+          "e182"
+        ],
+        "deleted": false,
+        "verification": "UNKNOWN"
+      },
+      {
+        "kind": "fpm",
+        "path": null,
+        "pid": 40739,
+        "scope": "unknown",
+        "evidence_ids": [
+          "e183",
+          "e184",
+          "e185"
+        ],
+        "deleted": false,
+        "verification": "UNKNOWN"
+      }
+    ],
+    "coverage_gaps": [
+      "CONTAINER_DAEMON_PRESENT_NOT_INSPECTED",
+      "DISCOVERY_NOT_EXHAUSTIVE",
+      "OTHER_CONTAINERS_NOT_INSPECTED",
+      "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "PROCESS_EXECUTABLE_UNREADABLE_OR_EXITED",
+      "PROCESS_SCOPE_UNVERIFIED_OR_FOREIGN",
+      "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED"
+    ],
+    "adapters": [
+      "apt-package-inventory-v1",
+      "php-runtime-hints-v1"
+    ]
+  },
+  "assessments": [
+    {
+      "package_id": "php-common:all",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php-common:all",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php-pear:all",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php-pear:all",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3:all",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3:all",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-amqp:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-amqp:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-apcu:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-apcu:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-bcmath:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-bcmath:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-bz2:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-bz2:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-cgi:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e187"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-cgi:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e188"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-cli:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e189"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-cli:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e190"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-common:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-common:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-curl:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-curl:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-dba:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-dba:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-dev:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-dev:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-enchant:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-enchant:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-fpm:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e191"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-fpm:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e192"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-gd:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-gd:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-gmp:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-gmp:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-igbinary:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-igbinary:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-imagick:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-imagick:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-imap:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-imap:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-interbase:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-interbase:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-intl:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-intl:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-ldap:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-ldap:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-mbstring:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-mbstring:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-memcache:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-memcache:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-memcached:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-memcached:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-mongodb:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-mongodb:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-msgpack:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-msgpack:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-mysql:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-mysql:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-odbc:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-odbc:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-opcache:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-opcache:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-pcov:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-pcov:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-pgsql:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-pgsql:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-phpdbg:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-phpdbg:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-pspell:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-pspell:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-readline:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-readline:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-redis:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-redis:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-snmp:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-snmp:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-soap:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-soap:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-sqlite3:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-sqlite3:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-sybase:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-sybase:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-tidy:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-tidy:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-xdebug:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-xdebug:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-xml:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-xml:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-xsl:all",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-xsl:all",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-yaml:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-yaml:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-zip:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-zip:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": "8.3.6-0ubuntu0.24.04.13",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-zmq:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.3-zmq:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "UNKNOWN",
+      "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+      "fixed_version": null,
+      "references": [
+        "https://www.php.net/archive/2026.php#2026-10-21-5"
+      ],
+      "evidence_ids": [
+        "e6"
+      ],
+      "runtime_status": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "c6549a19609dc60a2cb42dc6056e13f48877d5cac85c5d3646a7bd315a2d3e22"
+    },
+    {
+      "id": "e2",
+      "operation": "read_text",
+      "target": "/proc/self/cgroup",
+      "outcome": "OK",
+      "sha256": "6999eed49d4c985c3452a1e9ec6f6f352a3317b3607a7769c26917e2383f0ed2"
+    },
+    {
+      "id": "e3",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e4",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e5",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "a2670fd0f71f8fc65023a98d78221f63748f6e75b75eb167771d90859b70026b"
+    },
+    {
+      "id": "e6",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "67cdf11b1e964fcd43a549ec4593140a0dc32bac5fe406a4604e81b00225e492"
+    },
+    {
+      "id": "e7",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "OK",
+      "sha256": "0e473a0c81405fa8a5c1989996d5d8eadf937ce5163e701675478c13b0c2464a"
+    },
+    {
+      "id": "e8",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e9",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e10",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "OK",
+      "sha256": "056f382e6ba0c65f73573b0f094d1370131a68c5a5c00af1668fed84e9c05906"
+    },
+    {
+      "id": "e11",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e12",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "69a43eea9e2446000718ffe8e3a732dc8131bb5a075b324072d91f0653d6cbe2"
+    },
+    {
+      "id": "e13",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "PermissionError",
+      "sha256": null
+    },
+    {
+      "id": "e14",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "192cd3e6134df2aa02234cf393bedfc7860052ecc25f867ca36c882933336c84"
+    },
+    {
+      "id": "e15",
+      "operation": "read_text",
+      "target": "/proc/1/comm",
+      "outcome": "OK",
+      "sha256": "ef38ef8693054357748d779e0063ac75351293ad7a750393d230ee0c115d4415"
+    },
+    {
+      "id": "e16",
+      "operation": "read_text",
+      "target": "/proc/2/comm",
+      "outcome": "OK",
+      "sha256": "a83399c3d156fe717370b5f9312a27e1ec2c4feafe8326b212806334ae3358e2"
+    },
+    {
+      "id": "e17",
+      "operation": "read_text",
+      "target": "/proc/3/comm",
+      "outcome": "OK",
+      "sha256": "780f60cc5790bc3d9102131421bbe2bb811873aa48b66372054500c7178ded12"
+    },
+    {
+      "id": "e18",
+      "operation": "read_text",
+      "target": "/proc/4/comm",
+      "outcome": "OK",
+      "sha256": "d8895986c412453c54af5031a682a983d5880617d1490a66f5504df98d119790"
+    },
+    {
+      "id": "e19",
+      "operation": "read_text",
+      "target": "/proc/5/comm",
+      "outcome": "OK",
+      "sha256": "bf4c863f39f30e416be17a8cd15b627132d097c00dba9732ca5baea44e46b17f"
+    },
+    {
+      "id": "e20",
+      "operation": "read_text",
+      "target": "/proc/6/comm",
+      "outcome": "OK",
+      "sha256": "49b9d1a792ee39c7e6ac38a520c065a27735e79e5e73e31320c3b656d6add467"
+    },
+    {
+      "id": "e21",
+      "operation": "read_text",
+      "target": "/proc/7/comm",
+      "outcome": "OK",
+      "sha256": "1d388357fc1b94410989cb57f4fac9c41aafa95d65982fe345efd28d019c2710"
+    },
+    {
+      "id": "e22",
+      "operation": "read_text",
+      "target": "/proc/8/comm",
+      "outcome": "OK",
+      "sha256": "116ca624fbb13a78b6f1a73990a4cde62278d9466c6c527bcbe27e083cb414b9"
+    },
+    {
+      "id": "e23",
+      "operation": "read_text",
+      "target": "/proc/9/comm",
+      "outcome": "OK",
+      "sha256": "2493d760316e3c4bf1d0ca0d345d8fc17f18c88a03f9d04f668f1dc38e61ceca"
+    },
+    {
+      "id": "e24",
+      "operation": "read_text",
+      "target": "/proc/10/comm",
+      "outcome": "OK",
+      "sha256": "beb38ccf2d34301912ef96f4faccaac3100cc9dbfb152de2bd0dbc208d1ed486"
+    },
+    {
+      "id": "e25",
+      "operation": "read_text",
+      "target": "/proc/11/comm",
+      "outcome": "OK",
+      "sha256": "9ac23f70823f317bfc16ff1e70245eee6c105e878c1d62c3243062f5d406c9ed"
+    },
+    {
+      "id": "e26",
+      "operation": "read_text",
+      "target": "/proc/12/comm",
+      "outcome": "OK",
+      "sha256": "d25b5e0f7fbbc65907fe58edc9706ffd8e7189f2ae99e8a84e11ca720fe92e19"
+    },
+    {
+      "id": "e27",
+      "operation": "read_text",
+      "target": "/proc/13/comm",
+      "outcome": "OK",
+      "sha256": "5df7650be5503d253ac0748b2bdd6b895c83920bc37644a88a0269ee0c54e6fd"
+    },
+    {
+      "id": "e28",
+      "operation": "read_text",
+      "target": "/proc/14/comm",
+      "outcome": "OK",
+      "sha256": "e1e34bffec6957c812fae25f07463b72456d337b4b50b5f5ed4c8c11ff101869"
+    },
+    {
+      "id": "e29",
+      "operation": "read_text",
+      "target": "/proc/15/comm",
+      "outcome": "OK",
+      "sha256": "8d3a39fdac71bfeb10d5fbb32034d70a6239eb79dd70466e965428822a7f12d0"
+    },
+    {
+      "id": "e30",
+      "operation": "read_text",
+      "target": "/proc/16/comm",
+      "outcome": "OK",
+      "sha256": "21ece2a7955054604c061057fa800671d10fa06e55225c7b04aada5617c82cf3"
+    },
+    {
+      "id": "e31",
+      "operation": "read_text",
+      "target": "/proc/17/comm",
+      "outcome": "OK",
+      "sha256": "acabca05fb492354bb9169c4d80b74ea59b0f1aee58996c70f219545088207af"
+    },
+    {
+      "id": "e32",
+      "operation": "read_text",
+      "target": "/proc/18/comm",
+      "outcome": "OK",
+      "sha256": "7953a44b39f1d612688fbf0c180bfdc301d71a21523e60fac65326f7df8f3a9f"
+    },
+    {
+      "id": "e33",
+      "operation": "read_text",
+      "target": "/proc/19/comm",
+      "outcome": "OK",
+      "sha256": "0f7effdc31b89ee9fe0cc7104c02080249047fd8ebd4b3c6c2d5beaf62b0824e"
+    },
+    {
+      "id": "e34",
+      "operation": "read_text",
+      "target": "/proc/20/comm",
+      "outcome": "OK",
+      "sha256": "fad95c20b152971867dabaa4716a1dd69d79cf3b131855decb0c13b42d85b30f"
+    },
+    {
+      "id": "e35",
+      "operation": "read_text",
+      "target": "/proc/21/comm",
+      "outcome": "OK",
+      "sha256": "ad7548121cbc7ec0e8534a63d4851adbc36e991aec440a0073727e0324cc7ff7"
+    },
+    {
+      "id": "e36",
+      "operation": "read_text",
+      "target": "/proc/22/comm",
+      "outcome": "OK",
+      "sha256": "66bee3386a46feb74d70b051ce7fec123220a47adeafe3b3db9094be6938ac89"
+    },
+    {
+      "id": "e37",
+      "operation": "read_text",
+      "target": "/proc/23/comm",
+      "outcome": "OK",
+      "sha256": "51d2ec29f999285a0435276500fe62b1c4fe3f0219c35bcc4d6e3e2fc420a09a"
+    },
+    {
+      "id": "e38",
+      "operation": "read_text",
+      "target": "/proc/24/comm",
+      "outcome": "OK",
+      "sha256": "c16893d39669843b6b35074c340dbeb901f18795ab104b7eac30b86718e2046e"
+    },
+    {
+      "id": "e39",
+      "operation": "read_text",
+      "target": "/proc/25/comm",
+      "outcome": "OK",
+      "sha256": "00903f08ee9835e39a1f90dd21426d47fc2b0456a62ad47938b96ecaae2aa532"
+    },
+    {
+      "id": "e40",
+      "operation": "read_text",
+      "target": "/proc/26/comm",
+      "outcome": "OK",
+      "sha256": "4b95a5c8895dbc4fcaf2d16cde44d104a0e104f9c069ee2eb39a50fa689596d6"
+    },
+    {
+      "id": "e41",
+      "operation": "read_text",
+      "target": "/proc/27/comm",
+      "outcome": "OK",
+      "sha256": "1f16079a467fdf38ccaf3f1ca32193eaf2b5195a109c60902d1a97c569e0ac17"
+    },
+    {
+      "id": "e42",
+      "operation": "read_text",
+      "target": "/proc/28/comm",
+      "outcome": "OK",
+      "sha256": "ce11cb02e2f27c6d2ae3211d491c96ddcc434ef9660e6a6fa82448b5260cf296"
+    },
+    {
+      "id": "e43",
+      "operation": "read_text",
+      "target": "/proc/29/comm",
+      "outcome": "OK",
+      "sha256": "74cc9af2092db281f9478327029bdca06272d021ff2761a978b3739af59818a8"
+    },
+    {
+      "id": "e44",
+      "operation": "read_text",
+      "target": "/proc/30/comm",
+      "outcome": "OK",
+      "sha256": "c711348a7ba5d5e04e74481578210c18c662b787818a24ec0f25b132b40abdda"
+    },
+    {
+      "id": "e45",
+      "operation": "read_text",
+      "target": "/proc/31/comm",
+      "outcome": "OK",
+      "sha256": "d1c068b49f42762f85082d1bb8a1bceafbe669aabd18091d9a60df3e08572eee"
+    },
+    {
+      "id": "e46",
+      "operation": "read_text",
+      "target": "/proc/32/comm",
+      "outcome": "OK",
+      "sha256": "f5e43b3f274c2bb22e7d48497ca7fccb0ded9f26385cd276b60b2f53815e5f90"
+    },
+    {
+      "id": "e47",
+      "operation": "read_text",
+      "target": "/proc/33/comm",
+      "outcome": "OK",
+      "sha256": "97841e3dc090afdbc53690189338e3cfddb765ba0365370bb229546c2540310a"
+    },
+    {
+      "id": "e48",
+      "operation": "read_text",
+      "target": "/proc/34/comm",
+      "outcome": "OK",
+      "sha256": "566dab26b30281b5d1fa57aeccb6085656135870d4989538d4048317a56283f1"
+    },
+    {
+      "id": "e49",
+      "operation": "read_text",
+      "target": "/proc/35/comm",
+      "outcome": "OK",
+      "sha256": "f43c2713ff25b74116c3388a0ec574b0db6db7cfb0f0eff2b7a86b2ea0070718"
+    },
+    {
+      "id": "e50",
+      "operation": "read_text",
+      "target": "/proc/36/comm",
+      "outcome": "OK",
+      "sha256": "93cb835107d43d75be6d279e783400996a47426e80caa94b0a7174d94ca47c47"
+    },
+    {
+      "id": "e51",
+      "operation": "read_text",
+      "target": "/proc/37/comm",
+      "outcome": "OK",
+      "sha256": "2e4f369ffad34d0661ec1bca35fb9b229178ffe7980357b6e472a31e6700023f"
+    },
+    {
+      "id": "e52",
+      "operation": "read_text",
+      "target": "/proc/38/comm",
+      "outcome": "OK",
+      "sha256": "6e1d903236c1e13063b30e94b8beb102ed7a93df5673a92509955c1b4ee413a0"
+    },
+    {
+      "id": "e53",
+      "operation": "read_text",
+      "target": "/proc/39/comm",
+      "outcome": "OK",
+      "sha256": "011879258a7cd02f3bc64be233d2126639b7286f31d27860deb904aa11540ed0"
+    },
+    {
+      "id": "e54",
+      "operation": "read_text",
+      "target": "/proc/40/comm",
+      "outcome": "OK",
+      "sha256": "dc2ff5aa7f2a24bcbcf8c0d2e42b611aafea8d97a2860dba9549a27e9d4aa48a"
+    },
+    {
+      "id": "e55",
+      "operation": "read_text",
+      "target": "/proc/41/comm",
+      "outcome": "OK",
+      "sha256": "76a6382e803ae9fbfe0778a56dbcc4a13d1ef86ecf9e98373418678a874fe9f9"
+    },
+    {
+      "id": "e56",
+      "operation": "read_text",
+      "target": "/proc/42/comm",
+      "outcome": "OK",
+      "sha256": "60b1561ca4c3ea26f18455805dedba7eb824d70c5188e2eaa1fc2f46824113ff"
+    },
+    {
+      "id": "e57",
+      "operation": "read_text",
+      "target": "/proc/43/comm",
+      "outcome": "OK",
+      "sha256": "e6eac8f27a3e6ec9cadbd8d2d8fb6a5bf2e61b822b3fb408e7d5a7bfc1a856ea"
+    },
+    {
+      "id": "e58",
+      "operation": "read_text",
+      "target": "/proc/44/comm",
+      "outcome": "OK",
+      "sha256": "924217c424a7c10c4be9c919dd2f0555329f787e35d4b960a8201f27ec1ed30c"
+    },
+    {
+      "id": "e59",
+      "operation": "read_text",
+      "target": "/proc/45/comm",
+      "outcome": "OK",
+      "sha256": "9b856a2b41fc2d5ab447562d287bb0d307ae6eb40b3549694cb7fa2a2e22645e"
+    },
+    {
+      "id": "e60",
+      "operation": "read_text",
+      "target": "/proc/46/comm",
+      "outcome": "OK",
+      "sha256": "f1a633fa5d23e5bd2bdf550e146807ff787be05dcb6e2a77594b9573658a0848"
+    },
+    {
+      "id": "e61",
+      "operation": "read_text",
+      "target": "/proc/47/comm",
+      "outcome": "OK",
+      "sha256": "b8274b38337485ec41609adf6ebee2555ae434b5ea47f9bc4a22e6af37c4e18f"
+    },
+    {
+      "id": "e62",
+      "operation": "read_text",
+      "target": "/proc/48/comm",
+      "outcome": "OK",
+      "sha256": "92dda2c215b422fd8f82b2eccdc933f33997a40437d9ff4d7eedbca2104177a9"
+    },
+    {
+      "id": "e63",
+      "operation": "read_text",
+      "target": "/proc/49/comm",
+      "outcome": "OK",
+      "sha256": "28d6f07f29b73879340fde46d4c2acf9c97a208b3cca8f0b883a14c4b7994494"
+    },
+    {
+      "id": "e64",
+      "operation": "read_text",
+      "target": "/proc/50/comm",
+      "outcome": "OK",
+      "sha256": "20b577da02f39cffab0da387d1e1ab9efc4afe771d83d5caa503cf586940d064"
+    },
+    {
+      "id": "e65",
+      "operation": "read_text",
+      "target": "/proc/51/comm",
+      "outcome": "OK",
+      "sha256": "006d74bdc0714d2f8eb61cafbda4a19c618333d1a1221bd297067a020586ad63"
+    },
+    {
+      "id": "e66",
+      "operation": "read_text",
+      "target": "/proc/52/comm",
+      "outcome": "OK",
+      "sha256": "e600763d480f8beb8cd2ac1c9f9627cd9481ff96d546c06a7074babede6482dd"
+    },
+    {
+      "id": "e67",
+      "operation": "read_text",
+      "target": "/proc/53/comm",
+      "outcome": "OK",
+      "sha256": "e66cc367acb3d0f4e07a8291f9cf3b91182daa74cdbc85d7a54cef4b2d3ccb57"
+    },
+    {
+      "id": "e68",
+      "operation": "read_text",
+      "target": "/proc/54/comm",
+      "outcome": "OK",
+      "sha256": "188a097b54a96a9bdbb7702081c8867f4d73d634a5087f9763d4d53989e126a2"
+    },
+    {
+      "id": "e69",
+      "operation": "read_text",
+      "target": "/proc/55/comm",
+      "outcome": "OK",
+      "sha256": "0585e0a86366c249c4b6eebce61ed2dc585b40d974acf3f77e64c94ad7ccc8cf"
+    },
+    {
+      "id": "e70",
+      "operation": "read_text",
+      "target": "/proc/56/comm",
+      "outcome": "OK",
+      "sha256": "9f3e779650c34c250a14c9b74f82656a7098ad892b89bf48020266dff68a3603"
+    },
+    {
+      "id": "e71",
+      "operation": "read_text",
+      "target": "/proc/57/comm",
+      "outcome": "OK",
+      "sha256": "138d290c131a2611f624923e6a3b005d94da5bff8f5181fe1ca43ab294461a31"
+    },
+    {
+      "id": "e72",
+      "operation": "read_text",
+      "target": "/proc/58/comm",
+      "outcome": "OK",
+      "sha256": "fcffbf7eaf81c14957dcc74012296c58b193b7f15d6a11483f2a52d56774aff0"
+    },
+    {
+      "id": "e73",
+      "operation": "read_text",
+      "target": "/proc/59/comm",
+      "outcome": "OK",
+      "sha256": "938286349f8096c976dc6839ff02f2b86dd0aba1ca294075ca2dc1cc8a491142"
+    },
+    {
+      "id": "e74",
+      "operation": "read_text",
+      "target": "/proc/60/comm",
+      "outcome": "OK",
+      "sha256": "e0e9d115473ab889cd09a1691282ffcc0ac6def9391ef29010f5448179a05c8e"
+    },
+    {
+      "id": "e75",
+      "operation": "read_text",
+      "target": "/proc/61/comm",
+      "outcome": "OK",
+      "sha256": "eacf5fd51214d5a106bb8edbdf70dadfd7a463b9821c991428bd854a40918d09"
+    },
+    {
+      "id": "e76",
+      "operation": "read_text",
+      "target": "/proc/62/comm",
+      "outcome": "OK",
+      "sha256": "26a6666a6b5a66e8df02190366001ce372c41616359540b2ba18ac549ea31f4e"
+    },
+    {
+      "id": "e77",
+      "operation": "read_text",
+      "target": "/proc/63/comm",
+      "outcome": "OK",
+      "sha256": "e6ef7671d23e36554e7391b1e83525e7e5b9715a4917bca42da7f206851d8d47"
+    },
+    {
+      "id": "e78",
+      "operation": "read_text",
+      "target": "/proc/64/comm",
+      "outcome": "OK",
+      "sha256": "43d530c95629404d9c764ac78de0e07d28a7f4c57987331ee147891e4a2837ab"
+    },
+    {
+      "id": "e79",
+      "operation": "read_text",
+      "target": "/proc/65/comm",
+      "outcome": "OK",
+      "sha256": "6ee5c8b4613ed039456392003a209a24c26fee22dc7604ffa846d03e256fb69a"
+    },
+    {
+      "id": "e80",
+      "operation": "read_text",
+      "target": "/proc/66/comm",
+      "outcome": "OK",
+      "sha256": "c4a0cff5d8f504e4811c3ff2e337dd3de6c25aefe6e1d117a0be59ee3b0ae85f"
+    },
+    {
+      "id": "e81",
+      "operation": "read_text",
+      "target": "/proc/67/comm",
+      "outcome": "OK",
+      "sha256": "2d3816fdc2b9eabef0ed0da27c0e74c8e89530ab1226d83a2427cbd045a84396"
+    },
+    {
+      "id": "e82",
+      "operation": "read_text",
+      "target": "/proc/68/comm",
+      "outcome": "OK",
+      "sha256": "35d9c17b1195a2cc22ccb3b6a5d5dcdc5771f2bcb76f43ed875a6996b7557322"
+    },
+    {
+      "id": "e83",
+      "operation": "read_text",
+      "target": "/proc/69/comm",
+      "outcome": "OK",
+      "sha256": "176321ae81753161b5013b42751fe6a5bd5e17f092cfb54639459727ab42ec15"
+    },
+    {
+      "id": "e84",
+      "operation": "read_text",
+      "target": "/proc/70/comm",
+      "outcome": "OK",
+      "sha256": "e1d47915c0e7a927af75436460f4eaa2e4ed9c7702250a548abaf1405eb7f091"
+    },
+    {
+      "id": "e85",
+      "operation": "read_text",
+      "target": "/proc/71/comm",
+      "outcome": "OK",
+      "sha256": "a43b15e87be00d5fbcbd384a826d06fd69e712faffe111d9553fba1c13f851be"
+    },
+    {
+      "id": "e86",
+      "operation": "read_text",
+      "target": "/proc/72/comm",
+      "outcome": "OK",
+      "sha256": "e10d040a9580b98b5245f534b8c21c15498e29023f7ed7aa30f930a865d16ba2"
+    },
+    {
+      "id": "e87",
+      "operation": "read_text",
+      "target": "/proc/73/comm",
+      "outcome": "OK",
+      "sha256": "b9205e0ffbfd1bc1236cd27ca6018bec26f6cc4ab62cf9d84329a0b464d955f7"
+    },
+    {
+      "id": "e88",
+      "operation": "read_text",
+      "target": "/proc/74/comm",
+      "outcome": "OK",
+      "sha256": "7db5c5293d6e0591a4627b6a696195533841f47042e10bc2b974080b95f2fcf5"
+    },
+    {
+      "id": "e89",
+      "operation": "read_text",
+      "target": "/proc/75/comm",
+      "outcome": "OK",
+      "sha256": "8a2100bd65586f2fa4a0a76c30fdbe318daa3e92d942cbab3dad3998588bbab4"
+    },
+    {
+      "id": "e90",
+      "operation": "read_text",
+      "target": "/proc/76/comm",
+      "outcome": "OK",
+      "sha256": "38c04c48beb21ebd6080421b93a1f1ebe52ff3c43243d9c9ec1d6f1734f00373"
+    },
+    {
+      "id": "e91",
+      "operation": "read_text",
+      "target": "/proc/77/comm",
+      "outcome": "OK",
+      "sha256": "11e275d79d17e333641f830d569f738ec9f75bd57b93e01d2928d64d311be2a6"
+    },
+    {
+      "id": "e92",
+      "operation": "read_text",
+      "target": "/proc/78/comm",
+      "outcome": "OK",
+      "sha256": "857e24a26621dff7e5536618759112f7f3a46e94c39d68c4ee3a94faa891ec1d"
+    },
+    {
+      "id": "e93",
+      "operation": "read_text",
+      "target": "/proc/79/comm",
+      "outcome": "OK",
+      "sha256": "615faaf59f0104655e3a0425fb4dfbe45f3d6b7df9e6bbb57db1d2fe8f12041d"
+    },
+    {
+      "id": "e94",
+      "operation": "read_text",
+      "target": "/proc/80/comm",
+      "outcome": "OK",
+      "sha256": "ec648807e3b01527c31112e188f1d8e212453e6a8cbdf9a96eb3611b9e00a9cc"
+    },
+    {
+      "id": "e95",
+      "operation": "read_text",
+      "target": "/proc/81/comm",
+      "outcome": "OK",
+      "sha256": "cdc45e4a52fb498fb49855c1dd1cbcaca07dc0f6121161e8385062dada2583ef"
+    },
+    {
+      "id": "e96",
+      "operation": "read_text",
+      "target": "/proc/82/comm",
+      "outcome": "OK",
+      "sha256": "b8868211aa6a6933576afeec4f8ee4508e97de6f6543f258890f34c44cb31c0a"
+    },
+    {
+      "id": "e97",
+      "operation": "read_text",
+      "target": "/proc/83/comm",
+      "outcome": "OK",
+      "sha256": "ea788f816608f2e7f6e1e62cb7c46eab882780b5530cf55c0fb79a02d440beda"
+    },
+    {
+      "id": "e98",
+      "operation": "read_text",
+      "target": "/proc/84/comm",
+      "outcome": "OK",
+      "sha256": "cd4bd773c449b2c9f188a9b5efe7ebe0ecea15dfa7e21c37c4a12befef686390"
+    },
+    {
+      "id": "e99",
+      "operation": "read_text",
+      "target": "/proc/85/comm",
+      "outcome": "OK",
+      "sha256": "e38ff98dc701344d1b3f3a1fee5a81e18f84cbbe5a64709e572303ab8931bff4"
+    },
+    {
+      "id": "e100",
+      "operation": "read_text",
+      "target": "/proc/86/comm",
+      "outcome": "OK",
+      "sha256": "7bf2009ff19356c57ad31fb73dba39730e1279a069211d8140f3b6018455bf8c"
+    },
+    {
+      "id": "e101",
+      "operation": "read_text",
+      "target": "/proc/87/comm",
+      "outcome": "OK",
+      "sha256": "ac3db71d27cd6c174931c42fa339178382b9ffdea93953b3dc1f229fe9f0caca"
+    },
+    {
+      "id": "e102",
+      "operation": "read_text",
+      "target": "/proc/88/comm",
+      "outcome": "OK",
+      "sha256": "1bda5fe4fb980c34c38280bae0be60d4d16d2e5d00d8c56d442403b2e1edef50"
+    },
+    {
+      "id": "e103",
+      "operation": "read_text",
+      "target": "/proc/89/comm",
+      "outcome": "OK",
+      "sha256": "662861d2086007b12c998244b9fb79e0c6178551b0e47bdb3de1c32eb0baf756"
+    },
+    {
+      "id": "e104",
+      "operation": "read_text",
+      "target": "/proc/90/comm",
+      "outcome": "OK",
+      "sha256": "c980ababb15d5006a5fe28ee56094b6a14faf5782ae6a32a66a162a4ba1974af"
+    },
+    {
+      "id": "e105",
+      "operation": "read_text",
+      "target": "/proc/92/comm",
+      "outcome": "OK",
+      "sha256": "a2b2dbf94c61340a9e810081721e3594b9e064c175c3827c906f4dd20dd2b8dc"
+    },
+    {
+      "id": "e106",
+      "operation": "read_text",
+      "target": "/proc/103/comm",
+      "outcome": "OK",
+      "sha256": "8b93fbe18288edd2149011090f1340fbd2d8dbce65f9e4a0f9d4bbd6086c8c77"
+    },
+    {
+      "id": "e107",
+      "operation": "read_text",
+      "target": "/proc/104/comm",
+      "outcome": "OK",
+      "sha256": "a53309780e56505f48ad6572224ceebd5204fb30d0a1d25a432393dc445920ae"
+    },
+    {
+      "id": "e108",
+      "operation": "read_text",
+      "target": "/proc/105/comm",
+      "outcome": "OK",
+      "sha256": "332f1af55be4b721ebc9c68d0a517c12782a52b95f2d772321ca7f41762f3653"
+    },
+    {
+      "id": "e109",
+      "operation": "read_text",
+      "target": "/proc/106/comm",
+      "outcome": "OK",
+      "sha256": "72441dacbef134d6cf202dd78747f7eaa392e591fd7cfe89c27022b8ad37f6b9"
+    },
+    {
+      "id": "e110",
+      "operation": "read_text",
+      "target": "/proc/137/comm",
+      "outcome": "OK",
+      "sha256": "b036e0e23f2933df3894aa9a42194afc9e6a5187fdd9b99fc98b1ff7dd036b22"
+    },
+    {
+      "id": "e111",
+      "operation": "read_text",
+      "target": "/proc/156/comm",
+      "outcome": "OK",
+      "sha256": "66c93ab8d53c8ed05e78a1e24d7c42058753a2bcaf1babc05d782356fa1e9f1e"
+    },
+    {
+      "id": "e112",
+      "operation": "read_text",
+      "target": "/proc/172/comm",
+      "outcome": "OK",
+      "sha256": "f391de0d8842a44bd5c9e0dae55d002c186c01fa075f23048a919103746b07ce"
+    },
+    {
+      "id": "e113",
+      "operation": "read_text",
+      "target": "/proc/198/comm",
+      "outcome": "OK",
+      "sha256": "52716937189fc5a738dac772cde2f7ce335c0636dc31d6aa89ee6447c9401c37"
+    },
+    {
+      "id": "e114",
+      "operation": "read_text",
+      "target": "/proc/199/comm",
+      "outcome": "OK",
+      "sha256": "c2c08961c03a0bd92634d6f05a4e6ed71e1cce2760c7f250df95db8e08f18e20"
+    },
+    {
+      "id": "e115",
+      "operation": "read_text",
+      "target": "/proc/201/comm",
+      "outcome": "OK",
+      "sha256": "38172049b29478706f0f0bbffb96c950217799cf8a79a768621f68c4a7fd4665"
+    },
+    {
+      "id": "e116",
+      "operation": "read_text",
+      "target": "/proc/208/comm",
+      "outcome": "OK",
+      "sha256": "a3120df02561ef2bb8afe7360efa8f6ab8ced19eb0bfc0d74a8665c93827718d"
+    },
+    {
+      "id": "e117",
+      "operation": "read_text",
+      "target": "/proc/216/comm",
+      "outcome": "OK",
+      "sha256": "85c8bc58ce61710823b8f33c653c97844568be304475c5eaaaaeeeadd160430f"
+    },
+    {
+      "id": "e118",
+      "operation": "read_text",
+      "target": "/proc/217/comm",
+      "outcome": "OK",
+      "sha256": "b0803082e6bb0b2a00e8b68d68bf8bd4844c3e8fc6f79e4beab6f076df6be63e"
+    },
+    {
+      "id": "e119",
+      "operation": "read_text",
+      "target": "/proc/221/comm",
+      "outcome": "OK",
+      "sha256": "a58aa6e5e6349c928953721c551852e38dddd8885da809719042dd0267c1604a"
+    },
+    {
+      "id": "e120",
+      "operation": "read_text",
+      "target": "/proc/228/comm",
+      "outcome": "OK",
+      "sha256": "74451a54ce981135fdd5c9d27b9dc0e455f199aee596f3e17ad4f6b76a5614ed"
+    },
+    {
+      "id": "e121",
+      "operation": "read_text",
+      "target": "/proc/238/comm",
+      "outcome": "OK",
+      "sha256": "c985713600d0622516696d616905fc9d24c79600a09a8cb4701f8eeafde12a1b"
+    },
+    {
+      "id": "e122",
+      "operation": "read_text",
+      "target": "/proc/239/comm",
+      "outcome": "OK",
+      "sha256": "d80566d5aadd11d893b9516d638733b2073d6077adcfa0518765fede52191740"
+    },
+    {
+      "id": "e123",
+      "operation": "read_text",
+      "target": "/proc/306/comm",
+      "outcome": "OK",
+      "sha256": "e4cb5a990ed4f1755ef35cc41960eeb720bf2519a68f16d1ef2e39dfe7536c11"
+    },
+    {
+      "id": "e124",
+      "operation": "read_text",
+      "target": "/proc/315/comm",
+      "outcome": "OK",
+      "sha256": "269e5d84556adcc7a735082d1ff2241898a707c3b39fc18e4429560ecc869005"
+    },
+    {
+      "id": "e125",
+      "operation": "read_text",
+      "target": "/proc/316/comm",
+      "outcome": "OK",
+      "sha256": "4a6edcdc36c0c2b0372b37c4d2435795baddfe4bd80651dc29ef1a8d18d615a5"
+    },
+    {
+      "id": "e126",
+      "operation": "read_text",
+      "target": "/proc/317/comm",
+      "outcome": "OK",
+      "sha256": "7c7a2bec383f8088ba03fbc1c28667e5100ca5de58da54296e319976f15f736a"
+    },
+    {
+      "id": "e127",
+      "operation": "read_text",
+      "target": "/proc/318/comm",
+      "outcome": "OK",
+      "sha256": "a3eb5b2df1980dd721fa9dd34230aec0344004b77223585b11d8f7285b89f43f"
+    },
+    {
+      "id": "e128",
+      "operation": "read_text",
+      "target": "/proc/319/comm",
+      "outcome": "OK",
+      "sha256": "5a930ba1b2e7a4c465d88930aad062d759c695b00b9856995a718efe51fa2781"
+    },
+    {
+      "id": "e129",
+      "operation": "read_text",
+      "target": "/proc/320/comm",
+      "outcome": "OK",
+      "sha256": "6b2392a2462e9c400803502ae140d101393461924174a93088cc7eef7ec984d6"
+    },
+    {
+      "id": "e130",
+      "operation": "read_text",
+      "target": "/proc/321/comm",
+      "outcome": "OK",
+      "sha256": "f5a678473b7341916b3aef865b841d1296fd6c3d273b10cb2a7e60d8e83e5f6e"
+    },
+    {
+      "id": "e131",
+      "operation": "read_text",
+      "target": "/proc/322/comm",
+      "outcome": "OK",
+      "sha256": "f5d3daefbf342111a8b42adbaa20ea17e04b7d4ad011afcfe00e3b57d184b32e"
+    },
+    {
+      "id": "e132",
+      "operation": "read_text",
+      "target": "/proc/323/comm",
+      "outcome": "OK",
+      "sha256": "af457d8bda1b11d3c1e2ddf54aa1023f47906a702448b687086a5040aa093559"
+    },
+    {
+      "id": "e133",
+      "operation": "read_text",
+      "target": "/proc/324/comm",
+      "outcome": "OK",
+      "sha256": "f3f547c9625e40d69775f16beaee87e436adf3efda989b0a375d180bf34dc7db"
+    },
+    {
+      "id": "e134",
+      "operation": "read_text",
+      "target": "/proc/334/comm",
+      "outcome": "OK",
+      "sha256": "4875729223f28a4b293b38d5db0b8ce66964ca5fbf03d72154fb654da43854e1"
+    },
+    {
+      "id": "e135",
+      "operation": "read_text",
+      "target": "/proc/335/comm",
+      "outcome": "OK",
+      "sha256": "f802352b710a17583eb672aaf15339e9ca6eb83f57382753748de6177ca0c05d"
+    },
+    {
+      "id": "e136",
+      "operation": "read_text",
+      "target": "/proc/336/comm",
+      "outcome": "OK",
+      "sha256": "b17d1b793475f60e5d230be73e3aa560daf6abb31af2314d4c3747be8d7f41bf"
+    },
+    {
+      "id": "e137",
+      "operation": "read_text",
+      "target": "/proc/337/comm",
+      "outcome": "OK",
+      "sha256": "d30ffb2f1d2fb1282059c33406da556b33e9997d287efa7494865bcb0b56e920"
+    },
+    {
+      "id": "e138",
+      "operation": "read_text",
+      "target": "/proc/340/comm",
+      "outcome": "OK",
+      "sha256": "2f3ea5cdd2deb87e19a33025cc329787c8f39b3cd197a976f830c1df6955913e"
+    },
+    {
+      "id": "e139",
+      "operation": "read_text",
+      "target": "/proc/355/comm",
+      "outcome": "OK",
+      "sha256": "3c8efa18a430284848797cafae6dae447dd73ae74d7c1497ba0d2fa3cb5668f8"
+    },
+    {
+      "id": "e140",
+      "operation": "read_text",
+      "target": "/proc/356/comm",
+      "outcome": "OK",
+      "sha256": "a53309780e56505f48ad6572224ceebd5204fb30d0a1d25a432393dc445920ae"
+    },
+    {
+      "id": "e141",
+      "operation": "read_text",
+      "target": "/proc/428/comm",
+      "outcome": "OK",
+      "sha256": "65d3be53c025724f0098266666f6f4c2bec51b993e267a76e48ef8c30ed0dffb"
+    },
+    {
+      "id": "e142",
+      "operation": "read_text",
+      "target": "/proc/507/comm",
+      "outcome": "OK",
+      "sha256": "8570b6553aeff85c2feb5a9004d258dab3cb2c27a5f72c60a0f2fd3dc2ab133b"
+    },
+    {
+      "id": "e143",
+      "operation": "read_text",
+      "target": "/proc/508/comm",
+      "outcome": "OK",
+      "sha256": "143b5febb025af7b04529b0e24b319a7e77580c2c399d993ab246add5985855c"
+    },
+    {
+      "id": "e144",
+      "operation": "read_text",
+      "target": "/proc/648/comm",
+      "outcome": "OK",
+      "sha256": "5c4e1743b7eed63ac55e2c28b338568d969e97de8ac0f10ddf4e9bb4baf22c07"
+    },
+    {
+      "id": "e145",
+      "operation": "read_text",
+      "target": "/proc/649/comm",
+      "outcome": "OK",
+      "sha256": "e303b6783c9e1043732271215e205bc99a5d37685e0df9656e85557375207b6b"
+    },
+    {
+      "id": "e146",
+      "operation": "read_text",
+      "target": "/proc/737/comm",
+      "outcome": "OK",
+      "sha256": "76e241eddfcbadd30432e8673e0a2aa356cd378113571270b314eaf7f1a1567b"
+    },
+    {
+      "id": "e147",
+      "operation": "read_text",
+      "target": "/proc/803/comm",
+      "outcome": "OK",
+      "sha256": "9799dd3525f8567e7ff82f89e7eeecf1ba1cb98312e79e1b1ca369d0931dd551"
+    },
+    {
+      "id": "e148",
+      "operation": "read_text",
+      "target": "/proc/808/comm",
+      "outcome": "OK",
+      "sha256": "df3147c470db13702ec7ba9573daa21d30d0db3b63042b0f9e4720913d00f907"
+    },
+    {
+      "id": "e149",
+      "operation": "read_text",
+      "target": "/proc/815/comm",
+      "outcome": "OK",
+      "sha256": "c77d6694cd6136853927b8b4a95562f11091f76f37db9ff0f73d97d471509f0a"
+    },
+    {
+      "id": "e150",
+      "operation": "read_text",
+      "target": "/proc/841/comm",
+      "outcome": "OK",
+      "sha256": "efbc115e0b1be45e7690ebf1688990f9ce7b91a199d046b244e63c7acc4b037f"
+    },
+    {
+      "id": "e151",
+      "operation": "read_text",
+      "target": "/proc/858/comm",
+      "outcome": "OK",
+      "sha256": "8088d5d32d806348c6279de67475a6f025593ef62af02c84fbc05bfe41698850"
+    },
+    {
+      "id": "e152",
+      "operation": "read_text",
+      "target": "/proc/859/comm",
+      "outcome": "OK",
+      "sha256": "9ba0d0f180c19cfcff017d320464bb195f1dde958ed6fd0bb926144d73b930c3"
+    },
+    {
+      "id": "e153",
+      "operation": "read_text",
+      "target": "/proc/886/comm",
+      "outcome": "OK",
+      "sha256": "feebeb1f53845e4f960a156f1f3188314121a4174dd4626e331f872677acaf9d"
+    },
+    {
+      "id": "e154",
+      "operation": "read_text",
+      "target": "/proc/892/comm",
+      "outcome": "OK",
+      "sha256": "03456a570e7cfa6cf4d15a613f376cf18d8d4af65746a79e6c481e56b7c99be2"
+    },
+    {
+      "id": "e155",
+      "operation": "read_text",
+      "target": "/proc/910/comm",
+      "outcome": "OK",
+      "sha256": "9e5630a1189a50a9e13e58148d98c9c5c67160886306ece5b49d5d43cdd0bfea"
+    },
+    {
+      "id": "e156",
+      "operation": "read_text",
+      "target": "/proc/972/comm",
+      "outcome": "OK",
+      "sha256": "6f7ee39db8608f940d06d92690a02f0a25b0682103d40cd4cd39bdbf7d4325d3"
+    },
+    {
+      "id": "e157",
+      "operation": "read_text",
+      "target": "/proc/976/comm",
+      "outcome": "OK",
+      "sha256": "27755443f1553c528cdc04fe09816ee2588a812c2387bcc82822dd055cead702"
+    },
+    {
+      "id": "e158",
+      "operation": "read_text",
+      "target": "/proc/982/comm",
+      "outcome": "OK",
+      "sha256": "10c71dfa10c0d90e83d8d580908e390fbf2a54f8fcc5f50b34f2f0a30ff4ac30"
+    },
+    {
+      "id": "e159",
+      "operation": "read_text",
+      "target": "/proc/992/comm",
+      "outcome": "OK",
+      "sha256": "27755443f1553c528cdc04fe09816ee2588a812c2387bcc82822dd055cead702"
+    },
+    {
+      "id": "e160",
+      "operation": "read_text",
+      "target": "/proc/994/comm",
+      "outcome": "OK",
+      "sha256": "ef38ef8693054357748d779e0063ac75351293ad7a750393d230ee0c115d4415"
+    },
+    {
+      "id": "e161",
+      "operation": "read_text",
+      "target": "/proc/1000/comm",
+      "outcome": "OK",
+      "sha256": "10c71dfa10c0d90e83d8d580908e390fbf2a54f8fcc5f50b34f2f0a30ff4ac30"
+    },
+    {
+      "id": "e162",
+      "operation": "read_text",
+      "target": "/proc/1049/comm",
+      "outcome": "OK",
+      "sha256": "b6c3e615100cebbc59379756ade661f5013b627b30627a700a9176c4a8dcf4d7"
+    },
+    {
+      "id": "e163",
+      "operation": "read_text",
+      "target": "/proc/1102/comm",
+      "outcome": "OK",
+      "sha256": "7d88bc97a10fcabc2f05737c306a872eff99bf3b7cefdd3c0090c876280a2d66"
+    },
+    {
+      "id": "e164",
+      "operation": "read_text",
+      "target": "/proc/1115/comm",
+      "outcome": "OK",
+      "sha256": "6f7ddd41668d4f6a1ac29759cd58dd0569952ba9fc8b32a9c3a3f1baf7277adc"
+    },
+    {
+      "id": "e165",
+      "operation": "read_text",
+      "target": "/proc/1162/comm",
+      "outcome": "OK",
+      "sha256": "9ba0d0f180c19cfcff017d320464bb195f1dde958ed6fd0bb926144d73b930c3"
+    },
+    {
+      "id": "e166",
+      "operation": "read_text",
+      "target": "/proc/1877/comm",
+      "outcome": "OK",
+      "sha256": "5b7fe48bd339747980260758bc8162224819641f5059478360a0bd181b0be6fa"
+    },
+    {
+      "id": "e167",
+      "operation": "read_text",
+      "target": "/proc/1890/comm",
+      "outcome": "OK",
+      "sha256": "416b0c5d53716d0297dcb0f21b58d032ce9be7aea020564c3c50f8cba3c17386"
+    },
+    {
+      "id": "e168",
+      "operation": "read_text",
+      "target": "/proc/1893/comm",
+      "outcome": "OK",
+      "sha256": "a5d35a8221f6a596d730b5e22b8a28d03ae027f57536d3eb7c25f411de51bf74"
+    },
+    {
+      "id": "e169",
+      "operation": "read_text",
+      "target": "/proc/1929/comm",
+      "outcome": "OK",
+      "sha256": "53f87bfde4af670634d7f56aa59d6c80a5f3c57113ba1aa83ebb62b355ea746b"
+    },
+    {
+      "id": "e170",
+      "operation": "read_text",
+      "target": "/proc/1951/comm",
+      "outcome": "OK",
+      "sha256": "69db90c85a9a7675afaad85195c138cb2be5d09784be79af16ba3b1396d33d32"
+    },
+    {
+      "id": "e171",
+      "operation": "read_text",
+      "target": "/proc/2084/comm",
+      "outcome": "OK",
+      "sha256": "a9d367aaa85fd19af3e814eb7c1d639cad01a9ababaf0722f8ffc911cf381a42"
+    },
+    {
+      "id": "e172",
+      "operation": "read_text",
+      "target": "/proc/2085/comm",
+      "outcome": "OK",
+      "sha256": "a9d367aaa85fd19af3e814eb7c1d639cad01a9ababaf0722f8ffc911cf381a42"
+    },
+    {
+      "id": "e173",
+      "operation": "read_text",
+      "target": "/proc/2086/comm",
+      "outcome": "OK",
+      "sha256": "e60aec515d0301739852d8a1038999766dc00cfe75c0ffe45fdc97f5d952326a"
+    },
+    {
+      "id": "e174",
+      "operation": "read_text",
+      "target": "/proc/2364/comm",
+      "outcome": "OK",
+      "sha256": "69a0adf2c9f01e78c3e6b604ddf99ae0259de94d45d9f13fc331608b4114ce20"
+    },
+    {
+      "id": "e175",
+      "operation": "read_text",
+      "target": "/proc/2448/comm",
+      "outcome": "OK",
+      "sha256": "daf59d62d6da1040bf23adeabbb97b324c1ca2741607285e258a5358dd63d8b5"
+    },
+    {
+      "id": "e176",
+      "operation": "read_text",
+      "target": "/proc/40703/comm",
+      "outcome": "OK",
+      "sha256": "d80566d5aadd11d893b9516d638733b2073d6077adcfa0518765fede52191740"
+    },
+    {
+      "id": "e177",
+      "operation": "read_text",
+      "target": "/proc/40737/comm",
+      "outcome": "OK",
+      "sha256": "e6e2edede9f04f472d511e347c9ff22e028bd3d1ed73f135ccc09257d65dca31"
+    },
+    {
+      "id": "e178",
+      "operation": "readlink",
+      "target": "/proc/40737/exe",
+      "outcome": "PermissionError",
+      "sha256": null
+    },
+    {
+      "id": "e179",
+      "operation": "readlink",
+      "target": "/proc/40737/ns/mnt",
+      "outcome": "PermissionError",
+      "sha256": null
+    },
+    {
+      "id": "e180",
+      "operation": "read_text",
+      "target": "/proc/40738/comm",
+      "outcome": "OK",
+      "sha256": "e6e2edede9f04f472d511e347c9ff22e028bd3d1ed73f135ccc09257d65dca31"
+    },
+    {
+      "id": "e181",
+      "operation": "readlink",
+      "target": "/proc/40738/exe",
+      "outcome": "PermissionError",
+      "sha256": null
+    },
+    {
+      "id": "e182",
+      "operation": "readlink",
+      "target": "/proc/40738/ns/mnt",
+      "outcome": "PermissionError",
+      "sha256": null
+    },
+    {
+      "id": "e183",
+      "operation": "read_text",
+      "target": "/proc/40739/comm",
+      "outcome": "OK",
+      "sha256": "e6e2edede9f04f472d511e347c9ff22e028bd3d1ed73f135ccc09257d65dca31"
+    },
+    {
+      "id": "e184",
+      "operation": "readlink",
+      "target": "/proc/40739/exe",
+      "outcome": "PermissionError",
+      "sha256": null
+    },
+    {
+      "id": "e185",
+      "operation": "readlink",
+      "target": "/proc/40739/ns/mnt",
+      "outcome": "PermissionError",
+      "sha256": null
+    },
+    {
+      "id": "e186",
+      "operation": "read_text",
+      "target": "/proc/40914/comm",
+      "outcome": "OK",
+      "sha256": "b02fdb89aaaf4ecc053e46133fd5744222b2295a914512d880d5dbe69eba7f36"
+    },
+    {
+      "id": "e187",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.3.6-0ubuntu0.24.04.13\", \"ge\", \"8.3.6-0ubuntu0.24.04.13\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e188",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.3.6-0ubuntu0.24.04.13\", \"ge\", \"8.3.6-0ubuntu0.24.04.13\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e189",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.3.6-0ubuntu0.24.04.13\", \"ge\", \"8.3.6-0ubuntu0.24.04.13\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e190",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.3.6-0ubuntu0.24.04.13\", \"ge\", \"8.3.6-0ubuntu0.24.04.13\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e191",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.3.6-0ubuntu0.24.04.13\", \"ge\", \"8.3.6-0ubuntu0.24.04.13\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e192",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.3.6-0ubuntu0.24.04.13\", \"ge\", \"8.3.6-0ubuntu0.24.04.13\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    }
+  ],
+  "overall": "UNKNOWN",
+  "safe": false
+}
