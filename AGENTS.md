@@ -30,6 +30,8 @@ The user requires a Git commit after each independently verifiable stage of func
 
 6. Report the commit hash and validation outcome after each stage. Push according to the current conversation's user authorization; never force-push or rewrite existing remote history as a routine step.
 
+If remote CI requires a pushed commit before acceptance can finish, make an explicitly labeled CI-pending checkpoint after local checks pass and push it when authorized. Fix CI failures with follow-up commits. Announce stage completion only after all required gates pass; this exception does not permit claiming an unrun check passed.
+
 ## Configuration autonomy
 
 The user authorizes routine configuration needed for subsequent development, without repeated confirmation: project-local tooling and virtual environments, test/CI configuration, Git remote selection, and other reversible setup within this repository. Reuse the existing Git identity and authentication; do not expose credentials or modify unrelated global configuration.
