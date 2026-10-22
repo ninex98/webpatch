@@ -76,6 +76,19 @@ def test_typed_success_is_confirmed_revalidated_and_audited_under_lock(tmp_path)
     assert repeated['status'] == 'BLOCKED' and 'install' not in backend.calls
 
 
+def test_expiry_during_locked_revalidation_prevents_installation(tmp_path):
+    proposal=ready_fixture(); current=[NOW]
+    class SlowRevalidation(Backend):
+        def revalidate(self,proposal):
+            result=super().revalidate(proposal)
+            current[0]=NOW+timedelta(minutes=31)
+            return result
+    backend=SlowRevalidation(); journal=AuditJournal(tmp_path/'audit.jsonl')
+    result=execute(proposal,confirmation_sha256=proposal.plan_sha256,backend=backend,journal=journal,clock=lambda:current[0])
+    assert result['status']=='BLOCKED' and not result['changed'] and 'install' not in backend.calls
+    assert journal.events()[-1]['state']=='ABORTED'
+
+
 @pytest.mark.parametrize('mutation', ['hash','confirmation','expired','missing-gate','unknown-gate','unknown-impact','blocked-plan','saved-actions'])
 def test_missing_proof_or_exact_confirmation_never_reaches_backend(mutation, tmp_path):
     proposal = ready_fixture()

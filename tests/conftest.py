@@ -36,6 +36,7 @@ class FakeSystem:
         self.fingerprints = {}
         self.indexes = {}
         self.archives = {}
+        self.fd_tables={}
         self.reads.update({p: missing for p in ("/etc/nginx/nginx.conf", "/etc/apache2/apache2.conf")})
         self.dirs = {p: missing for p in (
             "/etc/php", "/www/server/php", "/opt/php", "/usr/local/bin", "/usr/local/sbin")}
@@ -49,6 +50,7 @@ class FakeSystem:
         self.dirs.update({p: ProbeError(e) for p, e in case.get("directory_errors", {}).items()})
         for proc in case.get("processes", []):
             pid = str(proc["pid"])
+            self.fd_tables[pid]={'files':[],'observed_count':0,'all_descriptors_sha256':'0'*64}
             self.dirs["/proc"].append(pid)
             self.reads[f"/proc/{pid}/comm"] = (ProbeError(proc["comm_error"]) if "comm_error" in proc
                                                else proc["comm"])
@@ -120,6 +122,9 @@ class FakeSystem:
         if result.get('archive_sha256') != expected:
             raise ProbeError('ARCHIVE_SNAPSHOT_SHA256_MISMATCH')
         return result
+
+    def file_descriptors(self,pid):
+        return self._get('file_descriptors',self.fd_tables,pid)
 
 
 @pytest.fixture(params=CASES, ids=lambda c: c["id"])

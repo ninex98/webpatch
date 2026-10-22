@@ -28,6 +28,7 @@ from webpatch.cli import main
 
 def fixture(monkeypatch,upgrade=True):
     fake,_=execution_fixture(); runtime=connected_fixture()
+    fake.fd_tables=deepcopy(runtime.fd_tables)
     for attr in ('reads','links','identities','fingerprints','commands','dirs'):
         target=getattr(fake,attr)
         for key,value in getattr(runtime,attr).items():
@@ -60,10 +61,10 @@ def fixture(monkeypatch,upgrade=True):
     return fake,report,receipt,startup,FakeSimulator(UPGRADE) if upgrade else FakeSimulator()
 
 
-def build(values):
+def build(values,clock=None):
     fake,report,receipt,_,simulator=values
     return build_repair_review(report,system=fake,simulator=simulator,controller=SimpleNamespace(state_dir=Path('/var/lib/webpatch')),
-        probe=object(),startup_receipt=receipt,source_cohort='php8.1',package_cache='/var/cache/apt/archives',budget_seconds=300,now=NOW)
+        probe=object(),startup_receipt=receipt,source_cohort='php8.1',package_cache='/var/cache/apt/archives',budget_seconds=300,now=NOW,clock=clock)
 
 
 def test_ready_review_binds_maintenance_contract_but_keeps_global_unknowns(monkeypatch):
@@ -89,6 +90,7 @@ def test_one_unresolved_requirement_prevents_admission(mutation,monkeypatch):
     if mutation=='startup': startup.update(status='BLOCKED',blockers=['PREPARED_RUNTIME_SET_DRIFT'])
     elif mutation=='extra-consumer':
         fake.dirs['/proc'].append('43')
+        fake.fd_tables['43']=deepcopy(fake.fd_tables['42'])
         for attr in ('reads','links','identities'):
             target=getattr(fake,attr)
             for path,value in list(target.items()):
@@ -131,3 +133,14 @@ def test_review_cli_requires_explicit_capabilities_for_an_injected_reader(monkey
                  '--budget-seconds','300','--refresh-probes'],system=fake,now=NOW)
     assert result==3 and 'ERROR' in capsys.readouterr().err
     assert not any(op=='read_plan_document' for op,_ in fake.calls)
+
+
+def test_slow_review_must_not_emit_executable_admission_after_expiry(monkeypatch):
+    count=0
+    def clock():
+        nonlocal count
+        count+=1
+        return NOW if count<4 else NOW+timedelta(minutes=6)
+    review=build(fixture(monkeypatch),clock=clock)
+    assert review.proposal.admission_status=='BLOCKED'
+    assert any(g.category=='collection_freshness' and g.status=='BLOCKED' for g in review.proposal.gates)

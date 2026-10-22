@@ -45,4 +45,34 @@ finally:
     child.wait(timeout=10)
     child.stdin.close()
     child.stdout.close()
-print('PASS: root process census covers active package mappings; renamed extra mapped-file holder blocks coverage.')
+fd_helper=helper.replace('m=mmap.mmap(f.fileno(),0,access=mmap.ACCESS_READ)','')
+child=subprocess.Popen([sys.executable,'-c',fd_helper,path],stdin=subprocess.PIPE,stdout=subprocess.PIPE,text=True)
+try:
+    assert child.stdout.readline().strip()=='ready'
+    negative=census(report,system=reader,package_ids=[package.id])
+    assert negative['status']=='BLOCKED' and 'CONSUMER_NOT_ACCOUNTED:'+str(child.pid) in negative['blockers']
+    assert next(c for c in negative['consumers'] if c['pid']==child.pid)['open_file_descriptor_observations']>=1
+    Path('ci-evidence/consumer-fd-negative.json').write_text(json.dumps(negative,indent=2)+'\n')
+finally:
+    child.terminate(); child.wait(timeout=10); child.stdin.close(); child.stdout.close()
+thread_helper='''import ctypes,os,sys,threading
+ready=threading.Event()
+def hold():
+    if ctypes.CDLL(None).unshare(0x400)!=0: os._exit(2)
+    f=open(sys.argv[1],"rb")
+    ready.set()
+    threading.Event().wait()
+t=threading.Thread(target=hold,daemon=True); t.start()
+assert ready.wait(5)
+print("ready",flush=True)
+sys.stdin.buffer.read(1)
+'''
+child=subprocess.Popen([sys.executable,'-c',thread_helper,path],stdin=subprocess.PIPE,stdout=subprocess.PIPE,text=True)
+try:
+    assert child.stdout.readline().strip()=='ready'
+    negative=census(report,system=reader,package_ids=[package.id])
+    assert negative['status']=='BLOCKED' and 'CONSUMER_NOT_ACCOUNTED:'+str(child.pid) in negative['blockers']
+    Path('ci-evidence/consumer-thread-fd-negative.json').write_text(json.dumps(negative,indent=2)+'\n')
+finally:
+    child.terminate(); child.wait(timeout=10); child.stdin.close(); child.stdout.close()
+print('PASS: census covers mappings and open descriptors, including private thread tables; unknown holders block coverage.')

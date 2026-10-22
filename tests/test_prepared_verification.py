@@ -56,3 +56,15 @@ def test_cli_verifies_exact_receipt_without_host_capability_fallback(monkeypatch
     assert json.loads(capsys.readouterr().out)['status']=='VERIFIED_CURRENT_PREPARED_SCOPE'
     assert main(argv,system=fake,now=NOW)==3
     assert 'ERROR' in capsys.readouterr().err
+
+
+def test_fresh_request_clock_does_not_freeze_inside_preparation_verification(monkeypatch,tmp_path):
+    fake,controller,receipt=prepared(monkeypatch,tmp_path); current=[NOW]
+    class SlowProbe(Probe):
+        def collect(self,*args):
+            response=super().collect(*args)
+            current[0]=NOW+timedelta(minutes=6)
+            return response
+    result=verify_prepared_scope(receipt,scan(fake,now=NOW),system=fake,controller=controller,probe=SlowProbe(),clock=lambda:current[0])
+    assert result['status']=='BLOCKED'
+    assert 'PROBE_EXPIRED_DURING_COLLECTION' in result['requests'][0]['blockers']

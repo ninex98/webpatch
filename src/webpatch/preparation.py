@@ -12,7 +12,6 @@ import json
 from pathlib import PurePosixPath
 import re
 import secrets
-from importlib.resources import files
 
 from .application import target_url, collect_application_evidence
 from .coverage import runtime_id
@@ -21,15 +20,13 @@ from .planning import digest, stable_bindings, state_digest, lock_blockers, chec
 from .platform_proof import authenticate_service
 from .service import scan
 from .system import Collector, ProbeError
+from .implementation import implementation_sha256
 
 STATE_DIRECTORY = re.compile(r'/var/lib/webpatch(?:-[a-z0-9-]+)?\Z')
 
 
 def implementation_digest():
-    root = files('webpatch')
-    names = ('preparation.py','service_control.py','platform_proof.py','receipts.py','application.py',
-             'system.py','trust.py','planning.py','data/application_probe.php')
-    return digest({name:hashlib.sha256(root.joinpath(name).read_bytes()).hexdigest() for name in names})
+    return implementation_sha256()
 
 
 def restricted_ini_value(raw):
@@ -272,7 +269,7 @@ def execute_preparation(saved, *, confirmation_sha256, system, controller, probe
             proofs = []
             for target in saved['probes']:
                 result = collect_application_evidence(after,system=system,probe=probe,url=target['url'],script_path=target['script'],
-                                                       service=target['service'],now=clock(),validity_seconds=1800)
+                                                       service=target['service'],clock=clock,validity_seconds=1800)
                 if result['status']!='VERIFIED_PROCESS_RESPONSE': raise ValueError('PREPARATION_APPLICATION_PROBE_FAILED')
                 runtime = next(r for r in after.inventory.runtimes if r.pid==result['peer_pid'])
                 if target['pool_listener'] is not None and target['pool_listener'] not in {e.path for e in runtime.endpoints}:

@@ -1,4 +1,6 @@
 from dataclasses import replace
+from copy import deepcopy
+from datetime import timedelta
 
 import pytest
 
@@ -27,9 +29,66 @@ def test_census_matches_file_identity_independently_of_process_name():
     assert not any(path.endswith('/comm') for op,path in fake.calls[-8:] if isinstance(path,str))
 
 
+@pytest.mark.parametrize('held_path',['/usr/sbin/php-fpm8.1','/tmp/another-hardlink-name'])
+def test_unmapped_open_file_holder_is_accounted_by_inode(held_path):
+    fake,report=fixture(); fake.dirs['/proc'].append('43')
+    for attr in ('reads','identities','links'):
+        mapping=getattr(fake,attr)
+        for path,value in list(mapping.items()):
+            if path.startswith('/proc/42/'): mapping[path.replace('/42/','/43/')]=deepcopy(value)
+    fake.reads['/proc/43/maps']='300-400 r-xp 0 00:01 77 /usr/bin/python3\n'
+    fake.identities['/proc/43/exe']={'device':1,'inode':77}
+    fake.fd_tables['43']={'files':[{'fd':7,'target':held_path,'device':1,'inode':5,'mode':0o100755}],
+                          'observed_count':1,'all_descriptors_sha256':'b'*64}
+    result=census(report,system=fake,package_ids=['php8.1-fpm:amd64'],now=NOW)
+    assert result['status']=='BLOCKED' and 'CONSUMER_NOT_ACCOUNTED:43' in result['blockers']
+    assert next(c for c in result['consumers'] if c['pid']==43)['open_file_descriptor_observations']==1
+
+
+def test_unreadable_or_changing_descriptor_tables_never_prove_absence():
+    fake,report=fixture()
+    fake.fd_tables['42']=ProbeError('PermissionError')
+    result=census(report,system=fake,package_ids=['php8.1-fpm:amd64'],now=NOW)
+    assert result['status']=='BLOCKED' and result['file_descriptor_coverage']=='UNKNOWN'
+    fake.file_descriptors=None
+    missing=census(report,system=fake,package_ids=['php8.1-fpm:amd64'],now=NOW)
+    assert missing['status']=='BLOCKED'
+    assert any(e['outcome']=='CAPABILITY_UNAVAILABLE:file_descriptors' for e in missing['evidence'])
+    count=0
+    def changing(pid):
+        nonlocal count
+        count+=1
+        files=[] if count==1 else [{'fd':7,'target':'/usr/sbin/php-fpm8.1','device':1,'inode':5,'mode':0o100755}]
+        return {'files':files,'observed_count':len(files),'all_descriptors_sha256':'c'*64}
+    fake.file_descriptors=changing
+    result=census(report,system=fake,package_ids=['php8.1-fpm:amd64'],now=NOW)
+    assert 'CONSUMER_PROCESS_DESCRIPTORS_CHANGED:42' in result['blockers']
+
+
+def test_census_detects_target_bytes_changed_during_observation():
+    fake,report=fixture(); original=fake.fingerprint; calls=0
+    def changed(path):
+        nonlocal calls
+        value=original(path)
+        if path=='/usr/sbin/php-fpm8.1':
+            calls+=1
+            if calls>1: return {**value,'sha256':'f'*64}
+        return value
+    fake.fingerprint=changed
+    result=census(report,system=fake,package_ids=['php8.1-fpm:amd64'],now=NOW)
+    assert 'CONSUMER_FILE_CHANGED_DURING_CENSUS:/usr/sbin/php-fpm8.1' in result['blockers']
+
+
+def test_census_must_finish_inside_its_evidence_window():
+    fake,report=fixture(); times=iter([NOW,NOW+timedelta(minutes=6)])
+    result=census(report,system=fake,package_ids=['php8.1-fpm:amd64'],clock=lambda:next(times))
+    assert result['status']=='BLOCKED' and 'CONSUMER_EVIDENCE_EXPIRED_OR_CLOCK_REVERSED' in result['blockers']
+
+
 def test_renamed_extra_consumer_is_not_hidden_by_existing_inventory():
     fake, report = fixture()
     fake.dirs['/proc'].append('43')
+    fake.fd_tables['43']=fake.fd_tables['42'].copy()
     for mapping in (fake.reads, fake.identities, fake.links):
         for path,value in list(mapping.items()):
             if path.startswith('/proc/42/'):

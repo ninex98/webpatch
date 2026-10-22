@@ -87,17 +87,18 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
         print("BLOCKED: repair execution is disabled. No changes performed.", file=sys.stderr)
         return 4
     try:
+        native = system is None
         reader = system if system is not None else LocalSystem()
         if args.command in {"prepare-scope", "retire-preparation"}:
             saved = json.loads(reader.read_plan_document(args.path))
             if not isinstance(saved,dict): raise ValueError('INVALID_PREPARATION_DOCUMENT')
             directory = saved.get('state_directory','/var/lib/webpatch') if args.command=='prepare-scope' else args.state_directory
-            controller = service_controller if service_controller is not None else (LocalServiceControl(directory) if isinstance(reader,LocalSystem) else None)
+            controller = service_controller if service_controller is not None else (LocalServiceControl(directory) if native else None)
             if controller is None: raise ValueError('SERVICE_CONTROL_CAPABILITY_REQUIRED')
             if args.command=='prepare-scope':
-                capability = probe if probe is not None else (LocalApplicationProbe() if isinstance(reader,LocalSystem) else None)
+                capability = probe if probe is not None else (LocalApplicationProbe() if native else None)
                 if capability is None: raise ValueError('APPLICATION_PROBE_CAPABILITY_REQUIRED')
-                audit = journal if journal is not None else (AuditJournal(controller.state_dir/'operations.jsonl') if isinstance(reader,LocalSystem) else None)
+                audit = journal if journal is not None else (AuditJournal(controller.state_dir/'operations.jsonl') if native else None)
                 if audit is None: raise ValueError('AUDIT_CAPABILITY_REQUIRED')
                 result = execute_preparation(saved,confirmation_sha256=args.confirm_sha256,system=reader,
                     controller=controller,probe=capability,journal=audit,
@@ -118,9 +119,9 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
         report = scan_node(reader,now=now) if args.command=='scan-node' else scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
         if args.command=='repair-plan':
-            controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if isinstance(reader,LocalSystem) else None)
-            capability=probe if probe is not None else (LocalApplicationProbe() if isinstance(reader,LocalSystem) else None)
-            solver=simulator if simulator is not None else (LocalAptSimulator() if isinstance(reader,LocalSystem) else None)
+            controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if native else None)
+            capability=probe if probe is not None else (LocalApplicationProbe() if native else None)
+            solver=simulator if simulator is not None else (LocalAptSimulator() if native else None)
             if controller is None or capability is None or solver is None: raise ValueError('REPAIR_REVIEW_CAPABILITIES_REQUIRED')
             review=build_repair_review(report,system=reader,simulator=solver,controller=controller,probe=capability,
                 startup_receipt=json.loads(reader.read_plan_document(args.prepared_receipt)),source_cohort=args.source_cohort,
@@ -134,8 +135,8 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
         if args.command == 'verify-preparation':
             saved=json.loads(reader.read_plan_document(args.path))
             if digest(saved)!=args.expect_sha256: raise ValueError('PREPARED_RECEIPT_DIGEST_MISMATCH')
-            controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if isinstance(reader,LocalSystem) else None)
-            capability=probe if probe is not None else (LocalApplicationProbe() if isinstance(reader,LocalSystem) else None)
+            controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if native else None)
+            capability=probe if probe is not None else (LocalApplicationProbe() if native else None)
             if controller is None or capability is None: raise ValueError('PREPARED_VERIFICATION_CAPABILITIES_REQUIRED')
             result=verify_prepared_scope(saved,report,system=reader,controller=controller,probe=capability,now=now)
             print(json.dumps(result,ensure_ascii=True,indent=2))
@@ -150,7 +151,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             print(json.dumps(census(report, system=reader, package_ids=args.target_package_ids, now=now), ensure_ascii=True, indent=2))
             return 4
         if args.command == "probe-application":
-            capability = probe if probe is not None else (LocalApplicationProbe() if isinstance(reader, LocalSystem) else None)
+            capability = probe if probe is not None else (LocalApplicationProbe() if native else None)
             if capability is None:
                 raise ValueError("APPLICATION_PROBE_CAPABILITY_REQUIRED")
             result = collect_application_evidence(report, system=reader, probe=capability,
@@ -163,7 +164,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
                         reconcile(json.loads(reader.read_plan_document(args.path)), report, timestamp, args.expect_sha256))
             print(json.dumps(document, ensure_ascii=True, indent=2))
             return 4  # matching observations never authorize repair
-        backend = simulator if simulator is not None else (LocalAptSimulator() if isinstance(reader, LocalSystem) else None)
+        backend = simulator if simulator is not None else (LocalAptSimulator() if native else None)
         saved = json.loads(reader.read_plan_document(args.path)) if args.command == "verify-plan" else None
         if args.command == "verify-plan" and (not isinstance(saved, dict) or not isinstance(saved.get("scope", {}), dict)):
             raise ValueError("INVALID_PLAN_DOCUMENT")

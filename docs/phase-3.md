@@ -115,3 +115,13 @@ package_control.py 是独立、尚未接入 apply 的可写能力。策略层必
 完整扫描及所有全局 UNKNOWN 保留在 evidence，操作范围只声明精确包文件和当前已核对的共享消费者。当前 active mapping census、签名启动、只读配置视图与每个已声明请求必须通过；不将此结论扩张成任意未来任务、其他镜像或全站路由安全。仍需后续执行器阶段完成所有实际运行/失败闭环后才能接入公共 apply。本小阶段的 READY_FOR_CONFIRMATION 是待确认的类型化审阅结果，executable=false；无包变化为 NO_PACKAGE_CHANGES 且执行准入 BLOCKED，不伪造一次修复。
 
 四格 VM 在原有只读不变检查之后，单独建立明确的 plain APT 维护配置，保存被搬移配置摘要，并准备实际需要的官方 cohort/handler 归档。产品不自动清理 APT 配置。此正例验证当前修复版的 NO_PACKAGE_CHANGES；后续必须独立证明旧版到修复版的真实升级。已有 jammy/Apache job 在 20 分钟处取消，新增核对后 VM 超时预算调至 35 分钟；产品命令时限未放宽。
+
+## 3F.3 文件描述符、完整代码绑定与时间窗口
+
+消费者 census 现在读取每个可见 PID 的全部 task 文件描述符表，包含线程 unshare(CLONE_FILES) 后的独立表。普通文件按 device/inode 与目标归档文件关联，改名/硬链接别名或仅 open 而未 mmap 的持有者同样计入影响范围。读取失败、线程身份/集合变化、目标描述符变化和目标磁盘字节在 census 内改变均阻断。枚举有线程、条目和字节上限；每个 PID 保留有界结构摘要与证据哈希，不把无关已打开文件路径加入公开报告。file_descriptor_coverage 缺失或 UNKNOWN 不能准入。
+
+启动收据和修复合同改为绑定全部随包 Python/PHP/JSON 实施与规则资源，避免手工文件列表遗漏消费者或其他模块。旧收据需重新准备。注入 reader（包括 LocalSystem 子类）须显式注入探针、模拟、控制器和审计能力，不会自动回退宿主能力；缺少 reader 能力记录 CAPABILITY_UNAVAILABLE 并保持 UNKNOWN。
+
+探针/收据/census/整体审阅在完成时复查实际时间，真实调用不再因为传入起始时间而冻结时钟。事务在持锁重新验证返回后再次检查计划时效，过期则 ABORTED，不进入安装。测试时可显式注入固定时钟；该测试能力不从保存 JSON 获取。
+
+原生验收新增普通文件 FD 读取、仅打开未映射文件的进程、独立线程文件表三类无害案例；无漏洞利用。此能力证明当前可见文件持有者，不证明未来任务、复制到匿名内存的代码或历史入侵不存在；结果仍有有限 scope 和全局 UNKNOWN。

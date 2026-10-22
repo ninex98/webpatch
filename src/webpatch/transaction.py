@@ -159,7 +159,8 @@ def execute(proposal: Plan, *, confirmation_sha256, backend: TransactionBackend,
             return {'status':'BLOCKED','changed':False,'plan_sha256':proposal.plan_sha256,
                     'reasons':('PLAN_ALREADY_ATTEMPTED_REQUIRES_NEW_REVIEW',)}
         record('PRECHECK')
-        if admission_reasons(proposal, confirmation_sha256, clock()) or not backend.revalidate(proposal):
+        if (admission_reasons(proposal, confirmation_sha256, clock()) or not backend.revalidate(proposal)
+                or admission_reasons(proposal, confirmation_sha256, clock())):
             record('ABORTED', {'reason':'LOCKED_REVALIDATION_FAILED'})
             return {'status':'BLOCKED','changed':False,'plan_sha256':proposal.plan_sha256,
                     'reasons':('LOCKED_REVALIDATION_FAILED',)}

@@ -61,6 +61,7 @@ class SystemReader(Protocol):
     def identity(self, path: str) -> dict: ...
     def package_index(self, path: str) -> dict: ...
     def package_archive(self, request: tuple[str, str]) -> dict: ...
+    def file_descriptors(self, pid: str) -> dict: ...
 
 
 SERVICE_PROPERTIES = "Id,LoadState,ActiveState,SubState,MainPID,ControlGroup,FragmentPath"
@@ -225,6 +226,45 @@ class LocalSystem:
         except (ValueError, UnicodeError) as exc:
             raise ProbeError("INDEX_MALFORMED") from exc
 
+    def file_descriptors(self, pid: str) -> dict:
+        if not isinstance(pid,str) or not re.fullmatch(r'[1-9][0-9]{0,9}',pid):
+            raise ProbeError('DESCRIPTOR_PROCESS_ID_INVALID')
+        regular,observed,task_identities=[],[],{}
+        try:
+            task_root='/proc/'+pid+'/task'
+            tasks=sorted(self.listdir(task_root))
+            if not tasks or len(tasks)>4096 or any(not t.isdigit() for t in tasks):
+                raise ProbeError('DESCRIPTOR_TASK_SET_INVALID')
+            size=0
+            for tid in tasks:
+                task=task_root+'/'+tid
+                before=self.read_text(task+'/stat').rsplit(')',1)[1].split()[19]
+                if not before.isdigit(): raise ProbeError('DESCRIPTOR_TASK_IDENTITY_INVALID')
+                task_identities[tid]=before
+                # Threads can unshare file tables. Inspect each task, processing
+                # entries while the iterator's own directory fd is still alive.
+                with os.scandir(task+'/fd') as entries:
+                    for entry in entries:
+                        if not entry.name.isdigit(): raise ProbeError('DESCRIPTOR_ENTRY_INVALID')
+                        target=os.readlink(entry.path); info=os.stat(entry.path)
+                        size+=len(target.encode('utf-8','surrogateescape'))+100
+                        if len(observed)>=MAX_DIRECTORY_ENTRIES or size>MAX_FILE_BYTES:
+                            raise ProbeError('DESCRIPTOR_ENUMERATION_LIMIT')
+                        row={'tid':int(tid),'fd':int(entry.name),'target':target,'device':info.st_dev,'inode':info.st_ino,'mode':info.st_mode}
+                        observed.append(row)
+                        if stat.S_ISREG(info.st_mode): regular.append(row)
+                if self.read_text(task+'/stat').rsplit(')',1)[1].split()[19]!=before:
+                    raise ProbeError('DESCRIPTOR_TASK_IDENTITY_CHANGED')
+            if sorted(self.listdir(task_root))!=tasks: raise ProbeError('DESCRIPTOR_TASK_SET_CHANGED')
+            ordering=lambda r:(r['tid'],r['fd'])
+            encoded=json.dumps(sorted(observed,key=ordering),sort_keys=True,separators=(',',':')).encode()
+            return {'files':sorted(regular,key=ordering),'observed_count':len(observed),'tasks':tasks,'task_start_ticks':task_identities,
+                    'all_descriptors_sha256':hashlib.sha256(encoded).hexdigest()}
+        except OSError as exc:
+            raise ProbeError('DESCRIPTOR_ENUMERATION_FAILED:'+type(exc).__name__) from exc
+        except IndexError as exc:
+            raise ProbeError('DESCRIPTOR_TASK_IDENTITY_INVALID') from exc
+
     @contextmanager
     def _sealed_archive(self, path, expected_sha256):
         if not hasattr(os,'memfd_create') or not hasattr(fcntl,'F_ADD_SEALS'):
@@ -362,7 +402,9 @@ class Collector:
         ident = f"{self.evidence_prefix}{len(self.evidence) + 1}"
         label = json.dumps(target) if isinstance(target, tuple) else target
         try:
-            value = getattr(self.system, operation)(target)
+            capability=getattr(self.system,operation,None)
+            if not callable(capability): raise ProbeError('CAPABILITY_UNAVAILABLE:'+operation)
+            value = capability(target)
             if isinstance(value, CommandResult):
                 raw = json.dumps([value.returncode, value.stdout, value.stderr])
                 outcome = f"EXIT_{value.returncode}"

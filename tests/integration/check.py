@@ -45,6 +45,10 @@ def main():
     from webpatch.system import LocalSystem, ProbeError
     reader = LocalSystem()
     package_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
+    import os
+    with archive.open('rb') as held:
+        descriptors=reader.file_descriptors(str(os.getpid()))
+        assert any(f['fd']==held.fileno() and f['inode']==archive.stat().st_ino for f in descriptors['files'])
     with reader._sealed_archive(str(archive), package_hash) as descriptor:
         import os
         try:

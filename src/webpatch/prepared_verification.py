@@ -8,8 +8,11 @@ from .preparation import implementation_digest, static_inputs, verify_snapshot_v
 from .system import ProbeError
 
 
-def verify_prepared_scope(document, report, *, system, controller, probe, now=None):
-    now=now or datetime.now(timezone.utc)
+def verify_prepared_scope(document, report, *, system, controller, probe, now=None, clock=None):
+    if clock is None:
+        fixed_now=now
+        clock=(lambda:fixed_now) if fixed_now is not None else (lambda:datetime.now(timezone.utc))
+    now=clock()
     reasons=[]; views=None; requests=[]; body=None
     try:
         body=controller.store.verify(document)
@@ -37,7 +40,7 @@ def verify_prepared_scope(document, report, *, system, controller, probe, now=No
             raise ValueError('PREPARED_CONFIGURATION_VIEW_DRIFT')
         for target in body['probes']:
             current=collect_application_evidence(report,system=system,probe=probe,url=target['url'],script_path=target['script'],
-                                                 service=target['service'],now=now)
+                                                 service=target['service'],clock=clock)
             requests.append(current)
             if current['status']!='VERIFIED_PROCESS_RESPONSE':
                 raise ValueError('PREPARED_FRESH_REQUEST_FAILED')
@@ -46,6 +49,8 @@ def verify_prepared_scope(document, report, *, system, controller, probe, now=No
                 raise ValueError('PREPARED_REQUEST_POOL_CHANGED')
             if target['configuration']!=current['configuration']:
                 raise ValueError('PREPARED_EFFECTIVE_SETTINGS_CHANGED')
+        if not now<=clock()<min([end,now+timedelta(minutes=5),*[datetime.fromisoformat(p['expires_at']) for p in requests]]):
+            raise ValueError('PREPARED_EVIDENCE_EXPIRED_DURING_COLLECTION')
     except (ValueError,KeyError,TypeError,StopIteration,OSError,ProbeError) as exc:
         reason=str(exc)
         reasons.append(reason if reason.startswith(('PREPARED_','RECEIPT_','SERVICE_')) else 'PREPARED_VERIFICATION_INPUT_INVALID')

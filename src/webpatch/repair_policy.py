@@ -5,8 +5,6 @@ reviewable only with independent evidence about its exact files and consumers.
 """
 from dataclasses import asdict,dataclass,replace
 from datetime import datetime,timezone
-import hashlib
-from importlib.resources import files
 import json
 import re
 
@@ -19,6 +17,7 @@ from .planning import plan,digest
 from .prepared_verification import verify_prepared_scope
 from .system import Collector,DPKG_QUERY,SAFE_PATH,VERSION
 from .rules import DpkgComparator
+from .implementation import implementation_sha256
 
 
 @dataclass(frozen=True)
@@ -33,10 +32,7 @@ class RepairReview:
 
 
 def policy_digest():
-    root=files('webpatch')
-    names=('repair_policy.py','package_control.py','transaction.py','prepared_verification.py',
-           'execution_inputs.py','maintenance.py','preparation.py','service_control.py','system.py','planning.py','trust.py')
-    return digest({name:hashlib.sha256(root.joinpath(name).read_bytes()).hexdigest() for name in names})
+    return implementation_sha256()
 
 
 def path_overrides(inspection,system):
@@ -133,18 +129,21 @@ def predependency_state(inspection,proposal,system):
 
 
 def build_repair_review(report,*,system,simulator,controller,probe,startup_receipt,source_cohort,
-                        package_cache,budget_seconds,now=None):
-    now=now or datetime.now(timezone.utc)
+                        package_cache,budget_seconds,now=None,clock=None):
+    if clock is None:
+        fixed_now=now
+        clock=(lambda:fixed_now) if fixed_now is not None else (lambda:datetime.now(timezone.utc))
+    now=clock()
     if not re.fullmatch(r'php[0-9]+\.[0-9]+',source_cohort): raise ValueError('REPAIR_SOURCE_COHORT_INVALID')
     if type(budget_seconds) is not int or not 60<=budget_seconds<=1800: raise ValueError('REPAIR_MAINTENANCE_BUDGET_INVALID')
     selected={p.id for p in report.inventory.packages if p.source_name==source_cohort}
     diagnostic=plan(report,system=system,simulator=simulator,now=now,target_package_ids=sorted(selected),include_components=True)
-    startup=verify_prepared_scope(startup_receipt,report,system=system,controller=controller,probe=probe,now=now)
+    startup=verify_prepared_scope(startup_receipt,report,system=system,controller=controller,probe=probe,clock=clock)
     # The authenticated payload is consumed only if its fresh verification passed.
     body=startup_receipt.get('payload',{}) if startup['status']=='VERIFIED_CURRENT_PREPARED_SCOPE' else {}
     maintenance=inspect_maintenance(report,diagnostic,system=system,package_cache=package_cache,now=now)
     inputs=audit_execution_inputs(maintenance,system=system)
-    consumers=census(report,system=system,package_ids=sorted(selected),now=now) if selected else None
+    consumers=census(report,system=system,package_ids=sorted(selected),clock=clock) if selected else None
     overrides=path_overrides(maintenance,system)
     triggers=trigger_control_review(report,diagnostic,maintenance,inputs,system=system,package_cache=package_cache,now=now)
     predeps=predependency_state(maintenance,diagnostic,system)
@@ -177,6 +176,7 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
          maintenance['blockers']+inputs['blockers']+triggers['blockers']+predeps['blockers'])
     services=tuple(body.get('services',[])); consumed=(consumers or {}).get('consumers',[])
     covered=(consumers and consumers['status']=='VERIFIED_ACTIVE_MAPPING_CENSUS' and bool(services)
+             and consumers.get('file_descriptor_coverage')=='VERIFIED_VISIBLE_FILE_DESCRIPTORS'
              and {c['service'] for c in consumed}==set(services)
              and all(c['runtime_id'] in body['runtime_ids'] for c in consumed))
     custom=any(h.pid is None and h.path and not h.path.startswith('/etc/php/') for h in report.inventory.runtime_hints)
@@ -189,6 +189,9 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
          'APT solves the exact dependency set; bounded direct dpkg executes only that set. This is an explicit reviewed strategy, not a claim that APT hooks run.')
     gate('service_interruption',bool(services),'Exact services and a finite interruption budget are in the confirmation contract; no rollback is promised.')
     gate('execution_authorization',True,'No authorization yet. The transaction requires explicit confirmation of this exact plan hash.')
+    deadlines=[datetime.fromisoformat(diagnostic.expires_at),datetime.fromisoformat(startup['expires_at'])]
+    if consumers: deadlines.append(datetime.fromisoformat(consumers['expires_at']))
+    gate('collection_freshness',now<=clock()<min(deadlines),'All prerequisite collection must finish before the earliest evidence expiry.')
     files_coverage=check('managed_package_operation','VERIFIED' if not blockers else 'UNKNOWN',scope,(),
         'Finite package-file/active-consumer operation only. Global scan UNKNOWNs remain in the attached diagnostic evidence.',
         'Review all remaining blockers and exact maintenance effects.',blocks=bool(blockers))
@@ -215,8 +218,6 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
             'Restart all declared affected services and verify new process identities, immutable configuration views and explicit collector health',
             'Report PARTIAL/RESTART_REQUIRED on failure and retain private logs; no automatic rollback'],
         'runtime_claim':'Selected managed package files and currently verified consumers only; no claim about history, arbitrary routes or other images.'}
-    deadlines=[datetime.fromisoformat(diagnostic.expires_at),datetime.fromisoformat(startup['expires_at'])]
-    if consumers: deadlines.append(datetime.fromisoformat(consumers['expires_at']))
     proposal=replace(diagnostic,schema_version=5,status='BLOCKED' if blockers else ('READY_FOR_CONFIRMATION' if diagnostic.changes else 'NO_PACKAGE_CHANGES'),
         executable=False,blockers=tuple(sorted(set(blockers))),services=services,
         scope=operation_scope,coverage=(files_coverage,),gates=tuple(gates),
