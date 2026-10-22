@@ -46,6 +46,7 @@ jobs:
           docker build -f tests/integration/Dockerfile --build-arg BASE='${{ matrix.base }}' -t webpatch-ci . 2>&1 | tee ci-evidence/docker-build.log
           docker image inspect webpatch-ci > ci-evidence/docker-image.json
           docker run --rm --read-only --network none --cap-drop ALL --security-opt no-new-privileges webpatch-ci | tee ci-evidence/docker-result.json
+          docker run --rm --network none --security-opt no-new-privileges -e WEBPATCH_DISPOSABLE_CONTAINER=1 -e PYTHONPATH=src webpatch-ci python3 tests/integration/package_control_check.py | tee ci-evidence/native-package.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
