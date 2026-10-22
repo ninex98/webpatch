@@ -255,3 +255,4 @@ class Plan:
     review_status: str = "INCOMPLETE"
     admission_status: str = "BLOCKED"
     target_policy: str = "ENGINE_PACKAGES"
+    execution_contract_sha256: str | None = None

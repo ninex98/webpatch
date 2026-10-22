@@ -24,13 +24,14 @@ from .execution_inputs import audit_execution_inputs
 from .prepared_verification import verify_prepared_scope
 from .container_rebuild import rebuild_advice
 from .node_adapter import scan_node
+from .repair_policy import build_repair_review
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, journal=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "scan-node", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation", "verify-preparation", "rebuild-plan"):
+    for command in ("scan", "scan-node", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation", "verify-preparation", "rebuild-plan", "repair-plan"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         if command!='scan-node':
@@ -38,6 +39,13 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
                                help="read existing .deb files for signed archive identity verification; never downloads")
         if command=='rebuild-plan':
             child.add_argument('--image',required=True,help='declared image@sha256:digest; does not authenticate registry or deployment identity')
+        if command=='repair-plan':
+            child.add_argument('--prepared-receipt',required=True)
+            child.add_argument('--source-cohort',required=True)
+            child.add_argument('--budget-seconds',type=int,required=True)
+            child.add_argument('--state-directory',default='/var/lib/webpatch')
+            child.add_argument('--refresh-probes',action='store_true',required=True,
+                               help='explicitly repeat the prepared collector requests while reviewing the exact repair')
         if command in {"plan", "review-maintenance", "review-execution"}:
             selection = child.add_mutually_exclusive_group()
             selection.add_argument("--target-package", action="append", dest="target_package_ids",
@@ -109,6 +117,16 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             return 4 if result.get('status') in {'BLOCKED','PARTIAL'} else 0
         report = scan_node(reader,now=now) if args.command=='scan-node' else scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command=='repair-plan':
+            controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if isinstance(reader,LocalSystem) else None)
+            capability=probe if probe is not None else (LocalApplicationProbe() if isinstance(reader,LocalSystem) else None)
+            solver=simulator if simulator is not None else (LocalAptSimulator() if isinstance(reader,LocalSystem) else None)
+            if controller is None or capability is None or solver is None: raise ValueError('REPAIR_REVIEW_CAPABILITIES_REQUIRED')
+            review=build_repair_review(report,system=reader,simulator=solver,controller=controller,probe=capability,
+                startup_receipt=json.loads(reader.read_plan_document(args.prepared_receipt)),source_cohort=args.source_cohort,
+                package_cache=args.package_cache,budget_seconds=args.budget_seconds,now=now)
+            print(json.dumps(review.document(),ensure_ascii=True,indent=2))
+            return 4
         if args.command=='rebuild-plan':
             result=rebuild_advice(report,image_reference=args.image,now=now)
             print(json.dumps(result,ensure_ascii=True,indent=2))

@@ -103,3 +103,15 @@ package_control.py 是独立、尚未接入 apply 的可写能力。策略层必
 签名收据新增实施代码与规则摘要。复核要求同 scope、有效时间、同静态输入、完全相同的稳定实例集合、当前载入的受控 unit、真实只读 mount 与文件 inode/hash，再取得新的内核绑定请求和同 pool/effective 配置摘要。旧格式缺少来源字段、过期、代码/规则变化、进程替换、配置视图可写或请求失配均阻断；ownership/recovery 收据不能充当成功启动收据。保存的 JSON 自称完整不能替代这些独立观察。
 
 四格 VM 将在成功准备后立即复核真实收据及新请求；这仍是准入前证据，不是包修复完成。
+
+## 3F.2 统一受控修复审阅（CI 待验收）
+
+`repair-plan --prepared-receipt startup.json --source-cohort php8.1 --budget-seconds 600 --refresh-probes --state-directory /var/lib/webpatch --package-cache <缓存>` 显式重新发起已声明探针、执行 APT 模拟并整合证据；不安装或重启，退出 4。它生成 managed_package_repair_review，内含 schema 5 Plan 和由 plan hash 绑定的 execution_contract_sha256。原诊断 plan 仍 schema 4；旧计划不会被当作受控修复计划。
+
+初始维护配置限定 Ubuntu jammy/noble amd64、同一 PHP 源码分支全部已安装成员、已认证配置快照和稳定服务。认证元数据包与 engine 区分；不再把“非 engine 无 CVE 对照”的组件结果当已选 engine 的规则失败，但所有组件候选、归档和实际字节仍独立核对。未知选定 engine、源、签名、模拟、依赖、锁或输入漂移均阻断。
+
+计划完整列出旧/新维护脚本、conffile、实际 dpkg 管理脚本和触发器。文件 trigger 候选及所选源码组的已声明 handlers 必须有认证旧归档，磁盘脚本与相关执行文件匹配；仅这些 pending handlers 可进入后续受限操作能力。预依赖只支持已配置且不参与此次变更的简单依赖及 >= 约束，复杂表达式或变更中的预依赖阻断。目标 payload 的 diversion/statoverride 阻断；无交集的条目保留精确路径和依据，不删除记录。
+
+完整扫描及所有全局 UNKNOWN 保留在 evidence，操作范围只声明精确包文件和当前已核对的共享消费者。当前 active mapping census、签名启动、只读配置视图与每个已声明请求必须通过；不将此结论扩张成任意未来任务、其他镜像或全站路由安全。仍需后续执行器阶段完成所有实际运行/失败闭环后才能接入公共 apply。本小阶段的 READY_FOR_CONFIRMATION 是待确认的类型化审阅结果，executable=false；无包变化为 NO_PACKAGE_CHANGES 且执行准入 BLOCKED，不伪造一次修复。
+
+四格 VM 在原有只读不变检查之后，单独建立明确的 plain APT 维护配置，保存被搬移配置摘要，并准备实际需要的官方 cohort/handler 归档。产品不自动清理 APT 配置。此正例验证当前修复版的 NO_PACKAGE_CHANGES；后续必须独立证明旧版到修复版的真实升级。已有 jammy/Apache job 在 20 分钟处取消，新增核对后 VM 超时预算调至 35 分钟；产品命令时限未放宽。

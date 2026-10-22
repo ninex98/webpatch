@@ -59,7 +59,7 @@ READY_FOR_REVIEW 仅表示诊断输入可审阅；所有计划仍 `admission_sta
 
 归档封存修正 `6d374f1` 的 Actions 39820064701 已 9/9 PASS。受控启动 `dfcd025` 首轮失败保存在 evidence/phase-3d2/first-ci；`bd39f76` 修正共享 include 和空属性后，systemctl 结构化 EnvironmentFiles 空数组仍省略，由 `dcd3eb2` 增加固定 typed D-Bus 读取。`9c2bbaf` 补齐额外测试 pool 的 socket 访问并保存受限错误码，尚待完整四格重验；单格 Apache 通过不能扩张为全矩阵通过。
 
-执行输入 `509f83c` 遇到 runner 特殊 dpkg hooks 并按要求阻断；`040f213`/`caa9517` 仅在临时 VM 建立记录过的无特殊 hook 测试基线，产品门禁未放宽。包操作能力 `1db0afb` 经 `2ef6b0b` 调整独立 Docker runtime 测试，三格真实合成包升级/trigger/锁/失败路径 PASS，9 个当前相关源码文件与受测 commit 一致，证据在 evidence/phase-3e2/accepted-native。此结果不等于真实 PHP 修复。
+执行输入 `509f83c` 遇到 runner 特殊 dpkg hooks 并按要求阻断；`040f213`/`caa9517` 仅在临时 VM 建立记录过的无特殊 hook 测试基线，产品门禁未放宽。包操作能力 `1db0afb` 经 `2ef6b0b` 调整独立 Docker runtime 测试，三格真实合成包升级/trigger/锁/失败路径 PASS，在 9160700 留证时核对 9 个相关源码文件与受测 commit 一致，证据在 evidence/phase-3e2/accepted-native。此结果不等于真实 PHP 修复。
 
 当前收据复核 `816b8bb` 增加签名、代码/规则、scope、实例、只读视图和新请求核对；容器重建建议 `857e346` 本地 500 tests PASS；独立 Node adapter/rules `8fccbc8` 本地 519 tests PASS。4A 的三格只读接口、4B 的两格 Debian 原生验收仍以其最新 CI 为准。容器扩展交付原设计中的建议，build/rollout NOT_RUN；Node 扩展只覆盖明确列出的 Debian 运行时版本规则，npm/其他来源 UNKNOWN。
 

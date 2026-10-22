@@ -219,7 +219,7 @@ class LocalSystem:
         try:
             rows = []
             for paragraph in raw.decode("utf-8").split("\n\n"):
-                if re.match(r"Package: (?:php|libapache2-mod-php|libphp|apache2(?:-|\n)|nginx(?:-|\n))", paragraph):
+                if re.match(r"Package: (?:php|libapache2-mod-php|libphp|apache2(?:-|\n)|nginx(?:-|\n)|libc-bin\n|man-db\n)", paragraph):
                     rows.extend(paragraphs(paragraph))
             return {"sha256": hashlib.sha256(raw).hexdigest(), "size": len(raw), "packages": rows}
         except (ValueError, UnicodeError) as exc:

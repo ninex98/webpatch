@@ -107,6 +107,9 @@ def inspect_maintenance(report, proposal, *, system, package_cache, now=None):
                   'conffiles': conffiles(verified['control_files']) if verified else [],
                   'payload_configuration': {c['path']: verified.get('payload_files', {}).get(c['path']) for c in conffiles(verified['control_files'])} if verified else {},
                   'payload_paths':sorted(verified.get('payload_entries',verified.get('payload_files',{}))) if verified else [],
+                  'execution_files':{p:h for p,h in verified.get('payload_files',{}).items()
+                      if p.startswith(('/bin/','/sbin/','/lib/','/usr/bin/','/usr/sbin/','/usr/lib/'))
+                      or verified.get('payload_entries',{}).get(p,{}).get('mode',0)&0o111} if verified else {},
                   'info_basename':name+(':'+arch if verified and verified['control'].get('Multi-Arch')=='same' else ''),
                   'pre_depends':verified['control'].get('Pre-Depends','') if verified else None,
                   'status': 'INSPECTED_AUTHENTICATED_ARCHIVE' if verified and not errors else 'UNKNOWN',

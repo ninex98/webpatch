@@ -237,7 +237,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
     blockers.extend((report.apt_sources or {}).get("blockers", ["SOURCE_POLICY_UNKNOWN"]))
     blockers.extend((report.package_trust or {}).get("blockers", ["PACKAGE_TRUST_UNKNOWN"]))
     for identity in (report.package_trust or {}).get("installed", []):
-        if identity["status"] != "AUTHENTICATED_RUNTIME_FILES":
+        if identity["status"] not in {"AUTHENTICATED_RUNTIME_FILES", "AUTHENTICATED_METADATA_ONLY_ARCHIVE"}:
             blockers.append("INSTALLED_PACKAGE_IDENTITY_UNKNOWN:" + identity["package_id"])
     if not report.inventory.environment.scope_sha256:
         blockers.append("SCOPE_IDENTITY_UNKNOWN")
@@ -245,7 +245,8 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
         blockers.append("CONTAINER_REBUILD_REQUIRED")
     if report.inventory.environment.os_id != "ubuntu" or report.inventory.environment.codename not in {"jammy", "noble"}:
         blockers.append("APT_PLANNING_UNSUPPORTED_RELEASE")
-    if any(a.version_status == "UNKNOWN" and a.fixed_version for a in report.assessments):
+    selected_engines={p.id for p in report.inventory.packages if p.id in requested and p.sapi in {'fpm','apache2','cli','cgi'}}
+    if any(a.version_status == "UNKNOWN" and a.package_id in selected_engines for a in report.assessments):
         blockers.append("PACKAGE_ASSESSMENT_UNKNOWN")
     try:
         bindings = stable_bindings(report)
