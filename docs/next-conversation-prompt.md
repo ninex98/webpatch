@@ -1,34 +1,30 @@
 # 下一轮开发提示词
 
-以下内容可直接粘贴到新的开发对话。它包含将已验收的提交推送到指定仓库并运行 GitHub Actions 的授权；不授权发布正式版本或修复宿主/生产环境。
+继续开发 WebPatch，工作目录 `/Users/ninex/Projects/hll-ecosystem/apps/webpatch`，仓库 `ninex98/webpatch`，优先使用已有 origin 和 Git 身份。先读取 AGENTS.md、docs/design.md、README.md、evidence/phase-2c/README.md 及各阶段 accepted-ci/run.json，核实当前 Git/远端/CI，不重新搭脚手架，不覆盖用户改动或远端历史。
 
----
+## 当前实现与验收
 
-请继续开发开源 Web 运行时安全检测与修复 CLI：WebPatch。
+- CI 基线已补齐：Ubuntu 22.04/24.04 × FPM/mod_php 的 amd64 GitHub 临时 VM，以及 Ubuntu 22.04/24.04、Debian 12 Docker。基线验收提交 d8d432f。
+- 2A 本地运行实例关联已验收：starttime、namespace/root、文件映像、dpkg owner、systemd cgroup、FPM pools、mod_php 映射及静态 handlers。验收提交 9f74634，Actions 39738157981。
+- 2B.1 软件源与包状态审计已验收：sources/deb822、Signed-By、第三方/混合源、pin/hold、hooks/特殊配置及异常包。验收提交 8be3bf8，Actions 39738531076。
+- 2B.2 官方归档身份链已验收：固定 Ubuntu 签名指纹、InRelease、Packages 摘要、缓存 deb/control 与运行文件字节，真实篡改签名拒绝。验收提交 565f308，Actions 39743408335。mirror+file 未支持，保持 UNKNOWN；VM 正向测试在准备阶段明确配置 direct 官方源。
+- 2C 已实现真实 APT simulate、完整依赖变化检查、冻结计划/过期/摘要、模拟前后状态核对和 verify-plan；所有计划仍 BLOCKED/executable=false。实现源码 37dc9d9，本地及 CI Python 3.10/3.12 各 243 tests PASS；Actions 39749809257 重跑后 9/9 jobs PASS，四格 VM 的真实模拟、保存计划核对、合成旧状态依赖求解与系统状态不变检查全部通过。Ubuntu 22.04/24.04 禁网只读容器升级求解也通过。最终验收证据见 evidence/phase-2c/accepted-ci/。
 
-项目目录：`/Users/ninex/Projects/hll-ecosystem/apps/webpatch`。
-远端仓库：`https://github.com/ninex98/webpatch`，当前 origin 配置为 `git@github.com:ninex98/webpatch.git`；如 SSH 不可用，可自行切换 HTTPS。先检查当前分支、工作区、远端和 CI 状态，不要覆盖已有历史或用户修改。
+所有证据只证明其记录的源码。各阶段保留了失败日志和后续修正：FPM 测试 nginx worker 权限、runner mirror+file 来源未覆盖，整个 /proc 列表造成的扫描器 PID 假漂移、合成旧状态的同源依赖一致性，以及 no-download 对空缓存模拟的额外限制。不得使用旧成功结果覆盖新失败。完整源码/制品 SHA256、JUnit、VM 报告在对应证据目录；Git 未纳入二进制安装包。
 
-先阅读 `AGENTS.md`、`docs/design.md`、`README.md`、`evidence/phase-1.md` 和 `evidence/verification.json`，再检查实现与测试。直接在现有项目上推进，不要重新搭一个脚手架。
+## 未覆盖能力与下一步边界
 
-目前已完成第一阶段只读基础：Python 3.10+、可注入系统读取接口、环境适配器、统一证据模型、独立规则提供者、PHP 包版本对照、JSON 报告、阻断式 plan 和 .deb 构建。历史基线有 54 种 fixtures、140 项测试在 Python 3.10/3.12 通过，Ubuntu 22.04/24.04 与 Debian 12 的 arm64 Docker 集成通过。`plan --dry-run` 目前明确没有执行真实 APT 模拟；`apply` 禁用。包版本达标不代表运行中服务已安全。原始证据中的“未配置 Git”是当时状态，以当前 Git 配置为准。
+先核实最新 CI，若有新失败则处理并留证；已验收源码之外的修改必须重新检查。随后推进用户本轮指定的下一阶段。不要自行启用实际修复执行。当前剩余边界包括：静态配置不是已加载配置证明；动态 includes、.htaccess、任意应用 HTTP 路由/健康、未覆盖 SAPI、自编译、第三方、镜像列表、ESM 和其他容器仍 UNKNOWN。Debian 仅官方版本对照，未认证归档修复路径。不能将这些未知折算为 SAFE 或自动执行资格。
 
-本轮按以下顺序推进，每一步独立验收并提交：
+2C 模拟使用独立临时 APT_CONFIG，保留系统 sources/preferences/status/extended_states，禁用 hooks 和系统缓存写入。被省略的特殊 APT 配置仍是阻断项。APT 模拟不持锁，不提供事务保证；真实升级、维护脚本重启、失败恢复和修复后健康验证属于后续显式授权的执行阶段。合成旧 dpkg status 的真实求解测试只改临时副本，没有安装旧漏洞二进制。
 
-1. **补齐 CI 基线**：检查已有 GitHub Actions；如未运行，将当前已验收提交推送到 origin 并实际运行 CI。完成 Ubuntu 22.04/24.04 × PHP-FPM/mod_php 的临时 VM 安装与服务验证，排查失败并保留运行链接、日志和制品。Docker 结果不能替代 systemd/amd64 验证。不要把旧证据或未运行项目写成通过。
-2. **阶段 2A：可信运行时发现**：在首版支持范围内关联 PHP 包、实际二进制、进程、systemd 服务、FPM pools、mod_php 和 Web 路由；正确处理多 PHP 版本、CLI/FPM 不一致、旧进程/删除映像、权限不足和容器命名空间。明确哪些关联已验证，不能解析的配置或未覆盖实例保留 UNKNOWN。
-3. **阶段 2B：厂商与软件源可信度**：核实当前官方 PHP/Ubuntu/Debian 公告和回移植修复边界，建立版本、来源、签名索引、包/运行文件身份的证据链。检查 sources/deb822、Signed-By、索引时效、pin、hold、第三方/混合源及异常包状态。不能仅凭版本后缀、Maintainer/Origin 文本或 apt-cache policy 认定已安装包可信；未知情况阻断自动规划。
-4. **阶段 2C：真实 APT dry-run 与计划**：为受支持的 Ubuntu 官方同分支包实现可验证的依赖模拟，列出所有包/依赖变化、服务中断和阻断原因。拒绝移除、降级、跨发行版/主次版本迁移、不可信来源及未批准依赖变化。计划绑定作用域、规则/包/配置/源摘要和过期时间，能够发现计划后的状态漂移。本轮继续禁用实际修复执行；阶段三另行推进。
+规则源于 PHP/Ubuntu/Debian 官方公告，审阅日 2026-10-22，有效至 2026-10-29 00:00 UTC。每次重新审阅须保存来源和摘要；禁止仅延长过期时间。不要把包版本、磁盘字节匹配、php -v 或安装成功当成运行时已安全。
 
-每个子阶段开始时先给出简短范围、实现思路和验收条件。若工作量较大，可以进一步拆成小阶段，逐个完成，不要一次堆砌全部功能。遇到真实外部阻断时保留证据并明确说明，不以降低安全标准绕过。
+## 工作要求与授权
 
-必须遵守：
-
-- 默认只读；不执行 PHP 漏洞利用，不把 `php -v`、无发现结果、磁盘包更新或安装命令成功当作“已安全”。未知环境不自动修复。
-- 不安装或升级我宿主机的系统包，不修改宿主 PHP/软件源/服务。开发依赖只装到项目虚拟环境，安装及服务变更只在隔离容器和 GitHub 托管临时 VM 中测试。扫描不得隐式更新系统 APT 缓存。
-- 使用注入式 fixtures 覆盖异常及失败路径，以真实 Docker/临时 VM 验证包管理和服务行为。测试证据要对应当前源码；记录失败、未运行与通过的区别。
-- 每完成一个阶段性功能，测试验收通过并更新证据后，立即 Git 提交。每次提交的标题和正文都要包含中文和英文，说明改动、验证和限制；报告 commit hash。
-- 如果云端 CI 必须先提交并推送才能运行，可以在本地检查通过后先提交明确标注为“CI 待验收”的检查点并推送，再修复云端失败；所需检查全部通过后才能宣布阶段完成。
-- 允许你自主配置项目工具、虚拟环境、Git/CI 等必要设置，允许推送已验收的提交到 origin 并运行 GitHub Actions，不必逐项询问。不得强推、覆盖远端历史、发布正式 release 或对宿主/生产系统执行修复。
-
-先报告现状与本轮首个小阶段，然后直接实施。重点论证普适性和测试可信度，宁可明确 UNKNOWN 或不支持，也不要误报安全或执行高风险操作。
+1. 每个小阶段先说明范围和验收条件，实施后运行对应 checks，保留 PASS/FAIL/NOT_RUN/BLOCKED、JUnit/日志、环境与源码/制品摘要。
+2. 验收后立即独立 Git 提交；标题和正文都包含中文与英文，说明验证和限制并报告 hash。云端必须先推送时可以创建明确标注 CI 待验收的检查点，全部必要门禁通过后才能宣布完成。
+3. 继续允许自主配置项目本地工具/虚拟环境/Git/CI，允许正常推送到 origin 并运行 GitHub Actions；不强推、不覆盖已有远端历史、不发布 release。
+4. 宿主 PHP、APT 源、系统包与服务不得修改。安装与服务测试只在隔离 Docker 或 GitHub 托管临时 VM 中，禁止 privileged、宿主 root/proc/socket 挂载和自托管 runner。开发依赖只在项目虚拟环境。
+5. 默认只读，扫描不刷新 APT 缓存、不执行 PHP、不访问 Docker daemon 或应用站点。严格注入 fixtures 不回退宿主；使用普通标记响应而非真实漏洞利用。
+6. 保持适配器、系统 I/O、模型、官方规则、身份链、规划、执行、验证的边界。未知环境保持可操作的 UNKNOWN 并阻断自动修复。实际运行修复仍需设计要求的审阅 dry-run 和显式确认，本授权不包含该操作。

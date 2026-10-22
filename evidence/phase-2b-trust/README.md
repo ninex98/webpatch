@@ -1,4 +1,7 @@
-# 阶段 2B.2 / Signed archive identity — CI 待验收
+# 阶段 2B.2 / Signed archive identity — 已验收 / accepted
+
+最终结果 PASS，见 [accepted-ci/](accepted-ci/)；下文保留各检查点的历史状态和失败记录。
+
 
 范围：只读验证已有 Ubuntu jammy/noble APT InRelease，固定 Ubuntu 2018 完整签名指纹；验证签名、suite/codename、时间、SHA256 表与解压 Packages 的长度/摘要。新鲜 security/updates 可提供规划候选；不可变 base pocket 只作身份比对，不作修复候选。无签名/过期/缺索引/多义版本保持 UNKNOWN。
 

@@ -1,4 +1,7 @@
-# 阶段 2C / Real APT simulation — CI 待验收
+# 阶段 2C / Real APT simulation — 已验收 / accepted
+
+最终结果 PASS，见 [accepted-ci/](accepted-ci/)；下文保留各检查点的历史状态和失败记录。
+
 
 范围：为 Ubuntu jammy/noble 认证的同分支精确候选执行真实 apt-get --simulate --no-remove --only-upgrade，独立临时 APT_CONFIG 禁用系统 hooks/缓存写入。来源、preferences、dpkg status、extended_states 来自当前系统；被省略的 hooks/特殊配置保留阻断项，不能据此执行实际修复。
 
@@ -19,3 +22,11 @@
 升级求解修正：合成状态统一调整同 PHP 源码包的版本及精确依赖，保持一致；禁止改动真实 dpkg status。进一步在本地隔离容器发现 --no-download 在 simulate 下仍要求已缓存 deb，导致空缓存升级求解失败。移除该多余选项，固定 --simulate 仍然不会执行/下载（[官方 APT 手册](https://manpages.debian.org/bookworm/apt/apt-get.8.en.html)）；未加入 fix-broken、ignore-missing 或任何强制选项。原失败见 solver-jammy-first.stderr。
 
 Ubuntu 22.04/24.04 arm64 真实 APT 升级求解 PASS，各输出 6 个 PHP 目标/同源依赖变化。使用已有阶段一测试镜像加当前源码构建派生镜像，运行参数 --read-only --network none --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,noexec,nosuid,size=64m；无宿主挂载、无特权模式、无联网或真实升级，临时副本写入仅在容器 /tmp。输出、构建日志、镜像身份和源码/制品摘要见 solver-*；本地 243 tests PASS。最终四格 amd64 VM 仍需重跑。
+
+第三次 CI 初次尝试：Actions 39749809257（37dc9d9），三格 VM 全部功能检查 PASS；jammy FPM 在准备环境的 apt-get update 被官方镜像同步造成的 Packages.xz 大小不一致拒绝（1288788 != 1288792），该单元 FAIL，未忽略签名/摘要校验。第三次初始运行的完整证据在 third-ci/，单独失败日志 third-ci-jammy-fpm-failure.log。对该 run 发起 --failed 重跑；最终矩阵汇总合并了同一源码的成功检查与失败单元重跑结果。
+
+最终验收：Actions [39749809257](https://github.com/ninex98/webpatch/actions/runs/39749809257)，源码 `37dc9d93531b674fe68289dc930eb25e62d44f2c`，重跑后 9/9 jobs PASS。Python 3.10/3.12 各 243 tests、三组 Docker、Ubuntu 22.04/24.04 × FPM/mod_php 四格 VM 全通过。四格都实际执行 APT 模拟、验证保存计划无漂移、运行 real APT + coherent synthetic status 的完整 PHP 依赖升级求解；每格同时验证官方身份链、篡改签名拒绝、运行实例关联、普通 HTTP 标记、apply 拒绝及扫描/模拟前后服务 PID/APT/dpkg/配置不变。
+
+最终日志、JUnit、平台/内核、源码/制品摘要、扫描、计划、verify-plan 与合成升级报告见 accepted-ci/；原始失败证据均保留。2C 的上述只读规划范围验收完成。实际修复执行、真实旧二进制升级、修复后健康验证仍 NOT_RUN；所有运行时安全结论 UNKNOWN，所有计划 BLOCKED，不自动解除未覆盖项。
+
+交付校验：current-source-validation.json 核对当前 35 个源码/测试/CI 文件与已验收提交一致，验证四格报告和计划并核对安装包摘要。已测试的包保存在 dist/phase-2/webpatch_0.1.0_all.deb（未加入 Git），SHA256 为 7be9ca7a6cff6dffc51a5ea391a36d952239623b8cf6f9352c474c9bb1a9d618。

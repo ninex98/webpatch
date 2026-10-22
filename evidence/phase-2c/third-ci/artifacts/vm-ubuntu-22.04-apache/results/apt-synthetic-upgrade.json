@@ -1,0 +1,250 @@
+{
+  "result": "PASS",
+  "scope": "REAL_APT_SYNTHETIC_STATUS_ONLY_NO_BINARY_DOWNGRADE",
+  "status_sha256": "634a75478b1611558ffff7030aeb60ebe718dc53c0ee7039b412059ce93ed4b7",
+  "synthetic_status_sha256": "8e9efbf26b77beddb1fe91b067c52642f43489fde9cc56e24b3d543bf3b0ae9b",
+  "simulation": {
+    "command": [
+      "/usr/bin/apt-get",
+      "--simulate",
+      "--no-remove",
+      "--only-upgrade",
+      "--no-install-recommends",
+      "install",
+      "libapache2-mod-php8.1:amd64=8.1.2-1ubuntu2.28"
+    ],
+    "result": {
+      "returncode": 0,
+      "stdout": "NOTE: This is only a simulation!\n      apt-get needs root privileges for real execution.\n      Keep also in mind that locking is deactivated,\n      so don't depend on the relevance to the real current situation!\nReading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages were automatically installed and are no longer required:\n  apport-symptoms bc landscape-common libintl-perl libintl-xs-perl libisns0\n  liblldb-13 liblldb-15 libmodule-find-perl libmodule-scandeps-perl libmspack0\n  libopeniscsiusr libproc-processtable-perl libsort-naturally-perl\n  libterm-readkey-perl libxmlsec1 libxmlsec1-openssl lxd-agent-loader\n  needrestart open-iscsi open-vm-tools python3-apport python3-automat\n  python3-bcrypt python3-click python3-colorama python3-constantly\n  python3-hamcrest python3-hyperlink python3-incremental\n  python3-problem-report python3-pyasn1 python3-pyasn1-modules\n  python3-service-identity python3-systemd python3-twisted\n  python3-zope.interface zerofree\nUse 'apt autoremove' to remove them.\nThe following additional packages will be installed:\n  php8.1-bcmath php8.1-bz2 php8.1-cgi php8.1-cli php8.1-common php8.1-curl\n  php8.1-dba php8.1-dev php8.1-enchant php8.1-fpm php8.1-gd php8.1-gmp\n  php8.1-imap php8.1-interbase php8.1-intl php8.1-ldap php8.1-mbstring\n  php8.1-mysql php8.1-odbc php8.1-opcache php8.1-pgsql php8.1-phpdbg\n  php8.1-pspell php8.1-readline php8.1-snmp php8.1-soap php8.1-sqlite3\n  php8.1-sybase php8.1-tidy php8.1-xml php8.1-zip\nSuggested packages:\n  dh-php\nRecommended packages:\n  pkg-php-tools\nThe following packages will be upgraded:\n  libapache2-mod-php8.1 php8.1-bcmath php8.1-bz2 php8.1-cgi php8.1-cli\n  php8.1-common php8.1-curl php8.1-dba php8.1-dev php8.1-enchant php8.1-fpm\n  php8.1-gd php8.1-gmp php8.1-imap php8.1-interbase php8.1-intl php8.1-ldap\n  php8.1-mbstring php8.1-mysql php8.1-odbc php8.1-opcache php8.1-pgsql\n  php8.1-phpdbg php8.1-pspell php8.1-readline php8.1-snmp php8.1-soap\n  php8.1-sqlite3 php8.1-sybase php8.1-tidy php8.1-xml php8.1-zip\n32 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.\nInst php8.1-zip [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-xml [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-tidy [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-sybase [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-sqlite3 [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-soap [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-snmp [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-readline [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-pspell [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-opcache [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-phpdbg [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-pgsql [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-odbc [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-mysql [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-mbstring [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-ldap [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-intl [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-interbase [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-imap [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-gmp [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-gd [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-fpm [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-enchant [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-dev [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-dba [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-curl [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-cgi [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-bz2 [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-bcmath [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst libapache2-mod-php8.1 [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-cli [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64]) []\nInst php8.1-common [8.1.2-1ubuntu2.27] (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-zip (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-xml (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-tidy (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-sybase (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-sqlite3 (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-soap (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-snmp (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-readline (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-pspell (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-opcache (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-phpdbg (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-pgsql (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-odbc (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-mysql (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-mbstring (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-ldap (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-intl (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-interbase (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-imap (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-gmp (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-gd (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-fpm (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-enchant (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-dev (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-dba (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-curl (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-cgi (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-bz2 (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-bcmath (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf libapache2-mod-php8.1 (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-cli (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\nConf php8.1-common (8.1.2-1ubuntu2.28 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])\n",
+      "stderr": ""
+    },
+    "privileged": false,
+    "configuration": "ISOLATED_NO_HOOKS_SYSTEM_SOURCES_STATUS_AND_PREFERENCES"
+  },
+  "changes": [
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-zip",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-xml",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-tidy",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-sybase",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-sqlite3",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-soap",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-snmp",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-readline",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-pspell",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-opcache",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-phpdbg",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-pgsql",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-odbc",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-mysql",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-mbstring",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-ldap",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-intl",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-interbase",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-imap",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-gmp",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-gd",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-fpm",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-enchant",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-dev",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-dba",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-curl",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-cgi",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-bz2",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-bcmath",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "libapache2-mod-php8.1",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-cli",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.1-common",
+      "architecture": "amd64",
+      "old_version": "8.1.2-1ubuntu2.27",
+      "new_version": "8.1.2-1ubuntu2.28"
+    }
+  ]
+}

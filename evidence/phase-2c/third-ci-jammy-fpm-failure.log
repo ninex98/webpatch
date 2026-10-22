@@ -1,0 +1,213 @@
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	﻿2026-10-22T08:42:58.2257449Z Current runner version: '2.338.0'
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2271375Z ##[group]Runner Image Provisioner
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2271851Z Hosted Compute Agent
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2272202Z Version: 20261015.610
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2272542Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2273053Z Build Date: 2026-10-14T17:06:54Z
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2273436Z Worker ID: {6c53bc8a-ef0c-4005-ba73-9884cd9dea02}
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2273807Z Region: centralus
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2274123Z Cloud: Azure
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2274416Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2275075Z ##[group]Operating System
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2275418Z Ubuntu
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2275688Z 22.04.5
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2275949Z LTS
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2276246Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2276533Z ##[group]Runner Image
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2276852Z Image: ubuntu-22.04
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2277157Z Version: 20261018.327.1
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2277725Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261018.327/images/ubuntu/Ubuntu2204-Readme.md
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2278615Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261018.327
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2279134Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2279724Z ##[group]GITHUB_TOKEN Permissions
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2280958Z Contents: read
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2281264Z Metadata: read
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2281551Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2282702Z Secret source: Actions
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2283278Z Cache mode: write
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2283673Z Prepare workflow directory
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2508170Z Prepare all required actions
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.2536476Z Getting action download info
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.5050002Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.6655383Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+vm-install-and-service (ubuntu-22.04, fpm)	Set up job	2026-10-22T08:42:58.8661384Z Complete job name: vm-install-and-service (ubuntu-22.04, fpm)
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-22T08:42:58.9017373Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9017873Z with:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9018109Z   repository: ninex98/webpatch
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9020039Z   token: ***
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9020267Z   ssh-strict: true
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9020500Z   ssh-user: git
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9020740Z   persist-credentials: true
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9021002Z   clean: true
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9021240Z   sparse-checkout-cone-mode: true
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9021514Z   fetch-depth: 1
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9021745Z   fetch-tags: false
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9021984Z   show-progress: true
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9022227Z   lfs: false
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9022449Z   submodules: false
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9022692Z   set-safe-directory: true
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9023066Z   allow-unsafe-pr-checkout: false
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9023411Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9588373Z Syncing repository: ninex98/webpatch
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9589579Z ##[group]Getting Git version info
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9589956Z Working directory is '/home/runner/work/webpatch/webpatch'
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9590615Z [command]/usr/bin/git version
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9606011Z git version 2.55.0
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9621196Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9628649Z Temporarily overriding HOME='/home/runner/work/_temp/a94b61f9-a6a3-4a42-888f-7785a4c78600' before making global git config changes
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9633735Z Adding repository directory to the temporary git global config as a safe directory
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9634776Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9649350Z Deleting the contents of '/home/runner/work/webpatch/webpatch'
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9652140Z ##[group]Initializing the repository
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9654492Z [command]/usr/bin/git init /home/runner/work/webpatch/webpatch
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9719228Z hint: Using 'master' as the name for the initial branch. This default branch name
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9720688Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9721610Z hint: to use in all of your new repositories, which will suppress this warning,
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9722328Z hint: call:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9722776Z hint:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9723391Z hint: 	git config --global init.defaultBranch <name>
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9724006Z hint:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9724577Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9725489Z hint: 'development'. The just-created branch can be renamed via this command:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9726213Z hint:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9726646Z hint: 	git branch -m <name>
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9727128Z hint:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9727754Z hint: Disable this message with "git config set advice.defaultBranchName false"
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9728768Z Initialized empty Git repository in /home/runner/work/webpatch/webpatch/.git/
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9730429Z [command]/usr/bin/git remote add origin https://github.com/ninex98/webpatch
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9745217Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9745874Z ##[group]Disabling automatic garbage collection
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9748097Z [command]/usr/bin/git config --local gc.auto 0
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9764136Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9764737Z ##[group]Setting up auth
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9768872Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9784915Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9956750Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:58.9989104Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.0096267Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.0112287Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.0204121Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.0224971Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.0225389Z ##[group]Fetching the repository
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.0230462Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +37dc9d93531b674fe68289dc930eb25e62d44f2c:refs/remotes/origin/main
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8852527Z From https://github.com/ninex98/webpatch
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8854237Z  * [new ref]         37dc9d93531b674fe68289dc930eb25e62d44f2c -> origin/main
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8857104Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8861090Z ##[group]Determining the checkout info
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8862264Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8863090Z [command]/usr/bin/git sparse-checkout disable
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8884074Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8897987Z ##[group]Checking out the ref
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.8899546Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.9360162Z Switched to a new branch 'main'
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.9361694Z branch 'main' set up to track 'origin/main'.
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.9368680Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.9391032Z [command]/usr/bin/git log -1 --format=%H
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:42:59.9404217Z 37dc9d93531b674fe68289dc930eb25e62d44f2c
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	﻿2026-10-22T08:42:59.9576409Z ##[group]Run bash scripts/ci_vm_smoke.sh 'fpm' 2>&1 | tee vm-smoke.log
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:42:59.9577760Z ^[[36;1mbash scripts/ci_vm_smoke.sh 'fpm' 2>&1 | tee vm-smoke.log^[[0m
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:42:59.9596206Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:42:59.9597266Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:00.3806059Z Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:00.6097125Z Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:00.9489238Z Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:01.0854946Z Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1395 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:01.4596671Z Get:5 http://archive.ubuntu.com/ubuntu jammy/main Translation-en [510 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:01.5827303Z Get:6 http://archive.ubuntu.com/ubuntu jammy/main amd64 c-n-f Metadata [30.3 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:01.6849529Z Get:7 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:01.8394163Z Get:8 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3643 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:02.2070349Z Get:9 http://archive.ubuntu.com/ubuntu jammy/universe Translation-en [5652 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:02.4209525Z Get:10 http://archive.ubuntu.com/ubuntu jammy/universe amd64 c-n-f Metadata [286 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:02.5237474Z Get:11 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [129 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:02.6256905Z Get:12 http://archive.ubuntu.com/ubuntu jammy/restricted Translation-en [18.6 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:02.7267459Z Get:13 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 c-n-f Metadata [488 B]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:02.8277910Z Get:14 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [217 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:02.9303567Z Get:15 http://archive.ubuntu.com/ubuntu jammy/multiverse Translation-en [112 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:03.0322618Z Get:16 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 c-n-f Metadata [8372 B]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:03.1333065Z Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3909 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:04.5862058Z Get:18 http://archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [576 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:08.9998124Z Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 c-n-f Metadata [20.1 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:09.2878513Z Ign:20 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:09.4479457Z Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [326 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:10.8454316Z Get:22 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [510 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:12.3075922Z Get:23 http://security.ubuntu.com/ubuntu jammy-security/main amd64 c-n-f Metadata [14.7 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:12.4844045Z Get:24 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1055 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:12.5935146Z Get:25 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 c-n-f Metadata [30.8 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:13.0307603Z Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6740 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:15.6356675Z Get:27 http://security.ubuntu.com/ubuntu jammy-security/universe Translation-en [237 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:16.6448749Z Get:28 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 c-n-f Metadata [23.2 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:16.9025790Z Get:29 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6505 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:38.6663128Z Get:30 http://security.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1250 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:43.2006975Z Get:31 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 c-n-f Metadata [600 B]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:43.3569438Z Get:32 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [79.6 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:43.7753889Z Get:33 http://security.ubuntu.com/ubuntu jammy-security/multiverse Translation-en [13.7 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:43:43.9694729Z Get:34 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 c-n-f Metadata [544 B]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:08.2480716Z Get:35 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1294 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:22.7311831Z Get:36 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 c-n-f Metadata [584 B]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:23.7474809Z Get:37 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [86.1 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:24.6701471Z Get:38 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [16.6 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:24.9869570Z Get:39 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 c-n-f Metadata [756 B]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2112553Z Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1289 kB]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2195957Z Err:20 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2196801Z   File has unexpected size (1288788 != 1288792). Mirror sync in progress? [IP: 91.189.91.81 80]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2197382Z   Hashes of expected file:
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2197606Z    - Filesize:1288792 [weak]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2198057Z    - SHA256:a39b6193485453c2e9583c66b1c2a0bfcb7c137a0803f80a546fb871fff59f99
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2198439Z    - SHA1:68412229b991858b323b838757b45c17c30bcbef [weak]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2198748Z    - MD5Sum:fec782f6949190da44967aeeeda0236d [weak]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:25.2199036Z   Release file created at: Thu, 22 Oct 2026 06:46:38 +0000
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.4333261Z Fetched 49.3 MB in 1min 25s (579 kB/s)
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8763594Z Reading package lists...
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8840229Z E: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/jammy-updates/universe/binary-amd64/Packages.xz  File has unexpected size (1288788 != 1288792). Mirror sync in progress? [IP: 91.189.91.81 80]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8840967Z    Hashes of expected file:
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8842192Z     - Filesize:1288792 [weak]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8842499Z     - SHA256:a39b6193485453c2e9583c66b1c2a0bfcb7c137a0803f80a546fb871fff59f99
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8842795Z     - SHA1:68412229b991858b323b838757b45c17c30bcbef [weak]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8843097Z     - MD5Sum:fec782f6949190da44967aeeeda0236d [weak]
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8843284Z    Release file created at: Thu, 22 Oct 2026 06:46:38 +0000
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8843582Z E: Some index files failed to download. They have been ignored, or old ones used instead.
+vm-install-and-service (ubuntu-22.04, fpm)	Install and validate a real service on the disposable VM	2026-10-22T08:44:27.8864397Z ##[error]Process completed with exit code 100.
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	﻿2026-10-22T08:44:27.8969986Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8970199Z with:
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8970318Z   name: vm-ubuntu-22.04-fpm
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8970464Z   path: ci-evidence/
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	vm-smoke.log
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	dist/*.deb
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8970623Z   if-no-files-found: warn
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8970748Z   compression-level: 6
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8970863Z   overwrite: false
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8970988Z   include-hidden-files: false
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.8971120Z ##[endgroup]
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.9890568Z (node:2338) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.9891000Z (Use `node --trace-deprecation ...` to show where the warning was created)
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.9928832Z Multiple search paths detected. Calculating the least common ancestor of all paths
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.9931229Z The least common ancestor is /home/runner/work/webpatch/webpatch. This will be the root directory of the artifact
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.9931793Z With the provided path, there will be 2 files uploaded
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.9934081Z Artifact name is valid!
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:27.9935021Z Root directory input is valid!
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.2407090Z Beginning upload of artifact content to blob storage
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.2519744Z (node:2338) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.3968240Z Uploaded bytes 1404
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.4380355Z Finished uploading artifact content to blob storage!
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.4381063Z SHA256 digest of uploaded artifact zip is 61decbac1b5b2e8bdbfe571f021faf74420f94be7bf917620fc7e79b49620335
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.4383116Z Finalizing artifact upload
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.9219302Z Artifact vm-ubuntu-22.04-fpm.zip successfully finalized. Artifact ID 12413530310
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.9219934Z Artifact vm-ubuntu-22.04-fpm has been successfully uploaded! Final size is 1404 bytes. Artifact ID is 12413530310
+vm-install-and-service (ubuntu-22.04, fpm)	Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02	2026-10-22T08:44:28.9223511Z Artifact download URL: https://github.com/ninex98/webpatch/actions/runs/39749809257/artifacts/12413530310
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-22T08:44:28.9348353Z Post job cleanup.
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:28.9824476Z [command]/usr/bin/git version
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:28.9853207Z git version 2.55.0
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:28.9854931Z Temporarily overriding HOME='/home/runner/work/_temp/9962a07f-a018-454a-959e-b717a92c3233' before making global git config changes
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:28.9855590Z Adding repository directory to the temporary git global config as a safe directory
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:28.9863603Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:28.9878085Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:28.9894740Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:29.0002664Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:29.0013893Z http.https://github.com/.extraheader
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:29.0020680Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:29.0044836Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:29.0151720Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+vm-install-and-service (ubuntu-22.04, fpm)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-22T08:44:29.0169510Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+vm-install-and-service (ubuntu-22.04, fpm)	Complete job	﻿2026-10-22T08:44:29.0406357Z Cleaning up orphan processes
+vm-install-and-service (ubuntu-22.04, fpm)	Complete job	2026-10-22T08:44:29.0550275Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

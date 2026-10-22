@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "test": "modified signed Release rejected by real gpgv",
+  "original_sha256": "cdb2f31d809f589719a53c6ad15f255b27569c4059542ada282aaa21b8e164b0",
+  "tampered_sha256": "057e2a0085c9f06159c70b1f22bed7026b4d68ce76e6a4d55efb3c8f2cd715b3",
+  "gpgv_exit": 1
+}

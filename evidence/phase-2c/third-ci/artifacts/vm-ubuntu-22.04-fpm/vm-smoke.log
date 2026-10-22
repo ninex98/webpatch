@@ -1,0 +1,58 @@
+Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1395 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy/main Translation-en [510 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy/main amd64 c-n-f Metadata [30.3 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]
+Get:8 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3643 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy/universe Translation-en [5652 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy/universe amd64 c-n-f Metadata [286 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [129 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy/restricted Translation-en [18.6 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 c-n-f Metadata [488 B]
+Get:14 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [217 kB]
+Get:15 http://archive.ubuntu.com/ubuntu jammy/multiverse Translation-en [112 kB]
+Get:16 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 c-n-f Metadata [8372 B]
+Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3909 kB]
+Get:18 http://archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [576 kB]
+Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 c-n-f Metadata [20.1 kB]
+Ign:20 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages
+Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [326 kB]
+Get:22 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [510 kB]
+Get:23 http://security.ubuntu.com/ubuntu jammy-security/main amd64 c-n-f Metadata [14.7 kB]
+Get:24 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1055 kB]
+Get:25 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 c-n-f Metadata [30.8 kB]
+Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6740 kB]
+Get:27 http://security.ubuntu.com/ubuntu jammy-security/universe Translation-en [237 kB]
+Get:28 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 c-n-f Metadata [23.2 kB]
+Get:29 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6505 kB]
+Get:30 http://security.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1250 kB]
+Get:31 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 c-n-f Metadata [600 B]
+Get:32 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [79.6 kB]
+Get:33 http://security.ubuntu.com/ubuntu jammy-security/multiverse Translation-en [13.7 kB]
+Get:34 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 c-n-f Metadata [544 B]
+Get:35 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1294 kB]
+Get:36 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 c-n-f Metadata [584 B]
+Get:37 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [86.1 kB]
+Get:38 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [16.6 kB]
+Get:39 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 c-n-f Metadata [756 B]
+Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1289 kB]
+Err:20 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages
+  File has unexpected size (1288788 != 1288792). Mirror sync in progress? [IP: 91.189.91.81 80]
+  Hashes of expected file:
+   - Filesize:1288792 [weak]
+   - SHA256:a39b6193485453c2e9583c66b1c2a0bfcb7c137a0803f80a546fb871fff59f99
+   - SHA1:68412229b991858b323b838757b45c17c30bcbef [weak]
+   - MD5Sum:fec782f6949190da44967aeeeda0236d [weak]
+  Release file created at: Thu, 22 Oct 2026 06:46:38 +0000
+Fetched 49.3 MB in 1min 25s (579 kB/s)
+Reading package lists...
+E: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/jammy-updates/universe/binary-amd64/Packages.xz  File has unexpected size (1288788 != 1288792). Mirror sync in progress? [IP: 91.189.91.81 80]
+   Hashes of expected file:
+    - Filesize:1288792 [weak]
+    - SHA256:a39b6193485453c2e9583c66b1c2a0bfcb7c137a0803f80a546fb871fff59f99
+    - SHA1:68412229b991858b323b838757b45c17c30bcbef [weak]
+    - MD5Sum:fec782f6949190da44967aeeeda0236d [weak]
+   Release file created at: Thu, 22 Oct 2026 06:46:38 +0000
+E: Some index files failed to download. They have been ignored, or old ones used instead.

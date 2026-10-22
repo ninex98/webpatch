@@ -1,0 +1,68 @@
+[
+    {
+        "Id": "sha256:8fd231ed4643cbd46ab37fbec4ce5fe2e2c67ea9bc599d71ee388db195814470",
+        "RepoTags": [
+            "webpatch-ci:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-22T08:43:27.539449206Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONDONTWRITEBYTECODE=1"
+            ],
+            "Cmd": [
+                "python3",
+                "tests/integration/check.py"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 322277726,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/kkz190fep882sa0xxbc10odln/diff:/var/lib/docker/overlay2/mt3u0qc4nuxk2hrt8ypqyyc7p/diff:/var/lib/docker/overlay2/a1puu3tbkk6u8u050i6k16jzc/diff:/var/lib/docker/overlay2/bf4a31766cc82e1cac568ac03b6652b5f49366c76a04cb4fec6bdcfd0215d049/diff",
+                "MergedDir": "/var/lib/docker/overlay2/bnaw880s61t3uz6x373p7nssr/merged",
+                "UpperDir": "/var/lib/docker/overlay2/bnaw880s61t3uz6x373p7nssr/diff",
+                "WorkDir": "/var/lib/docker/overlay2/bnaw880s61t3uz6x373p7nssr/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:32ab39660fd51c6dc3aae486b42d42bbe8fe4c1db78eaf57bb9c21198de48a16",
+                "sha256:bd74eed3a824f99422544230199ac5122fee4638eec2a46a0ff47fcd803c12ea",
+                "sha256:f7164a6ae078ce61afb79a617adb27f73eca4c6c596c9ef2e36d7628284f8ee3",
+                "sha256:77c1ba45bbc9311849d21fc81aeda226275124ff15c00298a6307c33cf3a6ef6",
+                "sha256:e8b531d51004e1537d9aeee2a4d8b610fa95852217381e6019f74e0ea4482fdf"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-22T08:43:28.384384369Z"
+        }
+    }
+]

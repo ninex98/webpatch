@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "source_commit": "37dc9d93531b674fe68289dc930eb25e62d44f2c",
+  "source_files_matched": 35,
+  "run": "https://github.com/ninex98/webpatch/actions/runs/39749809257",
+  "attempt": 2,
+  "python_tests": {
+    "3.10": 243,
+    "3.12": 243
+  },
+  "vm_cells": {
+    "vm-ubuntu-22.04-fpm": {
+      "status": "PASS",
+      "synthetic_upgrade_count": 31,
+      "plan_sha256": "3a47242a4bd4da2ae97fb94715019490bddd300b850ebe1b350d13d712d8e185",
+      "observed_at": "2026-10-22T08:54:01.628519+00:00"
+    },
+    "vm-ubuntu-22.04-apache": {
+      "status": "PASS",
+      "synthetic_upgrade_count": 32,
+      "plan_sha256": "4d4dcfdff41561addc4e7e8e2c7c0a0cf1cfed73dd99c7baa95a0ce33750880e",
+      "observed_at": "2026-10-22T08:46:17.133531+00:00"
+    },
+    "vm-ubuntu-24.04-fpm": {
+      "status": "PASS",
+      "synthetic_upgrade_count": 33,
+      "plan_sha256": "d054e0c2c8eb93bd995b24020116666f1f447cdd97b4befb6514cc7a9e5640f6",
+      "observed_at": "2026-10-22T08:44:04.961211+00:00"
+    },
+    "vm-ubuntu-24.04-apache": {
+      "status": "PASS",
+      "synthetic_upgrade_count": 34,
+      "plan_sha256": "8b02b08a86c42da8ccc6974ee5a372381a7ccefa6f405ff61d27f99d585a0cc7",
+      "observed_at": "2026-10-22T08:44:06.037233+00:00"
+    }
+  },
+  "delivered_package": "dist/phase-2/webpatch_0.1.0_all.deb",
+  "package_sha256": "7be9ca7a6cff6dffc51a5ea391a36d952239623b8cf6f9352c474c9bb1a9d618",
+  "repair_execution": "NOT_RUN_DISABLED"
+}

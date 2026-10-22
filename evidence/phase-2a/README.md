@@ -1,4 +1,7 @@
-# 阶段 2A / Runtime association — CI 待验收 / pending
+# 阶段 2A / Runtime association — 已验收 / accepted
+
+最终结果 PASS，见 [accepted-ci/](accepted-ci/)；下文保留各检查点的历史状态和失败记录。
+
 
 范围：进程启动标识、文件 device/inode/SHA256、包所有者、systemd cgroup/服务、FPM pools、mod_php 已加载映射和静态 Web handler 观察。进程开始/结束及文件二次读取检查变化；不同 PID namespace/chroot 不关联宿主包。systemd PrivateTmp 的单独 mount namespace 只有在同 root、PID namespace、live unit 和文件视图一致时才可关联。
 
