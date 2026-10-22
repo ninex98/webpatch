@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.22, pytest-8.4.2, pluggy-1.7.0
+rootdir: /home/runner/work/webpatch/webpatch
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-6.3.0
+collected 165 items
+
+tests/test_boundaries.py ................................                [ 19%]
+tests/test_environments.py ............................................. [ 46%]
+...............................................................          [ 84%]
+tests/test_runtime.py .........................                          [100%]
+
+- generated xml file: /home/runner/work/webpatch/webpatch/ci-evidence/pytest.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.10.22-final-0 _______________
+
+Name                            Stmts   Miss  Cover   Missing
+-------------------------------------------------------------
+src/webpatch/__init__.py            1      0   100%
+src/webpatch/__main__.py            2      2     0%   1-3
+src/webpatch/cli.py                47      1    98%   49
+src/webpatch/configuration.py     102      9    91%   32, 39, 57, 68, 79-82, 117
+src/webpatch/discovery.py         116      3    97%   33-34, 75
+src/webpatch/models.py             99      0   100%
+src/webpatch/planning.py           11      0   100%
+src/webpatch/rules.py              79      1    99%   66
+src/webpatch/runtime.py           138     10    93%   21, 25, 29, 32, 133, 137-138, 146, 154, 156
+src/webpatch/service.py            15      0   100%
+src/webpatch/system.py            144     16    89%   67, 70, 74, 135, 140-141, 144-148, 156, 162, 167, 170-171
+-------------------------------------------------------------
+TOTAL                             754     42    94%
+============================= 165 passed in 1.45s ==============================
