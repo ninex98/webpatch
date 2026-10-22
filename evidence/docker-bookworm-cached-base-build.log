@@ -1,0 +1,165 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 417B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.m.daocloud.io/library/python:3.11-slim-bookworm
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 134B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 23.18kB done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.m.daocloud.io/library/python:3.11-slim-bookworm@sha256:b18992999dbe963a45a8a4da40ac2b1975be1a776d939d098c647482bcad5cba
+#5 resolve docker.m.daocloud.io/library/python:3.11-slim-bookworm@sha256:b18992999dbe963a45a8a4da40ac2b1975be1a776d939d098c647482bcad5cba done
+#5 DONE 0.0s
+
+#6 [2/5] RUN apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates
+#6 1.220 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#6 1.986 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#6 2.288 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#6 6.625 Get:4 http://deb.debian.org/debian bookworm/main arm64 Packages [8689 kB]
+#6 7.298 Get:5 http://deb.debian.org/debian bookworm-updates/main arm64 Packages [6936 B]
+#6 7.762 Get:6 http://deb.debian.org/debian-security bookworm-security/main arm64 Packages [353 kB]
+#6 7.790 Fetched 9291 kB in 8s (1220 kB/s)
+#6 7.790 Reading package lists...
+#6 8.141 Reading package lists...
+#6 8.465 Building dependency tree...
+#6 8.589 Reading state information...
+#6 8.685 The following additional packages will be installed:
+#6 8.685   apache2-bin dmsetup libapache2-mod-php8.2 libapparmor1 libapr1 libaprutil1
+#6 8.685   libaprutil1-dbd-sqlite3 libaprutil1-ldap libargon2-1 libbrotli1 libbsd0
+#6 8.685   libcryptsetup12 libcurl4 libdevmapper1.02.1 libedit2 libexpat1 libfdisk1
+#6 8.686   libgdbm-compat4 libicu72 libip4tc2 libjansson4 libjson-c5 libkmod2
+#6 8.686   libldap-2.5-0 liblua5.3-0 libmagic-mgc libmagic1 libnghttp2-14 libperl5.36
+#6 8.686   libproc2-0 libpsl5 libpython3-stdlib libpython3.11-minimal
+#6 8.686   libpython3.11-stdlib librtmp1 libsasl2-2 libsasl2-modules-db libsodium23
+#6 8.686   libssh2-1 libsystemd-shared libxml2 media-types perl perl-base
+#6 8.686   perl-modules-5.36 php-common php8.2-cli php8.2-common php8.2-fpm
+#6 8.686   php8.2-opcache php8.2-readline procps psmisc python3-minimal python3.11
+#6 8.686   python3.11-minimal sensible-utils systemd ucf
+#6 8.687 Suggested packages:
+#6 8.687   apache2-doc apache2-suexec-pristine | apache2-suexec-custom www-browser
+#6 8.687   php-pear file perl-doc libterm-readline-gnu-perl
+#6 8.687   | libterm-readline-perl-perl make libtap-harness-archive-perl python3-doc
+#6 8.687   python3-tk python3-venv python3.11-venv python3.11-doc binutils
+#6 8.687   binfmt-support systemd-container systemd-homed systemd-userdbd systemd-boot
+#6 8.687   systemd-resolved libfido2-1 libqrencode4 libtss2-esys-3.0.2-0 libtss2-mu0
+#6 8.687   libtss2-rc0 polkitd | policykit-1
+#6 8.687 Recommended packages:
+#6 8.687   apache2 libldap-common publicsuffix libsasl2-modules default-dbus-system-bus
+#6 8.687   | dbus-system-bus systemd-timesyncd | time-daemon
+#6 8.876 The following NEW packages will be installed:
+#6 8.876   apache2-bin dmsetup libapache2-mod-php libapache2-mod-php8.2 libapparmor1
+#6 8.876   libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap libargon2-1
+#6 8.876   libbrotli1 libbsd0 libcryptsetup12 libcurl4 libdevmapper1.02.1 libedit2
+#6 8.876   libexpat1 libfdisk1 libgdbm-compat4 libicu72 libip4tc2 libjansson4
+#6 8.876   libjson-c5 libkmod2 libldap-2.5-0 liblua5.3-0 libmagic-mgc libmagic1
+#6 8.876   libnghttp2-14 libperl5.36 libproc2-0 libpsl5 libpython3-stdlib
+#6 8.876   libpython3.11-minimal libpython3.11-stdlib librtmp1 libsasl2-2
+#6 8.877   libsasl2-modules-db libsodium23 libssh2-1 libsystemd-shared libxml2
+#6 8.877   media-types perl perl-modules-5.36 php-cli php-common php-fpm php8.2-cli
+#6 8.877   php8.2-common php8.2-fpm php8.2-opcache php8.2-readline procps psmisc
+#6 8.878   python3 python3-minimal python3.11 python3.11-minimal sensible-utils systemd
+#6 8.878   ucf
+#6 8.878 The following packages will be upgraded:
+#6 8.880   ca-certificates perl-base
+#6 10.06 2 upgraded, 62 newly installed, 0 to remove and 5 not upgraded.
+#6 10.06 Need to get 39.4 MB of archives.
+#6 10.06 After this operation, 193 MB of additional disk space will be used.
+#6 10.06 Get:1 http://deb.debian.org/debian-security bookworm-security/main arm64 perl-base arm64 5.36.0-7+deb12u4 [1478 kB]
+#6 11.23 Get:2 http://deb.debian.org/debian bookworm/main arm64 libargon2-1 arm64 0~20171227-0.3+deb12u1 [18.7 kB]
+#6 11.61 Get:3 http://deb.debian.org/debian bookworm/main arm64 dmsetup arm64 2:1.02.185-2 [75.2 kB]
+#6 12.07 Get:4 http://deb.debian.org/debian bookworm/main arm64 libdevmapper1.02.1 arm64 2:1.02.185-2 [115 kB]
+#6 12.76 Get:5 http://deb.debian.org/debian bookworm/main arm64 libjson-c5 arm64 0.16-2 [42.9 kB]
+#6 13.63 Get:6 http://deb.debian.org/debian bookworm/main arm64 libcryptsetup12 arm64 2:2.6.1-4~deb12u2 [205 kB]
+#6 14.12 Get:7 http://deb.debian.org/debian bookworm/main arm64 libfdisk1 arm64 2.38.1-5+deb12u3 [182 kB]
+#6 14.72 Get:8 http://deb.debian.org/debian bookworm/main arm64 libkmod2 arm64 30+20221128-1 [54.4 kB]
+#6 16.37 Get:9 http://deb.debian.org/debian bookworm/main arm64 libapparmor1 arm64 3.0.8-3 [40.3 kB]
+#6 17.25 Get:10 http://deb.debian.org/debian bookworm/main arm64 libip4tc2 arm64 1.8.9-2 [18.5 kB]
+#6 19.62 Get:11 http://deb.debian.org/debian bookworm/main arm64 libsystemd-shared arm64 252.39-1~deb12u2 [1508 kB]
+#6 21.70 Get:12 http://deb.debian.org/debian bookworm/main arm64 systemd arm64 252.39-1~deb12u2 [2840 kB]
+#6 24.66 Get:13 http://deb.debian.org/debian-security bookworm-security/main arm64 perl-modules-5.36 all 5.36.0-7+deb12u4 [2817 kB]
+#6 25.31 Get:14 http://deb.debian.org/debian bookworm/main arm64 libgdbm-compat4 arm64 1.23-3 [48.0 kB]
+#6 26.78 Get:15 http://deb.debian.org/debian-security bookworm-security/main arm64 libperl5.36 arm64 5.36.0-7+deb12u4 [4002 kB]
+#6 27.70 Get:16 http://deb.debian.org/debian-security bookworm-security/main arm64 perl arm64 5.36.0-7+deb12u4 [239 kB]
+#6 29.25 Get:17 http://deb.debian.org/debian-security bookworm-security/main arm64 libpython3.11-minimal arm64 3.11.2-6+deb12u9 [814 kB]
+#6 30.25 Get:18 http://deb.debian.org/debian-security bookworm-security/main arm64 libexpat1 arm64 2.5.0-1+deb12u4 [89.2 kB]
+#6 31.44 Get:19 http://deb.debian.org/debian-security bookworm-security/main arm64 python3.11-minimal arm64 3.11.2-6+deb12u9 [1862 kB]
+#6 32.06 Get:20 http://deb.debian.org/debian bookworm/main arm64 python3-minimal arm64 3.11.2-1+b1 [26.3 kB]
+#6 32.46 Get:21 http://deb.debian.org/debian bookworm/main arm64 media-types all 10.0.0 [26.1 kB]
+#6 34.40 Get:22 http://deb.debian.org/debian-security bookworm-security/main arm64 libpython3.11-stdlib arm64 3.11.2-6+deb12u9 [1750 kB]
+#6 34.95 Get:23 http://deb.debian.org/debian-security bookworm-security/main arm64 python3.11 arm64 3.11.2-6+deb12u9 [575 kB]
+#6 35.71 Get:24 http://deb.debian.org/debian bookworm/main arm64 libpython3-stdlib arm64 3.11.2-1+b1 [9296 B]
+#6 35.96 Get:25 http://deb.debian.org/debian bookworm/main arm64 python3 arm64 3.11.2-1+b1 [26.3 kB]
+#6 36.65 Get:26 http://deb.debian.org/debian bookworm/main arm64 libproc2-0 arm64 2:4.0.2-3 [60.1 kB]
+#6 37.27 Get:27 http://deb.debian.org/debian bookworm/main arm64 procps arm64 2:4.0.2-3 [698 kB]
+#6 38.23 Get:28 http://deb.debian.org/debian bookworm/main arm64 sensible-utils all 0.0.17+nmu1 [19.0 kB]
+#6 39.34 Get:29 http://deb.debian.org/debian-security bookworm-security/main arm64 ca-certificates all 20250419~deb12u2 [161 kB]
+#6 39.69 Get:30 http://deb.debian.org/debian bookworm/main arm64 ucf all 3.0043+nmu1+deb12u1 [55.3 kB]
+#6 40.39 Get:31 http://deb.debian.org/debian bookworm/main arm64 libapr1 arm64 1.7.2-3+deb12u1 [94.1 kB]
+#6 40.85 Get:32 http://deb.debian.org/debian-security bookworm-security/main arm64 libaprutil1 arm64 1.6.3-1+deb12u1 [85.3 kB]
+#6 41.45 Get:33 http://deb.debian.org/debian-security bookworm-security/main arm64 libaprutil1-dbd-sqlite3 arm64 1.6.3-1+deb12u1 [14.0 kB]
+#6 42.17 Get:34 http://deb.debian.org/debian bookworm/main arm64 libsasl2-modules-db arm64 2.1.28+dfsg-10 [20.8 kB]
+#6 42.84 Get:35 http://deb.debian.org/debian bookworm/main arm64 libsasl2-2 arm64 2.1.28+dfsg-10 [58.0 kB]
+#6 43.23 Get:36 http://deb.debian.org/debian bookworm/main arm64 libldap-2.5-0 arm64 2.5.13+dfsg-5 [171 kB]
+#6 44.19 Get:37 http://deb.debian.org/debian-security bookworm-security/main arm64 libaprutil1-ldap arm64 1.6.3-1+deb12u1 [12.3 kB]
+#6 44.95 Get:38 http://deb.debian.org/debian bookworm/main arm64 libbrotli1 arm64 1.0.9-2+b6 [269 kB]
+#6 45.79 Get:39 http://deb.debian.org/debian bookworm/main arm64 libnghttp2-14 arm64 1.52.0-1+deb12u3 [69.0 kB]
+#6 46.37 Get:40 http://deb.debian.org/debian bookworm/main arm64 libpsl5 arm64 0.21.2-1 [58.6 kB]
+#6 46.96 Get:41 http://deb.debian.org/debian bookworm/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2+b2 [59.4 kB]
+#6 47.34 Get:42 http://deb.debian.org/debian-security bookworm-security/main arm64 libssh2-1 arm64 1.10.0-3+deb12u1 [169 kB]
+#6 47.90 Get:43 http://deb.debian.org/debian bookworm/main arm64 libcurl4 arm64 7.88.1-10+deb12u15 [367 kB]
+#6 48.74 Get:44 http://deb.debian.org/debian bookworm/main arm64 libjansson4 arm64 2.14-2 [40.2 kB]
+#6 49.44 Get:45 http://deb.debian.org/debian bookworm/main arm64 liblua5.3-0 arm64 5.3.6-2 [110 kB]
+#6 53.77 Get:46 http://deb.debian.org/debian bookworm/main arm64 libicu72 arm64 72.1-3+deb12u1 [9202 kB]
+#6 55.17 Get:47 http://deb.debian.org/debian bookworm/main arm64 libxml2 arm64 2.9.14+dfsg-1.3~deb12u6 [620 kB]
+#6 56.28 Get:48 http://deb.debian.org/debian bookworm/main arm64 apache2-bin arm64 2.4.68-1~deb12u1 [1294 kB]
+#6 57.10 Get:49 http://deb.debian.org/debian bookworm/main arm64 libmagic-mgc arm64 1:5.44-3 [305 kB]
+#6 62.12 Err:50 http://deb.debian.org/debian bookworm/main arm64 libmagic1 arm64 1:5.44-3
+#6 62.12   502  Bad Gateway [IP: 199.232.162.132 80]
+#6 63.12 Get:51 http://deb.debian.org/debian bookworm/main arm64 libbsd0 arm64 0.11.7-2 [115 kB]
+#6 63.94 Get:52 http://deb.debian.org/debian bookworm/main arm64 libedit2 arm64 3.1-20221030-2 [88.1 kB]
+#6 64.99 Get:53 http://deb.debian.org/debian bookworm/main arm64 psmisc arm64 23.6-1 [257 kB]
+#6 65.88 Get:54 http://deb.debian.org/debian bookworm/main arm64 php-common all 2:93 [13.1 kB]
+#6 66.97 Get:55 http://deb.debian.org/debian-security bookworm-security/main arm64 php8.2-common arm64 8.2.35-1~deb12u1 [668 kB]
+#6 67.77 Get:56 http://deb.debian.org/debian-security bookworm-security/main arm64 php8.2-opcache arm64 8.2.35-1~deb12u1 [497 kB]
+#6 68.40 Get:57 http://deb.debian.org/debian-security bookworm-security/main arm64 php8.2-readline arm64 8.2.35-1~deb12u1 [12.0 kB]
+#6 69.27 Get:58 http://deb.debian.org/debian bookworm/main arm64 libsodium23 arm64 1.0.18-1+deb12u1 [118 kB]
+#6 72.05 Get:59 http://deb.debian.org/debian-security bookworm-security/main arm64 php8.2-cli arm64 8.2.35-1~deb12u1 [1581 kB]
+#6 73.54 Get:60 http://deb.debian.org/debian-security bookworm-security/main arm64 libapache2-mod-php8.2 arm64 8.2.35-1~deb12u1 [1522 kB]
+#6 74.15 Get:61 http://deb.debian.org/debian bookworm/main arm64 libapache2-mod-php all 2:8.2+93 [3764 B]
+#6 74.66 Get:62 http://deb.debian.org/debian bookworm/main arm64 php-cli all 2:8.2+93 [4108 B]
+#6 75.94 Get:63 http://deb.debian.org/debian-security bookworm-security/main arm64 php8.2-fpm arm64 8.2.35-1~deb12u1 [1590 kB]
+#6 76.82 Get:64 http://deb.debian.org/debian bookworm/main arm64 php-fpm all 2:8.2+93 [3712 B]
+#6 76.83 E: Failed to fetch http://deb.debian.org/debian/pool/main/f/file/libmagic1_5.44-3_arm64.deb  502  Bad Gateway [IP: 199.232.162.132 80]
+#6 76.83 E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+#6 76.83 Fetched 39.3 MB in 1min 8s (579 kB/s)
+#6 ERROR: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates" did not complete successfully: exit code: 100
+------
+ > [2/5] RUN apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates:
+69.27 Get:58 http://deb.debian.org/debian bookworm/main arm64 libsodium23 arm64 1.0.18-1+deb12u1 [118 kB]
+72.05 Get:59 http://deb.debian.org/debian-security bookworm-security/main arm64 php8.2-cli arm64 8.2.35-1~deb12u1 [1581 kB]
+73.54 Get:60 http://deb.debian.org/debian-security bookworm-security/main arm64 libapache2-mod-php8.2 arm64 8.2.35-1~deb12u1 [1522 kB]
+74.15 Get:61 http://deb.debian.org/debian bookworm/main arm64 libapache2-mod-php all 2:8.2+93 [3764 B]
+74.66 Get:62 http://deb.debian.org/debian bookworm/main arm64 php-cli all 2:8.2+93 [4108 B]
+75.94 Get:63 http://deb.debian.org/debian-security bookworm-security/main arm64 php8.2-fpm arm64 8.2.35-1~deb12u1 [1590 kB]
+76.82 Get:64 http://deb.debian.org/debian bookworm/main arm64 php-fpm all 2:8.2+93 [3712 B]
+76.83 E: Failed to fetch http://deb.debian.org/debian/pool/main/f/file/libmagic1_5.44-3_arm64.deb  502  Bad Gateway [IP: 199.232.162.132 80]
+76.83 E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+76.83 Fetched 39.3 MB in 1min 8s (579 kB/s)
+------
+Dockerfile:4
+--------------------
+   2 |     FROM ${BASE}
+   3 |     ENV DEBIAN_FRONTEND=noninteractive PYTHONDONTWRITEBYTECODE=1
+   4 | >>> RUN apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates
+   5 |     WORKDIR /work
+   6 |     COPY . /work
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates" did not complete successfully: exit code: 100

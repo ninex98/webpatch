@@ -1,0 +1,138 @@
+{
+  "result": "PASS",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "environment": {
+    "os_id": "ubuntu",
+    "version_id": "22.04",
+    "codename": "jammy",
+    "scope": "container",
+    "mount_namespace": "mnt:[4026534187]"
+  },
+  "dpkg_comparison_vectors": 15,
+  "state_sha256": "8d3e8f5a63a5eba3283748016241e2319df313b3a0dd2460042c5ba7748b1d7c",
+  "packages": [
+    {
+      "name": "libapache2-mod-php",
+      "version": "2:8.1+92ubuntu1",
+      "architecture": "all",
+      "source_name": "php-defaults",
+      "source_version": "92ubuntu1",
+      "status": "install ok installed",
+      "sapi": "component_or_unknown",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "libapache2-mod-php8.1",
+      "version": "8.1.2-1ubuntu2.28",
+      "architecture": "arm64",
+      "source_name": "php8.1",
+      "source_version": "8.1.2-1ubuntu2.28",
+      "status": "install ok installed",
+      "sapi": "apache2",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php-cli",
+      "version": "2:8.1+92ubuntu1",
+      "architecture": "all",
+      "source_name": "php-defaults",
+      "source_version": "92ubuntu1",
+      "status": "install ok installed",
+      "sapi": "component_or_unknown",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php-common",
+      "version": "2:92ubuntu1",
+      "architecture": "all",
+      "source_name": "php-defaults",
+      "source_version": "92ubuntu1",
+      "status": "install ok installed",
+      "sapi": "component_or_unknown",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php-fpm",
+      "version": "2:8.1+92ubuntu1",
+      "architecture": "all",
+      "source_name": "php-defaults",
+      "source_version": "92ubuntu1",
+      "status": "install ok installed",
+      "sapi": "component_or_unknown",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php8.1-cli",
+      "version": "8.1.2-1ubuntu2.28",
+      "architecture": "arm64",
+      "source_name": "php8.1",
+      "source_version": "8.1.2-1ubuntu2.28",
+      "status": "install ok installed",
+      "sapi": "cli",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php8.1-common",
+      "version": "8.1.2-1ubuntu2.28",
+      "architecture": "arm64",
+      "source_name": "php8.1",
+      "source_version": "8.1.2-1ubuntu2.28",
+      "status": "install ok installed",
+      "sapi": "component_or_unknown",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php8.1-fpm",
+      "version": "8.1.2-1ubuntu2.28",
+      "architecture": "arm64",
+      "source_name": "php8.1",
+      "source_version": "8.1.2-1ubuntu2.28",
+      "status": "install ok installed",
+      "sapi": "fpm",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php8.1-opcache",
+      "version": "8.1.2-1ubuntu2.28",
+      "architecture": "arm64",
+      "source_name": "php8.1",
+      "source_version": "8.1.2-1ubuntu2.28",
+      "status": "install ok installed",
+      "sapi": "component_or_unknown",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    },
+    {
+      "name": "php8.1-readline",
+      "version": "8.1.2-1ubuntu2.28",
+      "architecture": "arm64",
+      "source_name": "php8.1",
+      "source_version": "8.1.2-1ubuntu2.28",
+      "status": "install ok installed",
+      "sapi": "component_or_unknown",
+      "evidence_id": "e6",
+      "provenance": "UNVERIFIED_LOCAL_METADATA"
+    }
+  ],
+  "rule_sha256": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+  "source_sha256": {
+    "webpatch/__init__.py": "23bd73f027c02f59823ac5b1311a4f734609d347ebd670e8b595c98fe3a19f9f",
+    "webpatch/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "webpatch/cli.py": "d97d666e56df2f508a0dbff1f584c1b30e30e035f1c80a5433f65b4a1dfe49e6",
+    "webpatch/data/php2shell.json": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+    "webpatch/discovery.py": "bcdf38f1dab6979af95c2a4526a3f37a6cbdf334253cbc2172c5f05a5f3281f8",
+    "webpatch/models.py": "97d48c874e2abcc1fd8511c77f0eafce871787d318fc2983b5be75442a080184",
+    "webpatch/planning.py": "33274308cd8b7be938628969087a23de8cf2a9c0cd42433ef003fa24b185281d",
+    "webpatch/rules.py": "344ccbb3586b0e6a9f872c874f66487165e2f7198dc6b695994cf0708c15a9c8",
+    "webpatch/service.py": "7e2bc30cdb626d8b58fc644963d36a48423ea2b3519c02580063f21d4cbbb97c",
+    "webpatch/system.py": "2b234b55a92b8fe5fc1f3ab2a34795de2579d7a5664ae5a91b69d96adf89b992"
+  }
+}

@@ -1,0 +1,60 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 417B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 1.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956
+#4 resolve docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.82kB done
+#5 DONE 0.0s
+
+#6 [2/5] RUN apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates
+#6 CACHED
+
+#7 [3/5] WORKDIR /work
+#7 CACHED
+
+#8 [4/5] COPY . /work
+#8 DONE 0.0s
+
+#9 [5/5] RUN python3 scripts/build_deb.py && apt-get install -y ./dist/webpatch_0.1.0_all.deb
+#9 0.134 dpkg-deb: building package 'webpatch' in '/work/dist/webpatch_0.1.0_all.deb'.
+#9 0.152 /work/dist/webpatch_0.1.0_all.deb
+#9 0.172 Reading package lists...
+#9 0.753 Building dependency tree...
+#9 0.908 Reading state information...
+#9 1.188 The following NEW packages will be installed:
+#9 1.188   webpatch
+#9 1.197 0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+#9 1.197 Need to get 0 B/20.1 kB of archives.
+#9 1.197 After this operation, 0 B of additional disk space will be used.
+#9 1.197 Get:1 /work/dist/webpatch_0.1.0_all.deb webpatch all 0.1.0 [20.1 kB]
+#9 1.266 debconf: delaying package configuration, since apt-utils is not installed
+#9 1.300 Selecting previously unselected package webpatch.
+#9 1.300 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 10896 files and directories currently installed.)
+#9 1.315 Preparing to unpack .../dist/webpatch_0.1.0_all.deb ...
+#9 1.317 Unpacking webpatch (0.1.0) ...
+#9 1.338 Setting up webpatch (0.1.0) ...
+#9 DONE 1.4s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 0.1s done
+#10 exporting manifest sha256:beef5d75317d5d4223968f565920ead99fae9b48b345ec6389fb072a7a1b4270 done
+#10 exporting config sha256:a5f160ce3da646dafdfe1f3cfb794e72dc49d9cd03ec150762e6a28cef45c7a5 done
+#10 exporting attestation manifest sha256:f27276d5fe7f870695a3f6b15e9ada0f3a5c0d292e8bc52f01f078857fbb8f47 done
+#10 exporting manifest list sha256:7f4aa6234cd4d3cfc8988831f0364e1503afe0f8e29dc2c0e362de8baa897dac done
+#10 naming to docker.io/library/webpatch-phase1:jammy done
+#10 unpacking to docker.io/library/webpatch-phase1:jammy 0.0s done
+#10 DONE 0.1s

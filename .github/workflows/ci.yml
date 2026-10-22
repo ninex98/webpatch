@@ -1,0 +1,70 @@
+name: WebPatch safety checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '${{ matrix.python }}'
+      - run: python -m pip install -e '.[test]'
+      - run: python -m pytest --cov=webpatch --cov-report=term-missing --junitxml=ci-evidence/pytest.xml
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: fixtures-${{ matrix.python }}
+          path: ci-evidence/
+  containers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {base: 'ubuntu:22.04', label: jammy}
+          - {base: 'ubuntu:24.04', label: noble}
+          - {base: 'debian:12', label: bookworm}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Build and test in containers
+        run: |
+          mkdir -p ci-evidence
+          docker build -f tests/integration/Dockerfile --build-arg BASE='${{ matrix.base }}' -t webpatch-ci . 2>&1 | tee ci-evidence/docker-build.log
+          docker image inspect webpatch-ci > ci-evidence/docker-image.json
+          docker run --rm --read-only --network none --cap-drop ALL --security-opt no-new-privileges webpatch-ci | tee ci-evidence/docker-result.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: container-${{ matrix.label }}
+          path: ci-evidence/
+  vm-install-and-service:
+    runs-on: '${{ matrix.os }}'
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+        sapi: [fpm, apache]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install and validate a real service on the disposable VM
+        run: bash scripts/ci_vm_smoke.sh '${{ matrix.sapi }}' 2>&1 | tee vm-smoke.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: vm-${{ matrix.os }}-${{ matrix.sapi }}
+          path: |
+            ci-evidence/
+            vm-smoke.log
+            dist/*.deb

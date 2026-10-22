@@ -1,0 +1,59 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 417B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.m.daocloud.io/library/python:3.11-slim-bookworm
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.m.daocloud.io/library/python:3.11-slim-bookworm@sha256:b18992999dbe963a45a8a4da40ac2b1975be1a776d939d098c647482bcad5cba
+#4 resolve docker.m.daocloud.io/library/python:3.11-slim-bookworm@sha256:b18992999dbe963a45a8a4da40ac2b1975be1a776d939d098c647482bcad5cba 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 30.00kB done
+#5 DONE 0.0s
+
+#6 [2/5] RUN apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates
+#6 CACHED
+
+#7 [3/5] WORKDIR /work
+#7 CACHED
+
+#8 [4/5] COPY . /work
+#8 DONE 0.0s
+
+#9 [5/5] RUN python3 scripts/build_deb.py && apt-get install -y ./dist/webpatch_0.1.0_all.deb
+#9 0.180 dpkg-deb: building package 'webpatch' in '/work/dist/webpatch_0.1.0_all.deb'.
+#9 0.196 /work/dist/webpatch_0.1.0_all.deb
+#9 0.210 Reading package lists...
+#9 0.446 Building dependency tree...
+#9 0.508 Reading state information...
+#9 0.585 The following NEW packages will be installed:
+#9 0.585   webpatch
+#9 0.590 0 upgraded, 1 newly installed, 0 to remove and 5 not upgraded.
+#9 0.590 Need to get 0 B/20.1 kB of archives.
+#9 0.590 After this operation, 0 B of additional disk space will be used.
+#9 0.590 Get:1 /work/dist/webpatch_0.1.0_all.deb webpatch all 0.1.0 [20.1 kB]
+#9 0.641 debconf: delaying package configuration, since apt-utils is not installed
+#9 0.660 Selecting previously unselected package webpatch.
+#9 0.660 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 11230 files and directories currently installed.)
+#9 0.682 Preparing to unpack .../dist/webpatch_0.1.0_all.deb ...
+#9 0.682 Unpacking webpatch (0.1.0) ...
+#9 0.698 Setting up webpatch (0.1.0) ...
+#9 DONE 0.7s
+
+#10 exporting to image
+#10 exporting layers 0.0s done
+#10 exporting manifest sha256:eff5201b5c913082854986febcb8d1408bcbab4f02c20d2af77fa3bd7841ab5f done
+#10 exporting config sha256:90c7a634ca6e422a486e1c27e3f0c68da0e1c60b19679b4933d78ef9bb6e6d8d done
+#10 exporting attestation manifest sha256:1ea42d726bef8334edb33c2e02f0bf4fc32692515392cdc81dd48e8c2497c228 done
+#10 exporting manifest list sha256:66c93766c0ac70eb0cd55286fb79fa34c6483bf4252d146e6b37353b094dc5bc done
+#10 naming to docker.io/library/webpatch-phase1:bookworm done
+#10 unpacking to docker.io/library/webpatch-phase1:bookworm 0.0s done
+#10 DONE 0.1s

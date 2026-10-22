@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "BLOCKED",
+  "executable": false,
+  "apt_simulation": "NOT_IMPLEMENTED",
+  "report_sha256": "3956f5034e2e91ab008215b3bd32b199d1923accb6a0769d20fe8476bcbac564",
+  "blockers": [
+    "PHASE_1_HAS_NO_EXECUTOR",
+    "APT_SOURCES_AND_DEPENDENCIES_NOT_VERIFIED",
+    "APT_DRY_RUN_NOT_PERFORMED",
+    "RUNTIME_COVERAGE_NOT_VERIFIED"
+  ],
+  "recommendations": [
+    "Verify every web SAPI, package origin, running image and container separately.",
+    "Obtain a fresh vendor advisory and an authenticated same-branch package candidate.",
+    "Require a reviewed APT dependency simulation and explicit plan confirmation before any repair.",
+    "Schedule service downtime and verify running processes and application health after repair.",
+    "Review php8.1-fpm:amd64 for CVE-2026-109618: vendor minimum 8.1.2-1ubuntu2.28; this is not a verified install candidate.",
+    "Review php8.1-fpm:amd64 for CVE-2026-109619: vendor minimum 8.1.2-1ubuntu2.28; this is not a verified install candidate."
+  ],
+  "actions": []
+}

@@ -1,0 +1,61 @@
+{
+  "verified_at_utc": "2026-10-22T06:28:53.645856+00:00",
+  "checks": {
+    "jammy": {
+      "result": "PASS",
+      "image_id": "sha256:7f4aa6234cd4d3cfc8988831f0364e1503afe0f8e29dc2c0e362de8baa897dac",
+      "architecture": "arm64",
+      "environment": {
+        "os_id": "ubuntu",
+        "version_id": "22.04",
+        "codename": "jammy",
+        "scope": "container",
+        "mount_namespace": "mnt:[4026534187]"
+      },
+      "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]"
+    },
+    "noble": {
+      "result": "PASS",
+      "image_id": "sha256:b1833a1730e82854f7befa2f086bafb02a221e941a473143bbd4f41ffae308ba",
+      "architecture": "arm64",
+      "environment": {
+        "os_id": "ubuntu",
+        "version_id": "24.04",
+        "codename": "noble",
+        "scope": "container",
+        "mount_namespace": "mnt:[4026534053]"
+      },
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+    },
+    "bookworm": {
+      "result": "PASS",
+      "image_id": "sha256:66c93766c0ac70eb0cd55286fb79fa34c6483bf4252d146e6b37353b094dc5bc",
+      "architecture": "arm64",
+      "environment": {
+        "os_id": "debian",
+        "version_id": "12",
+        "codename": "bookworm",
+        "scope": "container",
+        "mount_namespace": "mnt:[4026534053]"
+      },
+      "python": "3.11.15 (main, Jul 14 2026, 02:16:14) [GCC 12.2.0]"
+    },
+    "pytest-python310": {
+      "result": "PASS",
+      "tests": 140,
+      "failures": 0,
+      "errors": 0
+    },
+    "pytest-python312": {
+      "result": "PASS",
+      "tests": 140,
+      "failures": 0,
+      "errors": 0
+    },
+    "github-actions": {
+      "result": "NOT_RUN",
+      "reason": "No Git repository/remote is configured for this new project; no workflow was dispatched."
+    }
+  },
+  "coverage_percent": 97.58241758241758
+}

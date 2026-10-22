@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-22T08:00:00+00:00",
+  "rule_revision": "php2shell-2026-10-22.1",
+  "rule_sha256": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+  "rule_valid_until": "2026-10-29T00:00:00+00:00",
+  "inventory": {
+    "environment": {
+      "os_id": "ubuntu",
+      "version_id": "22.04",
+      "codename": "jammy",
+      "scope": "host_or_unidentified_container",
+      "mount_namespace": "mnt:[1]"
+    },
+    "packages": [
+      {
+        "name": "php8.1-cli",
+        "version": "8.1.2-1ubuntu2.28",
+        "architecture": "amd64",
+        "source_name": "php8.1",
+        "source_version": "8.1.2-1ubuntu2.28",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.1-fpm",
+        "version": "8.1.2-1ubuntu2.27",
+        "architecture": "amd64",
+        "source_name": "php8.1",
+        "source_version": "8.1.2-1ubuntu2.27",
+        "status": "install ok installed",
+        "sapi": "fpm",
+        "evidence_id": "e6",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "runtime_hints": [],
+    "coverage_gaps": [
+      "DISCOVERY_NOT_EXHAUSTIVE",
+      "OTHER_CONTAINERS_NOT_INSPECTED",
+      "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED"
+    ],
+    "adapters": [
+      "apt-package-inventory-v1",
+      "php-runtime-hints-v1"
+    ]
+  },
+  "assessments": [
+    {
+      "package_id": "php8.1-cli:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.1.2-1ubuntu2.28",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e15"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.1-cli:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "MEETS_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.1.2-1ubuntu2.28",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e16"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "cve": "CVE-2026-109618",
+      "version_status": "BELOW_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.1.2-1ubuntu2.28",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e17"
+      ],
+      "runtime_status": "UNKNOWN"
+    },
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "cve": "CVE-2026-109619",
+      "version_status": "BELOW_VENDOR_FIX",
+      "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+      "fixed_version": "8.1.2-1ubuntu2.28",
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619"
+      ],
+      "evidence_ids": [
+        "e6",
+        "e18"
+      ],
+      "runtime_status": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "f302f81ff8b15c2d5dcca30261374a2af95f4dd4532104495adcdd8a15e77bc4"
+    },
+    {
+      "id": "e2",
+      "operation": "read_text",
+      "target": "/proc/self/cgroup",
+      "outcome": "OK",
+      "sha256": "f9ccfaf64372a8c6ddb845bd6a0e48496ccfae88645df5d136f684734c7e833b"
+    },
+    {
+      "id": "e3",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e4",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e5",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "905e6a93c64ea614a2a7c5df0d3cac68ce668dcd78669765e5d5f24e747297b8"
+    },
+    {
+      "id": "e6",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "578980bf1a9580ebae077b0f6bb8611ca0614a7d870cd5c117dfc929ffda1bd2"
+    },
+    {
+      "id": "e7",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e8",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e9",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e10",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e11",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e12",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e13",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e14",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e15",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e16",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e17",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.27\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_1",
+      "sha256": "4bf0e9df4a65ca71251e106ab34fe6960bc3281c18340942d4498deffe871387"
+    },
+    {
+      "id": "e18",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.27\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+      "outcome": "EXIT_1",
+      "sha256": "4bf0e9df4a65ca71251e106ab34fe6960bc3281c18340942d4498deffe871387"
+    }
+  ],
+  "overall": "POTENTIALLY_AFFECTED",
+  "safe": false
+}

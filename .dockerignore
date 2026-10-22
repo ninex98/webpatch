@@ -1,0 +1,11 @@
+.venv*
+__pycache__
+**/__pycache__
+.pytest_cache
+.git
+build
+dist
+evidence
+ci-evidence
+*.egg-info
+.coverage
