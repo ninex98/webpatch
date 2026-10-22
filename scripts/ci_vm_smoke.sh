@@ -197,6 +197,7 @@ runtime_snapshot > ci-evidence/runtime-processes-after.json
 cmp ci-evidence/runtime-processes-before.json ci-evidence/runtime-processes-after.json
 sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/runtime_check.py "$package" "$sapi" "$pid_before" "$package_cache"
 sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/application_check.py "$probe_port" "$service" "$package_cache"
+sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/maintenance_check.py "$package" "$package_cache"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]
 sudo systemctl show "$service" --property=ActiveState,SubState,MainPID > ci-evidence/vm-service.txt

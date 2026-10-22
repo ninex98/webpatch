@@ -21,3 +21,13 @@
 配置结果为 `OBSERVED_EFFECTIVE_PHP_SETTINGS`：仅保存 ini 文件路径、effective ini/扩展列表的摘要，不保存配置值或秘密。`ini_get_all` 不含部分数组配置；磁盘配置可能在启动后变化。因此 `loaded_configuration_file_bytes=UNKNOWN`，`executable=false`；有效期最多五分钟且受扫描/规则/索引边界限制。真实准备和调用在四格 disposable VM 中单独进行，实际 PHP 执行不发生在开发宿主。
 
 参考（2026-10-22 审阅）：[Linux UNIX credentials](https://man7.org/linux/man-pages/man7/unix.7.html)、[Python recvmsg](https://docs.python.org/3/library/socket.html#socket.socket.recvmsg)、[PHP ini_get_all](https://www.php.net/manual/en/function.ini-get-all.php)、[PHP loaded INI](https://www.php.net/manual/en/function.php-ini-loaded-file.php)、[PHP 8.1 sockets 实现](https://github.com/php/php-src/blob/PHP-8.1/ext/sockets/sockets.c)。这些资料支持具体 API 语义，不构成运行时安全证明。
+
+## 3B 精确候选维护行为审阅
+
+`webpatch review-maintenance --dry-run --target-package php8.1-fpm:amd64 --package-cache /path/to/authenticated-cache --format json` 先重新扫描并生成诊断计划，再检查精确目标及依赖变化所涉及的新旧归档。输出绑定 plan hash、scope 和有效期，附带可审阅的维护脚本文本/摘要、triggers、conffile 列表与本地冲突；不会执行脚本。只保存认证包中的公开脚本文本，本地配置只保存摘要。
+
+每个新旧归档必须匹配受信任索引的名称/架构/版本/源码身份和 SHA256/长度，并在读取后复查未替换。控制归档拒绝路径穿越、重复、非普通控制文件和超限；不透明脚本、缺失归档、无法核对的 conffile payload、remove-on-upgrade 及本地配置变化保持阻断。新旧版本合并显示角色，防止只审阅新 postinst 而遗漏升级时可能使用的旧脚本。
+
+`READY_FOR_MAINTENANCE_REVIEW` 只说明可开始具体内容审阅，不证明维护脚本无副作用，也不证明全系统 trigger cascade。磁盘 dpkg 管理脚本的独立身份、ucf 等脚本管理配置、真实安装行为和停机预算仍须后续门禁；不会因列表为空或脚本退出码可预测就直接授予执行权限。
+
+参考（2026-10-22 审阅）：[Debian maintainer script lifecycle](https://www.debian.org/doc/debian-policy/ch-maintainerscripts.html)、[conffile 格式及 remove-on-upgrade](https://manpages.debian.org/bookworm/dpkg-dev/deb-conffiles.5.en.html)。

@@ -195,7 +195,7 @@ class LocalSystem:
 
     def package_archive(self, path: str) -> dict:
         from .sources import paragraphs
-        result = {"files": {}}
+        result = {"files": {}, "payload_files": {}, "control_files": {}, "control_metadata_complete": True}
         try:
             for option in ("--ctrl-tarfile", "--fsys-tarfile"):
                 code, raw, stderr = self._execute(("/usr/bin/dpkg-deb", option, path), 256 * 1024 * 1024)
@@ -208,12 +208,29 @@ class LocalSystem:
                         if name in seen or name.startswith("/") or ".." in name.split("/") or len(seen) > 16384:
                             raise ProbeError("PACKAGE_ARCHIVE_PATH_INVALID")
                         seen.add(name)
+                        if option == "--ctrl-tarfile" and not (member.isfile() or member.isdir()):
+                            raise ProbeError("CONTROL_ARCHIVE_TYPE_UNSUPPORTED")
                         if member.isfile():
                             stream = archive.extractfile(member)
-                            if option == "--ctrl-tarfile" and name == "control":
-                                result["control"] = paragraphs(stream.read().decode("utf-8"))[0]
-                            elif option == "--fsys-tarfile" and name.startswith(("usr/bin/", "usr/sbin/", "usr/lib/")):
-                                result["files"]["/" + name] = hashlib.sha256(stream.read()).hexdigest()
+                            content = stream.read()
+                            if option == "--ctrl-tarfile":
+                                if "/" in name or len(content) > MAX_FILE_BYTES:
+                                    raise ProbeError("CONTROL_ARCHIVE_FILE_LIMIT")
+                                text = None
+                                if name in {"preinst", "postinst", "prerm", "postrm", "config", "triggers", "conffiles"} and len(content) <= 65536:
+                                    try:
+                                        text = content.decode("utf-8")
+                                    except UnicodeError:
+                                        pass
+                                result["control_files"][name] = {"sha256": hashlib.sha256(content).hexdigest(),
+                                    "size": len(content), "mode": member.mode, "text": text}
+                                if name == "control":
+                                    result["control"] = paragraphs(content.decode("utf-8"))[0]
+                            else:
+                                file_hash = hashlib.sha256(content).hexdigest()
+                                result["payload_files"]["/" + name] = file_hash
+                                if name.startswith(("usr/bin/", "usr/sbin/", "usr/lib/")):
+                                    result["files"]["/" + name] = file_hash
             if "control" not in result or not result["files"]:
                 raise ProbeError("PACKAGE_RUNTIME_FILES_MISSING")
             return result

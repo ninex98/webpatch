@@ -11,18 +11,19 @@ from .system import LocalSystem, ProbeError
 from .apt import LocalAptSimulator
 from .deployment import create_manifest, reconcile
 from .application import probe_source, collect_application_evidence, LocalApplicationProbe
+from .maintenance import inspect_maintenance
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
                            help="read existing .deb files for signed archive identity verification; never downloads")
-        if command == "plan":
+        if command in {"plan", "review-maintenance"}:
             child.add_argument("--target-package", action="append", dest="target_package_ids",
                                help="binary:architecture target; scan and shared-package impact remain scope-wide")
             child.add_argument("--dry-run", action="store_true", required=True,
@@ -69,6 +70,11 @@ def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int
             raise ValueError("INVALID_PLAN_DOCUMENT")
         requested = saved.get("scope", {}).get("requested_package_ids") if isinstance(saved, dict) else getattr(args, "target_package_ids", None)
         result = plan(report, system=reader, simulator=backend, now=now, target_package_ids=requested) if args.command in {"plan", "verify-plan"} else report
+        if args.command == "review-maintenance":
+            proposal = plan(report, system=reader, simulator=backend, now=now, target_package_ids=args.target_package_ids)
+            review = inspect_maintenance(report, proposal, system=reader, package_cache=args.package_cache, now=now)
+            print(json.dumps(review, ensure_ascii=True, indent=2))
+            return 4
         if args.command == "verify-plan":
             verification = {"status": "BLOCKED", "executable": False,
                             "drift": verify_document(saved, result, now or datetime.now(timezone.utc)),
