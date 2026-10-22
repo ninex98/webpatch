@@ -27,6 +27,12 @@ package_name, service, port, cache = sys.argv[1:]
 # This is a separate, explicit maintenance fixture AFTER all readonly invariants
 # in ci_vm_smoke.sh. The product never performs this configuration cleanup.
 backup=Path(tempfile.mkdtemp(prefix='webpatch-managed-apt-fixture-'))
+custom_tool=Path('/usr/local/bin/phpunit')
+if custom_tool.exists():
+    Path('ci-evidence/managed-custom-tool.json').write_text(json.dumps({'path':str(custom_tool),
+        'sha256':hashlib.sha256(custom_tool.read_bytes()).hexdigest(),
+        'action':'Relocated unverified custom tool before the plain official-package fixture'},indent=2)+'\n')
+    shutil.move(custom_tool,backup/'custom-phpunit')
 paths=[Path('/etc/apt/preferences'),Path('/etc/apt/apt.conf')]
 for directory in ('/etc/apt/preferences.d','/etc/apt/apt.conf.d'):
     paths += [p for p in Path(directory).iterdir() if re.fullmatch(r'[A-Za-z0-9_-]+(?:\.conf)?',p.name)]

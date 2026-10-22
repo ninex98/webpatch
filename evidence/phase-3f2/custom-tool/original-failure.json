@@ -1,0 +1,29 @@
+{
+  "run": "https://github.com/ninex98/webpatch/actions/runs/39861504233",
+  "tested_commit": "99a652ce8f31c15c4a82cf51ffe47553b2e98ff8",
+  "full_artifact_sha256": "42c8cb3e206455d38ef0d9c8600b2b31112a2ec2ae8bb593323eaefeb66fe5d2",
+  "blockers": [
+    "REPAIR_REQUIREMENT_NOT_MET:consumer_completeness"
+  ],
+  "census_status": "VERIFIED_ACTIVE_MAPPING_CENSUS",
+  "descriptor_coverage": "VERIFIED_VISIBLE_FILE_DESCRIPTORS",
+  "custom_installations": [
+    {
+      "blocks_repair": true,
+      "evidence_ids": [
+        "e12"
+      ],
+      "id": "9465f2c16c3c587fbc88833ab418855f20f90af772e6be7b939215c452bf3d24",
+      "next_step": "Inventory and validate this installation separately; do not apply local APT conclusions.",
+      "reason": "Custom installation is outside the authenticated Ubuntu package repair scope.",
+      "requirement": "custom_installation",
+      "status": "UNSUPPORTED",
+      "subjects": [
+        {
+          "id": "/usr/local/bin/phpunit",
+          "kind": "installation"
+        }
+      ]
+    }
+  ]
+}

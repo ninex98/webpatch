@@ -182,10 +182,10 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
              and consumers.get('file_descriptor_coverage')=='VERIFIED_VISIBLE_FILE_DESCRIPTORS'
              and {c['service'] for c in consumed}==set(services)
              and all(c['runtime_id'] in body['runtime_ids'] for c in consumed))
-    custom=any(h.pid is None and h.path and not h.path.startswith('/etc/php/') for h in report.inventory.runtime_hints)
-    gate('consumer_completeness',bool(covered) and not custom,
+    custom_paths=sorted({h.path for h in report.inventory.runtime_hints if h.pid is None and h.path and not h.path.startswith('/etc/php/')})
+    gate('consumer_completeness',bool(covered) and not custom_paths,
          'All visible active consumers of the exact selected package files belong to the verified prepared services. Idle/future code and other images are not declared runtime-safe.',
-         (consumers or {}).get('blockers',[]))
+         [*(consumers or {}).get('blockers',[]),*['REPAIR_CUSTOM_INSTALLATION_UNRESOLVED:'+p for p in custom_paths]])
     gate('loaded_configuration',startup['status']=='VERIFIED_CURRENT_PREPARED_SCOPE','Signed startup, current read-only namespace views and implementation bindings verified.',startup['blockers'])
     gate('request_attribution',startup['status']=='VERIFIED_CURRENT_PREPARED_SCOPE','Every declared pool/request has a fresh kernel-bound collector response; arbitrary application routes are outside this claim.',startup['blockers'])
     gate('installation_equivalence',diagnostic.apt_simulation=='PASS' and inputs['status']=='READY_FOR_EXECUTION_POLICY_REVIEW',

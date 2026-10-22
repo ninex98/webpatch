@@ -22,7 +22,7 @@ from webpatch.repair_policy import build_repair_review,path_overrides,predepende
 from webpatch.service import scan
 from webpatch.system import DPKG_QUERY,CommandResult
 from webpatch.transaction import admission_reasons
-from webpatch.models import PackageChange
+from webpatch.models import PackageChange,RuntimeHint
 from webpatch.cli import main
 
 
@@ -82,6 +82,13 @@ def test_no_change_is_not_a_repair_transaction_or_runtime_safe_claim(monkeypatch
     review=build(fixture(monkeypatch,upgrade=False))
     assert review.proposal.status=='NO_PACKAGE_CHANGES',review.proposal.blockers
     assert review.proposal.admission_status=='BLOCKED' and not review.proposal.executable
+
+
+def test_unverified_custom_tool_is_named_and_not_assumed_to_be_a_safe_wrapper(monkeypatch):
+    values=fixture(monkeypatch)
+    values[1].inventory.runtime_hints.append(RuntimeHint('custom','/usr/local/bin/phpunit',None,'host',()))
+    review=build(values)
+    assert 'REPAIR_CUSTOM_INSTALLATION_UNRESOLVED:/usr/local/bin/phpunit' in review.proposal.blockers
 
 
 @pytest.mark.parametrize('mutation',['startup','extra-consumer','archive','script','hook','target-diversion','predepends'])
