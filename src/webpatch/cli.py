@@ -9,13 +9,14 @@ from .planning import plan, verify_document
 from .service import scan
 from .system import LocalSystem, ProbeError
 from .apt import LocalAptSimulator
+from .deployment import create_manifest, reconcile
 
 
 def main(argv=None, *, system=None, simulator=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
@@ -27,6 +28,9 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
                                help="simulate exact trusted Ubuntu candidates without installing or refreshing indexes")
         if command == "verify-plan":
             child.add_argument("path", help="saved plan JSON; only compares data and never runs saved commands")
+        if command == "verify-deployment":
+            child.add_argument("path", help="deployment manifest to reconcile with a new scan")
+            child.add_argument("--expect-sha256", help="pin the manifest digest reviewed by the operator")
     subs.add_parser("apply", help="disabled in this preview")
     args = parser.parse_args(argv)
     if args.command == "apply":
@@ -36,6 +40,12 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
         reader = system if system is not None else LocalSystem()
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command in {"deployment-manifest", "verify-deployment"}:
+            timestamp = now or datetime.now(timezone.utc)
+            document = (create_manifest(report, timestamp) if args.command == "deployment-manifest" else
+                        reconcile(json.loads(reader.read_plan_document(args.path)), report, timestamp, args.expect_sha256))
+            print(json.dumps(document, ensure_ascii=True, indent=2))
+            return 4  # matching observations never authorize repair
         backend = simulator if simulator is not None else (LocalAptSimulator() if isinstance(reader, LocalSystem) else None)
         saved = json.loads(reader.read_plan_document(args.path)) if args.command == "verify-plan" else None
         if args.command == "verify-plan" and (not isinstance(saved, dict) or not isinstance(saved.get("scope", {}), dict)):
