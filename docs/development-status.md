@@ -54,3 +54,13 @@ READY_FOR_REVIEW 仅表示诊断输入可审阅；所有计划仍 `admission_sta
 用户已明确授权按原设计四阶段继续，Debian、Node.js 与容器重建扩展分别验收；先闭合有限 Ubuntu PHP 修复。2D 的历史验收不变。当前新增：3A.1 `a0d63da`（354 tests，CI 39767703025 9/9 PASS）；3A.2 `b52b011` 首轮 8/9，既有 helper 寿命问题由 `cc84680` 修正（该独立重跑一格取消，不计通过）；3B `f909217`（395 tests，39776918742 9/9 PASS，包含修正后的真实探针）；3C `5b22ed3`（415 tests，39791877691 9/9 PASS）；3D.1 `66d2e26`（427 tests，39794945409 9/9 PASS）。
 
 新增归档封存检查点在暂存源码隔离目录验证 434 tests，证据见 evidence/phase-3d-archive，Linux 全矩阵待重验。3D.2 受控服务准备/只读配置快照仍在开发，尚未验收。3C 仅是注入后端事务状态机，不能宣称真实修复已完成；实际安装执行器、完整准入与阶段四仍须继续。接口演进见 docs/phase-3.md。
+
+## 当前增量状态（2026-10-23，继续开发中）
+
+归档封存修正 `6d374f1` 的 Actions 39820064701 已 9/9 PASS。受控启动 `dfcd025` 首轮失败保存在 evidence/phase-3d2/first-ci；`bd39f76` 修正共享 include 和空属性后，systemctl 结构化 EnvironmentFiles 空数组仍省略，由 `dcd3eb2` 增加固定 typed D-Bus 读取。`9c2bbaf` 补齐额外测试 pool 的 socket 访问并保存受限错误码，尚待完整四格重验；单格 Apache 通过不能扩张为全矩阵通过。
+
+执行输入 `509f83c` 遇到 runner 特殊 dpkg hooks 并按要求阻断；`040f213`/`caa9517` 仅在临时 VM 建立记录过的无特殊 hook 测试基线，产品门禁未放宽。包操作能力 `1db0afb` 经 `2ef6b0b` 调整独立 Docker runtime 测试，三格真实合成包升级/trigger/锁/失败路径 PASS，9 个当前相关源码文件与受测 commit 一致，证据在 evidence/phase-3e2/accepted-native。此结果不等于真实 PHP 修复。
+
+当前收据复核 `816b8bb` 增加签名、代码/规则、scope、实例、只读视图和新请求核对；容器重建建议 `857e346` 本地 500 tests PASS；独立 Node adapter/rules `8fccbc8` 本地 519 tests PASS。4A 的三格只读接口、4B 的两格 Debian 原生验收仍以其最新 CI 为准。容器扩展交付原设计中的建议，build/rollout NOT_RUN；Node 扩展只覆盖明确列出的 Debian 运行时版本规则，npm/其他来源 UNKNOWN。
+
+仍须完成：受控启动/收据四格验收，精确维护策略与完整执行准入、实际 Ubuntu PHP 升级和失败闭环，以及 Debian PHP 修复的独立认证。公开 package apply 仍禁用，不得把已存在底层能力或检查点提交称为全部功能完成。用户已授权继续直到原设计四阶段完成；不需重新询问范围。

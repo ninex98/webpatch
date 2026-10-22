@@ -1,0 +1,33 @@
+{
+  "stage": "3E.2 native capability only",
+  "result": "PASS",
+  "run": "https://github.com/ninex98/webpatch/actions/runs/39841958981",
+  "tested_commit": "2ef6b0bcfefb1c582b98d73e0984f7f8ebc91193",
+  "component_source_sha256": {
+    "src/webpatch/package_control.py": "fcf1a2e98d654568623a0ec14010f8312ac0e37c9a7d4787da541057a5bdff71",
+    "src/webpatch/service_control.py": "d42f0535baf89f6028faf8299f14483a7102fc7041069b8fc7cef8af4e4aa6f8",
+    "src/webpatch/system.py": "d6a054d71b1a67bcdac3d1e4421ae22749eb0224d455ce2af6fdc61b91107c8d",
+    "src/webpatch/receipts.py": "2ab08b04d1c5f1cdd3dcc50995df1b87ba3de7b293bff04976744a9e19fda277",
+    "src/webpatch/transaction.py": "64552cf452189064ce1aeae986561b7d9acb3953e8221a2bca57d9f973377ef1",
+    "src/webpatch/planning.py": "d3f9f30455b12bcdab2ab8f7d3a9207e8aba87b6087fd0a7156313e5f20ca9d2",
+    "src/webpatch/models.py": "46df0ebd70813743eb3fe82c3bd2b1fcff1e63c85e4ca54024365a38861c7938",
+    "src/webpatch/sources.py": "1b995b31d790311220713c6c63c7b9d0db5f466ff9e2c14d2ce3a20efbaa4015",
+    "tests/integration/package_control_check.py": "f00380a78177d6b92e81d86bb976ea225017ad9b3a1d93ce74b441329b2f6d80"
+  },
+  "other_vm_gates": "Not claimed by this component acceptance",
+  "artifact_sha256": {
+    "container-bookworm/docker-build.log": "a57dff936fecea5c877657b7840c4ce7ece0a12312bf397c30ca4103f88312e3",
+    "container-bookworm/docker-image.json": "4971286c2682085b86351aae91a6d8d831648fde2c12aff5c3490138e0a901a7",
+    "container-bookworm/docker-result.json": "532cd7d580e78c8a021f79f1b26b3613088205356b62e00f0bf30a9ce086ba1f",
+    "container-bookworm/native-package.json": "681588ec3d0faa2e6b7f9c4f87a5983391170d92dd3192e836a1b8d1513472b8",
+    "container-jammy/docker-build.log": "861217a837dd7462c7030541c22c0b19b4bbe62ef1e660d02936334b790061f2",
+    "container-jammy/docker-image.json": "64952135a09280080f78538c613fb8d8c8dca8d3c3f240097b45c1d237f71317",
+    "container-jammy/docker-result.json": "004249f7773e3c6795acf2289a490fb2c68f96eeb8dd1114079d2319ba0758f9",
+    "container-jammy/native-package.json": "429005b54fc4169c0b981282d1447a8498c8d8491b66d8bff3333bf84733f1c1",
+    "container-noble/docker-build.log": "02a694b6cb26b202d3d02640a534e43ec9a36d8e0777d7c7a117374f7d4d8ca5",
+    "container-noble/docker-image.json": "d355b3d01b0b02df2292472f472d5baf8374bca76c0b9003476f2f4998a547c1",
+    "container-noble/docker-result.json": "b435f0cb4e2d72346c492e695e442ce888f479758f77ee2b0e6f270608c1daf3",
+    "container-noble/native-package.json": "60b3273a0a039ae22a7984ca7ebb753dabe9a212230a3527cf9ee7a514e0b449",
+    "run.json": "1b973fe394a5d377656326d08ace1fd0a733d17727953e3d34e09531f54c1b8b"
+  }
+}
