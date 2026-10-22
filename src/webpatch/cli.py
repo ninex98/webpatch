@@ -12,13 +12,14 @@ from .apt import LocalAptSimulator
 from .deployment import create_manifest, reconcile
 from .application import probe_source, collect_application_evidence, LocalApplicationProbe
 from .maintenance import inspect_maintenance
+from .consumers import census
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "audit-consumers"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
@@ -28,6 +29,8 @@ def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int
                                help="binary:architecture target; scan and shared-package impact remain scope-wide")
             child.add_argument("--dry-run", action="store_true", required=True,
                                help="simulate exact trusted Ubuntu candidates without installing or refreshing indexes")
+        if command == "audit-consumers":
+            child.add_argument("--target-package", action="append", dest="target_package_ids", required=True)
         if command == "verify-plan":
             child.add_argument("path", help="saved plan JSON; only compares data and never runs saved commands")
         if command == "verify-deployment":
@@ -50,6 +53,9 @@ def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int
         reader = system if system is not None else LocalSystem()
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command == "audit-consumers":
+            print(json.dumps(census(report, system=reader, package_ids=args.target_package_ids, now=now), ensure_ascii=True, indent=2))
+            return 4
         if args.command == "probe-application":
             capability = probe if probe is not None else (LocalApplicationProbe() if isinstance(reader, LocalSystem) else None)
             if capability is None:

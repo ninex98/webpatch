@@ -43,3 +43,11 @@ transaction.py 定义独立 TransactionBackend：locked、revalidate、install�
 AuditJournal 使用 0600 普通文件、有界 JSONL、追加写入/fsync 和 hash chain，拒绝坏链、开放权限或非本用户文件。它依赖外层事务锁，不声称 hash chain 本身提供并发互斥或 root 级完整性证明。安装前日志写入失败会阻止安装；无法写入失败记录时在结果中明确标记。锁失败时不写入其他事务的日志。
 
 测试中的可执行正例仅由注入后端和明确构造的已满足门禁 fixture 提供，用来验证事务顺序及失败边界，不是生产准入证据。真实有限执行、受控配置加载与完整消费者核验仍须后续独立验收。
+
+## 3D.1 活跃映像/映射消费者核对
+
+`webpatch audit-consumers --target-package php8.1-fpm:amd64 --package-cache /path/to/cache --format json` 按认证归档文件的 device/inode/SHA256 建立目标索引，读取全部可见 PID 的 stat、exe identity 和 maps，与已有运行实例/服务逐项关联。它独立于 comm 名称，能发现改名、未列入初始运行清单的映射持有者和删除/替换映像。读取失败、进程新增/退出/身份变化、映射异常、作用域变化与未知包文件身份均阻断。
+
+`VERIFIED_ACTIVE_MAPPING_CENSUS` 只证明该时间窗口内的活跃文件消费者被核对，不证明未来任务、空闲服务或不可见的部署范围；idle_and_future_consumers 固定 NOT_PROVEN，executable=false。内核线程或 zombie 的空地址空间与一般读取失败分开；只比较目标文件映射，普通匿名 heap 变化不触发无关漂移。空进程集/无消费者仍不能证明完整覆盖。
+
+四格 VM 以真实 root procfs 做正例，并启动只 mmap 认证包文件的无害 Python helper（comm 不含 PHP）作为额外消费者反例。允许最多三次读取快照以处理正常 PID churn，保存每次结果，不跳过失败项或放宽门禁；不会执行映射的 PHP 二进制。
