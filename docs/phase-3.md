@@ -31,3 +31,15 @@
 `READY_FOR_MAINTENANCE_REVIEW` 只说明可开始具体内容审阅，不证明维护脚本无副作用，也不证明全系统 trigger cascade。磁盘 dpkg 管理脚本的独立身份、ucf 等脚本管理配置、真实安装行为和停机预算仍须后续门禁；不会因列表为空或脚本退出码可预测就直接授予执行权限。
 
 参考（2026-10-22 审阅）：[Debian maintainer script lifecycle](https://www.debian.org/doc/debian-policy/ch-maintainerscripts.html)、[conffile 格式及 remove-on-upgrade](https://manpages.debian.org/bookworm/dpkg-dev/deb-conffiles.5.en.html)。
+
+## 3C 确认、事务状态机与审计接口
+
+transaction.py 定义独立 TransactionBackend：locked、revalidate、install、restart、verify；本小阶段没有真实 OS 变更后端，也没有将其接入 apply。执行入口只接受当前代码生成的类型化 Plan，不派发保存 JSON 中的 actions/argv。
+
+状态机先检查完整必需门禁、逐项覆盖、受影响范围完整性、模拟成功、计划摘要/时效和显式确认的完全相同 hash，再进入锁内重新验证。缺任何必需门禁、UNKNOWN/NOT_RUN/未解决 blocker、未核实影响范围或动作字符串均阻断。当前真实 planner 仍输出 BLOCKED，因此不会触发后端。
+
+成功路径为 PRECHECK → INSTALLING → RESTARTING → VERIFYING → VERIFIED_WITHIN_DECLARED_SCOPE，结果不叫全局 SAFE。失败区分安装前 FAILED、可能已变更的 PARTIAL、RESTART_REQUIRED 和验证失败；不重试安装、不执行自动回滚。同一计划一旦留下尝试记录，重跑需要生成并审阅新计划。安装/重启抛异常时保守认为可能变更，异常正文不进入日志。
+
+AuditJournal 使用 0600 普通文件、有界 JSONL、追加写入/fsync 和 hash chain，拒绝坏链、开放权限或非本用户文件。它依赖外层事务锁，不声称 hash chain 本身提供并发互斥或 root 级完整性证明。安装前日志写入失败会阻止安装；无法写入失败记录时在结果中明确标记。锁失败时不写入其他事务的日志。
+
+测试中的可执行正例仅由注入后端和明确构造的已满足门禁 fixture 提供，用来验证事务顺序及失败边界，不是生产准入证据。真实有限执行、受控配置加载与完整消费者核验仍须后续独立验收。
