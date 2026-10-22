@@ -108,6 +108,7 @@ class Report:
     evidence: list[Evidence]
     overall: str
     safe: bool = False
+    apt_sources: dict | None = None
 
 
 @dataclass(frozen=True)

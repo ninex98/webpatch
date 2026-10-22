@@ -1,0 +1,60 @@
+{
+  "reviewed_at": "2026-10-22T07:07:34.122861+00:00",
+  "rule_sha256": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+  "valid_until_unchanged": "2026-10-29T00:00:00+00:00",
+  "findings": [
+    "Both CVEs retain existing upstream and jammy/noble/bookworm/trixie boundaries.",
+    "USN-8948-2 covers legacy Ubuntu Pro releases; these remain unsupported for planning.",
+    "Ubuntu archive 2018 signer fingerprint pinned separately from mutable local keyring metadata."
+  ],
+  "sources": [
+    {
+      "url": "https://www.php.net/archive/2026.php",
+      "result": "PASS",
+      "sha256": "3b02b9e9f8ebedb87cbe39a2852c8cc3205067f59572000c730844fbc4a03555",
+      "bytes": 99388
+    },
+    {
+      "url": "https://ubuntu.com/security/notices/USN-8948-1",
+      "result": "PASS",
+      "sha256": "decf0d7f56734ac041989d603165e8f0483fc50f6892ae48f0f123c1d223ff27",
+      "bytes": 83284
+    },
+    {
+      "url": "https://ubuntu.com/security/notices/USN-8948-2",
+      "result": "PASS",
+      "sha256": "3486ff0ffde0847d57ee6c4f68d7782ddbbbd5cd216c4187aab075095e67bbcb",
+      "bytes": 98023
+    },
+    {
+      "url": "https://ubuntu.com/security/CVE-2026-109618",
+      "result": "PASS",
+      "sha256": "7229dadc5c1f9ee51cb39db1b15f4648f106f85f760426870f604f795a8fc0f8",
+      "bytes": 102862
+    },
+    {
+      "url": "https://ubuntu.com/security/CVE-2026-109619",
+      "result": "PASS",
+      "sha256": "cbc24ec4d386c3d88dbb2735a6d23bab686c8b164ef6a8ad44154818b4c98849",
+      "bytes": 102894
+    },
+    {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-109618",
+      "result": "PASS",
+      "sha256": "41c748e72f17829c052825230075d01832667d036835819cacb30bd3bb5a699f",
+      "bytes": 5415
+    },
+    {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-109619",
+      "result": "PASS",
+      "sha256": "91b8d9be9629af39a18f8aef06b88dc619b7db6098bf91d75dfdd943f54ea02a",
+      "bytes": 5414
+    },
+    {
+      "url": "https://documentation.ubuntu.com/security/software-integrity/image-verification/",
+      "result": "PASS",
+      "sha256": "06fdbd45268ee7188668f672f92925507afe2466ff206314d8d0eb1cbddb53b8",
+      "bytes": 47418
+    }
+  ]
+}

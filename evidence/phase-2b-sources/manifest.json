@@ -1,0 +1,40 @@
+{
+  "head": "c12855f35e942bbada8ef2f215a9bc3aabe79c3a",
+  "python": "3.10.19 (main, Oct  9 2025, 15:25:03) [Clang 17.0.0 (clang-1700.3.19.1)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "source_sha256": {
+    ".github/workflows/ci.yml": "283ecb79d26cd2c1df29dbb4f303764afb5092a5dcf507e5b696c473c4b4c46e",
+    "pyproject.toml": "81dfde3d091b0cf02667cf5e27cd6de6a685582bcc67a9d90596154fde0fadbb",
+    "scripts/build_deb.py": "b19eb8b6fd23ec9e2912a1ae8a41f1d992bff4d3a60fbb73b8add137fd2a6aad",
+    "scripts/ci_vm_smoke.sh": "660e804dd4d32fcc8af96b0493cd1dc004a6cab7e5f0a426adffb3b0f1f71f9d",
+    "scripts/evidence_manifest.py": "cdf8f627e5fb55f0a5d496dad109f868ea70776d00b5c0d84c27d297a752acf0",
+    "src/webpatch/__init__.py": "23bd73f027c02f59823ac5b1311a4f734609d347ebd670e8b595c98fe3a19f9f",
+    "src/webpatch/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/webpatch/cli.py": "d97d666e56df2f508a0dbff1f584c1b30e30e035f1c80a5433f65b4a1dfe49e6",
+    "src/webpatch/configuration.py": "4ccce7f010683b4c64308e2fbf99a631c7d9702b372be19cc3742a20ba5076af",
+    "src/webpatch/data/php2shell.json": "f2fe32859700b27b380abc7212f8cab0d8dc6129a3e402f2489f4499c0c1e62d",
+    "src/webpatch/discovery.py": "d65ca3385fa464138c71e886fceced65ebdf868fac331e35575e51141760fbce",
+    "src/webpatch/models.py": "aa6f094bd6627ff7afa289df51be69498d5154a944bb0f68cee556639c949430",
+    "src/webpatch/planning.py": "33274308cd8b7be938628969087a23de8cf2a9c0cd42433ef003fa24b185281d",
+    "src/webpatch/rules.py": "344ccbb3586b0e6a9f872c874f66487165e2f7198dc6b695994cf0708c15a9c8",
+    "src/webpatch/runtime.py": "dd17a369b0738940b0dab9f6982eacf7382ab8b45299217d9ac366fdebacc0d7",
+    "src/webpatch/service.py": "15f72545884be15e4f3e59e82e4e3e20a2c5de7ec6db8ecbc63dafa4931f73b0",
+    "src/webpatch/sources.py": "3cae882d11fed062e811c81ce068fcabd956bdab338f83a392909d95062f970e",
+    "src/webpatch/system.py": "44f20361e557da0ca151135c08dd3dafba189d86ca8bf73e9e27178083b481fb",
+    "tests/conftest.py": "1ebb387f9bdecb1be08570b9511244d217e78051db8783b59b71bf762b16fc0b",
+    "tests/fixtures/README.md": "1778c5cc49e7ad3b18ac3d3ce2ca8ab8801e35e698cb22919727bcc63067998d",
+    "tests/fixtures/comparisons.json": "c4294738e5c5f488af0c5e5884cf498c09ff51f556678aaf045839894a675ca2",
+    "tests/fixtures/environments.json": "dc787cdbb72032211c2b2e23ee91372e016274ca2724bf3a28dfe11674f52db6",
+    "tests/integration/check.py": "80c6b37003b3e8572476e1948526c412984c167edcbb7433a3adef957fd4e148",
+    "tests/test_boundaries.py": "e5979b00220417129126b371049bf838e9f560fe8482e21525077084cbd1515c",
+    "tests/test_environments.py": "acc8ddf2edcf33a2c578035dabbc44bf75012f2436d6ebde57f146d38231557d",
+    "tests/test_runtime.py": "e8bb748acb83d57ba02e332f1a9c3e4ff59f6d0956ffa41a7050ea394be4f7a0",
+    "tests/test_sources.py": "8a19b42dc9ec1caf39ea64e10785ce70420d89ead3ea8442c52252f41b726550"
+  },
+  "artifact_sha256": {
+    "evidence/phase-2b-sources/README.md": "df089fe3b44def72c7c52f1f9b2d377d8900283b2055f23290e388a3f69ae22c",
+    "evidence/phase-2b-sources/official-review.json": "12db1fa333444413581dcf7072f3e648ed816ae8057349dcff13ac3ec6d0b42d",
+    "evidence/phase-2b-sources/pytest.log": "25ae40b4990e2312e157b90bdd49ba2d7c9bd14d600bb5e3656b34a15737e1d4",
+    "evidence/phase-2b-sources/pytest.xml": "5b13495975488268a15ea2add7d053da280da09891fd106a2bae48443c40060e"
+  }
+}

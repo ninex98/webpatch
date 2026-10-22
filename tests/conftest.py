@@ -35,6 +35,8 @@ class FakeSystem:
         self.dirs = {p: missing for p in (
             "/etc/php", "/www/server/php", "/opt/php", "/usr/local/bin", "/usr/local/sbin")}
         self.dirs.update({"/run": [], "/run/containerd": missing, "/proc": []})
+        self.reads.update({p: missing for p in ("/etc/apt/sources.list", "/etc/apt/preferences", "/etc/apt/apt.conf")})
+        self.dirs.update({p: [] for p in ("/etc/apt/sources.list.d", "/etc/apt/preferences.d", "/etc/apt/apt.conf.d")})
         self.dirs.update(case.get("directories", {}))
         self.dirs.update({p: ProbeError(e) for p, e in case.get("directory_errors", {}).items()})
         for proc in case.get("processes", []):
