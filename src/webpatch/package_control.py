@@ -179,11 +179,17 @@ class LocalPackageControl(LocalServiceControl):
         self.require_lock()
         changed=False; results=[]
         try:
+            deadline=time.monotonic()+operation.timeout_seconds
+            def remaining():
+                value=deadline-time.monotonic()
+                if value<=0: raise ProbeError('PACKAGE_COMMAND_TIMEOUT')
+                return value
             root,paths=self.stage_archives(operation,system)
+            remaining()
             with self.suppress_service_start():
                 changed=True
                 for action,args in (('unpack',paths),('configure',tuple(a.name+':'+a.architecture for a in operation.archives))):
-                    row=self.run_dpkg(action,args,root,operation.timeout_seconds); results.append(row)
+                    row=self.run_dpkg(action,args,root,remaining()); results.append(row)
                     if row['returncode']:
                         return StepResult(False,True,digest(results),'PACKAGE_'+action.upper()+'_FAILED')
                 for _ in range(4):
@@ -191,7 +197,7 @@ class LocalPackageControl(LocalServiceControl):
                     if not pending: break
                     if not set(pending)<=set(operation.trigger_handlers):
                         return StepResult(False,True,digest(results),'PACKAGE_UNAPPROVED_TRIGGER_PENDING')
-                    row=self.run_dpkg('triggers-only',pending,root,operation.timeout_seconds); results.append(row)
+                    row=self.run_dpkg('triggers-only',pending,root,remaining()); results.append(row)
                     if row['returncode']: return StepResult(False,True,digest(results),'PACKAGE_TRIGGER_FAILED')
                 else:
                     return StepResult(False,True,digest(results),'PACKAGE_TRIGGER_CASCADE_LIMIT')

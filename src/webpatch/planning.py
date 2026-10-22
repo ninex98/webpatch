@@ -106,19 +106,30 @@ def check_bindings(collector, bindings, report=None):
     return True
 
 
-def lock_blockers(collector):
+def lock_blockers(collector, owned_frontend=None):
     raw, _ = collector.probe("read_text", "/proc/locks")
     if raw is None:
         return ["APT_LOCK_VISIBILITY_UNKNOWN"]
     blockers = []
+    owner_seen=False
+    if owned_frontend is not None and (owned_frontend.get('pid')!=os.getpid() or owned_frontend.get('path')!='/var/lib/dpkg/lock-frontend'):
+        return ['OWNED_PACKAGE_LOCK_IDENTITY_INVALID']
     for path in ("/var/lib/dpkg/lock", "/var/lib/dpkg/lock-frontend", "/var/lib/apt/lists/lock", "/var/cache/apt/archives/lock"):
         identity, _ = collector.probe("identity", path)
         if identity is None:
             if collector.evidence[-1].outcome != "FileNotFoundError": blockers.append("APT_LOCK_VISIBILITY_UNKNOWN")
             continue
-        for match in re.finditer(r"\b([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9]+)\b", raw):
-            if (os.makedev(int(match[1], 16), int(match[2], 16)), int(match[3])) == (identity["device"], identity["inode"]):
-                blockers.append("PACKAGE_MANAGER_LOCK_HELD")
+        for line in raw.splitlines():
+            fields=line.split()
+            if '->' in fields: continue  # queued waiters do not own a lock
+            for match in re.finditer(r"\b([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9]+)\b", line):
+                if (os.makedev(int(match[1],16),int(match[2],16)),int(match[3]))!=(identity['device'],identity['inode']): continue
+                owned=(owned_frontend is not None and path==owned_frontend['path'] and identity=={k:owned_frontend[k] for k in ('device','inode')}
+                       and len(fields)>=8 and fields[1:4]==['POSIX','ADVISORY','WRITE'] and fields[4]==str(os.getpid())
+                       and fields[-2:]==['0','EOF'])
+                if owned: owner_seen=True
+                else: blockers.append('PACKAGE_MANAGER_LOCK_HELD')
+    if owned_frontend is not None and not owner_seen: blockers.append('OWNED_PACKAGE_LOCK_NOT_OBSERVED')
     return blockers
 
 
@@ -220,7 +231,7 @@ def dependency_blockers(changes, targets, report, collector):
     return blockers
 
 
-def plan(report: Report, *, system=None, simulator=None, now=None, target_package_ids=None, include_components=False) -> Plan:
+def plan(report: Report, *, system=None, simulator=None, now=None, target_package_ids=None, include_components=False, owned_frontend=None) -> Plan:
     now = now or datetime.now(timezone.utc)
     if now.tzinfo is None:
         raise ValueError("TIMEZONE_REQUIRED")
@@ -260,7 +271,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
         targets, candidate_blockers = choose_targets(report, collector, now, requested, include_components)
         blockers.extend(candidate_blockers)
         if targets and bindings:
-            blockers.extend(lock_blockers(collector))
+            blockers.extend(lock_blockers(collector,owned_frontend))
             if not check_bindings(collector, bindings, report):
                 blockers.append("STATE_DRIFT_BEFORE_SIMULATION")
             else:
@@ -279,7 +290,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
                     blockers.append(str(exc)); simulation_status = "FAIL"
                 if not check_bindings(collector, bindings, report):
                     blockers.append("STATE_DRIFT_DURING_SIMULATION")
-                blockers.extend(lock_blockers(collector))
+                blockers.extend(lock_blockers(collector,owned_frontend))
         evidence = tuple(collector.evidence)
     if simulation_status == "NOT_RUN": blockers.append("APT_DRY_RUN_NOT_PERFORMED")
     expiry = evidence_deadline(report, now)

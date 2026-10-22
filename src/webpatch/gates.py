@@ -91,8 +91,8 @@ def review_gates(report, proposal, now):
              'No known special APT hooks/overrides observed by the bounded audit.',
              'Review every hook/override and its install-time effects; isolated simulation deliberately omits these.', source_ids,
              checked=bool(report.apt_sources))
-    decision('package_manager_locks', matches(('APT_LOCK_', 'PACKAGE_MANAGER_LOCK_')),
-             'No held package-manager lock observed at both simulation boundaries; this is not a held execution lock.',
+    decision('package_manager_locks', matches(('APT_LOCK_', 'PACKAGE_MANAGER_LOCK_', 'OWNED_PACKAGE_LOCK_')),
+             'No conflicting package-manager lock observed at both simulation boundaries; execution must independently own its frontend lock.',
              'Wait for the owning transaction to finish; future execution must acquire locks and recheck state.', plan_ids,
              checked=any(e.target == '/proc/locks' for e in proposal.evidence))
     decision('input_stability', matches(('STATE_', 'SCOPE_IDENTITY_', 'PLAN_EVIDENCE_')),

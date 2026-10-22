@@ -256,3 +256,4 @@ class Plan:
     admission_status: str = "BLOCKED"
     target_policy: str = "ENGINE_PACKAGES"
     execution_contract_sha256: str | None = None
+    review_evidence_sha256: str | None = None

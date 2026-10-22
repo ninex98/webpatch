@@ -6,6 +6,7 @@ except ImportError:
     fcntl = None
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -27,6 +28,7 @@ class LocalServiceControl:
         self.state_dir = Path(state_dir)
         self.store = ReceiptStore(self.state_dir)
         self.owns_package_lock = False
+        self._lock_descriptors = ()
 
     @staticmethod
     def require_root():
@@ -51,14 +53,25 @@ class LocalServiceControl:
                     raise ProbeError('SERVICE_LOCK_IDENTITY_INVALID')
                 fcntl.lockf(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
             self.owns_package_lock = True
+            self._lock_descriptors = tuple(descriptors)
             yield
         finally:
             self.owns_package_lock = False
+            self._lock_descriptors = ()
             for descriptor in reversed(descriptors):
                 os.close(descriptor)
 
-    def command(self, action, service=None):
+    def frontend_lock_identity(self):
         self.require_root()
+        if not self.owns_package_lock or len(self._lock_descriptors)!=2:
+            raise ProbeError('PACKAGE_FRONTEND_LOCK_NOT_OWNED')
+        info=os.fstat(self._lock_descriptors[1])
+        return {'path':'/var/lib/dpkg/lock-frontend','device':info.st_dev,'inode':info.st_ino,'pid':os.getpid()}
+
+    def command(self, action, service=None, timeout_seconds=60):
+        self.require_root()
+        if type(timeout_seconds) not in {int,float} or not math.isfinite(timeout_seconds) or not 0<timeout_seconds<=60:
+            raise ProbeError('SERVICE_CONTROL_BUDGET_INVALID')
         if action == 'daemon-reload' and service is None:
             argv = ('/usr/bin/systemctl','daemon-reload')
         elif action in {'restart','stop','start'} and isinstance(service,str) and re.fullmatch(r'(?:php[0-9]+\.[0-9]+-fpm|apache2)\.service',service):
@@ -69,7 +82,7 @@ class LocalServiceControl:
         buffers = [bytearray(),bytearray()]
         with subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,stderr=subprocess.PIPE,
                               env=env,cwd='/',shell=False) as child:
-            deadline = time.monotonic()+60
+            deadline = time.monotonic()+timeout_seconds
             try:
                 with selectors.DefaultSelector() as selector:
                     selector.register(child.stdout,selectors.EVENT_READ,0)
@@ -91,13 +104,17 @@ class LocalServiceControl:
         return {'action':action,'service':service,'result':'PASS',
                 'output_sha256':hashlib.sha256(bytes(buffers[0])+b'\0'+bytes(buffers[1])).hexdigest()}
 
-    def wait_stable(self, service):
+    def wait_stable(self, service, timeout_seconds=10):
         self.require_root()
+        if type(timeout_seconds) not in {int,float} or not math.isfinite(timeout_seconds) or not 0<timeout_seconds<=10:
+            raise ProbeError('SERVICE_STABILITY_BUDGET_INVALID')
         if not re.fullmatch(r'(?:php[0-9]+\.[0-9]+-fpm|apache2)\.service',service):
             raise ProbeError('SERVICE_MUTATION_NOT_ALLOWLISTED')
         path = Path('/sys/fs/cgroup/system.slice')/service/'cgroup.procs'
         previous, stable = None, 0
+        deadline=time.monotonic()+timeout_seconds
         for _ in range(40):
+            if time.monotonic()>=deadline: break
             current = tuple(sorted(path.read_text().split()))
             stable = stable+1 if current and current==previous else 0
             if stable>=4: return

@@ -71,7 +71,7 @@ user www-data;
 events {}
 http {
   server {
-    listen 18080;
+    listen 127.0.0.1:18080;
     root /var/www/html;
     location ~ \.php\$ {
       include /etc/nginx/fastcgi.conf;
@@ -87,6 +87,7 @@ EOF
   sudo systemctl restart nginx
   probe_port=18080
 else
+  echo 'Listen 127.0.0.1:80' | sudo tee /etc/apache2/ports.conf >/dev/null
   for conf in /etc/apache2/mods-enabled/php*.load; do
     [[ -f "$conf" ]] && sudo a2dismod "$(basename "$conf" .load)"
   done
@@ -252,6 +253,7 @@ sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted pyt
 [[ "$before" == "$(snapshot)" ]]
 sudo systemctl show "$service" --property=ActiveState,SubState,MainPID > ci-evidence/vm-service.txt
 sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/preparation_check.py "$package" "$service" "$probe_port" "$package_cache"
+sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/repair_lifecycle_check.py "$package" "$service" "$probe_port" "$package_cache"
 python3 scripts/evidence_manifest.py ci-evidence
 sha256sum dist/*.deb > ci-evidence/package-sha256.txt
 uname -a > ci-evidence/kernel.txt

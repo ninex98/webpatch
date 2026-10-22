@@ -27,7 +27,7 @@ class RepairReview:
     evidence_json: str
 
     def document(self):
-        return {'schema_version':1,'kind':'managed_package_repair_review','plan':asdict(self.proposal),
+        return {'schema_version':1,'kind':'managed_package_repair_review','plan':json.loads(json.dumps(asdict(self.proposal))),
                 'contract':json.loads(self.contract_json),'evidence':json.loads(self.evidence_json)}
 
 
@@ -140,7 +140,8 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
     if not re.fullmatch(r'php[0-9]+\.[0-9]+',source_cohort): raise ValueError('REPAIR_SOURCE_COHORT_INVALID')
     if type(budget_seconds) is not int or not 60<=budget_seconds<=1800: raise ValueError('REPAIR_MAINTENANCE_BUDGET_INVALID')
     selected={p.id for p in report.inventory.packages if p.source_name==source_cohort}
-    diagnostic=plan(report,system=system,simulator=simulator,now=now,target_package_ids=sorted(selected),include_components=True)
+    owned=controller.frontend_lock_identity() if getattr(controller,'owns_package_lock',False) else None
+    diagnostic=plan(report,system=system,simulator=simulator,now=now,target_package_ids=sorted(selected),include_components=True,owned_frontend=owned)
     startup=verify_prepared_scope(startup_receipt,report,system=system,controller=controller,probe=probe,clock=clock)
     # The authenticated payload is consumed only if its fresh verification passed.
     body=startup_receipt.get('payload',{}) if startup['status']=='VERIFIED_CURRENT_PREPARED_SCOPE' else {}
@@ -223,6 +224,8 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
         'runtime_claim':'Selected managed package files and currently verified consumers only; no claim about history, arbitrary routes or other images.'}
     proposal=replace(diagnostic,schema_version=5,status='BLOCKED' if blockers else ('READY_FOR_CONFIRMATION' if diagnostic.changes else 'NO_PACKAGE_CHANGES'),
         executable=False,blockers=tuple(sorted(set(blockers))),services=services,
+        interruptions=(f'Proposed maintenance budget: {budget_seconds} seconds for '+', '.join(services),
+                       'Approved maintainer scripts and service restarts may interrupt requests. Timeout stops further dispatch, not already queued systemd work; no rollback is promised.'),
         scope=operation_scope,coverage=(files_coverage,),gates=tuple(gates),
         expires_at=min(deadlines).isoformat(),target_policy='MANAGED_SOURCE_COHORT',
         admission_status='READY_FOR_CONFIRMATION' if not blockers and diagnostic.changes else 'BLOCKED',
@@ -230,4 +233,6 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
     proposal=replace(proposal,plan_sha256=digest(asdict(proposal)))
     evidence={'diagnostic_plan':asdict(diagnostic),'startup':startup,'maintenance':maintenance,'execution_inputs':inputs,
               'consumers':consumers,'trigger_review':triggers,'global_scan_coverage_gaps':report.inventory.coverage_gaps}
+    proposal=replace(proposal,review_evidence_sha256=digest(evidence),plan_sha256='')
+    proposal=replace(proposal,plan_sha256=digest(asdict(proposal)))
     return RepairReview(proposal,json.dumps(contract,sort_keys=True),json.dumps(evidence,sort_keys=True))
