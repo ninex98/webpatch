@@ -23,20 +23,6 @@ else
   service=apache2.service
 fi
 mkdir -p ci-evidence
-# The hosted image injects a dpkg post-invoke needrestart hook. The bounded
-# positive fixture deliberately has no special dpkg hooks; retain its identity
-# and relocate it before any read-only baseline. Product policy still rejects it.
-sudo python3 - <<'PY'
-from pathlib import Path
-import hashlib, json, shutil, tempfile
-path=Path('/etc/dpkg/dpkg.cfg.d/needrestart')
-record={'path':str(path),'present':path.exists(),'action':'NONE'}
-if path.exists():
-    record.update(sha256=hashlib.sha256(path.read_bytes()).hexdigest(),action='RELOCATED_IN_DISPOSABLE_FIXTURE')
-    backup=Path(tempfile.mkdtemp(prefix='webpatch-vm-original-dpkg-hook-'))/path.name
-    shutil.move(path,backup)
-Path('ci-evidence/original-dpkg-hook.json').write_text(json.dumps(record,indent=2)+'\n')
-PY
 # Hosted images use mirror+file and third-party feeds. Set up the explicitly
 # supported direct official repository fixture, only inside this disposable VM.
 sudo python3 - <<'PY'
@@ -125,6 +111,25 @@ sudo apt-get install -y ./dist/webpatch_0.1.0_all.deb
 sudo systemctl start "$service"
 [[ "$(curl --fail --silent "http://127.0.0.1:${probe_port}/webpatch-ci.php")" == webpatch-ci-route-ok ]]
 sudo systemctl is-active --quiet "$service"
+# Complete package setup before establishing the no-special-dpkg-options fixture.
+# Every relocated input is recorded. Production audits still reject these hooks.
+sudo python3 - <<'PYHOOK'
+from pathlib import Path
+import hashlib, json, re, shutil, tempfile
+backup=Path(tempfile.mkdtemp(prefix='webpatch-vm-original-dpkg-options-'))
+records=[]
+paths=[Path('/etc/dpkg/dpkg.cfg')]
+paths += [p for p in Path('/etc/dpkg/dpkg.cfg.d').iterdir() if re.fullmatch(r'[0-9A-Za-z_-]+',p.name)]
+for path in paths:
+    if not path.exists(): continue
+    raw=path.read_text()
+    active=[line.strip() for line in raw.splitlines() if line.strip() and not line.lstrip().startswith('#')]
+    if all(line in {'no-debsig','log /var/log/dpkg.log'} for line in active): continue
+    records.append({'path':str(path),'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                    'action':'RELOCATED_IN_DISPOSABLE_FIXTURE'})
+    shutil.move(path,backup/path.name)
+Path('ci-evidence/original-dpkg-options.json').write_text(json.dumps(records,indent=2)+'\n')
+PYHOOK
 pid_before="$(systemctl show "$service" --property=MainPID --value)"
 test "$pid_before" -gt 0
 snapshot() {
@@ -132,7 +137,7 @@ snapshot() {
 from pathlib import Path
 import hashlib
 h = hashlib.sha256()
-for root in ('/etc/php', '/etc/apache2', '/etc/nginx', '/etc/apt', '/var/lib/apt/lists'):
+for root in ('/etc/php', '/etc/apache2', '/etc/nginx', '/etc/apt', '/etc/dpkg', '/var/lib/apt/lists'):
     for p in sorted(Path(root).rglob('*')):
         if p.is_file():
             h.update(str(p).encode())
@@ -213,6 +218,25 @@ PY
 PYTHONPATH=src python3 tests/integration/crypto_check.py
 PYTHONPATH=src python3 tests/integration/apt_check.py "$package"
 sudo systemctl is-active --quiet "$service"
+# Complete package setup before establishing the no-special-dpkg-options fixture.
+# Every relocated input is recorded. Production audits still reject these hooks.
+sudo python3 - <<'PYHOOK'
+from pathlib import Path
+import hashlib, json, re, shutil, tempfile
+backup=Path(tempfile.mkdtemp(prefix='webpatch-vm-original-dpkg-options-'))
+records=[]
+paths=[Path('/etc/dpkg/dpkg.cfg')]
+paths += [p for p in Path('/etc/dpkg/dpkg.cfg.d').iterdir() if re.fullmatch(r'[0-9A-Za-z_-]+',p.name)]
+for path in paths:
+    if not path.exists(): continue
+    raw=path.read_text()
+    active=[line.strip() for line in raw.splitlines() if line.strip() and not line.lstrip().startswith('#')]
+    if all(line in {'no-debsig','log /var/log/dpkg.log'} for line in active): continue
+    records.append({'path':str(path),'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                    'action':'RELOCATED_IN_DISPOSABLE_FIXTURE'})
+    shutil.move(path,backup/path.name)
+Path('ci-evidence/original-dpkg-options.json').write_text(json.dumps(records,indent=2)+'\n')
+PYHOOK
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]
 runtime_snapshot > ci-evidence/runtime-processes-after.json
