@@ -52,6 +52,9 @@ else
   probe_port=80
 fi
 echo '<?php echo "webpatch-ci-route-ok";' | sudo tee /var/www/html/webpatch-ci.php >/dev/null
+package_cache="${RUNNER_TEMP}/webpatch-archives"
+mkdir -p "$package_cache"
+(cd "$package_cache" && apt-get download "$package=$(dpkg-query -W -f='${Version}' "$package")")
 python3 scripts/build_deb.py
 sudo apt-get install -y ./dist/webpatch_0.1.0_all.deb
 sudo systemctl start "$service"
@@ -78,7 +81,7 @@ rc=0
 webpatch scan --format json > ci-evidence/vm-scan.json || rc=$?
 [[ "$rc" == 1 || "$rc" == 2 ]]
 rc=0
-sudo webpatch scan --format json > ci-evidence/vm-root-scan.json || rc=$?
+sudo webpatch scan --package-cache "$package_cache" --format json > ci-evidence/vm-root-scan.json || rc=$?
 [[ "$rc" == 1 || "$rc" == 2 ]]
 rc=0
 webpatch plan --dry-run --format json > ci-evidence/vm-plan.json || rc=$?
@@ -100,9 +103,13 @@ assert runtime['service'] == sys.argv[4], runtime
 assert any(p.split(':')[0] == sys.argv[1] for p in runtime['package_ids']), runtime
 assert privileged['safe'] is False
 assert privileged['inventory']['config_relations']
+identity = next(p for p in privileged['package_trust']['installed'] if p['package_id'].split(':')[0] == sys.argv[1])
+assert identity['status'] == 'AUTHENTICATED_RUNTIME_FILES', identity
+assert privileged['package_trust']['candidates']
 p = json.load(open('ci-evidence/vm-plan.json'))
 assert not p['executable'] and p['apt_simulation'] == 'NOT_IMPLEMENTED'
 PY
+PYTHONPATH=src python3 tests/integration/crypto_check.py
 sudo systemctl is-active --quiet "$service"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]

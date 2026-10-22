@@ -31,12 +31,15 @@ class FakeSystem:
         self.links["/proc/self/ns/pid"] = "pid:[1]"
         self.identities = {"/": {"device": 1, "inode": 1}}
         self.fingerprints = {}
+        self.indexes = {}
+        self.archives = {}
         self.reads.update({p: missing for p in ("/etc/nginx/nginx.conf", "/etc/apache2/apache2.conf")})
         self.dirs = {p: missing for p in (
             "/etc/php", "/www/server/php", "/opt/php", "/usr/local/bin", "/usr/local/sbin")}
         self.dirs.update({"/run": [], "/run/containerd": missing, "/proc": []})
         self.reads.update({p: missing for p in ("/etc/apt/sources.list", "/etc/apt/preferences", "/etc/apt/apt.conf")})
         self.dirs.update({p: [] for p in ("/etc/apt/sources.list.d", "/etc/apt/preferences.d", "/etc/apt/apt.conf.d")})
+        self.dirs.update({"/var/lib/apt/lists": [], "/var/cache/apt/archives": []})
         self.dirs.update(case.get("directories", {}))
         self.dirs.update({p: ProbeError(e) for p, e in case.get("directory_errors", {}).items()})
         for proc in case.get("processes", []):
@@ -92,6 +95,12 @@ class FakeSystem:
 
     def fingerprint(self, path):
         return self._get("fingerprint", self.fingerprints, path)
+
+    def package_index(self, path):
+        return self._get("package_index", self.indexes, path)
+
+    def package_archive(self, path):
+        return self._get("package_archive", self.archives, path)
 
 
 @pytest.fixture(params=CASES, ids=lambda c: c["id"])

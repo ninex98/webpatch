@@ -1,6 +1,7 @@
 """The only production OS boundary; there is deliberately no write interface."""
 
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -8,6 +9,7 @@ import re
 import selectors
 import stat
 import subprocess
+import tarfile
 import time
 from dataclasses import dataclass
 from typing import Protocol
@@ -49,6 +51,8 @@ class SystemReader(Protocol):
     def readlink(self, path: str) -> str: ...
     def fingerprint(self, path: str) -> dict: ...
     def identity(self, path: str) -> dict: ...
+    def package_index(self, path: str) -> dict: ...
+    def package_archive(self, path: str) -> dict: ...
 
 
 SERVICE_PROPERTIES = "Id,LoadState,ActiveState,SubState,MainPID,ControlGroup,FragmentPath"
@@ -61,6 +65,15 @@ def service_command(unit: str) -> tuple[str, ...]:
 
 def validate_command(argv: tuple[str, ...]) -> None:
     if argv == DPKG_QUERY:
+        return
+    if (len(argv) == 5 and argv[:4] == ("/usr/bin/gpgv", "--status-fd=1", "--keyring", "/usr/share/keyrings/ubuntu-archive-keyring.gpg")
+            and re.fullmatch(r"/var/lib/apt/lists/[A-Za-z0-9_.%+-]+_InRelease", argv[4])):
+        return
+    if (len(argv) == 3 and argv[:2] == ("/usr/lib/apt/apt-helper", "cat-file")
+            and re.fullmatch(r"/var/lib/apt/lists/[A-Za-z0-9_.%+-]+_Packages(?:\.lz4|\.gz|\.xz)?", argv[2])):
+        return
+    if (len(argv) == 3 and argv[0] == "/usr/bin/dpkg-deb" and argv[1] in {"--ctrl-tarfile", "--fsys-tarfile"}
+            and SAFE_PATH.fullmatch(argv[2]) and ".." not in argv[2].split("/") and argv[2].endswith(".deb")):
         return
     if (len(argv) == 3 and argv[:2] == ("/usr/bin/dpkg-query", "-S")
             and SAFE_PATH.fullmatch(argv[2]) and ".." not in argv[2].split("/")):
@@ -79,6 +92,14 @@ class LocalSystem:
     """Bounded reads and fixed argv, no shell, network or inherited command config."""
 
     def run(self, argv: tuple[str, ...]) -> CommandResult:
+        try:
+            code, stdout, stderr = self._execute(argv)
+            return CommandResult(code, stdout.decode("utf-8", "strict"), stderr.decode("utf-8", "strict"))
+        except UnicodeError as exc:
+            raise ProbeError(type(exc).__name__) from exc
+
+    def _execute(self, argv, limit=None):
+        limit = MAX_COMMAND_BYTES if limit is None else limit
         validate_command(argv)
         env = {"PATH": "/usr/sbin:/usr/bin:/sbin:/bin", "LC_ALL": "C",
                "LANG": "C", "DPKG_PAGER": "/bin/cat", "DPKG_COLORS": "never"}
@@ -101,20 +122,22 @@ class LocalSystem:
                                     selector.unregister(key.fileobj)
                                     continue
                                 buffers[key.data].extend(chunk)
-                                if sum(map(len, buffers)) > MAX_COMMAND_BYTES:
+                                if sum(map(len, buffers)) > limit:
                                     raise ProbeError("COMMAND_OUTPUT_LIMIT")
                     proc.wait(timeout=max(0.001, deadline - time.monotonic()))
                 except BaseException:
                     proc.kill()
                     proc.wait()
                     raise
-                return CommandResult(proc.returncode, *(b.decode("utf-8", "strict") for b in buffers))
+                return proc.returncode, *(bytes(b) for b in buffers)
         except (OSError, UnicodeError, subprocess.TimeoutExpired) as exc:
             raise ProbeError(type(exc).__name__) from exc
 
     def read_text(self, path: str) -> str:
         try:
-            with Path(path).open("rb") as stream:
+            with os.fdopen(os.open(path, os.O_RDONLY | os.O_NONBLOCK), "rb") as stream:
+                if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+                    raise ProbeError("FILE_TYPE_LIMIT")
                 content = stream.read(MAX_FILE_BYTES + 1)
             if len(content) > MAX_FILE_BYTES:
                 raise ProbeError("FILE_SIZE_LIMIT")
@@ -147,10 +170,51 @@ class LocalSystem:
         except OSError as exc:
             raise ProbeError(type(exc).__name__) from exc
 
+    def package_index(self, path: str) -> dict:
+        from .sources import paragraphs
+        code, raw, stderr = self._execute(("/usr/lib/apt/apt-helper", "cat-file", path), 256 * 1024 * 1024)
+        if code or stderr:
+            raise ProbeError("INDEX_DECOMPRESSION_FAILED")
+        try:
+            rows = []
+            for paragraph in raw.decode("utf-8").split("\n\n"):
+                if re.match(r"Package: (?:php|libapache2-mod-php|libphp)", paragraph):
+                    rows.extend(paragraphs(paragraph))
+            return {"sha256": hashlib.sha256(raw).hexdigest(), "size": len(raw), "packages": rows}
+        except (ValueError, UnicodeError) as exc:
+            raise ProbeError("INDEX_MALFORMED") from exc
+
+    def package_archive(self, path: str) -> dict:
+        from .sources import paragraphs
+        result = {"files": {}}
+        try:
+            for option in ("--ctrl-tarfile", "--fsys-tarfile"):
+                code, raw, stderr = self._execute(("/usr/bin/dpkg-deb", option, path), 256 * 1024 * 1024)
+                if code or stderr:
+                    raise ProbeError("PACKAGE_ARCHIVE_READ_FAILED")
+                with tarfile.open(fileobj=io.BytesIO(raw), mode="r:") as archive:
+                    seen = set()
+                    for member in archive:
+                        name = member.name.removeprefix("./")
+                        if name in seen or name.startswith("/") or ".." in name.split("/") or len(seen) > 16384:
+                            raise ProbeError("PACKAGE_ARCHIVE_PATH_INVALID")
+                        seen.add(name)
+                        if member.isfile():
+                            stream = archive.extractfile(member)
+                            if option == "--ctrl-tarfile" and name == "control":
+                                result["control"] = paragraphs(stream.read().decode("utf-8"))[0]
+                            elif option == "--fsys-tarfile" and name.startswith(("usr/bin/", "usr/sbin/", "usr/lib/")):
+                                result["files"]["/" + name] = hashlib.sha256(stream.read()).hexdigest()
+            if "control" not in result or not result["files"]:
+                raise ProbeError("PACKAGE_RUNTIME_FILES_MISSING")
+            return result
+        except (tarfile.TarError, ValueError, UnicodeError, IndexError) as exc:
+            raise ProbeError("PACKAGE_ARCHIVE_MALFORMED") from exc
+
     def fingerprint(self, path: str) -> dict:
         """Hash an already-open regular file; reject replacement during reading."""
         try:
-            with open(path, "rb") as stream:
+            with os.fdopen(os.open(path, os.O_RDONLY | os.O_NONBLOCK), "rb") as stream:
                 before = os.fstat(stream.fileno())
                 if not stat.S_ISREG(before.st_mode) or before.st_size > 256 * 1024 * 1024:
                     raise ProbeError("FILE_TYPE_OR_SIZE_LIMIT")

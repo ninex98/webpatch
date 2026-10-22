@@ -109,6 +109,7 @@ class Report:
     overall: str
     safe: bool = False
     apt_sources: dict | None = None
+    package_trust: dict | None = None
 
 
 @dataclass(frozen=True)

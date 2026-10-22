@@ -16,6 +16,8 @@ def main(argv=None, *, system=None, now=None) -> int:
     for command in ("scan", "plan"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
+        child.add_argument("--package-cache", default="/var/cache/apt/archives",
+                           help="read existing .deb files for signed archive identity verification; never downloads")
         if command == "plan":
             child.add_argument("--dry-run", action="store_true", required=True,
                                help="advisory only; APT simulation is not implemented")
@@ -25,7 +27,8 @@ def main(argv=None, *, system=None, now=None) -> int:
         print("BLOCKED: phase 1 has no repair executor. No changes performed.", file=sys.stderr)
         return 4
     try:
-        report = scan(system if system is not None else LocalSystem(), now=now)
+        report = scan(system if system is not None else LocalSystem(), now=now,
+                      package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
     except (OSError, ValueError, KeyError) as exc:
         print(f"ERROR: scan incomplete ({type(exc).__name__}); safety is UNKNOWN.", file=sys.stderr)
         return 3
