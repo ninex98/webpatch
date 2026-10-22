@@ -1,0 +1,40 @@
+........................................................................ [ 13%]
+........................................................................ [ 27%]
+........................................................................ [ 41%]
+........................................................................ [ 55%]
+........................................................................ [ 68%]
+........................................................................ [ 82%]
+.......................................................................F [ 96%]
+..................                                                       [100%]
+=================================== FAILURES ===================================
+_______________ test_broken_signed_chain_is_unknown[future-date] _______________
+
+mutation = 'future-date'
+
+    @pytest.mark.parametrize("mutation", ["bad-signature", "unknown-signer", "expired-key", "wrong-origin", "wrong-suite", "old-date", "future-date", "expired-release", "hash", "size", "missing-index", "missing-release"])
+    def test_broken_signed_chain_is_unknown(mutation):
+        fake = trust_fixture()
+        if mutation == "bad-signature": fake.commands[signature_command(RELEASE)] = CommandResult(1, "[GNUPG:] BADSIG x")
+        if mutation == "unknown-signer": fake.commands[signature_command(RELEASE)] = CommandResult(0, "[GNUPG:] VALIDSIG " + "0" * 40 + " fixture")
+        if mutation == "expired-key": fake.commands[signature_command(RELEASE)] = CommandResult(0, "[GNUPG:] EXPKEYSIG x\n[GNUPG:] VALIDSIG " + UBUNTU_SIGNER + " fixture")
+        if mutation == "wrong-origin": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Origin: Ubuntu", "Origin: Forged")
+        if mutation == "wrong-suite": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Suite: jammy-security", "Suite: noble-security")
+        if mutation == "old-date": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Date: Thu, 22", "Date: Wed, 14")
+        if mutation == "future-date": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Date: Thu, 22", "Date: Fri, 23")
+        if mutation == "expired-release": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Valid-Until: Thu, 29", "Valid-Until: Thu, 22")
+        if mutation == "hash": fake.indexes[INDEX]['sha256'] = 'd' * 64
+        if mutation == "size": fake.indexes[INDEX]['size'] = 124
+        if mutation == "missing-index": fake.dirs['/var/lib/apt/lists'] = []
+        if mutation == "missing-release": fake.reads[RELEASE] = ProbeError('PermissionError')
+        result = scan(fake, now=NOW).package_trust
+>       assert result['status'] == 'UNKNOWN'
+E       AssertionError: assert 'VERIFIED_INDEX_CHAIN' == 'UNKNOWN'
+E         
+E         - UNKNOWN
+E         + VERIFIED_INDEX_CHAIN
+
+tests/test_trust.py:56: AssertionError
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/phase-3-base-rules/pytest.xml -
+=========================== short test summary info ============================
+FAILED tests/test_trust.py::test_broken_signed_chain_is_unknown[future-date]
+1 failed, 521 passed in 1.54s

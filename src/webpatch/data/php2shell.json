@@ -1,35 +1,86 @@
 {
   "schema_version": 1,
-  "revision": "php2shell-2026-10-22.1",
-  "reviewed_at": "2026-10-22T00:00:00+00:00",
+  "revision": "php2shell-2026-10-23.2",
+  "reviewed_at": "2026-10-22T20:16:39+00:00",
   "valid_until": "2026-10-29T00:00:00+00:00",
-  "cves": ["CVE-2026-109618", "CVE-2026-109619"],
+  "cves": [
+    "CVE-2026-109618",
+    "CVE-2026-109619"
+  ],
   "upstream_reference": "https://www.php.net/archive/2026.php#2026-10-21-5",
-  "upstream_fixed_informational_only": {"8.2": "8.2.35", "8.3": "8.3.36", "8.4": "8.4.27", "8.5": "8.5.12"},
+  "upstream_fixed_informational_only": {
+    "8.2": "8.2.35",
+    "8.3": "8.3.36",
+    "8.4": "8.4.27",
+    "8.5": "8.5.12"
+  },
   "rules": [
     {
-      "os_id": "ubuntu", "version_id": "22.04", "codename": "jammy", "source_name": "php8.1",
-      "version_pattern": "8\\.1\\.2-1ubuntu2\\.[0-9]+",
-      "fixes": {"CVE-2026-109618": "8.1.2-1ubuntu2.28", "CVE-2026-109619": "8.1.2-1ubuntu2.28"},
-      "references": ["https://ubuntu.com/security/notices/USN-8948-1", "https://ubuntu.com/security/CVE-2026-109618", "https://ubuntu.com/security/CVE-2026-109619"]
+      "os_id": "ubuntu",
+      "version_id": "22.04",
+      "codename": "jammy",
+      "source_name": "php8.1",
+      "version_pattern": "8\\.1\\.2-1ubuntu2(?:\\.[0-9]+)?",
+      "fixes": {
+        "CVE-2026-109618": "8.1.2-1ubuntu2.28",
+        "CVE-2026-109619": "8.1.2-1ubuntu2.28"
+      },
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619",
+        "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+      ]
     },
     {
-      "os_id": "ubuntu", "version_id": "24.04", "codename": "noble", "source_name": "php8.3",
-      "version_pattern": "8\\.3\\.6-0ubuntu0\\.24\\.04\\.[0-9]+",
-      "fixes": {"CVE-2026-109618": "8.3.6-0ubuntu0.24.04.13", "CVE-2026-109619": "8.3.6-0ubuntu0.24.04.13"},
-      "references": ["https://ubuntu.com/security/notices/USN-8948-1", "https://ubuntu.com/security/CVE-2026-109618", "https://ubuntu.com/security/CVE-2026-109619"]
+      "os_id": "ubuntu",
+      "version_id": "24.04",
+      "codename": "noble",
+      "source_name": "php8.3",
+      "version_pattern": "8\\.3\\.6-(?:0maysync1|0ubuntu0\\.24\\.04\\.[0-9]+)",
+      "fixes": {
+        "CVE-2026-109618": "8.3.6-0ubuntu0.24.04.13",
+        "CVE-2026-109619": "8.3.6-0ubuntu0.24.04.13"
+      },
+      "references": [
+        "https://ubuntu.com/security/notices/USN-8948-1",
+        "https://ubuntu.com/security/CVE-2026-109618",
+        "https://ubuntu.com/security/CVE-2026-109619",
+        "https://archive.ubuntu.com/ubuntu/dists/noble/InRelease"
+      ]
     },
     {
-      "os_id": "debian", "version_id": "12", "codename": "bookworm", "source_name": "php8.2",
+      "os_id": "debian",
+      "version_id": "12",
+      "codename": "bookworm",
+      "source_name": "php8.2",
       "version_pattern": "8\\.2\\.[0-9]+-[0-9]+~deb12u[0-9]+",
-      "fixes": {"CVE-2026-109618": "8.2.35-1~deb12u1", "CVE-2026-109619": "8.2.35-1~deb12u1"},
-      "references": ["https://security-tracker.debian.org/tracker/CVE-2026-109618", "https://security-tracker.debian.org/tracker/CVE-2026-109619", "https://security-tracker.debian.org/tracker/DLA-4848-1"]
+      "fixes": {
+        "CVE-2026-109618": "8.2.35-1~deb12u1",
+        "CVE-2026-109619": "8.2.35-1~deb12u1"
+      },
+      "references": [
+        "https://security-tracker.debian.org/tracker/CVE-2026-109618",
+        "https://security-tracker.debian.org/tracker/CVE-2026-109619",
+        "https://security-tracker.debian.org/tracker/DLA-4848-1"
+      ]
     },
     {
-      "os_id": "debian", "version_id": "13", "codename": "trixie", "source_name": "php8.4",
+      "os_id": "debian",
+      "version_id": "13",
+      "codename": "trixie",
+      "source_name": "php8.4",
       "version_pattern": "8\\.4\\.[0-9]+-[0-9]+~deb13u[0-9]+",
-      "fixes": {"CVE-2026-109618": "8.4.27-1~deb13u1", "CVE-2026-109619": "8.4.27-1~deb13u1"},
-      "references": ["https://security-tracker.debian.org/tracker/CVE-2026-109618", "https://security-tracker.debian.org/tracker/CVE-2026-109619", "https://security-tracker.debian.org/tracker/DSA-6574-1"]
+      "fixes": {
+        "CVE-2026-109618": "8.4.27-1~deb13u1",
+        "CVE-2026-109619": "8.4.27-1~deb13u1"
+      },
+      "references": [
+        "https://security-tracker.debian.org/tracker/CVE-2026-109618",
+        "https://security-tracker.debian.org/tracker/CVE-2026-109619",
+        "https://security-tracker.debian.org/tracker/DSA-6574-1"
+      ]
     }
-  ]
+  ],
+  "review_note": "2026-10-23: rechecked USN-8948-1 and signed jammy/noble base archive identities; add exact base version families only. Fix boundaries and expiry are unchanged. USN-8948-2 covers older ESM releases outside this policy."
 }

@@ -10,7 +10,7 @@ from webpatch.system import CommandResult, DPKG_QUERY, ProbeError
 FIXTURES = Path(__file__).parent / "fixtures"
 CASES = json.loads((FIXTURES / "environments.json").read_text())
 COMPARISONS = json.loads((FIXTURES / "comparisons.json").read_text())
-NOW = datetime.fromisoformat("2026-10-22T08:00:00+00:00")
+NOW = datetime.fromisoformat("2026-10-23T00:00:00+00:00")
 
 
 class FakeSystem:

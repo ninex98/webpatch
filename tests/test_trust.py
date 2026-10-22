@@ -46,7 +46,7 @@ def test_broken_signed_chain_is_unknown(mutation):
     if mutation == "wrong-origin": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Origin: Ubuntu", "Origin: Forged")
     if mutation == "wrong-suite": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Suite: jammy-security", "Suite: noble-security")
     if mutation == "old-date": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Date: Thu, 22", "Date: Wed, 14")
-    if mutation == "future-date": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Date: Thu, 22", "Date: Fri, 23")
+    if mutation == "future-date": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Date: Thu, 22", "Date: Sat, 24")
     if mutation == "expired-release": fake.reads[RELEASE] = fake.reads[RELEASE].replace("Valid-Until: Thu, 29", "Valid-Until: Thu, 22")
     if mutation == "hash": fake.indexes[INDEX]['sha256'] = 'd' * 64
     if mutation == "size": fake.indexes[INDEX]['size'] = 124

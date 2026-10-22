@@ -1,0 +1,56 @@
+[
+  {
+    "historical_report": "evidence/phase-2d4/accepted-ci/artifacts/vm-ubuntu-22.04-fpm/results/vm-root-scan.json",
+    "historical_report_sha256": "c1501aa5e74d175683f4ed40fc1bf86b2919aed8f315170c4b73968a12a243b5",
+    "index_chain_status": "VERIFIED_INDEX_CHAIN",
+    "base_candidate": {
+      "name": "php8.1-fpm",
+      "version": "8.1.2-1ubuntu2",
+      "architecture": "amd64",
+      "source_name": "php8.1",
+      "source_version": "8.1.2-1ubuntu2",
+      "sha256": "5c8c097dd6c4b314969814e0a95f3be4fc8ee83aace3e3dbc7e26c9c6f4ce963",
+      "size": 1837466,
+      "filename": "pool/universe/p/php8.1/php8.1-fpm_8.1.2-1ubuntu2_amd64.deb",
+      "suite": "jammy",
+      "fresh_for_plan": false,
+      "valid_until": null,
+      "release_sha256": "c14060cd8c6d625874dfcb9523a35a395bf4865c28b6b6a82569ef326fe92dc6",
+      "index_sha256": "6b8cc68643d18250ab297c4f6d427a8778b1d1534e1a3033fff0f221fa20a419",
+      "evidence_ids": [
+        "e1207",
+        "e1208",
+        "e1209",
+        "e1213"
+      ],
+      "signer": "F6ECB3762474EDA9D21B7022871920D1991BC93C"
+    }
+  },
+  {
+    "historical_report": "evidence/phase-2d4/accepted-ci/artifacts/vm-ubuntu-24.04-fpm/results/vm-root-scan.json",
+    "historical_report_sha256": "9df4f9a42afdaab73bfd2db72f246df7536ff0538c36a886813a27dc9d0a658d",
+    "index_chain_status": "VERIFIED_INDEX_CHAIN",
+    "base_candidate": {
+      "name": "php8.3-fpm",
+      "version": "8.3.6-0maysync1",
+      "architecture": "amd64",
+      "source_name": "php8.3",
+      "source_version": "8.3.6-0maysync1",
+      "sha256": "b3a9435025766bcbf6c16199c06481c5196098c084933dfabf8867c982edc2b2",
+      "size": 1923622,
+      "filename": "pool/universe/p/php8.3/php8.3-fpm_8.3.6-0maysync1_amd64.deb",
+      "suite": "noble",
+      "fresh_for_plan": false,
+      "valid_until": null,
+      "release_sha256": "cdb2f31d809f589719a53c6ad15f255b27569c4059542ada282aaa21b8e164b0",
+      "index_sha256": "687ffc969e7700137677b9cfe2f614ee2d638052a91a7c9bf31f3f6a3040a99a",
+      "evidence_ids": [
+        "e1236",
+        "e1237",
+        "e1238",
+        "e1242"
+      ],
+      "signer": "F6ECB3762474EDA9D21B7022871920D1991BC93C"
+    }
+  }
+]
