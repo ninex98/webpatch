@@ -41,6 +41,24 @@ def test_engine_with_empty_runtime_payload_does_not_gain_metadata_only_trust():
     assert not result.safe
 
 
+def test_phpdbg_archive_identity_is_separate_from_web_runtime_support():
+    fake=trust_fixture()
+    old=DEB; new=DEB.replace('php8.1-fpm_','php8.1-phpdbg_')
+    query=fake.commands[DPKG_QUERY]
+    fake.commands[DPKG_QUERY]=replace(query,stdout=query.stdout.replace('php8.1-fpm\t','php8.1-phpdbg\t'))
+    fake.indexes[INDEX]['packages'][0]['Package']='php8.1-phpdbg'
+    fake.indexes[INDEX]['packages'][0]['Filename']=fake.indexes[INDEX]['packages'][0]['Filename'].replace('php8.1-fpm_','php8.1-phpdbg_')
+    fake.archives[new]=fake.archives.pop(old); fake.archives[new]['control']['Package']='php8.1-phpdbg'
+    fake.archives[new]['files']={'/usr/bin/phpdbg8.1':'c'*64}
+    fake.fingerprints['/usr/bin/phpdbg8.1']=fake.fingerprints['/usr/sbin/php-fpm8.1'].copy()
+    fake.fingerprints[new]=fake.fingerprints.pop(old)
+    fake.dirs['/var/cache/apt/archives']=[new.rsplit('/',1)[1]]
+    report=scan(fake,now=NOW)
+    assert report.package_trust['installed'][0]['status']=='AUTHENTICATED_RUNTIME_FILES'
+    assert all(a.version_status=='UNKNOWN' and a.reason=='PACKAGE_NOT_A_COVERED_ENGINE_BINARY' for a in report.assessments)
+    assert not report.safe
+
+
 def test_explicit_source_cohort_includes_authenticated_metadata_component():
     fake=trust_fixture()
     new_path=DEB.replace('php8.1-fpm_','php8.1_')

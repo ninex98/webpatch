@@ -17,7 +17,7 @@ from webpatch.preparation import preparation_plan, execute_preparation, verify_s
 from webpatch.prepared_verification import verify_prepared_scope
 from webpatch.service import scan
 from webpatch.service_control import LocalServiceControl
-from webpatch.system import LocalSystem
+from webpatch.system import LocalSystem,DPKG_QUERY
 from webpatch.transaction import AuditJournal
 from webpatch.apt import LocalAptSimulator
 from webpatch.repair_policy import build_repair_review
@@ -36,13 +36,19 @@ for index,path in enumerate(paths):
     relocated.append({'path':str(path),'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
     shutil.move(path,backup/(str(index)+'-'+path.name))
 Path('ci-evidence/managed-apt-fixture.json').write_text(json.dumps(relocated,indent=2)+'\n')
-subprocess.run(['/usr/bin/apt-get','install','-y','libc-bin','man-db'],check=True,
+source_cohort=re.search(r'php[0-9]+\.[0-9]+',package_name)[0]
+before_rows=[line.split('\t') for line in subprocess.check_output(DPKG_QUERY,text=True).splitlines()]
+cohort=[r[0] for r in before_rows if len(r)==6 and r[3]==source_cohort and r[5]=='install ok installed']
+assert cohort and all(re.fullmatch(r'[a-z0-9][a-z0-9+.-]*(?::[a-z0-9-]+)?',n) for n in cohort)
+Path('ci-evidence/managed-package-baseline.json').write_text(json.dumps({
+    'source_cohort':source_cohort,'before':[r for r in before_rows if r[0] in cohort or r[0] in {'libc-bin','man-db'}],
+    'fixture_action':'Install current official cohort and reinstall its payloads plus libc-bin/man-db before evidence collection'},indent=2)+'\n')
+subprocess.run(['/usr/bin/apt-get','install','--reinstall','-y','libc-bin','man-db',*cohort],check=True,
                env={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin','LC_ALL':'C','LANG':'C','DEBIAN_FRONTEND':'noninteractive'})
 reader=LocalSystem()
 initial=scan(reader,package_cache=cache)
 required={p.split(':')[0] for r in initial.inventory.runtimes if r.service==service for p in r.package_ids}
 required.update(service_packages(service)[0])
-source_cohort='php8.1' if initial.inventory.environment.codename=='jammy' else 'php8.3'
 required.update(p.name.split(':')[0] for p in initial.inventory.packages if p.source_name==source_cohort)
 required.update({'libc-bin','man-db'})
 metadata=subprocess.check_output(['/usr/bin/dpkg-query','-W','-f=${binary:Package}\t${Version}\n'],text=True)

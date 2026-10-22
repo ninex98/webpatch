@@ -97,7 +97,10 @@ def trigger_control_review(report,proposal,maintenance,inputs,*,system,package_c
         for path,expected in archive['execution_files'].items():
             actual,ident=collector.probe('fingerprint',path)
             passed=actual and actual.get('sha256')==expected and actual.get('uid')==0 and not actual.get('mode',0)&0o022
-            handler_files.append({'path':path,'expected_sha256':expected,'evidence_id':ident,'status':'VERIFIED_PACKAGE_FILE' if passed else 'UNKNOWN'})
+            handler_files.append({'path':path,'expected_sha256':expected,'evidence_id':ident,
+                'observed_sha256':actual.get('sha256') if actual else None,
+                'observed_uid':actual.get('uid') if actual else None,'observed_mode':actual.get('mode') if actual else None,
+                'status':'VERIFIED_PACKAGE_FILE' if passed else 'UNKNOWN'})
             if not passed: blockers.append('REPAIR_TRIGGER_EXECUTION_FILE_UNVERIFIED:'+path)
     return {'status':'PASS' if not blockers else 'BLOCKED','names':sorted(names),'maintenance':inspected,
             'inputs':audit,'execution_files':handler_files,'blockers':sorted(set(blockers)),'evidence':[asdict(e) for e in collector.evidence]}

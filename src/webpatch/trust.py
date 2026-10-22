@@ -191,7 +191,7 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
     archive_names = probe("listdir", package_cache)
     for package in inventory.packages:
         package_evidence_start = len(collector.evidence)
-        if package.sapi not in {"fpm", "apache2", "cli", "cgi", "component_or_unknown"}: continue
+        if package.sapi not in {"fpm", "apache2", "cli", "cgi", "phpdbg", "component_or_unknown"}: continue
         matching = [c for c in candidates if (c["name"], c["version"], c["architecture"], c["source_name"], c["source_version"])
                     == (package.name.split(":")[0], package.version, package.architecture, package.source_name, package.source_version)]
         hashes = {c["sha256"] for c in matching}
