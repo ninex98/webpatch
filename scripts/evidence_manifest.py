@@ -11,7 +11,7 @@ destination.mkdir(parents=True, exist_ok=True)
 paths = [Path("pyproject.toml")]
 for root in ("src/webpatch", "tests", "scripts", ".github"):
     paths.extend(p for p in Path(root).rglob("*") if p.is_file()
-                 and "__pycache__" not in p.parts and p.suffix in {".py", ".json", ".sh", ".yml", ".md"})
+                 and "__pycache__" not in p.parts and p.suffix in {".py", ".php", ".json", ".sh", ".yml", ".md"})
 hashes = lambda files: {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files)}
 record = {"head": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
           "python": sys.version, "platform": platform.platform(),

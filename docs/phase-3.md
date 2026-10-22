@@ -9,3 +9,15 @@
 `MATCHED_OBSERVATIONS` 仅说明清单与当前观察集合一致。导出文件不是独立部署发现来源，不能证明穷举；completeness 固定 UNPROVEN，authorization 固定 NONE，空清单也不构成完整覆盖。调用者自行写 COMPLETE/approved 字段不会解除门禁。这是后续显式应用证据、操作者审阅和有限执行输入的一项核对接口，不替代实际证明。
 
 后续 3A.2 将实现独立的显式应用证据能力，在受限 VM 中验证 challenge、来源、进程与配置/请求归属；默认 scan 不执行该能力。
+
+## 3A.2 显式应用证据
+
+`webpatch probe-template` 仅输出随包附带的 PHP collector，不扫描、不部署。操作者需另行部署该文件于 root 控制且不可被应用用户改写的路径，PHP sockets 扩展必须可用，collector 不可在 OPcache 中缓存。`webpatch probe-application --url http://127.0.0.1:18080/webpatch-proof.php --script /var/www/html/webpatch-proof.php --service php8.1-fpm.service --format json` 才显式发起一次 GET 请求。默认 scan/plan 不调用这个能力；不支持远程 URL、重定向、查询参数或自动部署。macOS/非 Linux 没有该内核凭据能力。
+
+探针生成一次性随机 challenge，HTTP 返回值必须与同一 challenge 的 UNIX datagram payload 摘要匹配。Linux SCM_CREDENTIALS 提供发送 PID/UID/GID，不能以 JSON 自称 PID 替代；将该 PID 关联已扫描且稳定的 starttime、namespace、映像/模块、systemd 服务和 SAPI，并在请求前后复查输入。内核 abstract UNIX namespace 支持 systemd PrivateTmp；不创建目标配置文件或文件系统 socket。HTTP 与 datagram 有长度/时间上限。PHP 8.1 的 socket_sendto 不支持此处需要的 abstract 地址，实际使用支持二进制地址长度的 socket_connect + socket_send。
+
+结果 `VERIFIED_PROCESS_RESPONSE` 只证明该一次性响应和回调发送进程的对应关系；应用用户/受损应用代码的行为并未被远程证明。root 控制的磁盘脚本来源也不是进程内存/正在执行 opcode 的完整性证明。该结果不等于任意生产请求路由覆盖，不直接解除现有 loaded_configuration 或完整消费者门禁。当前 API 不接受保存的 receipt 冒充新的内核观察。
+
+配置结果为 `OBSERVED_EFFECTIVE_PHP_SETTINGS`：仅保存 ini 文件路径、effective ini/扩展列表的摘要，不保存配置值或秘密。`ini_get_all` 不含部分数组配置；磁盘配置可能在启动后变化。因此 `loaded_configuration_file_bytes=UNKNOWN`，`executable=false`；有效期最多五分钟且受扫描/规则/索引边界限制。真实准备和调用在四格 disposable VM 中单独进行，实际 PHP 执行不发生在开发宿主。
+
+参考（2026-10-22 审阅）：[Linux UNIX credentials](https://man7.org/linux/man-pages/man7/unix.7.html)、[Python recvmsg](https://docs.python.org/3/library/socket.html#socket.socket.recvmsg)、[PHP ini_get_all](https://www.php.net/manual/en/function.ini-get-all.php)、[PHP loaded INI](https://www.php.net/manual/en/function.php-ini-loaded-file.php)、[PHP 8.1 sockets 实现](https://github.com/php/php-src/blob/PHP-8.1/ext/sockets/sockets.c)。这些资料支持具体 API 语义，不构成运行时安全证明。

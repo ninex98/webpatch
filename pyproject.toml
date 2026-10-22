@@ -21,7 +21,7 @@ test = ["pytest==8.4.2", "pytest-cov==6.3.0"]
 where = ["src"]
 
 [tool.setuptools.package-data]
-webpatch = ["data/*.json"]
+webpatch = ["data/*.json", "data/*.php"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

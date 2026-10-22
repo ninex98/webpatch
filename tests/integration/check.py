@@ -35,7 +35,7 @@ def main():
         assert {m.name.removeprefix("./") for m in bundle if m.isfile()} == {"control"}
     source_hashes = {}
     for path in sorted(Path("src/webpatch").rglob("*")):
-        if path.suffix in {".py", ".json"}:
+        if path.suffix in {".py", ".php", ".json"}:
             relative = path.relative_to("src")
             assert path.read_bytes() == (Path("/usr/lib/webpatch") / relative).read_bytes()
             source_hashes[str(relative)] = hashlib.sha256(path.read_bytes()).hexdigest()

@@ -10,13 +10,14 @@ from .service import scan
 from .system import LocalSystem, ProbeError
 from .apt import LocalAptSimulator
 from .deployment import create_manifest, reconcile
+from .application import probe_source, collect_application_evidence, LocalApplicationProbe
 
 
-def main(argv=None, *, system=None, simulator=None, now=None) -> int:
+def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
@@ -31,8 +32,16 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
         if command == "verify-deployment":
             child.add_argument("path", help="deployment manifest to reconcile with a new scan")
             child.add_argument("--expect-sha256", help="pin the manifest digest reviewed by the operator")
+        if command == "probe-application":
+            child.add_argument("--url", required=True, help="explicit loopback HTTP URL of a separately deployed probe")
+            child.add_argument("--script", required=True, help="root-controlled copy of the shipped probe script")
+            child.add_argument("--service", required=True, help="expected previously observed systemd service")
+    subs.add_parser("probe-template", help="print the collector source; never deploys it")
     subs.add_parser("apply", help="disabled in this preview")
     args = parser.parse_args(argv)
+    if args.command == "probe-template":
+        print(probe_source().decode(), end="")
+        return 0
     if args.command == "apply":
         print("BLOCKED: repair execution is disabled. No changes performed.", file=sys.stderr)
         return 4
@@ -40,6 +49,14 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
         reader = system if system is not None else LocalSystem()
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command == "probe-application":
+            capability = probe if probe is not None else (LocalApplicationProbe() if isinstance(reader, LocalSystem) else None)
+            if capability is None:
+                raise ValueError("APPLICATION_PROBE_CAPABILITY_REQUIRED")
+            result = collect_application_evidence(report, system=reader, probe=capability,
+                        url=args.url, script_path=args.script, service=args.service, now=now)
+            print(json.dumps(result, ensure_ascii=True, indent=2))
+            return 4
         if args.command in {"deployment-manifest", "verify-deployment"}:
             timestamp = now or datetime.now(timezone.utc)
             document = (create_manifest(report, timestamp) if args.command == "deployment-manifest" else

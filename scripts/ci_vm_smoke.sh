@@ -87,6 +87,14 @@ else
   probe_port=80
 fi
 echo '<?php echo "webpatch-ci-route-ok";' | sudo tee /var/www/html/webpatch-ci.php >/dev/null
+# Explicit collector preparation is confined to this guarded disposable VM.
+sudo install -o root -g root -m 0644 src/webpatch/data/application_probe.php /var/www/html/webpatch-proof.php
+sudo mkdir -p /etc/webpatch
+echo '/var/www/html/webpatch-proof.php' | sudo tee /etc/webpatch/probe-blacklist >/dev/null
+php_sapi_dir="$sapi"
+[[ "$sapi" == apache ]] && php_sapi_dir=apache2
+echo 'opcache.blacklist_filename=/etc/webpatch/probe-blacklist' | sudo tee "/etc/php/${php_branch}/${php_sapi_dir}/conf.d/99-webpatch-probe.ini" >/dev/null
+sudo systemctl restart "$service"
 package_cache="${RUNNER_TEMP}/webpatch-archives"
 mkdir -p "$package_cache"
 (cd "$package_cache" && apt-get download "$package=$(dpkg-query -W -f='${Version}' "$package")")
@@ -188,6 +196,7 @@ sudo systemctl is-active --quiet "$service"
 runtime_snapshot > ci-evidence/runtime-processes-after.json
 cmp ci-evidence/runtime-processes-before.json ci-evidence/runtime-processes-after.json
 sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/runtime_check.py "$package" "$sapi" "$pid_before" "$package_cache"
+sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/application_check.py "$probe_port" "$service" "$package_cache"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]
 sudo systemctl show "$service" --property=ActiveState,SubState,MainPID > ci-evidence/vm-service.txt
