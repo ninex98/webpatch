@@ -28,6 +28,7 @@ sudo apt-get install -y "$package"
 if [[ "$sapi" == fpm ]]; then
   sudo apt-get install -y nginx
   sudo tee /etc/nginx/nginx.conf >/dev/null <<EOF
+user www-data;
 events {}
 http {
   server {

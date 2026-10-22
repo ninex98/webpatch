@@ -5,3 +5,5 @@
 本地验收：Python 3.10，165 tests PASS；`bash -n scripts/ci_vm_smoke.sh` PASS；日志、JUnit、源码摘要同目录。CI 必须运行此源码的四格 VM 正向服务关联、无副作用 HTTP 标记响应和扫描前后状态检查，以及完整 fixture/Docker 矩阵。当前 CI NOT_RUN，不宣布阶段完成。
 
 限制：VERIFIED_LOCAL_ASSOCIATION 是本地身份关联，不是厂商字节认证或补丁加载证明。静态 pools/routes 不是已加载配置或实际应用路由证明；动态 includes、站点覆盖、.htaccess、未知/自定义安装、CGI 等保留 UNKNOWN。配置关系不会解除自动规划门禁。没有任何实际修复执行能力。
+
+首次 CI：Actions 39737441424 两格 Apache VM PASS；两格 FPM VM 在 HTTP 标记断言失败（FAIL），其余 fixture/container 检查见 ci-first-run.json 和 ci-first-failures.log。测试用 nginx 配置遗漏 worker user，默认 worker 无权连接 www-data FPM socket；修正测试配置为 `user www-data;`，不放宽扫描或关联断言。后续 CI 仍待验收。
