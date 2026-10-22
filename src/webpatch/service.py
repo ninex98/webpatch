@@ -7,6 +7,7 @@ from .rules import DpkgComparator, RuleEngine, RuleProvider
 from .system import Collector, SystemReader
 from .sources import audit_sources
 from .trust import authenticate
+from .coverage import build_coverage
 
 
 def scan(system: SystemReader, *, now: datetime | None = None,
@@ -21,8 +22,9 @@ def scan(system: SystemReader, *, now: datetime | None = None,
     if not rules.reviewed <= now < rules.expires:
         inventory.coverage_gaps.append("RULES_EXPIRED_OR_CLOCK_BEFORE_REVIEW")
     assessments = rules.assess(inventory, DpkgComparator(collector), now)
+    build_coverage(inventory, collector.evidence, trust)
     overall = ("POTENTIALLY_AFFECTED" if any(a.version_status == "BELOW_VENDOR_FIX" for a in assessments)
                else "UNKNOWN")
-    return Report(1, now.isoformat(), rules.revision, rules.sha256,
+    return Report(2, now.isoformat(), rules.revision, rules.sha256,
                   rules.expires.isoformat(), inventory, assessments, collector.evidence, overall,
                   apt_sources=asdict(sources) if sources else None, package_trust=trust)

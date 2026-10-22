@@ -149,7 +149,9 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
     if not candidates:
         blockers.append("NO_AUTHENTICATED_PACKAGE_CANDIDATES")
     archive_names = probe("listdir", package_cache)
+    chain_evidence_ids = [e.id for e in collector.evidence[start:]]
     for package in inventory.packages:
+        package_evidence_start = len(collector.evidence)
         if package.sapi not in {"fpm", "apache2", "cli", "cgi", "component_or_unknown"}: continue
         matching = [c for c in candidates if (c["name"], c["version"], c["architecture"], c["source_name"], c["source_version"])
                     == (package.name.split(":")[0], package.version, package.architecture, package.source_name, package.source_version)]
@@ -192,7 +194,9 @@ def authenticate(collector, inventory, sources, now, package_cache="/var/cache/a
             elif not verified_files:
                 reasons.append("NO_AUTHENTICATED_RUNTIME_FILES")
         installed.append({"package_id": package.id, "status": "AUTHENTICATED_RUNTIME_FILES" if not reasons else "UNKNOWN",
-                          "archive_sha256": archive_hash, "files": verified_files, "blockers": sorted(set(reasons))})
+                          "archive_sha256": archive_hash, "files": verified_files, "blockers": sorted(set(reasons)),
+                          "evidence_ids": [package.evidence_id, *chain_evidence_ids,
+                                           *[e.id for e in collector.evidence[package_evidence_start:]]]})
     inputs = [(e.operation, e.target, e.outcome, e.sha256) for e in collector.evidence[start:]]
     return {"status": "VERIFIED_INDEX_CHAIN" if candidates and not blockers else "UNKNOWN",
             "blockers": sorted(set(blockers)), "candidates": candidates, "installed": installed,

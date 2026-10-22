@@ -52,7 +52,7 @@ def test_cli_contract_and_exit_codes(server, capsys):
     rc = main(["scan", "--format", "json"], system=system, now=now)
     data = json.loads(capsys.readouterr().out)
     assert rc == (1 if "BELOW_VENDOR_FIX" in case["expect"] else 2)
-    assert data["schema_version"] == 1
+    assert data["schema_version"] == 2
     assert data["safe"] is False
     assert main(["plan", "--dry-run", "--format", "json"], system=system, now=now) == 4
     assert json.loads(capsys.readouterr().out)["executable"] is False

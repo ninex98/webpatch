@@ -21,6 +21,8 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
                            help="read existing .deb files for signed archive identity verification; never downloads")
         if command == "plan":
+            child.add_argument("--target-package", action="append", dest="target_package_ids",
+                               help="binary:architecture target; scan and shared-package impact remain scope-wide")
             child.add_argument("--dry-run", action="store_true", required=True,
                                help="simulate exact trusted Ubuntu candidates without installing or refreshing indexes")
         if command == "verify-plan":
@@ -35,9 +37,12 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
         backend = simulator if simulator is not None else (LocalAptSimulator() if isinstance(reader, LocalSystem) else None)
-        result = plan(report, system=reader, simulator=backend, now=now) if args.command in {"plan", "verify-plan"} else report
+        saved = json.loads(reader.read_text(args.path)) if args.command == "verify-plan" else None
+        if args.command == "verify-plan" and (not isinstance(saved, dict) or not isinstance(saved.get("scope", {}), dict)):
+            raise ValueError("INVALID_PLAN_DOCUMENT")
+        requested = saved.get("scope", {}).get("requested_package_ids") if isinstance(saved, dict) else getattr(args, "target_package_ids", None)
+        result = plan(report, system=reader, simulator=backend, now=now, target_package_ids=requested) if args.command in {"plan", "verify-plan"} else report
         if args.command == "verify-plan":
-            saved = json.loads(reader.read_text(args.path))
             verification = {"status": "BLOCKED", "executable": False,
                             "drift": verify_document(saved, result, now or datetime.now(timezone.utc)),
                             "current_plan_sha256": result.plan_sha256,
@@ -52,6 +57,7 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
     elif args.command == "plan":
         print(f"BLOCKED — repair disabled; APT dry-run: {result.apt_simulation}.")
         print(f"Plan: {result.plan_sha256}; expires: {result.expires_at}")
+        print(json.dumps({"scope": asdict(result.scope)}, ensure_ascii=True))
         for change in result.changes:
             print(json.dumps(asdict(change), ensure_ascii=True))
         for blocker in result.blockers:
@@ -70,6 +76,10 @@ def main(argv=None, *, system=None, simulator=None, now=None) -> int:
                               "version_status": assessment.version_status,
                               "reason": assessment.reason}, ensure_ascii=True))
         print(f"Runtime hints: {len(report.inventory.runtime_hints)}")
+        for check in report.inventory.coverage:
+            print(json.dumps({"requirement": check.requirement, "status": check.status,
+                              "subjects": [asdict(s) for s in check.subjects], "reason": check.reason,
+                              "next_step": check.next_step}, ensure_ascii=True))
         for gap in report.inventory.coverage_gaps:
             print(f"  coverage: {gap}")
         print("Use --format json for package versions, source references and evidence digests.")

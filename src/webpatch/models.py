@@ -74,6 +74,53 @@ class ConfigRelation:
     evidence_ids: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class EntityRef:
+    kind: str
+    id: str
+
+
+@dataclass(frozen=True)
+class CoverageCheck:
+    id: str
+    requirement: str
+    status: str  # VERIFIED, OBSERVED, UNKNOWN, UNSUPPORTED, NOT_CHECKED
+    subjects: tuple[EntityRef, ...]
+    evidence_ids: tuple[str, ...]
+    reason: str
+    next_step: str
+    blocks_repair: bool = True
+
+
+@dataclass(frozen=True)
+class ScanScope:
+    id: str
+    boundary: str
+    completeness: str
+    package_ids: tuple[str, ...]
+    runtime_ids: tuple[str, ...]
+    exclusions: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class PackageImpact:
+    package_id: str
+    runtime_ids: tuple[str, ...]
+    services: tuple[str, ...]
+    coverage_ids: tuple[str, ...]
+    completeness: str = "UNKNOWN"
+
+
+@dataclass(frozen=True)
+class PlanScope:
+    scan_scope_id: str
+    requested_package_ids: tuple[str, ...]
+    affected_package_ids: tuple[str, ...]
+    observed_runtime_ids: tuple[str, ...]
+    unresolved_runtime_ids: tuple[str, ...]
+    impacts: tuple[PackageImpact, ...]
+
+
 @dataclass
 class Inventory:
     environment: Environment
@@ -83,6 +130,8 @@ class Inventory:
     adapters: list[str] = field(default_factory=list)
     runtimes: list[RuntimeInstance] = field(default_factory=list)
     config_relations: list[ConfigRelation] = field(default_factory=list)
+    coverage: list[CoverageCheck] = field(default_factory=list)
+    scan_scope: ScanScope | None = None
 
 
 @dataclass(frozen=True)
@@ -161,3 +210,5 @@ class Plan:
     interruptions: tuple[str, ...] = ()
     bindings: tuple[InputBinding, ...] = ()
     evidence: tuple[Evidence, ...] = ()
+    scope: PlanScope | None = None
+    coverage: tuple[CoverageCheck, ...] = ()

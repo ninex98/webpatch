@@ -11,6 +11,7 @@ from .models import Plan, Report, PackageTarget, PackageChange, InputBinding, Ev
 from .rules import DpkgComparator, RuleEngine
 from .system import Collector, DPKG_QUERY, ProbeError
 from .runtime import start_ticks
+from .coverage import plan_scope
 
 
 def digest(value):
@@ -85,7 +86,7 @@ def lock_blockers(collector):
     return blockers
 
 
-def choose_targets(report, collector, now):
+def choose_targets(report, collector, now, requested=None):
     candidates = (report.package_trust or {}).get("candidates", [])
     targets, blockers = [], []
     rules = RuleEngine()
@@ -93,6 +94,7 @@ def choose_targets(report, collector, now):
         return (), ["RULE_BUNDLE_CHANGED_OR_EXPIRED"]
     comparator = DpkgComparator(collector)
     for package in report.inventory.packages:
+        if requested is not None and package.id not in requested: continue
         if package.sapi not in {"cli", "fpm", "apache2", "cgi"}: continue
         rule = next((r for r in rules.data["rules"] if (r["os_id"], r["codename"], r["source_name"])
                      == (report.inventory.environment.os_id, report.inventory.environment.codename, package.source_name)), None)
@@ -182,11 +184,19 @@ def dependency_blockers(changes, targets, report, collector):
     return blockers
 
 
-def plan(report: Report, *, system=None, simulator=None, now=None) -> Plan:
+def plan(report: Report, *, system=None, simulator=None, now=None, target_package_ids=None) -> Plan:
     now = now or datetime.now(timezone.utc)
     if now.tzinfo is None:
         raise ValueError("TIMEZONE_REQUIRED")
     blockers = ["REPAIR_EXECUTION_DISABLED"]
+    available = {p.id for p in report.inventory.packages}
+    selection = available if target_package_ids is None else target_package_ids
+    if not isinstance(selection, (tuple, list, set)) or not all(
+            isinstance(p, str) and re.fullmatch(r"[a-z0-9+.-]+:[a-z0-9-]+", p) for p in selection):
+        raise ValueError("INVALID_TARGET_PACKAGE_ID")
+    requested = tuple(sorted(set(selection)))
+    blockers.extend("TARGET_NOT_IN_SCAN:" + p for p in requested if p not in available)
+    blockers.extend("COVERAGE:" + c.id for c in report.inventory.coverage if c.blocks_repair)
     blockers.extend(report.inventory.coverage_gaps)
     blockers.extend((report.apt_sources or {}).get("blockers", ["SOURCE_POLICY_UNKNOWN"]))
     blockers.extend((report.package_trust or {}).get("blockers", ["PACKAGE_TRUST_UNKNOWN"]))
@@ -210,7 +220,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None) -> Plan:
     collector = Collector(system) if system else None
     supported = report.inventory.environment.os_id == "ubuntu" and report.inventory.environment.codename in {"jammy", "noble"}
     if collector and simulator and supported and report.inventory.environment.scope != "container":
-        targets, candidate_blockers = choose_targets(report, collector, now)
+        targets, candidate_blockers = choose_targets(report, collector, now, requested)
         blockers.extend(candidate_blockers)
         if targets and bindings:
             blockers.extend(lock_blockers(collector))
@@ -238,7 +248,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None) -> Plan:
     expiry = min(now + timedelta(minutes=30), datetime.fromisoformat(report.rule_valid_until))
     if expiry <= now: blockers.append("PLAN_RULES_EXPIRED")
     services = tuple(sorted({r.service for r in report.inventory.runtimes if r.service}))
-    result = Plan(2, "BLOCKED", False, simulation_status, digest(asdict(report)), tuple(sorted(set(blockers))), (
+    result = Plan(3, "BLOCKED", False, simulation_status, digest(asdict(report)), tuple(sorted(set(blockers))), (
         "Review every blocker and exact dependency change before any future repair stage.",
         "Prepare a tested image/snapshot restore and package/configuration backup; rollback is not guaranteed.",
         "Require explicit approval of the plan hash and repeat state checks and simulation before execution.",
@@ -247,7 +257,8 @@ def plan(report: Report, *, system=None, simulator=None, now=None) -> Plan:
         targets=targets, changes=changes, services=services,
         interruptions=("Package maintainer scripts may stop/restart services and drop requests before explicit restart.",
                        "Downtime duration is UNKNOWN until reviewed with service owners; loaded config and health require verification."),
-        bindings=bindings, evidence=evidence)
+        bindings=bindings, evidence=evidence,
+        scope=plan_scope(report.inventory, requested, targets, changes), coverage=tuple(report.inventory.coverage))
     return replace(result, plan_sha256=digest(asdict(result)))
 
 
@@ -258,7 +269,10 @@ def validate_plan(saved: Plan, report: Report, *, system, simulator, now):
         blockers.append("PLAN_DIGEST_MISMATCH")
     if now < datetime.fromisoformat(saved.created_at) or now >= datetime.fromisoformat(saved.expires_at):
         blockers.append("PLAN_EXPIRED_OR_CLOCK_REVERSED")
-    current = plan(report, system=system, simulator=simulator, now=now)
+    current = plan(report, system=system, simulator=simulator, now=now,
+                   target_package_ids=saved.scope.requested_package_ids if saved.scope else None)
+    if current.scope != saved.scope:
+        blockers.append("PLAN_SCOPE_DRIFT")
     if current.state_sha256 != saved.state_sha256 or current.rule_sha256 != saved.rule_sha256:
         blockers.append("PLAN_INPUT_STATE_DRIFT")
     if current.targets != saved.targets or current.simulation_sha256 != saved.simulation_sha256 or current.apt_simulation != "PASS":
@@ -270,7 +284,9 @@ def validate_plan(saved: Plan, report: Report, *, system, simulator, now):
 def verify_document(saved, current: Plan, now):
     """Compare an untrusted JSON document; never execute any of its contents."""
     try:
-        if saved["schema_version"] != 2 or saved["executable"] is not False:
+        if saved["schema_version"] == 2:
+            return ("PLAN_SCHEMA_RESCAN_REQUIRED",)
+        if saved["schema_version"] != 3 or saved["executable"] is not False:
             return ("INVALID_PLAN_DOCUMENT",)
         expected = dict(saved, plan_sha256="")
         blockers = []
@@ -281,6 +297,8 @@ def verify_document(saved, current: Plan, now):
             blockers.append("PLAN_EXPIRED_OR_CLOCK_REVERSED")
         if current.state_sha256 != saved["state_sha256"] or current.rule_sha256 != saved["rule_sha256"]:
             blockers.append("PLAN_INPUT_STATE_DRIFT")
+        if json.loads(json.dumps(asdict(current.scope))) != saved["scope"]:
+            blockers.append("PLAN_SCOPE_DRIFT")
         if (current.simulation_sha256 != saved["simulation_sha256"] or current.apt_simulation != "PASS"
                 or [asdict(t) for t in current.targets] != saved["targets"]):
             blockers.append("PLAN_SIMULATION_DRIFT")
