@@ -23,6 +23,28 @@ else
   service=apache2.service
 fi
 mkdir -p ci-evidence
+# Hosted images use mirror+file and third-party feeds. Set up the explicitly
+# supported direct official repository fixture, only inside this disposable VM.
+sudo python3 - <<'PY'
+from pathlib import Path
+import hashlib, json, shutil, tempfile
+backup = Path(tempfile.mkdtemp(prefix='webpatch-vm-original-sources-'))
+paths = [Path('/etc/apt/sources.list')]
+paths += list(Path('/etc/apt/sources.list.d').glob('*.list'))
+paths += list(Path('/etc/apt/sources.list.d').glob('*.sources'))
+hashes = {}
+for path in paths:
+    if path.exists():
+        hashes[str(path)] = hashlib.sha256(path.read_bytes()).hexdigest()
+        shutil.move(str(path), backup / path.name)
+Path('ci-evidence/original-source-sha256.json').write_text(json.dumps(hashes, indent=2) + '\n')
+PY
+codename="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+sudo tee /etc/apt/sources.list >/dev/null <<EOF
+deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] http://archive.ubuntu.com/ubuntu $codename main universe restricted multiverse
+deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] http://archive.ubuntu.com/ubuntu $codename-updates main universe restricted multiverse
+deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] http://security.ubuntu.com/ubuntu $codename-security main universe restricted multiverse
+EOF
 sudo apt-get update
 sudo apt-get install -y "$package"
 if [[ "$sapi" == fpm ]]; then

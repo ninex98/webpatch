@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.19, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/ci-evidence/2b-retry-checkout
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-6.3.0
+collected 211 items
+
+tests/test_boundaries.py ................................                [ 15%]
+tests/test_environments.py ............................................. [ 36%]
+...............................................................          [ 66%]
+tests/test_runtime.py .........................                          [ 78%]
+tests/test_sources.py ....................                               [ 87%]
+tests/test_trust.py ..........................                           [100%]
+
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/phase-2b-trust/retry-local.xml -
+============================= 211 passed in 0.39s ==============================

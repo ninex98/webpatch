@@ -30,6 +30,7 @@ def test_source_policy_never_authenticates_package(deb822):
     "deb [check-valid-until=no] http://archive.ubuntu.com/ubuntu jammy-security main",
     "deb [signed-by=/tmp/forged.gpg] http://archive.ubuntu.com/ubuntu jammy-security main",
     "deb http://ppa.launchpad.net/example/php/ubuntu jammy main",
+    "deb mirror+file:/etc/apt/apt-mirrors.txt jammy-security main",
     "deb http://archive.ubuntu.com/ubuntu noble-security main",
     "deb http://archive.ubuntu.com.evil.example/ubuntu jammy-security main",
     "deb http://archive.ubuntu.com/ubuntu jammy-backports main",

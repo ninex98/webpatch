@@ -7,3 +7,7 @@
 本地 210 tests PASS；新测试覆盖签名错/未知 signer/过期、错发行版、索引和包损坏、control/架构/源码冲突、缓存缺失、运行文件替换及验证时变化。对应日志、JUnit、源码摘要同目录。真实 gpgv/apt-helper/dpkg-deb 验收需 CI 四格 VM，当前 NOT_RUN；VM 准备步骤下载目标包至临时独立缓存，扫描本身无网络/刷新。增加真实篡改签名副本的拒绝验证。
 
 限制：Debian 保留官方版本规则但归档认证/修复规划未认证；第三方、ESM、自编译、未知配置/路由均阻断。签名根不证明已被 root 入侵主机的完整性；本轮没有执行修复。
+
+首次 CI：Actions 39739502752（d3a0d42）四格 VM 身份正向断言 FAIL；已保存 first-ci/ 全部日志、原始报告和制品摘要。报告显示 runner 使用 mirror+file/第三方源，当前策略正确拒绝该未覆盖来源，故无可认证候选。后续证据提交 8be3bf8 的同源码重跑 39739927084 同样失败，不计通过。
+
+修正测试准备：仅 GitHub 临时 VM 中备份并摘要原始 sources，设置 direct Ubuntu archive/security 同发行版源，再更新测试索引。扫描器不自动改源，mirror+file 仍为 UNKNOWN，补充负向 fixture。隔离当前未提交的 2C 后，对该 2B 检查点复跑 211 tests PASS（retry-local.log/xml；retry-local-manifest/），shell syntax PASS。真实四格重跑仍待验收。
