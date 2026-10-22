@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="main 分支 WebPatch 安全检查状态"></a>
-  <a href="#roadmap"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · 只读预览版"></a>
+  <a href="#roadmap"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · 开发预览版"></a>
   <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="许可证：Apache-2.0"></a>
 </p>
 
@@ -21,7 +21,7 @@
 
 **Evidence before action. 先有证据，再采取行动。** 一个审慎的 PHP 运行时安全 CLI：发现本地安装，依据厂商公告比对包版本，生成可供审阅的修复计划。
 
-**0.1.0 为只读预览版。** 内置规则聚焦 PHP2Shell（`CVE-2026-109618` / `CVE-2026-109619`）。修复执行尚未开放。包版本符合修复边界，不等于正在运行的服务安全。
+**0.1.0 为开发预览版。** 扫描保持只读；显式服务准备在精确计划 hash 确认后可以重启声明的服务。包修复仍禁用。内置规则聚焦 PHP2Shell（`CVE-2026-109618` / `CVE-2026-109619`）；包版本符合修复边界，不等于正在运行的服务安全。
 
 ## 为什么选择 WebPatch
 
@@ -68,7 +68,7 @@ python3 -m venv .venv
 
 于 **2026-10-22** 在隔离的 **Ubuntu 24.04 / arm64 容器**中，从已安装的 CLI 采集。图中节选真实输出，仅增加视觉换行；此容器输出 `APT dry-run: NOT_RUN`。终端外观是展示设计，并非内置 TUI。[完整文本与采集说明](assets/readme/README.md)。
 
-当前流程为**发现 → 判断 → 审阅被阻断的计划**。授权执行和修复后验证仍属于规划能力。
+当前流程为**发现 → 判断 → 审阅被阻断的修复计划**。部署清单核对、显式应用探针和经确认的服务准备见[阶段三接口](docs/phase-3.md)；包执行与修复后验证仍在开发。
 
 ## 核心能力
 

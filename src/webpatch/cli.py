@@ -13,13 +13,19 @@ from .deployment import create_manifest, reconcile
 from .application import probe_source, collect_application_evidence, LocalApplicationProbe
 from .maintenance import inspect_maintenance
 from .consumers import census
+from .preparation import preparation_plan, execute_preparation
+from .service_control import LocalServiceControl
+from .transaction import AuditJournal
+from .planning import digest
+from .discovery import environment
+from .system import Collector
 
 
-def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int:
+def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, journal=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
-    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "audit-consumers"):
+    for command in ("scan", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation"):
         child = subs.add_parser(command)
         child.add_argument("--format", choices=("text", "json"), default="text")
         child.add_argument("--package-cache", default="/var/cache/apt/archives",
@@ -31,6 +37,15 @@ def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int
                                help="simulate exact trusted Ubuntu candidates without installing or refreshing indexes")
         if command == "audit-consumers":
             child.add_argument("--target-package", action="append", dest="target_package_ids", required=True)
+        if command == "prepare-plan":
+            child.add_argument("--service", action="append", required=True, dest="services")
+            child.add_argument("--probes", required=True, help="explicit collector URL/script/pool declarations JSON")
+            child.add_argument("--state-directory", default="/var/lib/webpatch")
+        if command in {"prepare-scope", "retire-preparation"}:
+            child.add_argument("path")
+            child.add_argument("--confirm-sha256", required=True, help="exact plan or signed receipt document digest")
+        if command == 'retire-preparation':
+            child.add_argument('--state-directory',default='/var/lib/webpatch')
         if command == "verify-plan":
             child.add_argument("path", help="saved plan JSON; only compares data and never runs saved commands")
         if command == "verify-deployment":
@@ -51,8 +66,41 @@ def main(argv=None, *, system=None, simulator=None, probe=None, now=None) -> int
         return 4
     try:
         reader = system if system is not None else LocalSystem()
+        if args.command in {"prepare-scope", "retire-preparation"}:
+            saved = json.loads(reader.read_plan_document(args.path))
+            if not isinstance(saved,dict): raise ValueError('INVALID_PREPARATION_DOCUMENT')
+            directory = saved.get('state_directory','/var/lib/webpatch') if args.command=='prepare-scope' else args.state_directory
+            controller = service_controller if service_controller is not None else (LocalServiceControl(directory) if isinstance(reader,LocalSystem) else None)
+            if controller is None: raise ValueError('SERVICE_CONTROL_CAPABILITY_REQUIRED')
+            if args.command=='prepare-scope':
+                capability = probe if probe is not None else (LocalApplicationProbe() if isinstance(reader,LocalSystem) else None)
+                if capability is None: raise ValueError('APPLICATION_PROBE_CAPABILITY_REQUIRED')
+                audit = journal if journal is not None else (AuditJournal(controller.state_dir/'operations.jsonl') if isinstance(reader,LocalSystem) else None)
+                if audit is None: raise ValueError('AUDIT_CAPABILITY_REQUIRED')
+                result = execute_preparation(saved,confirmation_sha256=args.confirm_sha256,system=reader,
+                    controller=controller,probe=capability,journal=audit,
+                    clock=(lambda:now) if now else None)
+            else:
+                if digest(saved)!=args.confirm_sha256: raise ValueError('EXACT_RECEIPT_CONFIRMATION_REQUIRED')
+                with controller.locked():
+                    payload = controller.store.verify(saved)
+                    if payload.get('kind') not in {'controlled_startup','owned_configuration_materialization'}:
+                        raise ValueError('PREPARATION_RECEIPT_KIND_INVALID')
+                    if payload.get('scope_sha256') != environment(Collector(reader)).scope_sha256:
+                        raise ValueError('PREPARATION_RECEIPT_SCOPE_MISMATCH')
+                    controller.retire_overrides(payload)
+                    result = {'status':'OWNED_RUNTIME_OVERRIDE_RETIRED','active_snapshots_retained':True,
+                              'future_starts':'canonical service configuration','executable':False}
+            print(json.dumps(result,ensure_ascii=True,indent=2))
+            return 4 if result.get('status') in {'BLOCKED','PARTIAL'} else 0
         report = scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command == "prepare-plan":
+            result = preparation_plan(report,system=reader,services=args.services,
+                probes=json.loads(reader.read_plan_document(args.probes)),package_cache=args.package_cache,
+                state_dir=args.state_directory,now=now)
+            print(json.dumps(result,ensure_ascii=True,indent=2))
+            return 4
         if args.command == "audit-consumers":
             print(json.dumps(census(report, system=reader, package_ids=args.target_package_ids, now=now), ensure_ascii=True, indent=2))
             return 4

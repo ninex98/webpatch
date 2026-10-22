@@ -74,6 +74,9 @@ def trusted_script(path):
         info = item.lstat()
         if info.st_uid != 0 or info.st_mode & 0o022 or stat.S_ISLNK(info.st_mode):
             raise ProbeError('PROBE_SCRIPT_NOT_ROOT_CONTROLLED')
+        if item != current and str(item).startswith('/var/www'):
+            if any((item/name).exists() or (item/name).is_symlink() for name in ('.user.ini','.htaccess')):
+                raise ProbeError('PROBE_DIRECTORY_OVERRIDES_UNSUPPORTED')
     if not current.is_file() or current.stat().st_size > MAX_RESPONSE:
         raise ProbeError('PROBE_SCRIPT_FILE_INVALID')
     with current.open('rb') as stream:
@@ -185,7 +188,9 @@ def validate_exchange(exchange, report, challenge, url, script_path, service):
     return runtime, payload
 
 
-def collect_application_evidence(report, *, system, probe, url, script_path, service, now=None, clock=None):
+def collect_application_evidence(report, *, system, probe, url, script_path, service, now=None, clock=None, validity_seconds=300):
+    if type(validity_seconds) is not int or not 1 <= validity_seconds <= 1800:
+        raise ValueError('PROBE_VALIDITY_OUTSIDE_CONTRACT')
     if clock is None:
         fixed_now = now
         clock = (lambda: fixed_now) if fixed_now is not None else (lambda: datetime.now(timezone.utc))
@@ -206,14 +211,14 @@ def collect_application_evidence(report, *, system, probe, url, script_path, ser
         runtime, payload = validate_exchange(exchange, report, challenge, url, script_path, service)
         if not check_bindings(collector, bindings, report):
             raise ValueError('PROBE_STATE_DRIFT_AFTER_REQUEST')
-        if not now <= clock() < min(now + timedelta(minutes=5), evidence_deadline(report, now)):
+        if not now <= clock() < min(now + timedelta(seconds=validity_seconds), evidence_deadline(report, now)):
             raise ValueError('PROBE_EXPIRED_DURING_COLLECTION')
     except (ValueError, TypeError, KeyError, ProbeError) as exc:
         reason = str(exc)
         blockers.append(reason if reason.startswith(('PROBE_', 'KERNEL_', 'STATE_')) else 'PROBE_INVALID_EVIDENCE')
     receipt = {'schema_version': 1, 'status': 'VERIFIED_PROCESS_RESPONSE' if not blockers else 'BLOCKED',
         'scope_sha256': report.inventory.environment.scope_sha256, 'url': url, 'service': service,
-        'observed_at': now.isoformat(), 'expires_at': min(now + timedelta(minutes=5), evidence_deadline(report, now)).isoformat(),
+        'observed_at': now.isoformat(), 'expires_at': min(now + timedelta(seconds=validity_seconds), evidence_deadline(report, now)).isoformat(),
         'runtime_id': runtime_id(report.inventory, runtime) if runtime else None,
         'challenge_sha256': hashlib.sha256(challenge.encode()).hexdigest(),
         'peer_pid': runtime.pid if runtime else None,

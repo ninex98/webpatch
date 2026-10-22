@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="WebPatch safety checks on main"></a>
-  <a href="#roadmap"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · read-only preview"></a>
+  <a href="#roadmap"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · development"></a>
   <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="License: Apache-2.0"></a>
 </p>
 
@@ -21,7 +21,7 @@
 
 **Evidence before action.** A conservative CLI for PHP runtime security: discover local installations, compare package versions with vendor advisories, and prepare reviewable repair plans.
 
-**0.1.0 is a read-only preview.** The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`). Repair execution is disabled. A matching package version never means a safe running service.
+**0.1.0 is a development preview.** Scans remain read-only; explicit service preparation can restart declared services after exact plan-hash confirmation. Package repair is still disabled. The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`); a matching package version never means a safe running service.
 
 ## Why WebPatch
 
@@ -64,7 +64,7 @@ Export evidence and prepare a plan:
 
 Captured from the installed CLI in an isolated **Ubuntu 24.04 / arm64 container** on **2026-10-22**. Selected output is shown verbatim with visual line wrapping; this container reports `APT dry-run: NOT_RUN`. Styling is an illustration of the terminal, not a built-in TUI. [Full text and capture details](assets/readme/README.md).
 
-The current workflow is **discover → assess → review a blocked plan**. Authorized execution and post-repair verification remain planned work.
+The current workflow is **discover → assess → review a blocked repair plan**. Deployment reconciliation, explicit application probes and confirmed service preparation are documented in the [phase-three interfaces](docs/phase-3.md). Package execution and post-repair verification remain under development.
 
 ## Key Features
 

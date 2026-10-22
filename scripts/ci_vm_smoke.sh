@@ -53,8 +53,8 @@ if [[ "$sapi" == fpm ]]; then
 user = www-data
 group = www-data
 listen = /run/php/webpatch-ci-extra.sock
-pm = ondemand
-pm.max_children = 2
+pm = static
+pm.max_children = 1
 EOF
   sudo systemctl restart "$service"
   sudo apt-get install -y nginx
@@ -89,8 +89,10 @@ fi
 echo '<?php echo "webpatch-ci-route-ok";' | sudo tee /var/www/html/webpatch-ci.php >/dev/null
 # Explicit collector preparation is confined to this guarded disposable VM.
 sudo install -o root -g root -m 0644 src/webpatch/data/application_probe.php /var/www/html/webpatch-proof.php
+sudo install -o root -g root -m 0644 src/webpatch/data/application_probe.php /var/www/html/webpatch-extra.php
 sudo mkdir -p /etc/webpatch
 echo '/var/www/html/webpatch-proof.php' | sudo tee /etc/webpatch/probe-blacklist >/dev/null
+echo '/var/www/html/webpatch-extra.php' | sudo tee -a /etc/webpatch/probe-blacklist >/dev/null
 php_sapi_dir="$sapi"
 [[ "$sapi" == apache ]] && php_sapi_dir=apache2
 echo 'opcache.blacklist_filename=/etc/webpatch/probe-blacklist' | sudo tee "/etc/php/${php_branch}/${php_sapi_dir}/conf.d/99-webpatch-probe.ini" >/dev/null
@@ -202,7 +204,8 @@ sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted pyt
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]
 sudo systemctl show "$service" --property=ActiveState,SubState,MainPID > ci-evidence/vm-service.txt
+sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/preparation_check.py "$package" "$service" "$probe_port" "$package_cache"
 python3 scripts/evidence_manifest.py ci-evidence
 sha256sum dist/*.deb > ci-evidence/package-sha256.txt
 uname -a > ci-evidence/kernel.txt
-echo "PASS: Ubuntu $release / $sapi; package installed, service active, scans preserved PID and state."
+echo "PASS: Ubuntu $release / $sapi; read-only phase preserved PID/state, explicit controlled-startup phase validated new PIDs and immutable config views."

@@ -59,3 +59,17 @@ AuditJournal 使用 0600 普通文件、有界 JSONL、追加写入/fsync 和 ha
 普通只读命令接口不接受 `/proc/self/fd/*` 解析命令；只允许内部持有封存 FD 的解析能力传递它。Linux 能力不可用时返回明确 UNKNOWN/未支持原因，不回退到未封存路径。三个只读、禁网容器验证真实 memfd 不可写、真实 dpkg-deb 能读取封存数据、错误摘要在解析前被拒绝。[内核接口说明](https://man7.org/linux/man-pages/man2/memfd_create.2.html)
 
 同一检查点增加只读 service definition 查询及 Apache/nginx 索引身份记录，作为后续受控启动核验的输入；这些接口不能执行服务变更。
+
+## 3D.2 受控启动与只读配置视图（CI 待验收）
+
+prepare-plan 只读取证据，列出精确服务、每个 FPM pool 的显式 collector 请求、配置文件摘要、认证服务定义、预计中断及本地状态目录。prepare-scope 必须确认完全相同的 preparation_sha256，并在独占操作锁/DPKG frontend lock 内重新扫描核对；过期、代码变化、额外字段、伪造动作说明、遗漏 pool 或不受支持的输入均拒绝。当前仅支持标准 Ubuntu jammy/php8.1、noble/php8.3 FPM/mod_php 服务，不支持容器原地准备或自定义 unit/drop-in/environment files。
+
+身份前置条件覆盖认证归档中的 unit、主程序、实际映射的 PHP 模块以及服务/辅助包的运行文件；Apache 的 envvars 必须与认证包相符。读取的控制/数据归档使用封存字节。服务定义的公开源文本可以进入计划；配置值不会进入计划/收据。
+
+经确认后，控制器在 0700 状态目录复制计划中的服务器配置内容（私有快照确实包含配置值，应按配置备份保护），生成认证 vendor unit 的临时 runtime 定义并加入 BindReadOnlyPaths。它在 daemon-reload 后核对实际载入的定义，再重启声明服务。正式 /etc 配置文件没有被编辑，包没有被安装。代码 hooks、新/未知扩展、动态加载、非标准 user_ini 文件名以及 ondemand 不稳定维护配置先行阻断。临时 unit 原子写入；已有 runtime unit 不覆盖。
+
+重启后核对新 PID/starttime、内核回调、每个声明 pool、实际 mountinfo 的只读标记，以及 /proc/PID/root 下每个配置文件与私有快照的 device/inode/SHA256。配置被固定在该进程的只读 namespace 视图中，因此不以 mtime 或“重启退出码 0”替代加载输入证明。仅声明已冻结的配置输入和明确 probe 请求中的 PHP 视图；不证明任意生产拓扑或业务逻辑。
+
+验证通过后由本机 0600 随机密钥认证 controlled_startup receipt，绑定 scope、代码/静态输入、实例和证据期限；非 root 调用者无法仅修改 JSON 后重算普通摘要来伪造该记录。它不是 root 妥协证明。独立探针仍默认五分钟，已验证只读配置视图的受控启动证据最多三十分钟，且不得超过计划、规则或索引期限。apply 的包执行仍禁用，收据本身不等于修复授权。
+
+retire-preparation 需要同一主机密钥、相同 scope 和精确收据摘要，只移除收据拥有且内容未变的 runtime 定义并重新加载 manager。它不重启服务，当前只读视图一直保留到进程退出；未来启动使用正式配置。失败准备返回 PARTIAL 及可用的签名 ownership/recovery receipt，并记录阶段；不承诺自动恢复服务。四格 VM 会在原有只读不变检查之后单独执行准备/清理，恢复标准 unit 并重新启动测试服务；开发宿主不会运行控制器。

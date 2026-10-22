@@ -11,7 +11,7 @@ WebPatch 0.1.0 requires Python 3.10+. Commands below assume the source installat
 .venv/bin/webpatch scan --format json
 ```
 
-Run on the target system without root. WebPatch does not execute PHP, probe websites or access container daemons. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
+Run on the target system without root. `scan` does not execute PHP, probe websites or access container daemons. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
 
 The text view shows environment, rule revision, package assessments and structured coverage requirements. JSON (`schema_version=2`) also includes package versions, runtime files and mappings, observed UNIX listeners, static configuration relationships, source audit, package trust, references and evidence digests. Legacy `coverage_gaps` strings remain available. Each structured check names its subjects, evidence, reason and next verification step; `VERIFIED` describes only that specific relationship. `OBSERVED`, `UNKNOWN`, `UNSUPPORTED` and `NOT_CHECKED` cannot authorize repair.
 
@@ -62,17 +62,42 @@ Selection does not narrow discovery or hide other consumers of the same package.
 # exit: 4
 ```
 
-There is no `--yes` bypass, executor, installation / upgrade action or rollback implementation. Future execution must confirm the exact reviewed plan hash, revalidate inputs and verify services and application health afterward.
+There is no `--yes` bypass or enabled package installation / upgrade path. The transaction state machine remains behind unresolved admission gates. Explicit service preparation below has a separate, exact-hash confirmation boundary.
+
+## Explicit evidence and controlled service preparation
+
+`deployment-manifest` and `verify-deployment` reconcile declared observations without claiming exhaustive coverage. `audit-consumers --target-package NAME:ARCH` checks all visible process images/mappings. `review-maintenance --dry-run` reads authenticated old/new control archives without running scripts. All retain blocked package-execution semantics.
+
+`probe-template` prints the shipped PHP collector; it never deploys it. A separately root-deployed, uncached collector can be queried only through an explicit `probe-application --url http://127.0.0.1:PORT/collector.php --script /var/www/.../collector.php --service UNIT`. The kernel callback binds a response to a process; ordinary HTTP markers do not. The standalone receipt lasts at most five minutes.
+
+Controlled preparation is a **service-changing operation** for supported Ubuntu FPM/mod_php profiles. It copies reviewed server configuration into private local snapshots, installs authenticated temporary runtime service definitions, restarts the named services, and verifies their read-only configuration views and explicit probes. Requests may be interrupted. It does not install packages or edit canonical configuration values. Dynamic code hooks, unknown modules, untrusted service definitions and unstable ondemand pool profiles are unsupported.
+
+Create a probes JSON list with one declaration per FPM pool (Apache uses `pool_listener: null`):
+
+```json
+[{"service":"php8.1-fpm.service","url":"http://127.0.0.1:18080/webpatch-proof.php","script":"/var/www/html/webpatch-proof.php","pool_listener":"/run/php/php8.1-fpm.sock"}]
+```
+
+Generate and review the complete preparation plan and its interruption notice, then confirm that exact document digest:
+
+```sh
+webpatch prepare-plan --service php8.1-fpm.service --probes probes.json --package-cache /path/to/cache --format json > preparation.json
+sudo webpatch prepare-scope preparation.json --confirm-sha256 REVIEWED_PREPARATION_SHA256
+```
+
+`prepare-plan` returns 4; it does not mutate services. Successful `prepare-scope` returns 0 with a locally authenticated receipt; blocked or partial preparation returns 4. Snapshot inputs and process identities are rechecked; the receipt is not root-compromise attestation or package-repair authorization. Private snapshot files contain the copied configuration values and remain under a protected local state directory; exported receipts contain hashes and paths, not these values or the signing key. Controlled snapshot receipts can last up to 30 minutes, bounded by all dependent evidence.
+
+`retire-preparation SIGNED_RECEIPT.json --confirm-sha256 RECEIPT_DOCUMENT_SHA256` removes only unchanged runtime definitions owned by that receipt and reloads the manager. It does not restart services: current read-only views remain active until their processes exit, while future starts use canonical service configuration. Use `--state-directory` when preparation used a non-default state directory. See [phase-three contracts](phase-3.md) for the supported boundaries and recovery semantics.
 
 ## Exit codes
 
 | Code | Meaning |
 | :--- | :--- |
-| `0` | Successful help / version operations; current scans never return 0 |
+| `0` | Successful help / version / template or explicitly confirmed service preparation; current scans never return 0 |
 | `1` | At least one observed package version is below a matched vendor fix boundary |
 | `2` | Unknown / incomplete coverage; argparse also uses 2 for usage errors, so inspect stderr |
 | `3` | The scan could not finish, for example because rule data is invalid |
-| `4` | Plan, plan verification or execution is blocked |
+| `4` | Diagnostic plans/reviews, blocked execution, or blocked/partial service preparation; inspect JSON status |
 
 Do not chain expected nonzero scan / plan commands with `&&` or treat them as success in `set -e` scripts. JSON redirection writes the report even when the command returns 1, 2 or 4; handle these codes explicitly in automation. An empty inventory, installation success or matching version never establishes safety.
 

@@ -81,7 +81,7 @@ for dark in (False, True):
             'WebPatch — Evidence before action.', body,
             'Read-only PHP runtime security inventory. Discover local evidence, assess vendor context, review plans. Execution remains disabled.')
 
-for filename, label, width in [('preview-badge.svg', '0.1.0 · read-only preview', 174), ('license-badge.svg', 'license · Apache-2.0', 145)]:
+for filename, label, width in [('preview-badge.svg', '0.1.0 · development', 174), ('license-badge.svg', 'license · Apache-2.0', 145)]:
     svg(filename, width, 22, label,
         f'<rect x=".5" y=".5" width="{width-1}" height="21" rx="4" fill="#15263b" stroke="#39516b"/>'
         + text(width/2, 15, label, 11, '#d3e6f4', 500, extra='text-anchor="middle"'))
