@@ -1,67 +1,128 @@
+<p align="center">
+  <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/readme/hero-mobile-dark.svg">
+    <source media="(max-width: 600px)" srcset="assets/readme/hero-mobile-light.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
+    <img src="assets/readme/hero-light.svg" alt="WebPatch — Evidence before action. Read-only PHP runtime security inventory." width="100%">
+  </picture>
+</p>
+
+<p align="center">
+  <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="WebPatch safety checks on main"></a>
+  <a href="#roadmap"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · read-only preview"></a>
+  <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="License: Apache-2.0"></a>
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> · <a href="#cli-preview">Preview</a> · <a href="docs/cli.md">Docs</a> · <a href="README.zh-CN.md">简体中文</a>
+</p>
+
 # WebPatch
 
-开源 Web 运行时安全检测 CLI，Python 3.10+、Apache-2.0。当前为 **0.1.0 只读预览版**，聚焦 PHP2Shell：CVE-2026-109618 / CVE-2026-109619。
+**Evidence before action.** A conservative CLI for PHP runtime security: discover local installations, compare package versions with vendor advisories, and prepare reviewable repair plans.
 
-先读 [架构、支持矩阵、测试矩阵与分阶段计划](docs/design.md)。当前不具备自动修复能力；`MEETS_VENDOR_FIX` 仅表示包元数据中的版本达到厂商公告边界，**不表示机器已安全**。每份报告的 `safe` 均为 false。
+**0.1.0 is a read-only preview.** The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`). Repair execution is disabled. A matching package version never means a safe running service.
 
-## 使用
+## Why WebPatch
 
-```sh
-# 在目标 Linux 上使用已构建的本地包；不需要 pip，也没有安装钩子或后台服务
-sudo apt install ./webpatch_0.1.0_all.deb
-webpatch scan
-webpatch scan --format json
-webpatch plan --dry-run --format json
-```
+The PHP in your shell may not be the PHP serving your site. Distribution backports can fix an older version, while a running process can still hold an old image.
 
-`scan` 不需要 root；受限读取显示为覆盖缺口。扫描关联 dpkg 包、进程启动标识/namespace/映像、systemd 服务、FPM pools、mod_php 映射和静态 Web handler；不执行 PHP，不访问网站或 Docker daemon，不更新 APT 缓存，不重启服务。`VERIFIED_LOCAL_ASSOCIATION` 仅表示本地关联一致，静态配置仍不是已加载配置或应用健康证明。
+WebPatch connects **packages, processes, services and local evidence**. It keeps version assessments, file identity and runtime safety separate, and makes missing proof visible as `UNKNOWN`.
 
-Ubuntu 22.04/24.04 的官方直连源可验证已有 InRelease 签名和 Packages 摘要。用 `--package-cache /absolute/directory` 指定**事先获取**的 `.deb` 缓存，再核验完整归档、control 身份和磁盘运行文件；扫描不会下载。缺缓存、过期/损坏索引、不支持的镜像列表、第三方/混合源、未知身份保持 UNKNOWN。Debian 当前只提供官方漏洞版本对照。
+## Quick Start
 
-`plan --dry-run` 对可认证的 Ubuntu 官方同分支候选运行真实 APT 模拟，并输出精确目标、全部依赖变化、服务中断提示和阻断原因。模拟使用独立临时配置，不执行系统 APT hooks、不更新索引、不安装包；系统 hooks、pin 和特殊配置仍作为阻断项展示。`apt_simulation` 区分 `PASS`、`FAIL`、`NOT_RUN`，模拟成功不表示计划可执行。移除、降级、新依赖、跨分支/发行版、不可信或未批准的依赖变化均阻断。容器只提供重建建议。
-
-计划 `schema_version=2`，绑定规则、主机/启动作用域、包/配置/源/索引/运行实例摘要，最长有效 30 分钟且不超过规则过期时间。可以保存并再次核对：
+On a target Linux system, use **Git and Python 3.10+ with `venv` and `pip` available**. Install from this repository into a virtual environment; the runtime has no third-party Python dependencies.
 
 ```sh
-webpatch plan --dry-run --format json > reviewed-plan.json
-webpatch verify-plan reviewed-plan.json --format json
-```
-
-`verify-plan` 重新扫描、模拟并报告漂移，只比较保存的数据。**所有计划仍为 BLOCKED、executable=false，退出码 4；`apply` 始终拒绝**，没有 `--yes` 绕过开关。未知路由、已加载配置、应用健康及未覆盖运行实例仍阻止自动修复。无实际安装、升级、回滚或修复执行器。
-
-| 退出码 | 含义 |
-|---|---|
-| 0 | 仅帮助/版本等成功操作；当前 scan 不返回 0 |
-| 1 | 观察到包版本低于匹配的厂商修复边界，潜在受影响 |
-| 2 | UNKNOWN / 覆盖不完整；参数错误也由 argparse 返回 2，查看 stderr |
-| 3 | 扫描无法完成，例如损坏规则数据 |
-| 4 | 修复计划或执行被阻断 |
-
-扫描 JSON `schema_version=1` 增加运行实例、配置关系、软件源审计和包信任字段。包版本对照、密码学文件身份、本地进程关联和应用路由证明是不同层次。证据摘要用于追踪输入，**不等于远程证明**；固定签名指纹也不证明已被 root 入侵主机的完整性。不记录进程环境、完整配置或仓库凭据；路径/包名仍属于运维信息。
-
-离线规则审阅于 **2026-10-22**，有效至 **2026-10-29 00:00 UTC**。过期或系统时间早于审阅时间时版本判定降为 UNKNOWN。没有自动在线规则更新；维护者必须重新核对官方公告、修改规则日期/版本、运行测试并发布，不能单独延长日期冒充审阅。上游版本仅供参考，不用于判断发行版回移植包。
-
-## 开发与验证
-
-在项目虚拟环境中安装，不修改系统 Python：
-
-```sh
+git clone https://github.com/ninex98/webpatch.git
+cd webpatch
 python3 -m venv .venv
-.venv/bin/python -m pip install -e '.[test]'
-.venv/bin/python -m pytest --junitxml=evidence/pytest.xml
+.venv/bin/python -m pip install .
+.venv/bin/webpatch scan
 ```
 
-Docker 隔离集成测试（分别替换 BASE 为 `ubuntu:22.04`、`ubuntu:24.04`、`debian:12`）：
+No root is required to scan. Restricted reads become coverage gaps. Scan exits **1** for potentially affected packages or **2** for unknown/incomplete coverage; neither means a successful safety check.
+
+Export evidence and prepare a plan:
 
 ```sh
-docker build -f tests/integration/Dockerfile --build-arg BASE=ubuntu:24.04 -t webpatch-test:noble .
-docker run --rm --read-only --network none --cap-drop ALL --security-opt no-new-privileges webpatch-test:noble
+.venv/bin/webpatch scan --format json > scan.json
+.venv/bin/webpatch plan --dry-run --format json > reviewed-plan.json
+.venv/bin/webpatch verify-plan reviewed-plan.json --format json
 ```
 
-容器 build 内构建并用 APT 安装 `.deb`。测试不使用宿主目录挂载、特权模式、真实攻击请求或漏洞利用。构建脚本 `scripts/build_deb.py` 只构建包，在非 Linux 平台拒绝运行。`dist/` 中的包是本地安装制品；**尚无公开 apt 仓库**。
+`plan` and `verify-plan` return **4** in this preview. Every plan is `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. There is no published APT repository or GitHub Release installation path yet.
 
-[GitHub Actions](https://github.com/ninex98/webpatch/actions) 已实际运行 fixtures、三组 Docker 和四格 Ubuntu 临时 VM 检查。不能在开发者宿主运行 VM 安装脚本。证据见 [CI 基线](evidence/ci-baseline/README.md)、[2A 本地关联](evidence/phase-2a/README.md)、[2B 源审计](evidence/phase-2b-sources/README.md)、[2B 身份链](evidence/phase-2b-trust/README.md)、[2C 模拟计划](evidence/phase-2c/README.md)。历史证据只证明其记录的源码；失败和待验收结果单独保留。
+## CLI Preview
 
-## 贡献边界
+<p align="center">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/readme/terminal-mobile.svg">
+    <img src="assets/readme/terminal.svg" alt="Actual Ubuntu 24.04 container output: scope is container, runtime safety is UNKNOWN, the plan is BLOCKED, and apply refuses execution." width="100%">
+  </picture>
+</p>
 
-新增适配器须声明发现/判定/规划/执行能力及未覆盖情形，提供失败路径 fixtures 和对应的真实环境集成验证。不能把未发现、查询失败、版本字符串相同或安装成功当成安全。涉及修复的贡献必须先完成设计文档中的阶段二与阶段三门禁。
+Captured from the installed CLI in an isolated **Ubuntu 24.04 / arm64 container** on **2026-10-22**. Selected output is shown verbatim with visual line wrapping; this container reports `APT dry-run: NOT_RUN`. Styling is an illustration of the terminal, not a built-in TUI. [Full text and capture details](assets/readme/README.md).
+
+The current workflow is **discover → assess → review a blocked plan**. Authorized execution and post-repair verification remain planned work.
+
+## Key Features
+
+- **Local runtime discovery.** Correlates dpkg packages, process identities, namespaces, systemd units, FPM pools and static web handlers. Reports unresolved relationships.
+- **Vendor-aware assessments.** Uses distribution-specific rules and `dpkg --compare-versions`, respecting backported fixes instead of comparing upstream version strings.
+- **Ubuntu archive identity checks.** Verifies existing InRelease signatures, Packages digests, cached `.deb` archives and supported runtime files for supported official sources. Missing evidence stays unknown.
+- **Real APT simulation.** Plans exact, authenticated Ubuntu candidates on the same PHP branch; reports dependency changes, possible service interruptions and blockers without installing packages.
+- **Reviewable evidence.** JSON reports, input digests, expiring plans and `verify-plan` drift checks. Saved plan data is never executed as commands.
+
+## Compatibility
+
+Capabilities describe the current code, not a guarantee of complete discovery. **Automatic repair is unavailable in every environment.**
+
+| Environment | Available now | Boundary / validation |
+| :--- | :--- | :--- |
+| Ubuntu 22.04 / 24.04, official APT PHP | Discovery, vendor comparison, archive identity, host APT simulation | Direct official sources only; FPM and mod_php in hosted VM CI |
+| Debian 12 / 13, official PHP packages | Read-only discovery and vendor comparison | No archive authentication or repair planning; Debian 12 Docker + fixtures, Debian 13 fixtures only |
+| Inside Ubuntu / Debian Docker containers | Inventory of the current container; rebuild recommendations | No in-place repair or APT simulation; Docker CI: Ubuntu 22.04 / 24.04, Debian 12 |
+| Docker / containerd observed from a host | Process, namespace and common socket hints | No daemon access, image scanning or fleet enumeration |
+| PPA / Sury, mixed sources, ESM, unsupported mirrors | Source audit, readable inventory and blockers | Unsupported trust paths; no automatic repair |
+| Custom builds, `/usr/local`, `/opt/php`, BaoTa | Common path and process hints | Patch status unknown; arbitrary install paths are not exhaustively discovered |
+| CGI, FrankenPHP, LiteSpeed, PHP built-in server | Package or process hints where observable | Runtime safety unknown; no dedicated repair support |
+| Other OSes, hidden PIDs, restricted permissions | Readable observations and coverage gaps | No supported repair path; macOS / Windows are not validated scan targets |
+
+## Security by Design
+
+**Observe without changing the target.** Scans do not execute PHP, send HTTP requests, contact container daemons, refresh APT indexes, install packages or restart services. APT simulation uses isolated temporary configuration; system hooks are not executed and remain blockers.
+
+**Use dated, attributable rules.** The [bundled rules](src/webpatch/data/php2shell.json) record official PHP, Ubuntu and Debian sources, a revision, review time and expiry. Reviewed **2026-10-22**, valid until **2026-10-29 00:00 UTC**. Expired rules or a clock before review yield `UNKNOWN`. There is no automatic online rule refresh; extending the date requires a new source review.
+
+**Keep uncertainty actionable.** `MEETS_VENDOR_FIX` is a package-version comparison. `VERIFIED_LOCAL_ASSOCIATION` is a local relationship check. Neither proves loaded configuration, application routing or health. All reports retain `safe=false`; unknown evidence blocks automatic repair. Digests are not remote attestation or proof against a compromised root account.
+
+**Require review before future execution.** Plans bind rules, scope and observed state, expire within 30 minutes, and can be checked for drift. Removal, downgrade, new dependencies, cross-branch changes and unapproved dependency changes block the automatic path. `apply` always refuses; there is no `--yes` bypass. Plan-hash confirmation, execution, post-repair checks and failure auditing are future gates; automatic rollback is not promised.
+
+## Documentation
+
+| Resource | What you will find |
+| :--- | :--- |
+| [CLI reference](docs/cli.md) | Commands, exit codes, report semantics and local packaging |
+| [Architecture and staged design](docs/design.md) (中文) | Component boundaries, threat assumptions and acceptance gates |
+| [Engineering evidence](evidence/phase-2c/README.md) (中文 / English) | Recorded APT simulation results, failures and accepted CI artifacts |
+| [CI workflow](.github/workflows/ci.yml) · [Live runs](https://github.com/ninex98/webpatch/actions) | Python fixtures, three container environments and four Ubuntu VM combinations |
+| [Visual assets and transcript](assets/readme/README.md) | Editable SVG sources, capture provenance and accessible text |
+
+Historical evidence applies to its recorded source revision. The CI badge tracks `main`; it is not a runtime safety or coverage claim.
+
+## Roadmap
+
+- **Available:** read-only inventory, local runtime associations, Ubuntu source and archive checks, APT simulation, immutable plans and drift verification.
+- **Next gates:** complete runtime / loaded-configuration / application-route evidence, explicit plan-hash authorization, limited Ubuntu execution and post-repair verification in disposable VMs.
+- **Later, separately validated:** Debian repair and additional runtime adapters such as Node.js. Container rebuild advice exists today; automated image rebuilding does not.
+
+The [staged design](docs/design.md) defines the acceptance criteria. These are engineering directions, not release dates or current support promises.
+
+## Contributing
+
+Start with [CONTRIBUTING.md](CONTRIBUTING.md). New adapters need explicit capability boundaries, failure-path fixtures and real environment evidence. Development and installation tests use project virtual environments, disposable containers and GitHub-hosted VMs.
+
+## License
+
+[Apache License 2.0](LICENSE). The name and local SVG assets can be revised independently of the CLI; this presentation does not change the existing license or release policy.

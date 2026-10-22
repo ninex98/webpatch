@@ -1,0 +1,19 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 417B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 ERROR: DeadlineExceeded: context deadline exceeded
+------
+ > [internal] load metadata for docker.io/library/ubuntu:24.04:
+------
+Dockerfile:2
+--------------------
+   1 |     ARG BASE=ubuntu:24.04
+   2 | >>> FROM ${BASE}
+   3 |     ENV DEBIAN_FRONTEND=noninteractive PYTHONDONTWRITEBYTECODE=1
+   4 |     RUN apt-get update && apt-get install -y --no-install-recommends python3 php-fpm php-cli libapache2-mod-php ca-certificates
+--------------------
+ERROR: failed to build: failed to solve: DeadlineExceeded: context deadline exceeded

@@ -1,0 +1,51 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 294B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/webpatch-phase1:noble
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 110.31kB done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/webpatch-phase1:noble@sha256:b1833a1730e82854f7befa2f086bafb02a221e941a473143bbd4f41ffae308ba
+#5 resolve docker.io/library/webpatch-phase1:noble@sha256:b1833a1730e82854f7befa2f086bafb02a221e941a473143bbd4f41ffae308ba 0.0s done
+#5 CACHED
+
+#6 [2/6] COPY src /work/src
+#6 DONE 0.0s
+
+#7 [3/6] COPY scripts/build_deb.py /work/scripts/build_deb.py
+#7 DONE 0.0s
+
+#8 [4/6] COPY README.md LICENSE /work/
+#8 DONE 0.0s
+
+#9 [5/6] COPY docs/design.md /work/docs/design.md
+#9 DONE 0.0s
+
+#10 [6/6] RUN python3 scripts/build_deb.py && dpkg --install /work/dist/webpatch_0.1.0_all.deb
+#10 0.171 dpkg-deb: building package 'webpatch' in '/work/dist/webpatch_0.1.0_all.deb'.
+#10 0.202 /work/dist/webpatch_0.1.0_all.deb
+#10 0.260 (Reading database ... 9871 files and directories currently installed.)
+#10 0.260 Preparing to unpack .../dist/webpatch_0.1.0_all.deb ...
+#10 0.266 Unpacking webpatch (0.1.0) over (0.1.0) ...
+#10 0.291 Setting up webpatch (0.1.0) ...
+#10 DONE 0.3s
+
+#11 exporting to image
+#11 exporting layers 0.1s done
+#11 exporting manifest sha256:322877b18406fbef96959e36f655cc3ebf000464c29d06ceb1e5d353ac85abf7 done
+#11 exporting config sha256:8446be0240b2c14d083f4f0f9bc0f7dfb5cb4fd4568fcba95da4811d2127229c done
+#11 exporting attestation manifest sha256:2dfacfd06111a6efb8878e701a3149bfa905c9b99d068f959c36a138f389aa97 done
+#11 exporting manifest list sha256:fb82af4c02eb5d51be06f8c23f388f8d44ff466bac6b9688a512a1eb35858f1e done
+#11 naming to docker.io/library/webpatch-readme:noble done
+#11 unpacking to docker.io/library/webpatch-readme:noble 0.0s done
+#11 DONE 0.2s

@@ -1,0 +1,326 @@
+[
+  {
+    "file": "README.html",
+    "width": 320,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-light.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 320
+  },
+  {
+    "file": "README.zh-CN.html",
+    "width": 320,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-light.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 320
+  },
+  {
+    "file": "dark-README.html",
+    "width": 320,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-dark.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 320
+  },
+  {
+    "file": "dark-README.zh-CN.html",
+    "width": 320,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-dark.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 320
+  },
+  {
+    "file": "README.html",
+    "width": 390,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-light.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 390
+  },
+  {
+    "file": "README.zh-CN.html",
+    "width": 390,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-light.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 390
+  },
+  {
+    "file": "dark-README.html",
+    "width": 390,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-dark.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 390
+  },
+  {
+    "file": "dark-README.zh-CN.html",
+    "width": 390,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-mobile-dark.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal-mobile.svg"
+      }
+    ],
+    "scrollWidth": 390
+  },
+  {
+    "file": "README.html",
+    "width": 1280,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-light.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal.svg"
+      }
+    ],
+    "scrollWidth": 1280
+  },
+  {
+    "file": "README.zh-CN.html",
+    "width": 1280,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-light.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal.svg"
+      }
+    ],
+    "scrollWidth": 1280
+  },
+  {
+    "file": "dark-README.html",
+    "width": 1280,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-dark.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal.svg"
+      }
+    ],
+    "scrollWidth": 1280
+  },
+  {
+    "file": "dark-README.zh-CN.html",
+    "width": 1280,
+    "images": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/hero-dark.svg"
+      },
+      {
+        "loaded": true,
+        "src": "https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/preview-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/license-badge.svg"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8768/assets/readme/terminal.svg"
+      }
+    ],
+    "scrollWidth": 1280
+  }
+]

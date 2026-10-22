@@ -1,0 +1,152 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Install.Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/webpatch-phase1:noble
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/6] FROM docker.io/library/webpatch-phase1:noble@sha256:b1833a1730e82854f7befa2f086bafb02a221e941a473143bbd4f41ffae308ba
+#4 resolve docker.io/library/webpatch-phase1:noble@sha256:b1833a1730e82854f7befa2f086bafb02a221e941a473143bbd4f41ffae308ba done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 167.14kB done
+#5 DONE 0.0s
+
+#6 [2/6] RUN apt-get update && apt-get install -y --no-install-recommends python3-venv git
+#6 0.692 Hit:1 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble InRelease
+#6 1.985 Get:2 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates InRelease [126 kB]
+#6 2.645 Get:3 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-backports InRelease [126 kB]
+#6 3.854 Get:4 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-security InRelease [126 kB]
+#6 3.928 Fetched 378 kB in 4s (99.7 kB/s)
+#6 3.928 Reading package lists...
+#6 4.402 Reading package lists...
+#6 4.853 Building dependency tree...
+#6 4.977 Reading state information...
+#6 5.090 The following additional packages will be installed:
+#6 5.091   git-man libcurl3t64-gnutls liberror-perl python3-pip-whl
+#6 5.091   python3-setuptools-whl python3.12-venv
+#6 5.091 Suggested packages:
+#6 5.091   gettext-base git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui
+#6 5.091   gitk gitweb git-cvs git-mediawiki git-svn
+#6 5.091 Recommended packages:
+#6 5.091   patch less ssh-client
+#6 5.115 The following NEW packages will be installed:
+#6 5.116   git git-man libcurl3t64-gnutls liberror-perl python3-pip-whl
+#6 5.116   python3-setuptools-whl python3-venv python3.12-venv
+#6 6.708 0 upgraded, 8 newly installed, 0 to remove and 1 not upgraded.
+#6 6.708 Need to get 7661 kB of archives.
+#6 6.708 After this operation, 28.3 MB of additional disk space will be used.
+#6 6.708 Get:1 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates/main arm64 libcurl3t64-gnutls arm64 8.5.0-2ubuntu10.16 [331 kB]
+#6 7.537 Get:2 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble/main arm64 liberror-perl all 0.17029-2 [25.6 kB]
+#6 9.736 Get:3 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates/main arm64 git-man all 1:2.43.0-1ubuntu7.4 [1101 kB]
+#6 12.73 Get:4 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates/main arm64 git arm64 1:2.43.0-1ubuntu7.4 [3774 kB]
+#6 14.78 Get:5 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates/universe arm64 python3-pip-whl all 24.0+dfsg-1ubuntu1.3 [1707 kB]
+#6 16.14 Get:6 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates/universe arm64 python3-setuptools-whl all 68.1.2-2ubuntu1.2 [716 kB]
+#6 16.51 Get:7 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates/universe arm64 python3.12-venv arm64 3.12.3-1ubuntu0.17 [5684 B]
+#6 16.87 Get:8 http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports noble-updates/universe arm64 python3-venv arm64 3.12.3-0ubuntu2.1 [1032 B]
+#6 16.97 debconf: delaying package configuration, since apt-utils is not installed
+#6 16.98 Fetched 7661 kB in 12s (652 kB/s)
+#6 16.99 Selecting previously unselected package libcurl3t64-gnutls:arm64.
+#6 16.99 (Reading database ...
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 9871 files and directories currently installed.)
+#6 17.00 Preparing to unpack .../0-libcurl3t64-gnutls_8.5.0-2ubuntu10.16_arm64.deb ...
+#6 17.00 Unpacking libcurl3t64-gnutls:arm64 (8.5.0-2ubuntu10.16) ...
+#6 17.02 Selecting previously unselected package liberror-perl.
+#6 17.02 Preparing to unpack .../1-liberror-perl_0.17029-2_all.deb ...
+#6 17.02 Unpacking liberror-perl (0.17029-2) ...
+#6 17.03 Selecting previously unselected package git-man.
+#6 17.03 Preparing to unpack .../2-git-man_1%3a2.43.0-1ubuntu7.4_all.deb ...
+#6 17.03 Unpacking git-man (1:2.43.0-1ubuntu7.4) ...
+#6 17.04 Selecting previously unselected package git.
+#6 17.04 Preparing to unpack .../3-git_1%3a2.43.0-1ubuntu7.4_arm64.deb ...
+#6 17.05 Unpacking git (1:2.43.0-1ubuntu7.4) ...
+#6 17.11 Selecting previously unselected package python3-pip-whl.
+#6 17.11 Preparing to unpack .../4-python3-pip-whl_24.0+dfsg-1ubuntu1.3_all.deb ...
+#6 17.12 Unpacking python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...
+#6 17.13 Selecting previously unselected package python3-setuptools-whl.
+#6 17.13 Preparing to unpack .../5-python3-setuptools-whl_68.1.2-2ubuntu1.2_all.deb ...
+#6 17.13 Unpacking python3-setuptools-whl (68.1.2-2ubuntu1.2) ...
+#6 17.14 Selecting previously unselected package python3.12-venv.
+#6 17.14 Preparing to unpack .../6-python3.12-venv_3.12.3-1ubuntu0.17_arm64.deb ...
+#6 17.14 Unpacking python3.12-venv (3.12.3-1ubuntu0.17) ...
+#6 17.15 Selecting previously unselected package python3-venv.
+#6 17.15 Preparing to unpack .../7-python3-venv_3.12.3-0ubuntu2.1_arm64.deb ...
+#6 17.15 Unpacking python3-venv (3.12.3-0ubuntu2.1) ...
+#6 17.16 Setting up python3-setuptools-whl (68.1.2-2ubuntu1.2) ...
+#6 17.16 Setting up python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...
+#6 17.16 Setting up libcurl3t64-gnutls:arm64 (8.5.0-2ubuntu10.16) ...
+#6 17.16 Setting up liberror-perl (0.17029-2) ...
+#6 17.17 Setting up git-man (1:2.43.0-1ubuntu7.4) ...
+#6 17.17 Setting up python3.12-venv (3.12.3-1ubuntu0.17) ...
+#6 17.20 Setting up python3-venv (3.12.3-0ubuntu2.1) ...
+#6 17.20 Setting up git (1:2.43.0-1ubuntu7.4) ...
+#6 17.20 Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+#6 DONE 17.2s
+
+#7 [3/6] WORKDIR /verify
+#7 DONE 0.0s
+
+#8 [4/6] COPY . /verify/webpatch
+#8 DONE 0.0s
+
+#9 [5/6] RUN cd webpatch && python3 -m venv .venv && .venv/bin/python -m pip install . && .venv/bin/webpatch --version
+#9 1.414 Processing /verify/webpatch
+#9 1.415   Installing build dependencies: started
+#9 5.180   Installing build dependencies: finished with status 'done'
+#9 5.181   Getting requirements to build wheel: started
+#9 5.254   Getting requirements to build wheel: finished with status 'done'
+#9 5.255   Preparing metadata (pyproject.toml): started
+#9 5.321   Preparing metadata (pyproject.toml): finished with status 'done'
+#9 5.323 Building wheels for collected packages: webpatch
+#9 5.323   Building wheel for webpatch (pyproject.toml): started
+#9 5.396   Building wheel for webpatch (pyproject.toml): finished with status 'done'
+#9 5.396   Created wheel for webpatch: filename=webpatch-0.1.0-py3-none-any.whl size=42386 sha256=dfd681e14080b78ca0b2e16295cb9e44a55cb677d986305de57bb2aa4bd89b2c
+#9 5.396   Stored in directory: /tmp/pip-ephem-wheel-cache-b7ar4nqv/wheels/f0/f5/e8/8216117095f57121f063ce2c534e7a3c1580841d39b4336e24
+#9 5.397 Successfully built webpatch
+#9 5.399 Installing collected packages: webpatch
+#9 5.413 Successfully installed webpatch-0.1.0
+#9 5.464 0.1.0
+#9 DONE 5.5s
+
+#10 [6/6] WORKDIR /verify/webpatch
+#10 DONE 0.0s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.4s done
+#11 exporting manifest sha256:7d7c7fcb84216290cdf4ad29127b8caff252730023b5298d2823b09b5777ae97
+#11 exporting manifest sha256:7d7c7fcb84216290cdf4ad29127b8caff252730023b5298d2823b09b5777ae97 done
+#11 exporting config sha256:782aaf6c7a6e79366626d2623035d9a9edc9c44f34053b8ab8126ac9aa151370 done
+#11 exporting attestation manifest sha256:9953977996282d84172e1bdc7ea93e168c7bb3dfceacebcbe5f11da6697f628c done
+#11 exporting manifest list sha256:66fb0d7b104ae63de058a4ff4225e8ffc1b087f3c8ece6394fa8882cef5c5d2f done
+#11 naming to docker.io/library/webpatch-readme:source done
+#11 unpacking to docker.io/library/webpatch-readme:source
+#11 unpacking to docker.io/library/webpatch-readme:source 0.2s done
+#11 DONE 0.6s

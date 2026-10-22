@@ -1,0 +1,18 @@
+Processing /Users/ninex/Projects/hll-ecosystem/apps/webpatch
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: webpatch
+  Building wheel for webpatch (pyproject.toml): started
+  Building wheel for webpatch (pyproject.toml): finished with status 'done'
+  Created wheel for webpatch: filename=webpatch-0.1.0-py3-none-any.whl size=41559 sha256=8980a1be57d1a24156fbdade39b47f71c0d1c7b863dbad669bd5d2c9a3ae268d
+  Stored in directory: /private/var/folders/_d/93kpsm9541d1bvynpb088yg00000gn/T/pip-ephem-wheel-cache-s8ibfqqh/wheels/ab/c5/79/3ce4df1af7b3e81882521abf84c54175dfcc77b8f2353947cf
+Successfully built webpatch
+Installing collected packages: webpatch
+Successfully installed webpatch-0.1.0
+
+[notice] A new release of pip is available: 25.3 -> 26.2.2
+[notice] To update, run: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/build/readme-install-venv/bin/python -m pip install --upgrade pip

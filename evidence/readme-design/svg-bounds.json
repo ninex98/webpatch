@@ -1,0 +1,47 @@
+[
+  {
+    "file": "hero-dark.svg",
+    "clipped": [],
+    "texts": 14
+  },
+  {
+    "file": "hero-light.svg",
+    "clipped": [],
+    "texts": 14
+  },
+  {
+    "file": "hero-mobile-dark.svg",
+    "clipped": [],
+    "texts": 7
+  },
+  {
+    "file": "hero-mobile-light.svg",
+    "clipped": [],
+    "texts": 7
+  },
+  {
+    "file": "logo.svg",
+    "clipped": [],
+    "texts": 0
+  },
+  {
+    "file": "preview-badge.svg",
+    "clipped": [],
+    "texts": 1
+  },
+  {
+    "file": "license-badge.svg",
+    "clipped": [],
+    "texts": 1
+  },
+  {
+    "file": "terminal.svg",
+    "clipped": [],
+    "texts": 18
+  },
+  {
+    "file": "terminal-mobile.svg",
+    "clipped": [],
+    "texts": 27
+  }
+]

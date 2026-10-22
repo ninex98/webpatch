@@ -1,0 +1,5 @@
+PASS GitHub GFM render: README.md
+PASS GitHub GFM render: README.zh-CN.md
+PASS GitHub GFM render: docs/cli.md
+PASS GitHub GFM render: CONTRIBUTING.md
+PASS GitHub GFM render: assets/readme/README.md

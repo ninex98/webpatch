@@ -1,0 +1,10 @@
+PASS local links + anchors: README.md (28)
+PASS local links + anchors: README.zh-CN.md (28)
+PASS local links + anchors: docs/cli.md (3)
+PASS local links + anchors: CONTRIBUTING.md (9)
+PASS local links + anchors: assets/readme/README.md (16)
+PASS 9 SVGs: XML, viewBox, accessible titles, no scripts / embedded images / remote dependencies, each <20 KB
+PASS bilingual code blocks, inline technical identifiers and image sources match; prose / support matrix manually reviewed
+PASS captured CLI command schemas, scope and expected exit codes; no safe/executable result
+PASS deterministic SVG regeneration from actual capture
+PASS 7 unique external links / images return HTTP 200
