@@ -28,6 +28,10 @@ class FakeSystem:
             "/proc/self/cgroup": case.get("cgroup", "0::/user.slice"),
         }
         self.links = {"/proc/self/ns/mnt": "mnt:[1]"}
+        self.links["/proc/self/ns/pid"] = "pid:[1]"
+        self.identities = {"/": {"device": 1, "inode": 1}}
+        self.fingerprints = {}
+        self.reads.update({p: missing for p in ("/etc/nginx/nginx.conf", "/etc/apache2/apache2.conf")})
         self.dirs = {p: missing for p in (
             "/etc/php", "/www/server/php", "/opt/php", "/usr/local/bin", "/usr/local/sbin")}
         self.dirs.update({"/run": [], "/run/containerd": missing, "/proc": []})
@@ -42,11 +46,21 @@ class FakeSystem:
                                               else proc.get("exe", "/unknown"))
             self.links[f"/proc/{pid}/ns/mnt"] = (ProbeError(proc["ns_error"]) if "ns_error" in proc
                                                  else proc.get("ns", "mnt:[1]"))
+            self.links[f"/proc/{pid}/ns/pid"] = missing
+            self.reads[f"/proc/{pid}/stat"] = missing
+            self.identities[f"/proc/{pid}/root"] = missing
         if "proc_error" in case:
             self.dirs["/proc"] = ProbeError(case["proc_error"])
         raw = case.get("raw_packages", "".join("\t".join(row) + "\n" for row in case.get("packages", [])))
         self.commands = {DPKG_QUERY: (ProbeError(case["query_error"]) if "query_error" in case
                                      else CommandResult(case.get("query_rc", 0), raw, case.get("query_stderr", "")))}
+        import re
+        for row in case.get("packages", []):
+            if re.fullmatch(r"php[0-9]+\.[0-9]+", row[3]) and row[0].split(":")[0].endswith("-fpm"):
+                root = f"/etc/php/{row[3][3:]}/fpm"
+                self.reads[root + "/php-fpm.conf"] = missing
+                self.reads[root + "/php.ini"] = missing
+                self.dirs[root + "/conf.d"] = missing
         for installed, fixed, meets in COMPARISONS:
             self.commands[("/usr/bin/dpkg", "--compare-versions", installed, "ge", fixed)] = (
                 CommandResult(2, "", "invalid") if case.get("compare_error") else CommandResult(0 if meets else 1))
@@ -70,6 +84,12 @@ class FakeSystem:
 
     def run(self, argv):
         return self._get("run", self.commands, argv)
+
+    def identity(self, path):
+        return self._get("identity", self.identities, path)
+
+    def fingerprint(self, path):
+        return self._get("fingerprint", self.fingerprints, path)
 
 
 @pytest.fixture(params=CASES, ids=lambda c: c["id"])

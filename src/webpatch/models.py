@@ -49,6 +49,30 @@ class RuntimeHint:
     verification: str = "UNKNOWN"
 
 
+@dataclass(frozen=True)
+class RuntimeInstance:
+    pid: int
+    sapi: str
+    path: str | None
+    package_ids: tuple[str, ...]
+    service: str | None
+    start_ticks: str | None
+    file_sha256: str | None
+    association: str
+    blockers: tuple[str, ...]
+    evidence_ids: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class ConfigRelation:
+    kind: str
+    path: str
+    name: str
+    target: str
+    status: str
+    evidence_ids: tuple[str, ...]
+
+
 @dataclass
 class Inventory:
     environment: Environment
@@ -56,6 +80,8 @@ class Inventory:
     runtime_hints: list[RuntimeHint] = field(default_factory=list)
     coverage_gaps: list[str] = field(default_factory=list)
     adapters: list[str] = field(default_factory=list)
+    runtimes: list[RuntimeInstance] = field(default_factory=list)
+    config_relations: list[ConfigRelation] = field(default_factory=list)
 
 
 @dataclass(frozen=True)

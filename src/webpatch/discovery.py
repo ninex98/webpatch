@@ -6,6 +6,8 @@ from typing import Protocol
 
 from .models import Environment, Inventory, Package, RuntimeHint
 from .system import Collector, DPKG_QUERY
+from .runtime import RuntimeAdapter
+from .configuration import ConfigurationAdapter
 
 
 MAX_PROCESSES = 4096
@@ -148,7 +150,7 @@ def discover(collector: Collector, adapters: tuple[EnvironmentAdapter, ...] | No
         "DISCOVERY_NOT_EXHAUSTIVE", "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
         "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED", "OTHER_CONTAINERS_NOT_INSPECTED",
     ])
-    for adapter in adapters if adapters is not None else (AptAdapter(), PhpHintsAdapter()):
+    for adapter in adapters if adapters is not None else (AptAdapter(), PhpHintsAdapter(), RuntimeAdapter(), ConfigurationAdapter()):
         if adapter.supports(inventory.environment):
             inventory.adapters.append(adapter.name)
             adapter.discover(collector, inventory)

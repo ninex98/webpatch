@@ -25,9 +25,36 @@ fi
 mkdir -p ci-evidence
 sudo apt-get update
 sudo apt-get install -y "$package"
+if [[ "$sapi" == fpm ]]; then
+  sudo apt-get install -y nginx
+  sudo tee /etc/nginx/nginx.conf >/dev/null <<EOF
+events {}
+http {
+  server {
+    listen 18080;
+    root /var/www/html;
+    location ~ \.php\$ {
+      include /etc/nginx/fastcgi.conf;
+      fastcgi_pass unix:/run/php/php${php_branch}-fpm.sock;
+    }
+  }
+}
+EOF
+  sudo systemctl restart nginx
+  probe_port=18080
+else
+  for conf in /etc/apache2/mods-enabled/php*.load; do
+    [[ -f "$conf" ]] && sudo a2dismod "$(basename "$conf" .load)"
+  done
+  sudo a2enmod "php${php_branch}"
+  sudo systemctl restart apache2
+  probe_port=80
+fi
+echo '<?php echo "webpatch-ci-route-ok";' | sudo tee /var/www/html/webpatch-ci.php >/dev/null
 python3 scripts/build_deb.py
 sudo apt-get install -y ./dist/webpatch_0.1.0_all.deb
 sudo systemctl start "$service"
+[[ "$(curl --fail --silent "http://127.0.0.1:${probe_port}/webpatch-ci.php")" == webpatch-ci-route-ok ]]
 sudo systemctl is-active --quiet "$service"
 pid_before="$(systemctl show "$service" --property=MainPID --value)"
 test "$pid_before" -gt 0
@@ -50,18 +77,28 @@ rc=0
 webpatch scan --format json > ci-evidence/vm-scan.json || rc=$?
 [[ "$rc" == 1 || "$rc" == 2 ]]
 rc=0
+sudo webpatch scan --format json > ci-evidence/vm-root-scan.json || rc=$?
+[[ "$rc" == 1 || "$rc" == 2 ]]
+rc=0
 webpatch plan --dry-run --format json > ci-evidence/vm-plan.json || rc=$?
 [[ "$rc" == 4 ]]
 rc=0
 webpatch apply > ci-evidence/vm-apply.txt 2>&1 || rc=$?
 [[ "$rc" == 4 ]]
-python3 - "$package" "$sapi" <<'PY'
+python3 - "$package" "$sapi" "$pid_before" "$service" <<'PY'
 import json, sys
 r = json.load(open('ci-evidence/vm-scan.json'))
 assert r['safe'] is False
 assert any(p['name'].split(':')[0] == sys.argv[1] for p in r['inventory']['packages'])
 assert any(h['pid'] is not None for h in r['inventory']['runtime_hints'])
 assert all(a['runtime_status'] == 'UNKNOWN' for a in r['assessments'])
+privileged = json.load(open('ci-evidence/vm-root-scan.json'))
+runtime = next(x for x in privileged['inventory']['runtimes'] if x['pid'] == int(sys.argv[3]))
+assert runtime['association'] == 'VERIFIED_LOCAL_ASSOCIATION', runtime
+assert runtime['service'] == sys.argv[4], runtime
+assert any(p.split(':')[0] == sys.argv[1] for p in runtime['package_ids']), runtime
+assert privileged['safe'] is False
+assert privileged['inventory']['config_relations']
 p = json.load(open('ci-evidence/vm-plan.json'))
 assert not p['executable'] and p['apt_simulation'] == 'NOT_IMPLEMENTED'
 PY
@@ -69,4 +106,7 @@ sudo systemctl is-active --quiet "$service"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]
 sudo systemctl show "$service" --property=ActiveState,SubState,MainPID > ci-evidence/vm-service.txt
+python3 scripts/evidence_manifest.py ci-evidence
+sha256sum dist/*.deb > ci-evidence/package-sha256.txt
+uname -a > ci-evidence/kernel.txt
 echo "PASS: Ubuntu $release / $sapi; package installed, service active, scans preserved PID and state."
