@@ -83,3 +83,15 @@ retire-preparation 需要同一主机密钥、相同 scope 和精确收据摘要
 review-execution 同时核对磁盘 /var/lib/dpkg/info 下旧维护脚本/trigger 与认证旧归档的字节、所有者和权限；归档中缺少脚本时，磁盘上也必须明确缺少。dpkg 特殊配置、已有 policy-rc.d、未完成 trigger 活动和不可读 registry 保持阻断。文件 trigger 候选按完整 payload 路径列出，多个 handler 均保留；维护脚本的命名 trigger 激活仍需要显式审阅。READY_FOR_EXECUTION_POLICY_REVIEW 不是执行准入。
 
 这些输入为受限执行器提供事实；未来不能直接把 APT 模拟与安装等价。实际执行策略须在确认计划中明确维护脚本、trigger 处理、服务启动策略、锁与异常状态。
+
+## 3E.2 有界包操作能力（CI 待验收）
+
+package_control.py 是独立、尚未接入 apply 的可写能力。策略层必须先提供精确类型化归档与已审阅 trigger 集合；本模块不把调用者 JSON 当审批，不解析其 argv。归档先经过封存解析身份核对，再复制进 root 私有事务目录并重新哈希；只从该目录运行固定 dpkg unpack/configure/triggers-only 步骤，无网络、移除、降级选项或 force 选项。已存在事务目录不能重复使用。
+
+父进程实际持有 dpkg frontend POSIX lock，子 dpkg 使用文档规定的 DPKG_FRONTEND_LOCKED=true 并继续持有自己的 backend lock。不能用 APT 的模拟成功冒充该执行策略等价；APT 不支持把外部持有的 frontend lock 直接当自己持锁，因此此能力不运行 apt-get install。后续精确确认计划必须显示这一区别，并重新核对所有依赖和脚本输入。
+
+临时 policy-rc.d 以完整固定字节原子发布，必须原本不存在；退出 101 抑制遵循该接口的维护脚本服务启动。它不能证明任意脚本不会直接调用 systemctl，所以脚本行为仍由准入策略审阅。清理仅删除本次拥有且未改变的文件。维护输出保存为私有 0600 有界日志，返回摘要；超时或输出超限终止进程组并报告可能已变更，不自动重试/回滚。仅批准的 pending trigger 可运行，级联轮次有上限，未知 handler 留在 PARTIAL 供人工恢复。
+
+即使精确版本全部配置完成，结果仍明确 RUNTIME_VERIFICATION_REQUIRED。三个 disposable build 容器用无害合成包验证真实 1→2 升级、维护脚本和文件 trigger 顺序、真实 frontend 锁冲突及 configure 失败后的 changed 状态。这些归档不代表发行版认证或真实 PHP 修复；它们只验收底层执行能力。
+
+参考：2026-10-23 审阅 [dpkg 环境及 trigger 行为](https://manpages.debian.org/bookworm/dpkg/dpkg.1.en.html) 与 [APT 锁实现](https://github.com/Debian/apt/blob/main/apt-pkg/deb/debsystem.cc)。

@@ -26,6 +26,7 @@ class LocalServiceControl:
             raise ValueError('SERVICE_STATE_DIRECTORY_INVALID')
         self.state_dir = Path(state_dir)
         self.store = ReceiptStore(self.state_dir)
+        self.owns_package_lock = False
 
     @staticmethod
     def require_root():
@@ -35,6 +36,8 @@ class LocalServiceControl:
     @contextmanager
     def locked(self):
         self.require_root()
+        if self.owns_package_lock:
+            raise ProbeError('SERVICE_LOCK_ALREADY_OWNED')
         self.store._key(create=True)
         descriptors = []
         try:
@@ -47,8 +50,10 @@ class LocalServiceControl:
                 if not stat.S_ISREG(info.st_mode) or info.st_uid != 0:
                     raise ProbeError('SERVICE_LOCK_IDENTITY_INVALID')
                 fcntl.lockf(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            self.owns_package_lock = True
             yield
         finally:
+            self.owns_package_lock = False
             for descriptor in reversed(descriptors):
                 os.close(descriptor)
 
