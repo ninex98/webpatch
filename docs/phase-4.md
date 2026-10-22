@@ -39,3 +39,11 @@ Debian 12/bookworm 与 13/trixie 增加独立只读来源策略和归档认证�
 主钥资料于 2026-10-23 Asia/Shanghai 审阅：[Debian FTP archive keys](https://ftp-master.debian.org/keys.html)、[Debian security FAQ](https://www.debian.org/security/faq)。官方邮件公告链接已记录，但本轮读取返回 403，不能声称成功阅读；真实测试进一步用官方镜像内 debian-archive-keyring 和实际 InRelease 签名交叉验证指纹，保存 keyring 版本及哈希。没有自动下载/导入新信任根。
 
 两格独立 Debian 容器验证真实 Release→Packages→缓存 deb→已安装 FPM 文件、篡改签名拒绝和状态不变。根文件系统只读且禁网，负例只写独立 /tmp tmpfs。此阶段没有扩展 Debian 的执行准入；准备、规划和真实升级生命周期仍须独立完成。
+
+## 4C.2 独立 Debian VM 基础验收（CI 待验收）
+
+GitHub 临时 Ubuntu runner 内用 QEMU 启动 Debian 12/13 genericcloud 客体，各自验证 FPM/Apache。没有 privileged Docker、9p/virtfs、宿主 root/proc/socket 挂载；源码只通过 loopback SSH 导入，逐文件比对从受测 Git commit 导出的 SHA256。客体使用独立磁盘、kernel/systemd/procfs 和当前官方 main/security APT 来源。
+
+镜像来自 cloud.debian.org 的官方 HTTPS，并核对同目录 SHA512SUMS；当前目录不提供镜像签名，因此记录为传输/内容完整性，明确 NOT_AVAILABLE，不声称签名镜像认证。这个测试平台信任边界独立于产品必须验证的 APT Release/Packages/deb 认证链。保存镜像 URL/hash、加速类型、kernel、服务状态和源码导出清单，不上传磁盘、SSH 私钥或私有状态目录。
+
+本阶段只验收客体启动、实际 systemd PHP 服务发现和认证文件身份；还没有把 Debian 加入准备/执行准入。主/客体脚本都有运行环境守卫，客体另需唯一 marker；本地测试只验证拒绝误运行，不启动 VM 或安装工具。后续在同一隔离边界内独立完成 Debian 升级/故障生命周期。

@@ -114,3 +114,22 @@ jobs:
         with:
           name: debian-trust-${{ matrix.release }}
           path: ci-evidence/
+  debian-vm-services:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        release: ['12', '13']
+        sapi: [fpm, apache]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare tools on the disposable hosted VM
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils cloud-image-utils openssh-client
+      - name: Boot the independent Debian guest and validate its service
+        run: python3 scripts/ci_debian_vm.py '${{ matrix.release }}' '${{ matrix.sapi }}'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: debian-vm-${{ matrix.release }}-${{ matrix.sapi }}
+          path: ci-evidence/
