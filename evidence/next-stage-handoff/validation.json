@@ -1,0 +1,60 @@
+{
+  "verified_at_utc": "2026-10-22T09:40:45.076036+00:00",
+  "result": "PASS",
+  "scope": "Documentation-only development status and next conversation prompt",
+  "baseline_commit": "7495d77c1835c519ca0f487a0372064e998e02de",
+  "latest_observed_ci": {
+    "run_id": 39752379977,
+    "commit": "7495d77c1835c519ca0f487a0372064e998e02de",
+    "conclusion": "success"
+  },
+  "checks": {
+    "local_markdown_links": "PASS",
+    "required_reference_files": "PASS",
+    "stage_commit_and_safety_instructions": "PASS",
+    "git_diff_check": "PASS",
+    "implementation_tests": "NOT_RUN_DOCUMENTATION_ONLY"
+  },
+  "documents_sha256": {
+    "docs/development-status.md": "e0da2852f8a772d9aa1bc5230188ad89a2c3a5906f437ed3b9d7633c5a0e89ec",
+    "docs/next-conversation-prompt.md": "df4e8c51ca8a5efe42720ebe2605647e61e61d53c1278038930d6f90f7eb4ccb"
+  },
+  "checked_links": [
+    {
+      "document": "docs/development-status.md",
+      "target": "design.md"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../evidence/phase-1.md"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../evidence/ci-baseline/README.md"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../evidence/phase-2a/README.md"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../evidence/phase-2b-sources/README.md"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../evidence/phase-2b-trust/README.md"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../evidence/phase-2c/README.md"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../evidence/phase-2c/current-source-validation.json"
+    },
+    {
+      "document": "docs/development-status.md",
+      "target": "../AGENTS.md"
+    }
+  ]
+}
