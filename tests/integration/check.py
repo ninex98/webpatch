@@ -55,6 +55,10 @@ def main():
     assert "PACKAGE_QUERY_FAILED_OR_WARNED" not in report["inventory"]["coverage_gaps"]
     proposal = json.loads(run(["webpatch", "plan", "--dry-run", "--format", "json"], {4}).stdout)
     assert proposal["actions"] == [] and proposal["executable"] is False
+    assert report['schema_version'] == 2 and proposal['schema_version'] == 4
+    assert report['inventory']['scan_scope']['completeness'] == 'UNKNOWN'
+    assert proposal['admission_status'] == 'BLOCKED'
+    assert any(g['category'] == 'execution_authorization' and g['status'] == 'NOT_RUN' for g in proposal['gates'])
     run(["webpatch", "apply"], {4})
     assert before == state_hash(), "scan/plan/apply changed package metadata or configuration"
     # Installed entry point must work independently of cwd and PYTHONPATH.

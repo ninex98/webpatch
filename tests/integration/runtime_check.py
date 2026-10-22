@@ -30,7 +30,9 @@ assert any(c['requirement'] == 'configured_runtime_link' and any(s['kind'] == 'r
 assert all(c['status'] == 'UNKNOWN' for c in checks if c['requirement'] == 'loaded_configuration')
 assert all(c['status'] == 'NOT_CHECKED' for c in checks if c['requirement'] == 'request_attribution')
 if sapi == 'fpm':
-    assert runtime['endpoints'], runtime
+    assert len(runtime['endpoints']) >= 2, runtime
+    assert any(e['path'] == '/run/php/webpatch-ci-extra.sock' for e in runtime['endpoints'])
+    assert len([r for r in record['inventory']['config_relations'] if r['kind'] == 'fpm_pool']) >= 2
     assert any(c['requirement'] == 'process_unix_listener' and c['status'] == 'VERIFIED' for c in checks)
 else:
     assert any(f['role'] == 'php_module' and '/libphp' in f['path'] for f in runtime['files'])
@@ -39,6 +41,7 @@ else:
 unprivileged = json.loads(Path('ci-evidence/vm-scan.json').read_text())
 assert not unprivileged['safe']
 negative = {'unprivileged_safe': unprivileged['safe'], 'cases': []}
+assert any(c['requirement'] == 'read_coverage' and c['status'] == 'UNKNOWN' for c in unprivileged['inventory']['coverage'])
 branch = '8.1' if record['inventory']['environment']['codename'] == 'jammy' else '8.3'
 config = Path(f'/etc/php/{branch}/{"fpm" if sapi == "fpm" else "apache2"}/php.ini')
 original = config.read_bytes()

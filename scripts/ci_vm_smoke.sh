@@ -48,6 +48,15 @@ EOF
 sudo apt-get update
 sudo apt-get install -y "$package"
 if [[ "$sapi" == fpm ]]; then
+  sudo tee "/etc/php/${php_branch}/fpm/pool.d/webpatch-ci-extra.conf" >/dev/null <<EOF
+[webpatch_ci_extra]
+user = www-data
+group = www-data
+listen = /run/php/webpatch-ci-extra.sock
+pm = ondemand
+pm.max_children = 2
+EOF
+  sudo systemctl restart "$service"
   sudo apt-get install -y nginx
   sudo tee /etc/nginx/nginx.conf >/dev/null <<EOF
 user www-data;
@@ -59,6 +68,10 @@ http {
     location ~ \.php\$ {
       include /etc/nginx/fastcgi.conf;
       fastcgi_pass unix:/run/php/php${php_branch}-fpm.sock;
+    }
+    location = /webpatch-extra.php {
+      include /etc/nginx/fastcgi.conf;
+      fastcgi_pass unix:/run/php/webpatch-ci-extra.sock;
     }
   }
 }
@@ -99,6 +112,23 @@ print(h.hexdigest())
 PY
 }
 before="$(snapshot)"
+runtime_snapshot() {
+  sudo python3 - <<'PY'
+from pathlib import Path
+import json
+rows = []
+for proc in Path('/proc').iterdir():
+    if not proc.name.isdigit(): continue
+    try:
+        comm = (proc / 'comm').read_text().strip()
+        if 'php' in comm or comm in {'apache2', 'httpd'}:
+            rows.append((int(proc.name), (proc / 'stat').read_text().rsplit(')', 1)[1].split()[19], str((proc / 'exe').readlink())))
+    except FileNotFoundError:
+        continue
+print(json.dumps(sorted(rows)))
+PY
+}
+runtime_snapshot > ci-evidence/runtime-processes-before.json
 rc=0
 webpatch scan --format json > ci-evidence/vm-scan.json || rc=$?
 [[ "$rc" == 1 || "$rc" == 2 ]]
@@ -138,6 +168,14 @@ p = json.load(open('ci-evidence/vm-plan.json'))
 assert not p['executable']
 root_plan = json.load(open('ci-evidence/vm-root-plan.json'))
 assert not root_plan['executable'] and root_plan['apt_simulation'] == 'PASS', root_plan['blockers']
+assert root_plan['schema_version'] == 4 and root_plan['admission_status'] == 'BLOCKED'
+gates = root_plan['gates']
+assert next(g for g in gates if g['category'] == 'diagnostic_simulation')['status'] == 'PASS'
+assert next(g for g in gates if g['category'] == 'installation_equivalence')['status'] == 'UNKNOWN'
+assert all('GATE:' + g['id'] in root_plan['blockers'] for g in gates if g['status'] != 'PASS')
+ids = [e['id'] for e in root_plan['scan_evidence'] + root_plan['evidence']]
+assert len(set(ids)) == len(ids)
+assert all(set(g['evidence_ids']) <= set(ids) for g in gates)
 assert any(e['operation'] == 'apt_simulation' and e['outcome'] == 'EXIT_0' for e in root_plan['evidence'])
 verification = json.load(open('ci-evidence/vm-plan-verification.json'))
 assert verification['drift'] == [], verification
@@ -147,6 +185,8 @@ PYTHONPATH=src python3 tests/integration/apt_check.py "$package"
 sudo systemctl is-active --quiet "$service"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]
+runtime_snapshot > ci-evidence/runtime-processes-after.json
+cmp ci-evidence/runtime-processes-before.json ci-evidence/runtime-processes-after.json
 sudo env PYTHONPATH=src GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted python3 tests/integration/runtime_check.py "$package" "$sapi" "$pid_before" "$package_cache"
 [[ "$pid_before" == "$(systemctl show "$service" --property=MainPID --value)" ]]
 [[ "$before" == "$(snapshot)" ]]

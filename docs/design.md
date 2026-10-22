@@ -125,3 +125,11 @@ CLI → ScanService → EnvironmentAdapter registry → SystemReader
 - **不可变计划**：冻结嵌套模型绑定当前作用域、规则、包/配置/源/索引/归档/进程摘要及最长 30 分钟有效期；先后检查快照与锁，保存摘要后可以 verify-plan 重新扫描和求解。APT 不持有系统锁，验证结果只是观察，不提供并发事务保证。未来执行器仍须再次核对全部门禁、显式确认计划 hash，并完成完整运行时/健康验证。
 
 当前所有计划均 BLOCKED，apply 没有实现。密码学认证只覆盖上述 Ubuntu 归档；Debian、第三方、mirror+file、ESM 和自编译不是自动修复支持范围。临时 VM 安装服务与普通标记 HTTP 请求只验证测试环境，不将其扩张为任意生产站点的安全证明。
+
+## 7. 阶段 2D 修复前证据契约（2026-10-22）
+
+详细 schema、迁移和边界见 [phase-2d.md](phase-2d.md)。报告 schema 2 和计划 schema 4 增加实体化覆盖/作用域、共享包影响范围、PHP 映像及标准模块、FPM UNIX listener、静态 pool/handler 候选关联和统一门禁。扫描证据与模拟证据分开命名，逐门禁说明证据与解除要求。加载配置和请求归属仍不能从静态配置、监听 socket 或普通 HTTP 标记推导。
+
+READY_FOR_REVIEW 仅说明有限诊断输入可审阅，执行准入仍 BLOCKED。计划有效期不超过扫描、规则、签名索引各自的边界；verify-plan 会重查实例/配置/依赖/门禁和时效。诊断模拟省略 hooks/部分特殊配置，维护脚本/conffile 和停机预算仍需阶段三审阅。当前 apply 始终拒绝，所有阶段三执行、验证与失败审计能力尚未实现。
+
+2D.4 扩展原 CI，临时 VM 中比较相关进程 PID/starttime 和配置/APT/dpkg 状态，并注入无害映射删除/替换、配置变化等反例。当前验收进度和源码对应关系以 [development-status.md](development-status.md) 及 evidence/phase-2d4 为准，不能把有限测试站点扩展为任意生产环境保证。
