@@ -34,7 +34,7 @@ VERIFIED_LOCAL_FILE_ASSOCIATION 只表示稳定执行文件和本地磁盘/packa
 
 Debian 12/bookworm 与 13/trixie 增加独立只读来源策略和归档认证。首个范围为 deb.debian.org/ftp.debian.org 的 codename main 仓库，以及 deb.debian.org/security.debian.org 的对应 debian-security main 仓库；stable/testing 别名、混合 codename、第三方地址、其他组件或自定义 keyring 仍明确阻断。
 
-使用固定 debian-archive-keyring.gpg，并按发行版区分 archive/release/security 主钥指纹。GnuPG VALIDSIG 的签名子钥必须归属已固定的主钥，不能把任意本地 keyring 条目当信任根。Debian 的 Suite 使用已审阅 stable/oldstable 标签，而 Codename 必须精确匹配 source suite；security Label 单独为 Debian-Security。更新/security pocket 要求 Valid-Until，且 Date 不超过七天；base 仅用于签名快照身份，不作为新鲜修复候选。
+使用固定 debian-archive-keyring.gpg 或官方 .pgp 别名，并按发行版区分 archive/release/security 主钥指纹。GnuPG VALIDSIG 的签名子钥必须归属已固定的主钥，不能把任意本地 keyring 条目当信任根。Debian 的 Suite 使用已审阅 stable/oldstable 标签，而 Codename 必须精确匹配 source suite；security Label 单独为 Debian-Security。security 和 trixie-updates 要求 Valid-Until，且 Date 不超过七天；bookworm-updates 官方当前无 Valid-Until，使用 Date 加七天的期限；base 仅用于签名快照身份，不作为新鲜修复候选。
 
 主钥资料于 2026-10-23 Asia/Shanghai 审阅：[Debian FTP archive keys](https://ftp-master.debian.org/keys.html)、[Debian security FAQ](https://www.debian.org/security/faq)。官方邮件公告链接已记录，但本轮读取返回 403，不能声称成功阅读；真实测试进一步用官方镜像内 debian-archive-keyring 和实际 InRelease 签名交叉验证指纹，保存 keyring 版本及哈希。没有自动下载/导入新信任根。
 

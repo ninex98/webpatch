@@ -1,6 +1,8 @@
 # WebPatch：架构、支持边界与实施计划
 
-调研日期：2026-10-22（Asia/Shanghai）。首阶段：只读预览版，Python ≥ 3.10，运行时仅标准库。
+原始调研日期：2026-10-22（Asia/Shanghai）。Python ≥ 3.10，运行时仅标准库。
+
+**阅读提示（2026-10-23）：** 第 1–7 节保留原始阶段设计和历史实现边界，不代表当前完成度。后续已实现受控准备、精确维护合同、事务/验证、Debian 归档认证/修复 profile、Node adapter/rules 和容器重建建议。当前原生验收及公开入口状态以 [development-status.md](development-status.md) 为准；操作说明见 [CLI](cli.md)。阶段四不承诺自动镜像发布或公开 APT 仓库。
 
 ## 1. 核实的事实与产品决策
 

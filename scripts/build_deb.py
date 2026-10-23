@@ -25,8 +25,8 @@ def main():
             "Package: webpatch\nVersion: 0.1.0\nSection: admin\nPriority: optional\n"
             "Architecture: all\nDepends: python3 (>= 3.10), dpkg\n"
             "Maintainer: WebPatch contributors <webpatch@example.invalid>\n"
-            "Description: Read-only web runtime security inventory preview\n"
-            " Evidence-driven PHP package assessments; no repair executor.\n")
+            "Description: Evidence-driven web runtime maintenance preview\n"
+            " Read-only PHP/Node inventory and explicitly confirmed scoped maintenance.\n")
         shutil.copytree(ROOT / "src/webpatch", stage / "usr/lib/webpatch/webpatch",
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         binary = stage / "usr/bin/webpatch"
@@ -39,7 +39,8 @@ def main():
         doc = stage / "usr/share/doc/webpatch"
         doc.mkdir(parents=True)
         for source, target in (("README.md", "README.md"), ("LICENSE", "copyright"),
-                               ("docs/design.md", "docs/design.md")):
+                               ("docs/design.md", "docs/design.md"), ("docs/cli.md", "docs/cli.md"),
+                               ("docs/phase-3.md", "docs/phase-3.md"), ("docs/phase-4.md", "docs/phase-4.md")):
             (doc / target).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / source, doc / target)
         env = dict(os.environ)

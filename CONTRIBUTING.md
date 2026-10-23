@@ -1,6 +1,6 @@
 # Contributing to WebPatch
 
-Read the [README](README.md), [architecture and staged design](docs/design.md), [development instructions](AGENTS.md) and [latest planning evidence](evidence/phase-2c/README.md) before changing implementation. Historical evidence applies to its recorded source revision; check current Git and CI separately.
+Read the [README](README.md), [architecture and staged design](docs/design.md), [development instructions](AGENTS.md) and [current development status and linked evidence](docs/development-status.md) before changing implementation. Historical evidence applies to its recorded source revision; check current Git and CI separately.
 
 ## Local checks
 
@@ -12,7 +12,7 @@ python3 -m venv .venv
 .venv/bin/python -m pytest --junitxml=evidence/pytest.xml
 ```
 
-Do not modify the developer host's PHP, package manager or services. Use the [container instructions](docs/cli.md#build-a-local-debian-package) for packaging and integration checks. Service installation tests belong in disposable Docker containers or GitHub-hosted Ubuntu VMs, with no privileged mode or host root, `/proc` or socket mounts. Never run `scripts/ci_vm_smoke.sh` on a developer workstation or self-hosted runner.
+Do not modify the developer host's PHP, package manager or services. Use the [container instructions](docs/cli.md#build-a-local-debian-package) for packaging and integration checks. Service installation tests belong in disposable Docker containers or GitHub-hosted Ubuntu VMs and their disposable Debian QEMU guests, with no privileged mode or host root, `/proc` or socket mounts. Never run `scripts/ci_vm_smoke.sh` on a developer workstation or self-hosted runner.
 
 ## Changes we can evaluate
 

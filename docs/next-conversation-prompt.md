@@ -1,42 +1,22 @@
-# 下一轮开发交接：阶段三前置接口 / Next development handoff
+# 连续四阶段开发交接 / Continuous four-phase handoff
 
-继续开发 `/Users/ninex/Projects/hll-ecosystem/apps/webpatch`（`ninex98/webpatch`）。先完整读取 AGENTS.md、docs/design.md、README.md、docs/development-status.md、docs/phase-2d.md，以及 evidence/phase-2d4/README.md、current-source-validation.json 和 accepted-ci/run.json。检查当前 Git/远端/Actions 与未提交工作，不把历史记录当当前验收。
+继续 `/Users/ninex/Projects/hll-ecosystem/apps/webpatch`，仓库 ninex98/webpatch。完整阅读 AGENTS.md、docs/design.md、README.md、docs/development-status.md、docs/phase-3.md、docs/phase-4.md，以及最新阶段证据。先核对工作区/远端/Actions，不将历史验收当当前证明。
 
-## 当前基线
+用户已明确要求“继续直到所有功能全部完成”，并确认“按原设计四阶段推进，各扩展单独验收”。不要重做阶段 2D，也不再重复询问扩展范围。原阶段四交付为容器重建**建议**、独立 Debian 修复、Node.js adapter/rules；不包含自动镜像发布、npm 修复、公开签名 APT 仓库或正式 Release。
 
-阶段 2D 已实现结构化覆盖/作用域、运行文件和标准 PHP 模块证据、FPM UNIX listener 与静态 pool/handler 候选关系、统一计划门禁及有效期/漂移核对。最终报告 schema 2，计划 schema 4；旧计划必须重新扫描。有限诊断输入可以 READY_FOR_REVIEW，但执行准入始终 BLOCKED，apply 拒绝。准确源码与 CI 结果以 current-source-validation.json 为准。
+## 当前工作
 
-首次 2D.2 四格 VM 因保存计划超过普通 1 MiB 文本读取限制失败，完整失败记录在 evidence/phase-2d2/first-ci。现有独立 16 MiB 计划读取接口，不放宽配置/procfs 限制。不要重新搭建或重复实现 2D.1。
+源码已实现报告 schema 2、诊断计划 schema 4，以及 wrapper schema 1 / Plan schema 5 的受控修复审阅、持锁事务与修复后验证。公共 apply 由 release_gate.PUBLIC_REPAIR_ENABLED=false 禁用，不能通过环境、JSON 或 --yes 绕过。内核凭据 collector 协议 3；旧 collector/收据需重新准备。
 
-## 下一步必须先闭合的契约
+最近 `4c53acc` 本地 605 PASS，Actions 39881542701 为 13/17 PASS，剩余 Ubuntu 24.04 两格持锁复核失败，以及 Debian 12/13 Apache 夹具重装后保留旧 deleted 模块。`2d8132c` 补充复核诊断及夹具显式重启；Actions 39883475413 待验收，证据 evidence/phase-3g4。先查看更新后的实际 CI，按失败证据修正，不放宽 UNKNOWN。
 
-仍位于原阶段二末尾/阶段三前置接口，不是可自动修复产品。先实现一个独立可验收的 3A 小阶段：明确部署清单与显式应用证据接口及其验证规则。不得仅凭调用者声明把 UNKNOWN 改成 PASS。
-
-- 作用域与消费者：明确操作者审阅的 host/container/boot 范围；对共享包的全部服务、CLI 任务、pool 和自定义安装逐项核对。缺失/未识别消费者继续阻断。
-- 加载配置与请求归属：设计独立、显式选择、无副作用的证据/探针能力；绑定 scope、boot、PID、starttime、执行映像、相关模块、配置摘要、请求上下文、采集时间和到期时间。必须验证信任来源和防重放/状态漂移。静态文件、mtime、监听 socket、HTTP 200、普通标记页都不是实例归属证明。先在四格 disposable VM 证明有限范围；默认 scan 仍不执行配置脚本、不写诊断页、不发请求。
-- 后续执行条件：完整且获批的依赖变化、候选维护脚本/triggers/conffile 行为、所有受影响实例的停机预算、plan hash 显式确认、持锁事务前重查、执行后运行时/路由/健康验证和失败审计。APT 不保证事务回滚。
-
-本交接不授权直接跳过这些门禁接入实际修复。应先报告首个小阶段的范围/验收，然后实施、测试、留证并立即提交；后续执行器阶段须按原设计在隔离 VM 验证，生产目标仍须 reviewed dry-run 和显式确认。
+Ubuntu 22.04 两格和 Debian 两版 FPM 已实际验证 base→fixed 升级及重启后 HTTP 失败。仍须完整八格当前源码通过，保存独立证据，再开放严格确认入口并在安装后的公开 CLI 验证。最后同步文档/包说明/当前状态。容器建议和 Node 两格已在829df71基线及后续运行通过，Debian 归档链也独立通过；完整支持按最新 CI 判断。
 
 ## 持续约束
 
-- 不修改开发宿主 PHP、APT、系统包或服务；不访问生产目标执行修复。安装/服务准备/故障注入仅用 disposable Docker 或 GitHub-hosted Ubuntu VM，禁止 privileged、自托管 runner 和宿主 root/proc/socket 挂载。
-- 保持适配器、注入 I/O、证据、规则、规划、执行与验证解耦；严格 fake I/O 不回退宿主。UNKNOWN 可行动且阻断自动修复。
-- 规则有效至 2026-10-29 00:00 UTC。若已过期或需要修改，重新查阅官方 PHP/Ubuntu/Debian 来源，记录 review/provenance/expiry；禁止仅延长日期。不用真实漏洞利用。
-- 不顺带扩展 Node.js、Debian 修复、PPA/Sury、ESM、自动镜像重建、公开 APT 仓库或正式 Release。
-- 复用项目虚拟环境、Git identity/auth/origin。允许正常推送和运行 Actions；不强推、不重写远端历史。保留无关用户工作。
-- 每个独立小阶段先定验收条件，通过后立即 Git 提交；标题和正文都包含中文与英文，记录命令、PASS/FAIL/NOT_RUN/BLOCKED、当前源码/制品摘要与证据路径。云端必须先推送时，使用明确的 CI 待验收检查点；失败用后续提交修复，所有必要门禁通过后才宣布完成。
-
-## 2026-10-23 用户新授权与活动进度（优先于上文旧的单轮范围）
-
-用户明确要求“继续直到所有功能全部完成”，并确认“按原设计四阶段推进，各扩展单独验收”。因此阶段三完成后继续 Debian、Node.js 与容器重建范围，不受上文旧的“不顺带扩展”单轮限制；不把功能开发当作对开发宿主/生产系统执行修复或正式发布的授权。
-
-已继续交付部署清单、显式内核凭据探针、候选维护内容审阅、事务状态机和全可见进程消费者 census。具体提交/实际 CI 见 docs/development-status.md 与 docs/phase-3.md，不重做 3A.1。当前重点为归档封存解析修正及 3D.2 受控启动/只读配置视图，后者如有未提交工作必须保留并继续验证。随后闭合实际准入/执行/修复后验证，再完成各扩展。保持每个独立小阶段先验收、立即双语提交、正常推送；所有 UNKNOWN 仍阻断自动修复。
-
-## 最新连续任务状态（2026-10-23，继续至四阶段完成）
-
-不要重做 2D 或 3A。当前代码已到 schema 5 受控修复审阅及内部真实事务衔接；公开 apply 仍禁用。`829df71` 的 11/11 PASS 基线与完整范围在 evidence/accepted-829df71。后续实际升级 553657a 已更新官方包并通过新实例/视图/请求，但因 effective INI 摘要变化返回 PARTIAL。6ca6ae2 的临时 VM 诊断仅输出变更指令名称；先读取最新 CI 的 repair-lifecycle/*/effective-ini-difference.json，不直接忽略差异。
-
-Root 工作区的实际进度以 git status/log 和 Actions 为准。近期独立扩展：容器 rebuild-plan 建议、scan-node 的 Debian 12/13 两项运行时规则已在基线验收；788f42f 增加 Debian 只读归档认证，main/codename/固定主钥与 security key role；Debian 真正服务修复仍待独立 VM 认证。后续须完成内部事务的真实成功/故障验证，再开放受严格确认保护的入口，并完成 Debian 修复；不在开发宿主或生产系统执行修复。
-
-每小阶段继续先范围/验收、保存与源码对应的 PASS/FAIL/BLOCKED/NOT_RUN 证据、立即双语提交与正常推送。大量历史原始日志保留原空白；diff --check 对源码/测试/脚本/文档执行，不能为消除原始日志的空白警告篡改日志。用户授权原设计四阶段与各扩展独立验收，无须重复确认。
+- 默认 scan 只读、不执行 PHP/Node、不发 HTTP、不刷新/下载。显式探针和准备有独立能力及确认边界。
+- 不修改开发宿主 PHP/APT/系统包/服务，不访问生产目标修复；实际安装/服务测试仅 disposable 容器或 GitHub hosted VM/独立 Debian 客体，无 privileged 或宿主 root/proc/socket 挂载。
+- 每个独立小阶段先定范围与验收，保存日志/JUnit、环境及源码/制品摘要，立即提交。标题和正文均中文+英文。允许正常推送和 Actions；不强推、不重写远端历史，保留无关工作。
+- 原生检查依赖推送时可提交明确 CI_PENDING 检查点；失败后续修正，所有必需门禁通过才宣布完成。不要为消除 diff 空白警告改写原始日志。
+- 全局 safe=false；有限声明范围的验证不代表任意未来任务、隐藏实例、匿名代码或历史入侵不存在。不自动回滚或重试同一计划。
+- PHP/Node 规则至 2026-10-29 00:00 UTC，过期重新查阅官方来源，禁止只延长日期；不用真实漏洞利用。

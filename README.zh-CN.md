@@ -53,7 +53,7 @@ python3 -m venv .venv
 .venv/bin/webpatch verify-plan reviewed-plan.json --format json
 ```
 
-本预览版的 `plan` 和 `verify-plan` 返回 **4**。所有计划均为 `BLOCKED`、`executable=false`；APT 模拟通过也不授权任何变更。退出码、包缓存验证和本地 `.deb` 构建见 [CLI 参考](docs/cli.md)。目前没有公开 APT 仓库或 GitHub Release 安装入口。
+本预览版的 `plan` 和 `verify-plan` 返回 **4**。这些诊断计划均为 `BLOCKED`、`executable=false`；APT 模拟通过也不授权任何变更。退出码、包缓存验证和本地 `.deb` 构建见 [CLI 参考](docs/cli.md)。目前没有公开 APT 仓库或 GitHub Release 安装入口。
 
 <a id="cli-preview"></a>
 
@@ -68,14 +68,15 @@ python3 -m venv .venv
 
 于 **2026-10-22** 在隔离的 **Ubuntu 24.04 / arm64 容器**中，从已安装的 CLI 采集。图中节选真实输出，仅增加视觉换行；此容器输出 `APT dry-run: NOT_RUN`。终端外观是展示设计，并非内置 TUI。[完整文本与采集说明](assets/readme/README.md)。
 
-当前流程为**发现 → 判断 → 审阅被阻断的修复计划**。部署清单核对、显式应用探针和经确认的服务准备见[阶段三接口](docs/phase-3.md)；包执行与修复后验证仍在开发。
+诊断流程为**发现 → 判断 → 审阅**。独立的[受控维护流程](docs/cli.md#managed-package-repair)增加显式探针、经确认的服务准备、完整源码包组计划、持锁复核和修复后验证。目前原生验收仍在进行，公开包执行保持禁用。
 
 ## 核心能力
 
 - **本地运行时发现。** 关联 dpkg 包、进程身份、命名空间、systemd 单元、FPM pools 和静态 Web handler，并报告无法确认的关系。
 - **尊重厂商修复策略。** 使用发行版专属规则和 `dpkg --compare-versions`，识别回移植修复，不直接比较上游版本字符串。
-- **Ubuntu 归档身份检查。** 对支持的官方源验证已有 InRelease 签名、Packages 摘要、缓存 `.deb` 和受支持运行文件；证据缺失时保持未知。
-- **真实 APT 模拟。** 针对认证的 Ubuntu 同 PHP 分支精确候选生成计划，列出依赖变化、可能的服务中断和阻断原因，不安装软件包。
+- **Ubuntu 与 Debian 归档身份检查。** 对支持的官方源验证已有 InRelease 签名、Packages 摘要、缓存 `.deb` 和受支持运行文件；证据缺失时保持未知。
+- **真实 APT 模拟。** 针对认证的 Ubuntu/Debian 同 PHP 分支精确候选生成计划，列出依赖变化、可能的服务中断和阻断原因，不安装软件包。
+- **独立扩展。** `scan-node` 覆盖两项已审阅的 Debian Node 运行时 CVE；`rebuild-plan` 提供容器重建建议，不构建或部署镜像。
 - **可审阅的证据。** JSON 报告、输入摘要、有时效的计划与 `verify-plan` 漂移检查；绝不把已保存的计划数据当成命令执行。
 
 ## 兼容性
@@ -85,7 +86,8 @@ python3 -m venv .venv
 | 环境 | 当前可用 | 边界 / 验证范围 |
 | :--- | :--- | :--- |
 | Ubuntu 22.04 / 24.04，官方 APT PHP | 发现、厂商版本对照、归档身份、主机 APT 模拟 | 仅官方直连源；托管 VM CI 覆盖 FPM 和 mod_php |
-| Debian 12 / 13，官方 PHP 包 | 只读发现和厂商版本对照 | 无归档认证或修复规划；Debian 12 为 Docker + fixtures，Debian 13 仅 fixtures |
+| Debian 12 / 13，官方 PHP 包 | 发现、厂商版本对照、归档身份、APT 模拟和受控准备 | 独立归档测试通过；FPM/mod_php 完整修复在 Debian QEMU 客体中待验收 |
+| Debian 12 / 13，官方 Node.js | 独立只读清单和两项运行时 CVE 规则 | 独立原生容器测试；无 npm 依赖审计或 Node 修复 |
 | Ubuntu / Debian Docker 容器内部 | 当前容器清单、重建建议 | 不原地修复、不做 APT 模拟；Docker CI 覆盖 Ubuntu 22.04 / 24.04、Debian 12 |
 | 从宿主机观察 Docker / containerd | 进程、命名空间和常见 socket 线索 | 不访问 daemon、不扫描镜像、不枚举容器集群 |
 | PPA / Sury、混合源、ESM、不支持的镜像源 | 源审计、可读清单及阻断项 | 不支持的信任路径；不自动修复 |
@@ -101,7 +103,7 @@ python3 -m venv .venv
 
 **未知必须可追踪、可阻断。** `MEETS_VENDOR_FIX` 仅为包版本比较，`VERIFIED_LOCAL_ASSOCIATION` 仅为本地关联检查，均不能证明已加载配置、应用路由或健康状态。所有报告保留 `safe=false`，未知证据阻断自动修复。摘要不等于远程证明，也不能证明遭 root 入侵的主机完整性。
 
-**未来执行必须经过审阅。** 计划绑定规则、作用域和观察状态，最多 30 分钟有效，可再次检查漂移。移除、降级、新增依赖、跨分支及未批准的依赖变更均阻断自动路径。`apply` 始终拒绝，没有 `--yes` 绕过开关。计划 hash 确认、执行、修复后检查及失败审计属于后续门禁，不承诺自动回滚。
+**执行必须经过审阅。** 计划绑定规则、作用域和观察状态，最多 30 分钟有效，可再次检查漂移。移除、降级、新增依赖、跨分支及未批准的依赖变更均阻断自动路径。`apply` 始终拒绝，没有 `--yes` 绕过开关。精确 hash 确认、类型化包执行、修复后检查和哈希链失败审计已实现，仍受原生验收发布门禁约束；不承诺自动回滚。
 
 ## 文档
 
@@ -109,8 +111,8 @@ python3 -m venv .venv
 | :--- | :--- |
 | [CLI 参考](docs/cli.md)（English） | 命令、退出码、报告语义和本地打包 |
 | [架构与分阶段设计](docs/design.md) | 组件边界、威胁假设和验收门禁 |
-| [工程证据](evidence/phase-2c/README.md)（中文 / English） | 已记录的 APT 模拟结果、失败记录和验收 CI 制品 |
-| [CI 工作流](.github/workflows/ci.yml) · [实时运行记录](https://github.com/ninex98/webpatch/actions) | Python fixtures、三组容器环境、四格 Ubuntu VM |
+| [开发状态与证据](docs/development-status.md)（中文 / English） | 对应源码的验收、保留的失败记录与待完成门禁 |
+| [CI 工作流](.github/workflows/ci.yml) · [实时运行记录](https://github.com/ninex98/webpatch/actions) | 17 项：fixtures、包/Node/归档容器、四格 Ubuntu VM 和四格独立 Debian 客体 |
 | [视觉资源与终端记录](assets/readme/README.md)（English） | 可编辑 SVG、采集出处和可访问的文本 |
 
 历史证据仅对应所记录的源码版本。CI 徽章跟踪 `main`，不代表运行时安全或覆盖率承诺。
@@ -119,11 +121,11 @@ python3 -m venv .venv
 
 ## 路线图
 
-- **已实现：** 只读清单、本地运行实例关联、Ubuntu 源与归档检查、APT 模拟、不可变计划和漂移验证。
-- **下一步门禁：** 完整运行时 / 已加载配置 / 应用路由证据，显式计划 hash 授权，有限 Ubuntu 执行，以及临时 VM 内的修复后验证。
-- **后续独立验证：** Debian 修复与 Node.js 等运行时适配器。当前已有容器重建建议，尚无自动镜像重建。
+- **已实现：** 清单、Ubuntu/Debian 归档认证、APT 模拟、显式探针、受控准备、精确修复审阅、类型化事务和修复后验证。
+- **原生验收待完成：** Ubuntu 与 Debian 升级/故障矩阵全部通过后才开放公共 `apply`，见[当前状态](docs/development-status.md)。
+- **独立扩展：** Node.js 运行时发现/规则和容器重建建议；自动镜像构建/发布、npm 修复及公开签名 APT 仓库不属于本次交付。
 
-验收标准见[分阶段设计](docs/design.md)。这些是工程方向，不是发布日期或当前支持承诺。
+原设计四阶段范围见[分阶段设计](docs/design.md)。有限测试站点通过不等于任意生产站点认证。
 
 ## 参与贡献
 

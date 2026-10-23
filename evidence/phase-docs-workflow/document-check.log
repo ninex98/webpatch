@@ -1,0 +1,124 @@
+PASS: local Markdown file links in changed documentation
+usage: __main__.py prepare-plan [-h] [--format {text,json}]
+                                [--package-cache PACKAGE_CACHE] --service
+                                SERVICES --probes PROBES
+                                [--state-directory STATE_DIRECTORY]
+
+options:
+  -h, --help            show this help message and exit
+  --format {text,json}
+  --package-cache PACKAGE_CACHE
+                        read existing .deb files for signed archive identity
+                        verification; never downloads
+  --service SERVICES
+  --probes PROBES       explicit collector URL/script/pool declarations JSON
+  --state-directory STATE_DIRECTORY
+
+usage: __main__.py prepare-scope [-h] [--format {text,json}]
+                                 [--package-cache PACKAGE_CACHE]
+                                 --confirm-sha256 CONFIRM_SHA256
+                                 path
+
+positional arguments:
+  path
+
+options:
+  -h, --help            show this help message and exit
+  --format {text,json}
+  --package-cache PACKAGE_CACHE
+                        read existing .deb files for signed archive identity
+                        verification; never downloads
+  --confirm-sha256 CONFIRM_SHA256
+                        exact plan or signed receipt document digest
+
+usage: __main__.py verify-preparation [-h] [--format {text,json}]
+                                      [--package-cache PACKAGE_CACHE]
+                                      --expect-sha256 EXPECT_SHA256
+                                      [--state-directory STATE_DIRECTORY]
+                                      path
+
+positional arguments:
+  path                  signed startup receipt; repeats its explicitly
+                        declared loopback probes
+
+options:
+  -h, --help            show this help message and exit
+  --format {text,json}
+  --package-cache PACKAGE_CACHE
+                        read existing .deb files for signed archive identity
+                        verification; never downloads
+  --expect-sha256 EXPECT_SHA256
+  --state-directory STATE_DIRECTORY
+
+usage: __main__.py repair-plan [-h] [--format {text,json}]
+                               [--package-cache PACKAGE_CACHE]
+                               --prepared-receipt PREPARED_RECEIPT
+                               --source-cohort SOURCE_COHORT --budget-seconds
+                               BUDGET_SECONDS
+                               [--state-directory STATE_DIRECTORY]
+                               --refresh-probes
+
+options:
+  -h, --help            show this help message and exit
+  --format {text,json}
+  --package-cache PACKAGE_CACHE
+                        read existing .deb files for signed archive identity
+                        verification; never downloads
+  --prepared-receipt PREPARED_RECEIPT
+  --source-cohort SOURCE_COHORT
+  --budget-seconds BUDGET_SECONDS
+  --state-directory STATE_DIRECTORY
+  --refresh-probes      explicitly repeat the prepared collector requests
+                        while reviewing the exact repair
+
+usage: __main__.py apply [-h] [--confirm-sha256 CONFIRM_SHA256]
+                         [--format {text,json}]
+                         [path]
+
+positional arguments:
+  path                  schema 5 managed repair review JSON
+
+options:
+  -h, --help            show this help message and exit
+  --confirm-sha256 CONFIRM_SHA256
+                        exact plan hash reviewed by the operator
+  --format {text,json}
+
+usage: __main__.py retire-preparation [-h] [--format {text,json}]
+                                      [--package-cache PACKAGE_CACHE]
+                                      --confirm-sha256 CONFIRM_SHA256
+                                      [--state-directory STATE_DIRECTORY]
+                                      path
+
+positional arguments:
+  path
+
+options:
+  -h, --help            show this help message and exit
+  --format {text,json}
+  --package-cache PACKAGE_CACHE
+                        read existing .deb files for signed archive identity
+                        verification; never downloads
+  --confirm-sha256 CONFIRM_SHA256
+                        exact plan or signed receipt document digest
+  --state-directory STATE_DIRECTORY
+
+usage: __main__.py scan-node [-h] [--format {text,json}]
+
+options:
+  -h, --help            show this help message and exit
+  --format {text,json}
+
+usage: __main__.py rebuild-plan [-h] [--format {text,json}]
+                                [--package-cache PACKAGE_CACHE] --image IMAGE
+
+options:
+  -h, --help            show this help message and exit
+  --format {text,json}
+  --package-cache PACKAGE_CACHE
+                        read existing .deb files for signed archive identity
+                        verification; never downloads
+  --image IMAGE         declared image@sha256:digest; does not authenticate
+                        registry or deployment identity
+
+PASS: current command help; no target scan or service mutation

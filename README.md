@@ -51,7 +51,7 @@ Export evidence and prepare a plan:
 .venv/bin/webpatch verify-plan reviewed-plan.json --format json
 ```
 
-`plan` and `verify-plan` return **4** in this preview. Every plan is `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. There is no published APT repository or GitHub Release installation path yet.
+`plan` and `verify-plan` return **4** in this preview. These diagnostic plans are `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. There is no published APT repository or GitHub Release installation path yet.
 
 ## CLI Preview
 
@@ -64,14 +64,15 @@ Export evidence and prepare a plan:
 
 Captured from the installed CLI in an isolated **Ubuntu 24.04 / arm64 container** on **2026-10-22**. Selected output is shown verbatim with visual line wrapping; this container reports `APT dry-run: NOT_RUN`. Styling is an illustration of the terminal, not a built-in TUI. [Full text and capture details](assets/readme/README.md).
 
-The current workflow is **discover → assess → review a blocked repair plan**. Deployment reconciliation, explicit application probes and confirmed service preparation are documented in the [phase-three interfaces](docs/phase-3.md). Package execution and post-repair verification remain under development.
+The diagnostic workflow is **discover → assess → review**. The separate [managed maintenance workflow](docs/cli.md#managed-package-repair) adds explicit probes, confirmed service preparation, an exact source-cohort plan, locked revalidation and post-repair verification. Its native acceptance is still in progress and public package execution remains disabled.
 
 ## Key Features
 
 - **Local runtime discovery.** Correlates dpkg packages, process identities, namespaces, systemd units, FPM pools and static web handlers. Reports unresolved relationships.
 - **Vendor-aware assessments.** Uses distribution-specific rules and `dpkg --compare-versions`, respecting backported fixes instead of comparing upstream version strings.
-- **Ubuntu archive identity checks.** Verifies existing InRelease signatures, Packages digests, cached `.deb` archives and supported runtime files for supported official sources. Missing evidence stays unknown.
-- **Real APT simulation.** Plans exact, authenticated Ubuntu candidates on the same PHP branch; reports dependency changes, possible service interruptions and blockers without installing packages.
+- **Ubuntu and Debian archive identity checks.** Verifies existing InRelease signatures, Packages digests, cached `.deb` archives and supported runtime files for supported official sources. Missing evidence stays unknown.
+- **Real APT simulation.** Plans exact, authenticated Ubuntu/Debian candidates on the same PHP branch; reports dependency changes, possible service interruptions and blockers without installing packages.
+- **Independent extensions.** `scan-node` covers two reviewed Debian Node runtime CVEs; `rebuild-plan` gives container rebuild guidance without building or deploying images.
 - **Reviewable evidence.** JSON reports, input digests, expiring plans and `verify-plan` drift checks. Saved plan data is never executed as commands.
 
 ## Compatibility
@@ -81,7 +82,8 @@ Capabilities describe the current code, not a guarantee of complete discovery. *
 | Environment | Available now | Boundary / validation |
 | :--- | :--- | :--- |
 | Ubuntu 22.04 / 24.04, official APT PHP | Discovery, vendor comparison, archive identity, host APT simulation | Direct official sources only; FPM and mod_php in hosted VM CI |
-| Debian 12 / 13, official PHP packages | Read-only discovery and vendor comparison | No archive authentication or repair planning; Debian 12 Docker + fixtures, Debian 13 fixtures only |
+| Debian 12 / 13, official PHP packages | Discovery, vendor comparison, archive identity, APT simulation and controlled preparation | Independent archive tests pass; full FPM/mod_php repair acceptance is pending in Debian QEMU guests |
+| Debian 12 / 13, official Node.js | Independent read-only inventory and two runtime CVE rules | Separate native container tests; no npm dependency audit or Node repair |
 | Inside Ubuntu / Debian Docker containers | Inventory of the current container; rebuild recommendations | No in-place repair or APT simulation; Docker CI: Ubuntu 22.04 / 24.04, Debian 12 |
 | Docker / containerd observed from a host | Process, namespace and common socket hints | No daemon access, image scanning or fleet enumeration |
 | PPA / Sury, mixed sources, ESM, unsupported mirrors | Source audit, readable inventory and blockers | Unsupported trust paths; no automatic repair |
@@ -97,7 +99,7 @@ Capabilities describe the current code, not a guarantee of complete discovery. *
 
 **Keep uncertainty actionable.** `MEETS_VENDOR_FIX` is a package-version comparison. `VERIFIED_LOCAL_ASSOCIATION` is a local relationship check. Neither proves loaded configuration, application routing or health. All reports retain `safe=false`; unknown evidence blocks automatic repair. Digests are not remote attestation or proof against a compromised root account.
 
-**Require review before future execution.** Plans bind rules, scope and observed state, expire within 30 minutes, and can be checked for drift. Removal, downgrade, new dependencies, cross-branch changes and unapproved dependency changes block the automatic path. `apply` always refuses; there is no `--yes` bypass. Plan-hash confirmation, execution, post-repair checks and failure auditing are future gates; automatic rollback is not promised.
+**Require review before execution.** Plans bind rules, scope and observed state, expire within 30 minutes, and can be checked for drift. Removal, downgrade, new dependencies, cross-branch changes and unapproved dependency changes block the automatic path. `apply` always refuses; there is no `--yes` bypass. Exact-hash confirmation, typed package execution, post-repair checks and hash-chained failure auditing are implemented behind the native-certification gate; automatic rollback is not promised.
 
 ## Documentation
 
@@ -105,19 +107,19 @@ Capabilities describe the current code, not a guarantee of complete discovery. *
 | :--- | :--- |
 | [CLI reference](docs/cli.md) | Commands, exit codes, report semantics and local packaging |
 | [Architecture and staged design](docs/design.md) (中文) | Component boundaries, threat assumptions and acceptance gates |
-| [Engineering evidence](evidence/phase-2c/README.md) (中文 / English) | Recorded APT simulation results, failures and accepted CI artifacts |
-| [CI workflow](.github/workflows/ci.yml) · [Live runs](https://github.com/ninex98/webpatch/actions) | Python fixtures, three container environments and four Ubuntu VM combinations |
+| [Development status and evidence](docs/development-status.md) (中文 / English) | Source-specific acceptance, retained failures and pending gates |
+| [CI workflow](.github/workflows/ci.yml) · [Live runs](https://github.com/ninex98/webpatch/actions) | 17 jobs: fixtures, package/Node/archive containers, four Ubuntu VMs and four independent Debian guests |
 | [Visual assets and transcript](assets/readme/README.md) | Editable SVG sources, capture provenance and accessible text |
 
 Historical evidence applies to its recorded source revision. The CI badge tracks `main`; it is not a runtime safety or coverage claim.
 
 ## Roadmap
 
-- **Available:** read-only inventory, local runtime associations, Ubuntu source and archive checks, APT simulation, immutable plans and drift verification.
-- **Next gates:** complete runtime / loaded-configuration / application-route evidence, explicit plan-hash authorization, limited Ubuntu execution and post-repair verification in disposable VMs.
-- **Later, separately validated:** Debian repair and additional runtime adapters such as Node.js. Container rebuild advice exists today; automated image rebuilding does not.
+- **Implemented:** inventory, authenticated Ubuntu/Debian archive checks, APT simulation, explicit probes, controlled preparation, exact repair reviews, typed transactions and verification.
+- **Native acceptance pending:** complete Ubuntu and Debian upgrade/fault matrices before public `apply` can be enabled. See the [current status](docs/development-status.md).
+- **Independent extensions:** Node.js runtime discovery/rules and container rebuild advice. Automated image building/rollout, npm repair and a public signed APT repository are outside this delivery.
 
-The [staged design](docs/design.md) defines the acceptance criteria. These are engineering directions, not release dates or current support promises.
+The [staged design](docs/design.md) defines the four-phase scope. Passing a finite fixture does not certify arbitrary production sites.
 
 ## Contributing
 
