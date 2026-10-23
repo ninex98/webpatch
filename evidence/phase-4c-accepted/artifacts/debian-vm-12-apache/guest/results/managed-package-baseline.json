@@ -1,0 +1,62 @@
+{
+  "source_cohort": "php8.2",
+  "before": [
+    [
+      "libapache2-mod-php8.2",
+      "8.2.35-1~deb12u1",
+      "amd64",
+      "php8.2",
+      "8.2.35-1~deb12u1",
+      "install ok installed"
+    ],
+    [
+      "libc-bin",
+      "2.36-9+deb12u14",
+      "amd64",
+      "glibc",
+      "2.36-9+deb12u14",
+      "install ok installed"
+    ],
+    [
+      "man-db",
+      "2.11.2-2",
+      "amd64",
+      "man-db",
+      "2.11.2-2",
+      "install ok installed"
+    ],
+    [
+      "php8.2-cli",
+      "8.2.35-1~deb12u1",
+      "amd64",
+      "php8.2",
+      "8.2.35-1~deb12u1",
+      "install ok installed"
+    ],
+    [
+      "php8.2-common",
+      "8.2.35-1~deb12u1",
+      "amd64",
+      "php8.2",
+      "8.2.35-1~deb12u1",
+      "install ok installed"
+    ],
+    [
+      "php8.2-opcache",
+      "8.2.35-1~deb12u1",
+      "amd64",
+      "php8.2",
+      "8.2.35-1~deb12u1",
+      "install ok installed"
+    ],
+    [
+      "php8.2-readline",
+      "8.2.35-1~deb12u1",
+      "amd64",
+      "php8.2",
+      "8.2.35-1~deb12u1",
+      "install ok installed"
+    ]
+  ],
+  "fixture_action": "Install current official cohort and reinstall its payloads plus libc-bin/man-db before evidence collection"
+}

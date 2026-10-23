@@ -1,0 +1,66 @@
+[
+    {
+        "Id": "sha256:563bb6aaf7f3450e8e449b603f1fca170f1abd92e0248b9c321c2ae011a98fe8",
+        "RepoTags": [
+            "webpatch-debian-trust:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-23T01:21:23.007645211Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONDONTWRITEBYTECODE=1"
+            ],
+            "Cmd": [
+                "python3",
+                "tests/integration/debian_trust_check.py"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 278266763,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/wadwty5owf81ek1oxmikjlblf/diff:/var/lib/docker/overlay2/ppva0w68eyqnlylfhqhnnebd0/diff:/var/lib/docker/overlay2/rnt12w0v83q1wpj67t48vpzqc/diff:/var/lib/docker/overlay2/aa9507fc169efddd64d590ca061fd1fcf937f2eb754ef888e645871c4068316a/diff",
+                "MergedDir": "/var/lib/docker/overlay2/u43gam527p61ppk2wviown6o6/merged",
+                "UpperDir": "/var/lib/docker/overlay2/u43gam527p61ppk2wviown6o6/diff",
+                "WorkDir": "/var/lib/docker/overlay2/u43gam527p61ppk2wviown6o6/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:bff6114e14f43741aabe79549a5c46135d29da921864159fc2ac757d93d96e2e",
+                "sha256:935db12c97544725dd55a22a2fab5b9bb862b6cdd4bcdcb73c1a39318b75f786",
+                "sha256:80dae6027b258c071700a4e78c5da7fbadd188f12e1b46ef68eb06267fe0e806",
+                "sha256:c31878d8f4ba27b968e694c575f3c373c611f347d9fae61795ceea0a6b82286f",
+                "sha256:355e4e84c5dcb4761b34ed27465a0641ce652e9ca47953dd0ba54d586fdc3bd2"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-23T01:21:24.016178046Z"
+        }
+    }
+]

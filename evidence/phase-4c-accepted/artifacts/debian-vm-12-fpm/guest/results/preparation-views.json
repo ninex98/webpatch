@@ -1,0 +1,1188 @@
+{
+  "status": "VERIFIED_READONLY_RUNTIME_VIEWS",
+  "blockers": [],
+  "views": [
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "evidence_id": "v2"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "evidence_id": "v3"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "evidence_id": "v4"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "evidence_id": "v5"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "evidence_id": "v6"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "evidence_id": "v7"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "evidence_id": "v8"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "evidence_id": "v9"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "evidence_id": "v10"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "evidence_id": "v11"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "evidence_id": "v12"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "evidence_id": "v13"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "evidence_id": "v14"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "evidence_id": "v15"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "evidence_id": "v16"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "evidence_id": "v17"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "evidence_id": "v18"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "evidence_id": "v19"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "evidence_id": "v20"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "evidence_id": "v21"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/php-fpm.conf",
+      "evidence_id": "v22"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/php.ini",
+      "evidence_id": "v23"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "evidence_id": "v24"
+    },
+    {
+      "pid": 13573,
+      "path": "/etc/php/8.2/fpm/pool.d/www.conf",
+      "evidence_id": "v25"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "evidence_id": "v27"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "evidence_id": "v28"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "evidence_id": "v29"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "evidence_id": "v30"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "evidence_id": "v31"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "evidence_id": "v32"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "evidence_id": "v33"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "evidence_id": "v34"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "evidence_id": "v35"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "evidence_id": "v36"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "evidence_id": "v37"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "evidence_id": "v38"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "evidence_id": "v39"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "evidence_id": "v40"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "evidence_id": "v41"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "evidence_id": "v42"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "evidence_id": "v43"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "evidence_id": "v44"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "evidence_id": "v45"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "evidence_id": "v46"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/php-fpm.conf",
+      "evidence_id": "v47"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/php.ini",
+      "evidence_id": "v48"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "evidence_id": "v49"
+    },
+    {
+      "pid": 13574,
+      "path": "/etc/php/8.2/fpm/pool.d/www.conf",
+      "evidence_id": "v50"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "evidence_id": "v52"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "evidence_id": "v53"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "evidence_id": "v54"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "evidence_id": "v55"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "evidence_id": "v56"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "evidence_id": "v57"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "evidence_id": "v58"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "evidence_id": "v59"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "evidence_id": "v60"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "evidence_id": "v61"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "evidence_id": "v62"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "evidence_id": "v63"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "evidence_id": "v64"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "evidence_id": "v65"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "evidence_id": "v66"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "evidence_id": "v67"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "evidence_id": "v68"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "evidence_id": "v69"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "evidence_id": "v70"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "evidence_id": "v71"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/php-fpm.conf",
+      "evidence_id": "v72"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/php.ini",
+      "evidence_id": "v73"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "evidence_id": "v74"
+    },
+    {
+      "pid": 13575,
+      "path": "/etc/php/8.2/fpm/pool.d/www.conf",
+      "evidence_id": "v75"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "evidence_id": "v77"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "evidence_id": "v78"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "evidence_id": "v79"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "evidence_id": "v80"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "evidence_id": "v81"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "evidence_id": "v82"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "evidence_id": "v83"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "evidence_id": "v84"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "evidence_id": "v85"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "evidence_id": "v86"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "evidence_id": "v87"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "evidence_id": "v88"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "evidence_id": "v89"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "evidence_id": "v90"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "evidence_id": "v91"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "evidence_id": "v92"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "evidence_id": "v93"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "evidence_id": "v94"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "evidence_id": "v95"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "evidence_id": "v96"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/php-fpm.conf",
+      "evidence_id": "v97"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/php.ini",
+      "evidence_id": "v98"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "evidence_id": "v99"
+    },
+    {
+      "pid": 13576,
+      "path": "/etc/php/8.2/fpm/pool.d/www.conf",
+      "evidence_id": "v100"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "v1",
+      "operation": "read_text",
+      "target": "/proc/13573/mountinfo",
+      "outcome": "OK",
+      "sha256": "8dee74cf3e968ff20b6e08bbf83c6281f7714746b0da14de4b930270bdc9a0d6"
+    },
+    {
+      "id": "v2",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "8b6f429607ddebf8b6b4f86af98774ef69052f585248c7d4d0cf1324d0b4a9df"
+    },
+    {
+      "id": "v3",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "2a51f40df140576d486521cf717d343b3551eaf758a4fdde37921e78fd161240"
+    },
+    {
+      "id": "v4",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "c9737ecff7babab96c336f5696c934ba984afaa20fb4170365bcb6c304841278"
+    },
+    {
+      "id": "v5",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "dd0413ab58b20f09e6eaf038a4c2a18de73dcb5e3948194ab6860b0819618382"
+    },
+    {
+      "id": "v6",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "7a049f347ea3711ba974c0e57eacd4636e80c47a06d738b38445109d06b622e4"
+    },
+    {
+      "id": "v7",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "4b12f575843c3ee3343cd2f6542088f234c3124efa4a7714765c39f8e11339f5"
+    },
+    {
+      "id": "v8",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "335896818cba74ae1f25ddebe3981c47b8c0d01348af8c332a078d75c8c4dad9"
+    },
+    {
+      "id": "v9",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "2bf39ddc6972ada7363ecc7151e61f4f004167ce4d3d320318f0cd1f30e0b9d4"
+    },
+    {
+      "id": "v10",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "f5092ca54ecf124af670edbb9ed092f93ebacc22ebb2d7638b33497c5699661b"
+    },
+    {
+      "id": "v11",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "37d290577fbdbcaff1d6300e36224e986232c9b1ff7d707f126d4363eb946ed4"
+    },
+    {
+      "id": "v12",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "a47938ba6fbf18c095f5671c4cb740e70975a8ac4c8a6cb6cfc87307c845bdc1"
+    },
+    {
+      "id": "v13",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "78efbc6387623063b0afc4dcddda58f53f744ed71f1d73b125b174bffbd17070"
+    },
+    {
+      "id": "v14",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "2c8519113366cda3fa85223ef921166c2fee77aca7619058c6de95194c25c7e1"
+    },
+    {
+      "id": "v15",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "bd13049ff0a490483689d63ae75938b54fbc4d517d71b85dc22f06c1f94a1a3e"
+    },
+    {
+      "id": "v16",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "afa60eaaf43c06edab548f5907149477feab1c55c3c0472b3f4aa6f85ca0e1c2"
+    },
+    {
+      "id": "v17",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "2ab139e4e5ae8fd11b1132024993f4c6820fbec0f3d4608661b3deee5c431808"
+    },
+    {
+      "id": "v18",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "21d197be9c76985fb06db54c69d851e286af66065bf0c36a062888f764cec661"
+    },
+    {
+      "id": "v19",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "184ec9be266f1bd728ea1e17725eab35ec2ddbee051decfe8f03f822b7179d9d"
+    },
+    {
+      "id": "v20",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "96f49cc891e6bf878a24e30fa4944bfb895d9396c8c6a29f5eed6ddc83e8a323"
+    },
+    {
+      "id": "v21",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "outcome": "OK",
+      "sha256": "675ef32004ff753a29412d1a2da8da50027fe948734fb11c151f6014431ad0e0"
+    },
+    {
+      "id": "v22",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "08157cc8116bb1d56a5e4aeb16dd26e830ef2f7692a49214991455bd9482cde9"
+    },
+    {
+      "id": "v23",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/php.ini",
+      "outcome": "OK",
+      "sha256": "f4fe843068cd754a83dbf07f9101e5a5b554e75f0f82a64dfaf60faac4209f75"
+    },
+    {
+      "id": "v24",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "outcome": "OK",
+      "sha256": "cf5a56a25c8e3b4224234cc0218438d7d24bdecf30a00395b5522a687b0cbf82"
+    },
+    {
+      "id": "v25",
+      "operation": "fingerprint",
+      "target": "/proc/13573/root/etc/php/8.2/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "77b6ebda5727bbd1c93e825e82e8c65b040d1f7a986a317b98289e97e0abafb5"
+    },
+    {
+      "id": "v26",
+      "operation": "read_text",
+      "target": "/proc/13574/mountinfo",
+      "outcome": "OK",
+      "sha256": "8dee74cf3e968ff20b6e08bbf83c6281f7714746b0da14de4b930270bdc9a0d6"
+    },
+    {
+      "id": "v27",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "8b6f429607ddebf8b6b4f86af98774ef69052f585248c7d4d0cf1324d0b4a9df"
+    },
+    {
+      "id": "v28",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "2a51f40df140576d486521cf717d343b3551eaf758a4fdde37921e78fd161240"
+    },
+    {
+      "id": "v29",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "c9737ecff7babab96c336f5696c934ba984afaa20fb4170365bcb6c304841278"
+    },
+    {
+      "id": "v30",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "dd0413ab58b20f09e6eaf038a4c2a18de73dcb5e3948194ab6860b0819618382"
+    },
+    {
+      "id": "v31",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "7a049f347ea3711ba974c0e57eacd4636e80c47a06d738b38445109d06b622e4"
+    },
+    {
+      "id": "v32",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "4b12f575843c3ee3343cd2f6542088f234c3124efa4a7714765c39f8e11339f5"
+    },
+    {
+      "id": "v33",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "335896818cba74ae1f25ddebe3981c47b8c0d01348af8c332a078d75c8c4dad9"
+    },
+    {
+      "id": "v34",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "2bf39ddc6972ada7363ecc7151e61f4f004167ce4d3d320318f0cd1f30e0b9d4"
+    },
+    {
+      "id": "v35",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "f5092ca54ecf124af670edbb9ed092f93ebacc22ebb2d7638b33497c5699661b"
+    },
+    {
+      "id": "v36",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "37d290577fbdbcaff1d6300e36224e986232c9b1ff7d707f126d4363eb946ed4"
+    },
+    {
+      "id": "v37",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "a47938ba6fbf18c095f5671c4cb740e70975a8ac4c8a6cb6cfc87307c845bdc1"
+    },
+    {
+      "id": "v38",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "78efbc6387623063b0afc4dcddda58f53f744ed71f1d73b125b174bffbd17070"
+    },
+    {
+      "id": "v39",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "2c8519113366cda3fa85223ef921166c2fee77aca7619058c6de95194c25c7e1"
+    },
+    {
+      "id": "v40",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "bd13049ff0a490483689d63ae75938b54fbc4d517d71b85dc22f06c1f94a1a3e"
+    },
+    {
+      "id": "v41",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "afa60eaaf43c06edab548f5907149477feab1c55c3c0472b3f4aa6f85ca0e1c2"
+    },
+    {
+      "id": "v42",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "2ab139e4e5ae8fd11b1132024993f4c6820fbec0f3d4608661b3deee5c431808"
+    },
+    {
+      "id": "v43",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "21d197be9c76985fb06db54c69d851e286af66065bf0c36a062888f764cec661"
+    },
+    {
+      "id": "v44",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "184ec9be266f1bd728ea1e17725eab35ec2ddbee051decfe8f03f822b7179d9d"
+    },
+    {
+      "id": "v45",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "96f49cc891e6bf878a24e30fa4944bfb895d9396c8c6a29f5eed6ddc83e8a323"
+    },
+    {
+      "id": "v46",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "outcome": "OK",
+      "sha256": "675ef32004ff753a29412d1a2da8da50027fe948734fb11c151f6014431ad0e0"
+    },
+    {
+      "id": "v47",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "08157cc8116bb1d56a5e4aeb16dd26e830ef2f7692a49214991455bd9482cde9"
+    },
+    {
+      "id": "v48",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/php.ini",
+      "outcome": "OK",
+      "sha256": "f4fe843068cd754a83dbf07f9101e5a5b554e75f0f82a64dfaf60faac4209f75"
+    },
+    {
+      "id": "v49",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "outcome": "OK",
+      "sha256": "cf5a56a25c8e3b4224234cc0218438d7d24bdecf30a00395b5522a687b0cbf82"
+    },
+    {
+      "id": "v50",
+      "operation": "fingerprint",
+      "target": "/proc/13574/root/etc/php/8.2/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "77b6ebda5727bbd1c93e825e82e8c65b040d1f7a986a317b98289e97e0abafb5"
+    },
+    {
+      "id": "v51",
+      "operation": "read_text",
+      "target": "/proc/13575/mountinfo",
+      "outcome": "OK",
+      "sha256": "8dee74cf3e968ff20b6e08bbf83c6281f7714746b0da14de4b930270bdc9a0d6"
+    },
+    {
+      "id": "v52",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "8b6f429607ddebf8b6b4f86af98774ef69052f585248c7d4d0cf1324d0b4a9df"
+    },
+    {
+      "id": "v53",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "2a51f40df140576d486521cf717d343b3551eaf758a4fdde37921e78fd161240"
+    },
+    {
+      "id": "v54",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "c9737ecff7babab96c336f5696c934ba984afaa20fb4170365bcb6c304841278"
+    },
+    {
+      "id": "v55",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "dd0413ab58b20f09e6eaf038a4c2a18de73dcb5e3948194ab6860b0819618382"
+    },
+    {
+      "id": "v56",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "7a049f347ea3711ba974c0e57eacd4636e80c47a06d738b38445109d06b622e4"
+    },
+    {
+      "id": "v57",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "4b12f575843c3ee3343cd2f6542088f234c3124efa4a7714765c39f8e11339f5"
+    },
+    {
+      "id": "v58",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "335896818cba74ae1f25ddebe3981c47b8c0d01348af8c332a078d75c8c4dad9"
+    },
+    {
+      "id": "v59",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "2bf39ddc6972ada7363ecc7151e61f4f004167ce4d3d320318f0cd1f30e0b9d4"
+    },
+    {
+      "id": "v60",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "f5092ca54ecf124af670edbb9ed092f93ebacc22ebb2d7638b33497c5699661b"
+    },
+    {
+      "id": "v61",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "37d290577fbdbcaff1d6300e36224e986232c9b1ff7d707f126d4363eb946ed4"
+    },
+    {
+      "id": "v62",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "a47938ba6fbf18c095f5671c4cb740e70975a8ac4c8a6cb6cfc87307c845bdc1"
+    },
+    {
+      "id": "v63",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "78efbc6387623063b0afc4dcddda58f53f744ed71f1d73b125b174bffbd17070"
+    },
+    {
+      "id": "v64",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "2c8519113366cda3fa85223ef921166c2fee77aca7619058c6de95194c25c7e1"
+    },
+    {
+      "id": "v65",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "bd13049ff0a490483689d63ae75938b54fbc4d517d71b85dc22f06c1f94a1a3e"
+    },
+    {
+      "id": "v66",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "afa60eaaf43c06edab548f5907149477feab1c55c3c0472b3f4aa6f85ca0e1c2"
+    },
+    {
+      "id": "v67",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "2ab139e4e5ae8fd11b1132024993f4c6820fbec0f3d4608661b3deee5c431808"
+    },
+    {
+      "id": "v68",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "21d197be9c76985fb06db54c69d851e286af66065bf0c36a062888f764cec661"
+    },
+    {
+      "id": "v69",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "184ec9be266f1bd728ea1e17725eab35ec2ddbee051decfe8f03f822b7179d9d"
+    },
+    {
+      "id": "v70",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "96f49cc891e6bf878a24e30fa4944bfb895d9396c8c6a29f5eed6ddc83e8a323"
+    },
+    {
+      "id": "v71",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "outcome": "OK",
+      "sha256": "675ef32004ff753a29412d1a2da8da50027fe948734fb11c151f6014431ad0e0"
+    },
+    {
+      "id": "v72",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "08157cc8116bb1d56a5e4aeb16dd26e830ef2f7692a49214991455bd9482cde9"
+    },
+    {
+      "id": "v73",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/php.ini",
+      "outcome": "OK",
+      "sha256": "f4fe843068cd754a83dbf07f9101e5a5b554e75f0f82a64dfaf60faac4209f75"
+    },
+    {
+      "id": "v74",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "outcome": "OK",
+      "sha256": "cf5a56a25c8e3b4224234cc0218438d7d24bdecf30a00395b5522a687b0cbf82"
+    },
+    {
+      "id": "v75",
+      "operation": "fingerprint",
+      "target": "/proc/13575/root/etc/php/8.2/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "77b6ebda5727bbd1c93e825e82e8c65b040d1f7a986a317b98289e97e0abafb5"
+    },
+    {
+      "id": "v76",
+      "operation": "read_text",
+      "target": "/proc/13576/mountinfo",
+      "outcome": "OK",
+      "sha256": "8dee74cf3e968ff20b6e08bbf83c6281f7714746b0da14de4b930270bdc9a0d6"
+    },
+    {
+      "id": "v77",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "8b6f429607ddebf8b6b4f86af98774ef69052f585248c7d4d0cf1324d0b4a9df"
+    },
+    {
+      "id": "v78",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "2a51f40df140576d486521cf717d343b3551eaf758a4fdde37921e78fd161240"
+    },
+    {
+      "id": "v79",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "c9737ecff7babab96c336f5696c934ba984afaa20fb4170365bcb6c304841278"
+    },
+    {
+      "id": "v80",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "dd0413ab58b20f09e6eaf038a4c2a18de73dcb5e3948194ab6860b0819618382"
+    },
+    {
+      "id": "v81",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "7a049f347ea3711ba974c0e57eacd4636e80c47a06d738b38445109d06b622e4"
+    },
+    {
+      "id": "v82",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "4b12f575843c3ee3343cd2f6542088f234c3124efa4a7714765c39f8e11339f5"
+    },
+    {
+      "id": "v83",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "335896818cba74ae1f25ddebe3981c47b8c0d01348af8c332a078d75c8c4dad9"
+    },
+    {
+      "id": "v84",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "2bf39ddc6972ada7363ecc7151e61f4f004167ce4d3d320318f0cd1f30e0b9d4"
+    },
+    {
+      "id": "v85",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "f5092ca54ecf124af670edbb9ed092f93ebacc22ebb2d7638b33497c5699661b"
+    },
+    {
+      "id": "v86",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "37d290577fbdbcaff1d6300e36224e986232c9b1ff7d707f126d4363eb946ed4"
+    },
+    {
+      "id": "v87",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "a47938ba6fbf18c095f5671c4cb740e70975a8ac4c8a6cb6cfc87307c845bdc1"
+    },
+    {
+      "id": "v88",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "78efbc6387623063b0afc4dcddda58f53f744ed71f1d73b125b174bffbd17070"
+    },
+    {
+      "id": "v89",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "2c8519113366cda3fa85223ef921166c2fee77aca7619058c6de95194c25c7e1"
+    },
+    {
+      "id": "v90",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "bd13049ff0a490483689d63ae75938b54fbc4d517d71b85dc22f06c1f94a1a3e"
+    },
+    {
+      "id": "v91",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "afa60eaaf43c06edab548f5907149477feab1c55c3c0472b3f4aa6f85ca0e1c2"
+    },
+    {
+      "id": "v92",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "2ab139e4e5ae8fd11b1132024993f4c6820fbec0f3d4608661b3deee5c431808"
+    },
+    {
+      "id": "v93",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "21d197be9c76985fb06db54c69d851e286af66065bf0c36a062888f764cec661"
+    },
+    {
+      "id": "v94",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "184ec9be266f1bd728ea1e17725eab35ec2ddbee051decfe8f03f822b7179d9d"
+    },
+    {
+      "id": "v95",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "96f49cc891e6bf878a24e30fa4944bfb895d9396c8c6a29f5eed6ddc83e8a323"
+    },
+    {
+      "id": "v96",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "outcome": "OK",
+      "sha256": "675ef32004ff753a29412d1a2da8da50027fe948734fb11c151f6014431ad0e0"
+    },
+    {
+      "id": "v97",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "08157cc8116bb1d56a5e4aeb16dd26e830ef2f7692a49214991455bd9482cde9"
+    },
+    {
+      "id": "v98",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/php.ini",
+      "outcome": "OK",
+      "sha256": "f4fe843068cd754a83dbf07f9101e5a5b554e75f0f82a64dfaf60faac4209f75"
+    },
+    {
+      "id": "v99",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "outcome": "OK",
+      "sha256": "cf5a56a25c8e3b4224234cc0218438d7d24bdecf30a00395b5522a687b0cbf82"
+    },
+    {
+      "id": "v100",
+      "operation": "fingerprint",
+      "target": "/proc/13576/root/etc/php/8.2/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "77b6ebda5727bbd1c93e825e82e8c65b040d1f7a986a317b98289e97e0abafb5"
+    }
+  ]
+}

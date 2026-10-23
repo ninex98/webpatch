@@ -1,0 +1,1390 @@
+[
+  {
+    "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "raw_sha256": "15a97378542e91b7b9614575c03fefcc0a2a518e0b3564a07943c3d73e031a6e",
+    "case": "post-health-failure",
+    "status": "PARTIAL",
+    "changed": true,
+    "safe": false,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "60346d496312b4b3518726594d5169a048e237f8486202858fc63c09b3165789",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "libapache2-mod-php8.2",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "libapache2-mod-php8.2",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "a62ac340d6ea45356ff1baf2525c1a3779b0df4aea3c976a6d9d7c21f9561e22"
+      },
+      {
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "7ba6568ba8869fc057c162a14ebea9ace2c93b360f999c0be1bcc0e1ce0c9a21"
+      },
+      {
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "a9aabffbc04526b31a73569ea5a838087413839a4adc61784677b0ca0db0a45b"
+      },
+      {
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "d2d5b72981c4b517fe3d62d9692f21fc6e0bb8c03ddfecb97e48e558d1cb0295"
+      },
+      {
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "3963ba63f26c64582cc8d60c6367ad8948956c3b1437a95961e620921f91d2b0"
+      }
+    ],
+    "verification": {
+      "status": "BLOCKED",
+      "blockers": [
+        "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+      ],
+      "configuration_transitions": [],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "libapache2-mod-php8.2",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "apache2",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-cli",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-common",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-opcache",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-readline",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "BLOCKED",
+        "blockers": [
+          "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+        ],
+        "service": "apache2.service",
+        "runtime_id": null,
+        "peer_pid": null
+      }
+    ]
+  },
+  {
+    "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "raw_sha256": "4a21fd7796897402f09f05a7afdfe5135ee2e7d75df69a0643c4db06fba2e22f",
+    "case": "success",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "safe": false,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "8e1c7b0321c6ddb75451b49d3a5ea46753902cd807fe402e43566cd61f94125b",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "libapache2-mod-php8.2",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "libapache2-mod-php8.2",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "a62ac340d6ea45356ff1baf2525c1a3779b0df4aea3c976a6d9d7c21f9561e22"
+      },
+      {
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "7ba6568ba8869fc057c162a14ebea9ace2c93b360f999c0be1bcc0e1ce0c9a21"
+      },
+      {
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "a9aabffbc04526b31a73569ea5a838087413839a4adc61784677b0ca0db0a45b"
+      },
+      {
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "d2d5b72981c4b517fe3d62d9692f21fc6e0bb8c03ddfecb97e48e558d1cb0295"
+      },
+      {
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "3963ba63f26c64582cc8d60c6367ad8948956c3b1437a95961e620921f91d2b0"
+      }
+    ],
+    "verification": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "blockers": [],
+      "configuration_transitions": [
+        {
+          "url": "http://127.0.0.1:80/webpatch-proof.php",
+          "status": "REVIEWED_VENDOR_DIRECTIVES_ADDED"
+        }
+      ],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "libapache2-mod-php8.2",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "apache2",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-cli",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-common",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-opcache",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-readline",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "VERIFIED_PROCESS_RESPONSE",
+        "blockers": [],
+        "service": "apache2.service",
+        "runtime_id": "a00eecf5a9b8990482607b0f9b33dd4409003de732690112cea2584f1b0cdb1f:27705:15822",
+        "peer_pid": 27705
+      }
+    ]
+  },
+  {
+    "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "raw_sha256": "e3dc2aca8e6c74bb28270f3a549655ea8f35c3ccacbbed376137d3ae403fa6d4",
+    "case": "post-health-failure",
+    "status": "PARTIAL",
+    "changed": true,
+    "safe": false,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "606b709ecd37d8c447223826d9b544dfc7c11addc92f75785f1aea998139fb7e",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-fpm",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "7ba6568ba8869fc057c162a14ebea9ace2c93b360f999c0be1bcc0e1ce0c9a21"
+      },
+      {
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "a9aabffbc04526b31a73569ea5a838087413839a4adc61784677b0ca0db0a45b"
+      },
+      {
+        "name": "php8.2-fpm",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "c1d2945f50f401101455ae0038975e828570ae9b3d324fec9ea2d9fd4beba6d4"
+      },
+      {
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "d2d5b72981c4b517fe3d62d9692f21fc6e0bb8c03ddfecb97e48e558d1cb0295"
+      },
+      {
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "3963ba63f26c64582cc8d60c6367ad8948956c3b1437a95961e620921f91d2b0"
+      }
+    ],
+    "verification": {
+      "status": "BLOCKED",
+      "blockers": [
+        "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+      ],
+      "configuration_transitions": [],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "php8.2-cli",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-common",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-fpm",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "fpm",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-opcache",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-readline",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "BLOCKED",
+        "blockers": [
+          "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+        ],
+        "service": "php8.2-fpm.service",
+        "runtime_id": null,
+        "peer_pid": null
+      },
+      {
+        "status": "BLOCKED",
+        "blockers": [
+          "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+        ],
+        "service": "php8.2-fpm.service",
+        "runtime_id": null,
+        "peer_pid": null
+      }
+    ]
+  },
+  {
+    "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "raw_sha256": "f7c158d4876cd29a2f998146a07777dc12db89835845574ada75a4825c792012",
+    "case": "success",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "safe": false,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "ea94026e48398bdf26d2db580de3922823dee18b01c67add2010ab4e1f6adb60",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-fpm",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "old_version": "8.2.32-1~deb12u1",
+        "new_version": "8.2.35-1~deb12u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "php8.2-cli",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "7ba6568ba8869fc057c162a14ebea9ace2c93b360f999c0be1bcc0e1ce0c9a21"
+      },
+      {
+        "name": "php8.2-common",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "a9aabffbc04526b31a73569ea5a838087413839a4adc61784677b0ca0db0a45b"
+      },
+      {
+        "name": "php8.2-fpm",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "c1d2945f50f401101455ae0038975e828570ae9b3d324fec9ea2d9fd4beba6d4"
+      },
+      {
+        "name": "php8.2-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "d2d5b72981c4b517fe3d62d9692f21fc6e0bb8c03ddfecb97e48e558d1cb0295"
+      },
+      {
+        "name": "php8.2-readline",
+        "architecture": "amd64",
+        "installed_version": "8.2.32-1~deb12u1",
+        "version": "8.2.35-1~deb12u1",
+        "archive_sha256": "3963ba63f26c64582cc8d60c6367ad8948956c3b1437a95961e620921f91d2b0"
+      }
+    ],
+    "verification": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "blockers": [],
+      "configuration_transitions": [
+        {
+          "url": "http://127.0.0.1:18080/webpatch-extra.php",
+          "status": "REVIEWED_VENDOR_DIRECTIVES_ADDED"
+        },
+        {
+          "url": "http://127.0.0.1:18080/webpatch-proof.php",
+          "status": "REVIEWED_VENDOR_DIRECTIVES_ADDED"
+        }
+      ],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "php8.2-cli",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-common",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-fpm",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "fpm",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-opcache",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.2-readline",
+        "version": "8.2.35-1~deb12u1",
+        "architecture": "amd64",
+        "source_name": "php8.2",
+        "source_version": "8.2.35-1~deb12u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "VERIFIED_PROCESS_RESPONSE",
+        "blockers": [],
+        "service": "php8.2-fpm.service",
+        "runtime_id": "34d6a652303a60846383bc0b3c212dc22f2f2897317865627279c5783a52a446:27424:8218",
+        "peer_pid": 27424
+      },
+      {
+        "status": "VERIFIED_PROCESS_RESPONSE",
+        "blockers": [],
+        "service": "php8.2-fpm.service",
+        "runtime_id": "34d6a652303a60846383bc0b3c212dc22f2f2897317865627279c5783a52a446:27425:8218",
+        "peer_pid": 27425
+      }
+    ]
+  },
+  {
+    "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "raw_sha256": "10b97a6f64ad88858562800eb420142e30d47cd71c5f514cbd804c3c716ff063",
+    "case": "post-health-failure",
+    "status": "PARTIAL",
+    "changed": true,
+    "safe": false,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "5fd0e039e4eac664d8db6c4b64161ade3625ebde2805586db138f81cff95b6f1",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "libapache2-mod-php8.4",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "libapache2-mod-php8.4",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "90172b818db24abc68796f4c02fcad012b4dcc232500d6b31921d733145cf00a"
+      },
+      {
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "111191e9eec53db65198f9a38a15dcbd498935be88e2fa83336ba142fd5ae152"
+      },
+      {
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "9372e2b0028228180445829467773058dc6f13b64e066ca00d9f4107bbceef7a"
+      },
+      {
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "c8fa3bd0c00371ed0e25d0e4a9a291b7dc77632e7c0d86d869d40f6f2ceb366c"
+      },
+      {
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "b74deee989a77238a2b7910908519dde6af4c1b97828c9bd1f0fa7fde62c3b4f"
+      }
+    ],
+    "verification": {
+      "status": "BLOCKED",
+      "blockers": [
+        "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+      ],
+      "configuration_transitions": [],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "libapache2-mod-php8.4",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "apache2",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-cli",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-common",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-opcache",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-readline",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "BLOCKED",
+        "blockers": [
+          "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+        ],
+        "service": "apache2.service",
+        "runtime_id": null,
+        "peer_pid": null
+      }
+    ]
+  },
+  {
+    "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "raw_sha256": "fd624af71b200edfb753812070508b9a3115888d0abed2129c961af621256473",
+    "case": "success",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "safe": false,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "24190887e02f18c14282f0cc853180aa4b19c4c74f49a5a9d216e9f35ccb316d",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "libapache2-mod-php8.4",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "libapache2-mod-php8.4",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "90172b818db24abc68796f4c02fcad012b4dcc232500d6b31921d733145cf00a"
+      },
+      {
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "111191e9eec53db65198f9a38a15dcbd498935be88e2fa83336ba142fd5ae152"
+      },
+      {
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "9372e2b0028228180445829467773058dc6f13b64e066ca00d9f4107bbceef7a"
+      },
+      {
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "c8fa3bd0c00371ed0e25d0e4a9a291b7dc77632e7c0d86d869d40f6f2ceb366c"
+      },
+      {
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "b74deee989a77238a2b7910908519dde6af4c1b97828c9bd1f0fa7fde62c3b4f"
+      }
+    ],
+    "verification": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "blockers": [],
+      "configuration_transitions": [
+        {
+          "url": "http://127.0.0.1:80/webpatch-proof.php",
+          "status": "REVIEWED_VENDOR_DIRECTIVES_ADDED"
+        }
+      ],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "libapache2-mod-php8.4",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "apache2",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-cli",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-common",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-opcache",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-readline",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "VERIFIED_PROCESS_RESPONSE",
+        "blockers": [],
+        "service": "apache2.service",
+        "runtime_id": "42f4d9023ca3647c2bf7848ad5e470c7a683b1e4ed9055a79fb1f638b20f92da:27996:10173",
+        "peer_pid": 27996
+      }
+    ]
+  },
+  {
+    "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "raw_sha256": "23db833bf072f6c4489414de0cbcdd025cfd5ca4d237cd758f7d35779660a66d",
+    "case": "post-health-failure",
+    "status": "PARTIAL",
+    "changed": true,
+    "safe": false,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "de4129fd3b06931f3160b1a0ddd7f1458ae2c6f9607b7ca49bb53cc1ba2d514b",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-fpm",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "111191e9eec53db65198f9a38a15dcbd498935be88e2fa83336ba142fd5ae152"
+      },
+      {
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "9372e2b0028228180445829467773058dc6f13b64e066ca00d9f4107bbceef7a"
+      },
+      {
+        "name": "php8.4-fpm",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "4ec57a9b040383c94a70cfcceae5cd53708103ccc99db750144019bb5233b23b"
+      },
+      {
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "c8fa3bd0c00371ed0e25d0e4a9a291b7dc77632e7c0d86d869d40f6f2ceb366c"
+      },
+      {
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "b74deee989a77238a2b7910908519dde6af4c1b97828c9bd1f0fa7fde62c3b4f"
+      }
+    ],
+    "verification": {
+      "status": "BLOCKED",
+      "blockers": [
+        "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+      ],
+      "configuration_transitions": [],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "php8.4-cli",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-common",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-fpm",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "fpm",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-opcache",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-readline",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "BLOCKED",
+        "blockers": [
+          "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+        ],
+        "service": "php8.4-fpm.service",
+        "runtime_id": null,
+        "peer_pid": null
+      },
+      {
+        "status": "BLOCKED",
+        "blockers": [
+          "PROBE_TRANSPORT_FAILED:ConnectionRefusedError"
+        ],
+        "service": "php8.4-fpm.service",
+        "runtime_id": null,
+        "peer_pid": null
+      }
+    ]
+  },
+  {
+    "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "raw_sha256": "169349a1bc746ab2e5cb5caea6fffa50db063daa4423ab5b1a8c3af2fdbb72a8",
+    "case": "success",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "safe": false,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "88d170a4e38ec9e445cc6e184244b6225af29f076a0e70ca1faf04394714acac",
+    "changes": [
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-fpm",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      },
+      {
+        "operation": "UPGRADE",
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "old_version": "8.4.24-1~deb13u1",
+        "new_version": "8.4.27-1~deb13u1"
+      }
+    ],
+    "targets": [
+      {
+        "name": "php8.4-cli",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "111191e9eec53db65198f9a38a15dcbd498935be88e2fa83336ba142fd5ae152"
+      },
+      {
+        "name": "php8.4-common",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "9372e2b0028228180445829467773058dc6f13b64e066ca00d9f4107bbceef7a"
+      },
+      {
+        "name": "php8.4-fpm",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "4ec57a9b040383c94a70cfcceae5cd53708103ccc99db750144019bb5233b23b"
+      },
+      {
+        "name": "php8.4-opcache",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "c8fa3bd0c00371ed0e25d0e4a9a291b7dc77632e7c0d86d869d40f6f2ceb366c"
+      },
+      {
+        "name": "php8.4-readline",
+        "architecture": "amd64",
+        "installed_version": "8.4.24-1~deb13u1",
+        "version": "8.4.27-1~deb13u1",
+        "archive_sha256": "b74deee989a77238a2b7910908519dde6af4c1b97828c9bd1f0fa7fde62c3b4f"
+      }
+    ],
+    "verification": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "blockers": [],
+      "configuration_transitions": [
+        {
+          "url": "http://127.0.0.1:18080/webpatch-extra.php",
+          "status": "REVIEWED_VENDOR_DIRECTIVES_ADDED"
+        },
+        {
+          "url": "http://127.0.0.1:18080/webpatch-proof.php",
+          "status": "REVIEWED_VENDOR_DIRECTIVES_ADDED"
+        }
+      ],
+      "safe": false
+    },
+    "final_packages": [
+      {
+        "name": "php8.4-cli",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "cli",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-common",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-fpm",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "fpm",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-opcache",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      },
+      {
+        "name": "php8.4-readline",
+        "version": "8.4.27-1~deb13u1",
+        "architecture": "amd64",
+        "source_name": "php8.4",
+        "source_version": "8.4.27-1~deb13u1",
+        "status": "install ok installed",
+        "sapi": "component_or_unknown",
+        "evidence_id": "e8",
+        "provenance": "UNVERIFIED_LOCAL_METADATA"
+      }
+    ],
+    "request_statuses": [
+      {
+        "status": "VERIFIED_PROCESS_RESPONSE",
+        "blockers": [],
+        "service": "php8.4-fpm.service",
+        "runtime_id": "ff9f1dbc3082952edacef50fba4c01ab37830ba1e336309a0fd8c6ad4e6cffa0:27752:12036",
+        "peer_pid": 27752
+      },
+      {
+        "status": "VERIFIED_PROCESS_RESPONSE",
+        "blockers": [],
+        "service": "php8.4-fpm.service",
+        "runtime_id": "ff9f1dbc3082952edacef50fba4c01ab37830ba1e336309a0fd8c6ad4e6cffa0:27753:12036",
+        "peer_pid": 27753
+      }
+    ]
+  }
+]

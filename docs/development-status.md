@@ -11,13 +11,14 @@
 | 3 有限 Ubuntu 修复 | 内核请求绑定、只读配置视图、全 task FD census、精确维护合同、持锁事务、修复后验证/审计 | 已实现，完整真实矩阵待验收；公开入口受发布门禁禁用 |
 | 4A 容器 | image digest 声明、逐 CVE 重建建议 | 三格只读/禁网容器独立验证；不构建/推送/发布 |
 | 4B Node.js | 独立 adapter/rules，Debian 12/13 两项运行时 CVE | 两格独立原生容器通过；无 npm 审计或 Node 修复 |
-| 4C Debian PHP | 独立签名根、归档链、精确 profile、准备/事务 | Debian 12/13 归档认证及 FPM 生命周期通过；Apache 完整生命周期待验收 |
+| 4C Debian PHP | 独立签名根、归档链、精确 profile、准备/事务 | Debian 12/13 归档认证与 FPM/Apache 四格内部生命周期分别通过；[独立证据](../evidence/phase-4c-accepted/README.md) |
 
 ## 最新源码与 CI
 
 - `4c53acc`：605 本地 tests PASS；[Actions 39881542701](https://github.com/ninex98/webpatch/actions/runs/39881542701) 为 **13/17 PASS，4 FAIL**。Ubuntu 22.04 两种 SAPI、Debian 12/13 FPM 的实际升级和健康故障路径通过；不是全矩阵验收。
 - 两项 Debian Apache 在重装测试包后仍映射 deleted 旧模块，生产门禁正确阻断；两项 Ubuntu 24.04 在持锁复核时拒绝，尚缺精确差异诊断。
 - `2d8132c`：本地 605 PASS，补充复核变化字段/阻断原因并重启重装后的 Apache 测试基线；[Actions 39883475413](https://github.com/ninex98/webpatch/actions/runs/39883475413) **CI_PENDING**。失败原日志、JUnit 和源码摘要在 [phase-3g4](../evidence/phase-3g4/README.md)。
+- `2d8132c` 的六个 Debian job 已独立 PASS，见 [phase-4c-accepted](../evidence/phase-4c-accepted/README.md)；同轮 Ubuntu 尚在运行，不声明整轮通过。
 - 公共入口准备 `4c53acc` 的证据在 [phase-3h-entry](../evidence/phase-3h-entry/README.md)。启用入口仍须全部要求的原生升级/故障验证通过，并验证安装后的公开 CLI。
 
 历史已接受基线 `829df71` / [39848034144](https://github.com/ninex98/webpatch/actions/runs/39848034144) 为 **11/11 PASS**：Python 3.10/3.12 各 522，四格受控准备/收据、三格包能力/只读容器、两格 Node。[完整证据](../evidence/accepted-829df71/README.md) 只适用于该源码，不认证其后新增执行器。原生合成包操作独立证据在 [phase-3e2](../evidence/phase-3e2/accepted-native/README.md)。

@@ -1,0 +1,112 @@
+{
+  "php8.4-cli:amd64": {
+    "name": "php8.4-cli",
+    "version": "8.4.24-1~deb13u1",
+    "architecture": "amd64",
+    "source_name": "php8.4",
+    "source_version": "8.4.24-1~deb13u1",
+    "sha256": "8205f927545c28a03fdcc1bd1fc83c1aa9615d2ee1f7cec4cd5c86e59716782f",
+    "size": 1858972,
+    "filename": "pool/main/p/php8.4/php8.4-cli_8.4.24-1~deb13u1_amd64.deb",
+    "suite": "trixie",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "0584fba32e13e0ab8285fb16c27adea1ec03a73669c18702821094fd6ca86675",
+    "index_sha256": "4f2c68d67001d595fbd343f6dbad44468953a51c4d9dec3a4803249f6e295940",
+    "evidence_ids": [
+      "e561",
+      "e562",
+      "e563",
+      "e564"
+    ],
+    "signer": "04B54C3CDCA79751B16BC6B5225629DF75B188BD"
+  },
+  "php8.4-common:amd64": {
+    "name": "php8.4-common",
+    "version": "8.4.24-1~deb13u1",
+    "architecture": "amd64",
+    "source_name": "php8.4",
+    "source_version": "8.4.24-1~deb13u1",
+    "sha256": "fe81bee8ec155ed0ba14a2d1330f52f5ad3da2e7446ab74858f61c9e36202052",
+    "size": 776096,
+    "filename": "pool/main/p/php8.4/php8.4-common_8.4.24-1~deb13u1_amd64.deb",
+    "suite": "trixie",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "0584fba32e13e0ab8285fb16c27adea1ec03a73669c18702821094fd6ca86675",
+    "index_sha256": "4f2c68d67001d595fbd343f6dbad44468953a51c4d9dec3a4803249f6e295940",
+    "evidence_ids": [
+      "e561",
+      "e562",
+      "e563",
+      "e564"
+    ],
+    "signer": "04B54C3CDCA79751B16BC6B5225629DF75B188BD"
+  },
+  "php8.4-fpm:amd64": {
+    "name": "php8.4-fpm",
+    "version": "8.4.24-1~deb13u1",
+    "architecture": "amd64",
+    "source_name": "php8.4",
+    "source_version": "8.4.24-1~deb13u1",
+    "sha256": "6a78bfdda25eecd3a0030920d5bacdbff55a9681e0dfdb3201986a10868410ca",
+    "size": 1868296,
+    "filename": "pool/main/p/php8.4/php8.4-fpm_8.4.24-1~deb13u1_amd64.deb",
+    "suite": "trixie",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "0584fba32e13e0ab8285fb16c27adea1ec03a73669c18702821094fd6ca86675",
+    "index_sha256": "4f2c68d67001d595fbd343f6dbad44468953a51c4d9dec3a4803249f6e295940",
+    "evidence_ids": [
+      "e561",
+      "e562",
+      "e563",
+      "e564"
+    ],
+    "signer": "04B54C3CDCA79751B16BC6B5225629DF75B188BD"
+  },
+  "php8.4-opcache:amd64": {
+    "name": "php8.4-opcache",
+    "version": "8.4.24-1~deb13u1",
+    "architecture": "amd64",
+    "source_name": "php8.4",
+    "source_version": "8.4.24-1~deb13u1",
+    "sha256": "0ed0c6ae703c5545155cc74905f4d3aad2efadb5c234f77f90e208d5f84f2ace",
+    "size": 470476,
+    "filename": "pool/main/p/php8.4/php8.4-opcache_8.4.24-1~deb13u1_amd64.deb",
+    "suite": "trixie",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "0584fba32e13e0ab8285fb16c27adea1ec03a73669c18702821094fd6ca86675",
+    "index_sha256": "4f2c68d67001d595fbd343f6dbad44468953a51c4d9dec3a4803249f6e295940",
+    "evidence_ids": [
+      "e561",
+      "e562",
+      "e563",
+      "e564"
+    ],
+    "signer": "04B54C3CDCA79751B16BC6B5225629DF75B188BD"
+  },
+  "php8.4-readline:amd64": {
+    "name": "php8.4-readline",
+    "version": "8.4.24-1~deb13u1",
+    "architecture": "amd64",
+    "source_name": "php8.4",
+    "source_version": "8.4.24-1~deb13u1",
+    "sha256": "0b61ee28ce6c983c1bd3f7c851ff3f7c9124b3d3ffc52c8285a87d83c84ecc51",
+    "size": 12740,
+    "filename": "pool/main/p/php8.4/php8.4-readline_8.4.24-1~deb13u1_amd64.deb",
+    "suite": "trixie",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "0584fba32e13e0ab8285fb16c27adea1ec03a73669c18702821094fd6ca86675",
+    "index_sha256": "4f2c68d67001d595fbd343f6dbad44468953a51c4d9dec3a4803249f6e295940",
+    "evidence_ids": [
+      "e561",
+      "e562",
+      "e563",
+      "e564"
+    ],
+    "signer": "04B54C3CDCA79751B16BC6B5225629DF75B188BD"
+  }
+}
