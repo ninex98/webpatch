@@ -65,7 +65,7 @@ write_files:
 (workspace/'meta-data').write_text(f'instance-id: webpatch-{nonce}\nlocal-hostname: webpatch-debian-{args.release}\n')
 subprocess.run(['cloud-localds',str(workspace/'seed.iso'),str(workspace/'user-data'),str(workspace/'meta-data')],check=True)
 commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-names=subprocess.check_output(['git','ls-files','src','tests','scripts','.github','pyproject.toml','README.md','LICENSE','AGENTS.md'],text=True).splitlines()
+names=subprocess.check_output(['git','ls-files','src','tests','scripts','.github','docs','pyproject.toml','README.md','README.zh-CN.md','LICENSE','AGENTS.md'],text=True).splitlines()
 source_hashes={}
 with tarfile.open(workspace/'source.tar.gz','w:gz') as bundle:
     for name in names:
@@ -118,7 +118,12 @@ with (output/'qemu.log').open('wb') as log:
             bundle.extractall(output/'guest')
         assert result.returncode==0,'DEBIAN_GUEST_TEST_FAILED'
     finally:
-        if (workspace/'qemu.pid').exists():
-            pid=(workspace/'qemu.pid').read_text().strip()
-            if pid.isdigit(): subprocess.run(['sudo','kill',pid],check=False)
-        process.wait(timeout=20)
+        if process.poll() is None and (workspace/'qemu.pid').exists():
+            result=subprocess.run(['sudo','cat',str(workspace/'qemu.pid')],capture_output=True,text=True)
+            pid=result.stdout.strip()
+            if result.returncode==0 and pid.isdigit() and int(pid)>1:
+                subprocess.run(['sudo','kill',pid],check=False)
+        try: process.wait(timeout=20)
+        except subprocess.TimeoutExpired:
+            subprocess.run(['sudo','kill','-KILL',str(process.pid)],check=False)
+            process.wait(timeout=10)
