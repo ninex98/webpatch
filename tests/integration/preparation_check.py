@@ -64,7 +64,7 @@ for name in sorted(required):
     subprocess.run(['/usr/bin/apt-get','download',installed+'='+version],cwd=cache,check=True,
                    env={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin','LC_ALL':'C','LANG':'C'})
 report=scan(reader,package_cache=cache)
-branch='8.1' if report.inventory.environment.codename=='jammy' else '8.3'
+branch=source_cohort[3:]
 probes=[{'service':service,'url':f'http://127.0.0.1:{port}/webpatch-proof.php',
          'script':'/var/www/html/webpatch-proof.php','pool_listener':f'/run/php/php{branch}-fpm.sock' if service!='apache2.service' else None}]
 if service!='apache2.service':

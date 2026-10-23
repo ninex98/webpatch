@@ -14,6 +14,7 @@ from .runtime import start_ticks
 from .coverage import plan_scope
 from .runtime_evidence import php_mapping_rows, mapping_digest, unix_listeners
 from .gates import evidence_deadline, review_gates, review_status
+from .profiles import php_source_profile
 
 
 def digest(value):
@@ -151,11 +152,11 @@ def choose_targets(report, collector, now, requested=None, include_components=Fa
         matches = [c for c in candidates if (c["name"], c["architecture"], c["source_name"])
                    == (package.name.split(":")[0], package.architecture, package.source_name)
                    and c["fresh_for_plan"] and re.fullmatch(rule["version_pattern"], c["source_version"])
-                   and c["version"] == c["source_version"]]
+                   and re.fullmatch(re.escape(c['source_version'])+(r'(?:\+b[0-9]+)?' if report.inventory.environment.os_id=='debian' else ''),c['version'])]
         best = None
         for candidate in matches:
-            versions = [package.version, *rule["fixes"].values()]
-            if any(comparator.at_least(candidate["version"], version)[0] is not True for version in versions):
+            if (comparator.at_least(candidate['version'],package.version)[0] is not True
+                    or any(comparator.at_least(candidate['source_version'],version)[0] is not True for version in rule['fixes'].values())):
                 continue
             if best is None or comparator.at_least(candidate["version"], best["version"])[0] is True:
                 best = candidate
@@ -254,7 +255,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
         blockers.append("SCOPE_IDENTITY_UNKNOWN")
     if report.inventory.environment.scope == "container":
         blockers.append("CONTAINER_REBUILD_REQUIRED")
-    if report.inventory.environment.os_id != "ubuntu" or report.inventory.environment.codename not in {"jammy", "noble"}:
+    if php_source_profile(report.inventory.environment) is None:
         blockers.append("APT_PLANNING_UNSUPPORTED_RELEASE")
     selected_engines={p.id for p in report.inventory.packages if p.id in requested and p.sapi in {'fpm','apache2','cli','cgi'}}
     if any(a.version_status == "UNKNOWN" and a.package_id in selected_engines for a in report.assessments):
@@ -266,7 +267,7 @@ def plan(report: Report, *, system=None, simulator=None, now=None, target_packag
     targets, changes, evidence = (), (), ()
     simulation_status, simulation_hash = "NOT_RUN", None
     collector = Collector(system, evidence_prefix="p") if system else None
-    supported = report.inventory.environment.os_id == "ubuntu" and report.inventory.environment.codename in {"jammy", "noble"}
+    supported = php_source_profile(report.inventory.environment) is not None
     if collector and simulator and supported and report.inventory.environment.scope != "container":
         targets, candidate_blockers = choose_targets(report, collector, now, requested, include_components)
         blockers.extend(candidate_blockers)

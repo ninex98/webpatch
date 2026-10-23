@@ -23,11 +23,13 @@ from webpatch.repair_policy import build_repair_review
 from webpatch.service import scan
 from webpatch.system import LocalSystem
 from webpatch.transaction import AuditJournal
+from webpatch.profiles import php_source_profile
 
 assert os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('RUNNER_ENVIRONMENT')=='github-hosted'
 name,service,port,cache=sys.argv[1:]
 reader=LocalSystem(); initial=scan(reader,package_cache=cache)
-source='php8.1' if initial.inventory.environment.codename=='jammy' else 'php8.3'
+source=php_source_profile(initial.inventory.environment)
+assert source
 packages=[p for p in initial.inventory.packages if p.source_name==source]
 assert packages and initial.package_trust['status']=='VERIFIED_INDEX_CHAIN'
 base_rows={p.id:[c for c in initial.package_trust['candidates'] if (c['name'],c['architecture'],c['source_name'],c['suite'])

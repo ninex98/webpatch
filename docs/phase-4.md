@@ -47,3 +47,11 @@ GitHub 临时 Ubuntu runner 内用 QEMU 启动 Debian 12/13 genericcloud 客体�
 镜像来自 cloud.debian.org 的官方 HTTPS，并核对同目录 SHA512SUMS；当前目录不提供镜像签名，因此记录为传输/内容完整性，明确 NOT_AVAILABLE，不声称签名镜像认证。这个测试平台信任边界独立于产品必须验证的 APT Release/Packages/deb 认证链。保存镜像 URL/hash、加速类型、kernel、服务状态和源码导出清单，不上传磁盘、SSH 私钥或私有状态目录。
 
 本阶段只验收客体启动、实际 systemd PHP 服务发现和认证文件身份；还没有把 Debian 加入准备/执行准入。主/客体脚本都有运行环境守卫，客体另需唯一 marker；本地测试只验证拒绝误运行，不启动 VM 或安装工具。后续在同一隔离边界内独立完成 Debian 升级/故障生命周期。
+
+## 4C.3 Debian 准备/审阅与独立升级生命周期（CI 待验收）
+
+新增精确 `(os_id, VERSION_ID, codename)` profile：bookworm/php8.2、trixie/php8.4，避免只凭一个 OS 字段选服务分支。配置根、候选模拟与维护合同沿用经过独立证据验证的能力，合同明确列出发行版；错配/容器/非 amd64、混合源、缺少归档或实例证据仍阻断。
+
+Debian 的 binary binNMU 后缀单独处理：升级方向按 binary Version 比较，CVE 下界按 Source Version 比较，不能拿 +bN 当厂商安全版本。候选仍绑定签名索引、准确架构和归档 SHA256。Ubuntu 的原版本策略不放宽。
+
+四格 Debian QEMU 客体现在部署受控 loopback FPM/Apache collector，先验证只读状态不变，再运行与 Ubuntu 相同但独立留证的准备/no-change/官方 base→fixed 升级和重启后 HTTP 故障。并非借 Ubuntu 结果认证 Debian；公共 apply 在所有要求的实际生命周期通过前保持禁用。

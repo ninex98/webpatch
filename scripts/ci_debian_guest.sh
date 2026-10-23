@@ -52,6 +52,49 @@ systemctl restart "$service"
 systemctl is-active --quiet "$service"
 python3 scripts/build_deb.py
 apt-get install -y ./dist/webpatch_0.1.0_all.deb
+mkdir -p /etc/webpatch /var/www/html
+webpatch probe-template > /var/www/html/webpatch-proof.php
+cp /var/www/html/webpatch-proof.php /var/www/html/webpatch-extra.php
+printf '/var/www/html/webpatch-proof.php\n/var/www/html/webpatch-extra.php\n' > /etc/webpatch/probe-blacklist
+echo '<?php echo "webpatch-ci-route-ok";' > /var/www/html/webpatch-ci.php
+if [[ "$sapi" == fpm ]]; then
+  cat > "/etc/php/$branch/fpm/pool.d/webpatch-ci-extra.conf" <<EOF
+[webpatch_ci_extra]
+user = www-data
+group = www-data
+listen = /run/php/webpatch-ci-extra.sock
+listen.owner = www-data
+listen.group = www-data
+pm = static
+pm.max_children = 1
+EOF
+  cat > /etc/nginx/nginx.conf <<EOF
+user www-data;
+events {}
+http {
+  server {
+    listen 127.0.0.1:18080;
+    root /var/www/html;
+    location ~ \.php\$ {
+      include /etc/nginx/fastcgi.conf;
+      fastcgi_pass unix:/run/php/php$branch-fpm.sock;
+    }
+    location = /webpatch-extra.php {
+      include /etc/nginx/fastcgi.conf;
+      fastcgi_pass unix:/run/php/webpatch-ci-extra.sock;
+    }
+  }
+}
+EOF
+  ini_sapi=fpm; port=18080
+  systemctl restart nginx
+else
+  ini_sapi=apache2; port=80
+fi
+echo 'opcache.blacklist_filename=/etc/webpatch/probe-blacklist' > "/etc/php/$branch/$ini_sapi/conf.d/99-webpatch-probe.ini"
+systemctl restart "$service"
+[[ "$(curl --fail --silent "http://127.0.0.1:$port/webpatch-ci.php")" == webpatch-ci-route-ok ]]
+before="$(sha256sum /var/lib/dpkg/status)"
 rc=0
 webpatch scan --format json --package-cache /var/cache/webpatch-ci > ci-evidence/scan.json || rc=$?
 [[ "$rc" == 1 || "$rc" == 2 ]]
@@ -68,5 +111,8 @@ assert not r['safe'] and r['inventory']['environment']['scope']!='container'
 Path('ci-evidence/result.json').write_text(json.dumps({'result':'PASS','scope':'Debian VM service discovery and signed archive identity only',
     'package':sys.argv[1],'service':sys.argv[2],'runtime_count':len(instances),'environment':r['inventory']['environment']},indent=2)+'\n')
 PY
+[[ "$before" == "$(sha256sum /var/lib/dpkg/status)" ]]
+env PYTHONPATH=src python3 tests/integration/preparation_check.py "$package" "$service" "$port" /var/cache/webpatch-ci
+env PYTHONPATH=src python3 tests/integration/repair_lifecycle_check.py "$package" "$service" "$port" /var/cache/webpatch-ci
 uname -a > ci-evidence/kernel.txt
 systemctl show "$service" --property=ActiveState,SubState,MainPID,FragmentPath > ci-evidence/service.txt

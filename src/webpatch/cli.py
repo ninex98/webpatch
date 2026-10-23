@@ -52,7 +52,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
                                help="binary:architecture target; scan and shared-package impact remain scope-wide")
             selection.add_argument('--source-cohort',help='explicitly select all installed packages from one PHP source branch')
             child.add_argument("--dry-run", action="store_true", required=True,
-                               help="simulate exact trusted Ubuntu candidates without installing or refreshing indexes")
+                               help="simulate exact trusted Ubuntu/Debian candidates without installing or refreshing indexes")
         if command == "audit-consumers":
             child.add_argument("--target-package", action="append", dest="target_package_ids", required=True)
         if command == "prepare-plan":

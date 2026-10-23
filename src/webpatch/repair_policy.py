@@ -19,6 +19,7 @@ from .system import Collector,DPKG_QUERY,SAFE_PATH,VERSION
 from .rules import DpkgComparator
 from .implementation import implementation_sha256
 from .configuration_policy import POLICY as CONFIGURATION_POLICY
+from .profiles import php_source_profile
 
 
 @dataclass(frozen=True)
@@ -159,10 +160,10 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
         gates.append(ReviewGate(digest(['managed-repair',category]),category,status,scope,(),reason,
                                'Resolve the named evidence failure and generate a new exact review.'))
     env=report.inventory.environment
-    branch={'jammy':'php8.1','noble':'php8.3'}.get(env.codename)
-    gate('supported_environment',env.os_id=='ubuntu' and env.scope!='container' and branch==source_cohort
+    branch=php_source_profile(env)
+    gate('supported_environment',env.scope!='container' and branch==source_cohort
          and bool(selected) and all(p.architecture in {'amd64','all'} for p in report.inventory.packages if p.id in selected),
-         'Initial managed policy: official Ubuntu jammy/noble amd64, one complete PHP source cohort; no container in-place repair.')
+         'Explicit Ubuntu/Debian amd64 profile and one complete PHP source cohort; no container in-place repair.')
     for category in ('vendor_rules','target_selection','archive_chain','target_identity','dependency_changes',
                      'input_stability','evidence_freshness','diagnostic_simulation','package_manager_locks'):
         item=next(g for g in diagnostic.gates if g.category==category)
@@ -211,6 +212,7 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
         return [{k:a[k] for k in ('package_id','version','roles','archive_sha256','archive_path','control_files','conffiles','payload_configuration','execution_files','info_basename')}
                 for a in (review or {}).get('archives',[])]
     contract={'schema_version':1,'protocol':'EXACT_OFFICIAL_PHP_COHORT_DPKG_V1','implementation_sha256':policy_digest(),
+        'distribution':{'os_id':env.os_id,'version_id':env.version_id,'codename':env.codename},
         'source_cohort':source_cohort,'package_cache':package_cache,'state_directory':str(controller.state_dir),
         'startup_receipt':startup_receipt,'maintenance_budget_seconds':budget_seconds,'services':services,
         'configuration_transition_policy':CONFIGURATION_POLICY,

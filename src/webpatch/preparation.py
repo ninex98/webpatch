@@ -21,6 +21,7 @@ from .platform_proof import authenticate_service
 from .service import scan
 from .system import Collector, ProbeError
 from .implementation import implementation_sha256
+from .profiles import php_source_profile
 
 STATE_DIRECTORY = re.compile(r'/var/lib/webpatch(?:-[a-z0-9-]+)?\Z')
 
@@ -39,9 +40,10 @@ def restricted_ini_value(raw):
 
 
 def configuration_roots(report, service):
-    branch = {'jammy':'8.1','noble':'8.3'}.get(report.inventory.environment.codename)
-    if report.inventory.environment.os_id != 'ubuntu' or not branch:
+    source=php_source_profile(report.inventory.environment)
+    if not source:
         raise ValueError('PREPARATION_RELEASE_UNSUPPORTED')
+    branch=source[3:]
     if service == f'php{branch}-fpm.service':
         return (f'/etc/php/{branch}/fpm',)
     if service == 'apache2.service':
