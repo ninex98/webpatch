@@ -77,6 +77,8 @@ def test_exact_review_is_recomputed_under_lock_and_only_typed_archives_are_dispa
     result=execute_repair_review(review.document(),confirmation_sha256=review.proposal.plan_sha256,system=fake,
         simulator=values[4],controller=controller,probe=object(),journal=journal,clock=lambda:NOW)
     assert result['status']=='VERIFIED_WITHIN_DECLARED_SCOPE',result
+    assert result['revalidation']=={'admission_status':'READY_FOR_CONFIRMATION','blockers':(),
+        'changed_plan_fields':[],'changed_contract_fields':[],'evidence_deadline_shortened':False}
     operation=next(c[1] for c in controller.calls if isinstance(c,tuple) and c[0]=='install')
     assert len(operation.archives)==1 and operation.archives[0].version=='8.1.2-1ubuntu2.28'
     assert operation.transaction_sha256==review.proposal.plan_sha256 and not result['safe']

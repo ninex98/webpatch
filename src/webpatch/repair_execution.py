@@ -70,7 +70,7 @@ class ManagedRepairBackend:
     def __init__(self,approved,contract,*,system,simulator,controller,probe,clock,scanner=scan,monotonic=time.monotonic):
         self.approved=approved; self.contract=contract; self.system=system; self.simulator=simulator
         self.controller=controller; self.probe=probe; self.clock=clock; self.scanner=scanner
-        self.current=None; self.verification=None; self.operation_started=None
+        self.current=None; self.verification=None; self.revalidation=None; self.operation_started=None
         self.monotonic=monotonic
 
     def locked(self): return self.controller.locked()
@@ -80,9 +80,15 @@ class ManagedRepairBackend:
         review=build_repair_review(current,system=self.system,simulator=self.simulator,controller=self.controller,
             probe=self.probe,startup_receipt=self.contract['startup_receipt'],source_cohort=self.contract['source_cohort'],
             package_cache=self.contract['package_cache'],budget_seconds=self.contract['maintenance_budget_seconds'],clock=self.clock)
-        if (review.proposal.admission_status!='READY_FOR_CONFIRMATION'
-                or review_semantics(expected,self.contract)!=review_semantics(review.proposal,json.loads(review.contract_json))
-                or datetime.fromisoformat(expected.expires_at)>datetime.fromisoformat(review.proposal.expires_at)):
+        current_contract=json.loads(review.contract_json)
+        before=review_semantics(expected,self.contract); after=review_semantics(review.proposal,current_contract)
+        shortened=datetime.fromisoformat(expected.expires_at)>datetime.fromisoformat(review.proposal.expires_at)
+        self.revalidation={'admission_status':review.proposal.admission_status,'blockers':review.proposal.blockers,
+            'changed_plan_fields':sorted(k for k in before['plan'] if before['plan'][k]!=after['plan'][k]),
+            'changed_contract_fields':sorted(k for k in set(self.contract)|set(current_contract)
+                                             if self.contract.get(k)!=current_contract.get(k)),
+            'evidence_deadline_shortened':shortened}
+        if review.proposal.admission_status!='READY_FOR_CONFIRMATION' or before!=after or shortened:
             return False
         self.current=review
         return True
@@ -192,6 +198,7 @@ def execute_repair_review(document,*,confirmation_sha256,system,simulator,contro
         backend=ManagedRepairBackend(proposal,contract,system=system,simulator=simulator,controller=controller,probe=probe,clock=clock,scanner=scanner)
         result=execute(proposal,confirmation_sha256=confirmation_sha256,backend=backend,journal=journal,clock=clock)
         result['verification']=backend.verification
+        result['revalidation']=backend.revalidation
         result['safe']=False
         result['owned_preparation_receipt']=contract['startup_receipt']
         return result

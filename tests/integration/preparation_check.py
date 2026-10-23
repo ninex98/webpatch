@@ -54,6 +54,11 @@ subprocess.run(['/usr/bin/apt-get','install','--reinstall','-y','libc-bin','man-
                env={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin','LC_ALL':'C','LANG':'C','DEBIAN_FRONTEND':'noninteractive'})
 Path('ci-evidence/managed-service-baseline.json').write_text(json.dumps(isolate_service(service,source_cohort),indent=2)+'\n')
 reader=LocalSystem()
+# A reinstall can replace loaded Apache DSOs without restarting its workers.
+# Establish the current-package fixture explicitly before collecting evidence.
+baseline_controller=LocalServiceControl('/var/lib/webpatch-ci')
+baseline_controller.command('restart',service)
+baseline_controller.wait_stable(service)
 initial=scan(reader,package_cache=cache)
 required={p.split(':')[0] for r in initial.inventory.runtimes if r.service==service for p in r.package_ids}
 required.update(service_packages(service)[0])
