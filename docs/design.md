@@ -135,3 +135,15 @@ CLI → ScanService → EnvironmentAdapter registry → SystemReader
 READY_FOR_REVIEW 仅说明有限诊断输入可审阅，执行准入仍 BLOCKED。计划有效期不超过扫描、规则、签名索引各自的边界；verify-plan 会重查实例/配置/依赖/门禁和时效。诊断模拟省略 hooks/部分特殊配置，维护脚本/conffile 和停机预算仍需阶段三审阅。当前 apply 始终拒绝，所有阶段三执行、验证与失败审计能力尚未实现。
 
 2D.4 扩展原 CI，临时 VM 中比较相关进程 PID/starttime 和配置/APT/dpkg 状态，并注入无害映射删除/替换、配置变化等反例。当前验收进度和源码对应关系以 [development-status.md](development-status.md) 及 evidence/phase-2d4 为准，不能把有限测试站点扩展为任意生产环境保证。
+
+## 8. 宿主机 Docker 只读发现（开发分支，尚未发布）
+
+`scan` 默认增加独立 DockerReader 能力；其他计划、准备和修复入口仍只使用原有当前系统证据。Docker 容器结果位于报告的 `docker` 字段，各自绑定容器 ID、镜像 ID、文件证据摘要和发行版元数据，不合并进宿主机 packages/assessments，不开放容器原地修复。存在低于已审阅厂商修复线的容器包时，scan 总体为 POTENTIALLY_AFFECTED / exit 1；其他情况仍 UNKNOWN / exit 2。
+
+仅使用本机 Unix socket 的 GET/HEAD 固定接口：列出全部状态容器、读取进程名称、读取固定路径元数据及检查常见 PHP 路径。不给 DockerReader 写入或 exec 能力；不启动容器、不部署扫描器、不执行容器提供的 PHP/dpkg/shell、不读取 inspect 的 Env 或进程参数。不自动采用 DOCKER_HOST、Docker context、SSH/TCP 端点。常规 rootful/rootless socket 自动发现，也可显式指定本机绝对路径；默认选择一个 daemon，其他 daemon、远端编排器、隐藏/自定义路径明确未覆盖。
+
+读取文件包括 os-release、dpkg status、Alpine APK 数据库和 PHP 安装头文件；固定常见路径使用 HEAD。归档仅在内存读取一个同名普通文件，拒绝符号/硬链接、目录、稀疏文件、重复条目及越界内容，不解包到磁盘。每个请求超时 3 秒、Docker 阶段总预算 45 秒、最多检查 64 个容器；JSON 上限 4 MiB，文件上限 8 MiB。前后重列清单能发现可观察的增删/状态变化，但不证明期间未重启或文件快照原子性，因此运行映像和路由始终 UNKNOWN。
+
+Ubuntu/Debian 包继续复用原已审阅规则和宿主机受限 dpkg 比较器。读取到版本不认证来源、字节或实际运行进程。Alpine 和自编译 PHP 只显示安装/版本线索；不能把上游 informational-only 数据升级为已认证规则。缺失文件不证明 PHP 不存在，读取错误、超时、容器停止/消失逐个展示并阻断安全结论。规则文件、审阅时间、有效期均未改变。
+
+API 依据：[Docker Engine API v1.45](https://docs.docker.com/reference/api/engine/version/v1.45/)、[container cp 与归档限制](https://docs.docker.com/reference/cli/docker/container/cp/)。此阶段的实际证据见 `evidence/phase-9-docker/README.md`；历史 CI 不作为新代码验收。

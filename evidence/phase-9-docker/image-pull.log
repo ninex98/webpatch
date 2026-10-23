@@ -1,0 +1,45 @@
+8.3-fpm-alpine: Pulling from library/php
+86701e1f7246: Pulling fs layer
+d3531b7a4f21: Pulling fs layer
+e6e31aad7de1: Pulling fs layer
+a9902b34e85a: Pulling fs layer
+1eb07a815625: Pulling fs layer
+2eb30d13c4fb: Pulling fs layer
+8038542ef2f1: Pulling fs layer
+cf12b97d03f3: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+69dbd5c9b2a0: Pulling fs layer
+550585db4c22: Pulling fs layer
+dbdcb30c6349: Pulling fs layer
+4f4fb700ef54: Already exists
+ba76ca940ac2: Download complete
+c0d24f747e52: Download complete
+2eb30d13c4fb: Download complete
+86701e1f7246: Download complete
+69dbd5c9b2a0: Download complete
+cf12b97d03f3: Download complete
+550585db4c22: Download complete
+1eb07a815625: Download complete
+8038542ef2f1: Download complete
+d3531b7a4f21: Download complete
+d3531b7a4f21: Pull complete
+e6e31aad7de1: Download complete
+2eb30d13c4fb: Pull complete
+550585db4c22: Pull complete
+e6e31aad7de1: Pull complete
+a9902b34e85a: Download complete
+dbdcb30c6349: Download complete
+dbdcb30c6349: Pull complete
+cf12b97d03f3: Pull complete
+4f4fb700ef54: Pull complete
+86701e1f7246: Pull complete
+69dbd5c9b2a0: Pull complete
+4f4fb700ef54: Pull complete
+86701e1f7246: Pull complete
+69dbd5c9b2a0: Pull complete
+1eb07a815625: Pull complete
+8038542ef2f1: Pull complete
+a9902b34e85a: Pull complete
+Digest: sha256:41ebe02446a39ca8fa4e0b2b9e6ce819271b3cf3afac16f9a9a4524f855337ce
+Status: Downloaded newer image for php:8.3-fpm-alpine
+docker.io/library/php:8.3-fpm-alpine

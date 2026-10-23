@@ -33,9 +33,10 @@ from . import release_gate
 from .terminal import Terminal, render_scan, render_plan
 from .guided import run_guided, result_summary
 from .sessions import SessionStore
+from .docker_scan import attach_docker
 
 
-def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, package_controller=None, journal=None, now=None) -> int:
+def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, package_controller=None, journal=None, docker_reader=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch runtime evidence, scoped maintenance and verification")
     parser.add_argument("--version", action="version", version=__version__)
     def presentation_options(target, *, root=False):
@@ -49,6 +50,10 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
         child = subs.add_parser(command)
         presentation_options(child)
         child.add_argument("--format", choices=("text", "json"), default="text")
+        if command == 'scan':
+            child.add_argument('--docker', choices=('auto', 'off'), default='auto',
+                               help='read local Docker container evidence automatically (default: auto)')
+            child.add_argument('--docker-socket', help='absolute local Docker socket path; no remote endpoints')
         if command!='scan-node':
             child.add_argument("--package-cache", default="/var/cache/apt/archives",
                                help="read existing .deb files for signed archive identity verification; never downloads")
@@ -190,6 +195,9 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             return 4 if result.get('status') in {'BLOCKED','PARTIAL'} else 0
         report = scan_node(reader,now=now) if args.command=='scan-node' else scan(reader, now=now,
                       package_cache=getattr(args, "package_cache", "/var/cache/apt/archives"))
+        if args.command == 'scan':
+            report = attach_docker(report, reader, reader=docker_reader, native=native,
+                                   mode=args.docker, endpoint=args.docker_socket, now=now)
         if args.command=='repair-plan':
             controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if native else None)
             capability=probe if probe is not None else (LocalApplicationProbe() if native else None)

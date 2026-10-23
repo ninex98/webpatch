@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--read-only",
+    "--network",
+    "none",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "webpatch-docker-discovery:verify",
+    "/usr/bin/webpatch",
+    "scan",
+    "--format",
+    "json"
+  ],
+  "exit_code": 2,
+  "scope": "container",
+  "docker": {
+    "status": "NOT_CHECKED",
+    "endpoint": null,
+    "listed_count": 0,
+    "containers": [],
+    "gaps": [
+      "DOCKER_CURRENT_CONTAINER_ONLY"
+    ],
+    "evidence": [],
+    "safe": false
+  }
+}

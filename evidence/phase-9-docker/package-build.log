@@ -1,0 +1,55 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 276B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/webpatch-ui:noble
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/library/webpatch-ui:noble@sha256:48da72bce2014a71653fe28e02d87bc9f2d94b338eeab95623cf8bffbad20524
+#4 resolve docker.io/library/webpatch-ui:noble@sha256:48da72bce2014a71653fe28e02d87bc9f2d94b338eeab95623cf8bffbad20524 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 37.19kB done
+#5 DONE 0.0s
+
+#6 [2/7] WORKDIR /work
+#6 CACHED
+
+#7 [3/7] COPY src /work/src
+#7 DONE 0.0s
+
+#8 [4/7] COPY scripts /work/scripts
+#8 DONE 0.0s
+
+#9 [5/7] COPY pyproject.toml README.md README.zh-CN.md LICENSE /work/
+#9 DONE 0.0s
+
+#10 [6/7] COPY docs /work/docs
+#10 DONE 0.0s
+
+#11 [7/7] RUN python3 scripts/build_deb.py && dpkg -i dist/webpatch_0.2.0_all.deb
+#11 0.049 dpkg-deb: building package 'webpatch' in '/work/dist/webpatch_0.2.0_all.deb'.
+#11 0.176 /work/dist/webpatch_0.2.0_all.deb
+#11 0.194 Selecting previously unselected package webpatch.
+#11 0.195 (Reading database ... 6286 files and directories currently installed.)
+#11 0.196 Preparing to unpack dist/webpatch_0.2.0_all.deb ...
+#11 0.203 Unpacking webpatch (0.2.0) ...
+#11 0.231 Setting up webpatch (0.2.0) ...
+#11 DONE 0.2s
+
+#12 exporting to image
+#12 exporting layers 0.1s done
+#12 exporting manifest sha256:1aacc325c1eee1ffb04285f84d57ea16769e7bd1254be54c9d6650b0c5b0c671 done
+#12 exporting config sha256:dbac57b869b544c5e2a3493a87c523f5cb25891ec50ce103c717d9acddc96dcb done
+#12 exporting attestation manifest sha256:cbe861acec3c4375d86969e09b027fa8359f87fe67c3c9c4722aae170e8d13b0 0.0s done
+#12 exporting manifest list sha256:28c680ab9a86015af3c4ddc4ec3efee84deaeed93c0783cce03890860275a7bd done
+#12 naming to docker.io/library/webpatch-docker-discovery:verify done
+#12 unpacking to docker.io/library/webpatch-docker-discovery:verify 0.0s done
+#12 DONE 0.2s

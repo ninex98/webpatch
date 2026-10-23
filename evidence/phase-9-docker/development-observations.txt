@@ -1,0 +1,5 @@
+Development observations; summary of terminal output, not a replayed or complete raw log.
+- Initial full suite: 1 failed, 677 passed. test_plain_fix_on_empty_inventory_explains_without_writes expected the existing Chinese phrase 当前清单没有可供修复. Restored phrase and added a separate host prefix only for Docker results.
+- Initial Unix HTTP fixture suite: 67 passed, 7 errors. OSError: AF_UNIX path too long on macOS's long pytest tmp_path. Use a private short /tmp directory and clean it up with the fixture.
+- Initial public image pull stalled in docker-credential-desktop; canceled only that spawned pull/helper. Retry used an ephemeral empty Docker configuration. No credentials were printed or global Docker settings changed.
+- Final PASS results are in pytest.log, pytest.xml, native.log and installed-result.json.

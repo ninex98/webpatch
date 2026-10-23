@@ -55,3 +55,7 @@ Ubuntu 22.04/24.04、Debian 12/13 可使用一键安装脚本；无需 Git、ven
 collector 协议 3，只接受两项已审阅默认 INI 指令的新增，既有设置变化继续阻断。PHP/Node 规则至 **2026-10-29 00:00 UTC** 到期；之后必须重新审阅官方来源，不能只改日期。Debian 客体镜像以官方 HTTPS/SHA512 验证传输/内容，镜像签名 NOT_AVAILABLE；产品 APT 签名链独立验证。
 
 开发宿主 PHP/APT/系统包/服务未修改；实际安装/服务测试仅在 disposable 容器、GitHub hosted Ubuntu VM 与独立 Debian 客体发生，没有漏洞利用或生产修复。原 README/SVG 工作由 `13c6c9c` 保存，视觉资源保持。自动镜像构建/发布、npm 修复、公开签名 APT 仓库不在原设计四阶段范围内，也未执行；版本化 Release 由上述独立 5A/5B 阶段交付。
+
+## Docker discovery on the development branch (not released)
+
+`scan` now has a separate read-only local Docker adapter and per-container output. It reads bounded metadata without installing WebPatch or executing commands inside containers, reuses the existing Ubuntu/Debian rules, and keeps custom PHP/Alpine evidence UNKNOWN. Host repair admission is unchanged. See [CLI usage](cli.md#local-docker-discovery-development-branch-not-in-published-020) and the new stage evidence in [phase-9-docker](../evidence/phase-9-docker/README.md). This change is not part of the published 0.2.0 release.

@@ -1,0 +1,563 @@
+{
+  "schema_version": 2,
+  "observed_at": "2026-10-23T15:35:00.333964+00:00",
+  "rule_revision": "php2shell-2026-10-23.2",
+  "rule_sha256": "5fee0430b093d1fff8145b727d9d61d0cade94d7b8fe8aa181c5f1b38e2b1c52",
+  "rule_valid_until": "2026-10-29T00:00:00+00:00",
+  "inventory": {
+    "environment": {
+      "os_id": "ubuntu",
+      "version_id": "24.04",
+      "codename": "noble",
+      "scope": "container",
+      "mount_namespace": "mnt:[4026533651]",
+      "scope_sha256": null
+    },
+    "packages": [],
+    "runtime_hints": [],
+    "coverage_gaps": [
+      "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+      "DISCOVERY_NOT_EXHAUSTIVE",
+      "NO_PHP_PACKAGES_OBSERVED_IS_NOT_PROOF_OF_ABSENCE",
+      "OTHER_CONTAINERS_NOT_INSPECTED",
+      "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED"
+    ],
+    "adapters": [
+      "apt-package-inventory-v1",
+      "php-runtime-hints-v1",
+      "linux-local-runtime-association-v2",
+      "php-static-configuration-v2"
+    ],
+    "runtimes": [],
+    "config_relations": [],
+    "coverage": [
+      {
+        "id": "afe3dde9b46a6b41463be6051c9290e293471f36182007e3e7895822ac44d3c7",
+        "requirement": "scan_boundary",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [
+          "e5",
+          "e6",
+          "e7"
+        ],
+        "reason": "Current namespace and boot identity only; container/host classification is not exhaustive.",
+        "next_step": "Confirm the intended host/container boundary and inventory other namespaces separately.",
+        "blocks_repair": true
+      },
+      {
+        "id": "49d58184981dac53ee7ae6bf12b5dc3f444360d6feef0f0088a43006ddb7203f",
+        "requirement": "discovery_completeness",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [
+          "e16"
+        ],
+        "reason": "Bounded discovery cannot prove absence of hidden/custom runtimes, even with an empty inventory.",
+        "next_step": "Reconcile all services and custom installations with an operator-supplied deployment inventory.",
+        "blocks_repair": true
+      },
+      {
+        "id": "3d305e4f401462a9165ba49ada52b3549eafc466a900f68069f3bf90e914560b",
+        "requirement": "adapter_limit:CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "6a7f50a059452a16706c97de99b271d8bb785db11e5e78462032e23cfb9cea3b",
+        "requirement": "adapter_limit:DISCOVERY_NOT_EXHAUSTIVE",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "DISCOVERY_NOT_EXHAUSTIVE",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "54483e88f3f7eb3880cde2e41af3dc10a045937257fa109479a01967a6d12c19",
+        "requirement": "adapter_limit:NO_PHP_PACKAGES_OBSERVED_IS_NOT_PROOF_OF_ABSENCE",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "NO_PHP_PACKAGES_OBSERVED_IS_NOT_PROOF_OF_ABSENCE",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "116bc18cfe32f38201db1deadf6c9e4a03df57843ba18c6155fbb2b8086b75e6",
+        "requirement": "adapter_limit:OTHER_CONTAINERS_NOT_INSPECTED",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "OTHER_CONTAINERS_NOT_INSPECTED",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "7cfdc21c2e58cb20f71f86c6d9d7657a3617a74ec165071916d0be3ec8b039f1",
+        "requirement": "adapter_limit:PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "544caa51878b0477eafd0fff07f7a836d7eda3281d086d8c091d0f2456da334d",
+        "requirement": "adapter_limit:RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "unidentified"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      }
+    ],
+    "scan_scope": {
+      "id": "unidentified",
+      "boundary": "container",
+      "completeness": "UNKNOWN",
+      "package_ids": [],
+      "runtime_ids": [],
+      "exclusions": [
+        "Other containers and foreign roots",
+        "Hidden processes and arbitrary custom installation paths",
+        "Loaded configuration, dynamic routes and request attribution"
+      ]
+    }
+  },
+  "assessments": [],
+  "evidence": [
+    {
+      "id": "e1",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "c6549a19609dc60a2cb42dc6056e13f48877d5cac85c5d3646a7bd315a2d3e22"
+    },
+    {
+      "id": "e2",
+      "operation": "read_text",
+      "target": "/proc/self/cgroup",
+      "outcome": "OK",
+      "sha256": "9430a96d26964e5f486dd7e5069e1d87137761befe4fbd87f4f6d091c6cf4a2b"
+    },
+    {
+      "id": "e3",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "OK",
+      "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+    },
+    {
+      "id": "e4",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e5",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "bf11e6ed50a067fca439a864cd0c321639fee66b2c4a01573af0c2d7200d2ac8"
+    },
+    {
+      "id": "e6",
+      "operation": "read_text",
+      "target": "/proc/sys/kernel/random/boot_id",
+      "outcome": "OK",
+      "sha256": "2ad89a065246b554059cbcd2c0bb3788eb4d23227bdda64d5a7cc89353fdd6cf"
+    },
+    {
+      "id": "e7",
+      "operation": "read_text",
+      "target": "/etc/machine-id",
+      "outcome": "OK",
+      "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+    },
+    {
+      "id": "e8",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "86565c0e51260fcb7b7f1dce77e0d70d94905a2360047662aa71079791214734"
+    },
+    {
+      "id": "e9",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e10",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e11",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e12",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e13",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e14",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "ebb649b1dde1ea4c428a285a4a428904427c8e040362123b4560e8cd3592f0b7"
+    },
+    {
+      "id": "e15",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e16",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "f4e77eea0619946b49efc32e1d1878e506a23a2bbf1be211ebb969e86ba07b44"
+    },
+    {
+      "id": "e17",
+      "operation": "read_text",
+      "target": "/proc/1/comm",
+      "outcome": "OK",
+      "sha256": "b02fdb89aaaf4ecc053e46133fd5744222b2295a914512d880d5dbe69eba7f36"
+    },
+    {
+      "id": "e18",
+      "operation": "read_text",
+      "target": "/etc/nginx/nginx.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e19",
+      "operation": "read_text",
+      "target": "/etc/apache2/apache2.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e20",
+      "operation": "listdir",
+      "target": "/etc/apt/sources.list.d",
+      "outcome": "OK",
+      "sha256": "066e45baf69dc756da7605511263dd583b08898e9ddf941737b753d2706d2440"
+    },
+    {
+      "id": "e21",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list",
+      "outcome": "OK",
+      "sha256": "b088609ecc93177d6bc04b798aa350f83dd29bc17dcd5ce8b5f861f9776d7a09"
+    },
+    {
+      "id": "e22",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list.d/ubuntu.sources",
+      "outcome": "OK",
+      "sha256": "353135a62e213803ce3569bab229281489d9528fb5ae1ff50a7c908a6ef9023f"
+    },
+    {
+      "id": "e23",
+      "operation": "listdir",
+      "target": "/etc/apt/preferences.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e24",
+      "operation": "listdir",
+      "target": "/etc/apt/apt.conf.d",
+      "outcome": "OK",
+      "sha256": "4e5817049d3bde7959b07bd9af2cec6ea44991b10930d67f4872556ee69a65cc"
+    },
+    {
+      "id": "e25",
+      "operation": "read_text",
+      "target": "/etc/apt/preferences",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e26",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e27",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/01-vendor-ubuntu",
+      "outcome": "OK",
+      "sha256": "fa3cb61a0a00a578f79de5cb563f51e544a0a6b106b34ecc2bfc3641ca2debfe"
+    },
+    {
+      "id": "e28",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/01autoremove",
+      "outcome": "OK",
+      "sha256": "2780f7b10369fc887acf6ec756f3b6931f9069ec99986bbd986486e4eed382c6"
+    },
+    {
+      "id": "e29",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/70debconf",
+      "outcome": "OK",
+      "sha256": "fed70a45570ce8f79d1613c5ac1178d82bfa3b46b8009135eb230bd0a9866159"
+    },
+    {
+      "id": "e30",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-autoremove-suggests",
+      "outcome": "OK",
+      "sha256": "536bcdda6c2a65ce2e0c42f178a31f0e54ac121cb40a9fc22f625bf3306355fd"
+    },
+    {
+      "id": "e31",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-clean",
+      "outcome": "OK",
+      "sha256": "9ccb27a73ea52f88cd6716554a91fa46a755d1e03331421a5f6b6aa03f1be22c"
+    },
+    {
+      "id": "e32",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-disable-periodic-update",
+      "outcome": "OK",
+      "sha256": "4c4ae864e65b7ca4c97b5424b62646825aff9dced73b44afbe92d6889b843659"
+    },
+    {
+      "id": "e33",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-gzip-indexes",
+      "outcome": "OK",
+      "sha256": "ee2bd5b6e0a192c26a318e9483c7a7bf0558f64ac5df9b1272b002c56192142c"
+    },
+    {
+      "id": "e34",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-no-languages",
+      "outcome": "OK",
+      "sha256": "a001c966615a265daa2012bc9283a16617c00fc4144f523e8101063660042123"
+    },
+    {
+      "id": "e35",
+      "operation": "read_text",
+      "target": "/var/lib/apt/extended_states",
+      "outcome": "OK",
+      "sha256": "23eaf7d3328697b979efcb1e55d364e40444646f74bbb6f72cb8f7674e9d1a0d"
+    },
+    {
+      "id": "e36",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/arch",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e37",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/diversions",
+      "outcome": "OK",
+      "sha256": "8344a472ed93b3cdb5fffd9b613307f9af1214c2aedc017b255da69b4a579c7b"
+    },
+    {
+      "id": "e38",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/statoverride",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e39",
+      "operation": "listdir",
+      "target": "/var/lib/dpkg/updates",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e40",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "86565c0e51260fcb7b7f1dce77e0d70d94905a2360047662aa71079791214734"
+    }
+  ],
+  "overall": "UNKNOWN",
+  "safe": false,
+  "apt_sources": {
+    "status": "UNKNOWN",
+    "sources": [
+      {
+        "uri": "http://ports.ubuntu.com/ubuntu-ports/",
+        "suite": "noble",
+        "components": [
+          "main",
+          "universe",
+          "restricted",
+          "multiverse"
+        ],
+        "signed_by": "/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+        "path": "/etc/apt/sources.list.d/ubuntu.sources"
+      },
+      {
+        "uri": "http://ports.ubuntu.com/ubuntu-ports/",
+        "suite": "noble-updates",
+        "components": [
+          "main",
+          "universe",
+          "restricted",
+          "multiverse"
+        ],
+        "signed_by": "/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+        "path": "/etc/apt/sources.list.d/ubuntu.sources"
+      },
+      {
+        "uri": "http://ports.ubuntu.com/ubuntu-ports/",
+        "suite": "noble-backports",
+        "components": [
+          "main",
+          "universe",
+          "restricted",
+          "multiverse"
+        ],
+        "signed_by": "/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+        "path": "/etc/apt/sources.list.d/ubuntu.sources"
+      },
+      {
+        "uri": "http://ports.ubuntu.com/ubuntu-ports/",
+        "suite": "noble-security",
+        "components": [
+          "main",
+          "universe",
+          "restricted",
+          "multiverse"
+        ],
+        "signed_by": "/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+        "path": "/etc/apt/sources.list.d/ubuntu.sources"
+      }
+    ],
+    "blockers": [
+      "APT_CONFIGURATION_OVERRIDE_REQUIRES_REVIEW",
+      "APT_HOOKS_REQUIRE_REVIEW",
+      "DPKG_DIVERSIONS_REQUIRE_REVIEW",
+      "THIRD_PARTY_MIXED_RELEASE_OR_KEY_SCOPE:/etc/apt/sources.list.d/ubuntu.sources"
+    ],
+    "sha256": "bfdf09346ead5069f80b3c776454c0b968aea057b4ad53b15eb2c9080d033cc2",
+    "evidence_ids": [
+      "e20",
+      "e21",
+      "e22",
+      "e23",
+      "e24",
+      "e25",
+      "e26",
+      "e27",
+      "e28",
+      "e29",
+      "e30",
+      "e31",
+      "e32",
+      "e33",
+      "e34",
+      "e35",
+      "e36",
+      "e37",
+      "e38",
+      "e39",
+      "e40"
+    ]
+  },
+  "package_trust": {
+    "status": "UNKNOWN",
+    "blockers": [
+      "NO_PACKAGES_TO_AUTHENTICATE"
+    ],
+    "candidates": [],
+    "installed": [],
+    "evidence_ids": []
+  },
+  "docker": {
+    "status": "NOT_CHECKED",
+    "endpoint": null,
+    "listed_count": 0,
+    "containers": [],
+    "gaps": [
+      "DOCKER_CURRENT_CONTAINER_ONLY"
+    ],
+    "evidence": [],
+    "safe": false
+  }
+}

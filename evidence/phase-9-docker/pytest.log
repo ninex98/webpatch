@@ -1,0 +1,102 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.19, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/ninex/Projects/hll-ecosystem/apps/webpatch
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-6.3.0
+collected 696 items
+
+tests/test_application.py ............................                   [  4%]
+tests/test_archive_sealing.py .......                                    [  5%]
+tests/test_base_versions.py ...                                          [  5%]
+tests/test_boundaries.py ................................                [ 10%]
+tests/test_ci_guards.py .                                                [ 10%]
+tests/test_ci_lifecycle_policy.py ........                               [ 11%]
+tests/test_configuration_policy.py ................                      [ 13%]
+tests/test_consumers.py .................                                [ 16%]
+tests/test_container_rebuild.py ...........                              [ 17%]
+tests/test_coverage.py ................................................. [ 24%]
+...........                                                              [ 26%]
+tests/test_debian_trust.py ................                              [ 28%]
+tests/test_deployment.py ..................                              [ 31%]
+tests/test_docker_io.py ..............                                   [ 33%]
+tests/test_docker_scan.py ...................................            [ 38%]
+tests/test_environments.py ............................................. [ 44%]
+...............................................................          [ 53%]
+tests/test_execution_inputs.py .............                             [ 55%]
+tests/test_gates.py ..............                                       [ 57%]
+tests/test_guided.py ................                                    [ 59%]
+tests/test_implementation.py .....                                       [ 60%]
+tests/test_maintenance.py ...............                                [ 62%]
+tests/test_node.py .................                                     [ 65%]
+tests/test_package_control.py ........                                   [ 66%]
+tests/test_planning.py ................................                  [ 70%]
+tests/test_platform_proof.py ..........                                  [ 72%]
+tests/test_preparation.py ..............                                 [ 74%]
+tests/test_prepared_verification.py ............                         [ 76%]
+tests/test_profiles.py ....                                              [ 76%]
+tests/test_repair_cli.py ..........                                      [ 78%]
+tests/test_repair_execution.py .........                                 [ 79%]
+tests/test_repair_policy.py ...............                              [ 81%]
+tests/test_runtime.py .........................                          [ 85%]
+tests/test_runtime_evidence.py .....................                     [ 88%]
+tests/test_shared_ownership.py .                                         [ 88%]
+tests/test_sources.py ....................                               [ 91%]
+tests/test_terminal.py ..............                                    [ 93%]
+tests/test_transaction.py .....................                          [ 96%]
+tests/test_trust.py ..........................                           [100%]
+
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/phase-9-docker/pytest.xml -
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.10.19-final-0 _______________
+
+Name                                    Stmts   Miss  Cover
+-----------------------------------------------------------
+src/webpatch/__init__.py                    1      0   100%
+src/webpatch/__main__.py                    2      2     0%
+src/webpatch/application.py               179     74    59%
+src/webpatch/apt.py                        66      1    98%
+src/webpatch/archive_policy.py             23      2    91%
+src/webpatch/cli.py                       250     39    84%
+src/webpatch/configuration.py             120     10    92%
+src/webpatch/configuration_policy.py       24      0   100%
+src/webpatch/consumers.py                 137     14    90%
+src/webpatch/container_rebuild.py          31      0   100%
+src/webpatch/coverage.py                  100      0   100%
+src/webpatch/deployment.py                 89      5    94%
+src/webpatch/discovery.py                 121      2    98%
+src/webpatch/docker_io.py                 167     15    91%
+src/webpatch/docker_scan.py               147      8    95%
+src/webpatch/documents.py                  10      0   100%
+src/webpatch/execution_inputs.py           81      9    89%
+src/webpatch/gates.py                      65      1    98%
+src/webpatch/guided.py                    201     29    86%
+src/webpatch/implementation.py             15      0   100%
+src/webpatch/maintenance.py               111      9    92%
+src/webpatch/models.py                    239      0   100%
+src/webpatch/node_adapter.py               90     15    83%
+src/webpatch/node_rules.py                 48      2    96%
+src/webpatch/package_control.py           170     49    71%
+src/webpatch/planning.py                  315     25    92%
+src/webpatch/platform_proof.py            104     15    86%
+src/webpatch/preparation.py               230     35    85%
+src/webpatch/prepared_verification.py      54      3    94%
+src/webpatch/profiles.py                    3      0   100%
+src/webpatch/receipts.py                   51      3    94%
+src/webpatch/release_gate.py                2      0   100%
+src/webpatch/repair_execution.py          170     20    88%
+src/webpatch/repair_policy.py             164     10    94%
+src/webpatch/rules.py                      79      1    99%
+src/webpatch/runtime.py                   153      9    94%
+src/webpatch/runtime_evidence.py          102     10    90%
+src/webpatch/service.py                    22      0   100%
+src/webpatch/service_control.py           184    155    16%
+src/webpatch/sessions.py                   46     13    72%
+src/webpatch/sources.py                   160     12    92%
+src/webpatch/system.py                    326    110    66%
+src/webpatch/terminal.py                  232     49    79%
+src/webpatch/transaction.py               163      7    96%
+src/webpatch/trust.py                     214     14    93%
+-----------------------------------------------------------
+TOTAL                                    5261    777    85%
+============================= 696 passed in 6.52s ==============================

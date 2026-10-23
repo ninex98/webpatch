@@ -1,6 +1,7 @@
 """Human presentation only: no discovery, filesystem writes or repair decisions."""
 import os
 import shutil
+import shlex
 import sys
 import unicodedata
 
@@ -118,6 +119,8 @@ def render_scan(report, terminal, *, details=False, node=False):
     scope = ui.t('current container', '当前容器') if env.scope == 'container' else ui.t('current system scope', '当前系统作用域')
     ui.line(f'{env.os_id.title()} {env.version_id}  ·  {scope}', tone='muted')
     affected = {a.package_id for a in report.assessments if a.version_status == 'BELOW_VENDOR_FIX'}
+    docker = report.docker
+    container_affected = [c for c in docker.containers if c.overall == 'POTENTIALLY_AFFECTED'] if docker else []
     unknown = {p.id for p in inventory.packages
                if not any(a.package_id == p.id for a in report.assessments)
                or any(a.package_id == p.id and a.version_status not in {'BELOW_VENDOR_FIX', 'MEETS_VENDOR_FIX'}
@@ -126,6 +129,9 @@ def render_scan(report, terminal, *, details=False, node=False):
     if affected:
         ui.line(ui.t(f'ATTENTION  ·  {len(affected)} potentially affected package(s)',
                      f'需要处理  ·  {len(affected)} 个软件包可能受影响'), tone='danger')
+    elif container_affected:
+        ui.line(ui.t(f'ATTENTION  ·  {len(container_affected)} container(s) have potentially affected PHP packages',
+                     f'需要处理  ·  {len(container_affected)} 个容器内的 PHP 软件包可能受影响'), tone='danger')
     else:
         ui.line(ui.t('UNKNOWN  ·  Runtime safety is not established', 'UNKNOWN  ·  尚不能确认运行时安全'), tone='warning')
     if not inventory.packages:
@@ -133,11 +139,15 @@ def render_scan(report, terminal, *, details=False, node=False):
             ui.line(ui.t(f'{runtime} runtime hints exist, but no managed packages were identified.',
                          f'发现了 {runtime} 运行时线索，但未识别到受管理的软件包。'))
         else:
-            ui.line(ui.t(f'No {runtime} packages or runtime hints were found.', f'未发现 {runtime} 软件包或运行时线索。'))
+            if docker and docker.containers:
+                ui.line(ui.t('No PHP packages or runtime hints were found on the host. Container findings follow below.',
+                             '宿主机未发现 PHP 软件包或运行时线索；容器结果见下方。'))
+            else:
+                ui.line(ui.t(f'No {runtime} packages or runtime hints were found.', f'未发现 {runtime} 软件包或运行时线索。'))
         ui.line(ui.t('An empty inventory does not prove the runtime is absent.', '空清单不代表运行时不存在。'))
     elif not affected:
         ui.line(ui.t('Package versions alone cannot verify running services.', '仅凭软件包版本，不能确认运行中的服务是否安全。'))
-    ui.line(ui.t(f'{len(inventory.packages)} packages  ·  {len(inventory.runtimes)} observed processes  ·  {len(unknown)} package versions unknown',
+    ui.line((ui.t('Host: ', '宿主机：') if docker and docker.containers else '') + ui.t(f'{len(inventory.packages)} packages  ·  {len(inventory.runtimes)} observed processes  ·  {len(unknown)} package versions unknown',
                  f'{len(inventory.packages)} 个软件包  ·  {len(inventory.runtimes)} 个已观察进程  ·  {len(unknown)} 个包版本状态未知'))
     if inventory.packages:
         ui.heading('Packages', '软件包')
@@ -168,8 +178,10 @@ def render_scan(report, terminal, *, details=False, node=False):
     if not node and any('CONDITIONAL_WEB_CONFIGURATION' in g for g in gaps):
         summaries.append(explain('CONDITIONAL_WEB_CONFIGURATION', ui))
         summaries.extend(g.split(':', 1)[1] for g in gaps if 'CONDITIONAL_WEB_CONFIGURATION' in g and ':' in g)
-    summaries.append(ui.t('Custom installations, hidden processes and other containers are not fully covered.',
-                         '自定义安装、隐藏进程和其他容器尚未完整覆盖。'))
+    summaries.append(ui.t('Custom paths and hidden processes may remain unobserved; Docker results are listed separately.',
+                             '自定义路径和隐藏进程仍可能未覆盖；Docker 结果单独列出。') if docker else
+                     ui.t('Custom installations, hidden processes and other containers are not fully covered.',
+                          '自定义安装、隐藏进程和其他容器尚未完整覆盖。'))
     if node:
         summaries.append(explain('NPM_DEPENDENCIES', ui))
     for summary in dict.fromkeys(summaries):
@@ -186,22 +198,123 @@ def render_scan(report, terminal, *, details=False, node=False):
             ui.line(ui.t('Next: ', '下一步：') + check.next_step, indent=4)
             for subject in check.subjects:
                 ui.line(f'{subject.kind}: {subject.id}', indent=4, tone='muted')
+    if docker:
+        render_docker(docker, ui, details=details)
     ui.heading('Next step', '下一步')
     command = 'scan-node' if node else 'scan'
     if not inventory.packages:
-        ui.line(ui.t(f'Confirm where {runtime} is installed. For containers, scan inside the target container.',
-                     f'先确认 {runtime} 安装在哪里；如果使用容器，请在目标容器内部扫描。'))
-        ui.line(ui.t('No package repair is available from this inventory.', '当前清单没有可供修复的软件包。'))
+        if docker and docker.containers:
+            ui.line(ui.t('Follow the action listed for each container above. Container changes belong in its image/deployment workflow.',
+                         '按上方各容器的建议处理；容器更新应通过镜像和部署流程完成。'))
+        elif docker and docker.status in {'UNKNOWN', 'PARTIAL'}:
+            ui.line(ui.t('Resolve the Docker access/check failure shown above, then scan again.',
+                         '先处理上方 Docker 访问或检查失败的原因，再重新扫描。'))
+        else:
+            ui.line(ui.t('If this machine has no PHP application, there is no PHP repair to perform. Otherwise check its deployment location.',
+                         '如果这台机器没有部署 PHP 应用，无需进行 PHP 修复；否则请核对应用的部署位置。'))
+        ui.line((ui.t('Host: ', '宿主机：') if docker and docker.containers else '') +
+                ui.t('No package repair is available from this inventory.', '当前清单没有可供修复的软件包。'))
     elif affected and not node:
         ui.line(ui.t('Open the guided repair review:', '进入引导式修复审阅：'))
         ui.command('sudo webpatch fix')
     else:
         ui.line(ui.t('Review the remaining evidence gaps before making changes.', '先核实剩余证据缺口，再决定是否变更。'))
     if not details:
-        ui.command(f'webpatch {command} --details')
+        ui.line(ui.t('Expand the recorded evidence:', '展开本次检查的证据：'), tone='muted')
+        extra = (' --docker-socket ' + shlex.quote(docker.endpoint) if docker and docker.endpoint else
+                 ' --docker off' if docker and 'DOCKER_DISABLED' in docker.gaps else '')
+        ui.command(f'webpatch {command} --details' + (' --lang zh' if ui.zh else '') + extra)
     ui.line(); ui.line(ui.t('Read-only · no system changes', '只读检查 · 未修改系统'), tone='muted')
     ui.line(ui.t('Rules valid until: ', '规则有效期：') + report.rule_valid_until, tone='muted')
     ui.line()
+
+
+def render_docker(docker, ui, *, details=False):
+    ui.heading('Docker containers', 'Docker 容器')
+    if not docker.containers:
+        if docker.status == 'OBSERVED':
+            ui.line(ui.t('The selected local Docker daemon listed no containers. Other daemons are not covered.',
+                         '当前本机 Docker 未列出容器；其他 Docker 实例未覆盖。'))
+        elif docker.status == 'NOT_DETECTED':
+            ui.line(ui.t('No conventional local Docker socket was found. For a custom socket, use --docker-socket /absolute/path.',
+                         '未找到常规本机 Docker socket；自定义位置可使用 --docker-socket /绝对路径。'))
+        elif 'DOCKER_DISABLED' in docker.gaps:
+            ui.line(ui.t('Docker checks were disabled with --docker off.', '已通过 --docker off 关闭 Docker 检查。'))
+        elif 'DOCKER_CURRENT_CONTAINER_ONLY' in docker.gaps:
+            ui.line(ui.t('This scan runs inside a container. Run webpatch scan on the host to check sibling containers.',
+                         '当前扫描位于容器内。请在宿主机运行 webpatch scan，以检查其他容器。'))
+    if docker.containers:
+        ui.line(ui.t(f'{len(docker.containers)} / {docker.listed_count} containers inspected · runtime safety remains UNKNOWN',
+                     f'已检查 {len(docker.containers)} / {docker.listed_count} 个容器 · 运行安全仍为 UNKNOWN'))
+    if docker.status in {'UNKNOWN', 'PARTIAL'}:
+        if any('PERMISSION' in g for g in docker.gaps):
+            ui.line(ui.t('Docker access was denied. Use an account allowed to read this socket; for the system Docker socket, retry with sudo.',
+                         '没有权限访问 Docker。请使用有该 socket 访问权限的账号；系统 Docker 可用 sudo 重新只读扫描。'))
+        else:
+            ui.line(ui.t('Docker checks are incomplete. Check that this local daemon is available and rerun the scan.',
+                         'Docker 检查未完成。请确认该本机 Docker 实例可访问后重新扫描。'))
+        for gap in docker.gaps:
+            if gap != 'DOCKER_OTHER_DAEMONS_AND_RUNTIME_IDENTITY_UNVERIFIED':
+                ui.line(gap, indent=4)
+    for item in docker.containers:
+        ui.line()
+        ui.line(f'{item.name}  [{item.state}]  {item.id[:12]}', tone='heading')
+        ui.line(ui.t('Image: ', '镜像：') + item.image, indent=4)
+        if item.overall == 'POTENTIALLY_AFFECTED':
+            ui.line(ui.t('ATTENTION · PHP package metadata is below a vendor fix boundary.',
+                         '需要处理 · PHP 包版本低于厂商修复线。'), indent=4, tone='danger')
+        elif item.packages or item.hints:
+            ui.line(ui.t('UNKNOWN · PHP / web-runtime evidence found; running code is not authenticated.',
+                         'UNKNOWN · 发现 PHP / Web 运行线索，尚未认证实际运行代码。'), indent=4)
+        else:
+            ui.line(ui.t('UNKNOWN · No PHP evidence found in the checked paths and metadata.',
+                         'UNKNOWN · 已检查的路径和元数据中未发现 PHP 线索。'), indent=4)
+        for package in item.packages:
+            rows = [a for a in item.assessments if a.package_id == package.id]
+            fixes = sorted({a.fixed_version for a in rows if a.version_status == 'BELOW_VENDOR_FIX' and a.fixed_version})
+            meets = rows and all(a.version_status == 'MEETS_VENDOR_FIX' for a in rows)
+            ui.line(f'{package.name} {package.version}' +
+                    (ui.t(' → vendor fix ', ' → 厂商修复线 ') + ', '.join(fixes) if fixes else
+                     ui.t(' [version meets fix]', ' [版本达到修复线]') if meets else ' [UNKNOWN]'), indent=4)
+        for hint in item.hints:
+            ui.line(hint, indent=4)
+        if item.state != 'running':
+            ui.line(ui.t('Container is not running; only stored file metadata was checked.',
+                         '容器未运行；本次只检查了保留的文件元数据。'), indent=4)
+        failed = [g for g in item.gaps if any(s in g for s in ('FAILED', 'UNREADABLE', 'INVALID', 'CHANGED', 'MISSING', 'UNIDENTIFIED'))]
+        if failed:
+            ui.line(ui.t('Some evidence could not be read or changed during the scan. Resolve these checks and rescan:',
+                         '部分证据读取失败或扫描期间发生变化，请处理后重新扫描：'), indent=4)
+            for gap in failed:
+                ui.line(gap, indent=6)
+            outcomes = {e.outcome for e in item.evidence if e.outcome != 'OK'}
+            if any('PERMISSION' in reason for reason in outcomes):
+                ui.line(ui.t('Access was denied for this container. Check the Docker access policy for this account.',
+                             '此容器的读取被拒绝，请检查当前账号的 Docker 访问策略。'), indent=6)
+            if any('TIMEOUT' in reason or 'TIME_LIMIT' in reason for reason in outcomes):
+                ui.line(ui.t('The Docker read timed out. Check daemon availability/load and retry.',
+                             'Docker 读取超时，请检查 Docker 服务是否可用或负载过高，再重试。'), indent=6)
+        if any('RULES_EXPIRED' in g for g in item.gaps):
+            ui.line(explain('RULES_EXPIRED', ui), indent=4)
+        if item.overall == 'POTENTIALLY_AFFECTED':
+            action = ui.t('Update this service’s image to include the vendor fixes, rebuild/redeploy, then rescan.',
+                          '更新此服务的镜像以包含厂商补丁，重建并重新部署后再扫描。')
+        elif item.packages or item.hints:
+            action = ui.t('Review this image’s Dockerfile/build source and PHP patch provenance. Custom PHP and Alpine need separate advisory verification.',
+                          '核对该镜像的 Dockerfile／构建来源和 PHP 补丁依据；自编译 PHP、Alpine 需另行核对适用公告。')
+        else:
+            action = ui.t('Match this container to your application inventory. If it is not a PHP service, no PHP repair is indicated here.',
+                          '核对这个容器承载的应用；若不是 PHP 服务，此处没有 PHP 修复对象。')
+        ui.line(ui.t('Next: ', '下一步：') + action, indent=4)
+        if details:
+            for gap in item.gaps:
+                ui.line(gap, indent=6, tone='muted')
+            for evidence in item.evidence:
+                ui.line(f'[{evidence.outcome}] {evidence.target}', indent=6, tone='muted')
+    if details and docker.endpoint:
+        ui.line(ui.t('Docker socket: ', 'Docker socket：') + docker.endpoint, tone='muted')
+    ui.line(ui.t('Read-only observations; no container exec, installation or restart. Other daemons and custom paths may remain unobserved.',
+                 '只读取证，未在容器中执行命令、安装或重启。其他 Docker 实例和自定义路径仍可能未覆盖。'), tone='muted')
 
 
 def render_plan(plan, ui, *, details=False):

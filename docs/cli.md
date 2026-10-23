@@ -11,7 +11,7 @@ webpatch scan
 webpatch scan --format json
 ```
 
-Run on the target system without root. `scan` does not execute PHP, probe websites or access container daemons. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
+Run on the target system without root. `scan` does not execute PHP or probe websites. Published 0.2.0 does not access container daemons; the development branch adds the local Docker observations described below. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
 
 The default text view shows a concise result, package assessments, missing evidence and next steps. Use `--details` for the complete coverage checks. JSON (`schema_version=2`) also includes package versions, runtime files and mappings, observed UNIX listeners, static configuration relationships, source audit, package trust, references and evidence digests. Legacy `coverage_gaps` strings remain available. Each structured check names its subjects, evidence, reason and next verification step; `VERIFIED` describes only that specific relationship. `OBSERVED`, `UNKNOWN`, `UNSUPPORTED` and `NOT_CHECKED` cannot authorize repair.
 
@@ -210,3 +210,24 @@ An interactive terminal is required for changes. The preparation summary lists t
 After confirmation the tool creates a private `session-<random>` directory under `/var/lib/webpatch` (or its explicitly configured supported state directory). Plans, preparation results, authenticated receipts and repair results are saved with mode 0600. No session is created for scan/dry-run or a declined initial confirmation. Preparation may already have restarted services if a later repair review is cancelled; receipts and recovery data remain available and cancellation does not undo preparation. Follow the printed continuation command or use `fix --prepared-receipt PATH --state-directory DIR`. Retirement/recovery still uses the authenticated receipt workflow documented above.
 
 Advanced operators can run `fix --review PATH --state-directory DIR` to interactively confirm an existing managed review; the saved document is revalidated by the same executor as `apply`. `fix --dry-run` performs only read-only diagnosis (no probe requests, prompts or session writes). `fix --format json` sends the interactive review to stderr and emits the final result on stdout; it does not remove confirmation. Exit 0 means VERIFIED_WITHIN_DECLARED_SCOPE only; blocked/cancelled/partial fix results return 4 and retain safe=false.
+
+## Local Docker discovery (development branch; not in published 0.2.0)
+
+From the host, `webpatch scan --lang zh` now automatically reads the first available conventional local Docker socket and lists running and stopped containers separately. No WebPatch installation inside a container is needed. Each container shows its name, image, PHP package/path/header/process evidence, missing checks and a next action. A host with no PHP packages can still report affected container packages.
+
+```sh
+webpatch scan --lang zh
+webpatch scan --details --lang zh
+webpatch scan --docker-socket /run/user/1000/docker.sock --lang zh
+webpatch scan --docker off --lang zh
+```
+
+`--docker off` limits this command to the original current-system scan. A scan launched inside a container does not inspect siblings. `scan-node`, `plan` and `fix` do not gain Docker discovery or container repair. The published 0.2.0 installer does not deliver this development change yet.
+
+The adapter uses bounded GET/HEAD requests over a local Unix socket; it never uses exec, starts/restarts containers, installs tools, or reads process arguments/environment. Files are read through the archive API into memory, without extracting them to disk. Ubuntu/Debian package versions reuse the existing reviewed vendor rules; custom PHP header versions and Alpine packages remain unauthenticated hints with UNKNOWN risk. Updating containers belongs in the reviewed image/build/deployment workflow.
+
+Docker access denial is shown explicitly: use an account permitted to read the intended socket. For the system daemon, an administrator can rerun with `sudo webpatch scan --lang zh`; rootless users should specify their own socket. Do not change socket permissions to make it publicly accessible. No socket, an empty daemon, an unavailable daemon, a stopped container and a failed file read have different results. `--details` expands these records; it does not extend detection.
+
+The default checks one daemon: `/var/run/docker.sock`, `/run/docker.sock`, `/run/user/<uid>/docker.sock`, then `$XDG_RUNTIME_DIR/docker.sock`. Remote Docker contexts/DOCKER_HOST, other daemons, Kubernetes/containerd and arbitrary custom paths are not automatically covered. Limits are 64 containers, a 45-second Docker budget, 3-second request timeout, 4 MiB JSON and 8 MiB file content. Limit hits and observable container changes remain explicit gaps. Stopped containers are inspected through stored metadata only.
+
+JSON schema 2 gains an optional `docker` observation with endpoint, listed_count, per-container records and evidence hashes. `OBSERVED` describes the list/read observations, never safety. The host inventory and assessments remain separate. A container below a matched vendor fix boundary also produces exit 1 / POTENTIALLY_AFFECTED; otherwise scan retains exit 2 / UNKNOWN. Every safety flag remains false, including when versions meet the fix boundary. Runtime identity, actual loaded code, routes and patch provenance still require independent verification.

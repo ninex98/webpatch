@@ -173,6 +173,34 @@ class Assessment:
     runtime_status: str = "UNKNOWN"
 
 
+@dataclass
+class ContainerObservation:
+    id: str
+    name: str
+    image: str
+    image_id: str
+    state: str
+    environment: Environment | None = None
+    packages: list[Package] = field(default_factory=list)
+    assessments: list[Assessment] = field(default_factory=list)
+    hints: list[str] = field(default_factory=list)
+    gaps: list[str] = field(default_factory=list)
+    evidence: list[Evidence] = field(default_factory=list)
+    overall: str = "UNKNOWN"
+    safe: bool = False
+
+
+@dataclass
+class DockerReport:
+    status: str
+    endpoint: str | None = None
+    listed_count: int = 0
+    containers: list[ContainerObservation] = field(default_factory=list)
+    gaps: list[str] = field(default_factory=list)
+    evidence: list[Evidence] = field(default_factory=list)
+    safe: bool = False
+
+
 @dataclass(frozen=True)
 class Report:
     schema_version: int
@@ -187,6 +215,7 @@ class Report:
     safe: bool = False
     apt_sources: dict | None = None
     package_trust: dict | None = None
+    docker: DockerReport | None = None
 
 
 @dataclass(frozen=True)
