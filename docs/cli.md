@@ -91,7 +91,7 @@ sudo webpatch prepare-scope preparation.json --confirm-sha256 REVIEWED_PREPARATI
 
 ## Managed package repair
 
-**Public `apply` accepts only an exactly confirmed managed review.** Its internal native baseline passed all 17 jobs at `2d8132c`; installed CLI acceptance for the newly enabled entry is tracked in the [development status](development-status.md). Supported profiles are Ubuntu 22.04/php8.1, Ubuntu 24.04/php8.3, Debian 12/php8.2 and Debian 13/php8.4, amd64 official same-branch packages, stable FPM pools or standard Apache mod_php. No container in-place repair.
+**Public `apply` accepts only an exactly confirmed managed review.** Its installed CLI passed the eight supported native service profiles; exact source and matrix results are recorded in the [final acceptance](../evidence/final-acceptance/README.md). Supported profiles are Ubuntu 22.04/php8.1, Ubuntu 24.04/php8.3, Debian 12/php8.2 and Debian 13/php8.4, amd64 official same-branch packages, stable FPM pools or standard Apache mod_php. No container in-place repair.
 
 Prepare every affected service and declare a probe for each pool. Deployment of the shipped collector and its web routing is an explicit administrator action: root-owned files/parents, loopback-only access, uncached PHP script, no application side effects. `probe-template` only prints it. Default scans never create or request a page. A successful preparation result contains `.receipt`; save that complete signed object as `startup.json`, without editing it. The signing key and private snapshots stay in the local state directory.
 

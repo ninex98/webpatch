@@ -1,0 +1,258 @@
+[
+  {
+    "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "eb4f87632ac41cf170bc5bb5f986a34279758a43bf1a7addaa22b48b13626141",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "73fcb99cf846a04e6a6124675d6dc853cb90d25e63ca6d8e8741394800e07d5a"
+  },
+  {
+    "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "e5e6acbaf217e4da77dde9db2705470df7529530db0d58894fcd2bed60d4f214",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "d3300c682fb402d6e5172954ebae2a668025ad27f6be67006ef7b32b6488ae8d"
+  },
+  {
+    "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "0d5f84c745f8da61e78079eb25150d10b6768f5c21c3a88b51ccd5f6cbf3ee08",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "1b22d93486a3b7121d10846ede0ff3318bc1d9f370f9a062cab5b729e1a616dc"
+  },
+  {
+    "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "42185ac0e7b49ea7431e94ba4a673ba4a249f5b34b564835fe8e20cd74bad465",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "4e21df5243c4444441cbb67fdecb7700b3afe9e1d9017a47b3b5fd73854be34a"
+  },
+  {
+    "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "d43c2dd699fdfecc2fa90621ccf8d2aceab043c33e9af22d5f2f0940178bbc36",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "f5e4c7f8a0190a0ea4ead6f98f3fd0da3551a21247868b40ee222008fcb87c37"
+  },
+  {
+    "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "dec7f56f934b7d738cefe5fc76fae9172fe212652149b41733d2f506b5166e54",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "04e6abc8c1a6142be6ff903b456dbeeff2962053aa4cdd4b67b9cf14ca2c96d2"
+  },
+  {
+    "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "1b35d9f093893425f1e27825407d75a2526e87d38455235d6947b8da18c04c6c",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "2b8cdad112cb26e437a22d99231265b3ca648c1c448de4f0fcba2df7d2ab49a3"
+  },
+  {
+    "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "360989f5974d080663233cf5a8615b33d24b8c027a3c4fe82f0b43f85be0fb45",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "ed67048b99df121b25f713e15bfcde93babb135457ef5f6a5f276d5f019aac0b"
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-apache/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "ae14fafce90d6e639dd92277c76274c76557e2c4764570f99389f30fbbdbd499",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "c527862960e27f94225586c9120a01bda95f454036ca350f237aa8f1f304050c"
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-apache/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "6ad453687e533df5338a2dfd68962bdd9aba9f725fd920eb41f6a61a4828709d",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "56567f2b284ec653741239c476c9f8fadab7660a9b07dec6410c31b8c3fa8bb6"
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-fpm/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "d67e2bc82e38b0072eacb275bd527d9cc76d0dc885719f2ffd54f134923bcb8e",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "443c0179b3a7b9f3368443a23ff2ee212dd9e77e03b43d25da433d88672deb5e"
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-fpm/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "ffb680ce88d848782338062aa4717ad296ce2b34905a8c2ce6b1dfa9574e09f6",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "5dc32f2e88971573f26c06dc278fc64ab7ec2b6dd7653b48ea4b1b7259957d4b"
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-apache/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "07a6514df03c050774537c495e72984b58b9875d49a3be80b73d0e06c9466366",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "92b65aeefe6782b35a409453f1ed29366dfd0bda9a34db853f261e54e54710cd"
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-apache/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "6ad40f44b7a293c077fdbbe66e03b7b4a8fd8f1182598d411d70ea12ce4abafa",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "985ca2195a87e8f3c8c55705ef529e688352140f7de41634e80f5889991d0742"
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-fpm/ci-evidence/repair-lifecycle/post-health-failure/attempt-1/result.json",
+    "raw_sha256": "669d4841ce0e518491e9dfceae751a3229ed8d4335df25fad5ab828bff064fb8",
+    "status": "PARTIAL",
+    "changed": true,
+    "reasons": [
+      "POST_REPAIR_VERIFICATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "c67fbf219d9fe87a9239db10df2c0e0e1c9910558a92d1c3c7aad616edf928ba"
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-fpm/ci-evidence/repair-lifecycle/success/attempt-1/result.json",
+    "raw_sha256": "1cd4e999355acb0b5d3520162bc267c52b1416e1658dfa315df9ce946f71ef17",
+    "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+    "changed": true,
+    "reasons": [],
+    "revalidation": {
+      "admission_status": "READY_FOR_CONFIRMATION",
+      "blockers": [],
+      "changed_plan_fields": [],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    },
+    "plan_sha256": "b88694432bb5888e82652296c0d7d37cdb4b83ca24cfb7e35b17a3d1a949cdf4"
+  }
+]

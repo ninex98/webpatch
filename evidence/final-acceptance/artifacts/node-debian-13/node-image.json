@@ -1,0 +1,66 @@
+[
+    {
+        "Id": "sha256:fa3f912eee4e876c93715b6923df57e8fd4eb42226caa25e07cc6731d366227a",
+        "RepoTags": [
+            "webpatch-node:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-23T02:10:18.468990653Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONDONTWRITEBYTECODE=1"
+            ],
+            "Cmd": [
+                "python3",
+                "tests/integration/node_check.py"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 287841251,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/ascpzkhv6l395g5m4z00xe0rr/diff:/var/lib/docker/overlay2/wta59xiwlhw2mf855dcmp3227/diff:/var/lib/docker/overlay2/gsw0ssa3otlo8qawzgi0vi8yd/diff:/var/lib/docker/overlay2/4885e75ef914232b18a367df5c99ca7d9fc2c1dc73d2aa8240df6562da6f9b3f/diff",
+                "MergedDir": "/var/lib/docker/overlay2/6ww8ljw6iz6431nin8jyjs7qd/merged",
+                "UpperDir": "/var/lib/docker/overlay2/6ww8ljw6iz6431nin8jyjs7qd/diff",
+                "WorkDir": "/var/lib/docker/overlay2/6ww8ljw6iz6431nin8jyjs7qd/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:0fceba70669334d0c2890d8a9c5e8f0a8c153fde2d921de69084f3360e741c08",
+                "sha256:3358d11eadce1cecfe35bac98381405c6cd2f3b0709cdaabba059c69d066b9dc",
+                "sha256:24aacf6d565f87a2e2ab9da314ab93e7fa45023d5f7dc83b0a05a3304da01a5d",
+                "sha256:ba92beaed5e6c8d71fadf17011d26d633726cf6668b6d05071ae4007e7ee6b75",
+                "sha256:02158caf8423fac763d7728a194b9843d5db84ee26411a957ea08404e690bbc0"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-23T02:10:19.4403099Z"
+        }
+    }
+]

@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "case": "changed isolated copy of real installed script rejected",
+  "blockers": [
+    "INSTALLED_CONTROL_CHANGED_OR_UNREADABLE:/var/lib/dpkg/info/php8.1-fpm.postinst"
+  ]
+}

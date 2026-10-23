@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "scope": "Debian VM service discovery and signed archive identity only",
+  "package": "php8.2-fpm",
+  "service": "php8.2-fpm.service",
+  "runtime_count": 4,
+  "environment": {
+    "os_id": "debian",
+    "version_id": "12",
+    "codename": "bookworm",
+    "scope": "host_or_unidentified_container",
+    "mount_namespace": "mnt:[4026531841]",
+    "scope_sha256": "e1a451b397d9fe90e99a7b5614c058d84f690a0a5f5c1005a93fe2bdaf931cda"
+  }
+}

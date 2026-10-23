@@ -1,0 +1,5 @@
+{
+  "/etc/apt/sources.list": "8ce6407d5487bed332b5fcb4aab26dacf3f516d811c26792efb0c67f06f1958b",
+  "/etc/apt/sources.list.d/microsoft-prod.list": "b1603241c9619c02611a77a663f55e726608bde079c4f559bcccdf73847a45c8",
+  "/etc/apt/sources.list.d/ubuntu.sources": "4508181e0dd5578c33d1247db48ab4847910b25da85e0789c8e7b3140d1fb289"
+}

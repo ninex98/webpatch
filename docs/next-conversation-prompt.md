@@ -1,24 +1,17 @@
-# 连续四阶段开发交接 / Continuous four-phase handoff
+# 已完成四阶段后的维护交接 / Maintenance after four-phase completion
 
-继续 `/Users/ninex/Projects/hll-ecosystem/apps/webpatch`，仓库 ninex98/webpatch。完整阅读 AGENTS.md、docs/design.md、README.md、docs/development-status.md、docs/phase-3.md、docs/phase-4.md，以及最新阶段证据。先核对工作区/远端/Actions，不将历史验收当当前证明。
+项目 `/Users/ninex/Projects/hll-ecosystem/apps/webpatch`，仓库 ninex98/webpatch。先读取 AGENTS.md、docs/design.md、README.md、docs/development-status.md 和 evidence/final-acceptance/README.md，再检查实际 Git/远端/Actions 与未提交工作。
 
-用户已明确要求“继续直到所有功能全部完成”，并确认“按原设计四阶段推进，各扩展单独验收”。不要重做阶段 2D，也不再重复询问扩展范围。原阶段四交付为容器重建**建议**、独立 Debian 修复、Node.js adapter/rules；不包含自动镜像发布、npm 修复、公开签名 APT 仓库或正式 Release。
+用户要求的原设计四阶段已按有限支持范围完成；Debian、Node.js 和容器重建建议分别验收。最新功能/测试/CI 源码 941040c，Actions 39888070774 为 17/17 PASS：Python 3.10/3.12 各 617 tests、三格包/只读/建议容器、两格 Node、两格 Debian 归档、四格 Ubuntu VM 和四格 Debian QEMU 客体。后续文档/证据提交不改变受测实现；精确摘要、JUnit、环境、全部尝试和失败留存见最终证据。不要重新实现 2D/3A，也不要把历史待验收文字当当前进度。
 
-## 当前工作
+公开 apply 已启用，但只接受 schema 5 managed review 和具体 plan hash；完整证据、持锁重新审阅、类型化包操作、运行时/请求验证和审计不可绕过。诊断计划仍 schema 4、不可执行。报告 schema 2、collector 协议 3；旧 collector/收据必须重新生成。八格成功路径已通过安装后 /usr/bin/webpatch CLI，健康故障能力仅显式注入测试。
 
-源码已实现报告 schema 2、诊断计划 schema 4，以及 wrapper schema 1 / Plan schema 5 的受控修复审阅、持锁事务与修复后验证。公共 apply 的维护者门禁现已开启；仍不能通过环境、JSON 或 --yes 绕过精确确认和证据门禁。内核凭据 collector 协议 3；旧 collector/收据需重新准备。
+## 后续工作原则
 
-`2d8132c` 的 Actions 39883475413 已 17/17 PASS：两组 fixtures、三格包容器、两格 Node、两格 Debian 归档、四格 Ubuntu 和四格 Debian 独立生命周期。Ubuntu 实际升级/故障证据提交 c841096，Debian 独立留证 98a3071。
-
-公共入口已根据该基线开放精确确认。最新增量把八格成功路径改为安装后的 /usr/bin/webpatch apply，从 / 运行并验证错误 hash、实际升级、结果/退出码和禁止复用。最终 CLI CI 尚待完成，先检查 Git/Actions 和 evidence/phase-3h-public。
-
-d314ead 复验两格 Apache 在故障场景安装前遇到短命进程或模拟输入漂移，生产门禁正确阻断；CI 新增仅针对 changed=false 的明确观察竞争生成新计划，最多三次，每次留存。绝不放宽门禁、重试同一计划或重试已经 changed 的事务。完成新源码矩阵后收齐最终证据、文档/支持矩阵；不重做已验收阶段。
-
-## 持续约束
-
-- 默认 scan 只读、不执行 PHP/Node、不发 HTTP、不刷新/下载。显式探针和准备有独立能力及确认边界。
-- 不修改开发宿主 PHP/APT/系统包/服务，不访问生产目标修复；实际安装/服务测试仅 disposable 容器或 GitHub hosted VM/独立 Debian 客体，无 privileged 或宿主 root/proc/socket 挂载。
-- 每个独立小阶段先定范围与验收，保存日志/JUnit、环境及源码/制品摘要，立即提交。标题和正文均中文+英文。允许正常推送和 Actions；不强推、不重写远端历史，保留无关工作。
-- 原生检查依赖推送时可提交明确 CI_PENDING 检查点；失败后续修正，所有必需门禁通过才宣布完成。不要为消除 diff 空白警告改写原始日志。
-- 全局 safe=false；有限声明范围的验证不代表任意未来任务、隐藏实例、匿名代码或历史入侵不存在。不自动回滚或重试同一计划。
-- PHP/Node 规则至 2026-10-29 00:00 UTC，过期重新查阅官方来源，禁止只延长日期；不用真实漏洞利用。
+- 当前无未完成的四阶段必需验收；新增范围依用户后续任务实施。自动镜像发布、npm 修复、公开 APT 仓库/正式 Release 不属于已完成交付。
+- 默认 scan 只读、不执行 PHP/Node、不发 HTTP、不刷新/下载。显式探针、准备和包操作有独立能力及确认边界；不把开发授权等同于生产修复授权。
+- 不修改开发宿主 PHP/APT/系统包/服务；安装/服务测试仅 disposable 容器、GitHub hosted VM 或独立 Debian 客体，无 privileged 或宿主 root/proc/socket 挂载，不使用漏洞利用。
+- 每个新独立阶段先明确范围/验收，保留日志/JUnit、环境、源码/制品摘要，然后立即中英双语提交。允许正常推送和 Actions，不强推或重写历史，保留无关用户工作。
+- 不使用历史证据认证变化后的实现。需要远端验收可提交 CI_PENDING 检查点，失败后续修正，所有必需门禁通过才完成。
+- 全局 safe=false。未知消费者/配置/来源/实例继续阻断；无自动回滚，不复用已尝试计划。CI 的有限新计划重试仅针对未变更的明确观察竞争，每次保留，产品无此能力。
+- PHP/Node 规则到期时间 2026-10-29 00:00 UTC；到期重新查阅官方来源，禁止只延长日期。

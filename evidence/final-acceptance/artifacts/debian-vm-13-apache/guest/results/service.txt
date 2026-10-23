@@ -1,0 +1,4 @@
+MainPID=41534
+ActiveState=active
+SubState=running
+FragmentPath=/usr/lib/systemd/system/apache2.service

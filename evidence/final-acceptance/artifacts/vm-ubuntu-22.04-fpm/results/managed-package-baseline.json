@@ -1,0 +1,286 @@
+{
+  "source_cohort": "php8.1",
+  "before": [
+    [
+      "libc-bin",
+      "2.35-0ubuntu3.15",
+      "amd64",
+      "glibc",
+      "2.35-0ubuntu3.15",
+      "install ok installed"
+    ],
+    [
+      "man-db",
+      "2.10.2-1",
+      "amd64",
+      "man-db",
+      "2.10.2-1",
+      "install ok installed"
+    ],
+    [
+      "php8.1",
+      "8.1.2-1ubuntu2.26",
+      "all",
+      "php8.1",
+      "8.1.2-1ubuntu2.26",
+      "install ok installed"
+    ],
+    [
+      "php8.1-bcmath",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-bz2",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-cgi",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-cli",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-common",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-curl",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-dba",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-dev",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-enchant",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-fpm",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-gd",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-gmp",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-imap",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-interbase",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-intl",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-ldap",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-mbstring",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-mysql",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-odbc",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-opcache",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-pgsql",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-phpdbg",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-pspell",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-readline",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-snmp",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-soap",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-sqlite3",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-sybase",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-tidy",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-xml",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ],
+    [
+      "php8.1-xsl",
+      "8.1.2-1ubuntu2.26",
+      "all",
+      "php8.1",
+      "8.1.2-1ubuntu2.26",
+      "install ok installed"
+    ],
+    [
+      "php8.1-zip",
+      "8.1.2-1ubuntu2.28",
+      "amd64",
+      "php8.1",
+      "8.1.2-1ubuntu2.28",
+      "install ok installed"
+    ]
+  ],
+  "fixture_action": "Install current official cohort and reinstall its payloads plus libc-bin/man-db before evidence collection"
+}

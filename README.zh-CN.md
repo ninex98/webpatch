@@ -68,7 +68,7 @@ python3 -m venv .venv
 
 于 **2026-10-22** 在隔离的 **Ubuntu 24.04 / arm64 容器**中，从已安装的 CLI 采集。图中节选真实输出，仅增加视觉换行；此容器输出 `APT dry-run: NOT_RUN`。终端外观是展示设计，并非内置 TUI。[完整文本与采集说明](assets/readme/README.md)。
 
-诊断流程为**发现 → 判断 → 审阅**。独立的[受控维护流程](docs/cli.md#managed-package-repair)增加显式探针、经确认的服务准备、完整源码包组计划、持锁复核和修复后验证。内部原生矩阵已通过，刚开放的安装后 CLI 正在进行最终独立验收。
+诊断流程为**发现 → 判断 → 审阅**。独立的[受控维护流程](docs/cli.md#managed-package-repair)增加显式探针、经确认的服务准备、完整源码包组计划、持锁复核和修复后验证。安装后的 CLI 已在八个受支持的 Ubuntu/Debian 服务 profile 通过真实升级；显式重启后故障测试保持部分失败状态。
 
 ## 核心能力
 
@@ -85,8 +85,8 @@ python3 -m venv .venv
 
 | 环境 | 当前可用 | 边界 / 验证范围 |
 | :--- | :--- | :--- |
-| Ubuntu 22.04 / 24.04，官方 APT PHP | 发现、厂商版本对照、归档身份、主机 APT 模拟 | 仅官方直连源；托管 VM CI 覆盖 FPM 和 mod_php |
-| Debian 12 / 13，官方 PHP 包 | 发现、厂商版本对照、归档身份、APT 模拟和受控准备 | 独立归档与 FPM/mod_php 内部修复测试在 Debian QEMU 客体通过；安装后 CLI 待验收 |
+| Ubuntu 22.04 / 24.04，官方 APT PHP | 发现、归档身份、APT 模拟及经确认的同分支修复 | 官方 amd64 FPM/mod_php；四格托管 VM |
+| Debian 12 / 13，官方 PHP 包 | 发现、归档身份、APT 模拟及经确认的同分支修复 | 官方 amd64 FPM/mod_php；四格独立 Debian 客体及归档测试 |
 | Debian 12 / 13，官方 Node.js | 独立只读清单和两项运行时 CVE 规则 | 独立原生容器测试；无 npm 依赖审计或 Node 修复 |
 | Ubuntu / Debian Docker 容器内部 | 当前容器清单、重建建议 | 不原地修复、不做 APT 模拟；Docker CI 覆盖 Ubuntu 22.04 / 24.04、Debian 12 |
 | 从宿主机观察 Docker / containerd | 进程、命名空间和常见 socket 线索 | 不访问 daemon、不扫描镜像、不枚举容器集群 |
@@ -111,7 +111,7 @@ python3 -m venv .venv
 | :--- | :--- |
 | [CLI 参考](docs/cli.md)（English） | 命令、退出码、报告语义和本地打包 |
 | [架构与分阶段设计](docs/design.md) | 组件边界、威胁假设和验收门禁 |
-| [开发状态与证据](docs/development-status.md)（中文 / English） | 对应源码的验收、保留的失败记录与待完成门禁 |
+| [开发状态与证据](docs/development-status.md)（中文 / English） | 对应源码的验收、保留的失败记录及支持边界 |
 | [CI 工作流](.github/workflows/ci.yml) · [实时运行记录](https://github.com/ninex98/webpatch/actions) | 17 项：fixtures、包/Node/归档容器、四格 Ubuntu VM 和四格独立 Debian 客体 |
 | [视觉资源与终端记录](assets/readme/README.md)（English） | 可编辑 SVG、采集出处和可访问的文本 |
 
@@ -122,7 +122,7 @@ python3 -m venv .venv
 ## 路线图
 
 - **已实现：** 清单、Ubuntu/Debian 归档认证、APT 模拟、显式探针、受控准备、精确修复审阅、类型化事务和修复后验证。
-- **最终 CLI 验收待完成：** Ubuntu/Debian 内部升级/故障矩阵已 17/17 PASS，刚开放的安装后入口正在独立验证，见[当前状态](docs/development-status.md)。
+- **原设计四阶段已验收：** 只读发现/规划、有限确认式 Ubuntu 修复，以及独立 Debian 修复、Node 规则和容器建议，见[最终证据及源码摘要](evidence/final-acceptance/README.md)。
 - **独立扩展：** Node.js 运行时发现/规则和容器重建建议；自动镜像构建/发布、npm 修复及公开签名 APT 仓库不属于本次交付。
 
 原设计四阶段范围见[分阶段设计](docs/design.md)。有限测试站点通过不等于任意生产站点认证。

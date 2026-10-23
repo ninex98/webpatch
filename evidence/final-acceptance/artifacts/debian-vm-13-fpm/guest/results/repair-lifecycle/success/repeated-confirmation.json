@@ -1,0 +1,289 @@
+{
+  "status": "BLOCKED",
+  "changed": false,
+  "plan_sha256": "ed67048b99df121b25f713e15bfcde93babb135457ef5f6a5f276d5f019aac0b",
+  "reasons": [
+    "PLAN_ALREADY_ATTEMPTED_REQUIRES_NEW_REVIEW"
+  ],
+  "verification": null,
+  "revalidation": null,
+  "safe": false,
+  "owned_preparation_receipt": {
+    "hmac_sha256": "12c498985ffa9783f57c73dde4cc8f53c247d314a072e5df7803496d6ac6c13e",
+    "payload": {
+      "claim": "Read-only snapshot input bytes and effective PHP views for declared probes after controlled restart; not global safety.",
+      "expires_at": "2026-10-23T02:41:57.311354+00:00",
+      "implementation_sha256": "eee53a03a88f1d9e2dc8af5dc1f49520809fd5b09e057768d7bc6b33b01ad496",
+      "kind": "controlled_startup",
+      "overrides": [
+        {
+          "path": "/run/systemd/system/php8.4-fpm.service",
+          "service": "php8.4-fpm.service",
+          "sha256": "94aba2d2b5178818fe4cca0c3bfb0a15b224105b9c2122f6668ba35a30059e4e"
+        }
+      ],
+      "preparation_sha256": "54581060c0352cc2c7ceb0f2c6c7704a747e63736e8d9ccdf6fcd5d68333a6b8",
+      "prepared_at": "2026-10-23T02:12:08.475121+00:00",
+      "probes": [
+        {
+          "configuration": {
+            "effective_ini_baseline_sha256": "f8f9ef1cfa6e24779849b6c1dafae9231c73bfc8109a68e6fe2b62b3a1b7ea10",
+            "effective_ini_sha256": "fd0898844a1b6a886a4b38943d2fcf4e54e06f432d531766c620195b81baf350",
+            "extensions_sha256": "55482ddf70c6281055d28753c2348aa8edc2c97c931ade0153ae23e56a196bbc",
+            "ini_file": "/etc/php/8.4/fpm/php.ini",
+            "ini_scanned": [
+              "/etc/php/8.4/fpm/conf.d/10-opcache.ini",
+              "/etc/php/8.4/fpm/conf.d/10-pdo.ini",
+              "/etc/php/8.4/fpm/conf.d/20-calendar.ini",
+              "/etc/php/8.4/fpm/conf.d/20-ctype.ini",
+              "/etc/php/8.4/fpm/conf.d/20-exif.ini",
+              "/etc/php/8.4/fpm/conf.d/20-ffi.ini",
+              "/etc/php/8.4/fpm/conf.d/20-fileinfo.ini",
+              "/etc/php/8.4/fpm/conf.d/20-ftp.ini",
+              "/etc/php/8.4/fpm/conf.d/20-gettext.ini",
+              "/etc/php/8.4/fpm/conf.d/20-iconv.ini",
+              "/etc/php/8.4/fpm/conf.d/20-phar.ini",
+              "/etc/php/8.4/fpm/conf.d/20-posix.ini",
+              "/etc/php/8.4/fpm/conf.d/20-readline.ini",
+              "/etc/php/8.4/fpm/conf.d/20-shmop.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sockets.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sysvmsg.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sysvsem.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sysvshm.ini",
+              "/etc/php/8.4/fpm/conf.d/20-tokenizer.ini",
+              "/etc/php/8.4/fpm/conf.d/99-webpatch-probe.ini"
+            ],
+            "reviewed_directives": {
+              "max_multipart_body_parts": {
+                "state": "VENDOR_DEFAULT"
+              },
+              "memory_hard_limit_percent": {
+                "state": "ABSENT"
+              }
+            }
+          },
+          "expires_at": "2026-10-23T02:42:04.321827+00:00",
+          "pool_listener": "/run/php/webpatch-ci-extra.sock",
+          "receipt_sha256": "0028de888be5c481b2f313dfa1ba25de57c24b58c89d779ba7f839b217ea70d8",
+          "runtime_id": "db92f6bf55913bd84fdff6cea556df7c7c08da0fd9d4fcde51a1216f2205a0de:20920:9549",
+          "script": "/var/www/html/webpatch-extra.php",
+          "service": "php8.4-fpm.service",
+          "url": "http://127.0.0.1:18080/webpatch-extra.php"
+        },
+        {
+          "configuration": {
+            "effective_ini_baseline_sha256": "f8f9ef1cfa6e24779849b6c1dafae9231c73bfc8109a68e6fe2b62b3a1b7ea10",
+            "effective_ini_sha256": "fd0898844a1b6a886a4b38943d2fcf4e54e06f432d531766c620195b81baf350",
+            "extensions_sha256": "55482ddf70c6281055d28753c2348aa8edc2c97c931ade0153ae23e56a196bbc",
+            "ini_file": "/etc/php/8.4/fpm/php.ini",
+            "ini_scanned": [
+              "/etc/php/8.4/fpm/conf.d/10-opcache.ini",
+              "/etc/php/8.4/fpm/conf.d/10-pdo.ini",
+              "/etc/php/8.4/fpm/conf.d/20-calendar.ini",
+              "/etc/php/8.4/fpm/conf.d/20-ctype.ini",
+              "/etc/php/8.4/fpm/conf.d/20-exif.ini",
+              "/etc/php/8.4/fpm/conf.d/20-ffi.ini",
+              "/etc/php/8.4/fpm/conf.d/20-fileinfo.ini",
+              "/etc/php/8.4/fpm/conf.d/20-ftp.ini",
+              "/etc/php/8.4/fpm/conf.d/20-gettext.ini",
+              "/etc/php/8.4/fpm/conf.d/20-iconv.ini",
+              "/etc/php/8.4/fpm/conf.d/20-phar.ini",
+              "/etc/php/8.4/fpm/conf.d/20-posix.ini",
+              "/etc/php/8.4/fpm/conf.d/20-readline.ini",
+              "/etc/php/8.4/fpm/conf.d/20-shmop.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sockets.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sysvmsg.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sysvsem.ini",
+              "/etc/php/8.4/fpm/conf.d/20-sysvshm.ini",
+              "/etc/php/8.4/fpm/conf.d/20-tokenizer.ini",
+              "/etc/php/8.4/fpm/conf.d/99-webpatch-probe.ini"
+            ],
+            "reviewed_directives": {
+              "max_multipart_body_parts": {
+                "state": "VENDOR_DEFAULT"
+              },
+              "memory_hard_limit_percent": {
+                "state": "ABSENT"
+              }
+            }
+          },
+          "expires_at": "2026-10-23T02:42:04.321827+00:00",
+          "pool_listener": "/run/php/php8.4-fpm.sock",
+          "receipt_sha256": "e13f88b7e06c598cca6eabc1c481217f31bebef1a7d6d74f1197e32d7a8784b0",
+          "runtime_id": "db92f6bf55913bd84fdff6cea556df7c7c08da0fd9d4fcde51a1216f2205a0de:20922:9549",
+          "script": "/var/www/html/webpatch-proof.php",
+          "service": "php8.4-fpm.service",
+          "url": "http://127.0.0.1:18080/webpatch-proof.php"
+        }
+      ],
+      "rule_sha256": "5fee0430b093d1fff8145b727d9d61d0cade94d7b8fe8aa181c5f1b38e2b1c52",
+      "runtime_ids": [
+        "db92f6bf55913bd84fdff6cea556df7c7c08da0fd9d4fcde51a1216f2205a0de:20919:9544",
+        "db92f6bf55913bd84fdff6cea556df7c7c08da0fd9d4fcde51a1216f2205a0de:20920:9549",
+        "db92f6bf55913bd84fdff6cea556df7c7c08da0fd9d4fcde51a1216f2205a0de:20921:9549",
+        "db92f6bf55913bd84fdff6cea556df7c7c08da0fd9d4fcde51a1216f2205a0de:20922:9549"
+      ],
+      "scope_sha256": "db92f6bf55913bd84fdff6cea556df7c7c08da0fd9d4fcde51a1216f2205a0de",
+      "services": [
+        "php8.4-fpm.service"
+      ],
+      "snapshots": [
+        {
+          "files": [
+            {
+              "device": 65025,
+              "inode": 131654,
+              "path": "/etc/php/8.4/fpm/conf.d/10-opcache.ini",
+              "sha256": "771a555df8ff6f9c223aa992dbd2aff8ef50c47c662d3529558e91f9c43d7976"
+            },
+            {
+              "device": 65025,
+              "inode": 131655,
+              "path": "/etc/php/8.4/fpm/conf.d/10-pdo.ini",
+              "sha256": "b072d1e70a5173af7e968b4abf908e017f5f8675d30dda36ea7443dc410d2e5d"
+            },
+            {
+              "device": 65025,
+              "inode": 131922,
+              "path": "/etc/php/8.4/fpm/conf.d/20-calendar.ini",
+              "sha256": "0fbe835f25a303eb942760930f734275c2a5e60049835b0d9bd9f97c9b996d7d"
+            },
+            {
+              "device": 65025,
+              "inode": 131929,
+              "path": "/etc/php/8.4/fpm/conf.d/20-ctype.ini",
+              "sha256": "05e736f9509116eec00fe4fa1b4e0fea51a2fb311262cd46a35ea1f177eb9ff9"
+            },
+            {
+              "device": 65025,
+              "inode": 131944,
+              "path": "/etc/php/8.4/fpm/conf.d/20-exif.ini",
+              "sha256": "e7bbc905937019e082d5ad1dd6482b3bb9eaebc47c3939066e5099c1b7b5e9f5"
+            },
+            {
+              "device": 65025,
+              "inode": 131945,
+              "path": "/etc/php/8.4/fpm/conf.d/20-ffi.ini",
+              "sha256": "005d8a46015f79bc5e03e393e7c455eeb675e456515740537317235fa12458f9"
+            },
+            {
+              "device": 65025,
+              "inode": 131946,
+              "path": "/etc/php/8.4/fpm/conf.d/20-fileinfo.ini",
+              "sha256": "c8a2d1dd0161a50e0ddd031f0abc7a5acfe8559f5ec18423e567f519c456dfcc"
+            },
+            {
+              "device": 65025,
+              "inode": 131947,
+              "path": "/etc/php/8.4/fpm/conf.d/20-ftp.ini",
+              "sha256": "464d61d9d251d63efb02af8698c21125962a18992470080bf8929770292302f9"
+            },
+            {
+              "device": 65025,
+              "inode": 131948,
+              "path": "/etc/php/8.4/fpm/conf.d/20-gettext.ini",
+              "sha256": "f502d4781c78fff2b7db83e1f37db6c8bb4648ec0d2ce00decdc079a9b551738"
+            },
+            {
+              "device": 65025,
+              "inode": 131949,
+              "path": "/etc/php/8.4/fpm/conf.d/20-iconv.ini",
+              "sha256": "922d70e6a207418f4bf87c4dda8685cd19c278c50cf1332b0a11a33e7c32d893"
+            },
+            {
+              "device": 65025,
+              "inode": 131950,
+              "path": "/etc/php/8.4/fpm/conf.d/20-phar.ini",
+              "sha256": "fd62472e0bf8b260ed712068086a2a55b9dd71bf13b1f0e07897eeea3bf723e2"
+            },
+            {
+              "device": 65025,
+              "inode": 131951,
+              "path": "/etc/php/8.4/fpm/conf.d/20-posix.ini",
+              "sha256": "e1a5a7c827fc17ff94cf87beed916be62d6b025346b4a274adb8d835785109b0"
+            },
+            {
+              "device": 65025,
+              "inode": 131952,
+              "path": "/etc/php/8.4/fpm/conf.d/20-readline.ini",
+              "sha256": "fa6d93d1de1704dd7b40708204dec039308bd867d549c4cf4aef597d40d4394f"
+            },
+            {
+              "device": 65025,
+              "inode": 131953,
+              "path": "/etc/php/8.4/fpm/conf.d/20-shmop.ini",
+              "sha256": "134aafee92de1f650b7eb500cd6336bd33149bdd3fab4fba939894fc7ffc8193"
+            },
+            {
+              "device": 65025,
+              "inode": 131954,
+              "path": "/etc/php/8.4/fpm/conf.d/20-sockets.ini",
+              "sha256": "eb31eeb6aeb34f31c1c695dbac0c9a69f909874f01341679382da0646641318c"
+            },
+            {
+              "device": 65025,
+              "inode": 131955,
+              "path": "/etc/php/8.4/fpm/conf.d/20-sysvmsg.ini",
+              "sha256": "ab104d16fcb223c3fff2af1880490f879e940561732d66571f69a15d498321d8"
+            },
+            {
+              "device": 65025,
+              "inode": 131956,
+              "path": "/etc/php/8.4/fpm/conf.d/20-sysvsem.ini",
+              "sha256": "2f7f5db8fddca372e034f3c7bb34f5abd861621fa5282bd0808bd320e2867e85"
+            },
+            {
+              "device": 65025,
+              "inode": 131957,
+              "path": "/etc/php/8.4/fpm/conf.d/20-sysvshm.ini",
+              "sha256": "4218981bb40ed218b01846cbdc85b436133859b2b051f740f992db14a702b2fc"
+            },
+            {
+              "device": 65025,
+              "inode": 131958,
+              "path": "/etc/php/8.4/fpm/conf.d/20-tokenizer.ini",
+              "sha256": "5915e8a8256d4ba7b8b021ce1bcb9456ae86cd98e1100b6b57e098ccf169e6a9"
+            },
+            {
+              "device": 65025,
+              "inode": 131959,
+              "path": "/etc/php/8.4/fpm/conf.d/99-webpatch-probe.ini",
+              "sha256": "615bb0232f81a68c86c98dc30dc18478a25b47a348f25688ff4c58b9b7862e9d"
+            },
+            {
+              "device": 65025,
+              "inode": 131960,
+              "path": "/etc/php/8.4/fpm/php-fpm.conf",
+              "sha256": "19247a2070ae2adef7e29749262fe37134285617c708a889516e73f004cf5d50"
+            },
+            {
+              "device": 65025,
+              "inode": 131961,
+              "path": "/etc/php/8.4/fpm/php.ini",
+              "sha256": "f517c8bc259b83f445c57611b51bbb6f7fa98fd9a249393bbb99338568ae2e0a"
+            },
+            {
+              "device": 65025,
+              "inode": 131963,
+              "path": "/etc/php/8.4/fpm/pool.d/webpatch-ci-extra.conf",
+              "sha256": "8115d48e831e5d19d86cb5dd4862b5c71b64fee9d75b2cca3b36ab485260ee62"
+            },
+            {
+              "device": 65025,
+              "inode": 131964,
+              "path": "/etc/php/8.4/fpm/pool.d/www.conf",
+              "sha256": "2111e51cd74a0ba69c5ee1f7801e2cb35d2999a43cd90e15170e604e9ba148e9"
+            }
+          ],
+          "root": "/etc/php/8.4/fpm",
+          "service": "php8.4-fpm.service",
+          "snapshot": "/var/lib/webpatch-repair-success/snapshots/a5d8aa8bc648c363150bf82446e276858f1f91d92991bc4d4883da1dc52cdcf0/tree-0"
+        }
+      ],
+      "state_sha256": "e37cb5ab9d36b73682a582750a724fc221c3fd787756ce5e8c7f3d0a06c9e633",
+      "static_inputs_sha256": "5200aa8807d1ba4403ac79e40442c2e5b038d2df5aa15ea56a6a920ec88d72f0",
+      "status": "VERIFIED_CONTROLLED_STARTUP"
+    },
+    "schema_version": 1
+  }
+}

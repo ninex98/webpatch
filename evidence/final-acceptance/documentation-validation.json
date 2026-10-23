@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "base_head": "da666b1103820c806e01eebf3682d39eb1476a84",
+  "native_source": "941040c06cb29fc73cf64dcf81a78867d033f3e8",
+  "native_run": 39888070774,
+  "checks": [
+    "local Markdown file links",
+    "eight current CLI help paths",
+    "documentation diff check"
+  ],
+  "document_sha256": {
+    "README.md": "e62c1ddbdd29be40b28986f2a06bb1f83145e77978ab5eb15d4140108e1dd97f",
+    "README.zh-CN.md": "0e6cb8c1bab1bb635899bd347542375e46e04d663fdfecc28d9c2379ce5964f3",
+    "CONTRIBUTING.md": "db06996d938036b7c70cab5ea91335674c6ced437e3811b49978e4189ffe6b55",
+    "docs/cli.md": "6998a9e5feee5037d333fc5eabd342cf6c169dc96243cfc61d5d06cbad6db69d",
+    "docs/phase-4.md": "4604af50d519d97a8b191b571cc83f90cd499ee147e4e21deed99f19d21a1b0a",
+    "docs/development-status.md": "636fccdd2eda15cb1595620020a47d7d64d84f1d6fc0749f25774b123f2f142e",
+    "docs/phase-3.md": "2e436839997342f1f29551a9b50f4b46de19a77e3c485599aee740960f0811d6",
+    "docs/phase-2d.md": "2188880528cfac4d398edc0b19d6406c98a1d329ce4e93577a81d438164cd69a",
+    "docs/design.md": "e06ea6960ea0bf20ac6b596729bed1b5d2eb6bcf6f3f945c91df16b70f7cc4fe",
+    "docs/next-conversation-prompt.md": "30a46d2518de41a1490aeca5b754442ce4486c83fcbb6f236cc7a3fafc2a87a9",
+    "evidence/final-acceptance/README.md": "65bd2266e7701ec5854b0514ff046bc7a149d4a752986821a75659d008d5c693"
+  },
+  "boundary": "Final documentation-only changes are checked locally; native artifacts retain their original source and binary hashes."
+}

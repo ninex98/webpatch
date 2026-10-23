@@ -1,0 +1,4 @@
+MainPID=41514
+ActiveState=active
+SubState=running
+FragmentPath=/usr/lib/systemd/system/php8.4-fpm.service

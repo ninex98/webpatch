@@ -1,4 +1,6 @@
-# 阶段三：有限修复前置接口 / Phase three prerequisite interfaces
+# 阶段三：有限修复接口 / Phase three maintenance interfaces
+
+以下小节保留各增量阶段的当时边界；其中“后续/待验收/公开入口禁用”是历史状态。当前严格确认入口已完成八格已安装 CLI 验收，最终范围和源码见 [最终验收](../evidence/final-acceptance/README.md) 与 [操作说明](cli.md)。
 
 ## 3A.1 部署清单核对
 
@@ -158,10 +160,10 @@ jammy 的实际旧→新诊断只新增 max_multipart_body_parts；noble 的对�
 
 启用后的路径只接受 schema 5 managed review，经内部事务桥重新验证；错误/缺失确认、重复 JSON key、NaN/Infinity、未知字段和能力缺失都不能执行。注入 reader 必须另外显式注入 package controller、simulator、probe 和 journal，即使它继承 LocalSystem。成功返回 0 只代表声明范围验证通过，所有失败/部分结果均不等于安全。
 
-## 3H.1 公开严格确认入口（最终 CLI 验收待完成）
+## 3H.1 公开严格确认入口
 
 `2d8132c` 的 Actions 39883475413 内部矩阵已 17/17 PASS（Ubuntu 四格和 Debian 四格实际升级/故障），证据见 evidence/phase-3g-accepted 与 phase-4c-accepted。据此开放 `apply <managed-review.json> --confirm-sha256 <plan_sha256>`，缺少文件或确认继续无 I/O 拒绝；严格类型化合同、完整复核和所有 UNKNOWN 阻断保持。
 
 新的八格成功路径改为调用已安装 `/usr/bin/webpatch`，从 `/` 运行，不依赖源码目录/PYTHONPATH；验证精确确认、真实升级、JSON/退出码和禁止同计划重试。故障注入使用明确测试能力，生产入口没有故障开关。包内操作文档在只读容器逐字节核对。
 
-复验已观察到短命进程消失和模拟输入竞争导致安装前正确阻断。CI 仅在 changed=false、LOCKED_REVALIDATION_FAILED 且原因限定为这些观察竞争时最多生成三份新计划；每份计划、结果和审计独立留存。发生变更、健康失败、过期、源异常、单纯依赖变化等均不进入重试。产品没有此重试能力，继续禁止复用同一计划。最终公开入口验收必须以本次新源码矩阵为准。
+复验已观察到短命进程消失和模拟输入竞争导致安装前正确阻断。CI 仅在 changed=false、LOCKED_REVALIDATION_FAILED 且原因限定为这些观察竞争时最多生成三份新计划；每份计划、结果和审计独立留存。发生变更、健康失败、过期、源异常、单纯依赖变化等均不进入重试。产品没有此重试能力，继续禁止复用同一计划。八格已安装公开 CLI 验收结果和所有尝试见 evidence/phase-3h-accepted；最终矩阵见 evidence/final-acceptance。

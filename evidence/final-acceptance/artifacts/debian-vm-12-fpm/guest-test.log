@@ -1,0 +1,289 @@
+Get:1 https://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 https://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 https://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+Get:4 https://deb.debian.org/debian bookworm/main Translation-en [6107 kB]
+Get:5 https://security.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+Get:6 https://security.debian.org/debian-security bookworm-security/main amd64 Packages [355 kB]
+Get:7 https://security.debian.org/debian-security bookworm-security/main Translation-en [221 kB]
+Get:8 https://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+Get:9 https://deb.debian.org/debian bookworm-updates/main Translation-en [5448 B]
+Fetched 15.7 MB in 1s (13.3 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+gpgv is already the newest version (2.2.40-1.1+deb12u2).
+curl is already the newest version (7.88.1-10+deb12u15).
+The following additional packages will be installed:
+  nginx-common php-common php8.2-cli php8.2-common php8.2-opcache
+  php8.2-readline
+Suggested packages:
+  fcgiwrap nginx-doc ssl-cert php-pear
+The following NEW packages will be installed:
+  nginx nginx-common php-cli php-common php8.2-cli php8.2-common php8.2-fpm
+  php8.2-opcache php8.2-readline
+0 upgraded, 9 newly installed, 0 to remove and 1 not upgraded.
+Need to get 5238 kB of archives.
+After this operation, 23.1 MB of additional disk space will be used.
+Get:1 https://deb.debian.org/debian bookworm/main amd64 php-common all 2:93 [13.1 kB]
+Get:2 https://deb.debian.org/debian bookworm/main amd64 php-cli all 2:8.2+93 [4108 B]
+Get:3 https://security.debian.org/debian-security bookworm-security/main amd64 nginx-common all 1.22.1-9+deb12u10 [115 kB]
+Get:4 https://security.debian.org/debian-security bookworm-security/main amd64 nginx amd64 1.22.1-9+deb12u10 [531 kB]
+Get:5 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-common amd64 8.2.35-1~deb12u1 [693 kB]
+Get:6 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-opcache amd64 8.2.35-1~deb12u1 [346 kB]
+Get:7 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-readline amd64 8.2.35-1~deb12u1 [12.5 kB]
+Get:8 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-cli amd64 8.2.35-1~deb12u1 [1756 kB]
+Get:9 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-fpm amd64 8.2.35-1~deb12u1 [1766 kB]
+Preconfiguring packages ...
+Fetched 5238 kB in 0s (19.8 MB/s)
+Selecting previously unselected package nginx-common.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 20804 files and directories currently installed.)
+Preparing to unpack .../0-nginx-common_1.22.1-9+deb12u10_all.deb ...
+Unpacking nginx-common (1.22.1-9+deb12u10) ...
+Selecting previously unselected package nginx.
+Preparing to unpack .../1-nginx_1.22.1-9+deb12u10_amd64.deb ...
+Unpacking nginx (1.22.1-9+deb12u10) ...
+Selecting previously unselected package php-common.
+Preparing to unpack .../2-php-common_2%3a93_all.deb ...
+Unpacking php-common (2:93) ...
+Selecting previously unselected package php8.2-common.
+Preparing to unpack .../3-php8.2-common_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-common (8.2.35-1~deb12u1) ...
+Selecting previously unselected package php8.2-opcache.
+Preparing to unpack .../4-php8.2-opcache_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-opcache (8.2.35-1~deb12u1) ...
+Selecting previously unselected package php8.2-readline.
+Preparing to unpack .../5-php8.2-readline_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-readline (8.2.35-1~deb12u1) ...
+Selecting previously unselected package php8.2-cli.
+Preparing to unpack .../6-php8.2-cli_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-cli (8.2.35-1~deb12u1) ...
+Selecting previously unselected package php-cli.
+Preparing to unpack .../7-php-cli_2%3a8.2+93_all.deb ...
+Unpacking php-cli (2:8.2+93) ...
+Selecting previously unselected package php8.2-fpm.
+Preparing to unpack .../8-php8.2-fpm_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-fpm (8.2.35-1~deb12u1) ...
+Setting up php-common (2:93) ...
+Created symlink /etc/systemd/system/timers.target.wants/phpsessionclean.timer → /lib/systemd/system/phpsessionclean.timer.
+Setting up php8.2-common (8.2.35-1~deb12u1) ...
+
+Creating config file /etc/php/8.2/mods-available/calendar.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/ctype.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/exif.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/fileinfo.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/ffi.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/ftp.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/gettext.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/iconv.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/pdo.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/phar.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/posix.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/shmop.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/sockets.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/sysvmsg.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/sysvsem.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/sysvshm.ini with new version
+
+Creating config file /etc/php/8.2/mods-available/tokenizer.ini with new version
+Setting up php8.2-opcache (8.2.35-1~deb12u1) ...
+
+Creating config file /etc/php/8.2/mods-available/opcache.ini with new version
+Setting up php8.2-readline (8.2.35-1~deb12u1) ...
+
+Creating config file /etc/php/8.2/mods-available/readline.ini with new version
+Setting up nginx-common (1.22.1-9+deb12u10) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+Setting up php8.2-cli (8.2.35-1~deb12u1) ...
+update-alternatives: using /usr/bin/php8.2 to provide /usr/bin/php (php) in auto mode
+update-alternatives: using /usr/bin/phar8.2 to provide /usr/bin/phar (phar) in auto mode
+update-alternatives: using /usr/bin/phar.phar8.2 to provide /usr/bin/phar.phar (phar.phar) in auto mode
+
+Creating config file /etc/php/8.2/cli/php.ini with new version
+Setting up nginx (1.22.1-9+deb12u10) ...
+Upgrading binary: nginx.
+Setting up php8.2-fpm (8.2.35-1~deb12u1) ...
+
+Creating config file /etc/php/8.2/fpm/php.ini with new version
+Created symlink /etc/systemd/system/multi-user.target.wants/php8.2-fpm.service → /lib/systemd/system/php8.2-fpm.service.
+Setting up php-cli (2:8.2+93) ...
+update-alternatives: using /usr/bin/php.default to provide /usr/bin/php (php) in auto mode
+update-alternatives: using /usr/bin/phar.default to provide /usr/bin/phar (phar) in auto mode
+update-alternatives: using /usr/bin/phar.phar.default to provide /usr/bin/phar.phar (phar.phar) in auto mode
+Processing triggers for man-db (2.11.2-2) ...
+Processing triggers for php8.2-cli (8.2.35-1~deb12u1) ...
+Processing triggers for php8.2-fpm (8.2.35-1~deb12u1) ...
+Get:1 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-fpm amd64 8.2.35-1~deb12u1 [1766 kB]
+Fetched 1766 kB in 0s (7314 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.2-fpm_8.2.35-1~deb12u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+dpkg-deb: building package 'webpatch' in '/home/webpatch/work/dist/webpatch_0.1.0_all.deb'.
+/home/webpatch/work/dist/webpatch_0.1.0_all.deb
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  webpatch
+0 upgraded, 1 newly installed, 0 to remove and 1 not upgraded.
+Need to get 0 B/105 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Get:1 /home/webpatch/work/dist/webpatch_0.1.0_all.deb webpatch all 0.1.0 [105 kB]
+Selecting previously unselected package webpatch.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21000 files and directories currently installed.)
+Preparing to unpack .../dist/webpatch_0.1.0_all.deb ...
+Unpacking webpatch (0.1.0) ...
+Setting up webpatch (0.1.0) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 7 reinstalled, 0 to remove and 1 not upgraded.
+Need to get 1995 kB/6569 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Get:1 https://deb.debian.org/debian bookworm/main amd64 libc-bin amd64 2.36-9+deb12u14 [609 kB]
+Get:2 https://deb.debian.org/debian bookworm/main amd64 man-db amd64 2.11.2-2 [1386 kB]
+Fetched 1995 kB in 0s (16.0 MB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21055 files and directories currently installed.)
+Preparing to unpack .../libc-bin_2.36-9+deb12u14_amd64.deb ...
+Unpacking libc-bin (2.36-9+deb12u14) over (2.36-9+deb12u14) ...
+Setting up libc-bin (2.36-9+deb12u14) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21055 files and directories currently installed.)
+Preparing to unpack .../0-man-db_2.11.2-2_amd64.deb ...
+Unpacking man-db (2.11.2-2) over (2.11.2-2) ...
+Preparing to unpack .../1-php8.2-cli_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-cli (8.2.35-1~deb12u1) over (8.2.35-1~deb12u1) ...
+Preparing to unpack .../2-php8.2-common_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-common (8.2.35-1~deb12u1) over (8.2.35-1~deb12u1) ...
+Preparing to unpack .../3-php8.2-fpm_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-fpm (8.2.35-1~deb12u1) over (8.2.35-1~deb12u1) ...
+Preparing to unpack .../4-php8.2-opcache_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-opcache (8.2.35-1~deb12u1) over (8.2.35-1~deb12u1) ...
+Preparing to unpack .../5-php8.2-readline_8.2.35-1~deb12u1_amd64.deb ...
+Unpacking php8.2-readline (8.2.35-1~deb12u1) over (8.2.35-1~deb12u1) ...
+Setting up php8.2-common (8.2.35-1~deb12u1) ...
+Setting up php8.2-opcache (8.2.35-1~deb12u1) ...
+Setting up php8.2-readline (8.2.35-1~deb12u1) ...
+Setting up man-db (2.11.2-2) ...
+Updating database of manual pages ...
+man-db.service is a disabled or a static unit not running, not starting it.
+Setting up php8.2-cli (8.2.35-1~deb12u1) ...
+Setting up php8.2-fpm (8.2.35-1~deb12u1) ...
+Processing triggers for php8.2-cli (8.2.35-1~deb12u1) ...
+Processing triggers for php8.2-fpm (8.2.35-1~deb12u1) ...
+Get:1 https://deb.debian.org/debian bookworm/main amd64 libc-bin amd64 2.36-9+deb12u14 [609 kB]
+Fetched 609 kB in 0s (7409 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/libc-bin_2.36-9+deb12u14_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://deb.debian.org/debian bookworm/main amd64 man-db amd64 2.11.2-2 [1386 kB]
+Fetched 1386 kB in 0s (10.3 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/man-db_2.11.2-2_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://deb.debian.org/debian bookworm/main amd64 php-common all 2:93 [13.1 kB]
+Fetched 13.1 kB in 0s (258 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php-common_2%3a93_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-cli amd64 8.2.35-1~deb12u1 [1756 kB]
+Fetched 1756 kB in 0s (6987 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.2-cli_8.2.35-1~deb12u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-common amd64 8.2.35-1~deb12u1 [693 kB]
+Fetched 693 kB in 0s (4030 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.2-common_8.2.35-1~deb12u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-opcache amd64 8.2.35-1~deb12u1 [346 kB]
+Fetched 346 kB in 0s (3059 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.2-opcache_8.2.35-1~deb12u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security bookworm-security/main amd64 php8.2-readline amd64 8.2.35-1~deb12u1 [12.5 kB]
+Fetched 12.5 kB in 0s (86.6 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.2-readline_8.2.35-1~deb12u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+PASS: authenticated controlled restart, immutable runtime configuration views, pool attribution and receipt tampering rejection; canonical unit restored.
+Get:1 https://deb.debian.org/debian bookworm/main amd64 php8.2-cli amd64 8.2.32-1~deb12u1 [1738 kB]
+Get:2 https://deb.debian.org/debian bookworm/main amd64 php8.2-common amd64 8.2.32-1~deb12u1 [690 kB]
+Get:3 https://deb.debian.org/debian bookworm/main amd64 php8.2-fpm amd64 8.2.32-1~deb12u1 [1748 kB]
+Get:4 https://deb.debian.org/debian bookworm/main amd64 php8.2-opcache amd64 8.2.32-1~deb12u1 [346 kB]
+Get:5 https://deb.debian.org/debian bookworm/main amd64 php8.2-readline amd64 8.2.32-1~deb12u1 [12.4 kB]
+Fetched 4535 kB in 0s (26.9 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.2-cli_8.2.32-1~deb12u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  php-pear
+The following packages will be DOWNGRADED:
+  php8.2-cli php8.2-common php8.2-fpm php8.2-opcache php8.2-readline
+0 upgraded, 0 newly installed, 5 downgraded, 0 to remove and 1 not upgraded.
+Need to get 4535 kB of archives.
+After this operation, 99.3 kB disk space will be freed.
+Get:1 https://deb.debian.org/debian bookworm/main amd64 php8.2-readline amd64 8.2.32-1~deb12u1 [12.4 kB]
+Get:2 https://deb.debian.org/debian bookworm/main amd64 php8.2-opcache amd64 8.2.32-1~deb12u1 [346 kB]
+Get:3 https://deb.debian.org/debian bookworm/main amd64 php8.2-fpm amd64 8.2.32-1~deb12u1 [1748 kB]
+Get:4 https://deb.debian.org/debian bookworm/main amd64 php8.2-cli amd64 8.2.32-1~deb12u1 [1738 kB]
+Get:5 https://deb.debian.org/debian bookworm/main amd64 php8.2-common amd64 8.2.32-1~deb12u1 [690 kB]
+Fetched 4535 kB in 0s (9568 kB/s)
+dpkg: warning: downgrading php8.2-readline from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21055 files and directories currently installed.)
+Preparing to unpack .../php8.2-readline_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-readline (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-opcache from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-opcache_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-opcache (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-fpm from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-fpm_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-fpm (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-cli from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-cli_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-cli (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-common from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-common_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-common (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+Setting up php8.2-common (8.2.32-1~deb12u1) ...
+Setting up php8.2-opcache (8.2.32-1~deb12u1) ...
+Setting up php8.2-readline (8.2.32-1~deb12u1) ...
+Setting up php8.2-cli (8.2.32-1~deb12u1) ...
+Setting up php8.2-fpm (8.2.32-1~deb12u1) ...
+Processing triggers for man-db (2.11.2-2) ...
+Processing triggers for php8.2-cli (8.2.32-1~deb12u1) ...
+Processing triggers for php8.2-fpm (8.2.32-1~deb12u1) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  php-pear
+The following packages will be DOWNGRADED:
+  php8.2-cli php8.2-common php8.2-fpm php8.2-opcache php8.2-readline
+0 upgraded, 0 newly installed, 5 downgraded, 0 to remove and 1 not upgraded.
+Need to get 0 B/4535 kB of archives.
+After this operation, 99.3 kB disk space will be freed.
+dpkg: warning: downgrading php8.2-readline from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21055 files and directories currently installed.)
+Preparing to unpack .../php8.2-readline_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-readline (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-opcache from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-opcache_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-opcache (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-fpm from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-fpm_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-fpm (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-cli from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-cli_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-cli (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+dpkg: warning: downgrading php8.2-common from 8.2.35-1~deb12u1 to 8.2.32-1~deb12u1
+Preparing to unpack .../php8.2-common_8.2.32-1~deb12u1_amd64.deb ...
+Unpacking php8.2-common (8.2.32-1~deb12u1) over (8.2.35-1~deb12u1) ...
+Setting up php8.2-common (8.2.32-1~deb12u1) ...
+Setting up php8.2-opcache (8.2.32-1~deb12u1) ...
+Setting up php8.2-readline (8.2.32-1~deb12u1) ...
+Setting up php8.2-cli (8.2.32-1~deb12u1) ...
+Setting up php8.2-fpm (8.2.32-1~deb12u1) ...
+Processing triggers for man-db (2.11.2-2) ...
+Processing triggers for php8.2-cli (8.2.32-1~deb12u1) ...
+Processing triggers for php8.2-fpm (8.2.32-1~deb12u1) ...
+PASS: official same-branch base-to-fixed upgrade and real post-restart HTTP failure; exact confirmation, audit and no-retry enforced. No exploit used.

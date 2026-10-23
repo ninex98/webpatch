@@ -64,7 +64,7 @@ Export evidence and prepare a plan:
 
 Captured from the installed CLI in an isolated **Ubuntu 24.04 / arm64 container** on **2026-10-22**. Selected output is shown verbatim with visual line wrapping; this container reports `APT dry-run: NOT_RUN`. Styling is an illustration of the terminal, not a built-in TUI. [Full text and capture details](assets/readme/README.md).
 
-The diagnostic workflow is **discover → assess → review**. The separate [managed maintenance workflow](docs/cli.md#managed-package-repair) adds explicit probes, confirmed service preparation, an exact source-cohort plan, locked revalidation and post-repair verification. The internal native matrix passed; the newly enabled installed CLI is undergoing its final independent acceptance.
+The diagnostic workflow is **discover → assess → review**. The separate [managed maintenance workflow](docs/cli.md#managed-package-repair) adds explicit probes, confirmed service preparation, an exact source-cohort plan, locked revalidation and post-repair verification. The installed CLI has passed real upgrades in all eight supported Ubuntu/Debian service profiles; explicit post-restart failure tests retain partial states.
 
 ## Key Features
 
@@ -81,8 +81,8 @@ Capabilities describe the current code, not a guarantee of complete discovery. *
 
 | Environment | Available now | Boundary / validation |
 | :--- | :--- | :--- |
-| Ubuntu 22.04 / 24.04, official APT PHP | Discovery, vendor comparison, archive identity, host APT simulation | Direct official sources only; FPM and mod_php in hosted VM CI |
-| Debian 12 / 13, official PHP packages | Discovery, vendor comparison, archive identity, APT simulation and controlled preparation | Independent archive and FPM/mod_php internal repair tests pass in Debian QEMU guests; installed CLI acceptance pending |
+| Ubuntu 22.04 / 24.04, official APT PHP | Discovery, archive identity, APT simulation and confirmed same-branch repair | Official amd64 FPM/mod_php; four hosted VM profiles |
+| Debian 12 / 13, official PHP packages | Discovery, archive identity, APT simulation and confirmed same-branch repair | Official amd64 FPM/mod_php; four independent Debian guest profiles plus archive tests |
 | Debian 12 / 13, official Node.js | Independent read-only inventory and two runtime CVE rules | Separate native container tests; no npm dependency audit or Node repair |
 | Inside Ubuntu / Debian Docker containers | Inventory of the current container; rebuild recommendations | No in-place repair or APT simulation; Docker CI: Ubuntu 22.04 / 24.04, Debian 12 |
 | Docker / containerd observed from a host | Process, namespace and common socket hints | No daemon access, image scanning or fleet enumeration |
@@ -107,7 +107,7 @@ Capabilities describe the current code, not a guarantee of complete discovery. *
 | :--- | :--- |
 | [CLI reference](docs/cli.md) | Commands, exit codes, report semantics and local packaging |
 | [Architecture and staged design](docs/design.md) (中文) | Component boundaries, threat assumptions and acceptance gates |
-| [Development status and evidence](docs/development-status.md) (中文 / English) | Source-specific acceptance, retained failures and pending gates |
+| [Development status and evidence](docs/development-status.md) (中文 / English) | Source-specific acceptance, retained failures and support boundaries |
 | [CI workflow](.github/workflows/ci.yml) · [Live runs](https://github.com/ninex98/webpatch/actions) | 17 jobs: fixtures, package/Node/archive containers, four Ubuntu VMs and four independent Debian guests |
 | [Visual assets and transcript](assets/readme/README.md) | Editable SVG sources, capture provenance and accessible text |
 
@@ -116,7 +116,7 @@ Historical evidence applies to its recorded source revision. The CI badge tracks
 ## Roadmap
 
 - **Implemented:** inventory, authenticated Ubuntu/Debian archive checks, APT simulation, explicit probes, controlled preparation, exact repair reviews, typed transactions and verification.
-- **Final CLI acceptance pending:** the internal Ubuntu/Debian upgrade/fault matrix is 17/17 PASS; the enabled installed entry is now tested independently. See the [current status](docs/development-status.md).
+- **Accepted four-phase scope:** read-only discovery/planning, limited confirmed Ubuntu repair, and independently validated Debian repair, Node rules and container advice. See [current acceptance and source hashes](evidence/final-acceptance/README.md).
 - **Independent extensions:** Node.js runtime discovery/rules and container rebuild advice. Automated image building/rollout, npm repair and a public signed APT repository are outside this delivery.
 
 The [staged design](docs/design.md) defines the four-phase scope. Passing a finite fixture does not certify arbitrary production sites.
