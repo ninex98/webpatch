@@ -1,0 +1,152 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 600B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 3.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956
+#4 resolve docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956 done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 1.07kB done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get -o Acquire::Retries=3 update && apt-get -o Acquire::Retries=3 install -y --no-install-recommends curl ca-certificates sudo     && useradd --create-home --shell /bin/bash webpatch-test     && printf '%s\n' 'webpatch-test ALL=(root) NOPASSWD: /usr/bin/apt-get' > /etc/sudoers.d/webpatch-test     && chmod 0440 /etc/sudoers.d/webpatch-test     && test ! -x /usr/bin/python3
+#6 3.014 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+#6 4.375 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+#6 5.831 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+#6 9.872 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+#6 69.90 Ign:5 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages
+#6 70.66 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+#6 72.41 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+#6 81.74 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+#6 131.4 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [8359 kB]
+#6 159.0 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [4567 kB]
+#6 160.2 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [81.6 kB]
+#6 172.5 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1717 kB]
+#6 173.7 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [82.5 kB]
+#6 174.6 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [33.7 kB]
+#6 227.3 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [8061 kB]
+#6 228.9 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [75.6 kB]
+#6 233.6 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [4253 kB]
+#6 237.4 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1421 kB]
+#6 244.8 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+#6 245.2 Fetched 48.5 MB in 4min 5s (198 kB/s)
+#6 245.2 Reading package lists...
+#6 245.8 Reading package lists...
+#6 246.2 Building dependency tree...
+#6 246.3 Reading state information...
+#6 246.4 The following additional packages will be installed:
+#6 246.4   libbrotli1 libcurl4 libldap-2.5-0 libnghttp2-14 libpsl5 librtmp1 libsasl2-2
+#6 246.4   libsasl2-modules-db libssh-4 openssl
+#6 246.4 Recommended packages:
+#6 246.4   libldap-common publicsuffix libsasl2-modules
+#6 246.5 The following NEW packages will be installed:
+#6 246.5   ca-certificates curl libbrotli1 libcurl4 libldap-2.5-0 libnghttp2-14 libpsl5
+#6 246.5   librtmp1 libsasl2-2 libsasl2-modules-db libssh-4 openssl sudo
+#6 252.1 0 upgraded, 13 newly installed, 0 to remove and 3 not upgraded.
+#6 252.1 Need to get 3534 kB of archives.
+#6 252.1 After this operation, 8473 kB of additional disk space will be used.
+#6 252.1 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 openssl arm64 3.0.2-0ubuntu1.30 [1160 kB]
+#6 253.8 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 ca-certificates all 20260816ubuntu0.22.04.1 [140 kB]
+#6 256.2 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 sudo arm64 1.9.9-1ubuntu2.7 [805 kB]
+#6 257.9 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libnghttp2-14 arm64 1.43.0-1ubuntu0.4 [76.2 kB]
+#6 259.6 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libpsl5 arm64 0.21.0-1.2build2 [58.3 kB]
+#6 262.8 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libbrotli1 arm64 1.0.9-2build6 [314 kB]
+#6 265.1 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-modules-db arm64 2.1.27+dfsg2-3ubuntu1.2 [21.1 kB]
+#6 268.6 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-2 arm64 2.1.27+dfsg2-3ubuntu1.2 [55.6 kB]
+#6 270.4 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libldap-2.5-0 arm64 2.5.20+dfsg-0ubuntu0.22.04.1 [182 kB]
+#6 271.9 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build4 [59.2 kB]
+#6 275.8 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libssh-4 arm64 0.9.6-2ubuntu0.22.04.8 [187 kB]
+#6 277.9 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libcurl4 arm64 7.81.0-1ubuntu1.30 [287 kB]
+#6 279.9 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 curl arm64 7.81.0-1ubuntu1.30 [190 kB]
+#6 280.0 debconf: delaying package configuration, since apt-utils is not installed
+#6 280.0 Fetched 3534 kB in 33s (106 kB/s)
+#6 280.0 Selecting previously unselected package openssl.
+#6 280.0 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
+#6 280.0 Preparing to unpack .../00-openssl_3.0.2-0ubuntu1.30_arm64.deb ...
+#6 280.0 Unpacking openssl (3.0.2-0ubuntu1.30) ...
+#6 280.1 Selecting previously unselected package ca-certificates.
+#6 280.1 Preparing to unpack .../01-ca-certificates_20260816ubuntu0.22.04.1_all.deb ...
+#6 280.1 Unpacking ca-certificates (20260816ubuntu0.22.04.1) ...
+#6 280.1 Selecting previously unselected package sudo.
+#6 280.1 Preparing to unpack .../02-sudo_1.9.9-1ubuntu2.7_arm64.deb ...
+#6 280.1 Unpacking sudo (1.9.9-1ubuntu2.7) ...
+#6 280.1 Selecting previously unselected package libnghttp2-14:arm64.
+#6 280.1 Preparing to unpack .../03-libnghttp2-14_1.43.0-1ubuntu0.4_arm64.deb ...
+#6 280.1 Unpacking libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#6 280.1 Selecting previously unselected package libpsl5:arm64.
+#6 280.1 Preparing to unpack .../04-libpsl5_0.21.0-1.2build2_arm64.deb ...
+#6 280.1 Unpacking libpsl5:arm64 (0.21.0-1.2build2) ...
+#6 280.1 Selecting previously unselected package libbrotli1:arm64.
+#6 280.1 Preparing to unpack .../05-libbrotli1_1.0.9-2build6_arm64.deb ...
+#6 280.1 Unpacking libbrotli1:arm64 (1.0.9-2build6) ...
+#6 280.1 Selecting previously unselected package libsasl2-modules-db:arm64.
+#6 280.1 Preparing to unpack .../06-libsasl2-modules-db_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#6 280.1 Unpacking libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 280.1 Selecting previously unselected package libsasl2-2:arm64.
+#6 280.1 Preparing to unpack .../07-libsasl2-2_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#6 280.1 Unpacking libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 280.2 Selecting previously unselected package libldap-2.5-0:arm64.
+#6 280.2 Preparing to unpack .../08-libldap-2.5-0_2.5.20+dfsg-0ubuntu0.22.04.1_arm64.deb ...
+#6 280.2 Unpacking libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#6 280.2 Selecting previously unselected package librtmp1:arm64.
+#6 280.2 Preparing to unpack .../09-librtmp1_2.4+20151223.gitfa8646d.1-2build4_arm64.deb ...
+#6 280.2 Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#6 280.2 Selecting previously unselected package libssh-4:arm64.
+#6 280.2 Preparing to unpack .../10-libssh-4_0.9.6-2ubuntu0.22.04.8_arm64.deb ...
+#6 280.2 Unpacking libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#6 280.2 Selecting previously unselected package libcurl4:arm64.
+#6 280.2 Preparing to unpack .../11-libcurl4_7.81.0-1ubuntu1.30_arm64.deb ...
+#6 280.2 Unpacking libcurl4:arm64 (7.81.0-1ubuntu1.30) ...
+#6 280.2 Selecting previously unselected package curl.
+#6 280.2 Preparing to unpack .../12-curl_7.81.0-1ubuntu1.30_arm64.deb ...
+#6 280.2 Unpacking curl (7.81.0-1ubuntu1.30) ...
+#6 280.2 Setting up libpsl5:arm64 (0.21.0-1.2build2) ...
+#6 280.2 Setting up libbrotli1:arm64 (1.0.9-2build6) ...
+#6 280.2 Setting up libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#6 280.2 Setting up libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 280.2 Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#6 280.2 Setting up sudo (1.9.9-1ubuntu2.7) ...
+#6 280.2 Setting up libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 280.2 Setting up libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#6 280.2 Setting up openssl (3.0.2-0ubuntu1.30) ...
+#6 280.2 Setting up libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#6 280.3 Setting up ca-certificates (20260816ubuntu0.22.04.1) ...
+#6 280.4 Updating certificates in /etc/ssl/certs...
+#6 280.5 120 added, 0 removed; done.
+#6 280.5 Setting up libcurl4:arm64 (7.81.0-1ubuntu1.30) ...
+#6 280.6 Setting up curl (7.81.0-1ubuntu1.30) ...
+#6 280.6 Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+#6 280.6 Processing triggers for ca-certificates (20260816ubuntu0.22.04.1) ...
+#6 280.6 Updating certificates in /etc/ssl/certs...
+#6 280.7 0 added, 0 removed; done.
+#6 280.7 Running hooks in /etc/ca-certificates/update.d...
+#6 280.7 done.
+#6 DONE 280.7s
+
+#7 [3/4] COPY verify.sh /verify.sh
+#7 DONE 0.0s
+
+#8 [4/4] WORKDIR /home/webpatch-test
+#8 DONE 0.0s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 1.6s done
+#9 exporting manifest sha256:30f1bf7efb9867161dca594c3fb51d21b75229acdbd81945e2faa3868fccbdab done
+#9 exporting config sha256:c08638628f21f9872dbf8e9ca12d6555a14655c0c0c8c5cfcbad8f0f5f83c376 done
+#9 exporting attestation manifest sha256:b53a2ef8d37cd8d1f2c72f1b4bdad30914b22104a3542f3ed9e9375e46743e06 done
+#9 exporting manifest list sha256:2f773b71e75658a501ff9a6d52b115c512b12194ca36c70e45d9cec49e911411 done
+#9 naming to docker.io/library/webpatch-live-release:jammy done
+#9 unpacking to docker.io/library/webpatch-live-release:jammy
+#9 unpacking to docker.io/library/webpatch-live-release:jammy 0.4s done
+#9 DONE 2.0s

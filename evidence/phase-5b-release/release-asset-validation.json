@@ -1,0 +1,11 @@
+{
+  "source": "fe5b63b2faab53dff73c762181eaa191e8254dcd",
+  "same_assets_as_initial_tested_distribution": true,
+  "sha256": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "install.sh": "c3cac7dc80f0bf098f14cc1623d5804174bd1a9f6b78af657d7350d0cbc835a0",
+    "webpatch_0.1.0_all.deb": "e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9",
+    "SHA256SUMS": "872476aedb8e1819c6a56ac37160039c52e6a88560085f980b4546538a624f1d"
+  },
+  "prepublication_checks": "PASS"
+}

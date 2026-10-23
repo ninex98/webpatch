@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="WebPatch safety checks on main"></a>
-  <a href="#roadmap"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · development"></a>
+  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.1.0"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · Linux preview"></a>
   <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="License: Apache-2.0"></a>
 </p>
 
@@ -21,7 +21,7 @@
 
 **Evidence before action.** A conservative CLI for PHP runtime security: discover local installations, compare package versions with vendor advisories, and prepare reviewable repair plans.
 
-**0.1.0 is a development preview.** Scans remain read-only; explicit service preparation can restart declared services after exact plan-hash confirmation. Package repair requires complete managed evidence and confirmation of the exact reviewed plan hash. The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`); a matching package version never means a safe running service.
+**[v0.1.0](https://github.com/ninex98/webpatch/releases/tag/v0.1.0) is published as a Linux preview.** Scans remain read-only; explicit service preparation can restart declared services after exact plan-hash confirmation. Package repair requires complete managed evidence and confirmation of the exact reviewed plan hash. The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`); a matching package version never means a safe running service.
 
 ## Why WebPatch
 
@@ -31,29 +31,26 @@ WebPatch connects **packages, processes, services and local evidence**. It keeps
 
 ## Quick Start
 
-**One-command Linux installation is being prepared.** The installer and versioned GitHub Release workflow are in this repository; the first public Release is still pending. See [installation, upgrade and uninstall](docs/installation.md) for the release commands and status. Until publication, use the source installation below.
-
-On a target Linux system, use **Git and Python 3.10+ with `venv` and `pip` available**. Install from this repository into a virtual environment; the runtime has no third-party Python dependencies.
+Install on **Ubuntu 22.04/24.04 or Debian 12/13** with one command, then scan:
 
 ```sh
-git clone https://github.com/ninex98/webpatch.git
-cd webpatch
-python3 -m venv .venv
-.venv/bin/python -m pip install .
-.venv/bin/webpatch scan
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/latest/download/install.sh | sh
+webpatch scan
 ```
+
+The installer requires `curl`, trusted CA certificates and root or sudo for APT. It verifies the release checksum and package identity; APT resolves Python 3.10+ when needed. Git, venv and pip are not required. See [installation, pinned versions, upgrades and uninstall](docs/installation.md), or [source development](CONTRIBUTING.md).
 
 No root is required to scan. Restricted reads become coverage gaps. Scan exits **1** for potentially affected packages or **2** for unknown/incomplete coverage; neither means a successful safety check.
 
 Export evidence and prepare a plan:
 
 ```sh
-.venv/bin/webpatch scan --format json > scan.json
-.venv/bin/webpatch plan --dry-run --format json > reviewed-plan.json
-.venv/bin/webpatch verify-plan reviewed-plan.json --format json
+webpatch scan --format json > scan.json
+webpatch plan --dry-run --format json > reviewed-plan.json
+webpatch verify-plan reviewed-plan.json --format json
 ```
 
-`plan` and `verify-plan` return **4** in this preview. These diagnostic plans are `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. There is no public APT repository; the GitHub Release installation path is pending its first publication.
+`plan` and `verify-plan` return **4** in this preview. These diagnostic plans are `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. Installable packages are available in [GitHub Releases](https://github.com/ninex98/webpatch/releases); there is no public APT repository.
 
 ## CLI Preview
 

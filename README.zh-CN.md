@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="main 分支 WebPatch 安全检查状态"></a>
-  <a href="#roadmap"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · 开发预览版"></a>
+  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.1.0"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · Linux 预览版"></a>
   <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="许可证：Apache-2.0"></a>
 </p>
 
@@ -21,7 +21,7 @@
 
 **Evidence before action. 先有证据，再采取行动。** 一个审慎的 PHP 运行时安全 CLI：发现本地安装，依据厂商公告比对包版本，生成可供审阅的修复计划。
 
-**0.1.0 为开发预览版。** 扫描保持只读；显式服务准备在精确计划 hash 确认后可以重启声明的服务。包修复要求完整受控证据及所审阅计划的精确 hash 确认。内置规则聚焦 PHP2Shell（`CVE-2026-109618` / `CVE-2026-109619`）；包版本符合修复边界，不等于正在运行的服务安全。
+**[v0.1.0](https://github.com/ninex98/webpatch/releases/tag/v0.1.0) 已作为 Linux 预览版发布。** 扫描保持只读；显式服务准备在精确计划 hash 确认后可以重启声明的服务。包修复要求完整受控证据及所审阅计划的精确 hash 确认。内置规则聚焦 PHP2Shell（`CVE-2026-109618` / `CVE-2026-109619`）；包版本符合修复边界，不等于正在运行的服务安全。
 
 ## 为什么选择 WebPatch
 
@@ -33,29 +33,26 @@ WebPatch 关联**包、进程、服务与本地证据**，分别呈现版本判�
 
 ## 快速开始
 
-**Ubuntu/Debian 一键安装入口已在仓库准备，首个 Release 尚待发布。** 发布后无需 Git、虚拟环境或 pip；具体命令、升级及卸载方式见[安装说明](docs/installation.md)。公开下载入口生效前仍使用下面的源码安装。
-
-在目标 Linux 系统上，准备好 **Git 和 Python 3.10+，且 `venv`、`pip` 可用**。从本仓库安装到虚拟环境；运行时无第三方 Python 依赖。
+在 **Ubuntu 22.04/24.04 或 Debian 12/13** 上，一条命令安装，然后扫描：
 
 ```sh
-git clone https://github.com/ninex98/webpatch.git
-cd webpatch
-python3 -m venv .venv
-.venv/bin/python -m pip install .
-.venv/bin/webpatch scan
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/latest/download/install.sh | sh
+webpatch scan
 ```
+
+安装需要 `curl`、可信 CA 证书，以及 root 或 sudo 的 APT 安装权限。脚本会校验下载摘要和包身份；缺少 Python 3.10+ 时由 APT 安装所需依赖。无需 Git、虚拟环境或 pip。[指定版本、升级和卸载](docs/installation.md) · [源码开发](CONTRIBUTING.md)。
 
 扫描不需要 root，受限读取会成为覆盖缺口。发现潜在受影响包时退出码为 **1**，未知或覆盖不完整时为 **2**；二者均不代表安全检查通过。
 
 导出证据并生成计划：
 
 ```sh
-.venv/bin/webpatch scan --format json > scan.json
-.venv/bin/webpatch plan --dry-run --format json > reviewed-plan.json
-.venv/bin/webpatch verify-plan reviewed-plan.json --format json
+webpatch scan --format json > scan.json
+webpatch plan --dry-run --format json > reviewed-plan.json
+webpatch verify-plan reviewed-plan.json --format json
 ```
 
-本预览版的 `plan` 和 `verify-plan` 返回 **4**。这些诊断计划均为 `BLOCKED`、`executable=false`；APT 模拟通过也不授权任何变更。退出码、包缓存验证和本地 `.deb` 构建见 [CLI 参考](docs/cli.md)。目前没有公开 APT 仓库；GitHub Release 安装入口等待首次发布。
+本预览版的 `plan` 和 `verify-plan` 返回 **4**。这些诊断计划均为 `BLOCKED`、`executable=false`；APT 模拟通过也不授权任何变更。退出码、包缓存验证和本地 `.deb` 构建见 [CLI 参考](docs/cli.md)。安装包已在 [GitHub Releases](https://github.com/ninex98/webpatch/releases) 发布，目前没有公开 APT 仓库。
 
 <a id="cli-preview"></a>
 

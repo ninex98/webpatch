@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "local_links": "PASS",
+  "readme_install_commands_match_live_test": "PASS",
+  "svg_xml": "PASS",
+  "implementation_diff_from_release": "EMPTY",
+  "release_tag_commit": "fe5b63b2faab53dff73c762181eaa191e8254dcd",
+  "documentation_sha256": {
+    "README.md": "9fabd9da3d800187775c3125e5fc62aff3884d249223ad77e1d482acf600abcb",
+    "README.zh-CN.md": "3f42c3254bfa84eaa9d7d5ce124418f1841a234b34a7d59d4bbd04a850696106",
+    "docs/cli.md": "c1ae48da31827dd25740d64c8441cd20a1a75cb2d8d64c1bc8b831ce093b9d4d",
+    "docs/development-status.md": "0f9d82096c3022757f4c254763548c3c4fa45fc23607924fffaa168c765a4767",
+    "docs/installation.md": "5e5adffd9b456c14f6bb8264a0b86f093ab451a74eb9d516b1d61408548a7f4a",
+    "assets/readme/preview-badge.svg": "f85289422071d763ce26eda5e6fa783769b9b62fc304b82aa78b9d3c5e13b42e",
+    "evidence/phase-5b-release/README.md": "e3f9a6e8781ea4d301a2c871b864987ae9e71a153212c0915b3280cdb0df3555"
+  }
+}

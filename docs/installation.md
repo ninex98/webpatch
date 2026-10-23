@@ -1,18 +1,18 @@
 # Linux 安装与发布 / Linux installation and releases
 
-**当前状态（2026-10-23）：安装器和发布流程已在仓库准备，首个 GitHub Release 尚未公开。下面的在线安装命令在首个 Release 发布后才可用。** / The installer and release workflow are prepared; the first GitHub Release has not been published. Online commands below become available only after publication.
+**当前状态（2026-10-23）：[v0.1.0 已公开发布](https://github.com/ninex98/webpatch/releases/tag/v0.1.0)。** / v0.1.0 is published. The commands below download the versioned GitHub Release package.
 
 ## 用户安装 / Install
 
 支持 Ubuntu 22.04/24.04 和 Debian 12/13。需要现有 `curl`、CA 根证书、APT/dpkg、网络访问 GitHub，以及 root 或 sudo 安装权限。无需 Git、venv、pip。Python 3.10+ 是 `.deb` 的系统依赖，由 APT 解析；不自行编译或覆盖系统 Python。系统源及索引必须可用，安装器不自动刷新索引或增加源。
 
-After publication, install the latest release with one command:
+Install the latest release with one command:
 
 ```sh
 curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/latest/download/install.sh | sh
 ```
 
-To inspect the script first, download it to a private directory, read it, then run it. To pin a release (example for the planned first release):
+To inspect the script first, download it to a private directory, read it, then run it. To pin a release:
 
 ```sh
 curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/download/v0.1.0/install.sh | sh -s -- --version 0.1.0

@@ -1,0 +1,115 @@
+{
+  "result": "PASS",
+  "environment": "PRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+  "architecture": "amd64",
+  "version": "0.1.0",
+  "package_sha256": "e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9",
+  "checks": [
+    {
+      "case": "invalid-version",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "missing-version",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unknown-option",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unsupported-os",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unsupported-distribution",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "latest-download-failed",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unexpected-latest-url",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "package-download-failed",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "missing-checksum",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "duplicate-checksum",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "malformed-checksum",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "corrupted-package",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "wrong-package",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "wrong-version",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "wrong-architecture",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "apt-failure-reported",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "install-latest",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "case": "reinstall-pinned",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "case": "upgrade-from-older-version",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "case": "downgrade-refused",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "installed-read-only-empty-inventory-stays-unknown",
+      "status": "PASS",
+      "exit_code": 2
+    }
+  ],
+  "live_github_release_download": "NOT_RUN"
+}

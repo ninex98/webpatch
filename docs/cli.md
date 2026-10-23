@@ -149,7 +149,7 @@ Do not chain expected nonzero scan / plan commands with `&&` or treat them as su
 
 ## Build a local Debian package
 
-The [one-command Linux installer and versioned release workflow](installation.md) are prepared. No public APT repository or GitHub Release is published yet. To build and test locally, run from the checkout with Docker available:
+The [one-command Linux installer](installation.md) downloads checked packages from [GitHub Releases](https://github.com/ninex98/webpatch/releases). There is no public APT repository. To build and test locally, run from the checkout with Docker available:
 
 ```sh
 docker build -f tests/integration/Dockerfile --build-arg BASE=ubuntu:24.04 -t webpatch-test:noble .

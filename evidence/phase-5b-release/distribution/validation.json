@@ -1,0 +1,56 @@
+{
+  "run": 39893453827,
+  "result": "PASS",
+  "source": "fe5b63b2faab53dff73c762181eaa191e8254dcd",
+  "results": [
+    {
+      "path": "distribution-0/result.json",
+      "architecture": "amd64",
+      "checks": 21,
+      "package_sha256": "e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9"
+    },
+    {
+      "path": "distribution-1/result.json",
+      "architecture": "amd64",
+      "checks": 21,
+      "package_sha256": "e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9"
+    },
+    {
+      "path": "distribution-2/result.json",
+      "architecture": "amd64",
+      "checks": 21,
+      "package_sha256": "e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9"
+    },
+    {
+      "path": "distribution-3/result.json",
+      "architecture": "amd64",
+      "checks": 21,
+      "package_sha256": "e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9"
+    }
+  ],
+  "artifact_sha256": {
+    "distribution-build-evidence/package-build.log": "6f3e083dbd88dece575ebe99945ab0a169fe6916d8a49be0a39c452d8b4c8bfc",
+    "distribution-build-evidence/manifest.json": "dd38c24c3e62e884ad82268af54f6e791a23a5ea2103c9cce14d394f42d0e065",
+    "distribution-build-evidence/SHA256SUMS": "872476aedb8e1819c6a56ac37160039c52e6a88560085f980b4546538a624f1d",
+    "distribution-3/result.json": "8b33d2bea7029440a47c1c45851a950bfbbb48119a31bea8f53ea8969b1bb75d",
+    "distribution-3/manifest.json": "6c45844cd1b021df7c7c3992d7a292ba0fb4eaf213c1e83f86c0ca70763d1bb6",
+    "distribution-3/image.json": "b95ecc2e880a5f1f228f391e42dcdb4bb7ffae7a05b67e2db07833ca8b25d968",
+    "distribution-3/build.log": "a331d1c143f1848d9da7bbd91bbde2b5f0c71b5e2826d7ed7fede68661de2828",
+    "distribution-2/result.json": "ec6bb7900f90f202ae418aa9ccbf7b8099e07972b2f2882e3c9fdca05dbf05e8",
+    "distribution-2/manifest.json": "ed72e235e5bc5022f3b94ba21f8e44b86ca1b0a7c4a1b0757f8f41323a74c274",
+    "distribution-2/image.json": "aa6f0f35a120cdeaa173bb74137949807effb3588f2937f385e8772794a61683",
+    "distribution-2/build.log": "24a57f4bc347b99aef88d10270285f3a0860de01b77d25469949cc54095e2354",
+    "release-assets/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "release-assets/install.sh": "c3cac7dc80f0bf098f14cc1623d5804174bd1a9f6b78af657d7350d0cbc835a0",
+    "release-assets/webpatch_0.1.0_all.deb": "e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9",
+    "release-assets/SHA256SUMS": "872476aedb8e1819c6a56ac37160039c52e6a88560085f980b4546538a624f1d",
+    "distribution-0/result.json": "514f70feb26d4b8e698dcfbfb0d3efeb427471838e1492e68c9720f51fccb198",
+    "distribution-0/manifest.json": "11a0fdc72dde7fe66bd09286e7c06618d26c70cda0fdf28923524bc2dab5df06",
+    "distribution-0/image.json": "51a10c942532fce738461f32e9596c78542599f7d7711cdad28428f2029e1033",
+    "distribution-0/build.log": "ab4d5545b6589789cba5b3bca84498a34bad3e8edddd6b7502347a12053be38c",
+    "distribution-1/result.json": "ec5ea85b2061bf8ad4b276c362e0b77f4e7c23d4e9e003d64df8eb97b7656113",
+    "distribution-1/manifest.json": "80a5aa44d8b6f7559f6b5dce205c6b54025adba8595fde2ad8fb68571a8851cb",
+    "distribution-1/image.json": "35eba7dd251f2810baf4ef86422ae2ff5b69b4f6623a5a14b1add6cab0c947c0",
+    "distribution-1/build.log": "d58ab17e7154fb85fb49e5793bffe17ac6485dcfe73e48fd2705c9d024887538"
+  }
+}

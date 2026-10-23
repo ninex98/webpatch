@@ -1,0 +1,138 @@
+BASELINE: non-root user; Python absent; no Git/pip/venv setup.
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+Downloading WebPatch 0.1.0 for debian 13...
+curl: (28) Connection timed out after 15002 milliseconds
+curl: (28) Connection timed out after 15002 milliseconds
+webpatch_0.1.0_all.deb: OK
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libexpat1 libncursesw6 libpython3-stdlib libpython3.13-minimal
+  libpython3.13-stdlib libreadline8t64 media-types netbase python3
+  python3-minimal python3.13 python3.13-minimal readline-common
+Suggested packages:
+  python3-doc python3-tk python3-venv python3.13-venv python3.13-doc binutils
+  binfmt-support readline-doc
+Recommended packages:
+  libgpm2
+The following NEW packages will be installed:
+  libexpat1 libncursesw6 libpython3-stdlib libpython3.13-minimal
+  libpython3.13-stdlib libreadline8t64 media-types netbase python3
+  python3-minimal python3.13 python3.13-minimal readline-common webpatch
+0 upgraded, 14 newly installed, 0 to remove and 1 not upgraded.
+Need to get 6091 kB/6198 kB of archives.
+After this operation, 26.1 MB of additional disk space will be used.
+Get:1 /tmp/webpatch-install.rQXJ6pd8/webpatch_0.1.0_all.deb webpatch all 0.1.0 [107 kB]
+Get:2 http://deb.debian.org/debian-security trixie-security/main arm64 libexpat1 arm64 2.9.0-1~deb13u1 [114 kB]
+Get:3 http://deb.debian.org/debian trixie/main arm64 libpython3.13-minimal arm64 3.13.5-2+deb13u5 [856 kB]
+Get:4 http://deb.debian.org/debian trixie/main arm64 python3.13-minimal arm64 3.13.5-2+deb13u5 [2008 kB]
+Get:5 http://deb.debian.org/debian trixie/main arm64 python3-minimal arm64 3.13.5-1 [27.2 kB]
+Get:6 http://deb.debian.org/debian trixie/main arm64 media-types all 13.0.0 [29.3 kB]
+Get:7 http://deb.debian.org/debian trixie/main arm64 netbase all 6.5 [12.4 kB]
+Get:8 http://deb.debian.org/debian trixie/main arm64 libncursesw6 arm64 6.5+20250216-2 [124 kB]
+Get:9 http://deb.debian.org/debian trixie/main arm64 readline-common all 8.2-6 [69.4 kB]
+Get:10 http://deb.debian.org/debian trixie/main arm64 libreadline8t64 arm64 8.2-6 [159 kB]
+Get:11 http://deb.debian.org/debian trixie/main arm64 libpython3.13-stdlib arm64 3.13.5-2+deb13u5 [1895 kB]
+Get:12 http://deb.debian.org/debian trixie/main arm64 python3.13 arm64 3.13.5-2+deb13u5 [757 kB]
+Get:13 http://deb.debian.org/debian trixie/main arm64 libpython3-stdlib arm64 3.13.5-1 [10.2 kB]
+Get:14 http://deb.debian.org/debian trixie/main arm64 python3 arm64 3.13.5-1 [28.2 kB]
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/aarch64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 14.)
+debconf: falling back to frontend: Teletype
+debconf: unable to initialize frontend: Teletype
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Noninteractive
+Fetched 6091 kB in 1min 49s (55.9 kB/s)
+Selecting previously unselected package libexpat1:arm64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5888 files and directories currently installed.)
+Preparing to unpack .../libexpat1_2.9.0-1~deb13u1_arm64.deb ...
+Unpacking libexpat1:arm64 (2.9.0-1~deb13u1) ...
+Selecting previously unselected package libpython3.13-minimal:arm64.
+Preparing to unpack .../libpython3.13-minimal_3.13.5-2+deb13u5_arm64.deb ...
+Unpacking libpython3.13-minimal:arm64 (3.13.5-2+deb13u5) ...
+Selecting previously unselected package python3.13-minimal.
+Preparing to unpack .../python3.13-minimal_3.13.5-2+deb13u5_arm64.deb ...
+Unpacking python3.13-minimal (3.13.5-2+deb13u5) ...
+Setting up libpython3.13-minimal:arm64 (3.13.5-2+deb13u5) ...
+Setting up libexpat1:arm64 (2.9.0-1~deb13u1) ...
+Setting up python3.13-minimal (3.13.5-2+deb13u5) ...
+Selecting previously unselected package python3-minimal.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6222 files and directories currently installed.)
+Preparing to unpack .../0-python3-minimal_3.13.5-1_arm64.deb ...
+Unpacking python3-minimal (3.13.5-1) ...
+Selecting previously unselected package media-types.
+Preparing to unpack .../1-media-types_13.0.0_all.deb ...
+Unpacking media-types (13.0.0) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../2-netbase_6.5_all.deb ...
+Unpacking netbase (6.5) ...
+Selecting previously unselected package libncursesw6:arm64.
+Preparing to unpack .../3-libncursesw6_6.5+20250216-2_arm64.deb ...
+Unpacking libncursesw6:arm64 (6.5+20250216-2) ...
+Selecting previously unselected package readline-common.
+Preparing to unpack .../4-readline-common_8.2-6_all.deb ...
+Unpacking readline-common (8.2-6) ...
+Selecting previously unselected package libreadline8t64:arm64.
+Preparing to unpack .../5-libreadline8t64_8.2-6_arm64.deb ...
+Adding 'diversion of /lib/aarch64-linux-gnu/libhistory.so.8 to /lib/aarch64-linux-gnu/libhistory.so.8.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/aarch64-linux-gnu/libhistory.so.8.2 to /lib/aarch64-linux-gnu/libhistory.so.8.2.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/aarch64-linux-gnu/libreadline.so.8 to /lib/aarch64-linux-gnu/libreadline.so.8.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/aarch64-linux-gnu/libreadline.so.8.2 to /lib/aarch64-linux-gnu/libreadline.so.8.2.usr-is-merged by libreadline8t64'
+Unpacking libreadline8t64:arm64 (8.2-6) ...
+Selecting previously unselected package libpython3.13-stdlib:arm64.
+Preparing to unpack .../6-libpython3.13-stdlib_3.13.5-2+deb13u5_arm64.deb ...
+Unpacking libpython3.13-stdlib:arm64 (3.13.5-2+deb13u5) ...
+Selecting previously unselected package python3.13.
+Preparing to unpack .../7-python3.13_3.13.5-2+deb13u5_arm64.deb ...
+Unpacking python3.13 (3.13.5-2+deb13u5) ...
+Selecting previously unselected package libpython3-stdlib:arm64.
+Preparing to unpack .../8-libpython3-stdlib_3.13.5-1_arm64.deb ...
+Unpacking libpython3-stdlib:arm64 (3.13.5-1) ...
+Setting up python3-minimal (3.13.5-1) ...
+Selecting previously unselected package python3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6725 files and directories currently installed.)
+Preparing to unpack .../python3_3.13.5-1_arm64.deb ...
+Unpacking python3 (3.13.5-1) ...
+Selecting previously unselected package webpatch.
+Preparing to unpack .../webpatch_0.1.0_all.deb ...
+Unpacking webpatch (0.1.0) ...
+Setting up media-types (13.0.0) ...
+Setting up libncursesw6:arm64 (6.5+20250216-2) ...
+Setting up netbase (6.5) ...
+Setting up readline-common (8.2-6) ...
+Setting up libreadline8t64:arm64 (8.2-6) ...
+Setting up libpython3.13-stdlib:arm64 (3.13.5-2+deb13u5) ...
+Setting up libpython3-stdlib:arm64 (3.13.5-1) ...
+Setting up python3.13 (3.13.5-2+deb13u5) ...
+Setting up python3 (3.13.5-1) ...
+running python rtupdate hooks for python3.13...
+running python post-rtupdate hooks for python3.13...
+Setting up webpatch (0.1.0) ...
+Processing triggers for libc-bin (2.41-12+deb13u4) ...
+Installed WebPatch 0.1.0. Run: webpatch scan
+Installation success is not a runtime safety result. Scans return 1 (potentially affected) or 2 (unknown).
+Confirmed repair is limited to the documented official amd64 profiles; other architectures remain unsupported for repair.
+ONLINE_INSTALL: PASS; sudo APT installed WebPatch and Python dependencies.
+{
+  "result": "PASS",
+  "version": "0.1.0",
+  "online_install": "PASS",
+  "nonroot_sudo_elevation": "PASS",
+  "python_dependency_install": "PASS",
+  "empty_inventory": "UNKNOWN",
+  "safe": false,
+  "scan_exit": 2
+}

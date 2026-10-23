@@ -1,12 +1,16 @@
 # 开发状态 / Development status
 
-核对日期：2026-10-23（Asia/Shanghai）。**原设计四阶段已按声明的有限范围完成并分别验收。** 最新受测功能/测试/CI 源码 `941040c06cb29fc73cf64dcf81a78867d033f3e8`，Actions [39888070774](https://github.com/ninex98/webpatch/actions/runs/39888070774) **17/17 PASS**。最终文档/证据提交晚于受测源码；源码一致性、制品摘要、日志/JUnit 和各项结果见 [最终验收](../evidence/final-acceptance/README.md)。
+核对日期：2026-10-23（Asia/Shanghai）。**原设计四阶段已按声明的有限范围完成并分别验收。** 原四阶段最终受测功能/测试/CI 源码 `941040c06cb29fc73cf64dcf81a78867d033f3e8`，Actions [39888070774](https://github.com/ninex98/webpatch/actions/runs/39888070774) **17/17 PASS**。最终文档/证据提交晚于受测源码；源码一致性、制品摘要、日志/JUnit 和各项结果见 [最终验收](../evidence/final-acceptance/README.md)。
 
-## 阶段 5A：Linux 分发准备 / Linux distribution preparation
+## 阶段 5A / 5B：Linux 分发与发布 / Linux distribution and publication
 
-新增独立的版本化分发阶段：Ubuntu 22.04/24.04、Debian 12/13 一键安装脚本、单一版本来源、Release assets/SHA256SUMS 及四格分发 CI。**本地验证 PASS；远端 CI_PENDING，首个 Release 尚未发布，在线安装 NOT_RUN。** 617 fixtures 通过；同一个 `.deb` 在四个 arm64 disposable 容器完成安装、重装、升级、拒绝降级、错误包阻断和只读 UNKNOWN 验证。完整日志、失败留存和摘要见 [阶段 5A 证据](../evidence/phase-5a-installation/README.md)，用户入口见 [安装说明](installation.md)。
+**[v0.1.0 已公开发布](https://github.com/ninex98/webpatch/releases/tag/v0.1.0)**，源码 `fe5b63b2faab53dff73c762181eaa191e8254dcd`。同一源码的 [safety CI 39893453801](https://github.com/ninex98/webpatch/actions/runs/39893453801) **17/17 PASS**；[distribution 39893453827](https://github.com/ninex98/webpatch/actions/runs/39893453827) 构建及四格安装通过；[Release 草稿流程 39894909468](https://github.com/ninex98/webpatch/actions/runs/39894909468) **6/6 PASS**，随后公开发布。
 
-旧的 17/17 仅证明原记录的源码，不能作为本阶段 CI 通过的证据。新增 workflow 默认只构建和测试，显式手动操作才生成 Release 草稿，并要求同一 main SHA 的安全 CI 通过；公开发布和发布后的真实 GitHub 下载链路须单独验收。安装覆盖不扩张任何修复 profile。
+Ubuntu 22.04/24.04、Debian 12/13 可使用一键安装脚本；无需 Git、venv、pip。程序、Python 元数据、Debian 包和测试读取单一版本来源。安装器校验固定版本的 SHA256 及包身份后使用 APT 安装工具/必要依赖，拒绝不支持的系统及降级请求。
+
+617 fixtures 在 Python 3.10/3.12 均通过。发布包 SHA256 `e203caefd110255c3e0483a12bc5b0c1d008fc3e2633b616cf016b6c7f9f06a9` 与本地包完全一致；四种发行版的本地 arm64 及 hosted amd64 分别通过每格 21 场景。最初 CI-pending 状态见 [5A 历史记录](../evidence/phase-5a-installation/README.md)，最终发布/在线验证见 [5B 证据](../evidence/phase-5b-release/README.md)。安装方式见 [安装说明](installation.md)。
+
+发布后的文档/证据提交不改变标签或已发布包。安装支持不扩张修复 profile；程序版本不自动延长规则有效期。
 
 ## 原设计四阶段
 
@@ -42,4 +46,4 @@
 
 collector 协议 3，只接受两项已审阅默认 INI 指令的新增，既有设置变化继续阻断。PHP/Node 规则至 **2026-10-29 00:00 UTC** 到期；之后必须重新审阅官方来源，不能只改日期。Debian 客体镜像以官方 HTTPS/SHA512 验证传输/内容，镜像签名 NOT_AVAILABLE；产品 APT 签名链独立验证。
 
-开发宿主 PHP/APT/系统包/服务未修改；实际安装/服务测试仅在 disposable 容器、GitHub hosted Ubuntu VM 与独立 Debian 客体发生，没有漏洞利用或生产修复。原 README/SVG 工作由 `13c6c9c` 保存，视觉资源保持。自动镜像构建/发布、npm 修复、公开签名 APT 仓库和正式 Release 均不在本次原设计四阶段范围内，也未执行。
+开发宿主 PHP/APT/系统包/服务未修改；实际安装/服务测试仅在 disposable 容器、GitHub hosted Ubuntu VM 与独立 Debian 客体发生，没有漏洞利用或生产修复。原 README/SVG 工作由 `13c6c9c` 保存，视觉资源保持。自动镜像构建/发布、npm 修复、公开签名 APT 仓库不在原设计四阶段范围内，也未执行；版本化 Release 由上述独立 5A/5B 阶段交付。

@@ -1,0 +1,73 @@
+{
+  "source": "fe5b63b2faab53dff73c762181eaa191e8254dcd",
+  "release": "v0.1.0",
+  "command": "curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/latest/download/install.sh | sh",
+  "real_public_download": true,
+  "sudo_fixture": "non-root user with passwordless sudo limited to apt-get",
+  "results": [
+    {
+      "environment": "jammy",
+      "architecture": "arm64",
+      "image_id": "sha256:2f773b71e75658a501ff9a6d52b115c512b12194ca36c70e45d9cec49e911411",
+      "log_sha256": "ed9034d3b0959a37587022676f408a88bf5e8eff76060f1200ee6a19dd7c0a7f",
+      "result": {
+        "result": "PASS",
+        "version": "0.1.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    },
+    {
+      "environment": "noble",
+      "architecture": "arm64",
+      "image_id": "sha256:ff130c66eca37059a50d0613db0bba42fe58b2499b35f8a400239947a2ea8b23",
+      "log_sha256": "11a43ff2e0280efe7bd452c31328c52834c43ef28bccb8e2e174b2c2424f694d",
+      "result": {
+        "result": "PASS",
+        "version": "0.1.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    },
+    {
+      "environment": "bookworm",
+      "architecture": "arm64",
+      "image_id": "sha256:1d219397d0a77766f88c8bb199b4795a1b2d93a3bcae5bebd96a2e2b8a2c207a",
+      "log_sha256": "810cc0c3d52ee8c168e23aa88faafb27e5971d51bce44cf8d4bef3be3f7bcf66",
+      "result": {
+        "result": "PASS",
+        "version": "0.1.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    },
+    {
+      "environment": "trixie",
+      "architecture": "arm64",
+      "image_id": "sha256:ee5031efe33ecef44d8d5fc344cf37f588706eeee15693f0dd90f9ff1000fb72",
+      "log_sha256": "a7e527c75c18da937e668636cc2c6d7ef61db9fa4e68b8d39593e47a3b97da83",
+      "result": {
+        "result": "PASS",
+        "version": "0.1.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+BASELINE: non-root user; Python absent; no Git/pip/venv setup.
+PRETTY_NAME="Ubuntu 22.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+Downloading WebPatch 0.1.0 for ubuntu 22.04...
+webpatch_0.1.0_all.deb: OK
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libexpat1 libmpdec3 libpython3-stdlib libpython3.10-minimal
+  libpython3.10-stdlib libreadline8 libsqlite3-0 media-types python3
+  python3-minimal python3.10 python3.10-minimal readline-common
+Suggested packages:
+  python3-doc python3-tk python3-venv python3.10-venv python3.10-doc binutils
+  binfmt-support readline-doc
+The following NEW packages will be installed:
+  libexpat1 libmpdec3 libpython3-stdlib libpython3.10-minimal
+  libpython3.10-stdlib libreadline8 libsqlite3-0 media-types python3
+  python3-minimal python3.10 python3.10-minimal readline-common webpatch
+0 upgraded, 14 newly installed, 0 to remove and 3 not upgraded.
+Need to get 6511 kB/6618 kB of archives.
+After this operation, 23.0 MB of additional disk space will be used.
+Get:1 /tmp/webpatch-install.0XBzmejS/webpatch_0.1.0_all.deb webpatch all 0.1.0 [107 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libpython3.10-minimal arm64 3.10.12-1~22.04.18 [814 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libexpat1 arm64 2.4.7-1ubuntu0.9 [83.5 kB]
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3.10-minimal arm64 3.10.12-1~22.04.18 [2245 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3-minimal arm64 3.10.6-1~22.04.1 [24.3 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 media-types all 7.0.0 [25.5 kB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libmpdec3 arm64 2.5.1-2build2 [89.0 kB]
+Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 readline-common all 8.1.2-1 [53.5 kB]
+Get:9 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libreadline8 arm64 8.1.2-1 [153 kB]
+Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsqlite3-0 arm64 3.37.2-2ubuntu0.8 [636 kB]
+Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libpython3.10-stdlib arm64 3.10.12-1~22.04.18 [1848 kB]
+Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3.10 arm64 3.10.12-1~22.04.18 [508 kB]
+Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libpython3-stdlib arm64 3.10.6-1~22.04.1 [6812 B]
+Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3 arm64 3.10.6-1~22.04.1 [22.8 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 6511 kB in 29s (228 kB/s)
+Selecting previously unselected package libpython3.10-minimal:arm64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4979 files and directories currently installed.)
+Preparing to unpack .../libpython3.10-minimal_3.10.12-1~22.04.18_arm64.deb ...
+Unpacking libpython3.10-minimal:arm64 (3.10.12-1~22.04.18) ...
+Selecting previously unselected package libexpat1:arm64.
+Preparing to unpack .../libexpat1_2.4.7-1ubuntu0.9_arm64.deb ...
+Unpacking libexpat1:arm64 (2.4.7-1ubuntu0.9) ...
+Selecting previously unselected package python3.10-minimal.
+Preparing to unpack .../python3.10-minimal_3.10.12-1~22.04.18_arm64.deb ...
+Unpacking python3.10-minimal (3.10.12-1~22.04.18) ...
+Setting up libpython3.10-minimal:arm64 (3.10.12-1~22.04.18) ...
+Setting up libexpat1:arm64 (2.4.7-1ubuntu0.9) ...
+Setting up python3.10-minimal (3.10.12-1~22.04.18) ...
+Selecting previously unselected package python3-minimal.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5283 files and directories currently installed.)
+Preparing to unpack .../0-python3-minimal_3.10.6-1~22.04.1_arm64.deb ...
+Unpacking python3-minimal (3.10.6-1~22.04.1) ...
+Selecting previously unselected package media-types.
+Preparing to unpack .../1-media-types_7.0.0_all.deb ...
+Unpacking media-types (7.0.0) ...
+Selecting previously unselected package libmpdec3:arm64.
+Preparing to unpack .../2-libmpdec3_2.5.1-2build2_arm64.deb ...
+Unpacking libmpdec3:arm64 (2.5.1-2build2) ...
+Selecting previously unselected package readline-common.
+Preparing to unpack .../3-readline-common_8.1.2-1_all.deb ...
+Unpacking readline-common (8.1.2-1) ...
+Selecting previously unselected package libreadline8:arm64.
+Preparing to unpack .../4-libreadline8_8.1.2-1_arm64.deb ...
+Unpacking libreadline8:arm64 (8.1.2-1) ...
+Selecting previously unselected package libsqlite3-0:arm64.
+Preparing to unpack .../5-libsqlite3-0_3.37.2-2ubuntu0.8_arm64.deb ...
+Unpacking libsqlite3-0:arm64 (3.37.2-2ubuntu0.8) ...
+Selecting previously unselected package libpython3.10-stdlib:arm64.
+Preparing to unpack .../6-libpython3.10-stdlib_3.10.12-1~22.04.18_arm64.deb ...
+Unpacking libpython3.10-stdlib:arm64 (3.10.12-1~22.04.18) ...
+Selecting previously unselected package python3.10.
+Preparing to unpack .../7-python3.10_3.10.12-1~22.04.18_arm64.deb ...
+Unpacking python3.10 (3.10.12-1~22.04.18) ...
+Selecting previously unselected package libpython3-stdlib:arm64.
+Preparing to unpack .../8-libpython3-stdlib_3.10.6-1~22.04.1_arm64.deb ...
+Unpacking libpython3-stdlib:arm64 (3.10.6-1~22.04.1) ...
+Setting up python3-minimal (3.10.6-1~22.04.1) ...
+Selecting previously unselected package python3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5713 files and directories currently installed.)
+Preparing to unpack .../python3_3.10.6-1~22.04.1_arm64.deb ...
+Unpacking python3 (3.10.6-1~22.04.1) ...
+Selecting previously unselected package webpatch.
+Preparing to unpack .../webpatch_0.1.0_all.deb ...
+Unpacking webpatch (0.1.0) ...
+Setting up media-types (7.0.0) ...
+Setting up libsqlite3-0:arm64 (3.37.2-2ubuntu0.8) ...
+Setting up libmpdec3:arm64 (2.5.1-2build2) ...
+Setting up readline-common (8.1.2-1) ...
+Setting up libreadline8:arm64 (8.1.2-1) ...
+Setting up libpython3.10-stdlib:arm64 (3.10.12-1~22.04.18) ...
+Setting up libpython3-stdlib:arm64 (3.10.6-1~22.04.1) ...
+Setting up python3.10 (3.10.12-1~22.04.18) ...
+Setting up python3 (3.10.6-1~22.04.1) ...
+running python rtupdate hooks for python3.10...
+running python post-rtupdate hooks for python3.10...
+Setting up webpatch (0.1.0) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+Installed WebPatch 0.1.0. Run: webpatch scan
+Installation success is not a runtime safety result. Scans return 1 (potentially affected) or 2 (unknown).
+Confirmed repair is limited to the documented official amd64 profiles; other architectures remain unsupported for repair.
+ONLINE_INSTALL: PASS; sudo APT installed WebPatch and Python dependencies.
+{
+  "result": "PASS",
+  "version": "0.1.0",
+  "online_install": "PASS",
+  "nonroot_sudo_elevation": "PASS",
+  "python_dependency_install": "PASS",
+  "empty_inventory": "UNKNOWN",
+  "safe": false,
+  "scan_exit": 2
+}
