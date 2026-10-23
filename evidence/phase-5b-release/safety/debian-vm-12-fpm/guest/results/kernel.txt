@@ -1,0 +1,1 @@
+Linux webpatch-debian-12-fpm 6.1.0-54-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.190-1 (2026-10-16) x86_64 GNU/Linux

@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "scope": "Debian VM service discovery and signed archive identity only",
+  "package": "php8.4-fpm",
+  "service": "php8.4-fpm.service",
+  "runtime_count": 4,
+  "environment": {
+    "os_id": "debian",
+    "version_id": "13",
+    "codename": "trixie",
+    "scope": "host_or_unidentified_container",
+    "mount_namespace": "mnt:[4026531841]",
+    "scope_sha256": "528065cca23759c05394c233ae54492bcca86f2ee58827fda42c0c8d4e12430e"
+  }
+}

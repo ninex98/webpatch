@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "scope": "Debian VM service discovery and signed archive identity only",
+  "package": "libapache2-mod-php8.4",
+  "service": "apache2.service",
+  "runtime_count": 6,
+  "environment": {
+    "os_id": "debian",
+    "version_id": "13",
+    "codename": "trixie",
+    "scope": "host_or_unidentified_container",
+    "mount_namespace": "mnt:[4026531841]",
+    "scope_sha256": "17bce959b43b4ee0a3b90df911dcdb12917baa6657bcd3f8517fba65da048cad"
+  }
+}
