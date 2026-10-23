@@ -4,6 +4,19 @@ import re
 import subprocess
 
 
+def retryable_observation_abort(result):
+    """CI only: a fresh review may follow an unchanged observation-race abort."""
+    if (result.get('status')!='BLOCKED' or result.get('changed') is not False
+            or list(result.get('reasons',[]))!=['LOCKED_REVALIDATION_FAILED']):
+        return False
+    blockers=(result.get('revalidation') or {}).get('blockers',[])
+    primary=('CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:','CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:',
+             'REPAIR_REQUIREMENT_NOT_MET:input_stability')
+    secondary=('REPAIR_REQUIREMENT_NOT_MET:dependency_changes','REPAIR_REQUIREMENT_NOT_MET:diagnostic_simulation',
+               'REPAIR_REQUIREMENT_NOT_MET:installation_equivalence')
+    return bool(blockers) and any(b.startswith(primary) for b in blockers) and all(b.startswith(primary+secondary) for b in blockers)
+
+
 def isolate_service(service,source):
     assert os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('RUNNER_ENVIRONMENT')=='github-hosted'
     assert re.fullmatch(r'php[0-9]+\.[0-9]+',source)

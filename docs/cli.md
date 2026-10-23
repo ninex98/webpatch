@@ -58,11 +58,11 @@ Selection does not narrow discovery or hide other consumers of the same package.
 
 ```sh
 .venv/bin/webpatch apply
-# stderr: BLOCKED: repair execution is disabled. No changes performed.
+# stderr: BLOCKED: a reviewed managed repair document and its exact plan hash are required. No changes performed.
 # exit: 4
 ```
 
-There is no `--yes` bypass. The typed package transaction is implemented, but public execution remains disabled until native certification completes. Explicit service preparation below has a separate, exact-hash confirmation boundary.
+There is no `--yes` bypass. Schema 4 diagnostic plans cannot be applied; the separate managed workflow below requires complete evidence and exact confirmation. Explicit service preparation below has a separate, exact-hash confirmation boundary.
 
 ## Explicit evidence and controlled service preparation
 
@@ -91,9 +91,26 @@ sudo webpatch prepare-scope preparation.json --confirm-sha256 REVIEWED_PREPARATI
 
 ## Managed package repair
 
-**Public `apply` remains disabled while native certification is pending.** The following describes the implemented workflow and its confirmation boundary; it does not bypass the release gate. Supported profiles are Ubuntu 22.04/php8.1, Ubuntu 24.04/php8.3, Debian 12/php8.2 and Debian 13/php8.4, amd64 official same-branch packages, stable FPM pools or standard Apache mod_php. No container in-place repair.
+**Public `apply` accepts only an exactly confirmed managed review.** Its internal native baseline passed all 17 jobs at `2d8132c`; installed CLI acceptance for the newly enabled entry is tracked in the [development status](development-status.md). Supported profiles are Ubuntu 22.04/php8.1, Ubuntu 24.04/php8.3, Debian 12/php8.2 and Debian 13/php8.4, amd64 official same-branch packages, stable FPM pools or standard Apache mod_php. No container in-place repair.
 
 Prepare every affected service and declare a probe for each pool. Deployment of the shipped collector and its web routing is an explicit administrator action: root-owned files/parents, loopback-only access, uncached PHP script, no application side effects. `probe-template` only prints it. Default scans never create or request a page. A successful preparation result contains `.receipt`; save that complete signed object as `startup.json`, without editing it. The signing key and private snapshots stay in the local state directory.
+
+For a successful preparation result, this local standard-library step saves the signed object and prints its canonical document hash for review:
+
+```sh
+umask 077
+python3 - <<'PYRECEIPT'
+import hashlib, json
+from pathlib import Path
+result = json.loads(Path('preparation-result.json').read_text())
+assert result['status'] == 'VERIFIED_CONTROLLED_STARTUP'
+receipt = result['receipt']
+Path('startup.json').write_text(json.dumps(receipt, indent=2) + '\n')
+canonical = json.dumps(receipt, sort_keys=True, separators=(',', ':')).encode()
+print(hashlib.sha256(canonical).hexdigest())
+PYRECEIPT
+```
+
 
 ```sh
 sudo webpatch repair-plan --prepared-receipt startup.json --source-cohort php8.1 \
@@ -104,7 +121,7 @@ sudo webpatch repair-plan --prepared-receipt startup.json --source-cohort php8.1
 
 This wrapper (`schema_version=1`, `kind=managed_package_repair_review`) contains a schema 5 `.plan`, the exact `.contract` and original `.evidence`. Review **all three**, including every installed member of the PHP source cohort, old/new authenticated maintainer scripts, conffiles, trigger handlers, dependency changes, services, downtime budget and manual recovery steps. The digest to confirm is `.plan.plan_sha256`. `READY_FOR_CONFIRMATION` means admitted for that finite operation; `executable=false` still requires explicit confirmation. `NO_PACKAGE_CHANGES` is blocked and never pretends a repair happened. Unknown consumers, missing task visibility, unprepared services, drift, unsupported hooks/sources or changed dependencies remain blockers.
 
-Once the maintained release gate is enabled, the confirmation form is:
+After reviewing the exact managed plan and its effects, the confirmation form is:
 
 ```sh
 sudo webpatch apply repair.json --confirm-sha256 REVIEWED_PLAN_SHA256 --format json > repair-result.json

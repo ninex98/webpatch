@@ -90,8 +90,11 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
     if args.command == "probe-template":
         print(probe_source().decode(), end="")
         return 0
-    if args.command == 'apply' and (not release_gate.PUBLIC_REPAIR_ENABLED or not args.path or not args.confirm_sha256):
-        print("BLOCKED: repair execution is disabled. No changes performed.", file=sys.stderr)
+    if args.command == 'apply' and not release_gate.PUBLIC_REPAIR_ENABLED:
+        print("BLOCKED: repair execution is disabled pending native certification. No changes performed.", file=sys.stderr)
+        return 4
+    if args.command == 'apply' and (not args.path or not args.confirm_sha256):
+        print("BLOCKED: a reviewed managed repair document and its exact plan hash are required. No changes performed.", file=sys.stderr)
         return 4
     try:
         native = system is None
@@ -99,6 +102,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
         if args.command=='apply':
             saved=load_document(reader.read_plan_document(args.path))
             if not isinstance(saved,dict) or not isinstance(saved.get('contract'),dict): raise ValueError('INVALID_REPAIR_DOCUMENT')
+            if not isinstance(saved['contract'].get('state_directory'),str): raise ValueError('INVALID_REPAIR_STATE_DIRECTORY')
             controller=package_controller if package_controller is not None else (LocalPackageControl(saved['contract']['state_directory']) if native else None)
             capability=probe if probe is not None else (LocalApplicationProbe() if native else None)
             solver=simulator if simulator is not None else (LocalAptSimulator() if native else None)

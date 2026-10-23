@@ -24,7 +24,8 @@ from webpatch.service import scan
 from webpatch.system import LocalSystem
 from webpatch.transaction import AuditJournal
 from webpatch.profiles import php_source_profile
-from fixture_services import isolate_service
+from webpatch.release_gate import PUBLIC_REPAIR_ENABLED
+from fixture_services import isolate_service,retryable_observation_abort
 
 assert os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('RUNNER_ENVIRONMENT')=='github-hosted'
 name,service,port,cache=sys.argv[1:]
@@ -124,15 +125,42 @@ for case in ('success','post-health-failure'):
         review=build_repair_review(current,system=reader,simulator=LocalAptSimulator(),controller=controller,probe=capability,
             startup_receipt=prepared['receipt'],source_cohort=source,package_cache=cache,budget_seconds=600)
         document=review.document(); (folder/'repair-plan.json').write_text(json.dumps(document,indent=2)+'\n')
+        def invoke(confirmation):
+            # The success path exercises the installed isolated entry point once
+            # native certification enables it. Fault injection stays explicit.
+            if case=='success' and PUBLIC_REPAIR_ENABLED:
+                completed=subprocess.run(['/usr/bin/webpatch','apply',str((folder/'repair-plan.json').resolve()),
+                    '--confirm-sha256',confirmation,'--format','json'],capture_output=True,text=True,timeout=900,cwd='/')
+                assert completed.returncode in {0,4},(completed.returncode,completed.stderr)
+                output=json.loads(completed.stdout)
+                assert (completed.returncode==0)==(output['status']=='VERIFIED_WITHIN_DECLARED_SCOPE')
+                return output
+            return execute_repair_review(document,confirmation_sha256=confirmation,system=reader,
+                simulator=LocalAptSimulator(),controller=controller,probe=capability,journal=journal)
+        (folder/'execution-entry.json').write_text(json.dumps({'entry':'INSTALLED_PUBLIC_CLI' if case=='success' and PUBLIC_REPAIR_ENABLED
+            else 'INTERNAL_TYPED_API','fault_injection':case=='post-health-failure'},indent=2)+'\n')
         assert review.proposal.admission_status=='READY_FOR_CONFIRMATION',review.proposal.blockers
         assert review.proposal.changes and all(c.old_version==base_version and c.new_version!=base_version for c in review.proposal.changes)
-        denied=execute_repair_review(document,confirmation_sha256='f'*64,system=reader,simulator=LocalAptSimulator(),
-            controller=controller,probe=capability,journal=journal)
+        denied=invoke('f'*64)
         assert denied['status']=='BLOCKED' and not denied['changed']
         (folder/'wrong-confirmation.json').write_text(json.dumps(denied,indent=2)+'\n')
         controller.armed=case=='post-health-failure'
-        result=execute_repair_review(document,confirmation_sha256=review.proposal.plan_sha256,system=reader,
-            simulator=LocalAptSimulator(),controller=controller,probe=capability,journal=journal)
+        reviewed_hashes=set()
+        for attempt in range(1,4):
+            assert review.proposal.plan_sha256 not in reviewed_hashes
+            reviewed_hashes.add(review.proposal.plan_sha256)
+            attempt_dir=folder/('attempt-'+str(attempt));attempt_dir.mkdir(exist_ok=True)
+            (attempt_dir/'review.json').write_text(json.dumps(document,indent=2)+'\n')
+            result=invoke(review.proposal.plan_sha256)
+            (attempt_dir/'result.json').write_text(json.dumps(result,indent=2)+'\n')
+            if attempt==3 or not retryable_observation_abort(result): break
+            # Never retry an approved plan or changed transaction. Process churn
+            # remains blocking in the product; this fixture obtains new evidence.
+            current=scan(reader,package_cache=cache)
+            review=build_repair_review(current,system=reader,simulator=LocalAptSimulator(),controller=controller,probe=capability,
+                startup_receipt=prepared['receipt'],source_cohort=source,package_cache=cache,budget_seconds=600)
+            document=review.document();(folder/'repair-plan.json').write_text(json.dumps(document,indent=2)+'\n')
+            assert review.proposal.admission_status=='READY_FOR_CONFIRMATION',review.proposal.blockers
         (folder/'result.json').write_text(json.dumps(result,indent=2)+'\n')
         (folder/'effective-ini-difference.json').write_text(json.dumps(settings_diagnostic('compare'),indent=2)+'\n')
         if case=='success':
@@ -143,8 +171,8 @@ for case in ('success','post-health-failure'):
         assert not result['safe']
         after=scan(reader,package_cache=cache)
         assert all(next(p.version for p in after.inventory.packages if p.id==t.name+':'+t.architecture)==t.version for t in review.proposal.targets)
-        repeated=execute_repair_review(document,confirmation_sha256=review.proposal.plan_sha256,system=reader,
-            simulator=LocalAptSimulator(),controller=controller,probe=capability,journal=journal)
+        repeated=invoke(review.proposal.plan_sha256)
+        (folder/'repeated-confirmation.json').write_text(json.dumps(repeated,indent=2)+'\n')
         assert repeated['status']=='BLOCKED'
     finally:
         controller.armed=False; capability.failed=False

@@ -6,11 +6,13 @@
 
 ## 当前工作
 
-源码已实现报告 schema 2、诊断计划 schema 4，以及 wrapper schema 1 / Plan schema 5 的受控修复审阅、持锁事务与修复后验证。公共 apply 由 release_gate.PUBLIC_REPAIR_ENABLED=false 禁用，不能通过环境、JSON 或 --yes 绕过。内核凭据 collector 协议 3；旧 collector/收据需重新准备。
+源码已实现报告 schema 2、诊断计划 schema 4，以及 wrapper schema 1 / Plan schema 5 的受控修复审阅、持锁事务与修复后验证。公共 apply 的维护者门禁现已开启；仍不能通过环境、JSON 或 --yes 绕过精确确认和证据门禁。内核凭据 collector 协议 3；旧 collector/收据需重新准备。
 
-最近 `4c53acc` 本地 605 PASS，Actions 39881542701 为 13/17 PASS，剩余 Ubuntu 24.04 两格持锁复核失败，以及 Debian 12/13 Apache 夹具重装后保留旧 deleted 模块。`2d8132c` 补充复核诊断及夹具显式重启；Actions 39883475413 待验收，证据 evidence/phase-3g4。先查看更新后的实际 CI，按失败证据修正，不放宽 UNKNOWN。
+`2d8132c` 的 Actions 39883475413 已 17/17 PASS：两组 fixtures、三格包容器、两格 Node、两格 Debian 归档、四格 Ubuntu 和四格 Debian 独立生命周期。Ubuntu 实际升级/故障证据提交 c841096，Debian 独立留证 98a3071。
 
-Ubuntu 22.04 两格和 Debian 两版 FPM 已实际验证 base→fixed 升级及重启后 HTTP 失败。仍须完整八格当前源码通过，保存独立证据，再开放严格确认入口并在安装后的公开 CLI 验证。最后同步文档/包说明/当前状态。容器建议和 Node 两格已在829df71基线及后续运行通过，Debian 归档链也独立通过；完整支持按最新 CI 判断。
+公共入口已根据该基线开放精确确认。最新增量把八格成功路径改为安装后的 /usr/bin/webpatch apply，从 / 运行并验证错误 hash、实际升级、结果/退出码和禁止复用。最终 CLI CI 尚待完成，先检查 Git/Actions 和 evidence/phase-3h-public。
+
+d314ead 复验两格 Apache 在故障场景安装前遇到短命进程或模拟输入漂移，生产门禁正确阻断；CI 新增仅针对 changed=false 的明确观察竞争生成新计划，最多三次，每次留存。绝不放宽门禁、重试同一计划或重试已经 changed 的事务。完成新源码矩阵后收齐最终证据、文档/支持矩阵；不重做已验收阶段。
 
 ## 持续约束
 

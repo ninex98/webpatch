@@ -26,6 +26,17 @@ def test_ambiguous_review_documents_are_rejected(raw):
     with pytest.raises(ValueError): load_document(raw)
 
 
+@pytest.mark.parametrize('directory',[None,[],12,{'path':'/var/lib/webpatch'}])
+def test_invalid_state_directory_is_rejected_before_native_capability_construction(directory,monkeypatch,capsys):
+    fake=FakeSystem({});fake.reads['/review.json']=json.dumps({'contract':{'state_directory':directory}})
+    monkeypatch.setattr('webpatch.release_gate.PUBLIC_REPAIR_ENABLED',True)
+    monkeypatch.setattr('webpatch.cli.LocalSystem',lambda:fake)
+    def forbidden(*args): raise AssertionError('Native control constructed for malformed document')
+    monkeypatch.setattr('webpatch.cli.LocalPackageControl',forbidden)
+    assert main(['apply','/review.json','--confirm-sha256','f'*64])==3
+    assert 'ValueError' in capsys.readouterr().err
+
+
 def test_certified_entry_requires_explicit_injected_capabilities_and_exact_plan(monkeypatch,capsys):
     values=fixture(monkeypatch);fake=values[0];review=build(values);controller=Controller(fake)
     fake.reads['/review.json']=json.dumps(review.document())

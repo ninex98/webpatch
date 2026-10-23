@@ -1,0 +1,67 @@
+[
+  {
+    "source_commit": "d314ead5c0697e85a9003bcf653ac0081fa2e399",
+    "run": 39883871107,
+    "artifact_path": "/tmp/webpatch-current-ci/docs-noble-apache/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "42a678cc2f8f2205e6d479985fe654b3910e08dbd17bb367fee0950d2f3e9a6f",
+    "status": "BLOCKED",
+    "changed": false,
+    "reasons": [
+      "LOCKED_REVALIDATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "BLOCKED",
+      "blockers": [
+        "CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:2048",
+        "CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:2048"
+      ],
+      "changed_plan_fields": [
+        "admission_status",
+        "blockers",
+        "coverage",
+        "gates",
+        "scope",
+        "status"
+      ],
+      "changed_contract_fields": [],
+      "evidence_deadline_shortened": false
+    }
+  },
+  {
+    "source_commit": "d314ead5c0697e85a9003bcf653ac0081fa2e399",
+    "run": 39883871107,
+    "artifact_path": "/tmp/webpatch-current-ci/docs-jammy-apache/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "063b27603991c892924f317e14cdae365840d7ace0546357905365db24a3ae49",
+    "status": "BLOCKED",
+    "changed": false,
+    "reasons": [
+      "LOCKED_REVALIDATION_FAILED"
+    ],
+    "revalidation": {
+      "admission_status": "BLOCKED",
+      "blockers": [
+        "REPAIR_REQUIREMENT_NOT_MET:dependency_changes",
+        "REPAIR_REQUIREMENT_NOT_MET:diagnostic_simulation",
+        "REPAIR_REQUIREMENT_NOT_MET:input_stability",
+        "REPAIR_REQUIREMENT_NOT_MET:installation_equivalence"
+      ],
+      "changed_plan_fields": [
+        "admission_status",
+        "apt_simulation",
+        "blockers",
+        "changes",
+        "coverage",
+        "execution_contract_sha256",
+        "gates",
+        "review_status",
+        "scope",
+        "simulation_sha256",
+        "status"
+      ],
+      "changed_contract_fields": [
+        "changes"
+      ],
+      "evidence_deadline_shortened": false
+    }
+  }
+]

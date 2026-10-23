@@ -34,6 +34,8 @@ def main():
     with tarfile.open(fileobj=io.BytesIO(control.stdout)) as bundle:
         assert {m.name.removeprefix("./") for m in bundle if m.isfile()} == {"control"}
     source_hashes = {}
+    for name in ('design.md','cli.md','phase-3.md','phase-4.md'):
+        assert Path('docs',name).read_bytes()==Path('/usr/share/doc/webpatch/docs',name).read_bytes()
     for path in sorted(Path("src/webpatch").rglob("*")):
         if path.suffix in {".py", ".php", ".json"}:
             relative = path.relative_to("src")

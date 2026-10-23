@@ -1,6 +1,6 @@
 # 开发状态 / Development status
 
-核对日期：2026-10-23（Asia/Shanghai）。这是连续四阶段开发任务；用户已确认 Debian、Node.js 和容器重建扩展分别验收。当前公开 `apply` 仍禁用；不能将内部事务实现等同于完整发布验收。
+核对日期：2026-10-23（Asia/Shanghai）。这是连续四阶段开发任务；用户已确认 Debian、Node.js 和容器重建扩展分别验收。内部原生矩阵已 17/17 PASS，公开 `apply` 已开启严格 hash 确认；安装后的入口正在最终 CI 验收，不能将内部通过等同于公开 CLI 通过。
 
 ## 当前进度
 
@@ -8,18 +8,20 @@
 |---|---|---|
 | 1 只读基础 | 注入 I/O、发现/规则/模型、CLI、打包 | 已完成；历史证据在 evidence/phase-1 及后续矩阵 |
 | 2 可信发现与 dry-run | 实例/文件/来源/路由证据、结构化覆盖、APT 模拟、不可变诊断计划 | 2D 的 efb122d、Actions 39763873264 为 9/9 PASS；[证据](../evidence/phase-2d4/README.md) |
-| 3 有限 Ubuntu 修复 | 内核请求绑定、只读配置视图、全 task FD census、精确维护合同、持锁事务、修复后验证/审计 | 已实现，完整真实矩阵待验收；公开入口受发布门禁禁用 |
+| 3 有限 Ubuntu 修复 | 内核请求绑定、只读配置视图、全 task FD census、精确维护合同、持锁事务、修复后验证/审计 | 内部四格真实矩阵已通过；安装后公开 CLI 最终验收待完成 |
 | 4A 容器 | image digest 声明、逐 CVE 重建建议 | 三格只读/禁网容器独立验证；不构建/推送/发布 |
 | 4B Node.js | 独立 adapter/rules，Debian 12/13 两项运行时 CVE | 两格独立原生容器通过；无 npm 审计或 Node 修复 |
 | 4C Debian PHP | 独立签名根、归档链、精确 profile、准备/事务 | Debian 12/13 归档认证与 FPM/Apache 四格内部生命周期分别通过；[独立证据](../evidence/phase-4c-accepted/README.md) |
 
 ## 最新源码与 CI
 
+`2d8132c` / Actions 39883475413 已 **17/17 PASS**，Ubuntu 四格八次事务留证提交 `c841096`，Debian 独立留证 `98a3071`。公开入口增量本地/CI 结果见 evidence/phase-3h-public；该增量仍 CI_PENDING。后续 d314ead 复验有两格安装前观察竞争被正确阻断，失败保存在该增量证据，不计通过。
+
 - `4c53acc`：605 本地 tests PASS；[Actions 39881542701](https://github.com/ninex98/webpatch/actions/runs/39881542701) 为 **13/17 PASS，4 FAIL**。Ubuntu 22.04 两种 SAPI、Debian 12/13 FPM 的实际升级和健康故障路径通过；不是全矩阵验收。
 - 两项 Debian Apache 在重装测试包后仍映射 deleted 旧模块，生产门禁正确阻断；两项 Ubuntu 24.04 在持锁复核时拒绝，尚缺精确差异诊断。
 - `2d8132c`：本地 605 PASS，补充复核变化字段/阻断原因并重启重装后的 Apache 测试基线；[Actions 39883475413](https://github.com/ninex98/webpatch/actions/runs/39883475413) **CI_PENDING**。失败原日志、JUnit 和源码摘要在 [phase-3g4](../evidence/phase-3g4/README.md)。
 - `2d8132c` 的六个 Debian job 已独立 PASS，见 [phase-4c-accepted](../evidence/phase-4c-accepted/README.md)；同轮 Ubuntu 尚在运行，不声明整轮通过。
-- 公共入口准备 `4c53acc` 的证据在 [phase-3h-entry](../evidence/phase-3h-entry/README.md)。启用入口仍须全部要求的原生升级/故障验证通过，并验证安装后的公开 CLI。
+- 公共入口准备 `4c53acc` 的证据在 [phase-3h-entry](../evidence/phase-3h-entry/README.md)。内部所需升级/故障矩阵已通过；入口现已启用，安装后公开 CLI 最终验证待完成。
 
 历史已接受基线 `829df71` / [39848034144](https://github.com/ninex98/webpatch/actions/runs/39848034144) 为 **11/11 PASS**：Python 3.10/3.12 各 522，四格受控准备/收据、三格包能力/只读容器、两格 Node。[完整证据](../evidence/accepted-829df71/README.md) 只适用于该源码，不认证其后新增执行器。原生合成包操作独立证据在 [phase-3e2](../evidence/phase-3e2/accepted-native/README.md)。
 
@@ -35,4 +37,4 @@ collector 协议 3；只能接受两项已审阅默认 INI 指令的新增，既
 
 ## 剩余验收
 
-完成四格 Ubuntu 与四格 Debian 实际升级/故障闭环；保存当前源码的完整成功/失败证据；启用并原生验证严格确认入口；同步最终支持矩阵与交接文档。每个独立阶段继续先定范围、测试留证、立即双语提交并正常推送；不得将 NOT_RUN/BLOCKED 写成 PASS。
+完成新源码的四格 Ubuntu 与四格 Debian 安装后公开 CLI 验收，保存成功及所有观察竞争失败记录，再同步最终支持矩阵与交接文档。每个独立阶段继续先定范围、测试留证、立即双语提交并正常推送；不得将 NOT_RUN/BLOCKED 写成 PASS。

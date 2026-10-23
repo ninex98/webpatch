@@ -1,4 +1,4 @@
-"""Typed managed-repair transaction bridge. Public apply is not enabled here."""
+"""Typed managed-repair transaction bridge; public authorization is enforced by the CLI."""
 from dataclasses import asdict,fields
 from datetime import datetime,timedelta,timezone
 import json
