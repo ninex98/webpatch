@@ -151,3 +151,9 @@ collector 协议更新为 2，同时返回全量设置摘要、仅排除这一�
 jammy 的实际旧→新诊断只新增 max_multipart_body_parts；noble 的对应差异为 memory_hard_limit_percent。已核对 [PHP 8.1.33 注册代码](https://raw.githubusercontent.com/php/php-src/php-8.1.33/main/main.c)：前者默认值为 -1。collector 协议 3 将这两项分别分类，允许各自或同时从 ABSENT 到 VENDOR_DEFAULT，其余设置基线、输入路径和扩展名称必须一致。
 
 已存在的任一值不得变化，新增显式非默认值、未知字段或未审阅指令仍阻断。两个参数都不被写入；这些观测只解释精确的配置演进，不替代安装来源、修复版本、新实例和请求证明。旧协议及旧收据需重新生成。
+
+## 3H 公开入口准备（发布门禁仍关闭）
+
+`apply <managed-review.json> --confirm-sha256 <plan_sha256>` 的固定参数和能力边界已实现，但 release_gate.PUBLIC_REPAIR_ENABLED 仍为 false；没有环境变量、--yes、--force 或保存文档字段能覆盖该门禁。原无参数 apply 继续无 I/O 地拒绝。只有原生矩阵验收完成后才能切换维护者门禁。
+
+启用后的路径只接受 schema 5 managed review，经内部事务桥重新验证；错误/缺失确认、重复 JSON key、NaN/Infinity、未知字段和能力缺失都不能执行。注入 reader 必须另外显式注入 package controller、simulator、probe 和 journal，即使它继承 LocalSystem。成功返回 0 只代表声明范围验证通过，所有失败/部分结果均不等于安全。

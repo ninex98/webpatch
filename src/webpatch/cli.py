@@ -25,10 +25,14 @@ from .prepared_verification import verify_prepared_scope
 from .container_rebuild import rebuild_advice
 from .node_adapter import scan_node
 from .repair_policy import build_repair_review
+from .repair_execution import execute_repair_review
+from .package_control import LocalPackageControl
+from .documents import load_document
+from . import release_gate
 
 
-def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, journal=None, now=None) -> int:
-    parser = argparse.ArgumentParser(description="WebPatch read-only security inventory and APT simulation")
+def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, package_controller=None, journal=None, now=None) -> int:
+    parser = argparse.ArgumentParser(description="WebPatch runtime evidence, scoped maintenance and verification")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command")
     for command in ("scan", "scan-node", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation", "verify-preparation", "rebuild-plan", "repair-plan"):
@@ -78,19 +82,37 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             child.add_argument("--script", required=True, help="root-controlled copy of the shipped probe script")
             child.add_argument("--service", required=True, help="expected previously observed systemd service")
     subs.add_parser("probe-template", help="print the collector source; never deploys it")
-    subs.add_parser("apply", help="disabled in this preview")
+    apply_parser=subs.add_parser('apply',help='apply an exactly confirmed managed repair after native certification')
+    apply_parser.add_argument('path',nargs='?',help='schema 5 managed repair review JSON')
+    apply_parser.add_argument('--confirm-sha256',help='exact plan hash reviewed by the operator')
+    apply_parser.add_argument('--format',choices=('text','json'),default='json')
     args = parser.parse_args(argv)
     if args.command == "probe-template":
         print(probe_source().decode(), end="")
         return 0
-    if args.command == "apply":
+    if args.command == 'apply' and (not release_gate.PUBLIC_REPAIR_ENABLED or not args.path or not args.confirm_sha256):
         print("BLOCKED: repair execution is disabled. No changes performed.", file=sys.stderr)
         return 4
     try:
         native = system is None
         reader = system if system is not None else LocalSystem()
+        if args.command=='apply':
+            saved=load_document(reader.read_plan_document(args.path))
+            if not isinstance(saved,dict) or not isinstance(saved.get('contract'),dict): raise ValueError('INVALID_REPAIR_DOCUMENT')
+            controller=package_controller if package_controller is not None else (LocalPackageControl(saved['contract']['state_directory']) if native else None)
+            capability=probe if probe is not None else (LocalApplicationProbe() if native else None)
+            solver=simulator if simulator is not None else (LocalAptSimulator() if native else None)
+            audit=journal if journal is not None else (AuditJournal(controller.state_dir/'operations.jsonl') if native and controller else None)
+            if controller is None or capability is None or solver is None or audit is None: raise ValueError('REPAIR_CAPABILITIES_REQUIRED')
+            result=execute_repair_review(saved,confirmation_sha256=args.confirm_sha256,system=reader,simulator=solver,
+                controller=controller,probe=capability,journal=audit,clock=(lambda:now) if now else None)
+            if args.format=='json': print(json.dumps(result,ensure_ascii=True,indent=2))
+            else:
+                print(result['status']+' — limited declared scope; global safety remains UNKNOWN.')
+                print(json.dumps({'plan_sha256':result.get('plan_sha256'),'reasons':result.get('reasons',[])},ensure_ascii=True))
+            return 0 if result['status']=='VERIFIED_WITHIN_DECLARED_SCOPE' else 4
         if args.command in {"prepare-scope", "retire-preparation"}:
-            saved = json.loads(reader.read_plan_document(args.path))
+            saved = load_document(reader.read_plan_document(args.path))
             if not isinstance(saved,dict): raise ValueError('INVALID_PREPARATION_DOCUMENT')
             directory = saved.get('state_directory','/var/lib/webpatch') if args.command=='prepare-scope' else args.state_directory
             controller = service_controller if service_controller is not None else (LocalServiceControl(directory) if native else None)
@@ -124,7 +146,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             solver=simulator if simulator is not None else (LocalAptSimulator() if native else None)
             if controller is None or capability is None or solver is None: raise ValueError('REPAIR_REVIEW_CAPABILITIES_REQUIRED')
             review=build_repair_review(report,system=reader,simulator=solver,controller=controller,probe=capability,
-                startup_receipt=json.loads(reader.read_plan_document(args.prepared_receipt)),source_cohort=args.source_cohort,
+                startup_receipt=load_document(reader.read_plan_document(args.prepared_receipt)),source_cohort=args.source_cohort,
                 package_cache=args.package_cache,budget_seconds=args.budget_seconds,now=now)
             print(json.dumps(review.document(),ensure_ascii=True,indent=2))
             return 4
@@ -133,7 +155,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             print(json.dumps(result,ensure_ascii=True,indent=2))
             return 4
         if args.command == 'verify-preparation':
-            saved=json.loads(reader.read_plan_document(args.path))
+            saved=load_document(reader.read_plan_document(args.path))
             if digest(saved)!=args.expect_sha256: raise ValueError('PREPARED_RECEIPT_DIGEST_MISMATCH')
             controller=service_controller if service_controller is not None else (LocalServiceControl(args.state_directory) if native else None)
             capability=probe if probe is not None else (LocalApplicationProbe() if native else None)
@@ -143,7 +165,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             return 0 if result['status']=='VERIFIED_CURRENT_PREPARED_SCOPE' else 4
         if args.command == "prepare-plan":
             result = preparation_plan(report,system=reader,services=args.services,
-                probes=json.loads(reader.read_plan_document(args.probes)),package_cache=args.package_cache,
+                probes=load_document(reader.read_plan_document(args.probes)),package_cache=args.package_cache,
                 state_dir=args.state_directory,now=now)
             print(json.dumps(result,ensure_ascii=True,indent=2))
             return 4
@@ -161,11 +183,11 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
         if args.command in {"deployment-manifest", "verify-deployment"}:
             timestamp = now or datetime.now(timezone.utc)
             document = (create_manifest(report, timestamp) if args.command == "deployment-manifest" else
-                        reconcile(json.loads(reader.read_plan_document(args.path)), report, timestamp, args.expect_sha256))
+                        reconcile(load_document(reader.read_plan_document(args.path)), report, timestamp, args.expect_sha256))
             print(json.dumps(document, ensure_ascii=True, indent=2))
             return 4  # matching observations never authorize repair
         backend = simulator if simulator is not None else (LocalAptSimulator() if native else None)
-        saved = json.loads(reader.read_plan_document(args.path)) if args.command == "verify-plan" else None
+        saved = load_document(reader.read_plan_document(args.path)) if args.command == "verify-plan" else None
         if args.command == "verify-plan" and (not isinstance(saved, dict) or not isinstance(saved.get("scope", {}), dict)):
             raise ValueError("INVALID_PLAN_DOCUMENT")
         requested = saved.get("scope", {}).get("requested_package_ids") if isinstance(saved, dict) else getattr(args, "target_package_ids", None)
@@ -191,7 +213,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             print(json.dumps(verification, ensure_ascii=True, indent=2))
             return 4
     except (OSError, ValueError, KeyError, ProbeError) as exc:
-        print(f"ERROR: scan incomplete ({type(exc).__name__}); safety is UNKNOWN.", file=sys.stderr)
+        print(f"ERROR: operation incomplete ({type(exc).__name__}); safety is UNKNOWN.", file=sys.stderr)
         return 3
     if getattr(args, "format", "text") == "json":
         print(json.dumps(asdict(result), ensure_ascii=True, indent=2))
