@@ -53,6 +53,10 @@ else:
             result = run(['sh', str(ROOT / 'install.sh'), *arguments], cwd='/', env=env | (additions or {}))
             if success:
                 assert result.returncode == 0, (label, result.stdout, result.stderr)
+                assert 'unsandboxed as root' not in result.stdout + result.stderr
+                if '--verbose' not in arguments:
+                    assert 'Reading package lists' not in result.stdout
+                    assert len(result.stdout.splitlines()) < 20
             else:
                 assert result.returncode != 0, (label, result.stdout)
                 assert before == Path('/var/lib/dpkg/status').read_bytes(), label
@@ -101,11 +105,12 @@ else:
         shutil.copyfile(RELEASE / asset, package)
         sums.write_bytes(original)
         apt = commands / 'apt-get'
-        apt.write_text('#!/bin/sh\nexit 42\n'); apt.chmod(0o755)
-        invoke('apt-failure-reported', ['--version', version], contains='APT installation failed')
+        apt.write_text('#!/bin/sh\necho "APT_FIXTURE_FAILURE" >&2\nexit 42\n'); apt.chmod(0o755)
+        invoke('apt-failure-reported', ['--version', version], contains='APT_FIXTURE_FAILURE')
         apt.unlink()
         invoke('install-latest', success=True, contains=f'Installed WebPatch {version}')
         invoke('reinstall-pinned', ['--version', version], success=True)
+        invoke('verbose-install', ['--version', version, '--verbose'], success=True, contains='Reading package lists')
         old = work / 'old'
         run(['dpkg-deb', '--raw-extract', str(RELEASE / asset), str(old)], check=True)
         control = old / 'DEBIAN/control'

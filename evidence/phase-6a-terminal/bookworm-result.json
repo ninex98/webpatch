@@ -1,0 +1,120 @@
+{
+  "result": "PASS",
+  "environment": "PRETTY_NAME=\"Debian GNU/Linux 12 (bookworm)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"12\"\nVERSION=\"12 (bookworm)\"\nVERSION_CODENAME=bookworm\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+  "architecture": "arm64",
+  "version": "0.1.0",
+  "package_sha256": "2605bbe944d47acc9f3944b06a0f32f1c434c64ad358b00351d01f4db5c6e370",
+  "checks": [
+    {
+      "case": "invalid-version",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "missing-version",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unknown-option",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unsupported-os",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unsupported-distribution",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "latest-download-failed",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "unexpected-latest-url",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "package-download-failed",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "missing-checksum",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "duplicate-checksum",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "malformed-checksum",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "corrupted-package",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "wrong-package",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "wrong-version",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "wrong-architecture",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "apt-failure-reported",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "install-latest",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "case": "reinstall-pinned",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "case": "verbose-install",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "case": "upgrade-from-older-version",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "case": "downgrade-refused",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "case": "installed-read-only-empty-inventory-stays-unknown",
+      "status": "PASS",
+      "exit_code": 2
+    }
+  ],
+  "live_github_release_download": "NOT_RUN"
+}

@@ -29,14 +29,22 @@ from .repair_execution import execute_repair_review
 from .package_control import LocalPackageControl
 from .documents import load_document
 from . import release_gate
+from .terminal import Terminal, render_scan, render_plan
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, package_controller=None, journal=None, now=None) -> int:
     parser = argparse.ArgumentParser(description="WebPatch runtime evidence, scoped maintenance and verification")
     parser.add_argument("--version", action="version", version=__version__)
+    def presentation_options(target, *, root=False):
+        options = {} if root else {'default': argparse.SUPPRESS}
+        target.add_argument('--details', action='store_true', help='show all evidence and coverage checks', **options)
+        target.add_argument('--lang', choices=('auto', 'en', 'zh'), help='human output language', **({'default':'auto'} if root else options))
+        target.add_argument('--color', choices=('auto', 'always', 'never'), help='terminal color; auto respects NO_COLOR', **({'default':'auto'} if root else options))
+    presentation_options(parser, root=True)
     subs = parser.add_subparsers(dest="command")
     for command in ("scan", "scan-node", "plan", "verify-plan", "deployment-manifest", "verify-deployment", "probe-application", "review-maintenance", "review-execution", "audit-consumers", "prepare-plan", "prepare-scope", "retire-preparation", "verify-preparation", "rebuild-plan", "repair-plan"):
         child = subs.add_parser(command)
+        presentation_options(child)
         child.add_argument("--format", choices=("text", "json"), default="text")
         if command!='scan-node':
             child.add_argument("--package-cache", default="/var/cache/apt/archives",
@@ -55,7 +63,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             selection.add_argument("--target-package", action="append", dest="target_package_ids",
                                help="binary:architecture target; scan and shared-package impact remain scope-wide")
             selection.add_argument('--source-cohort',help='explicitly select all installed packages from one PHP source branch')
-            child.add_argument("--dry-run", action="store_true", required=True,
+            child.add_argument("--dry-run", action="store_true", required=command != "plan",
                                help="simulate exact trusted Ubuntu/Debian candidates without installing or refreshing indexes")
         if command == "audit-consumers":
             child.add_argument("--target-package", action="append", dest="target_package_ids", required=True)
@@ -83,6 +91,7 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             child.add_argument("--service", required=True, help="expected previously observed systemd service")
     subs.add_parser("probe-template", help="print the collector source; never deploys it")
     apply_parser=subs.add_parser('apply',help='apply an exactly confirmed managed repair after native certification')
+    presentation_options(apply_parser)
     apply_parser.add_argument('path',nargs='?',help='schema 5 managed repair review JSON')
     apply_parser.add_argument('--confirm-sha256',help='exact plan hash reviewed by the operator')
     apply_parser.add_argument('--format',choices=('text','json'),default='json')
@@ -222,35 +231,8 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
     if getattr(args, "format", "text") == "json":
         print(json.dumps(asdict(result), ensure_ascii=True, indent=2))
     elif args.command == "plan":
-        print(f"BLOCKED — repair disabled; APT dry-run: {result.apt_simulation}.")
-        print(f"Plan: {result.plan_sha256}; expires: {result.expires_at}")
-        print(f"Review: {result.review_status}; execution admission: {result.admission_status}")
-        print(json.dumps({"scope": asdict(result.scope)}, ensure_ascii=True))
-        for change in result.changes:
-            print(json.dumps(asdict(change), ensure_ascii=True))
-        for gate in result.gates:
-            print(json.dumps(asdict(gate), ensure_ascii=True))
-        for blocker in result.blockers:
-            print("  " + json.dumps(blocker, ensure_ascii=True))
-        for recommendation in result.recommendations:
-            print("  " + json.dumps(recommendation, ensure_ascii=True))
+        render_plan(result, Terminal(lang=args.lang, color=args.color), details=args.details)
     else:
-        env = report.inventory.environment
-        print(f"{report.overall} — runtime safety UNKNOWN; never treat a version match as safe.")
-        print(json.dumps({"scope": env.scope, "os": env.os_id,
-                          "release": env.version_id, "codename": env.codename}, ensure_ascii=True))
-        print(f"Rules: {report.rule_revision}; expires: {report.rule_valid_until}")
-        for assessment in report.assessments:
-            # Escape observed strings to prevent terminal control-sequence injection.
-            print(json.dumps({"package": assessment.package_id, "cve": assessment.cve,
-                              "version_status": assessment.version_status,
-                              "reason": assessment.reason}, ensure_ascii=True))
-        print(f"Runtime hints: {len(report.inventory.runtime_hints)}")
-        for check in report.inventory.coverage:
-            print(json.dumps({"requirement": check.requirement, "status": check.status,
-                              "subjects": [asdict(s) for s in check.subjects], "reason": check.reason,
-                              "next_step": check.next_step}, ensure_ascii=True))
-        for gap in report.inventory.coverage_gaps:
-            print(f"  coverage: {gap}")
-        print("Use --format json for package versions, source references and evidence digests.")
+        render_scan(report, Terminal(lang=args.lang, color=args.color), details=args.details,
+                    node=args.command == 'scan-node')
     return 4 if args.command == "plan" else (1 if report.overall == "POTENTIALLY_AFFECTED" else 2)

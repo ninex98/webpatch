@@ -7,15 +7,17 @@ umask 077
 
 fail() { printf '%s\n' "WebPatch: $*" >&2; exit 1; }
 usage() {
-    printf '%s\n' 'Usage: sh install.sh [--version MAJOR.MINOR.PATCH]' \
+    printf '%s\n' 'Usage: sh install.sh [--version MAJOR.MINOR.PATCH] [--verbose]' \
         'Supports Ubuntu 22.04/24.04 and Debian 12/13.' \
         'Installs WebPatch and required dependencies through APT; does not run scans or repairs.'
 }
 
 version=
+verbose=0
 while [ "$#" -gt 0 ]; do
     case "$1" in
         --version) [ "$#" -ge 2 ] || fail '--version requires a value'; version=$2; shift 2 ;;
+        --verbose) verbose=1; shift ;;
         --help|-h) usage; exit 0 ;;
         *) fail "Unknown option: $1" ;;
     esac
@@ -68,7 +70,8 @@ trap 'rm -rf "$temporary"' EXIT
 trap 'exit 1' HUP INT TERM
 asset=webpatch_${version}_all.deb
 base=$repository/releases/download/v$version
-printf '%s\n' "Downloading WebPatch $version for $os_id $os_version..."
+printf '\n  WebPatch %s\n  %s %s\n\n' "$version" "$os_id" "$os_version"
+printf '%s\n' '  [1/3] Downloading release...'
 fetch --output "$temporary/$asset" "$base/$asset" || fail 'Package download failed; nothing installed.'
 fetch --output "$temporary/SHA256SUMS" "$base/SHA256SUMS" || fail 'Checksum download failed; nothing installed.'
 # Only accept one well-formed entry for this asset; never process arbitrary paths.
@@ -76,21 +79,35 @@ checksum=$(awk -v asset="$asset" '$2 == asset { n++; hash=$1 } END { if (n != 1)
     fail 'Missing or duplicate package checksum.'
 printf '%s\n' "$checksum" | LC_ALL=C grep -Eq '^[0-9a-f]{64}$' || fail 'Invalid SHA256 checksum.'
 printf '%s  %s\n' "$checksum" "$asset" > "$temporary/expected.sha256"
-(cd "$temporary" && sha256sum --check expected.sha256) || fail 'Checksum mismatch; nothing installed.'
+(cd "$temporary" && sha256sum --check expected.sha256) > "$temporary/checksum.log" 2>&1 || fail 'Checksum mismatch; nothing installed.'
 [ "$(dpkg-deb --field "$temporary/$asset" Package)" = webpatch ] || fail 'Unexpected package name.'
 [ "$(dpkg-deb --field "$temporary/$asset" Version)" = "$version" ] || fail 'Unexpected package version.'
 [ "$(dpkg-deb --field "$temporary/$asset" Architecture)" = all ] || fail 'Unexpected package architecture.'
+printf '%s\n' '  [2/3] Checksum and package identity verified.'
+# This file is a public release asset. Let APT's _apt user traverse the private
+# directory and read only the package; logs and other files remain mode 0600.
+chmod 0711 "$temporary"
+chmod 0644 "$temporary/$asset"
 
 # sudo is used only for APT, after the download, checksum and metadata checks.
 # No index refresh, repository addition, PHP command or service operation here.
-if [ "$(id -u)" -eq 0 ]; then
-    apt-get install -y --no-install-recommends --no-remove "$temporary/$asset" || fail 'APT installation failed. Review its output; package indexes are not automatically refreshed.'
+install_package() {
+    if [ "$(id -u)" -eq 0 ]; then
+        apt-get install -y --no-install-recommends --no-remove "$temporary/$asset"
+    else
+        sudo apt-get install -y --no-install-recommends --no-remove "$temporary/$asset"
+    fi
+}
+printf '%s\n' '  [3/3] Installing WebPatch and required dependencies...'
+if [ "$verbose" -eq 1 ]; then
+    install_package || fail 'APT installation failed. Review its output; package indexes are not automatically refreshed.'
 else
-    sudo apt-get install -y --no-install-recommends --no-remove "$temporary/$asset" || fail 'APT installation failed. Review its output; package indexes are not automatically refreshed.'
+    if ! install_package > "$temporary/apt.log" 2>&1; then
+        cat "$temporary/apt.log" >&2
+        fail 'APT installation failed. Review its output; package indexes are not automatically refreshed.'
+    fi
 fi
 [ "$(/usr/bin/webpatch --version)" = "$version" ] || fail 'Installed CLI version did not match the release.'
-printf '%s\n' "Installed WebPatch $version. Run: webpatch scan" \
-    'Installation success is not a runtime safety result. Scans return 1 (potentially affected) or 2 (unknown).' \
-    'Confirmed repair is limited to the documented official amd64 profiles; other architectures remain unsupported for repair.'
+printf '\n  Installed WebPatch %s.\n\n  Next: webpatch scan\n\n' "$version"
 }
 main "$@"

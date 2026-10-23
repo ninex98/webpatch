@@ -1,0 +1,28 @@
+
+  WebPatch 0.1.0  /  PHP security check
+  ────────────────────────────────────────────────────────────────────────────────────
+  Ubuntu 22.04  ·  current system scope
+
+  Result
+  ATTENTION  ·  1 potentially affected package(s)
+  1 packages  ·  0 observed processes  ·  0 package versions unknown
+
+  Packages
+  php8.1-fpm  [UPDATE NEEDED]
+    Installed: 8.1.2-1ubuntu2.27
+    Vendor fix: 8.1.2-1ubuntu2.28
+    CVE-2026-109618, CVE-2026-109619
+
+  What still needs checking
+  • Package authenticity, loaded configuration and request routing still need
+  verification.
+  • Custom installations, hidden processes and other containers are not fully covered.
+
+  Next step
+  Review a read-only upgrade plan:
+    webpatch plan
+    webpatch scan --details
+
+  Read-only · no system changes
+  Rules valid until: 2026-10-29T00:00:00+00:00
+

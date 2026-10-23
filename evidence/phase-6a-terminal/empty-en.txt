@@ -1,0 +1,22 @@
+
+  WebPatch 0.1.0  /  PHP security check
+  ────────────────────────────────────────────────────────────────────────────────────
+  Ubuntu 22.04  ·  current system scope
+
+  Result
+  UNKNOWN  ·  Runtime safety is not established
+  No PHP packages or runtime hints were found.
+  An empty inventory does not prove the runtime is absent.
+  0 packages  ·  0 observed processes  ·  0 package versions unknown
+
+  What still needs checking
+  • Custom installations, hidden processes and other containers are not fully covered.
+
+  Next step
+  Confirm where PHP is installed. For containers, scan inside the target container.
+  No package repair is available from this inventory.
+    webpatch scan --details
+
+  Read-only · no system changes
+  Rules valid until: 2026-10-29T00:00:00+00:00
+

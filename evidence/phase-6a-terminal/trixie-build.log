@@ -1,0 +1,45 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Installer.Dockerfile
+#1 transferring dockerfile: 459B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:13
+#2 DONE 7.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/debian:13@sha256:4c25275446ca371766b8b093c696782eabce06263fccacb8d5d813b3dc44b308
+#4 resolve docker.io/library/debian:13@sha256:4c25275446ca371766b8b093c696782eabce06263fccacb8d5d813b3dc44b308 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 137.86kB done
+#5 DONE 0.0s
+
+#6 [2/5] RUN apt-get -o Acquire::Retries=3 update && apt-get install -y --no-install-recommends python3 curl ca-certificates
+#6 CACHED
+
+#7 [3/5] WORKDIR /work
+#7 CACHED
+
+#8 [4/5] COPY . /work
+#8 DONE 0.0s
+
+#9 [5/5] RUN python3 scripts/build_deb.py && python3 scripts/release_assets.py --tag v$(python3 scripts/package_version.py)
+#9 0.153 dpkg-deb: building package 'webpatch' in '/work/dist/webpatch_0.1.0_all.deb'.
+#9 0.245 /work/dist/webpatch_0.1.0_all.deb
+#9 0.307 /work/dist/release
+#9 DONE 0.3s
+
+#10 exporting to image
+#10 exporting layers 0.1s done
+#10 exporting manifest sha256:a8b538074d67e8858ad74a7eb591e619976f60db5ba17f43febc68b5e6753f13 done
+#10 exporting config sha256:ed597014bc109203b8acfcded2d3b0fee4aaf7037bffacb798ca9dddaef6aa98 done
+#10 exporting attestation manifest sha256:4f0e84736bf6902481de4424f2036638867590c22701225c6cd1011d185b9a1b 0.0s done
+#10 exporting manifest list sha256:37a87052a9ae3d7924cc567d1c4d6764fc446a79f409e488ad6e7bcf612d6e6c done
+#10 naming to docker.io/library/webpatch-ui:trixie done
+#10 unpacking to docker.io/library/webpatch-ui:trixie 0.0s done
+#10 DONE 0.2s
