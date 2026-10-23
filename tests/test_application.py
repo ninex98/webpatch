@@ -33,10 +33,11 @@ class FakeProbe:
     def collect(self, url, script_path, challenge, scope):
         self.calls.append((url, script_path))
         source = hashlib.sha256(probe_source()).hexdigest()
-        payload = {'protocol': 1, 'challenge': challenge, 'scope': scope, 'pid': 42,
+        payload = {'protocol': 2, 'challenge': challenge, 'scope': scope, 'pid': 42,
                    'sapi': 'fpm-fcgi', 'script': script_path, 'source_sha256': source,
                    'ini_file': '/etc/php/8.1/fpm/php.ini', 'ini_scanned': [],
                    'effective_ini_sha256': '1' * 64, 'extensions_sha256': '2' * 64,
+                   'effective_ini_baseline_sha256':'1'*64,'reviewed_directives':{'memory_hard_limit_percent':{'state':'ABSENT'}},
                    'cached_script': False, 'request_path': '/webpatch-proof.php'}
         if self.mutation == 'nonce': payload['challenge'] = '3' * 64
         if self.mutation == 'scope': payload['scope'] = '3' * 64
@@ -48,6 +49,8 @@ class FakeProbe:
         if self.mutation == 'config': payload['ini_file'] = '/opt/custom/php.ini'
         if self.mutation == 'unobserved': payload['ini_scanned'] = ['/etc/php/8.1/fpm/conf.d/unknown.ini']
         if self.mutation == 'unknown-field': payload['safe'] = True
+        if self.mutation == 'old-protocol': payload['protocol']=1
+        if self.mutation == 'unknown-directive': payload['reviewed_directives']['memory_hard_limit_percent']={'state':'UNKNOWN'}
         data = json.dumps(payload).encode()
         response = json.dumps({'challenge': challenge, 'payload_sha256': hashlib.sha256(data).hexdigest()}).encode()
         if self.mutation == 'ordinary-response': response = b'{"ok":true,"pid":42}'
@@ -70,7 +73,7 @@ def test_explicit_probe_binds_kernel_process_response_without_inventing_loaded_f
 
 
 @pytest.mark.parametrize('mutation', ['nonce','scope','pid','sapi','script','cached','path','config','unobserved',
-                                     'unknown-field','ordinary-response','response-digest','kernel-pid','source'])
+                                     'unknown-field','ordinary-response','response-digest','kernel-pid','source','old-protocol','unknown-directive'])
 def test_app_claims_cannot_replace_challenge_kernel_identity_or_input_evidence(mutation):
     fake, report = fixture()
     result = collect_application_evidence(report, system=fake, probe=FakeProbe(mutation), url=URL,

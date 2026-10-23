@@ -18,6 +18,7 @@ from .prepared_verification import verify_prepared_scope
 from .system import Collector,DPKG_QUERY,SAFE_PATH,VERSION
 from .rules import DpkgComparator
 from .implementation import implementation_sha256
+from .configuration_policy import POLICY as CONFIGURATION_POLICY
 
 
 @dataclass(frozen=True)
@@ -212,6 +213,7 @@ def build_repair_review(report,*,system,simulator,controller,probe,startup_recei
     contract={'schema_version':1,'protocol':'EXACT_OFFICIAL_PHP_COHORT_DPKG_V1','implementation_sha256':policy_digest(),
         'source_cohort':source_cohort,'package_cache':package_cache,'state_directory':str(controller.state_dir),
         'startup_receipt':startup_receipt,'maintenance_budget_seconds':budget_seconds,'services':services,
+        'configuration_transition_policy':CONFIGURATION_POLICY,
         'targets':[asdict(t) for t in diagnostic.targets],'changes':[asdict(c) for c in diagnostic.changes],
         'maintenance_archives':controls(maintenance),'trigger_archives':controls(triggers['maintenance']),
         'trigger_handlers':triggers['names'],'path_overrides':overrides,'predependencies':predeps,

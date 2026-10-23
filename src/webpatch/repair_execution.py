@@ -17,6 +17,7 @@ from .repair_policy import build_repair_review
 from .service import scan
 from .system import ProbeError,Collector
 from .transaction import StepResult,execute
+from .configuration_policy import configuration_transition
 
 
 def decode_plan(raw):
@@ -115,7 +116,7 @@ class ManagedRepairBackend:
             return StepResult(False,True,reason='REPAIR_RESTART_FAILED:'+type(exc).__name__)
 
     def verify(self,expected):
-        reasons=[]; body=self.contract['startup_receipt']['payload']; requests=[]
+        reasons=[]; body=self.contract['startup_receipt']['payload']; requests=[]; transitions=[]
         report=self.scanner(self.system,now=self.clock(),package_cache=self.contract['package_cache'])
         if report.inventory.environment.scope_sha256!=expected.scope.scan_scope_id: reasons.append('REPAIR_POST_SCOPE_CHANGED')
         if report.rule_sha256!=expected.rule_sha256 or (report.package_trust or {}).get('status')!='VERIFIED_INDEX_CHAIN':
@@ -154,16 +155,16 @@ class ManagedRepairBackend:
             runtime=next(r for r in runtimes if r.pid==proof['peer_pid'])
             if target['pool_listener'] is not None and target['pool_listener'] not in {e.path for e in runtime.endpoints}:
                 reasons.append('REPAIR_POST_REQUEST_POOL_CHANGED')
-            # Extension version metadata can legitimately change with signed new
-            # engine/module bytes. Frozen input paths and effective settings must
-            # remain the reviewed configuration; record new extension metadata.
-            if any(target['configuration'][k]!=proof['configuration'][k] for k in ('ini_file','ini_scanned','effective_ini_sha256')):
+            transition=configuration_transition(target['configuration'],proof['configuration'])
+            transitions.append({'url':target['url'],'status':transition})
+            if transition=='UNKNOWN':
                 reasons.append('REPAIR_POST_EFFECTIVE_CONFIGURATION_CHANGED')
         deadlines=[datetime.fromisoformat(consumers['expires_at']),*[datetime.fromisoformat(p['expires_at']) for p in requests]]
         if self.clock()>=min(deadlines): reasons.append('REPAIR_POST_EVIDENCE_EXPIRED')
         if self.remaining()<=0: reasons.append('REPAIR_MAINTENANCE_BUDGET_EXCEEDED')
         self.verification={'scope_sha256':expected.scope.scan_scope_id,'status':'VERIFIED_WITHIN_DECLARED_SCOPE' if not reasons else 'BLOCKED',
-            'report':asdict(report),'views':views,'consumers':consumers,'requests':requests,'blockers':sorted(set(reasons)),'safe':False}
+            'report':asdict(report),'views':views,'consumers':consumers,'requests':requests,'configuration_transitions':transitions,
+            'blockers':sorted(set(reasons)),'safe':False}
         return StepResult(not reasons,False,digest(self.verification),'REPAIR_POST_VERIFIED' if not reasons else 'REPAIR_POST_VERIFICATION_FAILED')
 
 

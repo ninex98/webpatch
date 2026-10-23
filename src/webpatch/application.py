@@ -26,6 +26,7 @@ from urllib.parse import urlsplit
 from .coverage import runtime_id
 from .gates import evidence_deadline
 from .planning import check_bindings, stable_bindings, digest
+from .configuration_policy import CONFIG_FIELDS,validate_directive_observation
 from .system import Collector, ProbeError
 
 MAX_RESPONSE = 65536
@@ -156,9 +157,9 @@ def validate_exchange(exchange, report, challenge, url, script_path, service):
     payload, response = json.loads(exchange.payload), json.loads(exchange.response)
     if not isinstance(payload, dict) or set(payload) != {
         'protocol', 'challenge', 'scope', 'pid', 'sapi', 'script', 'source_sha256',
-        'ini_file', 'ini_scanned', 'effective_ini_sha256', 'extensions_sha256', 'cached_script', 'request_path'}:
+        'ini_file', 'ini_scanned', 'effective_ini_sha256','effective_ini_baseline_sha256','reviewed_directives', 'extensions_sha256', 'cached_script', 'request_path'}:
         raise ValueError('PROBE_PAYLOAD_INVALID')
-    if payload['protocol'] != 1 or payload['challenge'] != challenge or payload['scope'] != report.inventory.environment.scope_sha256:
+    if type(payload['protocol']) is not int or payload['protocol'] != 2 or payload['challenge'] != challenge or payload['scope'] != report.inventory.environment.scope_sha256:
         raise ValueError('PROBE_CHALLENGE_OR_SCOPE_MISMATCH')
     if (not isinstance(response, dict) or set(response) != {'challenge', 'payload_sha256'}
             or response['challenge'] != challenge or response['payload_sha256'] != hashlib.sha256(exchange.payload).hexdigest()):
@@ -173,9 +174,11 @@ def validate_exchange(exchange, report, challenge, url, script_path, service):
         raise ValueError('PROBE_PEER_NOT_A_VERIFIED_SCOPED_RUNTIME')
     if payload['sapi'] != {'fpm': 'fpm-fcgi', 'apache2': 'apache2handler'}[runtime.sapi]:
         raise ValueError('PROBE_SAPI_MISMATCH')
-    for key in ('effective_ini_sha256', 'extensions_sha256'):
+    for key in ('effective_ini_sha256','effective_ini_baseline_sha256', 'extensions_sha256'):
         if not isinstance(payload[key], str) or not re.fullmatch('[a-f0-9]{64}', payload[key]):
             raise ValueError('PROBE_CONFIGURATION_DIGEST_INVALID')
+    if not validate_directive_observation(payload['reviewed_directives']):
+        raise ValueError('PROBE_REVIEWED_DIRECTIVE_UNCLASSIFIED')
     paths = [payload['ini_file']]
     if not isinstance(payload['ini_scanned'], list) or len(payload['ini_scanned']) > 256:
         raise ValueError('PROBE_CONFIGURATION_LIST_INVALID')
@@ -222,7 +225,7 @@ def collect_application_evidence(report, *, system, probe, url, script_path, ser
         'runtime_id': runtime_id(report.inventory, runtime) if runtime else None,
         'challenge_sha256': hashlib.sha256(challenge.encode()).hexdigest(),
         'peer_pid': runtime.pid if runtime else None,
-        'configuration': {k: payload[k] for k in ('ini_file', 'ini_scanned', 'effective_ini_sha256', 'extensions_sha256')} if payload else None,
+        'configuration': {k: payload[k] for k in CONFIG_FIELDS} if payload else None,
         'configuration_status': 'OBSERVED_EFFECTIVE_PHP_SETTINGS' if not blockers else 'UNKNOWN',
         'loaded_configuration_file_bytes': 'UNKNOWN', 'application_route_coverage': 'SINGLE_PROBE_REQUEST_ONLY',
         'blockers': blockers, 'executable': False, 'evidence': [asdict(e) for e in collector.evidence],

@@ -132,8 +132,16 @@ repair_execution.py 接收 schema 5 审阅文档，严格解码固定模型，�
 
 在操作锁及真实 dpkg frontend lock 内重新扫描、探针、模拟和生成完整审阅；除时间/原始观察标识等预期变化外，操作内容、绑定、门禁、目标、影响范围、维护合同必须一致。仅能排除 /proc/locks 中确实属于当前 PID、匹配已打开 FD 的完整 POSIX frontend 锁；其他持锁者仍阻断，丢失锁也阻断。持锁复核完成后再次检查过期。
 
-类型化步骤只升级实际变更集合对应的认证归档。安装/重启预算使用 monotonic 时间，子命令共用剩余预算；超时不声称撤销已发给 systemd 的工作。安装后核对精确版本/归档字节、厂商下界、全新实例、当前控制定义、只读配置视图、所有可见目标文件持有者及每个已声明探针。有效配置/路径变化、未退出旧实例、额外消费者、健康或时效失败均不能返回修复通过。扩展版本摘要允许随已认证的新 engine/module 字节改变，仍记录新摘要，不把它当作独立模块认证。
+类型化步骤只升级实际变更集合对应的认证归档。安装/重启预算使用 monotonic 时间，子命令共用剩余预算；超时不声称撤销已发给 systemd 的工作。安装后核对精确版本/归档字节、厂商下界、全新实例、当前控制定义、只读配置视图、所有可见目标文件持有者及每个已声明探针。有效配置/路径变化、未退出旧实例、额外消费者、健康或时效失败均不能返回修复通过。扩展名称摘要必须保持一致；唯一已审阅的 INI 新增见 3G.2，不把指令或扩展摘要当独立补丁认证。
 
 成功仅为 VERIFIED_WITHIN_DECLARED_SCOPE，safe=false；失败沿用 PARTIAL/RESTART_REQUIRED/FAILED 审计，保存原确认 hash 和私有日志。同一计划不得重试。受控 runtime 定义/快照保持可审计，结果返回原签名所有权收据，清理由明确的 retire-preparation 操作处理；不自动回滚。
 
 四格 VM 在当前版本的 no-change 审阅之后，从已验证的官方 base pocket 归档建立旧版 fixture，然后验证真实同分支升级。第二轮仅在重启后让显式探针访问不可用 loopback 端口，要求已升级包加健康失败结果为 PARTIAL；另验证错误确认和禁止同计划重试。旧包 setup 的 allow-downgrades 只存在于受保护的 disposable 测试脚本，生产执行器不提供该操作。所有 fixture Web listener 绑定 loopback，不使用漏洞利用。
+
+## 3G.2 精确识别已审阅的新增 INI 指令
+
+真实隔离诊断确认：从官方 base 升级到修复版后，仅新增 memory_hard_limit_percent，没有其他指令变更。已复核 [PHP 8.3.36 main.c](https://raw.githubusercontent.com/php/php-src/php-8.3.36/main/main.c) 的注册和 OnChangeMemoryHardLimitPercent：默认以 NULL 注册，对应 -1 的默认算法；[官方问题 #24497](https://github.com/php/php-src/issues/24497) 也记录了默认值显示为空的行为。此处没有修改 memory_limit 或新指令。
+
+collector 协议更新为 2，同时返回全量设置摘要、仅排除这一个已审阅指令的基线摘要，以及该指令的 ABSENT/VENDOR_DEFAULT/明确数值分类。任意其他配置值继续只返回汇总摘要，不返回秘密或每个配置项的值。旧 collector/收据必须重新部署与准备。
+
+修复后只允许 ABSENT→VENDOR_DEFAULT 这一新增情形，且原有设置基线、INI 路径和扩展名称摘要全部相同。新增非默认值、已存在值变化、删除指令、其他设置/模块变化或未知分类继续 UNKNOWN/PARTIAL。这个精确策略写入确认合同，并保留完整新旧摘要；指令存在本身从不证明补丁，包/文件/新实例/视图/内核请求等独立门禁仍必须通过。
