@@ -21,6 +21,7 @@ from webpatch.system import LocalSystem,DPKG_QUERY
 from webpatch.transaction import AuditJournal
 from webpatch.apt import LocalAptSimulator
 from webpatch.repair_policy import build_repair_review
+from fixture_services import isolate_service
 
 assert os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('RUNNER_ENVIRONMENT')=='github-hosted'
 package_name, service, port, cache = sys.argv[1:]
@@ -51,6 +52,7 @@ Path('ci-evidence/managed-package-baseline.json').write_text(json.dumps({
     'fixture_action':'Install current official cohort and reinstall its payloads plus libc-bin/man-db before evidence collection'},indent=2)+'\n')
 subprocess.run(['/usr/bin/apt-get','install','--reinstall','-y','libc-bin','man-db',*cohort],check=True,
                env={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin','LC_ALL':'C','LANG':'C','DEBIAN_FRONTEND':'noninteractive'})
+Path('ci-evidence/managed-service-baseline.json').write_text(json.dumps(isolate_service(service,source_cohort),indent=2)+'\n')
 reader=LocalSystem()
 initial=scan(reader,package_cache=cache)
 required={p.split(':')[0] for r in initial.inventory.runtimes if r.service==service for p in r.package_ids}

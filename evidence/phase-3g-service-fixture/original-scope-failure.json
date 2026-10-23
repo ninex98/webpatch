@@ -1,0 +1,15 @@
+{
+  "run": "https://github.com/ninex98/webpatch/actions/runs/39875842641",
+  "artifact_sha256": "ca5555ab864345047d08aa620ecb9f7e2d4fbc43635690e24b4e29649ed77a4a",
+  "prepared_services": [
+    "apache2.service"
+  ],
+  "observed_services": [
+    "apache2.service",
+    "php8.3-fpm.service"
+  ],
+  "census_status": "VERIFIED_ACTIVE_MAPPING_CENSUS",
+  "blockers": [
+    "REPAIR_REQUIREMENT_NOT_MET:consumer_completeness"
+  ]
+}

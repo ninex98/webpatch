@@ -91,6 +91,14 @@ def test_unverified_custom_tool_is_named_and_not_assumed_to_be_a_safe_wrapper(mo
     assert 'REPAIR_CUSTOM_INSTALLATION_UNRESOLVED:/usr/local/bin/phpunit' in review.proposal.blockers
 
 
+def test_shared_consumer_on_an_unprepared_service_is_identified(monkeypatch):
+    values=fixture(monkeypatch)
+    values[2]['payload']['services']=['apache2.service']
+    review=build(values)
+    assert 'REPAIR_UNPREPARED_CONSUMER:php8.1-fpm.service:42' in review.proposal.blockers
+    assert review.proposal.admission_status=='BLOCKED'
+
+
 @pytest.mark.parametrize('mutation',['startup','extra-consumer','archive','script','hook','target-diversion','predepends'])
 def test_one_unresolved_requirement_prevents_admission(mutation,monkeypatch):
     values=fixture(monkeypatch); fake,report,receipt,startup,_=values

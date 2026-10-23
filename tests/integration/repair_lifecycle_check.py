@@ -24,6 +24,7 @@ from webpatch.service import scan
 from webpatch.system import LocalSystem
 from webpatch.transaction import AuditJournal
 from webpatch.profiles import php_source_profile
+from fixture_services import isolate_service
 
 assert os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('RUNNER_ENVIRONMENT')=='github-hosted'
 name,service,port,cache=sys.argv[1:]
@@ -103,6 +104,7 @@ for case in ('success','post-health-failure'):
     # Isolated setup only: reset the fixture to authenticated old base archives.
     subprocess.run(['/usr/bin/apt-get','install','--allow-downgrades','-y',*specs],check=True,
         env={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin','LC_ALL':'C','LANG':'C','DEBIAN_FRONTEND':'noninteractive'})
+    (folder/'service-baseline.json').write_text(json.dumps(isolate_service(service,source),indent=2)+'\n')
     controller=FaultControl('/var/lib/webpatch-repair-'+case); capability=FaultProbe()
     controller.command('restart',service); controller.wait_stable(service)
     before=scan(reader,package_cache=cache)
