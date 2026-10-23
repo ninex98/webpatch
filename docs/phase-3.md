@@ -145,3 +145,9 @@ repair_execution.py 接收 schema 5 审阅文档，严格解码固定模型，�
 collector 协议更新为 2，同时返回全量设置摘要、仅排除这一个已审阅指令的基线摘要，以及该指令的 ABSENT/VENDOR_DEFAULT/明确数值分类。任意其他配置值继续只返回汇总摘要，不返回秘密或每个配置项的值。旧 collector/收据必须重新部署与准备。
 
 修复后只允许 ABSENT→VENDOR_DEFAULT 这一新增情形，且原有设置基线、INI 路径和扩展名称摘要全部相同。新增非默认值、已存在值变化、删除指令、其他设置/模块变化或未知分类继续 UNKNOWN/PARTIAL。这个精确策略写入确认合同，并保留完整新旧摘要；指令存在本身从不证明补丁，包/文件/新实例/视图/内核请求等独立门禁仍必须通过。
+
+## 3G.3 基础版到当前版的第二项确定差异
+
+jammy 的实际旧→新诊断只新增 max_multipart_body_parts；noble 的对应差异为 memory_hard_limit_percent。已核对 [PHP 8.1.33 注册代码](https://raw.githubusercontent.com/php/php-src/php-8.1.33/main/main.c)：前者默认值为 -1。collector 协议 3 将这两项分别分类，允许各自或同时从 ABSENT 到 VENDOR_DEFAULT，其余设置基线、输入路径和扩展名称必须一致。
+
+已存在的任一值不得变化，新增显式非默认值、未知字段或未审阅指令仍阻断。两个参数都不被写入；这些观测只解释精确的配置演进，不替代安装来源、修复版本、新实例和请求证明。旧协议及旧收据需重新生成。

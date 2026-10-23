@@ -159,7 +159,7 @@ def validate_exchange(exchange, report, challenge, url, script_path, service):
         'protocol', 'challenge', 'scope', 'pid', 'sapi', 'script', 'source_sha256',
         'ini_file', 'ini_scanned', 'effective_ini_sha256','effective_ini_baseline_sha256','reviewed_directives', 'extensions_sha256', 'cached_script', 'request_path'}:
         raise ValueError('PROBE_PAYLOAD_INVALID')
-    if type(payload['protocol']) is not int or payload['protocol'] != 2 or payload['challenge'] != challenge or payload['scope'] != report.inventory.environment.scope_sha256:
+    if type(payload['protocol']) is not int or payload['protocol'] != 3 or payload['challenge'] != challenge or payload['scope'] != report.inventory.environment.scope_sha256:
         raise ValueError('PROBE_CHALLENGE_OR_SCOPE_MISMATCH')
     if (not isinstance(response, dict) or set(response) != {'challenge', 'payload_sha256'}
             or response['challenge'] != challenge or response['payload_sha256'] != hashlib.sha256(exchange.payload).hexdigest()):

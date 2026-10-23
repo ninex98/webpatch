@@ -1,5 +1,5 @@
 <?php
-/* Explicit, opt-in collector v2. Never installed or requested by default scan. */
+/* Explicit, opt-in collector v3. Never installed or requested by default scan. */
 header('Content-Type: application/json');
 header('Cache-Control: no-store');
 $nonce = $_SERVER['HTTP_X_WEBPATCH_CHALLENGE'] ?? '';
@@ -13,7 +13,7 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '127.0.0.1' || ($_SERVER['REQUEST_METHOD
 $settings = ini_get_all(null, false);
 ksort($settings);
 $baselineSettings = $settings;
-unset($baselineSettings['memory_hard_limit_percent']);
+unset($baselineSettings['memory_hard_limit_percent'], $baselineSettings['max_multipart_body_parts']);
 $reviewedDirective = ['state' => 'ABSENT'];
 if (array_key_exists('memory_hard_limit_percent', $settings)) {
     $value = $settings['memory_hard_limit_percent'];
@@ -25,18 +25,29 @@ if (array_key_exists('memory_hard_limit_percent', $settings)) {
         $reviewedDirective = ['state' => 'UNKNOWN'];
     }
 }
+$multipartDirective = ['state' => 'ABSENT'];
+if (array_key_exists('max_multipart_body_parts', $settings)) {
+    $value = $settings['max_multipart_body_parts'];
+    if ($value === '-1') {
+        $multipartDirective = ['state' => 'VENDOR_DEFAULT'];
+    } elseif (is_string($value) && preg_match('/^[0-9]{1,10}$/D', $value)) {
+        $multipartDirective = ['state' => 'EXPLICIT_VALUE', 'value' => $value];
+    } else {
+        $multipartDirective = ['state' => 'UNKNOWN'];
+    }
+}
 $extensions = get_loaded_extensions();
 sort($extensions);
 $scanned = php_ini_scanned_files();
 $iniFiles = $scanned ? array_values(array_filter(array_map('trim', explode(',', $scanned)))) : [];
 sort($iniFiles);
 $payload = json_encode([
-    'protocol' => 2, 'challenge' => $nonce, 'scope' => $scope, 'pid' => getmypid(),
+    'protocol' => 3, 'challenge' => $nonce, 'scope' => $scope, 'pid' => getmypid(),
     'sapi' => PHP_SAPI, 'script' => __FILE__, 'source_sha256' => hash_file('sha256', __FILE__),
     'ini_file' => php_ini_loaded_file(), 'ini_scanned' => $iniFiles,
     'effective_ini_sha256' => hash('sha256', json_encode($settings)),
     'effective_ini_baseline_sha256' => hash('sha256', json_encode($baselineSettings)),
-    'reviewed_directives' => ['memory_hard_limit_percent' => $reviewedDirective],
+    'reviewed_directives' => ['memory_hard_limit_percent' => $reviewedDirective, 'max_multipart_body_parts' => $multipartDirective],
     'extensions_sha256' => hash('sha256', json_encode($extensions)),
     'cached_script' => function_exists('opcache_is_script_cached') && opcache_is_script_cached(__FILE__),
     'request_path' => parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH),

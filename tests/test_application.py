@@ -33,11 +33,11 @@ class FakeProbe:
     def collect(self, url, script_path, challenge, scope):
         self.calls.append((url, script_path))
         source = hashlib.sha256(probe_source()).hexdigest()
-        payload = {'protocol': 2, 'challenge': challenge, 'scope': scope, 'pid': 42,
+        payload = {'protocol': 3, 'challenge': challenge, 'scope': scope, 'pid': 42,
                    'sapi': 'fpm-fcgi', 'script': script_path, 'source_sha256': source,
                    'ini_file': '/etc/php/8.1/fpm/php.ini', 'ini_scanned': [],
                    'effective_ini_sha256': '1' * 64, 'extensions_sha256': '2' * 64,
-                   'effective_ini_baseline_sha256':'1'*64,'reviewed_directives':{'memory_hard_limit_percent':{'state':'ABSENT'}},
+                   'effective_ini_baseline_sha256':'1'*64,'reviewed_directives':{'memory_hard_limit_percent':{'state':'ABSENT'},'max_multipart_body_parts':{'state':'ABSENT'}},
                    'cached_script': False, 'request_path': '/webpatch-proof.php'}
         if self.mutation == 'nonce': payload['challenge'] = '3' * 64
         if self.mutation == 'scope': payload['scope'] = '3' * 64
