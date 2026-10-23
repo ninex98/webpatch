@@ -1,0 +1,7 @@
+[
+  {
+    "service": "php8.1-fpm.service",
+    "previous_state": "active",
+    "fixture_action": "STOP_UNSELECTED_SAPI_BEFORE_EVIDENCE"
+  }
+]

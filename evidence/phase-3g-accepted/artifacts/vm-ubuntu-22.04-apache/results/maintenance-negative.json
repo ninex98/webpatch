@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "test": "modified cached control archive rejected before parsing/execution",
+  "blockers": [
+    "libapache2-mod-php8.1:AUTHENTICATED_CONTROL_ARCHIVE_UNAVAILABLE"
+  ]
+}

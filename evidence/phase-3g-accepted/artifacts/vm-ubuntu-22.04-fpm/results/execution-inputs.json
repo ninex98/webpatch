@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "inspection_sha256": "7219a70f6771497428f45fb0c2d2e67fe487e56326af97f42efed939802154f5",
+  "status": "READY_FOR_EXECUTION_POLICY_REVIEW",
+  "installed_controls": [
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "path": "/var/lib/dpkg/info/php8.1-fpm.config",
+      "status": "MATCHES_AUTHENTICATED_CONTROL",
+      "expected_sha256": null,
+      "observed_sha256": null,
+      "evidence_id": "x1"
+    },
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "path": "/var/lib/dpkg/info/php8.1-fpm.postinst",
+      "status": "MATCHES_AUTHENTICATED_CONTROL",
+      "expected_sha256": "b62077979281aabf22f2b976e381c494c5e84d877f333c27ca5ebde932a20a1a",
+      "observed_sha256": "b62077979281aabf22f2b976e381c494c5e84d877f333c27ca5ebde932a20a1a",
+      "evidence_id": "x2"
+    },
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "path": "/var/lib/dpkg/info/php8.1-fpm.postrm",
+      "status": "MATCHES_AUTHENTICATED_CONTROL",
+      "expected_sha256": "9ac3d5aaa9585f2e6b9f06e720fcb0981fec12d1d81c11b169400325c8c640b0",
+      "observed_sha256": "9ac3d5aaa9585f2e6b9f06e720fcb0981fec12d1d81c11b169400325c8c640b0",
+      "evidence_id": "x3"
+    },
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "path": "/var/lib/dpkg/info/php8.1-fpm.preinst",
+      "status": "MATCHES_AUTHENTICATED_CONTROL",
+      "expected_sha256": "f0199afa90d8d60f297066f781fbb74c0d4775ccdebefe7e82930ad4f4e9a303",
+      "observed_sha256": "f0199afa90d8d60f297066f781fbb74c0d4775ccdebefe7e82930ad4f4e9a303",
+      "evidence_id": "x4"
+    },
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "path": "/var/lib/dpkg/info/php8.1-fpm.prerm",
+      "status": "MATCHES_AUTHENTICATED_CONTROL",
+      "expected_sha256": "ef911c7ff78b96876c53d8f7d24de1ad6d3362d9c7d5056ed9d2bbeb70c7154c",
+      "observed_sha256": "ef911c7ff78b96876c53d8f7d24de1ad6d3362d9c7d5056ed9d2bbeb70c7154c",
+      "evidence_id": "x5"
+    },
+    {
+      "package_id": "php8.1-fpm:amd64",
+      "path": "/var/lib/dpkg/info/php8.1-fpm.triggers",
+      "status": "MATCHES_AUTHENTICATED_CONTROL",
+      "expected_sha256": "adfc6c9756e6099261fbfd611ac69d934b694deb138a2bdd7d41fed3d86211d4",
+      "observed_sha256": "adfc6c9756e6099261fbfd611ac69d934b694deb138a2bdd7d41fed3d86211d4",
+      "evidence_id": "x6"
+    }
+  ],
+  "dpkg_configuration": [
+    {
+      "path": "/etc/dpkg/dpkg.cfg",
+      "status": "SUPPORTED_DEFAULT_OPTIONS",
+      "evidence_id": "x8"
+    }
+  ],
+  "triggers": {
+    "status": "FILE_TRIGGER_CANDIDATES_IDENTIFIED",
+    "package_names": [
+      "man-db",
+      "php8.1-fpm"
+    ],
+    "named_script_activations": "REQUIRES_EXPLICIT_REVIEW",
+    "evidence_ids": [
+      "x10",
+      "x11"
+    ]
+  },
+  "blockers": [],
+  "executable": false,
+  "evidence": [
+    {
+      "id": "x1",
+      "operation": "archive_fingerprint",
+      "target": "/var/lib/dpkg/info/php8.1-fpm.config",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "x2",
+      "operation": "archive_fingerprint",
+      "target": "/var/lib/dpkg/info/php8.1-fpm.postinst",
+      "outcome": "OK",
+      "sha256": "122711299b580b111c6439e4c7281c5f55c03fb5ad9008feb1ab835e055eac5d"
+    },
+    {
+      "id": "x3",
+      "operation": "archive_fingerprint",
+      "target": "/var/lib/dpkg/info/php8.1-fpm.postrm",
+      "outcome": "OK",
+      "sha256": "8fc0004aa7bb09710a8509bfe745c96be1a20abc41eadc6921406ca29dc7eabc"
+    },
+    {
+      "id": "x4",
+      "operation": "archive_fingerprint",
+      "target": "/var/lib/dpkg/info/php8.1-fpm.preinst",
+      "outcome": "OK",
+      "sha256": "0394805bfa430a9621e21ca8722ae07142bae9cd0a5c0117878f136295d4c03a"
+    },
+    {
+      "id": "x5",
+      "operation": "archive_fingerprint",
+      "target": "/var/lib/dpkg/info/php8.1-fpm.prerm",
+      "outcome": "OK",
+      "sha256": "e5070f0160da18641bcb2e3a86ee2a5d59eccde0cfd4293c128f0978be5bd733"
+    },
+    {
+      "id": "x6",
+      "operation": "archive_fingerprint",
+      "target": "/var/lib/dpkg/info/php8.1-fpm.triggers",
+      "outcome": "OK",
+      "sha256": "9def39cb814a108de0509319022a77cf20d50e7a9d69931cb6c3e6266d6f221c"
+    },
+    {
+      "id": "x7",
+      "operation": "listdir",
+      "target": "/etc/dpkg/dpkg.cfg.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "x8",
+      "operation": "read_text",
+      "target": "/etc/dpkg/dpkg.cfg",
+      "outcome": "OK",
+      "sha256": "53f25e45f6295d71ea9021020ca19a3faf59c61f60f7a79693b57b5b8b47f003"
+    },
+    {
+      "id": "x9",
+      "operation": "archive_fingerprint",
+      "target": "/usr/sbin/policy-rc.d",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "x10",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/triggers/File",
+      "outcome": "OK",
+      "sha256": "9a6cb81b086a0f9219a375004237509f48fceb06a59991943975cef14485afa8"
+    },
+    {
+      "id": "x11",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/triggers/Unincorp",
+      "outcome": "OK",
+      "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+    }
+  ],
+  "audit_sha256": "b62aef43f3423832b9209bce52c0ee2f2260004208c11821ea23dddb08a0eb24"
+}

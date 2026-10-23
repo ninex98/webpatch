@@ -1,0 +1,264 @@
+{
+  "result": "PASS",
+  "scope": "REAL_APT_SYNTHETIC_STATUS_ONLY_NO_BINARY_DOWNGRADE",
+  "status_sha256": "c34a06ba44afbcd90e190fbd43395f5d4ed8d50ba7ea2520c9ba5f12ec94dcbc",
+  "synthetic_status_sha256": "5053565e532f9bfca515646badf4698bfe8414e01a016956cc2474a1f9800bd6",
+  "simulation": {
+    "command": [
+      "/usr/bin/apt-get",
+      "--simulate",
+      "--no-remove",
+      "--only-upgrade",
+      "--no-install-recommends",
+      "install",
+      "libapache2-mod-php8.3:amd64=8.3.6-0ubuntu0.24.04.13"
+    ],
+    "result": {
+      "returncode": 0,
+      "stdout": "NOTE: This is only a simulation!\n      apt-get needs root privileges for real execution.\n      Keep also in mind that locking is deactivated,\n      so don't depend on the relevance to the real current situation!\nReading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages were automatically installed and are no longer required:\n  liblldb-16t64 liblldb-17t64\nUse 'apt autoremove' to remove them.\nThe following additional packages will be installed:\n  php8.3 php8.3-bcmath php8.3-bz2 php8.3-cgi php8.3-cli php8.3-common\n  php8.3-curl php8.3-dba php8.3-dev php8.3-enchant php8.3-fpm php8.3-gd\n  php8.3-gmp php8.3-imap php8.3-interbase php8.3-intl php8.3-ldap\n  php8.3-mbstring php8.3-mysql php8.3-odbc php8.3-opcache php8.3-pgsql\n  php8.3-phpdbg php8.3-pspell php8.3-readline php8.3-snmp php8.3-soap\n  php8.3-sqlite3 php8.3-sybase php8.3-tidy php8.3-xml php8.3-xsl php8.3-zip\nSuggested packages:\n  dh-php\nRecommended packages:\n  pkg-php-tools\nThe following packages will be upgraded:\n  libapache2-mod-php8.3 php8.3 php8.3-bcmath php8.3-bz2 php8.3-cgi php8.3-cli\n  php8.3-common php8.3-curl php8.3-dba php8.3-dev php8.3-enchant php8.3-fpm\n  php8.3-gd php8.3-gmp php8.3-imap php8.3-interbase php8.3-intl php8.3-ldap\n  php8.3-mbstring php8.3-mysql php8.3-odbc php8.3-opcache php8.3-pgsql\n  php8.3-phpdbg php8.3-pspell php8.3-readline php8.3-snmp php8.3-soap\n  php8.3-sqlite3 php8.3-sybase php8.3-tidy php8.3-xml php8.3-xsl php8.3-zip\n34 upgraded, 0 newly installed, 0 to remove and 60 not upgraded.\nInst php8.3-zip [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-xml [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-tidy [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-sybase [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-sqlite3 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-soap [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-snmp [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-readline [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-pspell [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-opcache [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-phpdbg [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-pgsql [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-odbc [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-mysql [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-mbstring [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-ldap [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-intl [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-interbase [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-imap [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-gmp [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-gd [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-fpm [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-enchant [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-dev [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-dba [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-curl [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-cgi [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-bz2 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-bcmath [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst libapache2-mod-php8.3 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-cli [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64]) []\nInst php8.3-common [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nInst php8.3 [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\nInst php8.3-xsl [8.3.6-0ubuntu0.24.04.12] (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\nConf php8.3-zip (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-xml (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-tidy (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-sybase (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-sqlite3 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-soap (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-snmp (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-readline (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-pspell (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-opcache (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-phpdbg (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-pgsql (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-odbc (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-mysql (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-mbstring (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-ldap (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-intl (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-interbase (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-imap (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-gmp (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-gd (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-fpm (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-enchant (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-dev (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-dba (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-curl (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-cgi (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-bz2 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-bcmath (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-cli (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3-common (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])\nConf php8.3 (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\nConf php8.3-xsl (8.3.6-0ubuntu0.24.04.13 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [all])\n",
+      "stderr": ""
+    },
+    "privileged": false,
+    "configuration": "ISOLATED_NO_HOOKS_SYSTEM_SOURCES_STATUS_AND_PREFERENCES"
+  },
+  "changes": [
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-zip",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-xml",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-tidy",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-sybase",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-sqlite3",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-soap",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-snmp",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-readline",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-pspell",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-opcache",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-phpdbg",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-pgsql",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-odbc",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-mysql",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-mbstring",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-ldap",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-intl",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-interbase",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-imap",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-gmp",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-gd",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-fpm",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-enchant",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-dev",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-dba",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-curl",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-cgi",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-bz2",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-bcmath",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "libapache2-mod-php8.3",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-cli",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-common",
+      "architecture": "amd64",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3",
+      "architecture": "all",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    },
+    {
+      "operation": "UPGRADE",
+      "name": "php8.3-xsl",
+      "architecture": "all",
+      "old_version": "8.3.6-0ubuntu0.24.04.12",
+      "new_version": "8.3.6-0ubuntu0.24.04.13"
+    }
+  ]
+}

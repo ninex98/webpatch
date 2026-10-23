@@ -1,0 +1,7 @@
+[
+  {
+    "service": "apache2.service",
+    "previous_state": "inactive",
+    "fixture_action": "STOP_UNSELECTED_SAPI_BEFORE_EVIDENCE"
+  }
+]
