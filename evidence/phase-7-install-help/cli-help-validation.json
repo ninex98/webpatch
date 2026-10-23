@@ -1,0 +1,54 @@
+[
+  {
+    "argv": [
+      "webpatch",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": "0.2.0\n"
+  },
+  {
+    "argv": [
+      "webpatch",
+      "scan",
+      "--help"
+    ],
+    "exit_code": 0,
+    "output": "usage: __main__.py scan [-h] [--details] [--lang {auto,en,zh}]\n                        [--color {auto,always,never}] [--format {text,json}]\n                        [--package-cache PACKAGE_CACHE]\n\noptions:\n  -h, --help            show this help message and exit\n  --details             show all evidence and coverage checks\n  --lang {auto,en,zh}   human output language\n  --color {auto,always,never}\n                        terminal color; auto respects NO_COLOR\n  --format {text,json}\n  --package-cache PACKAGE_CACHE\n                        read existing .deb files for signed archive identity\n                        verification; never downloads\n"
+  },
+  {
+    "argv": [
+      "webpatch",
+      "scan-node",
+      "--help"
+    ],
+    "exit_code": 0,
+    "output": "usage: __main__.py scan-node [-h] [--details] [--lang {auto,en,zh}]\n                             [--color {auto,always,never}]\n                             [--format {text,json}]\n\noptions:\n  -h, --help            show this help message and exit\n  --details             show all evidence and coverage checks\n  --lang {auto,en,zh}   human output language\n  --color {auto,always,never}\n                        terminal color; auto respects NO_COLOR\n  --format {text,json}\n"
+  },
+  {
+    "argv": [
+      "webpatch",
+      "plan",
+      "--help"
+    ],
+    "exit_code": 0,
+    "output": "usage: __main__.py plan [-h] [--details] [--lang {auto,en,zh}]\n                        [--color {auto,always,never}] [--format {text,json}]\n                        [--package-cache PACKAGE_CACHE]\n                        [--target-package TARGET_PACKAGE_IDS | --source-cohort SOURCE_COHORT]\n                        [--dry-run]\n\noptions:\n  -h, --help            show this help message and exit\n  --details             show all evidence and coverage checks\n  --lang {auto,en,zh}   human output language\n  --color {auto,always,never}\n                        terminal color; auto respects NO_COLOR\n  --format {text,json}\n  --package-cache PACKAGE_CACHE\n                        read existing .deb files for signed archive identity\n                        verification; never downloads\n  --target-package TARGET_PACKAGE_IDS\n                        binary:architecture target; scan and shared-package\n                        impact remain scope-wide\n  --source-cohort SOURCE_COHORT\n                        explicitly select all installed packages from one PHP\n                        source branch\n  --dry-run             simulate exact trusted Ubuntu/Debian candidates\n                        without installing or refreshing indexes\n"
+  },
+  {
+    "argv": [
+      "webpatch",
+      "fix",
+      "--help"
+    ],
+    "exit_code": 0,
+    "output": "usage: __main__.py fix [-h] [--details] [--lang {auto,en,zh}]\n                       [--color {auto,always,never}] [--format {text,json}]\n                       [--dry-run] [--package-cache PACKAGE_CACHE]\n                       [--state-directory STATE_DIRECTORY]\n                       [--source-cohort SOURCE_COHORT]\n                       [--budget-seconds BUDGET_SECONDS]\n                       [--prepared-receipt PREPARED_RECEIPT | --review REVIEW]\n\noptions:\n  -h, --help            show this help message and exit\n  --details             show all evidence and coverage checks\n  --lang {auto,en,zh}   human output language\n  --color {auto,always,never}\n                        terminal color; auto respects NO_COLOR\n  --format {text,json}\n  --dry-run             review only; no requests, prompts or files written\n  --package-cache PACKAGE_CACHE\n  --state-directory STATE_DIRECTORY\n  --source-cohort SOURCE_COHORT\n  --budget-seconds BUDGET_SECONDS\n  --prepared-receipt PREPARED_RECEIPT\n                        continue using a saved preparation receipt\n  --review REVIEW       interactively confirm an existing managed repair\n                        review\n"
+  },
+  {
+    "argv": [
+      "webpatch",
+      "--help"
+    ],
+    "exit_code": 0,
+    "output": "usage: __main__.py [-h] [--version] [--details] [--lang {auto,en,zh}]\n                   [--color {auto,always,never}]\n                   {scan,scan-node,plan,verify-plan,deployment-manifest,verify-deployment,probe-application,review-maintenance,review-execution,audit-consumers,prepare-plan,prepare-scope,retire-preparation,verify-preparation,rebuild-plan,repair-plan,probe-template,fix,apply}\n                   ...\n\nWebPatch runtime evidence, scoped maintenance and verification\n\npositional arguments:\n  {scan,scan-node,plan,verify-plan,deployment-manifest,verify-deployment,probe-application,review-maintenance,review-execution,audit-consumers,prepare-plan,prepare-scope,retire-preparation,verify-preparation,rebuild-plan,repair-plan,probe-template,fix,apply}\n    probe-template      print the collector source; never deploys it\n    fix                 guided review and exact confirmation; manages evidence\n                        files for you\n    apply               apply an exactly confirmed managed repair after native\n                        certification\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show program's version number and exit\n  --details             show all evidence and coverage checks\n  --lang {auto,en,zh}   human output language\n  --color {auto,always,never}\n                        terminal color; auto respects NO_COLOR\n"
+  }
+]

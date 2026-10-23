@@ -1,19 +1,19 @@
 # CLI reference
 
-WebPatch 0.1.0 requires Python 3.10+. Commands below assume the source installation in the [README](../README.md); an installed `.deb` also exposes `webpatch` on `PATH`.
+WebPatch 0.2.0 requires Python 3.10+. Commands below use the installed `webpatch` command. Start with the [command quick reference](../README.md#commands) or [中文命令速查](../README.zh-CN.md#commands). Source developers may substitute their virtual environment entry point.
 
 ## Read-only inventory
 
 ```sh
-.venv/bin/webpatch --help
-.venv/bin/webpatch --version
-.venv/bin/webpatch scan
-.venv/bin/webpatch scan --format json
+webpatch --help
+webpatch --version
+webpatch scan
+webpatch scan --format json
 ```
 
 Run on the target system without root. `scan` does not execute PHP, probe websites or access container daemons. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
 
-The text view shows environment, rule revision, package assessments and structured coverage requirements. JSON (`schema_version=2`) also includes package versions, runtime files and mappings, observed UNIX listeners, static configuration relationships, source audit, package trust, references and evidence digests. Legacy `coverage_gaps` strings remain available. Each structured check names its subjects, evidence, reason and next verification step; `VERIFIED` describes only that specific relationship. `OBSERVED`, `UNKNOWN`, `UNSUPPORTED` and `NOT_CHECKED` cannot authorize repair.
+The default text view shows a concise result, package assessments, missing evidence and next steps. Use `--details` for the complete coverage checks. JSON (`schema_version=2`) also includes package versions, runtime files and mappings, observed UNIX listeners, static configuration relationships, source audit, package trust, references and evidence digests. Legacy `coverage_gaps` strings remain available. Each structured check names its subjects, evidence, reason and next verification step; `VERIFIED` describes only that specific relationship. `OBSERVED`, `UNKNOWN`, `UNSUPPORTED` and `NOT_CHECKED` cannot authorize repair.
 
 | Field / value | Interpretation |
 | :--- | :--- |
@@ -28,7 +28,7 @@ Report paths and package names can contain operational information. Process envi
 ## Verify existing package archives
 
 ```sh
-.venv/bin/webpatch scan --package-cache /var/cache/apt/archives --format json
+webpatch scan --package-cache /var/cache/apt/archives --format json
 ```
 
 The default cache is `/var/cache/apt/archives`; use another absolute directory only if archives have already been obtained there. WebPatch never downloads them. The supported chain is existing Ubuntu/Debian InRelease signature → Packages digest and length → `.deb` digest and length → control identity → supported regular runtime files under `usr/bin`, `usr/sbin` and `usr/lib`.
@@ -38,11 +38,11 @@ Authentication covers direct official Ubuntu 22.04 / 24.04 and Debian 12 / 13 ma
 ## Prepare and recheck a plan
 
 ```sh
-.venv/bin/webpatch plan --dry-run --format json > reviewed-plan.json
-.venv/bin/webpatch verify-plan reviewed-plan.json --format json
+webpatch plan --dry-run --format json > reviewed-plan.json
+webpatch verify-plan reviewed-plan.json --format json
 ```
 
-`plan` requires `--dry-run`. On supported Ubuntu/Debian hosts, authenticated same-branch targets can reach real `apt-get --simulate --no-remove --only-upgrade`. The simulator uses isolated temporary APT configuration, retains relevant system inputs, does not run system hooks, and does not refresh indexes, download or install. Special configuration and hooks still appear as blockers. Containers receive rebuild recommendations and do not enter APT simulation.
+`plan` is always read-only; `--dry-run` remains accepted for existing scripts. On supported Ubuntu/Debian hosts, authenticated same-branch targets can reach real `apt-get --simulate --no-remove --only-upgrade`. The simulator uses isolated temporary APT configuration, retains relevant system inputs, does not run system hooks, and does not refresh indexes, download or install. Special configuration and hooks still appear as blockers. Containers receive rebuild recommendations and do not enter APT simulation.
 
 Plan schema 4 includes exact targets, dependency changes, complete observed scope, shared-package impact, individual review gates, service-interruption notes, input bindings, hashes and blockers. `apt_simulation` is `PASS`, `FAIL` or `NOT_RUN`; `PASS` does not mean the plan is executable. `READY_FOR_REVIEW` describes diagnostic readiness; execution admission stays `BLOCKED`. All schema 4 diagnostic plans remain `BLOCKED`, `executable=false`, with no executable actions. Removal, downgrade, new dependencies, cross-branch / release changes and untrusted or unapproved dependency changes block the automatic path.
 
@@ -51,13 +51,13 @@ Plans bind rules, host / boot scope, packages, configuration, repositories, inde
 To select packages, repeat `--target-package` with exact binary package and architecture IDs:
 
 ```sh
-.venv/bin/webpatch plan --dry-run --target-package php8.1-fpm:amd64 --format json
+webpatch plan --dry-run --target-package php8.1-fpm:amd64 --format json
 ```
 
 Selection does not narrow discovery or hide other consumers of the same package. Unresolved instances remain visible and blocking. Static pool/handler matches and a process-owned listening socket do not prove loaded configuration or request attribution. See [the 2D contracts and boundaries](phase-2d.md) and [current-source acceptance evidence](../evidence/phase-2d4/README.md).
 
 ```sh
-.venv/bin/webpatch apply
+webpatch apply
 # stderr: BLOCKED: a reviewed managed repair document and its exact plan hash are required. No changes performed.
 # exit: 4
 ```

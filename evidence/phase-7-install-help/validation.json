@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "date": "2026-10-23",
+  "base_commit": "c0bd9a7428b82f6f55b4dd788d464afcefbf8b3f",
+  "product_diff": "EMPTY",
+  "remote_user_server": "NOT_RUN",
+  "tests": [
+    "CLI help/version",
+    "3 download/checksum refusal cases",
+    "live bootstrap install",
+    "live pinned-deb install",
+    "shell syntax",
+    "Markdown links and recipe parity"
+  ],
+  "image": {
+    "Id": "sha256:ff130c66eca37059a50d0613db0bba42fe58b2499b35f8a400239947a2ea8b23",
+    "Architecture": "arm64",
+    "Os": "linux"
+  },
+  "documentation_sha256": {
+    "README.md": "b089fd8e1f2b08e75de15b30072ac50f8643e882ee24209fbd461e0f31696f9e",
+    "README.zh-CN.md": "585dc1b29235244f956097f4ac2006f277e973b01bb1c8729659a72378228ebe",
+    "docs/cli.md": "e903da51f6689c8fb73d5b9bbebd600442f05adc0f38150591db26dccfc173b3",
+    "docs/installation.md": "2838c7a1ced359e18f0ccbfe074ce89d64f469718813b285f4ec46a8ec9e3f59"
+  },
+  "evidence_sha256": {
+    "README.md": "2fa7edbcf59f6044f0fa68622a3f9e0d17664f86652cad814b4dca7e6df064d9",
+    "bootstrap-live.log": "c18860f5645041473f391b7c7dcda595f9356acb0e121637eabf5f187276fea0",
+    "bootstrap.sh": "92f2b6e0e1edd5d2398a540ce59104f9e499305937dbf345cdfe721dc5663f96",
+    "cli-help-validation.json": "b3c3fd47a7153de34e59c15d2a97c46aa6c05237b5c0c1be82f2fd0b7bdb8126",
+    "direct-package-live.log": "beb52156811da0901da00865a63107339c706aa3eb2fa4abd8eff4bd62619ee8",
+    "direct-package.sh": "38282566209562445a6de778d23eeb73cbe42c44d32b67b8960cdfad8afae5ac",
+    "download-check.err": "ea268b73d527dde5113c348ff46bb97bc2d98b5f70bcbe1b6eb608cdec73aca6",
+    "download-check.log": "85b35abbd80fe60286263e464f142ad324f0bfa49ac58045cffb8a6d96e21677",
+    "guard-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "guard-results.json": "d569edccfa4e2c59f064f93df08582b345dbd21b6df887a4906407f362813ef1",
+    "initial-harness-failure.log": "49a84b36f65afc0c6242eb9f3a9e1b9856ecdeabb5a68d0ffac7c4bcc41bf59c",
+    "recipe_guard_check.py": "a2d21608995be92c96151b22574c777821fa3fadfa4a81f56383233e04420b95"
+  }
+}

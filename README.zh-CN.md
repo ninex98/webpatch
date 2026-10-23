@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start">快速开始</a> · <a href="#cli-preview">预览</a> · <a href="docs/cli.md">CLI 参考</a> · <a href="README.md">English</a>
+  <a href="#commands">常用命令</a> · <a href="#quick-start">安装升级</a> · <a href="#cli-preview">预览</a> · <a href="docs/cli.md">CLI 参考</a> · <a href="README.md">English</a>
 </p>
 
 # WebPatch
@@ -29,18 +29,63 @@
 
 WebPatch 关联**包、进程、服务与本地证据**，分别呈现版本判断、文件身份和运行时安全状态，并将缺失的证明明确标为 `UNKNOWN`。
 
+<a id="commands"></a>
+
+## 常用命令
+
+安装后主要使用下面这些命令。日常顺序是 **扫描 → 必要时展开详情 → 引导修复**，不用手工创建 JSON 文件。
+
+| 命令 | 做什么 / 会看到什么 | 是否修改系统 |
+| :--- | :--- | :--- |
+| `webpatch --version` | 显示当前实际调用的版本；遇到“不认识某个参数”时先查这一项 | 否 |
+| `webpatch scan` | 检查本机 PHP，展示检查结论、可能受影响的软件包、证据缺口和下一步 | 否，只读 |
+| `webpatch scan --lang zh` | 同样的检查，使用中文显示结果 | 否，只读 |
+| `webpatch scan --details` | 展开具体缺口、证据检查和需要进一步核实的内容 | 否，只读 |
+| `webpatch plan` | 预览候选软件包变更、APT 模拟结果和阻断原因，不安装软件包 | 否，只读 |
+| `webpatch fix --dry-run` | 预先检查修复条件；不请求探针、不要求确认、不创建会话文件 | 否，只读 |
+| `sudo webpatch fix` | 进入 PHP 引导修复，展示变更和服务中断，自动保存审阅与恢复记录 | **精确确认后可能修改**：准备/重启服务、更新软件包 |
+| `webpatch scan-node` | 检查受支持的 Node.js 运行时规则；不检查 npm 应用依赖，也不修复 Node | 否，只读 |
+| `webpatch scan --format json` | 输出给脚本使用的结构化报告，日常操作不需要使用 | 否，只读 |
+| `webpatch --help` / `webpatch fix --help` | 查看命令列表，或某一条命令的参数说明 | 否 |
+
+希望修复提示也用中文，运行 `sudo webpatch fix --lang zh`。加 `--color never` 可关闭颜色，自动颜色模式也遵守 `NO_COLOR`。引导修复仍要求受支持的官方软件包、认证归档证据及预部署的验证探针；缺少条件会说明原因并停止。
+
+### 结果怎么看
+
+| 结果 | 含义 / 下一步 |
+| :--- | :--- |
+| `需要处理` / `ATTENTION` | 至少一个已观察到的软件包版本低于厂商修复线，可能受影响；查看详情和修复条件。 |
+| `UNKNOWN` | 证据不足，既不能据此认定安全，也不能直接认定存在漏洞；用 `scan --details` 查看缺什么。空清单不代表 PHP 不存在。 |
+| `BLOCKED` | 当前步骤未获准执行，或命令本身只用于审阅；查看阻断原因及准备/变更状态。 |
+| `PARTIAL` / `RESTART_REQUIRED` | 系统可能已经发生部分变更；先查看恢复记录再继续，不会自动回滚。 |
+| `VERIFIED_WITHIN_DECLARED_SCOPE` | 这次确认的操作在审阅范围内通过验证，不代表整台服务器都安全。 |
+
+扫描退出码 **1** 表示发现可能受影响的包，**2** 表示未知或覆盖不足；审阅命令、被阻断或取消的修复通常返回 **4**。这些评估结果与下载/安装失败不同。[完整退出码及高级命令](docs/cli.md)。
+
 <a id="quick-start"></a>
 
 ## 快速开始
 
-在 **Ubuntu 22.04/24.04 或 Debian 12/13** 上，一条命令安装，然后扫描：
+在 **Ubuntu 22.04/24.04 或 Debian 12/13** 上，整段复制执行即可安装或升级。脚本完整下载后才执行，下载失败会停止：
 
 ```sh
-curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/latest/download/install.sh | sh
-webpatch scan
+(
+  set -eu
+  webpatch_tmp=$(mktemp -d)
+  trap 'rm -rf "$webpatch_tmp"' EXIT
+  curl -fsSL --retry 5 --retry-all-errors --retry-max-time 180 \
+    --connect-timeout 15 --max-time 60 \
+    --proto '=https' --proto-redir '=https' --tlsv1.2 \
+    https://github.com/ninex98/webpatch/releases/latest/download/install.sh \
+    -o "$webpatch_tmp/install.sh"
+  sh "$webpatch_tmp/install.sh"
+  /usr/bin/webpatch --version
+)
 ```
 
 安装需要 `curl`、可信 CA 证书，以及 root 或 sudo 的 APT 安装权限。脚本会校验下载摘要和包身份；缺少 Python 3.10+ 时由 APT 安装所需依赖。无需 Git、虚拟环境或 pip。[指定版本、升级和卸载](docs/installation.md) · [源码开发](CONTRIBUTING.md)。
+
+先确认最后打印的版本为 **0.2.0 或更高**，再执行 `webpatch scan --lang zh`。如果下载失败，原来的安装不会因此变成新版；请看[下载/TLS 错误处理](docs/installation.md#download-troubleshooting)。`--lang` 和 `fix` 需要 0.2.0 或更高版本。
 
 扫描不需要 root，受限读取会成为覆盖缺口。发现潜在受影响包时退出码为 **1**，未知或覆盖不完整时为 **2**；二者均不代表安全检查通过。
 

@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start">Quick Start</a> · <a href="#cli-preview">Preview</a> · <a href="docs/cli.md">Docs</a> · <a href="README.zh-CN.md">简体中文</a>
+  <a href="#commands">Commands</a> · <a href="#quick-start">Install</a> · <a href="#cli-preview">Preview</a> · <a href="docs/cli.md">Docs</a> · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
 # WebPatch
@@ -29,16 +29,59 @@ The PHP in your shell may not be the PHP serving your site. Distribution backpor
 
 WebPatch connects **packages, processes, services and local evidence**. It keeps version assessments, file identity and runtime safety separate, and makes missing proof visible as `UNKNOWN`.
 
+## Commands
+
+Use these after installation. The default workflow is **scan → inspect details if needed → guided fix**; no manually created JSON files are required.
+
+| Command | What it does / what you see | Changes the system? |
+| :--- | :--- | :--- |
+| `webpatch --version` | Shows the CLI version actually being invoked; check this first if an option is unrecognized | No |
+| `webpatch scan` | Checks local PHP and shows a result, potentially affected packages, missing evidence and the next step | No |
+| `webpatch scan --lang zh` | Runs the same scan with Chinese human-readable output | No |
+| `webpatch scan --details` | Expands coverage gaps, evidence checks and what still needs verification | No |
+| `webpatch plan` | Previews candidate package changes, APT simulation status and blockers; does not authorize installation | No |
+| `webpatch fix --dry-run` | Checks prerequisites for guided repair; no probe requests, confirmation prompts or session files | No |
+| `sudo webpatch fix` | Guides supported PHP repair, shows changes and service interruption, and saves review/recovery records | **Only after exact confirmation**; may prepare/restart services and update packages |
+| `webpatch scan-node` | Checks the supported Node.js runtime rules; does not audit npm application dependencies or repair Node | No |
+| `webpatch scan --format json` | Emits the structured report for scripts; optional for everyday use | No |
+| `webpatch --help` / `webpatch fix --help` | Lists commands or the options for one command | No |
+
+For Chinese repair prompts, use `sudo webpatch fix --lang zh`. `--color never` disables ANSI colors; automatic coloring also respects `NO_COLOR`. Guided repair still requires supported official packages, authenticated archive evidence and predeployed verification probes. Missing prerequisites are explained and block execution.
+
+### Understanding the result
+
+| Result | Meaning / next action |
+| :--- | :--- |
+| `ATTENTION` / potentially affected | At least one observed package version is below the vendor fix boundary. Review details and repair prerequisites. |
+| `UNKNOWN` | Evidence is incomplete. This does not establish either safety or a confirmed vulnerability; use `scan --details`. An empty inventory does not prove PHP is absent. |
+| `BLOCKED` | The current step is not admitted, or the command is review-only. Read the blockers and any preparation/change state. |
+| `PARTIAL` / `RESTART_REQUIRED` | Changes may already have happened. Inspect recovery records before further action; there is no automatic rollback. |
+| `VERIFIED_WITHIN_DECLARED_SCOPE` | The confirmed operation passed verification within its reviewed scope; it does not certify the whole server. |
+
+Scans return **1** for potentially affected packages and **2** for unknown/incomplete coverage. Review commands and blocked/cancelled fixes generally return **4**. These assessment results differ from installation/download errors. See [all exit codes and advanced commands](docs/cli.md).
+
 ## Quick Start
 
-Install on **Ubuntu 22.04/24.04 or Debian 12/13** with one command, then scan:
+On **Ubuntu 22.04/24.04 or Debian 12/13**, paste this block to install or upgrade. It downloads the complete script before running it and stops on download failure:
 
 ```sh
-curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/latest/download/install.sh | sh
-webpatch scan
+(
+  set -eu
+  webpatch_tmp=$(mktemp -d)
+  trap 'rm -rf "$webpatch_tmp"' EXIT
+  curl -fsSL --retry 5 --retry-all-errors --retry-max-time 180 \
+    --connect-timeout 15 --max-time 60 \
+    --proto '=https' --proto-redir '=https' --tlsv1.2 \
+    https://github.com/ninex98/webpatch/releases/latest/download/install.sh \
+    -o "$webpatch_tmp/install.sh"
+  sh "$webpatch_tmp/install.sh"
+  /usr/bin/webpatch --version
+)
 ```
 
 The installer requires `curl`, trusted CA certificates and root or sudo for APT. It verifies the release checksum and package identity; APT resolves Python 3.10+ when needed. Git, venv and pip are not required. See [installation, pinned versions, upgrades and uninstall](docs/installation.md), or [source development](CONTRIBUTING.md).
+
+Confirm the printed version is **0.2.0 or newer**, then run `webpatch scan`. If downloading fails, the previous installation remains in place: follow [TLS/download troubleshooting](docs/installation.md#download-troubleshooting). `--lang` and `fix` require 0.2.0 or newer.
 
 No root is required to scan. Restricted reads become coverage gaps. Scan exits **1** for potentially affected packages or **2** for unknown/incomplete coverage; neither means a successful safety check.
 
