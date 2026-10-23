@@ -10,7 +10,7 @@ import textwrap
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
-CAPTURE = ROOT / 'evidence/readme-design/cli/capture.json'
+CAPTURE = ROOT / 'evidence/phase-6b-guided/terminal-capture.json'
 SANS = "'Avenir Next', Avenir, 'Segoe UI', sans-serif"
 MONO = "'SFMono-Regular', Consolas, 'Liberation Mono', monospace"
 
@@ -58,7 +58,7 @@ for dark in (False, True):
             body += text(32, 235, 'DISCOVER', 12, accent, 600, extra='letter-spacing="1.5"')
             body += text(168, 235, 'ASSESS', 12, accent, 600, extra='letter-spacing="1.5"')
             body += text(290, 235, 'REVIEW', 12, accent, 600, extra='letter-spacing="1.5"')
-            body += text(32, 268, 'READ-ONLY PREVIEW / EXECUTION DISABLED', 11, muted, 500, mono=True)
+            body += text(32, 268, 'READ-ONLY SCANS / CONFIRMED MAINTENANCE', 11, muted, 500, mono=True)
         else:
             body += '<defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="' + line + '" stroke-width=".6"/></pattern></defs>'
             body += '<rect x="710" y="1" width="409" height="348" rx="18" fill="url(#grid)" opacity=".45"/>'
@@ -67,9 +67,9 @@ for dark in (False, True):
             body += text(48, 177, 'Evidence before action.', 38, ink, 550, extra='letter-spacing="-.7"')
             body += text(48, 218, 'PHP runtime security, grounded in evidence.', 21, muted)
             body += f'<path d="M48 263H653" stroke="{line}"/>'
-            body += text(48, 300, 'READ-ONLY PREVIEW', 12, accent, 600, extra='letter-spacing="2"')
+            body += text(48, 300, 'READ-ONLY SCANS', 12, accent, 600, extra='letter-spacing="2"')
             body += text(313, 300, 'DISCOVER / ASSESS / REVIEW', 12, muted, 500, mono=True)
-            for i, (label, sub) in enumerate((('Local evidence', 'Packages / processes / services'), ('Vendor context', 'Distribution-aware assessments'), ('Reviewable plans', 'Execution remains disabled'))):
+            for i, (label, sub) in enumerate((('Local evidence', 'Packages / processes / services'), ('Vendor context', 'Distribution-aware assessments'), ('Reviewable plans', 'Exact review and confirmation'))):
                 y = 51 + i * 88
                 body += f'<rect x="750" y="{y}" width="322" height="71" rx="8" fill="{bg}" stroke="{line}"/>'
                 body += text(767, y+30, f'0{i+1}', 13, accent, 600, mono=True)
@@ -79,64 +79,39 @@ for dark in (False, True):
                     body += f'<path d="M783 {y+71}v17" stroke="{accent}" stroke-width="2"/>'
         svg(f'hero-{"mobile-" if mobile else ""}{theme}.svg', w, h,
             'WebPatch — Evidence before action.', body,
-            'Read-only PHP runtime security inventory. Discover local evidence, assess vendor context, review plans. Execution remains disabled.')
+            'Read-only PHP runtime security inventory. Discover local evidence, assess vendor context, review plans. Exact review and confirmation.')
 
-for filename, label, width in [('preview-badge.svg', '0.1.0 · development', 174), ('license-badge.svg', 'license · Apache-2.0', 145)]:
+for filename, label, width in [('preview-badge.svg', '0.2.0 · Linux preview', 174), ('license-badge.svg', 'license · Apache-2.0', 145)]:
     svg(filename, width, 22, label,
         f'<rect x=".5" y=".5" width="{width-1}" height="21" rx="4" fill="#15263b" stroke="#39516b"/>'
         + text(width/2, 15, label, 11, '#d3e6f4', 500, extra='text-anchor="middle"'))
 
 capture = json.loads(CAPTURE.read_text())
-scan, plan, apply = capture[1], capture[3], capture[6]
-assert scan['argv'] == ['webpatch', 'scan'] and scan['exit'] == 2
-assert plan['argv'] == ['webpatch', 'plan', '--dry-run'] and plan['exit'] == 4
-assert apply['argv'] == ['webpatch', 'apply'] and apply['exit'] == 4
-scan_lines = scan['stdout'].splitlines()
-assessment = next(line for line in scan_lines if '"package": "php8.3-fpm:arm64"' in line)
-plan_lines = plan['stdout'].splitlines()
-# None marks an editorial omission, visibly separate from actual output.
-sections = [
-    ('webpatch scan', [scan_lines[0], scan_lines[1], None, assessment, None]),
-    ('webpatch plan --dry-run', [plan_lines[0], None,
-        next(line for line in plan_lines if '"CONTAINER_REBUILD_REQUIRED"' in line),
-        next(line for line in plan_lines if '"REPAIR_EXECUTION_DISABLED"' in line), None]),
-    ('webpatch apply', apply['stderr'].splitlines()),
-]
-for mobile in (False, True):
-    w, size, margin = (400, 16, 20) if mobile else (1120, 17, 38)
-    columns = int((w - 2 * margin) / (size * .61))
-    body = text(margin, 34, 'WEBPATCH / CLI', 12, '#9ab3cc', 600, mono=True)
-    body += text(w-margin, 34, 'UBUNTU 24.04 · ARM64', 10 if mobile else 12, '#9ab3cc', 500,
-                 mono=True, extra='text-anchor="end"')
-    body += f'<path d="M1 54H{w-1}" stroke="#263c52"/>'
-    y = 89
-    for command, lines in sections:
-        body += text(margin, y, '$ ' + command, size, '#63dcea', 600, mono=True)
-        y += 30
-        for line in lines:
-            if line is None:
-                body += text(margin, y, '··· output omitted ···', size-3, '#8097af', mono=True)
-                y += 23
-                continue
-            color = '#eab873' if ('UNKNOWN' in line or 'BLOCKED' in line or 'REQUIRED' in line or 'DISABLED' in line) else '#c5d3e5'
-            if command == 'webpatch apply':
-                color = '#f3a4a7'
-            for wrapped in textwrap.wrap(line, columns, replace_whitespace=False, drop_whitespace=True, break_long_words=True, break_on_hyphens=False):
-                body += text(margin, y, wrapped, size, color, mono=True, extra='xml:space="preserve"')
-                y += 25
-        y += 26
-    body += f'<path d="M{margin} {y-4}H{w-margin}" stroke="#263c52"/>'
-    body += text(margin, y+24, 'ACTUAL OUTPUT / SELECTED LINES / 2026-10-22', 10 if mobile else 12, '#9ab3cc', mono=True)
-    h = y + 49
-    svg('terminal-mobile.svg' if mobile else 'terminal.svg', w, h, 'WebPatch actual CLI output',
-        f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="14" fill="#0b1525" stroke="#2d455e"/>' + body,
-        'Real non-root container session. Runtime safety UNKNOWN. FPM version comparison only. Plan BLOCKED, APT dry-run NOT_RUN. Apply refuses. Omitted output is labeled; full capture is linked in the README.')
-
-transcript = '# Actual CLI capture · Ubuntu 24.04 / arm64 · 2026-10-22\n# Non-root user 65534. No simulated or rewritten output.\n\n'
-for command in (capture[0], scan, plan, apply):
-    transcript += '$ ' + ' '.join(command['argv']) + '\n' + command['stdout']
-    if command['stderr']:
-        transcript += '# stderr\n' + command['stderr']
-    transcript += '# exit: ' + str(command['exit']) + '\n\n'
-(OUT / 'cli-transcript.txt').write_text(transcript.rstrip() + '\n')
-print('Generated 9 static SVGs and the verbatim text transcript.')
+assert capture['version'] == '0.2.0' and capture['uid'] == 65534
+transcript = []
+for record in capture['records']:
+    assert record['exit'] == 2 and 'UNKNOWN' in record['stdout'] and not record['stderr']
+    assert record['argv'] == ['webpatch', 'scan', '--color', 'never', '--lang', 'en']
+    mobile = record['columns'] == 44
+    w, size, step, margin = (480, 14, 22, 20) if mobile else (1120, 18, 28, 36)
+    lines = record['stdout'].strip('\n').splitlines()
+    h = 112 + len(lines) * step
+    body = f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="14" fill="#0b1525" stroke="#2d455e"/>'
+    body += text(margin, 31, 'WEBPATCH / ACTUAL CLI', 12, '#9ab3cc', 600, mono=True)
+    body += f'<path d="M1 48H{w-1}" stroke="#263c52"/>'
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        color = '#eab873' if stripped.startswith('UNKNOWN') else '#c5d3e5'
+        weight = 400
+        if stripped.startswith('WebPatch') or stripped == 'webpatch scan --details':
+            color = '#63dcea'; weight = 600
+        elif stripped in {'Result', 'What still needs checking', 'Next step'}:
+            color = '#f0f6fc'; weight = 600
+        elif stripped.startswith(('─', 'Ubuntu', 'Read-only', 'Rules valid')):
+            color = '#8097af'
+        body += text(margin, 82+i*step, line, size, color, weight, mono=True, extra='xml:space="preserve"')
+    body += text(margin, h-15, 'UBUNTU 24.04 · ARM64 · 2026-10-23', 11, '#9ab3cc', mono=True)
+    svg('terminal-mobile.svg' if mobile else 'terminal.svg',w,h,'WebPatch readable CLI output',body,
+        'Complete actual installed CLI output. Empty inventory stays UNKNOWN. No JSON wall or synthetic diagnosis.')
+    transcript.append(f"# {record['columns']} columns / exit {record['exit']}\n" + record['stdout'])
+(OUT/'cli-transcript.txt').write_text('\n'.join(transcript).rstrip() + '\n')

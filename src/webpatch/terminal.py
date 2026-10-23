@@ -64,6 +64,23 @@ class Terminal:
 def explain(code, terminal):
     """Translate known blockers without inventing a diagnosis for future codes."""
     messages = [
+        ('INTERACTIVE_TERMINAL_REQUIRED', 'Open a terminal to review and confirm this repair. Piped input cannot authorize changes.', '请在终端中审阅并确认修复，管道输入不能授权变更。'),
+        ('CONFIRMATION_CANCELLED', 'Confirmation was declined or did not match the reviewed plan.', '确认已取消，或输入与审阅计划的摘要不一致。'),
+        ('REPAIR_REQUIRES_LINUX_ROOT', 'Repair requires sudo/root on a supported Linux system.', '修复需要在受支持的 Linux 系统上使用 sudo/root。'),
+        ('GUIDED_PREREQUISITES', 'The checks above must pass before service preparation or package repair can begin.', '上述检查通过后，才能开始服务准备或软件包修复。'),
+        ('GUIDED_NO_SUPPORTED_RUNNING_SERVICE', 'No supported running service was identified for these packages.', '未识别到使用这些软件包的受支持运行服务。'),
+        ('GUIDED_FPM_POOLS', 'FPM pool endpoints could not be identified completely.', '无法完整识别 FPM pool 的监听端点。'),
+        ('REVIEW_ONLY_NO_CHANGES', 'Review finished without changing the system.', '审阅结束，未修改系统。'),
+        ('EXACT_PLAN_HASH_CONFIRMATION_REQUIRED', 'The confirmation does not match the displayed plan. Nothing was authorized.', '确认摘要与展示的计划不一致，未授权执行。'),
+        ('COVERAGE:', 'Runtime coverage is incomplete; services, loaded files and routes need verification.', '运行时覆盖不完整，仍需验证服务、已加载文件和路由。'),
+        ('NO_TRUSTED_SAME_BRANCH_FIX_CANDIDATE', 'No authenticated same-branch fix package is available in the current archive evidence.', '现有归档证据中没有经过认证的同分支修复包。'),
+        ('PACKAGE_ASSESSMENT_UNKNOWN', 'Some package versions cannot be assessed with the current vendor rules.', '当前厂商规则无法判断部分软件包版本。'),
+        ('TARGET_PACKAGE_RULE_OR_STATE_UNKNOWN', 'The selected package state or vendor rule is unknown.', '所选软件包的状态或厂商规则尚不明确。'),
+        ('PACKAGE_TRUST_UNKNOWN', 'Installed package authenticity has not been established.', '尚未认证已安装软件包的真实性。'),
+        ('INSTALLED_PACKAGE_IDENTITY', 'Installed file bytes must be matched against authenticated package archives.', '需要将已安装文件字节与经过认证的软件包归档核对。'),
+        ('SCOPE_IDENTITY_UNKNOWN', 'The scan cannot identify its system/container boundary reliably.', '扫描无法可靠识别当前系统或容器边界。'),
+        ('APT_DRY_RUN_NOT_PERFORMED', 'APT simulation could not run because prerequisite evidence is missing.', '缺少前置证据，尚未执行 APT 模拟。'),
+        ('DRIFT', 'The system changed during review. Collect fresh evidence and review a new plan.', '审阅期间系统状态发生变化，需要重新取证并审阅新计划。'),
         ('RULES_EXPIRED', 'Advisory rules have expired or the system clock predates review. Update reviewed rules and check the clock.', '规则已过期，或系统时间早于规则审阅时间。请更新已审阅规则并检查系统时间。'),
         ('CLOCK_BEFORE', 'The system clock predates the rule review.', '系统时间早于规则审阅时间。'),
         ('NO_PHP_PACKAGES', 'No managed PHP packages were found; custom PHP or containers may still exist.', '未发现受包管理器管理的 PHP；仍可能存在自编译 PHP 或容器。'),
@@ -101,7 +118,10 @@ def render_scan(report, terminal, *, details=False, node=False):
     scope = ui.t('current container', '当前容器') if env.scope == 'container' else ui.t('current system scope', '当前系统作用域')
     ui.line(f'{env.os_id.title()} {env.version_id}  ·  {scope}', tone='muted')
     affected = {a.package_id for a in report.assessments if a.version_status == 'BELOW_VENDOR_FIX'}
-    unknown = {a.package_id for a in report.assessments if a.version_status == 'UNKNOWN'}
+    unknown = {p.id for p in inventory.packages
+               if not any(a.package_id == p.id for a in report.assessments)
+               or any(a.package_id == p.id and a.version_status not in {'BELOW_VENDOR_FIX', 'MEETS_VENDOR_FIX'}
+                      for a in report.assessments)}
     ui.heading('Result', '检查结果')
     if affected:
         ui.line(ui.t(f'ATTENTION  ·  {len(affected)} potentially affected package(s)',
@@ -147,6 +167,7 @@ def render_scan(report, terminal, *, details=False, node=False):
                              '仍需验证包真实性、实际加载配置和请求路由。'))
     if not node and any('CONDITIONAL_WEB_CONFIGURATION' in g for g in gaps):
         summaries.append(explain('CONDITIONAL_WEB_CONFIGURATION', ui))
+        summaries.extend(g.split(':', 1)[1] for g in gaps if 'CONDITIONAL_WEB_CONFIGURATION' in g and ':' in g)
     summaries.append(ui.t('Custom installations, hidden processes and other containers are not fully covered.',
                          '自定义安装、隐藏进程和其他容器尚未完整覆盖。'))
     if node:
@@ -172,8 +193,8 @@ def render_scan(report, terminal, *, details=False, node=False):
                      f'先确认 {runtime} 安装在哪里；如果使用容器，请在目标容器内部扫描。'))
         ui.line(ui.t('No package repair is available from this inventory.', '当前清单没有可供修复的软件包。'))
     elif affected and not node:
-        ui.line(ui.t('Review a read-only upgrade plan:', '查看只读升级计划：'))
-        ui.command('webpatch plan')
+        ui.line(ui.t('Open the guided repair review:', '进入引导式修复审阅：'))
+        ui.command('sudo webpatch fix')
     else:
         ui.line(ui.t('Review the remaining evidence gaps before making changes.', '先核实剩余证据缺口，再决定是否变更。'))
     if not details:

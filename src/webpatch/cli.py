@@ -2,6 +2,7 @@ import argparse
 from dataclasses import asdict
 from datetime import datetime, timezone
 import json
+import os
 import re
 import sys
 
@@ -30,6 +31,8 @@ from .package_control import LocalPackageControl
 from .documents import load_document
 from . import release_gate
 from .terminal import Terminal, render_scan, render_plan
+from .guided import run_guided, result_summary
+from .sessions import SessionStore
 
 
 def main(argv=None, *, system=None, simulator=None, probe=None, service_controller=None, package_controller=None, journal=None, now=None) -> int:
@@ -90,12 +93,31 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
             child.add_argument("--script", required=True, help="root-controlled copy of the shipped probe script")
             child.add_argument("--service", required=True, help="expected previously observed systemd service")
     subs.add_parser("probe-template", help="print the collector source; never deploys it")
+    fix_parser = subs.add_parser('fix', help='guided review and exact confirmation; manages evidence files for you')
+    presentation_options(fix_parser)
+    fix_parser.add_argument('--format', choices=('text', 'json'), default='text')
+    fix_parser.add_argument('--dry-run', action='store_true', help='review only; no requests, prompts or files written')
+    fix_parser.add_argument('--package-cache', default='/var/cache/apt/archives')
+    fix_parser.add_argument('--state-directory', default='/var/lib/webpatch')
+    fix_parser.add_argument('--source-cohort')
+    def budget(value):
+        number = int(value)
+        if not 60 <= number <= 1800:
+            raise argparse.ArgumentTypeError('budget must be between 60 and 1800 seconds')
+        return number
+    fix_parser.add_argument('--budget-seconds', type=budget, default=600)
+    resume = fix_parser.add_mutually_exclusive_group()
+    resume.add_argument('--prepared-receipt', help='continue using a saved preparation receipt')
+    resume.add_argument('--review', help='interactively confirm an existing managed repair review')
     apply_parser=subs.add_parser('apply',help='apply an exactly confirmed managed repair after native certification')
     presentation_options(apply_parser)
     apply_parser.add_argument('path',nargs='?',help='schema 5 managed repair review JSON')
     apply_parser.add_argument('--confirm-sha256',help='exact plan hash reviewed by the operator')
     apply_parser.add_argument('--format',choices=('text','json'),default='json')
     args = parser.parse_args(argv)
+    if args.command == 'fix' and not release_gate.PUBLIC_REPAIR_ENABLED:
+        print('BLOCKED: repair execution is disabled pending native certification.', file=sys.stderr)
+        return 4
     if args.command == "probe-template":
         print(probe_source().decode(), end="")
         return 0
@@ -108,6 +130,21 @@ def main(argv=None, *, system=None, simulator=None, probe=None, service_controll
     try:
         native = system is None
         reader = system if system is not None else LocalSystem()
+        if args.command == 'fix':
+            control = package_controller if package_controller is not None else (LocalPackageControl(args.state_directory) if native else None)
+            capability = probe if probe is not None else (LocalApplicationProbe() if native else None)
+            solver = simulator if simulator is not None else (LocalAptSimulator() if native else None)
+            audit = journal if journal is not None else (AuditJournal(control.state_dir/'operations.jsonl') if native else None)
+            ui = Terminal(stream=sys.stderr if args.format == 'json' else sys.stdout, lang=args.lang, color=args.color)
+            result = run_guided(system=reader, simulator=solver, controller=control, probe=capability, journal=audit,
+                session_factory=lambda: SessionStore(args.state_directory), ui=ui, input_stream=sys.stdin,
+                package_cache=args.package_cache, state_directory=args.state_directory, budget_seconds=args.budget_seconds,
+                source_cohort=args.source_cohort, dry_run=args.dry_run, prepared_receipt=args.prepared_receipt,
+                review_path=args.review, now=now, details=args.details,
+                root_allowed=native and sys.platform == 'linux' and os.geteuid() == 0)
+            if args.format == 'json': print(json.dumps(result, ensure_ascii=True, indent=2))
+            else: result_summary(result, ui)
+            return 0 if result['status'] == 'VERIFIED_WITHIN_DECLARED_SCOPE' else 4
         if args.command=='apply':
             saved=load_document(reader.read_plan_document(args.path))
             if not isinstance(saved,dict) or not isinstance(saved.get('contract'),dict): raise ValueError('INVALID_REPAIR_DOCUMENT')

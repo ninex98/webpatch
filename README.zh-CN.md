@@ -21,7 +21,7 @@
 
 **Evidence before action. 先有证据，再采取行动。** 一个审慎的 PHP 运行时安全 CLI：发现本地安装，依据厂商公告比对包版本，生成可供审阅的修复计划。
 
-**[v0.1.0](https://github.com/ninex98/webpatch/releases/tag/v0.1.0) 已作为 Linux 预览版发布。** 扫描保持只读；显式服务准备在精确计划 hash 确认后可以重启声明的服务。包修复要求完整受控证据及所审阅计划的精确 hash 确认。内置规则聚焦 PHP2Shell（`CVE-2026-109618` / `CVE-2026-109619`）；包版本符合修复边界，不等于正在运行的服务安全。
+**Linux 预览版。** [已发布版本](https://github.com/ninex98/webpatch/releases)包含有时效的规则及明确的支持范围。 扫描保持只读；显式服务准备在精确计划 hash 确认后可以重启声明的服务。包修复要求完整受控证据及所审阅计划的精确 hash 确认。内置规则聚焦 PHP2Shell（`CVE-2026-109618` / `CVE-2026-109619`）；包版本符合修复边界，不等于正在运行的服务安全。
 
 ## 为什么选择 WebPatch
 
@@ -44,15 +44,15 @@ webpatch scan
 
 扫描不需要 root，受限读取会成为覆盖缺口。发现潜在受影响包时退出码为 **1**，未知或覆盖不完整时为 **2**；二者均不代表安全检查通过。
 
-导出证据并生成计划：
+如果扫描发现可能受影响的软件包，进入引导式修复：
 
 ```sh
-webpatch scan --format json > scan.json
-webpatch plan --dry-run --format json > reviewed-plan.json
-webpatch verify-plan reviewed-plan.json --format json
+sudo webpatch fix
 ```
 
-本预览版的 `plan` 和 `verify-plan` 返回 **4**。这些诊断计划均为 `BLOCKED`、`executable=false`；APT 模拟通过也不授权任何变更。退出码、包缓存验证和本地 `.deb` 构建见 [CLI 参考](docs/cli.md)。安装包已在 [GitHub Releases](https://github.com/ninex98/webpatch/releases) 发布，目前没有公开 APT 仓库。
+工具会先检查修复条件，解释阻断原因，自动管理审阅文件与恢复收据。只有受支持且证据完整时，才展示软件包变更和服务中断并要求精确确认。证据不足会停止并说明需要核实什么。各服务路由需要先部署已审阅的验证探针；向导不会创建网页或猜测应用路由。
+
+需要查看详细原因时，运行 `webpatch scan --details`；`webpatch plan` 可直接预览升级证据，不修改系统。加上 `--lang zh` 可使用中文，终端颜色自动适配并尊重 `NO_COLOR`。JSON 导出保留给[高级自动化](docs/cli.md)，引导流程无需手工生成文件。
 
 <a id="cli-preview"></a>
 
@@ -61,11 +61,11 @@ webpatch verify-plan reviewed-plan.json --format json
 <p align="center">
   <picture>
     <source media="(max-width: 600px)" srcset="assets/readme/terminal-mobile.svg">
-    <img src="assets/readme/terminal.svg" alt="Ubuntu 24.04 容器内实际输出：作用域为 container，运行时安全为 UNKNOWN，计划为 BLOCKED，apply 拒绝执行。" width="100%">
+    <img src="assets/readme/terminal.svg" alt="Ubuntu 24.04 内实际清晰输出：未发现 PHP，安全状态 UNKNOWN，并给出明确下一步。" width="100%">
   </picture>
 </p>
 
-于 **2026-10-22** 在隔离的 **Ubuntu 24.04 / arm64 容器**中，从已安装的 CLI 采集。图中节选真实输出，仅增加视觉换行；此容器输出 `APT dry-run: NOT_RUN`。终端外观是展示设计，并非内置 TUI。[完整文本与采集说明](assets/readme/README.md)。
+于 **2026-10-23** 在隔离的 **Ubuntu 24.04 / arm64 容器**中采集，展示已安装 **0.2.0 CLI** 的完整输出。示例没有 PHP 软件包，直接解释覆盖不足及下一步。CLI 支持终端颜色和按宽度换行；插图仅添加终端外框。[完整记录与出处](assets/readme/README.md)。
 
 诊断流程为**发现 → 判断 → 审阅**。独立的[受控维护流程](docs/cli.md#managed-package-repair)增加显式探针、经确认的服务准备、完整源码包组计划、持锁复核和修复后验证。安装后的 CLI 已在八个受支持的 Ubuntu/Debian 服务 profile 通过真实升级；显式重启后故障测试保持部分失败状态。
 

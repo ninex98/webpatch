@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.19, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/ninex/Projects/hll-ecosystem/apps/webpatch
+configfile: pyproject.toml
+plugins: cov-6.3.0
+collected 29 items
+
+tests/test_guided.py ................                                    [ 55%]
+tests/test_terminal.py .............                                     [100%]
+
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/phase-6b-guided/targeted.xml -
+============================== 29 passed in 0.78s ==============================

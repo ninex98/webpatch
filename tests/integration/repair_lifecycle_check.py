@@ -129,15 +129,25 @@ for case in ('success','post-health-failure'):
             # The success path exercises the installed isolated entry point once
             # native certification enables it. Fault injection stays explicit.
             if case=='success' and PUBLIC_REPAIR_ENABLED:
-                completed=subprocess.run(['/usr/bin/webpatch','apply',str((folder/'repair-plan.json').resolve()),
-                    '--confirm-sha256',confirmation,'--format','json'],capture_output=True,text=True,timeout=900,cwd='/')
+                # A real terminal supplies the exact displayed review hash. No
+                # production --yes, injected executor or noninteractive bypass.
+                master,slave=os.openpty()
+                try:
+                    os.write(master,(confirmation+'\n').encode())
+                    completed=subprocess.run(['/usr/bin/webpatch','fix','--review',str((folder/'repair-plan.json').resolve()),
+                        '--state-directory',str(controller.state_dir),'--format','json','--color','never'],
+                        stdin=slave,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=900,cwd='/')
+                finally:
+                    os.close(master);os.close(slave)
+                number=len(list(folder.glob('guided-ui-*.txt')))+1
+                (folder/f'guided-ui-{number}.txt').write_text(completed.stderr)
                 assert completed.returncode in {0,4},(completed.returncode,completed.stderr)
                 output=json.loads(completed.stdout)
                 assert (completed.returncode==0)==(output['status']=='VERIFIED_WITHIN_DECLARED_SCOPE')
                 return output
             return execute_repair_review(document,confirmation_sha256=confirmation,system=reader,
                 simulator=LocalAptSimulator(),controller=controller,probe=capability,journal=journal)
-        (folder/'execution-entry.json').write_text(json.dumps({'entry':'INSTALLED_PUBLIC_CLI' if case=='success' and PUBLIC_REPAIR_ENABLED
+        (folder/'execution-entry.json').write_text(json.dumps({'entry':'INSTALLED_GUIDED_CLI' if case=='success' and PUBLIC_REPAIR_ENABLED
             else 'INTERNAL_TYPED_API','fault_injection':case=='post-health-failure'},indent=2)+'\n')
         assert review.proposal.admission_status=='READY_FOR_CONFIRMATION',review.proposal.blockers
         assert review.proposal.changes and all(c.old_version==base_version and c.new_version!=base_version for c in review.proposal.changes)

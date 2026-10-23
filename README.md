@@ -21,7 +21,7 @@
 
 **Evidence before action.** A conservative CLI for PHP runtime security: discover local installations, compare package versions with vendor advisories, and prepare reviewable repair plans.
 
-**[v0.1.0](https://github.com/ninex98/webpatch/releases/tag/v0.1.0) is published as a Linux preview.** Scans remain read-only; explicit service preparation can restart declared services after exact plan-hash confirmation. Package repair requires complete managed evidence and confirmation of the exact reviewed plan hash. The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`); a matching package version never means a safe running service.
+**Linux preview.** [Published versions](https://github.com/ninex98/webpatch/releases) include dated rules and explicit support boundaries. Scans remain read-only; explicit service preparation can restart declared services after exact plan-hash confirmation. Package repair requires complete managed evidence and confirmation of the exact reviewed plan hash. The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`); a matching package version never means a safe running service.
 
 ## Why WebPatch
 
@@ -42,26 +42,26 @@ The installer requires `curl`, trusted CA certificates and root or sudo for APT.
 
 No root is required to scan. Restricted reads become coverage gaps. Scan exits **1** for potentially affected packages or **2** for unknown/incomplete coverage; neither means a successful safety check.
 
-Export evidence and prepare a plan:
+If the scan finds potentially affected packages, open the guided repair review:
 
 ```sh
-webpatch scan --format json > scan.json
-webpatch plan --dry-run --format json > reviewed-plan.json
-webpatch verify-plan reviewed-plan.json --format json
+sudo webpatch fix
 ```
 
-`plan` and `verify-plan` return **4** in this preview. These diagnostic plans are `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. Installable packages are available in [GitHub Releases](https://github.com/ninex98/webpatch/releases); there is no public APT repository.
+WebPatch checks prerequisites, explains blockers, and manages review files and recovery receipts. Supported, fully verified repairs show package changes and service interruption before exact confirmation. If evidence is missing, it stops and explains what needs attention. A reviewed verification probe must already be deployed for each service route; the wizard does not create web pages or guess application routes.
+
+For more information on screen, use `webpatch scan --details`. `webpatch plan` previews upgrade evidence without changing the system. `--lang zh` selects Chinese; terminal colors are automatic and respect `NO_COLOR`. JSON export remains available for [advanced automation](docs/cli.md), but is not required for the guided workflow.
 
 ## CLI Preview
 
 <p align="center">
   <picture>
     <source media="(max-width: 600px)" srcset="assets/readme/terminal-mobile.svg">
-    <img src="assets/readme/terminal.svg" alt="Actual Ubuntu 24.04 container output: scope is container, runtime safety is UNKNOWN, the plan is BLOCKED, and apply refuses execution." width="100%">
+    <img src="assets/readme/terminal.svg" alt="Actual readable Ubuntu 24.04 CLI output: no PHP observed, safety UNKNOWN, clear next steps." width="100%">
   </picture>
 </p>
 
-Captured from the installed CLI in an isolated **Ubuntu 24.04 / arm64 container** on **2026-10-22**. Selected output is shown verbatim with visual line wrapping; this container reports `APT dry-run: NOT_RUN`. Styling is an illustration of the terminal, not a built-in TUI. [Full text and capture details](assets/readme/README.md).
+Complete output from the installed **0.2.0 CLI**, in an isolated **Ubuntu 24.04 / arm64 container** on **2026-10-23**. This example has no PHP packages; it explains the incomplete coverage and next steps directly. The CLI supports terminal colors and responsive wrapping; the illustration adds a terminal frame. [Full capture and provenance](assets/readme/README.md).
 
 The diagnostic workflow is **discover → assess → review**. The separate [managed maintenance workflow](docs/cli.md#managed-package-repair) adds explicit probes, confirmed service preparation, an exact source-cohort plan, locked revalidation and post-repair verification. The installed CLI has passed real upgrades in all eight supported Ubuntu/Debian service profiles; explicit post-restart failure tests retain partial states.
 

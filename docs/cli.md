@@ -181,3 +181,21 @@ Do not use installation or service tests to modify the developer host. See [CONT
 `webpatch scan-node --format json` discovers Node packages/processes without running Node or npm. The separately dated rules cover two reviewed runtime CVEs for Debian 12/13; unsupported vendor/version families remain UNKNOWN. This does not audit npm dependencies or enable Node repair.
 
 Inside the target container, `webpatch rebuild-plan --image registry.example/team/php@sha256:<64-hex-digest> --format json` returns scoped image rebuild guidance (exit 4). The image reference is declared, not authenticated by the scan. It does not build, push, roll out or install packages in place. See [extension boundaries and evidence](phase-4.md).
+
+
+## Guided terminal workflow (0.2.0)
+
+`webpatch scan` presents a concise result, affected packages, remaining checks and a next action. `--details` expands evidence; `--format json` retains the existing structured report and exit codes. `--lang auto|en|zh` controls human output. Color is automatic on terminals, disabled for pipes/NO_COLOR/TERM=dumb; `--color always|never` overrides it. `webpatch plan` is always read-only; `--dry-run` remains accepted for older scripts.
+
+```sh
+webpatch scan --lang zh
+sudo webpatch fix
+```
+
+`fix` runs a read-only preflight, identifies the supported source cohort and observed services, and asks for an explicitly deployed collector URL/file for every FPM pool or Apache route. It does not deploy probe code, add routes, download archives, refresh APT metadata or turn UNKNOWN into approval. Missing authenticated archive/cache, custom installations, containers, unsupported architectures and unresolved prerequisites stop the workflow with an explanation.
+
+An interactive terminal is required for changes. The preparation summary lists the services/restart actions; the repair summary lists exact old/new package versions, services and interruption budget (default 600 seconds, configurable with `--budget-seconds 60..1800`). At each confirmation, `d` expands the complete bound review. Paste the displayed full SHA256 to confirm that particular operation. Enter/q cancels; generic yes, short hashes, piped input and mismatched hashes do not authorize changes. Original locked revalidation, expiry, no-replay, partial failure and post-repair verification still apply.
+
+After confirmation the tool creates a private `session-<random>` directory under `/var/lib/webpatch` (or its explicitly configured supported state directory). Plans, preparation results, authenticated receipts and repair results are saved with mode 0600. No session is created for scan/dry-run or a declined initial confirmation. Preparation may already have restarted services if a later repair review is cancelled; receipts and recovery data remain available and cancellation does not undo preparation. Follow the printed continuation command or use `fix --prepared-receipt PATH --state-directory DIR`. Retirement/recovery still uses the authenticated receipt workflow documented above.
+
+Advanced operators can run `fix --review PATH --state-directory DIR` to interactively confirm an existing managed review; the saved document is revalidated by the same executor as `apply`. `fix --dry-run` performs only read-only diagnosis (no probe requests, prompts or session writes). `fix --format json` sends the interactive review to stderr and emits the final result on stdout; it does not remove confirmation. Exit 0 means VERIFIED_WITHIN_DECLARED_SCOPE only; blocked/cancelled/partial fix results return 4 and retain safe=false.

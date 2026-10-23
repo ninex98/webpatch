@@ -136,6 +136,11 @@ else:
         assert before == Path('/var/lib/dpkg/status').read_bytes()
         assert not report['inventory']['packages'], 'Fixture intentionally has no PHP'
         checks.append({'case': 'installed-read-only-empty-inventory-stays-unknown', 'status': 'PASS', 'exit_code': scan.returncode})
+        guided=run(['/usr/bin/webpatch','fix','--dry-run','--format','json'],cwd='/')
+        assert guided.returncode==4 and json.loads(guided.stdout)['status']=='BLOCKED'
+        assert not Path('/var/lib/webpatch').exists(), 'Read-only empty fix created maintenance state'
+        assert before == Path('/var/lib/dpkg/status').read_bytes()
+        checks.append({'case':'installed-guided-empty-dry-run-stays-readonly','status':'PASS','exit_code':guided.returncode})
     print(json.dumps({'result': 'PASS', 'environment': Path('/etc/os-release').read_text(),
                       'architecture': run(['dpkg', '--print-architecture'], check=True).stdout.strip(),
                       'version': version, 'package_sha256': hashlib.sha256((RELEASE/asset).read_bytes()).hexdigest(),

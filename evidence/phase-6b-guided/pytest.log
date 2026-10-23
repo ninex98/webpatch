@@ -1,0 +1,48 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.19, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/ninex/Projects/hll-ecosystem/apps/webpatch
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-6.3.0
+collected 647 items
+
+tests/test_application.py ............................                   [  4%]
+tests/test_archive_sealing.py .......                                    [  5%]
+tests/test_base_versions.py ...                                          [  5%]
+tests/test_boundaries.py ................................                [ 10%]
+tests/test_ci_guards.py .                                                [ 10%]
+tests/test_ci_lifecycle_policy.py ........                               [ 12%]
+tests/test_configuration_policy.py ................                      [ 14%]
+tests/test_consumers.py .................                                [ 17%]
+tests/test_container_rebuild.py ...........                              [ 19%]
+tests/test_coverage.py ................................................. [ 26%]
+...........                                                              [ 28%]
+tests/test_debian_trust.py ................                              [ 30%]
+tests/test_deployment.py ..................                              [ 33%]
+tests/test_environments.py ............................................. [ 40%]
+...............................................................          [ 50%]
+tests/test_execution_inputs.py .............                             [ 52%]
+tests/test_gates.py ..............                                       [ 54%]
+tests/test_guided.py ................                                    [ 56%]
+tests/test_implementation.py .....                                       [ 57%]
+tests/test_maintenance.py ...............                                [ 59%]
+tests/test_node.py .................                                     [ 62%]
+tests/test_package_control.py ........                                   [ 63%]
+tests/test_planning.py ................................                  [ 68%]
+tests/test_platform_proof.py ..........                                  [ 70%]
+tests/test_preparation.py ..............                                 [ 72%]
+tests/test_prepared_verification.py ............                         [ 74%]
+tests/test_profiles.py ....                                              [ 74%]
+tests/test_repair_cli.py ..........                                      [ 76%]
+tests/test_repair_execution.py .........                                 [ 77%]
+tests/test_repair_policy.py ...............                              [ 80%]
+tests/test_runtime.py .........................                          [ 84%]
+tests/test_runtime_evidence.py .....................                     [ 87%]
+tests/test_shared_ownership.py .                                         [ 87%]
+tests/test_sources.py ....................                               [ 90%]
+tests/test_terminal.py ..............                                    [ 92%]
+tests/test_transaction.py .....................                          [ 95%]
+tests/test_trust.py ..........................                           [100%]
+
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/phase-6b-guided/pytest.xml -
+============================= 647 passed in 3.69s ==============================

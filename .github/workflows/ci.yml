@@ -1,5 +1,11 @@
 name: WebPatch safety checks
-on: [push, pull_request, workflow_dispatch]
+# Releases already require this exact main SHA to pass. Creating its tag does
+# not need a second identical service matrix after publication.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 defaults:

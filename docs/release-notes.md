@@ -1,11 +1,11 @@
-# WebPatch 0.1.0 — Linux preview / Linux 预览版
+# WebPatch 0.2.0 — Clear results and guided repair / 清晰结果与引导修复
 
-首次版本化 Linux 分发：Ubuntu 22.04/24.04、Debian 12/13 可使用一条命令下载安装 WebPatch，无需 Git、venv 或 pip。安装器解析具体 Release、验证 SHA256 和包元数据，通过 APT 安装工具及必要依赖，拒绝降级。不执行 PHP 修复或扫描。
+默认扫描改为分层摘要：结论、可能受影响的包、待核实项和下一步。支持中文/英文、自动终端颜色、NO_COLOR 和 --details；JSON 与退出码保持兼容。安装器收敛成功日志，修复 _apt 读取公开 deb 的权限问题，失败仍显示完整错误。
 
-First versioned Linux distribution: one-command installation on Ubuntu 22.04/24.04 and Debian 12/13 without Git, venv or pip. The installer resolves a concrete release, checks SHA256 and package metadata, installs the tool and required dependencies through APT, and rejects downgrades. It does not scan or repair PHP.
+Default scans now show a readable result, affected packages, remaining checks and next steps. English/Chinese output, terminal colors and --details are available; JSON and scan exit codes remain compatible. Installation shows concise progress and retains complete failure diagnostics.
 
-The package is architecture-independent Python and requires Python 3.10+ (resolved through APT). Installation portability does not extend the certified repair profiles: official amd64 PHP packages, supported FPM/mod_php, complete evidence and exact plan-hash confirmation remain required. macOS, Windows and other Linux distributions are not supported by this installer. There is no public APT repository.
+`sudo webpatch fix` guides preparation and package repair using the existing supported profiles, manages review files/receipts, and requires the complete displayed plan hash for each change. Existing probes and authenticated package archives remain prerequisites. Missing evidence blocks repair; no --yes, automatic probe deployment or hidden service action is added. Cancelling after preparation does not undo service changes; recovery receipts are retained.
 
-Bundled PHP/Node rules expire at **2026-10-29 00:00 UTC**. After expiry assessments remain UNKNOWN until a source-reviewed rules release; updating the program never silently extends rule validity. Installation and package-version matches do not establish runtime safety.
+Supported install targets: Ubuntu 22.04/24.04 and Debian 12/13. Confirmed repairs remain limited to official amd64 PHP FPM/mod_php profiles. Other systems/architectures and container in-place repair remain unsupported. All safety results retain safe=false; installation does not establish runtime safety.
 
-Checksums detect corrupted or mismatched assets obtained through GitHub HTTPS; they are not an independent publisher signature. This release has no separate package signing key. For installation, upgrade and uninstall instructions see [the installation guide](https://github.com/ninex98/webpatch/blob/main/docs/installation.md).
+Rules still expire at **2026-10-29 00:00 UTC**; this release does not extend their validity. Upgrade by running the installation command again. Old preparation receipts/plans bind implementation hashes and must be regenerated after a program update.

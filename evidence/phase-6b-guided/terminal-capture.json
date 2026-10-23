@@ -1,0 +1,37 @@
+{
+  "version": "0.2.0",
+  "date": "2026-10-23T05:10:50.346381+00:00",
+  "os": "Ubuntu 24.04",
+  "architecture": "arm64",
+  "uid": 65534,
+  "records": [
+    {
+      "columns": 88,
+      "argv": [
+        "webpatch",
+        "scan",
+        "--color",
+        "never",
+        "--lang",
+        "en"
+      ],
+      "exit": 2,
+      "stdout": "\n  WebPatch 0.2.0  /  PHP security check\n  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Ubuntu 24.04  \u00b7  current container\n\n  Result\n  UNKNOWN  \u00b7  Runtime safety is not established\n  No PHP packages or runtime hints were found.\n  An empty inventory does not prove the runtime is absent.\n  0 packages  \u00b7  0 observed processes  \u00b7  0 package versions unknown\n\n  What still needs checking\n  \u2022 Custom installations, hidden processes and other containers are not fully covered.\n\n  Next step\n  Confirm where PHP is installed. For containers, scan inside the target container.\n  No package repair is available from this inventory.\n    webpatch scan --details\n\n  Read-only \u00b7 no system changes\n  Rules valid until: 2026-10-29T00:00:00+00:00\n\n",
+      "stderr": ""
+    },
+    {
+      "columns": 44,
+      "argv": [
+        "webpatch",
+        "scan",
+        "--color",
+        "never",
+        "--lang",
+        "en"
+      ],
+      "exit": 2,
+      "stdout": "\n  WebPatch 0.2.0  /  PHP security check\n  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Ubuntu 24.04  \u00b7  current container\n\n  Result\n  UNKNOWN  \u00b7  Runtime safety is not\n  established\n  No PHP packages or runtime hints were\n  found.\n  An empty inventory does not prove the\n  runtime is absent.\n  0 packages  \u00b7  0 observed processes  \u00b7  0\n  package versions unknown\n\n  What still needs checking\n  \u2022 Custom installations, hidden processes\n  and other containers are not fully\n  covered.\n\n  Next step\n  Confirm where PHP is installed. For\n  containers, scan inside the target\n  container.\n  No package repair is available from this\n  inventory.\n    webpatch scan --details\n\n  Read-only \u00b7 no system changes\n  Rules valid until:\n  2026-10-29T00:00:00+00:00\n\n",
+      "stderr": ""
+    }
+  ]
+}

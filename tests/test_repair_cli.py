@@ -17,6 +17,8 @@ def test_pending_certification_and_missing_confirmation_do_not_read_or_mutate(ca
     fake=FakeSystem({})
     assert main(['apply','/not-read.json','--confirm-sha256','f'*64],system=fake,now=NOW)==4
     assert fake.calls==[] and 'BLOCKED' in capsys.readouterr().err
+    assert main(['fix'],system=fake,now=NOW)==4
+    assert fake.calls==[] and 'BLOCKED' in capsys.readouterr().err
     monkeypatch.setattr('webpatch.release_gate.PUBLIC_REPAIR_ENABLED',True)
     assert main(['apply'],system=fake,now=NOW)==4 and fake.calls==[]
 

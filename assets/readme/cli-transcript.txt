@@ -1,76 +1,56 @@
-# Actual CLI capture · Ubuntu 24.04 / arm64 · 2026-10-22
-# Non-root user 65534. No simulated or rewritten output.
+# 88 columns / exit 2
 
-$ webpatch --version
-0.1.0
-# exit: 0
+  WebPatch 0.2.0  /  PHP security check
+  ────────────────────────────────────────────────────────────────────────────────────
+  Ubuntu 24.04  ·  current container
 
-$ webpatch scan
-UNKNOWN — runtime safety UNKNOWN; never treat a version match as safe.
-{"scope": "container", "os": "ubuntu", "release": "24.04", "codename": "noble"}
-Rules: php2shell-2026-10-22.1; expires: 2026-10-29T00:00:00+00:00
-{"package": "libapache2-mod-php:all", "cve": "CVE-2026-109618", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "libapache2-mod-php:all", "cve": "CVE-2026-109619", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "libapache2-mod-php8.3:arm64", "cve": "CVE-2026-109618", "version_status": "MEETS_VENDOR_FIX", "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED"}
-{"package": "libapache2-mod-php8.3:arm64", "cve": "CVE-2026-109619", "version_status": "MEETS_VENDOR_FIX", "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED"}
-{"package": "php-cli:all", "cve": "CVE-2026-109618", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php-cli:all", "cve": "CVE-2026-109619", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php-common:all", "cve": "CVE-2026-109618", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php-common:all", "cve": "CVE-2026-109619", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php-fpm:all", "cve": "CVE-2026-109618", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php-fpm:all", "cve": "CVE-2026-109619", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php8.3-cli:arm64", "cve": "CVE-2026-109618", "version_status": "MEETS_VENDOR_FIX", "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED"}
-{"package": "php8.3-cli:arm64", "cve": "CVE-2026-109619", "version_status": "MEETS_VENDOR_FIX", "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED"}
-{"package": "php8.3-common:arm64", "cve": "CVE-2026-109618", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php8.3-common:arm64", "cve": "CVE-2026-109619", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php8.3-fpm:arm64", "cve": "CVE-2026-109618", "version_status": "MEETS_VENDOR_FIX", "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED"}
-{"package": "php8.3-fpm:arm64", "cve": "CVE-2026-109619", "version_status": "MEETS_VENDOR_FIX", "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED"}
-{"package": "php8.3-opcache:arm64", "cve": "CVE-2026-109618", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php8.3-opcache:arm64", "cve": "CVE-2026-109619", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php8.3-readline:arm64", "cve": "CVE-2026-109618", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-{"package": "php8.3-readline:arm64", "cve": "CVE-2026-109619", "version_status": "UNKNOWN", "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY"}
-Runtime hints: 1
-  coverage: CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE
-  coverage: DISCOVERY_NOT_EXHAUSTIVE
-  coverage: OTHER_CONTAINERS_NOT_INSPECTED
-  coverage: PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED
-  coverage: RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED
-Use --format json for package versions, source references and evidence digests.
-# exit: 2
+  Result
+  UNKNOWN  ·  Runtime safety is not established
+  No PHP packages or runtime hints were found.
+  An empty inventory does not prove the runtime is absent.
+  0 packages  ·  0 observed processes  ·  0 package versions unknown
 
-$ webpatch plan --dry-run
-BLOCKED — repair disabled; APT dry-run: NOT_RUN.
-Plan: 27486b8ef265815ae5e88d3184777853b72ec123306ec289f1c397a2d654a54a; expires: 2026-10-22T09:44:11.138322+00:00
-  "APT_CONFIGURATION_OVERRIDE_REQUIRES_REVIEW"
-  "APT_DRY_RUN_NOT_PERFORMED"
-  "APT_HOOKS_REQUIRE_REVIEW"
-  "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE"
-  "CONTAINER_REBUILD_REQUIRED"
-  "DISCOVERY_NOT_EXHAUSTIVE"
-  "DPKG_DIVERSIONS_REQUIRE_REVIEW"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:libapache2-mod-php8.3:arm64"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:libapache2-mod-php:all"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php-cli:all"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php-common:all"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php-fpm:all"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php8.3-cli:arm64"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php8.3-common:arm64"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php8.3-fpm:arm64"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php8.3-opcache:arm64"
-  "INSTALLED_PACKAGE_IDENTITY_UNKNOWN:php8.3-readline:arm64"
-  "NO_AUTHENTICATED_PACKAGE_CANDIDATES"
-  "OTHER_CONTAINERS_NOT_INSPECTED"
-  "PACKAGE_ASSESSMENT_UNKNOWN"
-  "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED"
-  "REPAIR_EXECUTION_DISABLED"
-  "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED"
-  "THIRD_PARTY_MIXED_RELEASE_OR_KEY_SCOPE:/etc/apt/sources.list.d/ubuntu.sources"
-  "Review every blocker and exact dependency change before any future repair stage."
-  "Prepare a tested image/snapshot restore and package/configuration backup; rollback is not guaranteed."
-  "Require explicit approval of the plan hash and repeat state checks and simulation before execution."
-# exit: 4
+  What still needs checking
+  • Custom installations, hidden processes and other containers are not fully covered.
 
-$ webpatch apply
-# stderr
-BLOCKED: repair execution is disabled. No changes performed.
-# exit: 4
+  Next step
+  Confirm where PHP is installed. For containers, scan inside the target container.
+  No package repair is available from this inventory.
+    webpatch scan --details
+
+  Read-only · no system changes
+  Rules valid until: 2026-10-29T00:00:00+00:00
+
+
+# 44 columns / exit 2
+
+  WebPatch 0.2.0  /  PHP security check
+  ────────────────────────────────────────
+  Ubuntu 24.04  ·  current container
+
+  Result
+  UNKNOWN  ·  Runtime safety is not
+  established
+  No PHP packages or runtime hints were
+  found.
+  An empty inventory does not prove the
+  runtime is absent.
+  0 packages  ·  0 observed processes  ·  0
+  package versions unknown
+
+  What still needs checking
+  • Custom installations, hidden processes
+  and other containers are not fully
+  covered.
+
+  Next step
+  Confirm where PHP is installed. For
+  containers, scan inside the target
+  container.
+  No package repair is available from this
+  inventory.
+    webpatch scan --details
+
+  Read-only · no system changes
+  Rules valid until:
+  2026-10-29T00:00:00+00:00

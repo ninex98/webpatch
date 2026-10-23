@@ -41,7 +41,7 @@ def test_affected_packages_show_versions_and_group_duplicate_cves():
     assert any(a.version_status == 'BELOW_VENDOR_FIX' for a in report.assessments)
     text = output(report, lang='en')
     assert 'potentially affected' in text and 'Vendor fix:' in text
-    assert 'CVE-' in text and 'webpatch plan' in text
+    assert 'CVE-' in text and 'sudo webpatch fix' in text
     assert text.count('[UPDATE NEEDED]') == len({a.package_id for a in report.assessments if a.version_status == 'BELOW_VENDOR_FIX'})
 
 
@@ -51,6 +51,13 @@ def test_details_retain_unknown_custom_gaps_and_subjects(capsys):
     text = capsys.readouterr().out
     assert 'discovery_completeness' in text and 'Next:' in text
     assert '{"' not in text
+
+
+def test_unrecognized_assessment_status_is_not_presented_as_fixed():
+    report = scan(FakeSystem(CASES[0]), now=NOW)
+    report = replace(report, assessments=[replace(a, version_status='FUTURE_UNRECOGNIZED') for a in report.assessments])
+    text = output(report, lang='en')
+    assert '[UNKNOWN]' in text and 'VERSION MEETS FIX' not in text
 
 
 @pytest.mark.parametrize('lang', ['en', 'zh'])

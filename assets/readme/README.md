@@ -15,22 +15,16 @@ GitHub-native `<picture>` selects light / dark hero artwork and a readable narro
 
 ## Capture provenance
 
-Captured on **2026-10-22** from the installed current WebPatch CLI in an isolated **Ubuntu 24.04 / arm64** container, as UID / GID **65534**. Source baseline: `7495d77c1835c519ca0f487a0372064e998e02de`; application code is identical to the preceding accepted `37dc9d9` implementation. The capture uses the real system reader, real package metadata and the actual wall clock, with no synthetic inventory or fake CLI output.
+The terminal previews show the complete actual `webpatch scan` output from the installed 0.2.0 CLI in a disposable Ubuntu 24.04 / arm64 container on 2026-10-23, as UID/GID 65534. Separate 88-column and 44-column runs produce desktop/mobile layouts. The container has no PHP packages; the CLI clearly reports UNKNOWN and explains that an empty inventory cannot prove absence. No synthetic vulnerability or successful repair is pictured.
 
-The standard Docker build could not fetch Docker Hub metadata during this run. A derived image used the existing local `webpatch-phase1:noble` base, copied current source, rebuilt the `.deb`, and installed it inside the container. Runtime flags were `--read-only --network none --cap-drop ALL --security-opt no-new-privileges`, with a small isolated `/tmp` tmpfs for the saved plan and no host mounts. Build details, image identity, full command results and exit codes are in [validation evidence](../../evidence/readme-design/README.md).
+The capture JSON is [terminal-capture.json](../../evidence/phase-6b-guided/terminal-capture.json). Installation occurred only inside the disposable container; scanning used the real reader with networking disabled and no host mounts. SVG chrome/colors are presentation styling; all content lines and wrapping come from actual output, with no omissions. The installed CLI itself also supports TTY colors, NO_COLOR and Chinese output.
 
-The illustration selects exact lines from `webpatch scan`, `webpatch plan --dry-run` and `webpatch apply`. Wrapping is visual only; omissions are labeled `··· output omitted ···`. Prompts, headings, dates and exit-code comments are presentation annotations. Colors and terminal chrome are illustration styling, not a shipped TUI.
-
-This sample reports `MEETS_VENDOR_FIX` for a PHP package but keeps runtime safety `UNKNOWN`. Container planning reports `APT dry-run: NOT_RUN`; it is not an example of a successful host APT simulation. No active FPM service, healthy application, vulnerability exploitation or repair is demonstrated. The full capture also preserves `verify-plan` returning `PLAN_SIMULATION_DRIFT` because simulation is unavailable; that is not a successful plan verification.
+Earlier screenshots and their source-specific provenance remain in [the historical design evidence](../../evidence/readme-design/README.md); they do not describe the new CLI.
 
 ## Regeneration
-
-From the repository root, with Python 3.10+:
 
 ```sh
 python3 assets/readme/generate.py
 ```
 
-The standard-library generator reads the committed [capture JSON](../../evidence/readme-design/cli/capture.json), validates the illustrated commands / exit codes and produces the SVGs plus transcript. It never scans or writes system state. Re-capture real output before changing the example environment or command results. The generator's palette and geometry are the editable source; there is no separate build toolchain.
-
-Design references: [Trivy](https://github.com/aquasecurity/trivy) for explicit capability scope, [Starship](https://github.com/starship/starship) for a clear identity and language navigation, and [uv](https://github.com/astral-sh/uv) for direct installation and theme-aware presentation. The artwork, wording and layout here are original.
+The standard-library generator reads the committed real capture, verifies its commands and exit codes, and renders the SVG previews plus accessible transcript. It never scans or repairs the developer host. Re-capture actual output before changing version claims or example content.

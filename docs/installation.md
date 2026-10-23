@@ -4,6 +4,8 @@
 
 ## 用户安装 / Install
 
+安装器默认只显示进度和结果；需要完整 APT 输出时，在脚本后加 `--verbose`。安装失败会自动显示完整错误。
+
 支持 Ubuntu 22.04/24.04 和 Debian 12/13。需要现有 `curl`、CA 根证书、APT/dpkg、网络访问 GitHub，以及 root 或 sudo 安装权限。无需 Git、venv、pip。Python 3.10+ 是 `.deb` 的系统依赖，由 APT 解析；不自行编译或覆盖系统 Python。系统源及索引必须可用，安装器不自动刷新索引或增加源。
 
 Install the latest release with one command:
