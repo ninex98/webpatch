@@ -1,0 +1,26 @@
+[
+  {
+    "recipe": "bootstrap",
+    "case": "partial",
+    "result": "PASS",
+    "exit_code": 56,
+    "executed": false,
+    "stderr": "curl: (56) simulated interrupted receive\n"
+  },
+  {
+    "recipe": "direct-package",
+    "case": "partial",
+    "result": "PASS",
+    "exit_code": 56,
+    "executed": false,
+    "stderr": "curl: (56) simulated interrupted receive\n"
+  },
+  {
+    "recipe": "direct-package",
+    "case": "corrupt",
+    "result": "PASS",
+    "exit_code": 1,
+    "executed": false,
+    "stderr": "sha256sum: WARNING: 1 computed checksum did NOT match\n"
+  }
+]

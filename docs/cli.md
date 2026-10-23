@@ -135,6 +135,17 @@ After installation it verifies exact package bytes/versions, new processes, read
 
 A fresh preparation can be checked with `verify-preparation startup.json --expect-sha256 RECEIPT_DOCUMENT_SHA256 --state-directory /var/lib/webpatch --package-cache /path/to/cache`; this explicitly repeats probes and returns 0 only for the current prepared scope. Receipt-document hashes use SHA256 over canonical JSON (sorted keys, compact separators, ASCII escaping), not the pretty-printed file bytes. Use a reviewed receipt hash from the result when available; do not substitute a file checksum.
 
+## Reading results
+
+| Result / 结果 | Meaning / 含义 |
+| :--- | :--- |
+| `ATTENTION` / potentially affected | At least one observed package version is below the vendor fix boundary. 至少一个已观察包版本低于厂商修复线，可能受影响；查看详情及修复条件。 |
+| `UNKNOWN` | Evidence is incomplete; neither safety nor a vulnerability is established by this status alone. 证据不足，不能据此判定安全或存在漏洞；空清单不代表 PHP 不存在。 |
+| `BLOCKED` | The current step is not admitted, or the command is review-only. 当前步骤未获准执行，或命令本身只用于审阅；查看原因及已完成的准备状态。 |
+| `CANCELLED` | Further repair was cancelled; completed preparation is not undone. 已取消后续修复，已完成的服务准备不会自动撤销。 |
+| `PARTIAL` / `RESTART_REQUIRED` | Changes may already exist. Inspect saved results and recovery records before continuing; there is no automatic rollback. 可能已发生部分变更；继续操作前查看保存的结果与恢复记录，不会自动回滚。 |
+| `VERIFIED_WITHIN_DECLARED_SCOPE` | The confirmed operation passed verification within its reviewed scope, not for the whole server. 已确认的操作在审阅范围内通过验证，不代表整台服务器安全。 |
+
 ## Exit codes
 
 | Code | Meaning |
@@ -156,14 +167,14 @@ docker build -f tests/integration/Dockerfile --build-arg BASE=ubuntu:24.04 -t we
 docker run --rm --read-only --network none --cap-drop ALL --security-opt no-new-privileges webpatch-test:noble
 ```
 
-The Dockerfile builds `/work/dist/webpatch_0.1.0_all.deb` and installs it **inside the disposable container**. The builder, `python3 scripts/build_deb.py`, runs only on Linux and only builds a package; it does not install it. The package depends on Python 3.10+ and dpkg, and has no maintainer scripts, daemon or third-party Python runtime dependencies. Build dependencies require network access; the test container runs without networking or host mounts.
+The Dockerfile builds `/work/dist/webpatch_0.2.0_all.deb` and installs it **inside the disposable container**. The builder, `python3 scripts/build_deb.py`, runs only on Linux and only builds a package; it does not install it. The package depends on Python 3.10+ and dpkg, and has no maintainer scripts, daemon or third-party Python runtime dependencies. Build dependencies require network access; the test container runs without networking or host mounts.
 
 To copy the locally built artifact out without mounting the host:
 
 ```sh
 mkdir -p dist
 container_id=$(docker create webpatch-test:noble)
-docker cp "$container_id:/work/dist/webpatch_0.1.0_all.deb" dist/
+docker cp "$container_id:/work/dist/webpatch_0.2.0_all.deb" dist/
 docker rm "$container_id"
 ```
 

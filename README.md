@@ -1,172 +1,73 @@
-<p align="center">
-  <picture>
-    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/readme/hero-mobile-dark.svg">
-    <source media="(max-width: 600px)" srcset="assets/readme/hero-mobile-light.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-    <img src="assets/readme/hero-light.svg" alt="WebPatch — Evidence before action. Read-only PHP runtime security inventory." width="100%">
-  </picture>
-</p>
-
-<p align="center">
-  <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="WebPatch safety checks on main"></a>
-  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.2.0"><img src="assets/readme/preview-badge.svg" alt="0.2.0 · Linux preview"></a>
-  <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="License: Apache-2.0"></a>
-</p>
-
-<p align="center">
-  <a href="#commands">Commands</a> · <a href="#quick-start">Install</a> · <a href="#cli-preview">Preview</a> · <a href="docs/cli.md">Docs</a> · <a href="README.zh-CN.md">简体中文</a>
-</p>
-
 # WebPatch
 
-**Evidence before action.** A conservative CLI for PHP runtime security: discover local installations, compare package versions with vendor advisories, and prepare reviewable repair plans.
+**Find PHP runtime risks. Review the evidence. Confirm the repair.** Scans are read-only; missing evidence stays `UNKNOWN`.
 
-**Linux preview.** [Published versions](https://github.com/ninex98/webpatch/releases) include dated rules and explicit support boundaries. Scans remain read-only; explicit service preparation can restart declared services after exact plan-hash confirmation. Package repair requires complete managed evidence and confirmation of the exact reviewed plan hash. The bundled rules focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`); a matching package version never means a safe running service.
+<p>
+  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.2.0"><img src="assets/readme/preview-badge.svg" alt="0.2.0 · Linux preview"></a>
+  <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="Safety checks on main"></a>
+  <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="Apache-2.0"></a>
+</p>
 
-## Why WebPatch
+[Install](#quick-start) · [CLI Preview](#cli-preview) · [Commands](#commands) · [简体中文](README.zh-CN.md)
 
-The PHP in your shell may not be the PHP serving your site. Distribution backports can fix an older version, while a running process can still hold an old image.
+<a id="quick-start"></a>
 
-WebPatch connects **packages, processes, services and local evidence**. It keeps version assessments, file identity and runtime safety separate, and makes missing proof visible as `UNKNOWN`.
+## One-command install / upgrade
 
-## Commands
-
-Use these after installation. The default workflow is **scan → inspect details if needed → guided fix**; no manually created JSON files are required.
-
-| Command | What it does / what you see | Changes the system? |
-| :--- | :--- | :--- |
-| `webpatch --version` | Shows the CLI version actually being invoked; check this first if an option is unrecognized | No |
-| `webpatch scan` | Checks local PHP and shows a result, potentially affected packages, missing evidence and the next step | No |
-| `webpatch scan --lang zh` | Runs the same scan with Chinese human-readable output | No |
-| `webpatch scan --details` | Expands coverage gaps, evidence checks and what still needs verification | No |
-| `webpatch plan` | Previews candidate package changes, APT simulation status and blockers; does not authorize installation | No |
-| `webpatch fix --dry-run` | Checks prerequisites for guided repair; no probe requests, confirmation prompts or session files | No |
-| `sudo webpatch fix` | Guides supported PHP repair, shows changes and service interruption, and saves review/recovery records | **Only after exact confirmation**; may prepare/restart services and update packages |
-| `webpatch scan-node` | Checks the supported Node.js runtime rules; does not audit npm application dependencies or repair Node | No |
-| `webpatch scan --format json` | Emits the structured report for scripts; optional for everyday use | No |
-| `webpatch --help` / `webpatch fix --help` | Lists commands or the options for one command | No |
-
-For Chinese repair prompts, use `sudo webpatch fix --lang zh`. `--color never` disables ANSI colors; automatic coloring also respects `NO_COLOR`. Guided repair still requires supported official packages, authenticated archive evidence and predeployed verification probes. Missing prerequisites are explained and block execution.
-
-### Understanding the result
-
-| Result | Meaning / next action |
-| :--- | :--- |
-| `ATTENTION` / potentially affected | At least one observed package version is below the vendor fix boundary. Review details and repair prerequisites. |
-| `UNKNOWN` | Evidence is incomplete. This does not establish either safety or a confirmed vulnerability; use `scan --details`. An empty inventory does not prove PHP is absent. |
-| `BLOCKED` | The current step is not admitted, or the command is review-only. Read the blockers and any preparation/change state. |
-| `PARTIAL` / `RESTART_REQUIRED` | Changes may already have happened. Inspect recovery records before further action; there is no automatic rollback. |
-| `VERIFIED_WITHIN_DECLARED_SCOPE` | The confirmed operation passed verification within its reviewed scope; it does not certify the whole server. |
-
-Scans return **1** for potentially affected packages and **2** for unknown/incomplete coverage. Review commands and blocked/cancelled fixes generally return **4**. These assessment results differ from installation/download errors. See [all exit codes and advanced commands](docs/cli.md).
-
-## Quick Start
-
-On **Ubuntu 22.04/24.04 or Debian 12/13**, paste this block to install or upgrade. It downloads the complete script before running it and stops on download failure:
+**Ubuntu 22.04 / 24.04 · Debian 12 / 13** — copy and run:
 
 ```sh
-(
-  set -eu
-  webpatch_tmp=$(mktemp -d)
-  trap 'rm -rf "$webpatch_tmp"' EXIT
-  curl -fsSL --retry 5 --retry-all-errors --retry-max-time 180 \
-    --connect-timeout 15 --max-time 60 \
-    --proto '=https' --proto-redir '=https' --tlsv1.2 \
-    https://github.com/ninex98/webpatch/releases/latest/download/install.sh \
-    -o "$webpatch_tmp/install.sh"
-  sh "$webpatch_tmp/install.sh"
-  /usr/bin/webpatch --version
-)
+(wp_tmp=$(mktemp -d) && trap 'rm -rf "$wp_tmp"' EXIT && curl -fsSL --retry 5 --retry-all-errors --retry-max-time 180 --connect-timeout 15 --max-time 60 --proto '=https' --proto-redir '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/latest/download/install.sh -o "$wp_tmp/install.sh" && sh "$wp_tmp/install.sh" && /usr/bin/webpatch --version)
 ```
 
-The installer requires `curl`, trusted CA certificates and root or sudo for APT. It verifies the release checksum and package identity; APT resolves Python 3.10+ when needed. Git, venv and pip are not required. See [installation, pinned versions, upgrades and uninstall](docs/installation.md), or [source development](CONTRIBUTING.md).
+Requires `curl` and root/sudo. No Git, venv or pip. Downloads finish before execution; failures stop installation. [Download problems, pinned versions and uninstall →](docs/installation.md)
 
-Confirm the printed version is **0.2.0 or newer**, then run `webpatch scan`. If downloading fails, the previous installation remains in place: follow [TLS/download troubleshooting](docs/installation.md#download-troubleshooting). `--lang` and `fix` require 0.2.0 or newer.
-
-No root is required to scan. Restricted reads become coverage gaps. Scan exits **1** for potentially affected packages or **2** for unknown/incomplete coverage; neither means a successful safety check.
-
-If the scan finds potentially affected packages, open the guided repair review:
-
-```sh
-sudo webpatch fix
-```
-
-WebPatch checks prerequisites, explains blockers, and manages review files and recovery receipts. Supported, fully verified repairs show package changes and service interruption before exact confirmation. If evidence is missing, it stops and explains what needs attention. A reviewed verification probe must already be deployed for each service route; the wizard does not create web pages or guess application routes.
-
-For more information on screen, use `webpatch scan --details`. `webpatch plan` previews upgrade evidence without changing the system. `--lang zh` selects Chinese; terminal colors are automatic and respect `NO_COLOR`. JSON export remains available for [advanced automation](docs/cli.md), but is not required for the guided workflow.
+<a id="cli-preview"></a>
 
 ## CLI Preview
 
-<p align="center">
-  <picture>
-    <source media="(max-width: 600px)" srcset="assets/readme/terminal-mobile.svg">
-    <img src="assets/readme/terminal.svg" alt="Actual readable Ubuntu 24.04 CLI output: no PHP observed, safety UNKNOWN, clear next steps." width="100%">
-  </picture>
-</p>
+After installation:
 
-Complete output from the installed **0.2.0 CLI**, in an isolated **Ubuntu 24.04 / arm64 container** on **2026-10-23**. This example has no PHP packages; it explains the incomplete coverage and next steps directly. The CLI supports terminal colors and responsive wrapping; the illustration adds a terminal frame. [Full capture and provenance](assets/readme/README.md).
+```sh
+webpatch scan
+```
 
-The diagnostic workflow is **discover → assess → review**. The separate [managed maintenance workflow](docs/cli.md#managed-package-repair) adds explicit probes, confirmed service preparation, an exact source-cohort plan, locked revalidation and post-repair verification. The installed CLI has passed real upgrades in all eight supported Ubuntu/Debian service profiles; explicit post-restart failure tests retain partial states.
+<picture>
+  <source media="(max-width: 600px)" srcset="assets/readme/terminal-mobile.svg">
+  <img src="assets/readme/terminal.svg" alt="Actual WebPatch output with a clear result, remaining checks and next step." width="100%">
+</picture>
 
-## Key Features
+Actual 0.2.0 output in Ubuntu 24.04 / arm64. This empty inventory stays `UNKNOWN`. [Full capture](assets/readme/README.md).
 
-- **Local runtime discovery.** Correlates dpkg packages, process identities, namespaces, systemd units, FPM pools and static web handlers. Reports unresolved relationships.
-- **Vendor-aware assessments.** Uses distribution-specific rules and `dpkg --compare-versions`, respecting backported fixes instead of comparing upstream version strings.
-- **Ubuntu and Debian archive identity checks.** Verifies existing InRelease signatures, Packages digests, cached `.deb` archives and supported runtime files for supported official sources. Missing evidence stays unknown.
-- **Real APT simulation.** Plans exact, authenticated Ubuntu/Debian candidates on the same PHP branch; reports dependency changes, possible service interruptions and blockers without installing packages.
-- **Independent extensions.** `scan-node` covers two reviewed Debian Node runtime CVEs; `rebuild-plan` gives container rebuild guidance without building or deploying images.
-- **Reviewable evidence.** JSON reports, input digests, expiring plans and `verify-plan` drift checks. Saved plan data is never executed as commands.
+<a id="commands"></a>
 
-## Compatibility
+## Everyday commands
 
-Capabilities describe the current code, not a guarantee of complete discovery. **Unattended repair is unavailable. Managed repair requires exact confirmation and all gates.**
+| Command | Effect |
+| :--- | :--- |
+| `webpatch scan` | Shows PHP findings, missing evidence and the next step |
+| `webpatch scan --details` | Expands the evidence and coverage checks |
+| `webpatch plan` | Previews candidate upgrades and blockers; installs nothing |
+| `webpatch fix --dry-run` | Checks repair prerequisites without changing the system |
+| `sudo webpatch fix` | Guides review and exact confirmation; may update packages or restart services |
+| `webpatch scan-node` | Checks supported Node.js runtime rules; no npm audit or Node repair |
+| `webpatch --version` | Shows the version actually being invoked |
+| `webpatch --help` | Lists commands; use `webpatch fix --help` for repair options |
 
-| Environment | Available now | Boundary / validation |
-| :--- | :--- | :--- |
-| Ubuntu 22.04 / 24.04, official APT PHP | Discovery, archive identity, APT simulation and confirmed same-branch repair | Official amd64 FPM/mod_php; four hosted VM profiles |
-| Debian 12 / 13, official PHP packages | Discovery, archive identity, APT simulation and confirmed same-branch repair | Official amd64 FPM/mod_php; four independent Debian guest profiles plus archive tests |
-| Debian 12 / 13, official Node.js | Independent read-only inventory and two runtime CVE rules | Separate native container tests; no npm dependency audit or Node repair |
-| Inside Ubuntu / Debian Docker containers | Inventory of the current container; rebuild recommendations | No in-place repair or APT simulation; Docker CI: Ubuntu 22.04 / 24.04, Debian 12 |
-| Docker / containerd observed from a host | Process, namespace and common socket hints | No daemon access, image scanning or fleet enumeration |
-| PPA / Sury, mixed sources, ESM, unsupported mirrors | Source audit, readable inventory and blockers | Unsupported trust paths; no automatic repair |
-| Custom builds, `/usr/local`, `/opt/php`, BaoTa | Common path and process hints | Patch status unknown; arbitrary install paths are not exhaustively discovered |
-| CGI, FrankenPHP, LiteSpeed, PHP built-in server | Package or process hints where observable | Runtime safety unknown; no dedicated repair support |
-| Other OSes, hidden PIDs, restricted permissions | Readable observations and coverage gaps | No supported repair path; macOS / Windows are not validated scan targets |
+Only confirmed `fix` operations can change services/packages among these commands. It manages review files and recovery records. Repairs require supported official packages, authenticated archives and predeployed verification probes; unresolved conditions block execution.
 
-## Security by Design
+`UNKNOWN` means incomplete evidence, `BLOCKED` means the current step cannot proceed, and `PARTIAL` means changes may already exist. [Result meanings, exit codes and JSON export →](docs/cli.md#reading-results)
 
-**Observe without changing the target.** Scans do not execute PHP, send HTTP requests, contact container daemons, refresh APT indexes, install packages or restart services. APT simulation uses isolated temporary configuration; system hooks are not executed and remain blockers.
+## Support and boundaries
 
-**Use dated, attributable rules.** The [bundled rules](src/webpatch/data/php2shell.json) record official PHP, Ubuntu and Debian sources, a revision, review time and expiry. Reviewed **2026-10-22**, valid until **2026-10-29 00:00 UTC**. Expired rules or a clock before review yield `UNKNOWN`. There is no automatic online rule refresh; extending the date requires a new source review.
+- **PHP repair:** official amd64 packages on Ubuntu 22.04/24.04 and Debian 12/13, supported FPM/mod_php profiles, same-branch changes after exact confirmation.
+- **Containers and Node.js:** read-only inventory and container rebuild advice; no in-place container repair or automatic image deployment.
+- **Other environments:** PPA/Sury/ESM, custom builds, unsupported architectures and macOS/Windows have no certified repair path. No automatic rollback or global safety guarantee.
 
-**Keep uncertainty actionable.** `MEETS_VENDOR_FIX` is a package-version comparison. `VERIFIED_LOCAL_ASSOCIATION` is a local relationship check. Neither proves loaded configuration, application routing or health. All reports retain `safe=false`; unknown evidence blocks automatic repair. Digests are not remote attestation or proof against a compromised root account.
-
-**Require review before execution.** Plans bind rules, scope and observed state, expire within 30 minutes, and can be checked for drift. Removal, downgrade, new dependencies, cross-branch changes and unapproved dependency changes block the automatic path. `apply` accepts only a reviewed schema 5 managed plan and its exact hash; there is no `--yes` bypass. Exact-hash confirmation, typed package execution, post-repair checks and hash-chained failure auditing are implemented for the certified finite profiles; automatic rollback is not promised.
+PHP rules currently focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`). Bundled rules expire **2026-10-29 00:00 UTC**; expired rules remain `UNKNOWN` until a source-reviewed update. [Detailed capabilities and validation →](docs/development-status.md)
 
 ## Documentation
 
-| Resource | What you will find |
-| :--- | :--- |
-| [CLI reference](docs/cli.md) | Commands, exit codes, report semantics and local packaging |
-| [Architecture and staged design](docs/design.md) (中文) | Component boundaries, threat assumptions and acceptance gates |
-| [Development status and evidence](docs/development-status.md) (中文 / English) | Source-specific acceptance, retained failures and support boundaries |
-| [CI workflow](.github/workflows/ci.yml) · [Live runs](https://github.com/ninex98/webpatch/actions) | 17 jobs: fixtures, package/Node/archive containers, four Ubuntu VMs and four independent Debian guests |
-| [Visual assets and transcript](assets/readme/README.md) | Editable SVG sources, capture provenance and accessible text |
+[Installation & troubleshooting](docs/installation.md) · [CLI reference](docs/cli.md) · [Design](docs/design.md) · [Validation evidence](evidence/phase-6c-release/README.md)
 
-Historical evidence applies to its recorded source revision. The CI badge tracks `main`; it is not a runtime safety or coverage claim.
-
-## Roadmap
-
-- **Implemented:** inventory, authenticated Ubuntu/Debian archive checks, APT simulation, explicit probes, controlled preparation, exact repair reviews, typed transactions and verification.
-- **Accepted four-phase scope:** read-only discovery/planning, limited confirmed Ubuntu repair, and independently validated Debian repair, Node rules and container advice. See [current acceptance and source hashes](evidence/final-acceptance/README.md).
-- **Independent extensions:** Node.js runtime discovery/rules and container rebuild advice. Automated image building/rollout, npm repair and a public signed APT repository are outside this delivery.
-
-The [staged design](docs/design.md) defines the four-phase scope. Passing a finite fixture does not certify arbitrary production sites.
-
-## Contributing
-
-Start with [CONTRIBUTING.md](CONTRIBUTING.md). New adapters need explicit capability boundaries, failure-path fixtures and real environment evidence. Development and installation tests use project virtual environments, disposable containers and GitHub-hosted VMs.
-
-## License
-
-[Apache License 2.0](LICENSE). The name and local SVG assets can be revised independently of the CLI; this presentation does not change the existing license or release policy.
+[Contributing](CONTRIBUTING.md) · [Apache-2.0 license](LICENSE)
