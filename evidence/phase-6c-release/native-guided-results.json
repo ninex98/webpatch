@@ -1,0 +1,234 @@
+[
+  {
+    "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "108d85062db414e2227f97f8c3597a56fdd8ba86a7e4ffd5998bb8c27b861f52",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "faa74693ec869aca3c03c28f126645ef7f1efbc2b8ff3d14dcd0a3e3585b2707"
+    }
+  },
+  {
+    "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "4421d0dc56f88c22b44d093bc14eb3af6dde5d3cb4d1f139344fe61f1f16d79a",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "db9456b138f3d51dafb63050c1db4e61be2c81f72b63c544d7b3f6fb73f5eb6b",
+      "session_directory": "/var/lib/webpatch-repair-success/session-55a7508046c45b9f1a41c754"
+    }
+  },
+  {
+    "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "85c23e72dc956d2a28a38ceaa14572d370ad7047a3757d4d6e2eab6ad4dc163f",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "a2221ee87e1889a43ac7a91c56172ec6c8bbc2797f6b3762bb608cd5b5f8e720"
+    }
+  },
+  {
+    "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "397f37e590c0661f05f095c2eb4009b986a4e95d04f89de5d11b7b55e30d1a5b",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "a9f5c3c152e63c962114f1563bdf2bc6f4463f991e5be47a822a756064e3c873",
+      "session_directory": "/var/lib/webpatch-repair-success/session-a18b7d028362a1b15ef17cb0"
+    }
+  },
+  {
+    "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "62d86e184aff250c8c01c0700bb293264728256a1d7f62050775c8dd2d3a8837",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "2a797cfa18af1733299a6fedc884ed26764539f4dde68feddacaefbf6128253b"
+    }
+  },
+  {
+    "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "bda5debb01e730e3516cf6c33ed6fe5c85dd5ed74a1f4171ed392ba06cc7b8c9",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "b035ec24a100623137b368d939fa951dbb111b05576d576409d0e06c96d5e345",
+      "session_directory": "/var/lib/webpatch-repair-success/session-fc285552a30ca9068008c7ba"
+    }
+  },
+  {
+    "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "fd503d9c154955a20294761f49bc16bcfe0d0f16b2a41176f45ceca227bea8dc",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "a1f8c0136adf16ff5647249ed7125450ffa3890b7ff382307c3ca3853adfa13c"
+    }
+  },
+  {
+    "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "e5c28f4b437ab3c6efe05b067b45250abcb65f3a0fb8c4e4128647e6bbb72522",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "2402816c8190360b7f6ac2ec599b4b4d7500a90b4c767cc27cd1564b4256c155",
+      "session_directory": "/var/lib/webpatch-repair-success/session-89fe4ef95f8cbd074483fe61"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-apache/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "edd07b5383d032f84d27a9c548a5ca1d716be1c43a070444816e65d841b5495c",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "d579ad183e289fff708c7c1192a1ee4a7662beb1ceb7baffbae1dcc190fcec53"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-apache/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "4b0ee471fac9f944287da522b807d287153260719b2e07020e789de025dcd765",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "c9d607864041a735e382165fe62fba863990652986e9b725e8bb89b63b26e2b9",
+      "session_directory": "/var/lib/webpatch-repair-success/session-bf705a25cef7f4ab8132a85d"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-fpm/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "8c1e2b5125bbbe67dc946619e9f69bec32f6c445ac44c7791b1f6a0a97d8c8b8",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "a3329db8b575b3af4dfb77b134f59a527db372d1f965919f37c724329690e470"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-22.04-fpm/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "365f7aa59ee496729802bee8d6c94abe1acc389361bf4afa09ab5e7d8be6877d",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "0c5776d379aed9138d9f16c24875a4a00476ea2e961d9b2f85ab307e6af3a0d8",
+      "session_directory": "/var/lib/webpatch-repair-success/session-d5f0135a9d615a0ae231622d"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-apache/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "0dbaadadb0ac56f0b2548ed5959b03a8ac336e2864f1eab15a770b2d8bd073a4",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "f6e506339654c9bda43fa4c0062773591c007d7f79f762f170057349e5c546cf"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-apache/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "b7cb582be5420971dcbcbd475e90b1c102e67a757581a82afab6050a1d9804cc",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "5c255d600648485eb7706c49e8be0f0383faf3a562d0e08a902d32d33821c2b2",
+      "session_directory": "/var/lib/webpatch-repair-success/session-869c4650a097a06f65af07c8"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-fpm/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+    "sha256": "8af517149e03d4327e9b18e5b51598172b222e6f0358a7877c07db1f5035cc67",
+    "entry": {
+      "entry": "INTERNAL_TYPED_API",
+      "fault_injection": true
+    },
+    "result": {
+      "status": "PARTIAL",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "81e5a11bb605e60c8c5b1e28ac04fc36eba08178fedf8d9b5d45495692dec320"
+    }
+  },
+  {
+    "artifact": "vm-ubuntu-24.04-fpm/ci-evidence/repair-lifecycle/success/result.json",
+    "sha256": "109bd456587b27800b1c316018054c1ee4b4a2297127d297826680841705073c",
+    "entry": {
+      "entry": "INSTALLED_GUIDED_CLI",
+      "fault_injection": false
+    },
+    "result": {
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "safe": false,
+      "plan_sha256": "2f0c954e94ffcdf604862da6c879aaed2af4a4d9e2870fd56a01c8ccd87e888d",
+      "session_directory": "/var/lib/webpatch-repair-success/session-c3c3d6ff84375472037b785d"
+    }
+  }
+]

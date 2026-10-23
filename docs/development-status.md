@@ -2,6 +2,14 @@
 
 核对日期：2026-10-23（Asia/Shanghai）。**原设计四阶段已按声明的有限范围完成并分别验收。** 原四阶段最终受测功能/测试/CI 源码 `941040c06cb29fc73cf64dcf81a78867d033f3e8`，Actions [39888070774](https://github.com/ninex98/webpatch/actions/runs/39888070774) **17/17 PASS**。最终文档/证据提交晚于受测源码；源码一致性、制品摘要、日志/JUnit 和各项结果见 [最终验收](../evidence/final-acceptance/README.md)。
 
+## 阶段 6：终端体验与引导修复 / Readable terminal and guided repair
+
+**[v0.2.0 已发布](https://github.com/ninex98/webpatch/releases/tag/v0.2.0)**，受测源码 `c48f06fe72bb99f8c4bac7d7745aa7dd5b39818d`。[Safety CI 39905440668](https://github.com/ninex98/webpatch/actions/runs/39905440668) **17/17 PASS**，Python 3.10/3.12 各 647 tests；[分发 39905440596](https://github.com/ninex98/webpatch/actions/runs/39905440596) 构建和四种发行版各 23 场景通过；[草稿流程 39909358670](https://github.com/ninex98/webpatch/actions/runs/39909358670) **6/6 PASS**。
+
+默认 scan/plan 输出为人类可读摘要；支持中英文、自动颜色/NO_COLOR、窄终端和 --details，JSON/退出码保持。安装器默认显示进度与结果，失败显示完整 APT 日志。`webpatch fix` 自动管理审阅和恢复记录，服务准备和包修复仍分别确认精确 hash；预部署探针、认证归档、严格门禁和持锁复核仍必需。
+
+八格原生成功路径使用已安装 `fix --review` 的真实 terminal 输入精确摘要并完成升级/验证；错误确认与重放均拒绝。完整默认向导自动部署探针不在支持范围；默认向导的准备协调/取消路径以注入测试验证，原生准备 API 沿用既有认证。历史 v0.1.0 tag 的一次观察漂移失败保留，不放宽准入。阶段记录见 [6A](../evidence/phase-6a-terminal/README.md)、[6B](../evidence/phase-6b-guided/README.md) 与 [6C 发布验收](../evidence/phase-6c-release/README.md)。
+
 ## 阶段 5A / 5B：Linux 分发与发布 / Linux distribution and publication
 
 **[v0.1.0 已公开发布](https://github.com/ninex98/webpatch/releases/tag/v0.1.0)**，源码 `fe5b63b2faab53dff73c762181eaa191e8254dcd`。同一源码的 [safety CI 39893453801](https://github.com/ninex98/webpatch/actions/runs/39893453801) **17/17 PASS**；[distribution 39893453827](https://github.com/ninex98/webpatch/actions/runs/39893453827) 构建及四格安装通过；[Release 草稿流程 39894909468](https://github.com/ninex98/webpatch/actions/runs/39894909468) **6/6 PASS**，随后公开发布。

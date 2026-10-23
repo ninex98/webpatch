@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="main 分支 WebPatch 安全检查状态"></a>
-  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.1.0"><img src="assets/readme/preview-badge.svg" alt="0.1.0 · Linux 预览版"></a>
+  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.2.0"><img src="assets/readme/preview-badge.svg" alt="0.2.0 · Linux 预览版"></a>
   <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="许可证：Apache-2.0"></a>
 </p>
 

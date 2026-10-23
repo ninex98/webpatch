@@ -1,0 +1,60 @@
+BASELINE: non-root user; Python absent; no Git/pip/venv setup.
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+  WebPatch 0.2.0
+  ubuntu 24.04
+
+  [1/3] Downloading release...
+  [2/3] Checksum and package identity verified.
+  [3/3] Installing WebPatch and required dependencies...
+
+  Installed WebPatch 0.2.0.
+
+  Next: webpatch scan
+
+ONLINE_INSTALL: PASS; sudo APT installed WebPatch and Python dependencies.
+
+  WebPatch 0.2.0  /  PHP 安全检查
+  ────────────────────────────────────────────────────────────────────
+  Ubuntu 24.04  ·  当前容器
+
+  检查结果
+  UNKNOWN  ·  尚不能确认运行时安全
+  未发现 PHP 软件包或运行时线索。
+  空清单不代表运行时不存在。
+  0 个软件包  ·  0 个已观察进程  ·  0 个包版本状态未知
+
+  尚需核实
+  • 自定义安装、隐藏进程和其他容器尚未完整覆盖。
+
+  下一步
+  先确认 PHP 安装在哪里；如果使用容器，请在目标容器内部扫描。
+  当前清单没有可供修复的软件包。
+    webpatch scan --details
+
+  只读检查 · 未修改系统
+  规则有效期：2026-10-29T00:00:00+00:00
+
+
+{
+  "result": "PASS",
+  "version": "0.2.0",
+  "online_install": "PASS",
+  "nonroot_sudo_elevation": "PASS",
+  "python_dependency_install": "PASS",
+  "empty_inventory": "UNKNOWN",
+  "safe": false,
+  "scan_exit": 2
+}

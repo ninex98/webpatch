@@ -1,0 +1,12 @@
+{
+  "source": "c48f06fe72bb99f8c4bac7d7745aa7dd5b39818d",
+  "result": "PASS",
+  "sha256": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "install.sh": "5dde94933e06e5e9ba67f98cc8d4bc69a9eba15e227824c1e0cf0982547a9cb9",
+    "webpatch_0.2.0_all.deb": "6cb409a579e05407b296fb6794ae912356cbaaeae0f31aa04d6e08247156b5e6",
+    "SHA256SUMS": "b5902857883cca5c9fb24b3348e9429d0eb48c306109ed5b562f99b55dab42ef"
+  },
+  "distribution_matrix": "4 x 23 PASS, amd64",
+  "same_tested_release_bytes": true
+}

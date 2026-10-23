@@ -1,0 +1,22 @@
+
+  WebPatch 0.2.0  /  Confirm package repair
+  ────────────────────────────────────────────────────────────────────────────────────
+  Only the following reviewed changes will be attempted.
+
+  Packages
+  php8.2-readline: 8.2.32-1~deb12u1 → 8.2.35-1~deb12u1
+  php8.2-opcache: 8.2.32-1~deb12u1 → 8.2.35-1~deb12u1
+  php8.2-fpm: 8.2.32-1~deb12u1 → 8.2.35-1~deb12u1
+  php8.2-cli: 8.2.32-1~deb12u1 → 8.2.35-1~deb12u1
+  php8.2-common: 8.2.32-1~deb12u1 → 8.2.35-1~deb12u1
+
+  Service interruption
+  Services: php8.2-fpm.service
+  Budget (seconds): 600
+  Package scripts and triggers will run. Services may restart. Automatic rollback is
+  unavailable.
+  Full scripts/configuration identities and evidence are available with d before
+  confirmation.
+
+  Plan SHA256: a9f5c3c152e63c962114f1563bdf2bc6f4463f991e5be47a822a756064e3c873
+  Paste this complete hash to confirm; d = full review; Enter = cancel:

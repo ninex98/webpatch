@@ -1,0 +1,50 @@
+
+  WebPatch 0.2.0  /  Confirm package repair
+  ────────────────────────────────────────────────────────────────────────────────────
+  Only the following reviewed changes will be attempted.
+
+  Packages
+  php8.1-zip: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-sybase: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-soap: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-opcache: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-phpdbg: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-intl: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-interbase: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-imap: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-enchant: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-dba: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-bz2: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-bcmath: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-xml: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-tidy: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-sqlite3: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-snmp: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-readline: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-pspell: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-pgsql: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-odbc: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-mysql: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-mbstring: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-ldap: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-gmp: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-gd: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-dev: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-curl: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-cgi: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-fpm: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-cli: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-common: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+  php8.1-xsl: 8.1.2-1ubuntu2 → 8.1.2-1ubuntu2.28
+
+  Service interruption
+  Services: php8.1-fpm.service
+  Budget (seconds): 600
+  Package scripts and triggers will run. Services may restart. Automatic rollback is
+  unavailable.
+  Full scripts/configuration identities and evidence are available with d before
+  confirmation.
+
+  Plan SHA256: 0c5776d379aed9138d9f16c24875a4a00476ea2e961d9b2f85ab307e6af3a0d8
+  Paste this complete hash to confirm; d = full review; Enter = cancel:

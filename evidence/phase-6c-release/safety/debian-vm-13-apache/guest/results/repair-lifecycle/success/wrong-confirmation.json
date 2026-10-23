@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED",
+  "changed": false,
+  "preparation_changed": false,
+  "reasons": [
+    "EXACT_PLAN_HASH_CONFIRMATION_REQUIRED"
+  ],
+  "safe": false
+}

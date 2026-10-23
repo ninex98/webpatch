@@ -1,0 +1,22 @@
+
+  WebPatch 0.2.0  /  Confirm package repair
+  ────────────────────────────────────────────────────────────────────────────────────
+  Only the following reviewed changes will be attempted.
+
+  Packages
+  php8.4-readline: 8.4.24-1~deb13u1 → 8.4.27-1~deb13u1
+  php8.4-opcache: 8.4.24-1~deb13u1 → 8.4.27-1~deb13u1
+  php8.4-fpm: 8.4.24-1~deb13u1 → 8.4.27-1~deb13u1
+  php8.4-cli: 8.4.24-1~deb13u1 → 8.4.27-1~deb13u1
+  php8.4-common: 8.4.24-1~deb13u1 → 8.4.27-1~deb13u1
+
+  Service interruption
+  Services: php8.4-fpm.service
+  Budget (seconds): 600
+  Package scripts and triggers will run. Services may restart. Automatic rollback is
+  unavailable.
+  Full scripts/configuration identities and evidence are available with d before
+  confirmation.
+
+  Plan SHA256: 2402816c8190360b7f6ac2ec599b4b4d7500a90b4c767cc27cd1564b4256c155
+  Paste this complete hash to confirm; d = full review; Enter = cancel:

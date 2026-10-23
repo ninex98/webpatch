@@ -1,0 +1,84 @@
+{
+  "result": "PASS",
+  "fresh_installations": [
+    {
+      "environment": "jammy",
+      "architecture": "arm64",
+      "image_id": "sha256:2f773b71e75658a501ff9a6d52b115c512b12194ca36c70e45d9cec49e911411",
+      "log": "jammy-online-install-retry.log",
+      "sha256": "fa09923ae032e1681a68d4ede033684fd6227ec165c6ab6dea9fd0ff6654d405",
+      "result": {
+        "result": "PASS",
+        "version": "0.2.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    },
+    {
+      "environment": "noble",
+      "architecture": "arm64",
+      "image_id": "sha256:ff130c66eca37059a50d0613db0bba42fe58b2499b35f8a400239947a2ea8b23",
+      "log": "noble-online-install.log",
+      "sha256": "66618c3980448ea290b34c249ac1269c7eb0dd55a76a0d67cd0a855f8038c56e",
+      "result": {
+        "result": "PASS",
+        "version": "0.2.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    },
+    {
+      "environment": "bookworm",
+      "architecture": "arm64",
+      "image_id": "sha256:1d219397d0a77766f88c8bb199b4795a1b2d93a3bcae5bebd96a2e2b8a2c207a",
+      "log": "bookworm-online-install.log",
+      "sha256": "ece27b24e50a93bbbd17c22e0ced479a7662945c15d325c1f098253fdd45da6c",
+      "result": {
+        "result": "PASS",
+        "version": "0.2.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    },
+    {
+      "environment": "trixie",
+      "architecture": "arm64",
+      "image_id": "sha256:ee5031efe33ecef44d8d5fc344cf37f588706eeee15693f0dd90f9ff1000fb72",
+      "log": "trixie-online-install.log",
+      "sha256": "70b158552fb7b5c6bf61c6dbda5319911e2a6c572e32bebc08937c2550e79a8d",
+      "result": {
+        "result": "PASS",
+        "version": "0.2.0",
+        "online_install": "PASS",
+        "nonroot_sudo_elevation": "PASS",
+        "python_dependency_install": "PASS",
+        "empty_inventory": "UNKNOWN",
+        "safe": false,
+        "scan_exit": 2
+      }
+    }
+  ],
+  "upgrade": {
+    "result": "PASS",
+    "upgrade": "0.1.0 -> 0.2.0",
+    "quiet_output": true,
+    "apt_sandbox_warning": false
+  },
+  "retained_failures": [
+    "jammy-online-install.log",
+    "noble-upgrade.log"
+  ],
+  "failure_reason": "Initial GitHub TLS connection EOF; clean-container retries passed with certificate checks unchanged."
+}

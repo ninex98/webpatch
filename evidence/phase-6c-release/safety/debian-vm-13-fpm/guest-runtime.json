@@ -1,0 +1,7 @@
+{
+  "acceleration": "kvm",
+  "shared_host_filesystems": [],
+  "network": "user-mode NAT; SSH forwarded to 127.0.0.1:2222 only",
+  "memory_mib": 2048,
+  "cpus": 2
+}

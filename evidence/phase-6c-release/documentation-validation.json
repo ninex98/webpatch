@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "tag_commit": "c48f06fe72bb99f8c4bac7d7745aa7dd5b39818d",
+  "implementation_diff_from_release": "EMPTY",
+  "links_and_svg_xml": "PASS",
+  "documentation_sha256": {
+    "README.md": "a64e0adf8ea3cc726d26a5e073157deeab8f91d5b12bb2b9e89351586709fee7",
+    "README.zh-CN.md": "6c04cef7c19f0a1f936efe95ec556473816e5eea184749859d3338b10a06f997",
+    "docs/development-status.md": "d46bd06e96978a2c7d85878367196f3a31ac2a7b82f0636198c1bae0cdebc061",
+    "docs/installation.md": "b4ef1a5c6f591ef38c8d285a74155eb79928e07c0f69fa088045151f3c93b898",
+    "evidence/phase-6c-release/README.md": "d811cc6edf85a0b9eca2be54457d9cea55bc82da979eb1fe3f93c947ef48bc54"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "url": "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-genericcloud-amd64.qcow2",
+  "sha512": "9f181877006e8d9ca4f4554eba8729a829936f0f7d1db5e77f69b1ef0f6bc372b4d46f3dae39b10d84f9131496c2cc1d449264f26577fe934a79de5a5512a3dd",
+  "checksum_source": "https://cloud.debian.org/images/cloud/bookworm/latest/SHA512SUMS",
+  "transport": "official Debian HTTPS",
+  "image_signature": "NOT_AVAILABLE_IN_THIS_CLOUD_DIRECTORY",
+  "claim": "Recorded test-image transport/integrity; not a signed image attestation or product runtime-safety result."
+}

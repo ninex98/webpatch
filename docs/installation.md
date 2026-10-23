@@ -1,6 +1,6 @@
 # Linux 安装与发布 / Linux installation and releases
 
-**当前状态（2026-10-23）：[v0.1.0 已公开发布](https://github.com/ninex98/webpatch/releases/tag/v0.1.0)。** / v0.1.0 is published. The commands below download the versioned GitHub Release package.
+**当前状态（2026-10-23）：[v0.2.0 已公开发布](https://github.com/ninex98/webpatch/releases/tag/v0.2.0)。** / v0.2.0 is published. The commands below download the versioned GitHub Release package.
 
 ## 用户安装 / Install
 
@@ -17,7 +17,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releas
 To inspect the script first, download it to a private directory, read it, then run it. To pin a release:
 
 ```sh
-curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/download/v0.1.0/install.sh | sh -s -- --version 0.1.0
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/ninex98/webpatch/releases/download/v0.2.0/install.sh | sh -s -- --version 0.2.0
 webpatch --version
 webpatch scan
 ```
