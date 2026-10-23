@@ -1,0 +1,10 @@
+[
+  {
+    "path": "/etc/apt/sources.list",
+    "sha256": "8e03753c5b9417ce801b5f747736f2cb8b6e7c02c4cf0f5142591ad93d2563f5"
+  },
+  {
+    "path": "/etc/apt/sources.list.d/debian.sources",
+    "sha256": "f488b9d0b271c5805b3bb5e242719dd7b633aa55048e6ebe36db421f770580b0"
+  }
+]

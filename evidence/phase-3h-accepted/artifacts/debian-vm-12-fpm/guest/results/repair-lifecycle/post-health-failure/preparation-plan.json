@@ -1,0 +1,1227 @@
+{
+  "schema_version": 1,
+  "kind": "controlled_service_preparation",
+  "scope_sha256": "cc398a8b84170b57418767523eed7bf878fcb6fb1d4056e4b56f7459a64ee364",
+  "created_at": "2026-10-23T01:49:31.158993+00:00",
+  "expires_at": "2026-10-23T02:19:28.140546+00:00",
+  "state_directory": "/var/lib/webpatch-repair-post-health-failure",
+  "implementation_sha256": "eee53a03a88f1d9e2dc8af5dc1f49520809fd5b09e057768d7bc6b33b01ad496",
+  "rule_sha256": "5fee0430b093d1fff8145b727d9d61d0cade94d7b8fe8aa181c5f1b38e2b1c52",
+  "package_cache": "/var/cache/webpatch-ci",
+  "services": [
+    "php8.2-fpm.service"
+  ],
+  "probes": [
+    {
+      "service": "php8.2-fpm.service",
+      "url": "http://127.0.0.1:18080/webpatch-extra.php",
+      "script": "/var/www/html/webpatch-extra.php",
+      "pool_listener": "/run/php/webpatch-ci-extra.sock"
+    },
+    {
+      "service": "php8.2-fpm.service",
+      "url": "http://127.0.0.1:18080/webpatch-proof.php",
+      "script": "/var/www/html/webpatch-proof.php",
+      "pool_listener": "/run/php/php8.2-fpm.sock"
+    }
+  ],
+  "configuration": [
+    {
+      "service": "php8.2-fpm.service",
+      "root": "/etc/php/8.2/fpm",
+      "files": [
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+          "sha256": "771a555df8ff6f9c223aa992dbd2aff8ef50c47c662d3529558e91f9c43d7976",
+          "size": 95,
+          "evidence_id": "s6"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+          "sha256": "b072d1e70a5173af7e968b4abf908e017f5f8675d30dda36ea7443dc410d2e5d",
+          "size": 69,
+          "evidence_id": "s8"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+          "sha256": "0fbe835f25a303eb942760930f734275c2a5e60049835b0d9bd9f97c9b996d7d",
+          "size": 74,
+          "evidence_id": "s10"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+          "sha256": "05e736f9509116eec00fe4fa1b4e0fea51a2fb311262cd46a35ea1f177eb9ff9",
+          "size": 71,
+          "evidence_id": "s12"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-exif.ini",
+          "sha256": "e7bbc905937019e082d5ad1dd6482b3bb9eaebc47c3939066e5099c1b7b5e9f5",
+          "size": 70,
+          "evidence_id": "s14"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+          "sha256": "005d8a46015f79bc5e03e393e7c455eeb675e456515740537317235fa12458f9",
+          "size": 69,
+          "evidence_id": "s16"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+          "sha256": "c8a2d1dd0161a50e0ddd031f0abc7a5acfe8559f5ec18423e567f519c456dfcc",
+          "size": 74,
+          "evidence_id": "s18"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+          "sha256": "464d61d9d251d63efb02af8698c21125962a18992470080bf8929770292302f9",
+          "size": 69,
+          "evidence_id": "s20"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+          "sha256": "f502d4781c78fff2b7db83e1f37db6c8bb4648ec0d2ce00decdc079a9b551738",
+          "size": 73,
+          "evidence_id": "s22"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+          "sha256": "922d70e6a207418f4bf87c4dda8685cd19c278c50cf1332b0a11a33e7c32d893",
+          "size": 71,
+          "evidence_id": "s24"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-phar.ini",
+          "sha256": "fd62472e0bf8b260ed712068086a2a55b9dd71bf13b1f0e07897eeea3bf723e2",
+          "size": 70,
+          "evidence_id": "s26"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-posix.ini",
+          "sha256": "e1a5a7c827fc17ff94cf87beed916be62d6b025346b4a274adb8d835785109b0",
+          "size": 71,
+          "evidence_id": "s28"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-readline.ini",
+          "sha256": "fa6d93d1de1704dd7b40708204dec039308bd867d549c4cf4aef597d40d4394f",
+          "size": 76,
+          "evidence_id": "s30"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+          "sha256": "134aafee92de1f650b7eb500cd6336bd33149bdd3fab4fba939894fc7ffc8193",
+          "size": 71,
+          "evidence_id": "s32"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+          "sha256": "eb31eeb6aeb34f31c1c695dbac0c9a69f909874f01341679382da0646641318c",
+          "size": 73,
+          "evidence_id": "s34"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+          "sha256": "ab104d16fcb223c3fff2af1880490f879e940561732d66571f69a15d498321d8",
+          "size": 73,
+          "evidence_id": "s36"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+          "sha256": "2f7f5db8fddca372e034f3c7bb34f5abd861621fa5282bd0808bd320e2867e85",
+          "size": 73,
+          "evidence_id": "s38"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+          "sha256": "4218981bb40ed218b01846cbdc85b436133859b2b051f740f992db14a702b2fc",
+          "size": 73,
+          "evidence_id": "s40"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+          "sha256": "5915e8a8256d4ba7b8b021ce1bcb9456ae86cd98e1100b6b57e098ccf169e6a9",
+          "size": 75,
+          "evidence_id": "s42"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+          "sha256": "615bb0232f81a68c86c98dc30dc18478a25b47a348f25688ff4c58b9b7862e9d",
+          "size": 57,
+          "evidence_id": "s44"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/php-fpm.conf",
+          "sha256": "4cfea03f04a1a6aec02ca2b1b9976755cb2fe58d7e93d936cd095e45423b1959",
+          "size": 5457,
+          "evidence_id": "s46"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/php.ini",
+          "sha256": "1c71eca1257608ae92892cd03cb3f6c5d886a6a23328b9b77c81e46289403d7b",
+          "size": 73890,
+          "evidence_id": "s48"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+          "sha256": "8115d48e831e5d19d86cb5dd4862b5c71b64fee9d75b2cca3b36ab485260ee62",
+          "size": 174,
+          "evidence_id": "s50"
+        },
+        {
+          "path": "/etc/php/8.2/fpm/pool.d/www.conf",
+          "sha256": "62c8f9ab715ec383d0c483611a9be393678eec016ccb4b17c1ff0c5a63ad5cee",
+          "size": 22096,
+          "evidence_id": "s52"
+        }
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "service": "php8.2-fpm.service",
+      "status": "AUTHENTICATED_SERVICE_DEFINITION",
+      "blockers": [],
+      "files": [
+        {
+          "path": "/lib/systemd/system/php8.2-fpm.service",
+          "expected_sha256": "f74e8c3d70eeae2fa8c87373a0de02606297f4047cc2e78ee5713562a5bbc3f2",
+          "observed_sha256": "f74e8c3d70eeae2fa8c87373a0de02606297f4047cc2e78ee5713562a5bbc3f2",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u20"
+        },
+        {
+          "path": "/usr/lib/php/20220829/calendar.so",
+          "expected_sha256": "4ed72b1d79eaa5a6dff9404eb11d27d15d0b83fe1509d4290af322acbc73873c",
+          "observed_sha256": "4ed72b1d79eaa5a6dff9404eb11d27d15d0b83fe1509d4290af322acbc73873c",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u21"
+        },
+        {
+          "path": "/usr/lib/php/20220829/ctype.so",
+          "expected_sha256": "2c6d754413b98ccb90e092d7d3483c2a4a8ff20b21f8bcc7b13b68d472812cfe",
+          "observed_sha256": "2c6d754413b98ccb90e092d7d3483c2a4a8ff20b21f8bcc7b13b68d472812cfe",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u22"
+        },
+        {
+          "path": "/usr/lib/php/20220829/exif.so",
+          "expected_sha256": "495d9f361ad099753b675333ff8a38ea9dbcedc5885bb541595e50faa719977b",
+          "observed_sha256": "495d9f361ad099753b675333ff8a38ea9dbcedc5885bb541595e50faa719977b",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u23"
+        },
+        {
+          "path": "/usr/lib/php/20220829/ffi.so",
+          "expected_sha256": "41367a37424f5f1d722a7555044f7ecd36c43e5bc797fe5c9a3a29b2a009fade",
+          "observed_sha256": "41367a37424f5f1d722a7555044f7ecd36c43e5bc797fe5c9a3a29b2a009fade",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u24"
+        },
+        {
+          "path": "/usr/lib/php/20220829/fileinfo.so",
+          "expected_sha256": "e43989c1968ecc86d6dc2145efc38cf76acb16e76d82206facf8e55a5d9b861e",
+          "observed_sha256": "e43989c1968ecc86d6dc2145efc38cf76acb16e76d82206facf8e55a5d9b861e",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u25"
+        },
+        {
+          "path": "/usr/lib/php/20220829/ftp.so",
+          "expected_sha256": "b8feddee717ac6ef6c2da1f1b5513628025805bf61b63bd4ac8fa69acd5288be",
+          "observed_sha256": "b8feddee717ac6ef6c2da1f1b5513628025805bf61b63bd4ac8fa69acd5288be",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u26"
+        },
+        {
+          "path": "/usr/lib/php/20220829/gettext.so",
+          "expected_sha256": "9c8155605fbc8c1b599c152560adb806d5bff5f4f5714cbdd74d595f1f0a4170",
+          "observed_sha256": "9c8155605fbc8c1b599c152560adb806d5bff5f4f5714cbdd74d595f1f0a4170",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u27"
+        },
+        {
+          "path": "/usr/lib/php/20220829/iconv.so",
+          "expected_sha256": "ea321f38487a40975f113c11acb24e02695ff00aeb71bd62ceae7f338e70cefe",
+          "observed_sha256": "ea321f38487a40975f113c11acb24e02695ff00aeb71bd62ceae7f338e70cefe",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u28"
+        },
+        {
+          "path": "/usr/lib/php/20220829/opcache.so",
+          "expected_sha256": "003f8609feff08f801ee8e3e508771f38bbab8627ba89542410196e799c0469e",
+          "observed_sha256": "003f8609feff08f801ee8e3e508771f38bbab8627ba89542410196e799c0469e",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u29"
+        },
+        {
+          "path": "/usr/lib/php/20220829/pdo.so",
+          "expected_sha256": "33818e512450f8bfb5e5301c46e33ccd892c70970b8330b72d9970a7e538788c",
+          "observed_sha256": "33818e512450f8bfb5e5301c46e33ccd892c70970b8330b72d9970a7e538788c",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u30"
+        },
+        {
+          "path": "/usr/lib/php/20220829/phar.so",
+          "expected_sha256": "1e7fef817c080538a8493f6cdb416faf0308cf94270ffd436a6775a247ca25f1",
+          "observed_sha256": "1e7fef817c080538a8493f6cdb416faf0308cf94270ffd436a6775a247ca25f1",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u31"
+        },
+        {
+          "path": "/usr/lib/php/20220829/posix.so",
+          "expected_sha256": "8c6bf2545365f7a9da59063e34e929edebcfdc6a710d4da2d9fb27ed464291b6",
+          "observed_sha256": "8c6bf2545365f7a9da59063e34e929edebcfdc6a710d4da2d9fb27ed464291b6",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u32"
+        },
+        {
+          "path": "/usr/lib/php/20220829/readline.so",
+          "expected_sha256": "ac6e575b42fb2d50b6642f7ba02642cf1eda6e202e3bc2816cf582a08a7a8107",
+          "observed_sha256": "ac6e575b42fb2d50b6642f7ba02642cf1eda6e202e3bc2816cf582a08a7a8107",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u33"
+        },
+        {
+          "path": "/usr/lib/php/20220829/shmop.so",
+          "expected_sha256": "c48fdd948d4b76705cc1766bbe3145c67ab8298ba1318eab496adf4ba5229208",
+          "observed_sha256": "c48fdd948d4b76705cc1766bbe3145c67ab8298ba1318eab496adf4ba5229208",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u34"
+        },
+        {
+          "path": "/usr/lib/php/20220829/sockets.so",
+          "expected_sha256": "e4d81a7aa99d9e2e1ea22aefb84108e776d76e1946fe3869ff66126204278dc4",
+          "observed_sha256": "e4d81a7aa99d9e2e1ea22aefb84108e776d76e1946fe3869ff66126204278dc4",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u35"
+        },
+        {
+          "path": "/usr/lib/php/20220829/sysvmsg.so",
+          "expected_sha256": "640edefa5eca4906be5a5dfad54d64c43289aa887b54c3112d400b6ff4983304",
+          "observed_sha256": "640edefa5eca4906be5a5dfad54d64c43289aa887b54c3112d400b6ff4983304",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u36"
+        },
+        {
+          "path": "/usr/lib/php/20220829/sysvsem.so",
+          "expected_sha256": "79b32b7dba6fda3326c0704d5c16650814d762dbe713f420a063ba51c38fa2d2",
+          "observed_sha256": "79b32b7dba6fda3326c0704d5c16650814d762dbe713f420a063ba51c38fa2d2",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u37"
+        },
+        {
+          "path": "/usr/lib/php/20220829/sysvshm.so",
+          "expected_sha256": "a7730bb1748ac8ab22259c957f58d218c6e5da36bd7bbcaea8224674c3d23f9b",
+          "observed_sha256": "a7730bb1748ac8ab22259c957f58d218c6e5da36bd7bbcaea8224674c3d23f9b",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u38"
+        },
+        {
+          "path": "/usr/lib/php/20220829/tokenizer.so",
+          "expected_sha256": "f23901a0a2255c9accf3cca15eaa00ea83e7cc3aacab18eb3d2e7d3a7885cd68",
+          "observed_sha256": "f23901a0a2255c9accf3cca15eaa00ea83e7cc3aacab18eb3d2e7d3a7885cd68",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u39"
+        },
+        {
+          "path": "/usr/lib/php/8.2/php.ini-development",
+          "expected_sha256": "7194c5b28cf70b1766d871d2b4c5a5754fc28158c4cd0dee2d834967e3dff8a7",
+          "observed_sha256": "7194c5b28cf70b1766d871d2b4c5a5754fc28158c4cd0dee2d834967e3dff8a7",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u40"
+        },
+        {
+          "path": "/usr/lib/php/8.2/php.ini-production",
+          "expected_sha256": "1c71eca1257608ae92892cd03cb3f6c5d886a6a23328b9b77c81e46289403d7b",
+          "observed_sha256": "1c71eca1257608ae92892cd03cb3f6c5d886a6a23328b9b77c81e46289403d7b",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u41"
+        },
+        {
+          "path": "/usr/lib/php/8.2/php.ini-production.cli",
+          "expected_sha256": "9db81c1ad02d372fdb0603f9a689ae9e37e1b651f3c50d2203fa89910281861e",
+          "observed_sha256": "9db81c1ad02d372fdb0603f9a689ae9e37e1b651f3c50d2203fa89910281861e",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u42"
+        },
+        {
+          "path": "/usr/lib/php/8.2/sapi/fpm",
+          "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u43"
+        },
+        {
+          "path": "/usr/lib/php/php-fpm-socket-helper",
+          "expected_sha256": "b4fc5477b325153c765cfc9fdcfb8a185d9582626bfcda06a4d4f8e1b8e9a6d6",
+          "observed_sha256": "b4fc5477b325153c765cfc9fdcfb8a185d9582626bfcda06a4d4f8e1b8e9a6d6",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u44"
+        },
+        {
+          "path": "/usr/lib/php/php-helper",
+          "expected_sha256": "72445eb0e4d94093f9f5b78038370b01741222cb7498f15ccb5cf8d476dbd83a",
+          "observed_sha256": "72445eb0e4d94093f9f5b78038370b01741222cb7498f15ccb5cf8d476dbd83a",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u45"
+        },
+        {
+          "path": "/usr/lib/php/php-maintscript-helper",
+          "expected_sha256": "5bc2751f7fd2eadf4be2faf70ee38cee34c970d7bf1a2df490540153d49ec3ce",
+          "observed_sha256": "5bc2751f7fd2eadf4be2faf70ee38cee34c970d7bf1a2df490540153d49ec3ce",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u46"
+        },
+        {
+          "path": "/usr/lib/php/php8.2-fpm-reopenlogs",
+          "expected_sha256": "9903e5aa81e5e5dd3aee5499903d5c5c599bcfaa25080f9f46c4d93d0f5ad942",
+          "observed_sha256": "9903e5aa81e5e5dd3aee5499903d5c5c599bcfaa25080f9f46c4d93d0f5ad942",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u47"
+        },
+        {
+          "path": "/usr/lib/php/sessionclean",
+          "expected_sha256": "872504901353a3d8291c0980b43e8490580c7aa62ce7607983436a4d9c767649",
+          "observed_sha256": "872504901353a3d8291c0980b43e8490580c7aa62ce7607983436a4d9c767649",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u48"
+        },
+        {
+          "path": "/usr/lib/tmpfiles.d/php8.2-fpm.conf",
+          "expected_sha256": "eaf6dd6f6089a66215c4cf470a8d47e9e98b137dd144fdf3015ca528bfb7d2ac",
+          "observed_sha256": "eaf6dd6f6089a66215c4cf470a8d47e9e98b137dd144fdf3015ca528bfb7d2ac",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u49"
+        },
+        {
+          "path": "/usr/sbin/php-fpm8.2",
+          "expected_sha256": "12e4c614d8026c38406b32e0dd9639b8db45e729d78e744fea9f1fddf510129a",
+          "observed_sha256": "12e4c614d8026c38406b32e0dd9639b8db45e729d78e744fea9f1fddf510129a",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u50"
+        },
+        {
+          "path": "/usr/sbin/phpenmod",
+          "expected_sha256": "6387761716172daa06f6732fcc41997ee640ec7c2c4da6907ac62d9153983986",
+          "observed_sha256": "6387761716172daa06f6732fcc41997ee640ec7c2c4da6907ac62d9153983986",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u51"
+        },
+        {
+          "path": "/usr/sbin/phpquery",
+          "expected_sha256": "0e9daa717d1af9b4e069c1976e0aad9cb07141b26b7b9a680009fe322e1e0c89",
+          "observed_sha256": "0e9daa717d1af9b4e069c1976e0aad9cb07141b26b7b9a680009fe322e1e0c89",
+          "status": "VERIFIED_PACKAGE_FILE",
+          "evidence_id": "u52"
+        }
+      ],
+      "definition_sha256": "841f033d2265cfd29eb65aee4df87adc7c7f6ca147938da378bbfad42d4fcbc5",
+      "archives": [
+        {
+          "package_id": "php-common:all",
+          "archive_sha256": "91f4c80b289c3ae8fd85cb1fe607c71cd6a8572ecd4e5debed2fdbc971a7ae74",
+          "path": "/var/cache/webpatch-ci/php-common_2%3a93_all.deb"
+        },
+        {
+          "package_id": "php8.2-common:amd64",
+          "archive_sha256": "2f7220eda0db4a467ff7708ff5cf71e9b3ae4c8c387a562973d558ed39945f99",
+          "path": "/var/cache/webpatch-ci/php8.2-common_8.2.32-1~deb12u1_amd64.deb"
+        },
+        {
+          "package_id": "php8.2-fpm:amd64",
+          "archive_sha256": "7410d366cd6b6901c33b65284c36bdd6526630c8afa8ae0467b384d095aab56c",
+          "path": "/var/cache/webpatch-ci/php8.2-fpm_8.2.32-1~deb12u1_amd64.deb"
+        },
+        {
+          "package_id": "php8.2-opcache:amd64",
+          "archive_sha256": "0b5cc3887db07642ad83b4ccfe367e7691824970908a037b5a37497f2ce72e6a",
+          "path": "/var/cache/webpatch-ci/php8.2-opcache_8.2.32-1~deb12u1_amd64.deb"
+        },
+        {
+          "package_id": "php8.2-readline:amd64",
+          "archive_sha256": "ba6bf3e5228b9c14e4620d3a18dfe602c258d88bf3002303edfe08526f855a87",
+          "path": "/var/cache/webpatch-ci/php8.2-readline_8.2.32-1~deb12u1_amd64.deb"
+        }
+      ],
+      "unit_source": {
+        "path": "/lib/systemd/system/php8.2-fpm.service",
+        "sha256": "f74e8c3d70eeae2fa8c87373a0de02606297f4047cc2e78ee5713562a5bbc3f2",
+        "content": "[Unit]\nDescription=The PHP 8.2 FastCGI Process Manager\nDocumentation=man:php-fpm8.2(8)\nAfter=network.target\n\n[Service]\nType=notify\nExecStart=/usr/sbin/php-fpm8.2 --nodaemonize --fpm-config /etc/php/8.2/fpm/php-fpm.conf\nExecStartPost=-/usr/lib/php/php-fpm-socket-helper install /run/php/php-fpm.sock /etc/php/8.2/fpm/pool.d/www.conf 82\nExecStopPost=-/usr/lib/php/php-fpm-socket-helper remove /run/php/php-fpm.sock /etc/php/8.2/fpm/pool.d/www.conf 82\nExecReload=/bin/kill -USR2 $MAINPID\n\n[Install]\nWantedBy=multi-user.target\n"
+      },
+      "observed_property_names": [
+        "DropInPaths",
+        "ExecStart",
+        "ExecStartPost",
+        "ExecStopPost",
+        "FragmentPath",
+        "Id",
+        "PassEnvironment",
+        "RootDirectory",
+        "RootImage"
+      ],
+      "evidence": [
+        {
+          "id": "u1",
+          "operation": "run",
+          "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+          "outcome": "EXIT_0",
+          "sha256": "5936be8b55d097368676745dd533b6ec2dc2efa356574990a2385d8b2d4fbfda"
+        },
+        {
+          "id": "u2",
+          "operation": "listdir",
+          "target": "/var/cache/webpatch-ci",
+          "outcome": "OK",
+          "sha256": "39a8355a865132653f9116fa530c10a40692afa83e2fdd0134b4eb567a1f98e1"
+        },
+        {
+          "id": "u3",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php-common_2%3a93_all.deb",
+          "outcome": "OK",
+          "sha256": "9f1d1040d5a35b1b86bdeddbd0b75bcfbdb363e204c20dc4393bb95356c71d03"
+        },
+        {
+          "id": "u4",
+          "operation": "package_archive",
+          "target": "[\"/var/cache/webpatch-ci/php-common_2%3a93_all.deb\", \"91f4c80b289c3ae8fd85cb1fe607c71cd6a8572ecd4e5debed2fdbc971a7ae74\"]",
+          "outcome": "OK",
+          "sha256": "240566f692a0024ca963634fe9c8096bca20038adfac9618dc5bf4193c05a00d"
+        },
+        {
+          "id": "u5",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php-common_2%3a93_all.deb",
+          "outcome": "OK",
+          "sha256": "9f1d1040d5a35b1b86bdeddbd0b75bcfbdb363e204c20dc4393bb95356c71d03"
+        },
+        {
+          "id": "u6",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-common_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "2ffb7fb2ff7551beb9b27aa88b7655f8f6a257c16e5d3a562fe4b248f32bccdd"
+        },
+        {
+          "id": "u7",
+          "operation": "package_archive",
+          "target": "[\"/var/cache/webpatch-ci/php8.2-common_8.2.32-1~deb12u1_amd64.deb\", \"2f7220eda0db4a467ff7708ff5cf71e9b3ae4c8c387a562973d558ed39945f99\"]",
+          "outcome": "OK",
+          "sha256": "9c96f8d16164a1ae20143d9789ce1530b176a0cd4e5b4b8db01aefc485232704"
+        },
+        {
+          "id": "u8",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-common_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "2ffb7fb2ff7551beb9b27aa88b7655f8f6a257c16e5d3a562fe4b248f32bccdd"
+        },
+        {
+          "id": "u9",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-fpm_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "7b36f970b47cd56f7c5175cdcd8c0664c0d54876e09babcf04b91d9d9e86397f"
+        },
+        {
+          "id": "u10",
+          "operation": "package_archive",
+          "target": "[\"/var/cache/webpatch-ci/php8.2-fpm_8.2.32-1~deb12u1_amd64.deb\", \"7410d366cd6b6901c33b65284c36bdd6526630c8afa8ae0467b384d095aab56c\"]",
+          "outcome": "OK",
+          "sha256": "87328c48f2a43fa76c58e303e1eb33bce57437d4ec4eb1accdd92ae3cb495f39"
+        },
+        {
+          "id": "u11",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-fpm_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "7b36f970b47cd56f7c5175cdcd8c0664c0d54876e09babcf04b91d9d9e86397f"
+        },
+        {
+          "id": "u12",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-opcache_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "8212f0195aaab6e4c4c604ffe7832dfdba118c22cd006d567091e190af88705e"
+        },
+        {
+          "id": "u13",
+          "operation": "package_archive",
+          "target": "[\"/var/cache/webpatch-ci/php8.2-opcache_8.2.32-1~deb12u1_amd64.deb\", \"0b5cc3887db07642ad83b4ccfe367e7691824970908a037b5a37497f2ce72e6a\"]",
+          "outcome": "OK",
+          "sha256": "9f3c9e2a3b8bd905da46c0714ebb1cd7eabc3a9674df5b3c1db89af8d3d7c1c7"
+        },
+        {
+          "id": "u14",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-opcache_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "8212f0195aaab6e4c4c604ffe7832dfdba118c22cd006d567091e190af88705e"
+        },
+        {
+          "id": "u15",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-readline_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "ccdbc4e224194fde0520b240d51b9da506f852ab2ae79b96a00ca47c5914f820"
+        },
+        {
+          "id": "u16",
+          "operation": "package_archive",
+          "target": "[\"/var/cache/webpatch-ci/php8.2-readline_8.2.32-1~deb12u1_amd64.deb\", \"ba6bf3e5228b9c14e4620d3a18dfe602c258d88bf3002303edfe08526f855a87\"]",
+          "outcome": "OK",
+          "sha256": "266247b48ac9ef00d92471cb99a06e16000701e07bece299bb5022806b286b92"
+        },
+        {
+          "id": "u17",
+          "operation": "archive_fingerprint",
+          "target": "/var/cache/webpatch-ci/php8.2-readline_8.2.32-1~deb12u1_amd64.deb",
+          "outcome": "OK",
+          "sha256": "ccdbc4e224194fde0520b240d51b9da506f852ab2ae79b96a00ca47c5914f820"
+        },
+        {
+          "id": "u18",
+          "operation": "run",
+          "target": "[\"/usr/bin/systemctl\", \"show\", \"--all\", \"--no-pager\", \"--property=Id,FragmentPath,DropInPaths,EnvironmentFiles,RootDirectory,RootImage,PassEnvironment,ExecStart,ExecStartPre,ExecStartPost,ExecStop,ExecStopPost\", \"php8.2-fpm.service\"]",
+          "outcome": "EXIT_0",
+          "sha256": "b27a5985dbf4241cc5279f7dad4b5fde8fd56105a286a97d54e55c70523e3fe0"
+        },
+        {
+          "id": "u19",
+          "operation": "run",
+          "target": "[\"/usr/bin/busctl\", \"--system\", \"get-property\", \"org.freedesktop.systemd1\", \"/org/freedesktop/systemd1/unit/php8_2e2_2dfpm_2eservice\", \"org.freedesktop.systemd1.Service\", \"EnvironmentFiles\"]",
+          "outcome": "EXIT_0",
+          "sha256": "277229e399bd4200ed77d369cb22c44c6d3240cfee93eb0f860cc048d8bedd17"
+        },
+        {
+          "id": "u20",
+          "operation": "fingerprint",
+          "target": "/lib/systemd/system/php8.2-fpm.service",
+          "outcome": "OK",
+          "sha256": "3c6c2e5a822562297a58ba30db3cf0af1ca701c9876777402dd77335c72b686d"
+        },
+        {
+          "id": "u21",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/calendar.so",
+          "outcome": "OK",
+          "sha256": "f6c4d1ad37a429e12a2e38324d0d0cdfe981a25e38678254c095567690defed8"
+        },
+        {
+          "id": "u22",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/ctype.so",
+          "outcome": "OK",
+          "sha256": "568950606d9b635163e707e4c44254b4aac44b9a349f0d927db3146d027186a7"
+        },
+        {
+          "id": "u23",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/exif.so",
+          "outcome": "OK",
+          "sha256": "35b429654df5a39da3a472bae06178623b770d20b8d984e321f85145f571956b"
+        },
+        {
+          "id": "u24",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/ffi.so",
+          "outcome": "OK",
+          "sha256": "8a1041ea5898d53e00839c1ea54ba2b382c4b53b4d81bdbe451b9cfdfd4f67e4"
+        },
+        {
+          "id": "u25",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/fileinfo.so",
+          "outcome": "OK",
+          "sha256": "e63a8de6feb717e0ed511ff013f0711d8eccfaafa9e81f4ee5dca992e789b9fb"
+        },
+        {
+          "id": "u26",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/ftp.so",
+          "outcome": "OK",
+          "sha256": "abde25ca16d79f3dba77c46ce4f7980341d1a62e0d0413140611e844e550f7fe"
+        },
+        {
+          "id": "u27",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/gettext.so",
+          "outcome": "OK",
+          "sha256": "21659abf7f20411c5cc27f942f3ea4bc7f95aac82e0a3076111fac82b924d1ca"
+        },
+        {
+          "id": "u28",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/iconv.so",
+          "outcome": "OK",
+          "sha256": "390580943edcf55ab3d50537962c20aaae8ceeb99e7767172da89b51d6b05763"
+        },
+        {
+          "id": "u29",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/opcache.so",
+          "outcome": "OK",
+          "sha256": "42efaf1f9aec0e996da3e993b3649c97383b7db848329ae6ac41624210e2c1ab"
+        },
+        {
+          "id": "u30",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/pdo.so",
+          "outcome": "OK",
+          "sha256": "29d943aaf08bfffe407ec6b6b6e48d657082ffe1e045c73d7331e8d4e899b828"
+        },
+        {
+          "id": "u31",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/phar.so",
+          "outcome": "OK",
+          "sha256": "3c460b36ee95c516e0bc1cebbaaa8326e1ca28369a338be7cdac804427bdd4cc"
+        },
+        {
+          "id": "u32",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/posix.so",
+          "outcome": "OK",
+          "sha256": "8dee4953007b0e9d4d9a5853441b111d3b2711db7e8337f6125ae62bb8613dfb"
+        },
+        {
+          "id": "u33",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/readline.so",
+          "outcome": "OK",
+          "sha256": "cad184babda7db6ad7bfe93a42c30722410abb98bf026a27da91ec9f0feed5a0"
+        },
+        {
+          "id": "u34",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/shmop.so",
+          "outcome": "OK",
+          "sha256": "809f0fb4946e2d5e90b9f7eab95980a313b38be33a3ba9899f6bec73ddcfbea2"
+        },
+        {
+          "id": "u35",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/sockets.so",
+          "outcome": "OK",
+          "sha256": "8f8f81e2d83cd593845b879e712dc3d9a02c0ac07326efd1620cc33de6235e34"
+        },
+        {
+          "id": "u36",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/sysvmsg.so",
+          "outcome": "OK",
+          "sha256": "4740d0230ec961f0ec46ce2654ee1a801b25240a1c9b2386f463b18c7a9f4db0"
+        },
+        {
+          "id": "u37",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/sysvsem.so",
+          "outcome": "OK",
+          "sha256": "d039411991a9ba67a092d661b4fd754de89a56f230532e059944006473219a34"
+        },
+        {
+          "id": "u38",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/sysvshm.so",
+          "outcome": "OK",
+          "sha256": "8bcf47f30860ab48695add89fc8c134b77639b7a073f612a6982d769a399d578"
+        },
+        {
+          "id": "u39",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/20220829/tokenizer.so",
+          "outcome": "OK",
+          "sha256": "5c0cca5e49884358ef35c133cf9f8e6773f8bc953b890d382522f75290029208"
+        },
+        {
+          "id": "u40",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/8.2/php.ini-development",
+          "outcome": "OK",
+          "sha256": "ac818790c9f4ed5c48c4f49bdc830d1242af70587c255f77e249bcd43789b050"
+        },
+        {
+          "id": "u41",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/8.2/php.ini-production",
+          "outcome": "OK",
+          "sha256": "1c86ed72d6a6ec69eecf67e59a8d3c65e508508b0601a8cf97c8a861a75f58b6"
+        },
+        {
+          "id": "u42",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/8.2/php.ini-production.cli",
+          "outcome": "OK",
+          "sha256": "3b631f4edf46222c256db8e237e6d0af2569d3f0008b7cae399cfb51032bd555"
+        },
+        {
+          "id": "u43",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/8.2/sapi/fpm",
+          "outcome": "OK",
+          "sha256": "d3925b589ca4902d9b02ad95aa5cb80e951e2553dacbc3da8b133db48965ac15"
+        },
+        {
+          "id": "u44",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/php-fpm-socket-helper",
+          "outcome": "OK",
+          "sha256": "20eb11f093c2182cdd69261766bc8728dc74c8e66f209713708a329cfb503713"
+        },
+        {
+          "id": "u45",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/php-helper",
+          "outcome": "OK",
+          "sha256": "d35c6fccff13067f49c41b2816e1b96e450dd4c7dd6024d939a69422b4fd9da1"
+        },
+        {
+          "id": "u46",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/php-maintscript-helper",
+          "outcome": "OK",
+          "sha256": "b6e5a909762fc1fb46e1a3e25644cba368fb6a3037806f92933e384a3dc6271b"
+        },
+        {
+          "id": "u47",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/php8.2-fpm-reopenlogs",
+          "outcome": "OK",
+          "sha256": "d29e2f0aec5af226a2517a3ea9e71769f6dd677d80fd43e19ebbf3a0331385b6"
+        },
+        {
+          "id": "u48",
+          "operation": "fingerprint",
+          "target": "/usr/lib/php/sessionclean",
+          "outcome": "OK",
+          "sha256": "9d9af05f11a8f37b12572e6a3cb230137175842ebd96067960af36bbf29170a3"
+        },
+        {
+          "id": "u49",
+          "operation": "fingerprint",
+          "target": "/usr/lib/tmpfiles.d/php8.2-fpm.conf",
+          "outcome": "OK",
+          "sha256": "f4211a4699db223682ef3695c739a708756bdef8450a79850b6e1b8822ce3c91"
+        },
+        {
+          "id": "u50",
+          "operation": "fingerprint",
+          "target": "/usr/sbin/php-fpm8.2",
+          "outcome": "OK",
+          "sha256": "40b0d5fd55a4766d14a4f2bc56798bbbab3f81b03463eb27f7b3d19a45e6741f"
+        },
+        {
+          "id": "u51",
+          "operation": "fingerprint",
+          "target": "/usr/sbin/phpenmod",
+          "outcome": "OK",
+          "sha256": "d07a5be8f24bc571e7929399555ba8a9f8cafc783f58f360d58bd3a72a9d9f99"
+        },
+        {
+          "id": "u52",
+          "operation": "fingerprint",
+          "target": "/usr/sbin/phpquery",
+          "outcome": "OK",
+          "sha256": "79bdd49fe3fb76b081ca693e5402425e9c9bee83f85032c442e8dee5e58fe14f"
+        },
+        {
+          "id": "u53",
+          "operation": "read_text",
+          "target": "/lib/systemd/system/php8.2-fpm.service",
+          "outcome": "OK",
+          "sha256": "6903bb2a67122b76a359c960b591736dd16588eb941fc67822520797e757bdf3"
+        }
+      ],
+      "proof_sha256": "0eef9db2431ca3784504cc94a09232f3d31a386e579c42d2c9756d4b1867fcd1"
+    }
+  ],
+  "static_inputs_sha256": "c0d1bf34833ceac348dbec55923130b193d65cd2085c86143f04d1a90db1b568",
+  "runtime_ids": [
+    "cc398a8b84170b57418767523eed7bf878fcb6fb1d4056e4b56f7459a64ee364:33746:14489",
+    "cc398a8b84170b57418767523eed7bf878fcb6fb1d4056e4b56f7459a64ee364:33747:14494",
+    "cc398a8b84170b57418767523eed7bf878fcb6fb1d4056e4b56f7459a64ee364:33748:14494",
+    "cc398a8b84170b57418767523eed7bf878fcb6fb1d4056e4b56f7459a64ee364:33749:14494"
+  ],
+  "actions": [
+    "Create private read-only configuration snapshots and authenticated temporary service definitions",
+    "Reload systemd definitions and restart the declared services",
+    "Warm and verify the explicitly declared loopback probes; record kernel/process/configuration evidence"
+  ],
+  "interruption": "Requests on every declared service may be interrupted; preparation does not install packages.",
+  "status": "READY_FOR_EXPLICIT_PREPARATION_CONFIRMATION",
+  "blockers": [],
+  "evidence": [
+    {
+      "id": "s1",
+      "operation": "read_text",
+      "target": "/proc/locks",
+      "outcome": "OK",
+      "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+    },
+    {
+      "id": "s2",
+      "operation": "identity",
+      "target": "/var/lib/dpkg/lock",
+      "outcome": "OK",
+      "sha256": "28c0dc0481cf05a7330d61b00c41714ad6deb8e13399844bf117d9e0e8d52730"
+    },
+    {
+      "id": "s3",
+      "operation": "identity",
+      "target": "/var/lib/dpkg/lock-frontend",
+      "outcome": "OK",
+      "sha256": "b3aaaa5ab124cc2342e54a0ce2bc6f6e677e969dd0aba92cfb9318712de5aede"
+    },
+    {
+      "id": "s4",
+      "operation": "identity",
+      "target": "/var/lib/apt/lists/lock",
+      "outcome": "OK",
+      "sha256": "91a25b7767fd82052888f9aaf6fd18b5b19d5491296c5b7dcbe6f38018aec4d7"
+    },
+    {
+      "id": "s5",
+      "operation": "identity",
+      "target": "/var/cache/apt/archives/lock",
+      "outcome": "OK",
+      "sha256": "45928889c5a7a7dd5d10aa1759861b65a539d0f573773113509913a1fc572752"
+    },
+    {
+      "id": "s6",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "921e11ab3d25197ffcc3030a076ba7682fc05aeb6c6a26c57ab0a14ad77f0a7a"
+    },
+    {
+      "id": "s7",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "04cd7aeeee258a60d982c58222516a72a67c1a72f31400d90c6e7ed59c766844"
+    },
+    {
+      "id": "s8",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "20c13528ffb4fd6943d06fb42612f46c9f20efb8b1f9c76850ae04c8d258b6e4"
+    },
+    {
+      "id": "s9",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "75c2742b3565a1b5ce8bc2728ac63c2f4fbf607e6ffb47d658e0686b1c2dcf92"
+    },
+    {
+      "id": "s10",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "f8ffe3fad2d3a72876c9110051b168e9e4e7e422525978a89347007d1479a3a8"
+    },
+    {
+      "id": "s11",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "0789b47f8ed99307b6dba036e1d95edf03253aa639b387b80bf3ca950b59ec1b"
+    },
+    {
+      "id": "s12",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "e9d31689eb67a82b66f7b196312cfa3b285b3c58419f5563f23b3456ee86a05c"
+    },
+    {
+      "id": "s13",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "44df8970594cefa79077f8f34b3ffc457027ef4d635fc8e247f2827879f923dc"
+    },
+    {
+      "id": "s14",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "39fd610cd70cdb817a313df87a2f66584584e2b119fcfd76bad552cea923e5ef"
+    },
+    {
+      "id": "s15",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "89de0114673fb2547f311eb912306a5245939feba25fc96d9ef984850c1e5a5f"
+    },
+    {
+      "id": "s16",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "68a7fddfdcb3314aec0b4f2c6ac4c03c878b5ecafd9e28fadf4a7a7e572d4670"
+    },
+    {
+      "id": "s17",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "36bfc7ef43b9784a59dea2d38b40bbf188b8bbdae9670582f9ba4c4fcf7dc365"
+    },
+    {
+      "id": "s18",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "04a6edb153a65bd9179f1dba343ab1c8368e4e7468457e17b03fbff5676a4e34"
+    },
+    {
+      "id": "s19",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "cd7529d5b8ec19e7928b93110740b7ca465ad19fc1ddc2926ca58714069716cd"
+    },
+    {
+      "id": "s20",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "51edd59f877d87d11d671b90f4fa2f36ead81a4cbb8a04cfd699d55cb1777bdb"
+    },
+    {
+      "id": "s21",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "3dd84fc50850991a4cc2e948866d79787597ba63205a3d071e735ae902b20cca"
+    },
+    {
+      "id": "s22",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "2cb86bbde1e03d4688408667b6307f6cc552368a2967b0f48d9e90c5b7fd39dc"
+    },
+    {
+      "id": "s23",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "a7264ed2993a488f5d13eea79b6effb35578c1d56d651487551988072bccba42"
+    },
+    {
+      "id": "s24",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "3b1e7db914f240c2ee086c2d1216a5d4f446cdf3e1f05a6dc41bfdb63d4caf46"
+    },
+    {
+      "id": "s25",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "586fee1fbddff5785ef1f3c721903b6fc0c5bba23552df3a2a2ced4fa891c418"
+    },
+    {
+      "id": "s26",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "ed2b6ef3d4d33e5d2e68d61039713f859ad4d31f09251fe86394f898a8be5325"
+    },
+    {
+      "id": "s27",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "bf0e747ff1e82ba02ac0ed49e8888160f28b2371a7d778d2d0405dd429fb1bd6"
+    },
+    {
+      "id": "s28",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "6f22e4c3d46337741e83ffa04562b6311c0cd9cea101ddad01db58d3f66123d0"
+    },
+    {
+      "id": "s29",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "75d6d7a05e031cd76686e36342d8aff887eb548d6ef320040e2f668494c87214"
+    },
+    {
+      "id": "s30",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "c1ead7ccb37b676deacdaa48b5c8ae5b93e1e5d824f8e59f553b984c876f1040"
+    },
+    {
+      "id": "s31",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "ae8fa9f714f592f8b91f11e4531906215596216c3105032798fad72590f9a4ab"
+    },
+    {
+      "id": "s32",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "11b9bcb264e77ad9ab9bfa978369b6ce24bd4f0ec1514dc7ee0babe8b181c81b"
+    },
+    {
+      "id": "s33",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "21ea80920f2593236da4b875dd61ad54516ab7c6d25a5717baa8b3cd8277d36e"
+    },
+    {
+      "id": "s34",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "db8b6df89ae0cf43e7b72f4d9abfd73b16010f3d4f47aea324479adf1086b373"
+    },
+    {
+      "id": "s35",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "dc2d859e236eed84b590a2901db32645dc4d558c7afca27459c8de788b26b6d5"
+    },
+    {
+      "id": "s36",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "caa3d25f19fb9b2f1e707365ff542cfa3359eed6434f3b1d53ec7eac76eacf33"
+    },
+    {
+      "id": "s37",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "4dcf4a41c65fff29c114c72af5675d736c00fa6eca1a07f9da760085281ecb21"
+    },
+    {
+      "id": "s38",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "33eb31a9080061da7cfda5d237d1b87a7bfaaf0eb75b412f61f08aa3bb0fcafa"
+    },
+    {
+      "id": "s39",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "0e45e918df8ff6943a47151fef4001dedaa8028a35b585892710ade21ea845c4"
+    },
+    {
+      "id": "s40",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "1e6653d520e366f405b599a014897b8af2e72a4f71fc3b7016455387c1642a08"
+    },
+    {
+      "id": "s41",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "568a092d45dd202fa95992ddec89a1774392b85513dcc679d57cc1d0171c731e"
+    },
+    {
+      "id": "s42",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "43ecac8c093d974ea7c75475da00a196de41dd79f144d01e21a626599ee07b67"
+    },
+    {
+      "id": "s43",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "2d0072b03c7e79cddb35b38323e92287868cd5467dbeb43af564e8d466d72106"
+    },
+    {
+      "id": "s44",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "outcome": "OK",
+      "sha256": "1349c406f2ef56f5f6b9b08563ae8e2902c655d9e3cd53de96b64576e95605a7"
+    },
+    {
+      "id": "s45",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/conf.d/99-webpatch-probe.ini",
+      "outcome": "OK",
+      "sha256": "7567b80c642f3bdeb04561644623630615633948c316b36c0e5e4128a9be5a9a"
+    },
+    {
+      "id": "s46",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "d27d1ae653904a2d15734609643933b937aa52342ed0090a8f0140d91e40d765"
+    },
+    {
+      "id": "s47",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "99c71516079f3b10da25c6c0e135a62859aaafc4e94ecbb1da53c3e89c518c52"
+    },
+    {
+      "id": "s48",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/php.ini",
+      "outcome": "OK",
+      "sha256": "31c5d0e3eba92ab1f9178aab709bb2e186e6cfbe717161b7ae9883da79731b97"
+    },
+    {
+      "id": "s49",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/php.ini",
+      "outcome": "OK",
+      "sha256": "5d4f9bf18f3ed2333798990b1bdd4ba5b0b340a7d4c956fde8805c747955d7fa"
+    },
+    {
+      "id": "s50",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "outcome": "OK",
+      "sha256": "fc8eccffb902f7be1dd3657675876bde5cb78570072592563ae0034a79add428"
+    },
+    {
+      "id": "s51",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/pool.d/webpatch-ci-extra.conf",
+      "outcome": "OK",
+      "sha256": "e58218a134bc62308d86e68f2d29629765e9f420a2afa7cd5bf5b597fe07148c"
+    },
+    {
+      "id": "s52",
+      "operation": "read_text",
+      "target": "/etc/php/8.2/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "4ca2187f41c5e979ecc620a125e591a9dca4d3449c3d993d285b4e599e95c5c3"
+    },
+    {
+      "id": "s53",
+      "operation": "fingerprint",
+      "target": "/etc/php/8.2/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "4dd33105cf36c8a63ca7ae0993852c4ab5d4563ead50e7d385dd9daea0951aa6"
+    }
+  ],
+  "preparation_sha256": "060c77f11d71f16a719e343ed13ed1454b3888064397f452e25347388b1cbdb9"
+}

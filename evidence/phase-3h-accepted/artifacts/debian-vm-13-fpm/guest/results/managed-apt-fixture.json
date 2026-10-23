@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/etc/apt/apt.conf.d/20listchanges",
+    "sha256": "1b753b8071e9bf2f791310677008f309c5c5ee7df8317b9e14c244af1455ddd4"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/01autoremove",
+    "sha256": "35b4360d9126e5e5efc1ce42cea8a957ba42921de749ad8502922d536c9f385c"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/50unattended-upgrades",
+    "sha256": "1bbe2f8e7f113585b1142a5e8e9c347363241053131b843bde54575d7a40dfb3"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/70debconf",
+    "sha256": "db749e19baf3b72ca2c157c70c52522cae23d94bc8b2dc5793fd43d427445367"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/20auto-upgrades",
+    "sha256": "b81a3a01864d5ed7f8d023f3fa86d65087ad6b85706d399dc229a60b1c784807"
+  }
+]

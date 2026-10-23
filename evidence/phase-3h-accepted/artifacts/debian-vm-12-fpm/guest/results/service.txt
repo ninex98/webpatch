@@ -1,0 +1,4 @@
+MainPID=41083
+ActiveState=active
+SubState=running
+FragmentPath=/lib/systemd/system/php8.2-fpm.service

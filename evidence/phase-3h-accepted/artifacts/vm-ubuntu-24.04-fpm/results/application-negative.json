@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "real_http_marker_without_callback",
+      "result": "PASS",
+      "reason": "PROBE_HTTP_RESPONSE_INVALID"
+    },
+    {
+      "case": "replayed_nonce",
+      "result": "PASS",
+      "reason": "PROBE_CHALLENGE_OR_SCOPE_MISMATCH"
+    },
+    {
+      "case": "forged_peer_pid",
+      "result": "PASS",
+      "reason": "PROBE_PROCESS_OR_SCRIPT_MISMATCH"
+    },
+    {
+      "case": "ordinary_http_marker",
+      "result": "PASS",
+      "reason": "PROBE_HTTP_CALLBACK_MISMATCH"
+    }
+  ],
+  "observed_at": "2026-10-23T01:49:02.964393+00:00",
+  "boundary": "Kernel sender credentials bind a single response; loaded configuration file bytes remain UNKNOWN."
+}

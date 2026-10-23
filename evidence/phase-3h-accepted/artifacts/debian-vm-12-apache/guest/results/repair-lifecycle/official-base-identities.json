@@ -1,0 +1,112 @@
+{
+  "libapache2-mod-php8.2:amd64": {
+    "name": "libapache2-mod-php8.2",
+    "version": "8.2.32-1~deb12u1",
+    "architecture": "amd64",
+    "source_name": "php8.2",
+    "source_version": "8.2.32-1~deb12u1",
+    "sha256": "0c8f306d95a0f0cc843e0643946ec4f38463c8cb7913ae57a34b51fb411a74bc",
+    "size": 1679832,
+    "filename": "pool/main/p/php8.2/libapache2-mod-php8.2_8.2.32-1~deb12u1_amd64.deb",
+    "suite": "bookworm",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+    "index_sha256": "515e692f2c4121c6fcec444ef100cc18f79a991910615f3a88c8b7becfc94d2f",
+    "evidence_ids": [
+      "e884",
+      "e885",
+      "e886",
+      "e887"
+    ],
+    "signer": "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  },
+  "php8.2-cli:amd64": {
+    "name": "php8.2-cli",
+    "version": "8.2.32-1~deb12u1",
+    "architecture": "amd64",
+    "source_name": "php8.2",
+    "source_version": "8.2.32-1~deb12u1",
+    "sha256": "c1ba9256b8a508cba18a0960b4d944a7e772fc4188d2a0e1be4999994db0df03",
+    "size": 1738412,
+    "filename": "pool/main/p/php8.2/php8.2-cli_8.2.32-1~deb12u1_amd64.deb",
+    "suite": "bookworm",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+    "index_sha256": "515e692f2c4121c6fcec444ef100cc18f79a991910615f3a88c8b7becfc94d2f",
+    "evidence_ids": [
+      "e884",
+      "e885",
+      "e886",
+      "e887"
+    ],
+    "signer": "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  },
+  "php8.2-common:amd64": {
+    "name": "php8.2-common",
+    "version": "8.2.32-1~deb12u1",
+    "architecture": "amd64",
+    "source_name": "php8.2",
+    "source_version": "8.2.32-1~deb12u1",
+    "sha256": "2f7220eda0db4a467ff7708ff5cf71e9b3ae4c8c387a562973d558ed39945f99",
+    "size": 689768,
+    "filename": "pool/main/p/php8.2/php8.2-common_8.2.32-1~deb12u1_amd64.deb",
+    "suite": "bookworm",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+    "index_sha256": "515e692f2c4121c6fcec444ef100cc18f79a991910615f3a88c8b7becfc94d2f",
+    "evidence_ids": [
+      "e884",
+      "e885",
+      "e886",
+      "e887"
+    ],
+    "signer": "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  },
+  "php8.2-opcache:amd64": {
+    "name": "php8.2-opcache",
+    "version": "8.2.32-1~deb12u1",
+    "architecture": "amd64",
+    "source_name": "php8.2",
+    "source_version": "8.2.32-1~deb12u1",
+    "sha256": "0b5cc3887db07642ad83b4ccfe367e7691824970908a037b5a37497f2ce72e6a",
+    "size": 345920,
+    "filename": "pool/main/p/php8.2/php8.2-opcache_8.2.32-1~deb12u1_amd64.deb",
+    "suite": "bookworm",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+    "index_sha256": "515e692f2c4121c6fcec444ef100cc18f79a991910615f3a88c8b7becfc94d2f",
+    "evidence_ids": [
+      "e884",
+      "e885",
+      "e886",
+      "e887"
+    ],
+    "signer": "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  },
+  "php8.2-readline:amd64": {
+    "name": "php8.2-readline",
+    "version": "8.2.32-1~deb12u1",
+    "architecture": "amd64",
+    "source_name": "php8.2",
+    "source_version": "8.2.32-1~deb12u1",
+    "sha256": "ba6bf3e5228b9c14e4620d3a18dfe602c258d88bf3002303edfe08526f855a87",
+    "size": 12428,
+    "filename": "pool/main/p/php8.2/php8.2-readline_8.2.32-1~deb12u1_amd64.deb",
+    "suite": "bookworm",
+    "fresh_for_plan": false,
+    "valid_until": null,
+    "release_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+    "index_sha256": "515e692f2c4121c6fcec444ef100cc18f79a991910615f3a88c8b7becfc94d2f",
+    "evidence_ids": [
+      "e884",
+      "e885",
+      "e886",
+      "e887"
+    ],
+    "signer": "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  }
+}

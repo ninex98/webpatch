@@ -1,0 +1,98 @@
+[
+  {
+    "path": "/etc/apt/preferences.d/ubuntu-pro-esm-infra",
+    "sha256": "29da6877bf63ff235fa7e42efd8d24c665e19daea69898bb854bb05062bc93c9"
+  },
+  {
+    "path": "/etc/apt/preferences.d/ubuntu-pro-esm-apps",
+    "sha256": "9bd3a762177751e58cefe1f96e6fde8b7342e1fa75e642074a674f3ad2c4677b"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/20apt-esm-hook.conf",
+    "sha256": "f7ab45bab1355711fcd031d78299cc3c7767654e7bf3f66a716ee3f2eae93733"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/10periodic",
+    "sha256": "82d9ce0d3f5d2c66945d8a1267445e9955409d1ef3cb9934107adccb46bf5f6a"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/20archive",
+    "sha256": "4a569793b6a530904ff0dfd160bbc069c8a5b247d72f5756d62e6aeb31eabfdc"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/90-index-targets",
+    "sha256": "bed2d7fb221486ac8973f5b42da90c5afcc48b58e390bd7f89bc29b9818e241e"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/90assumeyes",
+    "sha256": "8f510b179758cb2266d2fca36c0c3d41a52bbb5d4ee35980e686d2d170565ddd"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/70debconf",
+    "sha256": "db749e19baf3b72ca2c157c70c52522cae23d94bc8b2dc5793fd43d427445367"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/01autoremove",
+    "sha256": "93e7e6d2fdb36b04cb10127e3b0d1b9d19d822327fd959484639bbbd65cce004"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/20packagekit",
+    "sha256": "4d41820beb3b91ae4096114761d8321069362777b8c3dc196a8d20bbad755864"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/01-vendor-ubuntu",
+    "sha256": "364d5eeac5475b7dddfd629899ea88b91ed8d8e8e319c29bb9dbd6772e87ed55"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/99needrestart",
+    "sha256": "d19cd067f6d3eaaa7cc47a0cac3aed503388e649f4e9a6b0da809588fe060e6e"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/80-retries",
+    "sha256": "cf1542296518fcb4f5cd2a05c2f9765e5d9ba80dd3150dc8f5301a69563106b4"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/50command-not-found",
+    "sha256": "3a6f9f5244e49bee66ce65101fb73e16ba90f7a6cbd19befeefdf2c63209e2f1"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/20snapd.conf",
+    "sha256": "4f1a710936d83d53caa575af269db4311d7b461bdb1bb94ced5b1d331b0886ac"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/02autoremove-postgresql",
+    "sha256": "c45bd49a928b0f4be8c056c6674a581c37361a0d3d0a01c1b3885f26d2bde0ac"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/10dpkg-options",
+    "sha256": "21dd9d6fa9dd4a81c1c21eb3a095c0bdd3943e80806620f4b9f2abffbbfeffaf"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/15update-stamp",
+    "sha256": "174cdb519fd06372847e23c20db869b2ff4b593252c0d2a6274d770eae2d92c9"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/99update-notifier",
+    "sha256": "c01bac21ce3df26d6a5ef0bcd6fae53c924d6915121f20f1d412824367bfe930"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/99github-actions",
+    "sha256": "6c3422d8c28987ca319f9f6bee83e9ce03665a538f26c369571c8352c0431b31"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/zz-retries",
+    "sha256": "0c21b1954807974c2d023e93c6ff62bffb52c55a4e1ad3cd8322e01a9c19f64b"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/99-phased-updates",
+    "sha256": "5f37721464492e10f8062995cd99c64333216962b9af8e0b3167e894c94a4fe3"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/10apt-autoremove",
+    "sha256": "ff5162aa43f48a2b48c0fd995b77a288a7325e8d1cae3eff5e91a4c2811f9217"
+  },
+  {
+    "path": "/etc/apt/apt.conf.d/99bad_proxy",
+    "sha256": "42fcd394b7afc3a69473145d34266c69f8cba3ebecd573e61f0a9c5f448a6ec7"
+  }
+]

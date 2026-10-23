@@ -1,0 +1,882 @@
+{
+  "status": "VERIFIED_CONTROLLED_STARTUP",
+  "changed": true,
+  "receipt": {
+    "schema_version": 1,
+    "payload": {
+      "kind": "controlled_startup",
+      "scope_sha256": "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace",
+      "prepared_at": "2026-10-23T01:51:43.012069+00:00",
+      "expires_at": "2026-10-23T02:21:28.768390+00:00",
+      "preparation_sha256": "65b7d6c334be773ca8983cfb2d86cfdc7b8d266b1464776884418e3372a2bf52",
+      "services": [
+        "apache2.service"
+      ],
+      "implementation_sha256": "eee53a03a88f1d9e2dc8af5dc1f49520809fd5b09e057768d7bc6b33b01ad496",
+      "rule_sha256": "5fee0430b093d1fff8145b727d9d61d0cade94d7b8fe8aa181c5f1b38e2b1c52",
+      "state_sha256": "e5f5b4f35fb85ca00146f612b6c97f0863f40e4f509857a2f7eb3e12211c8150",
+      "static_inputs_sha256": "783fc4cb8fcca2fb521752af0cca8617209fa01f5d8c23844994cf55bb559533",
+      "runtime_ids": [
+        "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace:20971:13290",
+        "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace:20972:13291",
+        "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace:20973:13291",
+        "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace:20974:13291",
+        "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace:20975:13291",
+        "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace:20976:13292"
+      ],
+      "probes": [
+        {
+          "service": "apache2.service",
+          "url": "http://127.0.0.1:80/webpatch-proof.php",
+          "script": "/var/www/html/webpatch-proof.php",
+          "pool_listener": null,
+          "runtime_id": "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace:20973:13291",
+          "receipt_sha256": "66af3409a060ed7316d7c36db03a3eca6c4ef30697982804c394dcb6746c95bb",
+          "configuration": {
+            "ini_file": "/etc/php/8.2/apache2/php.ini",
+            "ini_scanned": [
+              "/etc/php/8.2/apache2/conf.d/10-opcache.ini",
+              "/etc/php/8.2/apache2/conf.d/10-pdo.ini",
+              "/etc/php/8.2/apache2/conf.d/20-calendar.ini",
+              "/etc/php/8.2/apache2/conf.d/20-ctype.ini",
+              "/etc/php/8.2/apache2/conf.d/20-exif.ini",
+              "/etc/php/8.2/apache2/conf.d/20-ffi.ini",
+              "/etc/php/8.2/apache2/conf.d/20-fileinfo.ini",
+              "/etc/php/8.2/apache2/conf.d/20-ftp.ini",
+              "/etc/php/8.2/apache2/conf.d/20-gettext.ini",
+              "/etc/php/8.2/apache2/conf.d/20-iconv.ini",
+              "/etc/php/8.2/apache2/conf.d/20-phar.ini",
+              "/etc/php/8.2/apache2/conf.d/20-posix.ini",
+              "/etc/php/8.2/apache2/conf.d/20-readline.ini",
+              "/etc/php/8.2/apache2/conf.d/20-shmop.ini",
+              "/etc/php/8.2/apache2/conf.d/20-sockets.ini",
+              "/etc/php/8.2/apache2/conf.d/20-sysvmsg.ini",
+              "/etc/php/8.2/apache2/conf.d/20-sysvsem.ini",
+              "/etc/php/8.2/apache2/conf.d/20-sysvshm.ini",
+              "/etc/php/8.2/apache2/conf.d/20-tokenizer.ini",
+              "/etc/php/8.2/apache2/conf.d/99-webpatch-probe.ini"
+            ],
+            "effective_ini_sha256": "396516fe40c11be50d690ef31a6ce6a908feb362af43c3e7c27f1fab994776d9",
+            "effective_ini_baseline_sha256": "c01ab94fa01eea6dccffab7be688220616429e8857ca0164ec32482fc313f4da",
+            "extensions_sha256": "ee8386d83413cad636af9ff2844c2e847a69452cab469e98a7d73bfe81186b90",
+            "reviewed_directives": {
+              "memory_hard_limit_percent": {
+                "state": "ABSENT"
+              },
+              "max_multipart_body_parts": {
+                "state": "VENDOR_DEFAULT"
+              }
+            }
+          },
+          "expires_at": "2026-10-23T02:21:38.532291+00:00"
+        }
+      ],
+      "snapshots": [
+        {
+          "service": "apache2.service",
+          "root": "/etc/apache2",
+          "snapshot": "/var/lib/webpatch-repair-success/snapshots/18004a83162d888bb73973bfb2762512752f7c169388548056f402b767f7142b/tree-0",
+          "files": [
+            {
+              "path": "/etc/apache2/apache2.conf",
+              "sha256": "96e05361253da0d9be1ec6c7c9003cbbb261ba65b659bd6e40ca0eac43093c43",
+              "device": 65025,
+              "inode": 134126
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/charset.conf",
+              "sha256": "543c6ce7776d222a16c598d1d1108d2de9be5a812f832a35dcaa0bc50369341b",
+              "device": 65025,
+              "inode": 134129
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/localized-error-pages.conf",
+              "sha256": "b58e5cc37210940c8d08439feeefd17c0b7cf641bbadb04cd568b7324aa1840c",
+              "device": 65025,
+              "inode": 134131
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/other-vhosts-access-log.conf",
+              "sha256": "af15ee8478cfbd00ae1fa5091ea5f19cce29a1ce60e567579c7c3b020b332335",
+              "device": 65025,
+              "inode": 134468
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/security.conf",
+              "sha256": "86296f2324bcc27790a80c863886fffd10d7a48b28587151e541f38136055b8b",
+              "device": 65025,
+              "inode": 134476
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/serve-cgi-bin.conf",
+              "sha256": "f3c96a2ec95fbb3371f2c18d77366fc09b07267a156beb4870943f3f029eb3f2",
+              "device": 65025,
+              "inode": 134480
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/webpatch-ci.conf",
+              "sha256": "17224ca6b00e7bd354477ea7944dc5c3aebb3abf123b623fadd7df1d40ad70f8",
+              "device": 65025,
+              "inode": 134481
+            },
+            {
+              "path": "/etc/apache2/envvars",
+              "sha256": "5a2160bf4447865f9aab911bf334ec64c15675cab6a457b366fe9822398f263f",
+              "device": 65025,
+              "inode": 134482
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/access_compat.load",
+              "sha256": "c7beb28538dbcb96cd5ffa98d7b4c10b494cac4575e081ec43ea82a8dd4c2e5d",
+              "device": 65025,
+              "inode": 134484
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/alias.conf",
+              "sha256": "534970724f124935b43fbfd63989f8d95b76bb185330a4b72393c5391b81bff2",
+              "device": 65025,
+              "inode": 134485
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/alias.load",
+              "sha256": "40a83398d3322dd3910cfa24b9e563e55e9a37cdc3e84692d35398ceb389e0b0",
+              "device": 65025,
+              "inode": 134486
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/auth_basic.load",
+              "sha256": "a4b933cd058939054d42b578098ae0e6be639dc997aaf302420e16c5c860ce8a",
+              "device": 65025,
+              "inode": 134487
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authn_core.load",
+              "sha256": "aa5f299869b6843e8c40c74124dbcdcaad26cff4c0732256e1cb36281872bb8b",
+              "device": 65025,
+              "inode": 134488
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authn_file.load",
+              "sha256": "f031556ee2eb878b359519d8b20650cc445da293655faad6621637432296974d",
+              "device": 65025,
+              "inode": 134489
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authz_core.load",
+              "sha256": "7bca4c36d5b7b318f79593a99fe32322a19afa8a7142295fcaad27ff96a474c5",
+              "device": 65025,
+              "inode": 134490
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authz_host.load",
+              "sha256": "66e65600b11edd7fcb76f735fd5e6fe56fa5489a4a89226e73c99d7dff0ca8ac",
+              "device": 65025,
+              "inode": 134491
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authz_user.load",
+              "sha256": "d219d39b2a55db76bfd8c14ecdfe06ea40a6bbc71df2ff1a541c873384438e3e",
+              "device": 65025,
+              "inode": 134492
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/autoindex.conf",
+              "sha256": "9274dc923f9a3fd23bfea7af95c748b0f73e4d73071cb1af75479bea072b6d79",
+              "device": 65025,
+              "inode": 134493
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/autoindex.load",
+              "sha256": "b1e99ccc748e2e0b6b192cf7d315354cad1a48adc8c34491fe8c14826869cdbb",
+              "device": 65025,
+              "inode": 134494
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/deflate.conf",
+              "sha256": "3418b2c1c63a4f1059436b29f971a395e96acda0ea46ec5fdae5a589fc207b56",
+              "device": 65025,
+              "inode": 134495
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/deflate.load",
+              "sha256": "82ba907a5637fa0ec747f41714d5f18b4c9861a6acedf03fb126e7c2f1379fe4",
+              "device": 65025,
+              "inode": 134496
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/dir.conf",
+              "sha256": "4a4f78ffaced05b65e09082978ea7a050f4e7106c27fe605ee98b7b1dbae8740",
+              "device": 65025,
+              "inode": 134497
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/dir.load",
+              "sha256": "1ec99f5ea74482ee1fbda2003453b83f81fc3a0b9a410feb40e0d29e498f8b80",
+              "device": 65025,
+              "inode": 134498
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/env.load",
+              "sha256": "486c8295741ef3b86fb9b8e4af3f3a92b6c3ec3d259895f1170f228a68f84c42",
+              "device": 65025,
+              "inode": 134499
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/filter.load",
+              "sha256": "918335d6c751a285bc7ada3c0ee54106723022c7c1ef62749bcef71796bb157d",
+              "device": 65025,
+              "inode": 134500
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mime.conf",
+              "sha256": "a0b42464d0a1a20406782e0bc47148f48896ecccf5c6d76159ffe1dd35ccba5a",
+              "device": 65025,
+              "inode": 134501
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mime.load",
+              "sha256": "f86f437b08f1876e426f74e5daac9f336dff39846589b7b90ce1f3b7bd0ef478",
+              "device": 65025,
+              "inode": 134502
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mpm_prefork.conf",
+              "sha256": "ad447d9f07a7a18ecada306f14665157be07fb404f585f42df2d2bf17a9b1fd2",
+              "device": 65025,
+              "inode": 134503
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mpm_prefork.load",
+              "sha256": "827c3be42b423720a5d414fec0cd6c0cfc0055c0e90c0511829b5b423538e831",
+              "device": 65025,
+              "inode": 134504
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/negotiation.conf",
+              "sha256": "3041b28664a6b7dee9e93adaf09e0d6cbbfd29016f6a634fcfa0429cba39d7be",
+              "device": 65025,
+              "inode": 134505
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/negotiation.load",
+              "sha256": "0773ca47707e5761e2bc111629c5c0e3bccc7a5b83c166ed49435e511626ee23",
+              "device": 65025,
+              "inode": 134506
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/php8.2.conf",
+              "sha256": "7587fbbf2b8162b4f5888bf30ae6707b84d532995af47a011a2ed957535d53db",
+              "device": 65025,
+              "inode": 134507
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/php8.2.load",
+              "sha256": "9c1d8bdcefa7d4c1758c7a0b0f7917e30e690d7b72f6af8c577653c9dd62dfb5",
+              "device": 65025,
+              "inode": 134508
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/reqtimeout.conf",
+              "sha256": "1a524eed41c0c58ac98627676e23f784099163f02fe8d8d53c91969d59152b41",
+              "device": 65025,
+              "inode": 134509
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/reqtimeout.load",
+              "sha256": "2a29e0c864dd2ca2fc79dcc39b108d84d93648f82ff7d89245befac8398a97ed",
+              "device": 65025,
+              "inode": 134510
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/setenvif.conf",
+              "sha256": "f6efb68c61012d348808d7e9ee865ee423040e1ee406e1e2e8223a156402977b",
+              "device": 65025,
+              "inode": 134511
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/setenvif.load",
+              "sha256": "bd4b18275845ea41d676a3951d872982a4086b9cdda5a35ae5178a755852f406",
+              "device": 65025,
+              "inode": 134512
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/status.conf",
+              "sha256": "bd4009a7dca3d68c8f3d4c22dc549b4cbba0ec56fb5f3d82db6ba8ecb58cf589",
+              "device": 65025,
+              "inode": 134513
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/status.load",
+              "sha256": "1edf75254ed14156d695e24715af8307cefc88c35bbf2eb39481b41ebc3fe291",
+              "device": 65025,
+              "inode": 134514
+            },
+            {
+              "path": "/etc/apache2/ports.conf",
+              "sha256": "a5e79782f42dc68f71d97025de4d7db523b7d834fa415d4080253d5c7625de1a",
+              "device": 65025,
+              "inode": 134515
+            },
+            {
+              "path": "/etc/apache2/sites-enabled/000-default.conf",
+              "sha256": "39fe841a64538ee980ae4ef011bdf6ae7124f63bf44afd65553cf3e0618e952c",
+              "device": 65025,
+              "inode": 134517
+            }
+          ]
+        },
+        {
+          "service": "apache2.service",
+          "root": "/etc/php/8.2/apache2",
+          "snapshot": "/var/lib/webpatch-repair-success/snapshots/18004a83162d888bb73973bfb2762512752f7c169388548056f402b767f7142b/tree-1",
+          "files": [
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/10-opcache.ini",
+              "sha256": "771a555df8ff6f9c223aa992dbd2aff8ef50c47c662d3529558e91f9c43d7976",
+              "device": 65025,
+              "inode": 134520
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/10-pdo.ini",
+              "sha256": "b072d1e70a5173af7e968b4abf908e017f5f8675d30dda36ea7443dc410d2e5d",
+              "device": 65025,
+              "inode": 134521
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-calendar.ini",
+              "sha256": "0fbe835f25a303eb942760930f734275c2a5e60049835b0d9bd9f97c9b996d7d",
+              "device": 65025,
+              "inode": 134522
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-ctype.ini",
+              "sha256": "05e736f9509116eec00fe4fa1b4e0fea51a2fb311262cd46a35ea1f177eb9ff9",
+              "device": 65025,
+              "inode": 134523
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-exif.ini",
+              "sha256": "e7bbc905937019e082d5ad1dd6482b3bb9eaebc47c3939066e5099c1b7b5e9f5",
+              "device": 65025,
+              "inode": 134524
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-ffi.ini",
+              "sha256": "005d8a46015f79bc5e03e393e7c455eeb675e456515740537317235fa12458f9",
+              "device": 65025,
+              "inode": 134548
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-fileinfo.ini",
+              "sha256": "c8a2d1dd0161a50e0ddd031f0abc7a5acfe8559f5ec18423e567f519c456dfcc",
+              "device": 65025,
+              "inode": 134628
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-ftp.ini",
+              "sha256": "464d61d9d251d63efb02af8698c21125962a18992470080bf8929770292302f9",
+              "device": 65025,
+              "inode": 134629
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-gettext.ini",
+              "sha256": "f502d4781c78fff2b7db83e1f37db6c8bb4648ec0d2ce00decdc079a9b551738",
+              "device": 65025,
+              "inode": 134630
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-iconv.ini",
+              "sha256": "922d70e6a207418f4bf87c4dda8685cd19c278c50cf1332b0a11a33e7c32d893",
+              "device": 65025,
+              "inode": 134631
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-phar.ini",
+              "sha256": "fd62472e0bf8b260ed712068086a2a55b9dd71bf13b1f0e07897eeea3bf723e2",
+              "device": 65025,
+              "inode": 134632
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-posix.ini",
+              "sha256": "e1a5a7c827fc17ff94cf87beed916be62d6b025346b4a274adb8d835785109b0",
+              "device": 65025,
+              "inode": 134633
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-readline.ini",
+              "sha256": "fa6d93d1de1704dd7b40708204dec039308bd867d549c4cf4aef597d40d4394f",
+              "device": 65025,
+              "inode": 134634
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-shmop.ini",
+              "sha256": "134aafee92de1f650b7eb500cd6336bd33149bdd3fab4fba939894fc7ffc8193",
+              "device": 65025,
+              "inode": 134635
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sockets.ini",
+              "sha256": "eb31eeb6aeb34f31c1c695dbac0c9a69f909874f01341679382da0646641318c",
+              "device": 65025,
+              "inode": 134636
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sysvmsg.ini",
+              "sha256": "ab104d16fcb223c3fff2af1880490f879e940561732d66571f69a15d498321d8",
+              "device": 65025,
+              "inode": 134637
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sysvsem.ini",
+              "sha256": "2f7f5db8fddca372e034f3c7bb34f5abd861621fa5282bd0808bd320e2867e85",
+              "device": 65025,
+              "inode": 134638
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sysvshm.ini",
+              "sha256": "4218981bb40ed218b01846cbdc85b436133859b2b051f740f992db14a702b2fc",
+              "device": 65025,
+              "inode": 134639
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-tokenizer.ini",
+              "sha256": "5915e8a8256d4ba7b8b021ce1bcb9456ae86cd98e1100b6b57e098ccf169e6a9",
+              "device": 65025,
+              "inode": 134640
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/99-webpatch-probe.ini",
+              "sha256": "615bb0232f81a68c86c98dc30dc18478a25b47a348f25688ff4c58b9b7862e9d",
+              "device": 65025,
+              "inode": 134641
+            },
+            {
+              "path": "/etc/php/8.2/apache2/php.ini",
+              "sha256": "1c71eca1257608ae92892cd03cb3f6c5d886a6a23328b9b77c81e46289403d7b",
+              "device": 65025,
+              "inode": 134642
+            }
+          ]
+        }
+      ],
+      "overrides": [
+        {
+          "service": "apache2.service",
+          "path": "/run/systemd/system/apache2.service",
+          "sha256": "93c49d8297e7ff9a17e7a58fb6cdc305fc7474e8fc2c087185a7407f017097fd"
+        }
+      ],
+      "status": "VERIFIED_CONTROLLED_STARTUP",
+      "claim": "Read-only snapshot input bytes and effective PHP views for declared probes after controlled restart; not global safety."
+    },
+    "hmac_sha256": "3703c527d67ace2bb579976b97ba9c487375153cea16e9245cf580f613511adb"
+  },
+  "recovery_receipt": {
+    "schema_version": 1,
+    "payload": {
+      "kind": "owned_configuration_materialization",
+      "scope_sha256": "1fe7157bfcc85477eb04f1e5dcca622e7abba6ac99ce9ab834f746ed61353ace",
+      "preparation_sha256": "65b7d6c334be773ca8983cfb2d86cfdc7b8d266b1464776884418e3372a2bf52",
+      "services": [
+        "apache2.service"
+      ],
+      "snapshots": [
+        {
+          "service": "apache2.service",
+          "root": "/etc/apache2",
+          "snapshot": "/var/lib/webpatch-repair-success/snapshots/18004a83162d888bb73973bfb2762512752f7c169388548056f402b767f7142b/tree-0",
+          "files": [
+            {
+              "path": "/etc/apache2/apache2.conf",
+              "sha256": "96e05361253da0d9be1ec6c7c9003cbbb261ba65b659bd6e40ca0eac43093c43",
+              "device": 65025,
+              "inode": 134126
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/charset.conf",
+              "sha256": "543c6ce7776d222a16c598d1d1108d2de9be5a812f832a35dcaa0bc50369341b",
+              "device": 65025,
+              "inode": 134129
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/localized-error-pages.conf",
+              "sha256": "b58e5cc37210940c8d08439feeefd17c0b7cf641bbadb04cd568b7324aa1840c",
+              "device": 65025,
+              "inode": 134131
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/other-vhosts-access-log.conf",
+              "sha256": "af15ee8478cfbd00ae1fa5091ea5f19cce29a1ce60e567579c7c3b020b332335",
+              "device": 65025,
+              "inode": 134468
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/security.conf",
+              "sha256": "86296f2324bcc27790a80c863886fffd10d7a48b28587151e541f38136055b8b",
+              "device": 65025,
+              "inode": 134476
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/serve-cgi-bin.conf",
+              "sha256": "f3c96a2ec95fbb3371f2c18d77366fc09b07267a156beb4870943f3f029eb3f2",
+              "device": 65025,
+              "inode": 134480
+            },
+            {
+              "path": "/etc/apache2/conf-enabled/webpatch-ci.conf",
+              "sha256": "17224ca6b00e7bd354477ea7944dc5c3aebb3abf123b623fadd7df1d40ad70f8",
+              "device": 65025,
+              "inode": 134481
+            },
+            {
+              "path": "/etc/apache2/envvars",
+              "sha256": "5a2160bf4447865f9aab911bf334ec64c15675cab6a457b366fe9822398f263f",
+              "device": 65025,
+              "inode": 134482
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/access_compat.load",
+              "sha256": "c7beb28538dbcb96cd5ffa98d7b4c10b494cac4575e081ec43ea82a8dd4c2e5d",
+              "device": 65025,
+              "inode": 134484
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/alias.conf",
+              "sha256": "534970724f124935b43fbfd63989f8d95b76bb185330a4b72393c5391b81bff2",
+              "device": 65025,
+              "inode": 134485
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/alias.load",
+              "sha256": "40a83398d3322dd3910cfa24b9e563e55e9a37cdc3e84692d35398ceb389e0b0",
+              "device": 65025,
+              "inode": 134486
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/auth_basic.load",
+              "sha256": "a4b933cd058939054d42b578098ae0e6be639dc997aaf302420e16c5c860ce8a",
+              "device": 65025,
+              "inode": 134487
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authn_core.load",
+              "sha256": "aa5f299869b6843e8c40c74124dbcdcaad26cff4c0732256e1cb36281872bb8b",
+              "device": 65025,
+              "inode": 134488
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authn_file.load",
+              "sha256": "f031556ee2eb878b359519d8b20650cc445da293655faad6621637432296974d",
+              "device": 65025,
+              "inode": 134489
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authz_core.load",
+              "sha256": "7bca4c36d5b7b318f79593a99fe32322a19afa8a7142295fcaad27ff96a474c5",
+              "device": 65025,
+              "inode": 134490
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authz_host.load",
+              "sha256": "66e65600b11edd7fcb76f735fd5e6fe56fa5489a4a89226e73c99d7dff0ca8ac",
+              "device": 65025,
+              "inode": 134491
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/authz_user.load",
+              "sha256": "d219d39b2a55db76bfd8c14ecdfe06ea40a6bbc71df2ff1a541c873384438e3e",
+              "device": 65025,
+              "inode": 134492
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/autoindex.conf",
+              "sha256": "9274dc923f9a3fd23bfea7af95c748b0f73e4d73071cb1af75479bea072b6d79",
+              "device": 65025,
+              "inode": 134493
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/autoindex.load",
+              "sha256": "b1e99ccc748e2e0b6b192cf7d315354cad1a48adc8c34491fe8c14826869cdbb",
+              "device": 65025,
+              "inode": 134494
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/deflate.conf",
+              "sha256": "3418b2c1c63a4f1059436b29f971a395e96acda0ea46ec5fdae5a589fc207b56",
+              "device": 65025,
+              "inode": 134495
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/deflate.load",
+              "sha256": "82ba907a5637fa0ec747f41714d5f18b4c9861a6acedf03fb126e7c2f1379fe4",
+              "device": 65025,
+              "inode": 134496
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/dir.conf",
+              "sha256": "4a4f78ffaced05b65e09082978ea7a050f4e7106c27fe605ee98b7b1dbae8740",
+              "device": 65025,
+              "inode": 134497
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/dir.load",
+              "sha256": "1ec99f5ea74482ee1fbda2003453b83f81fc3a0b9a410feb40e0d29e498f8b80",
+              "device": 65025,
+              "inode": 134498
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/env.load",
+              "sha256": "486c8295741ef3b86fb9b8e4af3f3a92b6c3ec3d259895f1170f228a68f84c42",
+              "device": 65025,
+              "inode": 134499
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/filter.load",
+              "sha256": "918335d6c751a285bc7ada3c0ee54106723022c7c1ef62749bcef71796bb157d",
+              "device": 65025,
+              "inode": 134500
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mime.conf",
+              "sha256": "a0b42464d0a1a20406782e0bc47148f48896ecccf5c6d76159ffe1dd35ccba5a",
+              "device": 65025,
+              "inode": 134501
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mime.load",
+              "sha256": "f86f437b08f1876e426f74e5daac9f336dff39846589b7b90ce1f3b7bd0ef478",
+              "device": 65025,
+              "inode": 134502
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mpm_prefork.conf",
+              "sha256": "ad447d9f07a7a18ecada306f14665157be07fb404f585f42df2d2bf17a9b1fd2",
+              "device": 65025,
+              "inode": 134503
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/mpm_prefork.load",
+              "sha256": "827c3be42b423720a5d414fec0cd6c0cfc0055c0e90c0511829b5b423538e831",
+              "device": 65025,
+              "inode": 134504
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/negotiation.conf",
+              "sha256": "3041b28664a6b7dee9e93adaf09e0d6cbbfd29016f6a634fcfa0429cba39d7be",
+              "device": 65025,
+              "inode": 134505
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/negotiation.load",
+              "sha256": "0773ca47707e5761e2bc111629c5c0e3bccc7a5b83c166ed49435e511626ee23",
+              "device": 65025,
+              "inode": 134506
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/php8.2.conf",
+              "sha256": "7587fbbf2b8162b4f5888bf30ae6707b84d532995af47a011a2ed957535d53db",
+              "device": 65025,
+              "inode": 134507
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/php8.2.load",
+              "sha256": "9c1d8bdcefa7d4c1758c7a0b0f7917e30e690d7b72f6af8c577653c9dd62dfb5",
+              "device": 65025,
+              "inode": 134508
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/reqtimeout.conf",
+              "sha256": "1a524eed41c0c58ac98627676e23f784099163f02fe8d8d53c91969d59152b41",
+              "device": 65025,
+              "inode": 134509
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/reqtimeout.load",
+              "sha256": "2a29e0c864dd2ca2fc79dcc39b108d84d93648f82ff7d89245befac8398a97ed",
+              "device": 65025,
+              "inode": 134510
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/setenvif.conf",
+              "sha256": "f6efb68c61012d348808d7e9ee865ee423040e1ee406e1e2e8223a156402977b",
+              "device": 65025,
+              "inode": 134511
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/setenvif.load",
+              "sha256": "bd4b18275845ea41d676a3951d872982a4086b9cdda5a35ae5178a755852f406",
+              "device": 65025,
+              "inode": 134512
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/status.conf",
+              "sha256": "bd4009a7dca3d68c8f3d4c22dc549b4cbba0ec56fb5f3d82db6ba8ecb58cf589",
+              "device": 65025,
+              "inode": 134513
+            },
+            {
+              "path": "/etc/apache2/mods-enabled/status.load",
+              "sha256": "1edf75254ed14156d695e24715af8307cefc88c35bbf2eb39481b41ebc3fe291",
+              "device": 65025,
+              "inode": 134514
+            },
+            {
+              "path": "/etc/apache2/ports.conf",
+              "sha256": "a5e79782f42dc68f71d97025de4d7db523b7d834fa415d4080253d5c7625de1a",
+              "device": 65025,
+              "inode": 134515
+            },
+            {
+              "path": "/etc/apache2/sites-enabled/000-default.conf",
+              "sha256": "39fe841a64538ee980ae4ef011bdf6ae7124f63bf44afd65553cf3e0618e952c",
+              "device": 65025,
+              "inode": 134517
+            }
+          ]
+        },
+        {
+          "service": "apache2.service",
+          "root": "/etc/php/8.2/apache2",
+          "snapshot": "/var/lib/webpatch-repair-success/snapshots/18004a83162d888bb73973bfb2762512752f7c169388548056f402b767f7142b/tree-1",
+          "files": [
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/10-opcache.ini",
+              "sha256": "771a555df8ff6f9c223aa992dbd2aff8ef50c47c662d3529558e91f9c43d7976",
+              "device": 65025,
+              "inode": 134520
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/10-pdo.ini",
+              "sha256": "b072d1e70a5173af7e968b4abf908e017f5f8675d30dda36ea7443dc410d2e5d",
+              "device": 65025,
+              "inode": 134521
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-calendar.ini",
+              "sha256": "0fbe835f25a303eb942760930f734275c2a5e60049835b0d9bd9f97c9b996d7d",
+              "device": 65025,
+              "inode": 134522
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-ctype.ini",
+              "sha256": "05e736f9509116eec00fe4fa1b4e0fea51a2fb311262cd46a35ea1f177eb9ff9",
+              "device": 65025,
+              "inode": 134523
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-exif.ini",
+              "sha256": "e7bbc905937019e082d5ad1dd6482b3bb9eaebc47c3939066e5099c1b7b5e9f5",
+              "device": 65025,
+              "inode": 134524
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-ffi.ini",
+              "sha256": "005d8a46015f79bc5e03e393e7c455eeb675e456515740537317235fa12458f9",
+              "device": 65025,
+              "inode": 134548
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-fileinfo.ini",
+              "sha256": "c8a2d1dd0161a50e0ddd031f0abc7a5acfe8559f5ec18423e567f519c456dfcc",
+              "device": 65025,
+              "inode": 134628
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-ftp.ini",
+              "sha256": "464d61d9d251d63efb02af8698c21125962a18992470080bf8929770292302f9",
+              "device": 65025,
+              "inode": 134629
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-gettext.ini",
+              "sha256": "f502d4781c78fff2b7db83e1f37db6c8bb4648ec0d2ce00decdc079a9b551738",
+              "device": 65025,
+              "inode": 134630
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-iconv.ini",
+              "sha256": "922d70e6a207418f4bf87c4dda8685cd19c278c50cf1332b0a11a33e7c32d893",
+              "device": 65025,
+              "inode": 134631
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-phar.ini",
+              "sha256": "fd62472e0bf8b260ed712068086a2a55b9dd71bf13b1f0e07897eeea3bf723e2",
+              "device": 65025,
+              "inode": 134632
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-posix.ini",
+              "sha256": "e1a5a7c827fc17ff94cf87beed916be62d6b025346b4a274adb8d835785109b0",
+              "device": 65025,
+              "inode": 134633
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-readline.ini",
+              "sha256": "fa6d93d1de1704dd7b40708204dec039308bd867d549c4cf4aef597d40d4394f",
+              "device": 65025,
+              "inode": 134634
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-shmop.ini",
+              "sha256": "134aafee92de1f650b7eb500cd6336bd33149bdd3fab4fba939894fc7ffc8193",
+              "device": 65025,
+              "inode": 134635
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sockets.ini",
+              "sha256": "eb31eeb6aeb34f31c1c695dbac0c9a69f909874f01341679382da0646641318c",
+              "device": 65025,
+              "inode": 134636
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sysvmsg.ini",
+              "sha256": "ab104d16fcb223c3fff2af1880490f879e940561732d66571f69a15d498321d8",
+              "device": 65025,
+              "inode": 134637
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sysvsem.ini",
+              "sha256": "2f7f5db8fddca372e034f3c7bb34f5abd861621fa5282bd0808bd320e2867e85",
+              "device": 65025,
+              "inode": 134638
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-sysvshm.ini",
+              "sha256": "4218981bb40ed218b01846cbdc85b436133859b2b051f740f992db14a702b2fc",
+              "device": 65025,
+              "inode": 134639
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/20-tokenizer.ini",
+              "sha256": "5915e8a8256d4ba7b8b021ce1bcb9456ae86cd98e1100b6b57e098ccf169e6a9",
+              "device": 65025,
+              "inode": 134640
+            },
+            {
+              "path": "/etc/php/8.2/apache2/conf.d/99-webpatch-probe.ini",
+              "sha256": "615bb0232f81a68c86c98dc30dc18478a25b47a348f25688ff4c58b9b7862e9d",
+              "device": 65025,
+              "inode": 134641
+            },
+            {
+              "path": "/etc/php/8.2/apache2/php.ini",
+              "sha256": "1c71eca1257608ae92892cd03cb3f6c5d886a6a23328b9b77c81e46289403d7b",
+              "device": 65025,
+              "inode": 134642
+            }
+          ]
+        }
+      ],
+      "overrides": [
+        {
+          "service": "apache2.service",
+          "path": "/run/systemd/system/apache2.service",
+          "sha256": "93c49d8297e7ff9a17e7a58fb6cdc305fc7474e8fc2c087185a7407f017097fd"
+        }
+      ]
+    },
+    "hmac_sha256": "69c69e6a3ed4cbeb689786921d171b9be71f01f3adc4be677af2921801eb39bd"
+  },
+  "executable": false
+}

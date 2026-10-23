@@ -1,0 +1,1 @@
+Linux webpatch-debian-13-fpm 6.12.113+deb13-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.113-1 (2026-10-15) x86_64 GNU/Linux
