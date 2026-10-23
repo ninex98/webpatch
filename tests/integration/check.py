@@ -29,12 +29,13 @@ def state_hash():
 def main():
     # This script is meant for a container; refuse a normal host invocation.
     assert Path("/.dockerenv").exists(), "Run only in the integration container"
-    archive = Path("dist/webpatch_0.1.0_all.deb")
+    version = run(["python3", "scripts/package_version.py"], {0}).stdout.strip()
+    archive = Path(f"dist/webpatch_{version}_all.deb")
     control = subprocess.run(["dpkg-deb", "--ctrl-tarfile", str(archive)], capture_output=True, check=True)
     with tarfile.open(fileobj=io.BytesIO(control.stdout)) as bundle:
         assert {m.name.removeprefix("./") for m in bundle if m.isfile()} == {"control"}
     source_hashes = {}
-    for name in ('design.md','cli.md','phase-3.md','phase-4.md'):
+    for name in ('design.md','cli.md','installation.md','phase-3.md','phase-4.md'):
         assert Path('docs',name).read_bytes()==Path('/usr/share/doc/webpatch/docs',name).read_bytes()
     for path in sorted(Path("src/webpatch").rglob("*")):
         if path.suffix in {".py", ".php", ".json"}:
@@ -94,7 +95,7 @@ def main():
     assert before == state_hash(), "scan/plan/apply changed package metadata or configuration"
     # Installed entry point must work independently of cwd and PYTHONPATH.
     result = subprocess.run(["/usr/bin/webpatch", "--version"], cwd="/", capture_output=True, text=True, check=True)
-    assert result.stdout.strip() == "0.1.0"
+    assert result.stdout.strip() == version
     print(json.dumps({"result": "PASS", "python": sys.version, "environment": report["inventory"]["environment"],
                       "dpkg_comparison_vectors": len(pairs), "state_sha256": before,
                       "packages": packages, "rule_sha256": report["rule_sha256"],

@@ -110,7 +110,8 @@ package_cache="${RUNNER_TEMP}/webpatch-archives"
 mkdir -p "$package_cache"
 (cd "$package_cache" && apt-get download "$package=$(dpkg-query -W -f='${Version}' "$package")")
 python3 scripts/build_deb.py
-sudo apt-get install -y ./dist/webpatch_0.1.0_all.deb
+webpatch_version=$(python3 scripts/package_version.py)
+sudo apt-get install -y "./dist/webpatch_${webpatch_version}_all.deb"
 sudo systemctl start "$service"
 [[ "$(curl --fail --silent "http://127.0.0.1:${probe_port}/webpatch-ci.php")" == webpatch-ci-route-ok ]]
 sudo systemctl is-active --quiet "$service"

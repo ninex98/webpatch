@@ -149,7 +149,7 @@ Do not chain expected nonzero scan / plan commands with `&&` or treat them as su
 
 ## Build a local Debian package
 
-No public APT repository or GitHub Release is published. To build and test locally, run from the checkout with Docker available:
+The [one-command Linux installer and versioned release workflow](installation.md) are prepared. No public APT repository or GitHub Release is published yet. To build and test locally, run from the checkout with Docker available:
 
 ```sh
 docker build -f tests/integration/Dockerfile --build-arg BASE=ubuntu:24.04 -t webpatch-test:noble .

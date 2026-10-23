@@ -33,6 +33,8 @@ WebPatch 关联**包、进程、服务与本地证据**，分别呈现版本判�
 
 ## 快速开始
 
+**Ubuntu/Debian 一键安装入口已在仓库准备，首个 Release 尚待发布。** 发布后无需 Git、虚拟环境或 pip；具体命令、升级及卸载方式见[安装说明](docs/installation.md)。公开下载入口生效前仍使用下面的源码安装。
+
 在目标 Linux 系统上，准备好 **Git 和 Python 3.10+，且 `venv`、`pip` 可用**。从本仓库安装到虚拟环境；运行时无第三方 Python 依赖。
 
 ```sh
@@ -53,7 +55,7 @@ python3 -m venv .venv
 .venv/bin/webpatch verify-plan reviewed-plan.json --format json
 ```
 
-本预览版的 `plan` 和 `verify-plan` 返回 **4**。这些诊断计划均为 `BLOCKED`、`executable=false`；APT 模拟通过也不授权任何变更。退出码、包缓存验证和本地 `.deb` 构建见 [CLI 参考](docs/cli.md)。目前没有公开 APT 仓库或 GitHub Release 安装入口。
+本预览版的 `plan` 和 `verify-plan` 返回 **4**。这些诊断计划均为 `BLOCKED`、`executable=false`；APT 模拟通过也不授权任何变更。退出码、包缓存验证和本地 `.deb` 构建见 [CLI 参考](docs/cli.md)。目前没有公开 APT 仓库；GitHub Release 安装入口等待首次发布。
 
 <a id="cli-preview"></a>
 

@@ -1,0 +1,6 @@
+WARN Retry attempt #0. Sleeping 1.510009204s before the next attempt
+WARN Retry attempt #1. Sleeping 1.399346399s before the next attempt
+Resolved 1 package in 21.14s
+Prepared 1 package in 208ms
+Installed 1 package in 2ms
+ + pyyaml==6.0.3

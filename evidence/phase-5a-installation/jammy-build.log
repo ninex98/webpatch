@@ -1,0 +1,227 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Installer.Dockerfile
+#1 transferring dockerfile: 459B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 1.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956
+#4 resolve docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956 done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 811.08kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/5] RUN apt-get -o Acquire::Retries=3 update && apt-get install -y --no-install-recommends python3 curl ca-certificates
+#6 2.573 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+#6 4.728 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+#6 7.211 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+#6 9.377 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+#6 10.76 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+#6 12.90 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+#6 22.36 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+#6 25.43 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+#6 28.82 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [4567 kB]
+#6 31.72 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1717 kB]
+#6 36.70 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [8359 kB]
+#6 38.63 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [81.6 kB]
+#6 40.40 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [82.5 kB]
+#6 41.83 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [33.7 kB]
+#6 45.28 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [4253 kB]
+#6 49.82 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [8061 kB]
+#6 52.76 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1421 kB]
+#6 54.81 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [75.6 kB]
+#6 54.84 Fetched 48.5 MB in 55s (888 kB/s)
+#6 54.84 Reading package lists...
+#6 55.42 Reading package lists...
+#6 55.91 Building dependency tree...
+#6 56.03 Reading state information...
+#6 56.19 The following additional packages will be installed:
+#6 56.19   libbrotli1 libcurl4 libexpat1 libldap-2.5-0 libmpdec3 libnghttp2-14 libpsl5
+#6 56.19   libpython3-stdlib libpython3.10-minimal libpython3.10-stdlib libreadline8
+#6 56.19   librtmp1 libsasl2-2 libsasl2-modules-db libsqlite3-0 libssh-4 media-types
+#6 56.19   openssl python3-minimal python3.10 python3.10-minimal readline-common
+#6 56.20 Suggested packages:
+#6 56.20   python3-doc python3-tk python3-venv python3.10-venv python3.10-doc binutils
+#6 56.20   binfmt-support readline-doc
+#6 56.20 Recommended packages:
+#6 56.20   libldap-common publicsuffix libsasl2-modules
+#6 56.25 The following NEW packages will be installed:
+#6 56.25   ca-certificates curl libbrotli1 libcurl4 libexpat1 libldap-2.5-0 libmpdec3
+#6 56.25   libnghttp2-14 libpsl5 libpython3-stdlib libpython3.10-minimal
+#6 56.25   libpython3.10-stdlib libreadline8 librtmp1 libsasl2-2 libsasl2-modules-db
+#6 56.25   libsqlite3-0 libssh-4 media-types openssl python3 python3-minimal python3.10
+#6 56.25   python3.10-minimal readline-common
+#6 58.92 0 upgraded, 25 newly installed, 0 to remove and 3 not upgraded.
+#6 58.92 Need to get 9240 kB of archives.
+#6 58.92 After this operation, 29.0 MB of additional disk space will be used.
+#6 58.92 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libpython3.10-minimal arm64 3.10.12-1~22.04.18 [814 kB]
+#6 60.61 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libexpat1 arm64 2.4.7-1ubuntu0.9 [83.5 kB]
+#6 63.68 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3.10-minimal arm64 3.10.12-1~22.04.18 [2245 kB]
+#6 65.11 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3-minimal arm64 3.10.6-1~22.04.1 [24.3 kB]
+#6 66.57 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 media-types all 7.0.0 [25.5 kB]
+#6 68.28 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libmpdec3 arm64 2.5.1-2build2 [89.0 kB]
+#6 69.83 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 readline-common all 8.1.2-1 [53.5 kB]
+#6 71.76 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libreadline8 arm64 8.1.2-1 [153 kB]
+#6 74.14 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsqlite3-0 arm64 3.37.2-2ubuntu0.8 [636 kB]
+#6 77.09 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libpython3.10-stdlib arm64 3.10.12-1~22.04.18 [1848 kB]
+#6 79.59 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3.10 arm64 3.10.12-1~22.04.18 [508 kB]
+#6 80.68 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libpython3-stdlib arm64 3.10.6-1~22.04.1 [6812 B]
+#6 82.01 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 python3 arm64 3.10.6-1~22.04.1 [22.8 kB]
+#6 84.82 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 openssl arm64 3.0.2-0ubuntu1.30 [1160 kB]
+#6 86.79 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 ca-certificates all 20260816ubuntu0.22.04.1 [140 kB]
+#6 88.61 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libnghttp2-14 arm64 1.43.0-1ubuntu0.4 [76.2 kB]
+#6 90.20 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libpsl5 arm64 0.21.0-1.2build2 [58.3 kB]
+#6 92.61 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libbrotli1 arm64 1.0.9-2build6 [314 kB]
+#6 93.95 Get:19 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-modules-db arm64 2.1.27+dfsg2-3ubuntu1.2 [21.1 kB]
+#6 95.59 Get:20 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-2 arm64 2.1.27+dfsg2-3ubuntu1.2 [55.6 kB]
+#6 97.76 Get:21 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libldap-2.5-0 arm64 2.5.20+dfsg-0ubuntu0.22.04.1 [182 kB]
+#6 99.49 Get:22 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build4 [59.2 kB]
+#6 101.5 Get:23 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libssh-4 arm64 0.9.6-2ubuntu0.22.04.8 [187 kB]
+#6 104.7 Get:24 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libcurl4 arm64 7.81.0-1ubuntu1.30 [287 kB]
+#6 106.9 Get:25 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 curl arm64 7.81.0-1ubuntu1.30 [190 kB]
+#6 107.0 debconf: delaying package configuration, since apt-utils is not installed
+#6 107.0 Fetched 9240 kB in 51s (182 kB/s)
+#6 107.1 Selecting previously unselected package libpython3.10-minimal:arm64.
+#6 107.1 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
+#6 107.1 Preparing to unpack .../libpython3.10-minimal_3.10.12-1~22.04.18_arm64.deb ...
+#6 107.1 Unpacking libpython3.10-minimal:arm64 (3.10.12-1~22.04.18) ...
+#6 107.1 Selecting previously unselected package libexpat1:arm64.
+#6 107.1 Preparing to unpack .../libexpat1_2.4.7-1ubuntu0.9_arm64.deb ...
+#6 107.1 Unpacking libexpat1:arm64 (2.4.7-1ubuntu0.9) ...
+#6 107.1 Selecting previously unselected package python3.10-minimal.
+#6 107.1 Preparing to unpack .../python3.10-minimal_3.10.12-1~22.04.18_arm64.deb ...
+#6 107.1 Unpacking python3.10-minimal (3.10.12-1~22.04.18) ...
+#6 107.1 Setting up libpython3.10-minimal:arm64 (3.10.12-1~22.04.18) ...
+#6 107.1 Setting up libexpat1:arm64 (2.4.7-1ubuntu0.9) ...
+#6 107.1 Setting up python3.10-minimal (3.10.12-1~22.04.18) ...
+#6 107.4 Selecting previously unselected package python3-minimal.
+#6 107.4 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4691 files and directories currently installed.)
+#6 107.4 Preparing to unpack .../0-python3-minimal_3.10.6-1~22.04.1_arm64.deb ...
+#6 107.4 Unpacking python3-minimal (3.10.6-1~22.04.1) ...
+#6 107.4 Selecting previously unselected package media-types.
+#6 107.4 Preparing to unpack .../1-media-types_7.0.0_all.deb ...
+#6 107.4 Unpacking media-types (7.0.0) ...
+#6 107.4 Selecting previously unselected package libmpdec3:arm64.
+#6 107.4 Preparing to unpack .../2-libmpdec3_2.5.1-2build2_arm64.deb ...
+#6 107.4 Unpacking libmpdec3:arm64 (2.5.1-2build2) ...
+#6 107.4 Selecting previously unselected package readline-common.
+#6 107.4 Preparing to unpack .../3-readline-common_8.1.2-1_all.deb ...
+#6 107.4 Unpacking readline-common (8.1.2-1) ...
+#6 107.4 Selecting previously unselected package libreadline8:arm64.
+#6 107.4 Preparing to unpack .../4-libreadline8_8.1.2-1_arm64.deb ...
+#6 107.4 Unpacking libreadline8:arm64 (8.1.2-1) ...
+#6 107.4 Selecting previously unselected package libsqlite3-0:arm64.
+#6 107.4 Preparing to unpack .../5-libsqlite3-0_3.37.2-2ubuntu0.8_arm64.deb ...
+#6 107.4 Unpacking libsqlite3-0:arm64 (3.37.2-2ubuntu0.8) ...
+#6 107.4 Selecting previously unselected package libpython3.10-stdlib:arm64.
+#6 107.4 Preparing to unpack .../6-libpython3.10-stdlib_3.10.12-1~22.04.18_arm64.deb ...
+#6 107.4 Unpacking libpython3.10-stdlib:arm64 (3.10.12-1~22.04.18) ...
+#6 107.5 Selecting previously unselected package python3.10.
+#6 107.5 Preparing to unpack .../7-python3.10_3.10.12-1~22.04.18_arm64.deb ...
+#6 107.5 Unpacking python3.10 (3.10.12-1~22.04.18) ...
+#6 107.5 Selecting previously unselected package libpython3-stdlib:arm64.
+#6 107.5 Preparing to unpack .../8-libpython3-stdlib_3.10.6-1~22.04.1_arm64.deb ...
+#6 107.5 Unpacking libpython3-stdlib:arm64 (3.10.6-1~22.04.1) ...
+#6 107.5 Setting up python3-minimal (3.10.6-1~22.04.1) ...
+#6 107.6 Selecting previously unselected package python3.
+#6 107.6 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5121 files and directories currently installed.)
+#6 107.6 Preparing to unpack .../00-python3_3.10.6-1~22.04.1_arm64.deb ...
+#6 107.6 Unpacking python3 (3.10.6-1~22.04.1) ...
+#6 107.6 Selecting previously unselected package openssl.
+#6 107.6 Preparing to unpack .../01-openssl_3.0.2-0ubuntu1.30_arm64.deb ...
+#6 107.6 Unpacking openssl (3.0.2-0ubuntu1.30) ...
+#6 107.6 Selecting previously unselected package ca-certificates.
+#6 107.6 Preparing to unpack .../02-ca-certificates_20260816ubuntu0.22.04.1_all.deb ...
+#6 107.6 Unpacking ca-certificates (20260816ubuntu0.22.04.1) ...
+#6 107.6 Selecting previously unselected package libnghttp2-14:arm64.
+#6 107.6 Preparing to unpack .../03-libnghttp2-14_1.43.0-1ubuntu0.4_arm64.deb ...
+#6 107.6 Unpacking libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#6 107.7 Selecting previously unselected package libpsl5:arm64.
+#6 107.7 Preparing to unpack .../04-libpsl5_0.21.0-1.2build2_arm64.deb ...
+#6 107.7 Unpacking libpsl5:arm64 (0.21.0-1.2build2) ...
+#6 107.7 Selecting previously unselected package libbrotli1:arm64.
+#6 107.7 Preparing to unpack .../05-libbrotli1_1.0.9-2build6_arm64.deb ...
+#6 107.7 Unpacking libbrotli1:arm64 (1.0.9-2build6) ...
+#6 107.7 Selecting previously unselected package libsasl2-modules-db:arm64.
+#6 107.7 Preparing to unpack .../06-libsasl2-modules-db_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#6 107.7 Unpacking libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 107.7 Selecting previously unselected package libsasl2-2:arm64.
+#6 107.7 Preparing to unpack .../07-libsasl2-2_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#6 107.7 Unpacking libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 107.7 Selecting previously unselected package libldap-2.5-0:arm64.
+#6 107.7 Preparing to unpack .../08-libldap-2.5-0_2.5.20+dfsg-0ubuntu0.22.04.1_arm64.deb ...
+#6 107.7 Unpacking libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#6 107.7 Selecting previously unselected package librtmp1:arm64.
+#6 107.7 Preparing to unpack .../09-librtmp1_2.4+20151223.gitfa8646d.1-2build4_arm64.deb ...
+#6 107.7 Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#6 107.7 Selecting previously unselected package libssh-4:arm64.
+#6 107.7 Preparing to unpack .../10-libssh-4_0.9.6-2ubuntu0.22.04.8_arm64.deb ...
+#6 107.7 Unpacking libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#6 107.7 Selecting previously unselected package libcurl4:arm64.
+#6 107.7 Preparing to unpack .../11-libcurl4_7.81.0-1ubuntu1.30_arm64.deb ...
+#6 107.7 Unpacking libcurl4:arm64 (7.81.0-1ubuntu1.30) ...
+#6 107.7 Selecting previously unselected package curl.
+#6 107.7 Preparing to unpack .../12-curl_7.81.0-1ubuntu1.30_arm64.deb ...
+#6 107.7 Unpacking curl (7.81.0-1ubuntu1.30) ...
+#6 107.8 Setting up media-types (7.0.0) ...
+#6 107.8 Setting up libpsl5:arm64 (0.21.0-1.2build2) ...
+#6 107.8 Setting up libbrotli1:arm64 (1.0.9-2build6) ...
+#6 107.8 Setting up libsqlite3-0:arm64 (3.37.2-2ubuntu0.8) ...
+#6 107.8 Setting up libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#6 107.8 Setting up libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 107.8 Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#6 107.8 Setting up libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 107.8 Setting up libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#6 107.8 Setting up libmpdec3:arm64 (2.5.1-2build2) ...
+#6 107.8 Setting up openssl (3.0.2-0ubuntu1.30) ...
+#6 107.8 Setting up readline-common (8.1.2-1) ...
+#6 107.8 Setting up libreadline8:arm64 (8.1.2-1) ...
+#6 107.8 Setting up libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#6 107.8 Setting up libpython3.10-stdlib:arm64 (3.10.12-1~22.04.18) ...
+#6 107.8 Setting up ca-certificates (20260816ubuntu0.22.04.1) ...
+#6 107.9 Updating certificates in /etc/ssl/certs...
+#6 108.1 120 added, 0 removed; done.
+#6 108.1 Setting up libcurl4:arm64 (7.81.0-1ubuntu1.30) ...
+#6 108.1 Setting up curl (7.81.0-1ubuntu1.30) ...
+#6 108.1 Setting up libpython3-stdlib:arm64 (3.10.6-1~22.04.1) ...
+#6 108.1 Setting up python3.10 (3.10.12-1~22.04.18) ...
+#6 108.4 Setting up python3 (3.10.6-1~22.04.1) ...
+#6 108.4 Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+#6 108.4 Processing triggers for ca-certificates (20260816ubuntu0.22.04.1) ...
+#6 108.4 Updating certificates in /etc/ssl/certs...
+#6 108.6 0 added, 0 removed; done.
+#6 108.6 Running hooks in /etc/ca-certificates/update.d...
+#6 108.6 done.
+#6 DONE 108.6s
+
+#7 [3/5] WORKDIR /work
+#7 DONE 0.0s
+
+#8 [4/5] COPY . /work
+#8 DONE 0.0s
+
+#9 [5/5] RUN python3 scripts/build_deb.py && python3 scripts/release_assets.py --tag v$(python3 scripts/package_version.py)
+#9 0.141 dpkg-deb: building package 'webpatch' in '/work/dist/webpatch_0.1.0_all.deb'.
+#9 0.222 /work/dist/webpatch_0.1.0_all.deb
+#9 0.249 /work/dist/release
+#9 DONE 0.3s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 2.1s done
+#10 exporting manifest sha256:e985d02403c67bb68f76907c42f8fa2bf12d6369aa3f20b8c31f4fbc35c9c233 done
+#10 exporting config sha256:12fa84ad26575ef00d250599bf34966b9593e54c87f1342c1f109969457ac186 done
+#10 exporting attestation manifest sha256:636f97069d4f03d99b136688b69a15bd0e36cdf27093a0d551d180d9840a6c3d done
+#10 exporting manifest list sha256:1e53c21c3b4e783d7abd029b0f153e2bf30c2b3ae6dc0927bea15b288bfc74df done
+#10 naming to docker.io/library/webpatch-installer:jammy done
+#10 unpacking to docker.io/library/webpatch-installer:jammy
+#10 unpacking to docker.io/library/webpatch-installer:jammy 0.5s done
+#10 DONE 2.7s

@@ -31,6 +31,8 @@ WebPatch connects **packages, processes, services and local evidence**. It keeps
 
 ## Quick Start
 
+**One-command Linux installation is being prepared.** The installer and versioned GitHub Release workflow are in this repository; the first public Release is still pending. See [installation, upgrade and uninstall](docs/installation.md) for the release commands and status. Until publication, use the source installation below.
+
 On a target Linux system, use **Git and Python 3.10+ with `venv` and `pip` available**. Install from this repository into a virtual environment; the runtime has no third-party Python dependencies.
 
 ```sh
@@ -51,7 +53,7 @@ Export evidence and prepare a plan:
 .venv/bin/webpatch verify-plan reviewed-plan.json --format json
 ```
 
-`plan` and `verify-plan` return **4** in this preview. These diagnostic plans are `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. There is no published APT repository or GitHub Release installation path yet.
+`plan` and `verify-plan` return **4** in this preview. These diagnostic plans are `BLOCKED` with `executable=false`; even a successful APT simulation does not authorize changes. See the [CLI reference](docs/cli.md) for exit codes, package-cache verification and local `.deb` builds. There is no public APT repository; the GitHub Release installation path is pending its first publication.
 
 ## CLI Preview
 

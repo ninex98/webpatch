@@ -1,0 +1,46 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Installer.Dockerfile
+#1 transferring dockerfile: 459B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 1.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956
+#4 resolve docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 78.84kB done
+#5 DONE 0.0s
+
+#6 [2/5] RUN apt-get -o Acquire::Retries=3 update && apt-get install -y --no-install-recommends python3 curl ca-certificates
+#6 CACHED
+
+#7 [3/5] WORKDIR /work
+#7 CACHED
+
+#8 [4/5] COPY . /work
+#8 DONE 0.0s
+
+#9 [5/5] RUN python3 scripts/build_deb.py && python3 scripts/release_assets.py --tag v$(python3 scripts/package_version.py)
+#9 0.161 dpkg-deb: building package 'webpatch' in '/work/dist/webpatch_0.1.0_all.deb'.
+#9 0.261 /work/dist/webpatch_0.1.0_all.deb
+#9 0.301 /work/dist/release
+#9 DONE 0.3s
+
+#10 exporting to image
+#10 exporting layers 0.1s done
+#10 exporting manifest sha256:c9c395bc858347591a676bf442ac6e4db4563ea6f889024c281965093a96619e
+#10 exporting manifest sha256:c9c395bc858347591a676bf442ac6e4db4563ea6f889024c281965093a96619e 0.0s done
+#10 exporting config sha256:3f4c4fdd7df513070c002425b064bd91ed7ba109f7024db2eb59b806e2ad434d done
+#10 exporting attestation manifest sha256:eed56cc2205b8fa6a505edf6e34151c6e58b2b894c9fcfc81b1ee1e4e219dff6 0.0s done
+#10 exporting manifest list sha256:5893b825c925d688ef4a62077315cdd88e6c49c02f580af4ccea7214b54e5c54 done
+#10 naming to docker.io/library/webpatch-installer:jammy done
+#10 unpacking to docker.io/library/webpatch-installer:jammy 0.0s done
+#10 DONE 0.2s

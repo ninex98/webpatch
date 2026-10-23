@@ -1,0 +1,112 @@
+name: WebPatch distribution
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      create_draft:
+        description: 'Create a draft Release after distribution and exact-source safety checks'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - id: version
+        run: echo "version=$(python3 scripts/package_version.py)" >> "$GITHUB_OUTPUT"
+      - name: Build versioned package and checksums
+        run: |
+          mkdir -p ci-evidence
+          python3 scripts/build_deb.py 2>&1 | tee ci-evidence/package-build.log
+          python3 scripts/release_assets.py --tag 'v${{ steps.version.outputs.version }}'
+          cp dist/release/SHA256SUMS ci-evidence/SHA256SUMS
+          python3 scripts/evidence_manifest.py ci-evidence
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-assets
+          path: dist/release/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: distribution-build-evidence
+          path: ci-evidence/
+  install:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        base: ['ubuntu:22.04', 'ubuntu:24.04', 'debian:12', 'debian:13']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: release-assets
+          path: dist/release
+      - name: Install the exact release artifact in a disposable container
+        run: |
+          mkdir -p ci-evidence/context/{dist/release,scripts,src/webpatch,tests/integration}
+          cp dist/release/* ci-evidence/context/dist/release/
+          cp dist/release/install.sh ci-evidence/context/install.sh
+          cp scripts/package_version.py ci-evidence/context/scripts/
+          cp src/webpatch/__init__.py ci-evidence/context/src/webpatch/
+          cp tests/integration/installer_check.py ci-evidence/context/tests/integration/
+          docker build -f tests/integration/Release.Dockerfile --build-arg BASE='${{ matrix.base }}' -t webpatch-release-test ci-evidence/context 2>&1 | tee ci-evidence/build.log
+          docker image inspect webpatch-release-test > ci-evidence/image.json
+          docker run --rm --network none --security-opt no-new-privileges webpatch-release-test | tee ci-evidence/result.json
+          rm -rf ci-evidence/context
+          python3 scripts/evidence_manifest.py ci-evidence
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: distribution-${{ strategy.job-index }}
+          path: |
+            ci-evidence/*.log
+            ci-evidence/*.json
+  draft:
+    if: github.event_name == 'workflow_dispatch' && inputs.create_draft
+    needs: [build, install]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_VERSION: ${{ needs.build.outputs.version }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: release-assets
+          path: dist/release
+      - name: Require safety CI on this exact main commit
+        run: |
+          test "$GITHUB_REF" = refs/heads/main
+          test "$(gh api "repos/$GH_REPO/commits/main" --jq .sha)" = "$GITHUB_SHA"
+          test -z "$(git ls-remote origin "refs/tags/v$RELEASE_VERSION")"
+          gh api "repos/$GH_REPO/actions/workflows/ci.yml/runs?head_sha=$GITHUB_SHA&status=success&event=push" > safety-runs.json
+          python3 - <<'PY'
+          import json, os
+          runs = json.load(open('safety-runs.json'))['workflow_runs']
+          assert any(r['head_sha'] == os.environ['GITHUB_SHA'] and r['conclusion'] == 'success' for r in runs), 'Exact-source safety CI has not passed'
+          PY
+      - name: Create draft only; public publication is a separate action
+        run: |
+          (cd dist/release && sha256sum --check SHA256SUMS)
+          gh release create "v$RELEASE_VERSION" dist/release/* --target "$GITHUB_SHA" --draft \
+            --title "WebPatch v$RELEASE_VERSION — Linux preview" --notes-file docs/release-notes.md

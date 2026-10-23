@@ -1,0 +1,5 @@
+PASS: release package implementation, rules, probe and packaged documentation match current source bytes
+PASS: Python wheel version metadata and resource inclusion
+PASS: sh -n install.sh; bash -n scripts/ci_vm_smoke.sh scripts/ci_debian_guest.sh; git diff --cached --check -- . :(exclude)evidence/**
+PASS: actionlint 1.7.12 (shellcheck disabled) on both workflows; YAML parse; tag/version mismatch rejected
+NOTE: raw terminal build logs retain original carriage returns and two whitespace-only progress lines; excluded from source whitespace checks.

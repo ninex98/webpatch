@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from package_version import package_version
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,12 +18,13 @@ def main():
         raise SystemExit("Build the .deb in the provided Docker image or Ubuntu CI VM.")
     output = ROOT / "dist"
     output.mkdir(exist_ok=True)
+    version = package_version()
     with tempfile.TemporaryDirectory(prefix="webpatch-deb-") as temporary:
         stage = Path(temporary) / "webpatch"
         control = stage / "DEBIAN"
         control.mkdir(parents=True)
         (control / "control").write_text(
-            "Package: webpatch\nVersion: 0.1.0\nSection: admin\nPriority: optional\n"
+            f"Package: webpatch\nVersion: {version}\nSection: admin\nPriority: optional\n"
             "Architecture: all\nDepends: python3 (>= 3.10), dpkg\n"
             "Maintainer: WebPatch contributors <webpatch@example.invalid>\n"
             "Description: Evidence-driven web runtime maintenance preview\n"
@@ -40,12 +42,13 @@ def main():
         doc.mkdir(parents=True)
         for source, target in (("README.md", "README.md"), ("LICENSE", "copyright"),
                                ("docs/design.md", "docs/design.md"), ("docs/cli.md", "docs/cli.md"),
+                               ("docs/installation.md", "docs/installation.md"),
                                ("docs/phase-3.md", "docs/phase-3.md"), ("docs/phase-4.md", "docs/phase-4.md")):
             (doc / target).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / source, doc / target)
         env = dict(os.environ)
         env.setdefault("SOURCE_DATE_EPOCH", "1792627200")
-        artifact = output / "webpatch_0.1.0_all.deb"
+        artifact = output / f"webpatch_{version}_all.deb"
         subprocess.run(["dpkg-deb", "--root-owner-group", "-Zxz", "--build", str(stage), str(artifact)],
                        check=True, env=env)
         print(artifact)

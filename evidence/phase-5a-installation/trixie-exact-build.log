@@ -1,0 +1,43 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Release.Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Release.Dockerfile
+#1 transferring dockerfile: 419B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:13
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/debian:13@sha256:4c25275446ca371766b8b093c696782eabce06263fccacb8d5d813b3dc44b308
+#4 resolve docker.io/library/debian:13@sha256:4c25275446ca371766b8b093c696782eabce06263fccacb8d5d813b3dc44b308 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 138.52kB done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get -o Acquire::Retries=3 update && apt-get install -y --no-install-recommends python3 curl ca-certificates
+#6 CACHED
+
+#7 [3/4] WORKDIR /work
+#7 CACHED
+
+#8 [4/4] COPY . /work
+#8 DONE 0.0s
+
+#9 exporting to image
+#9 exporting layers 0.0s done
+#9 exporting manifest sha256:400dd77af0dcfab51751e3f751ff6ffb54eff706e5da650c9cf802862744f067 done
+#9 exporting config sha256:1c88ec61b4152e04133879e717572806517b8003adec41c41d12f6b61e2c5a4d done
+#9 exporting attestation manifest sha256:8bd03a12bc58ab94d07e09ba06171334fbb448a62ecc9ea18204b00e6bc7b3e9 done
+#9 exporting manifest list sha256:a17f86269b860a5eceb9f2c9df53e04d7ee64e3418d0844a351b51b19e79b44b
+#9 exporting manifest list sha256:a17f86269b860a5eceb9f2c9df53e04d7ee64e3418d0844a351b51b19e79b44b done
+#9 naming to docker.io/library/webpatch-exact-release:trixie done
+#9 unpacking to docker.io/library/webpatch-exact-release:trixie 0.0s done
+#9 DONE 0.1s

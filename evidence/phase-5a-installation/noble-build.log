@@ -1,0 +1,64 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Installer.Dockerfile
+#1 transferring dockerfile: 437B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 4.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac
+#4 resolve docker.io/library/ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 739.54kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/5] RUN apt-get update && apt-get install -y --no-install-recommends python3 curl ca-certificates
+#6 2.774 Get:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+#6 4.641 Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+#6 6.268 Get:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+#6 11.28 Err:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+#6 11.28   502  Bad Gateway [IP: 91.189.92.21 80]
+#6 13.24 Get:5 http://ports.ubuntu.com/ubuntu-ports noble/restricted arm64 Packages [113 kB]
+#6 16.56 Get:6 http://ports.ubuntu.com/ubuntu-ports noble/multiverse arm64 Packages [274 kB]
+#6 25.67 Get:7 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 Packages [19.0 MB]
+#6 29.27 Get:8 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 Packages [1776 kB]
+#6 32.25 Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [2216 kB]
+#6 35.96 Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [3251 kB]
+#6 38.78 Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1790 kB]
+#6 39.83 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [104 kB]
+#6 45.17 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+#6 45.79 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [669 B]
+#6 48.38 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+#6 48.40 Reading package lists...
+#6 48.76 E: Failed to fetch http://ports.ubuntu.com/ubuntu-ports/dists/noble-security/InRelease  502  Bad Gateway [IP: 91.189.92.21 80]
+#6 48.76 E: The repository 'http://ports.ubuntu.com/ubuntu-ports noble-security InRelease' is not signed.
+#6 ERROR: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends python3 curl ca-certificates" did not complete successfully: exit code: 100
+------
+ > [2/5] RUN apt-get update && apt-get install -y --no-install-recommends python3 curl ca-certificates:
+32.25 Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [2216 kB]
+35.96 Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [3251 kB]
+38.78 Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1790 kB]
+39.83 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [104 kB]
+45.17 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+45.79 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [669 B]
+48.38 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+
+48.76 E: Failed to fetch http://ports.ubuntu.com/ubuntu-ports/dists/noble-security/InRelease  502  Bad Gateway [IP: 91.189.92.21 80]
+48.76 E: The repository 'http://ports.ubuntu.com/ubuntu-ports noble-security InRelease' is not signed.
+------
+Installer.Dockerfile:4
+--------------------
+   2 |     FROM ${BASE}
+   3 |     ENV DEBIAN_FRONTEND=noninteractive PYTHONDONTWRITEBYTECODE=1
+   4 | >>> RUN apt-get update && apt-get install -y --no-install-recommends python3 curl ca-certificates
+   5 |     WORKDIR /work
+   6 |     COPY . /work
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends python3 curl ca-certificates" did not complete successfully: exit code: 100

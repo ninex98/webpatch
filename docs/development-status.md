@@ -2,6 +2,12 @@
 
 核对日期：2026-10-23（Asia/Shanghai）。**原设计四阶段已按声明的有限范围完成并分别验收。** 最新受测功能/测试/CI 源码 `941040c06cb29fc73cf64dcf81a78867d033f3e8`，Actions [39888070774](https://github.com/ninex98/webpatch/actions/runs/39888070774) **17/17 PASS**。最终文档/证据提交晚于受测源码；源码一致性、制品摘要、日志/JUnit 和各项结果见 [最终验收](../evidence/final-acceptance/README.md)。
 
+## 阶段 5A：Linux 分发准备 / Linux distribution preparation
+
+新增独立的版本化分发阶段：Ubuntu 22.04/24.04、Debian 12/13 一键安装脚本、单一版本来源、Release assets/SHA256SUMS 及四格分发 CI。**本地验证 PASS；远端 CI_PENDING，首个 Release 尚未发布，在线安装 NOT_RUN。** 617 fixtures 通过；同一个 `.deb` 在四个 arm64 disposable 容器完成安装、重装、升级、拒绝降级、错误包阻断和只读 UNKNOWN 验证。完整日志、失败留存和摘要见 [阶段 5A 证据](../evidence/phase-5a-installation/README.md)，用户入口见 [安装说明](installation.md)。
+
+旧的 17/17 仅证明原记录的源码，不能作为本阶段 CI 通过的证据。新增 workflow 默认只构建和测试，显式手动操作才生成 Release 草稿，并要求同一 main SHA 的安全 CI 通过；公开发布和发布后的真实 GitHub 下载链路须单独验收。安装覆盖不扩张任何修复 profile。
+
 ## 原设计四阶段
 
 | 阶段 | 交付及验收 |

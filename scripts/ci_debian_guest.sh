@@ -51,7 +51,8 @@ mkdir -p /var/cache/webpatch-ci
 systemctl restart "$service"
 systemctl is-active --quiet "$service"
 python3 scripts/build_deb.py
-apt-get install -y ./dist/webpatch_0.1.0_all.deb
+webpatch_version=$(python3 scripts/package_version.py)
+apt-get install -y "./dist/webpatch_${webpatch_version}_all.deb"
 mkdir -p /etc/webpatch /var/www/html
 webpatch probe-template > /var/www/html/webpatch-proof.php
 cp /var/www/html/webpatch-proof.php /var/www/html/webpatch-extra.php

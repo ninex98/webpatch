@@ -1,0 +1,39 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Release.Dockerfile
+#1 transferring dockerfile: 419B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 1.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 559B done
+#4 DONE 0.0s
+
+#5 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac
+#5 resolve docker.io/library/ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get -o Acquire::Retries=3 update && apt-get install -y --no-install-recommends python3 curl ca-certificates
+#6 CACHED
+
+#7 [3/4] WORKDIR /work
+#7 CACHED
+
+#8 [4/4] COPY . /work
+#8 DONE 0.0s
+
+#9 exporting to image
+#9 exporting layers 0.0s done
+#9 exporting manifest sha256:f55c69e8d11cf9afc22508b44dd5ae690d57f757f1a24237842d69803bde3ac1 done
+#9 exporting config sha256:a35eee476729183db00fc50c59d9cb45ad0bc46441bbf662ddf872042eb456ef done
+#9 exporting attestation manifest sha256:6af2ff20b430c75bc3e18efcec8e08cc556b563073cbf9646fe38df0f5664195 done
+#9 exporting manifest list sha256:c7fd688d8e405713ecafba96c0fac8cdc9236a7c075f16fa4b4dd2c72c83efe3 done
+#9 naming to docker.io/library/webpatch-exact-release:noble done
+#9 unpacking to docker.io/library/webpatch-exact-release:noble done
+#9 DONE 0.1s

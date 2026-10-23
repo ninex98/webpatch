@@ -1,0 +1,39 @@
+{
+  "host": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "Python 3.10.19",
+  "docker": "29.5.3",
+  "images": {
+    "jammy": {
+      "Id": "sha256:8755834f19d2c5f7b2d0e0f412850c79351c9ab62eab1dab0656e6c2b56518fe",
+      "RepoDigests": [
+        "webpatch-exact-release@sha256:8755834f19d2c5f7b2d0e0f412850c79351c9ab62eab1dab0656e6c2b56518fe"
+      ],
+      "Architecture": "arm64",
+      "Os": "linux"
+    },
+    "noble": {
+      "Id": "sha256:c7fd688d8e405713ecafba96c0fac8cdc9236a7c075f16fa4b4dd2c72c83efe3",
+      "RepoDigests": [
+        "webpatch-exact-release@sha256:c7fd688d8e405713ecafba96c0fac8cdc9236a7c075f16fa4b4dd2c72c83efe3"
+      ],
+      "Architecture": "arm64",
+      "Os": "linux"
+    },
+    "bookworm": {
+      "Id": "sha256:851cb1d3ed57e2073654ae5f762897d123769970946cfcd3ff2f420825cb36c6",
+      "RepoDigests": [
+        "webpatch-exact-release@sha256:851cb1d3ed57e2073654ae5f762897d123769970946cfcd3ff2f420825cb36c6"
+      ],
+      "Architecture": "arm64",
+      "Os": "linux"
+    },
+    "trixie": {
+      "Id": "sha256:a17f86269b860a5eceb9f2c9df53e04d7ee64e3418d0844a351b51b19e79b44b",
+      "RepoDigests": [
+        "webpatch-exact-release@sha256:a17f86269b860a5eceb9f2c9df53e04d7ee64e3418d0844a351b51b19e79b44b"
+      ],
+      "Architecture": "arm64",
+      "Os": "linux"
+    }
+  }
+}
