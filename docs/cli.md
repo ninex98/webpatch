@@ -1,6 +1,6 @@
 # CLI reference
 
-WebPatch 0.2.0 requires Python 3.10+. Commands below use the installed `webpatch` command. Start with the [command quick reference](../README.md#commands) or [中文命令速查](../README.zh-CN.md#commands). Source developers may substitute their virtual environment entry point.
+WebPatch 0.3.0 requires Python 3.10+. Commands below use the installed `webpatch` command. Start with the [command quick reference](../README.md#commands) or [中文命令速查](../README.zh-CN.md#commands). Source developers may substitute their virtual environment entry point.
 
 ## Read-only inventory
 
@@ -11,7 +11,7 @@ webpatch scan
 webpatch scan --format json
 ```
 
-Run on the target system without root. `scan` does not execute PHP or probe websites. Published 0.2.0 does not access container daemons; the development branch adds the local Docker observations described below. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
+Run on the target system without root. `scan` does not execute PHP or probe websites. Version 0.3.0 adds the local Docker observations described below. Restricted reads are coverage gaps, not evidence of absence. Container scans apply only to that container's scope.
 
 The default text view shows a concise result, package assessments, missing evidence and next steps. Use `--details` for the complete coverage checks. JSON (`schema_version=2`) also includes package versions, runtime files and mappings, observed UNIX listeners, static configuration relationships, source audit, package trust, references and evidence digests. Legacy `coverage_gaps` strings remain available. Each structured check names its subjects, evidence, reason and next verification step; `VERIFIED` describes only that specific relationship. `OBSERVED`, `UNKNOWN`, `UNSUPPORTED` and `NOT_CHECKED` cannot authorize repair.
 
@@ -167,14 +167,14 @@ docker build -f tests/integration/Dockerfile --build-arg BASE=ubuntu:24.04 -t we
 docker run --rm --read-only --network none --cap-drop ALL --security-opt no-new-privileges webpatch-test:noble
 ```
 
-The Dockerfile builds `/work/dist/webpatch_0.2.0_all.deb` and installs it **inside the disposable container**. The builder, `python3 scripts/build_deb.py`, runs only on Linux and only builds a package; it does not install it. The package depends on Python 3.10+ and dpkg, and has no maintainer scripts, daemon or third-party Python runtime dependencies. Build dependencies require network access; the test container runs without networking or host mounts.
+The Dockerfile builds `/work/dist/webpatch_0.3.0_all.deb` and installs it **inside the disposable container**. The builder, `python3 scripts/build_deb.py`, runs only on Linux and only builds a package; it does not install it. The package depends on Python 3.10+ and dpkg, and has no maintainer scripts, daemon or third-party Python runtime dependencies. Build dependencies require network access; the test container runs without networking or host mounts.
 
 To copy the locally built artifact out without mounting the host:
 
 ```sh
 mkdir -p dist
 container_id=$(docker create webpatch-test:noble)
-docker cp "$container_id:/work/dist/webpatch_0.2.0_all.deb" dist/
+docker cp "$container_id:/work/dist/webpatch_0.3.0_all.deb" dist/
 docker rm "$container_id"
 ```
 
@@ -211,7 +211,7 @@ After confirmation the tool creates a private `session-<random>` directory under
 
 Advanced operators can run `fix --review PATH --state-directory DIR` to interactively confirm an existing managed review; the saved document is revalidated by the same executor as `apply`. `fix --dry-run` performs only read-only diagnosis (no probe requests, prompts or session writes). `fix --format json` sends the interactive review to stderr and emits the final result on stdout; it does not remove confirmation. Exit 0 means VERIFIED_WITHIN_DECLARED_SCOPE only; blocked/cancelled/partial fix results return 4 and retain safe=false.
 
-## Local Docker discovery (development branch; not in published 0.2.0)
+## Local Docker discovery (0.3.0)
 
 From the host, `webpatch scan --lang zh` now automatically reads the first available conventional local Docker socket and lists running and stopped containers separately. No WebPatch installation inside a container is needed. Each container shows its name, image, PHP package/path/header/process evidence, missing checks and a next action. A host with no PHP packages can still report affected container packages.
 
@@ -222,7 +222,7 @@ webpatch scan --docker-socket /run/user/1000/docker.sock --lang zh
 webpatch scan --docker off --lang zh
 ```
 
-`--docker off` limits this command to the original current-system scan. A scan launched inside a container does not inspect siblings. `scan-node`, `plan` and `fix` do not gain Docker discovery or container repair. The published 0.2.0 installer does not deliver this development change yet.
+`--docker off` limits this command to the original current-system scan. A scan launched inside a container does not inspect siblings. `scan-node`, `plan` and `fix` do not gain Docker discovery or container repair. Upgrade to 0.3.0 or newer to use this feature.
 
 The adapter uses bounded GET/HEAD requests over a local Unix socket; it never uses exec, starts/restarts containers, installs tools, or reads process arguments/environment. Files are read through the archive API into memory, without extracting them to disk. Ubuntu/Debian package versions reuse the existing reviewed vendor rules; custom PHP header versions and Alpine packages remain unauthenticated hints with UNKNOWN risk. Updating containers belongs in the reviewed image/build/deployment workflow.
 

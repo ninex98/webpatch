@@ -136,7 +136,7 @@ READY_FOR_REVIEW 仅说明有限诊断输入可审阅，执行准入仍 BLOCKED�
 
 2D.4 扩展原 CI，临时 VM 中比较相关进程 PID/starttime 和配置/APT/dpkg 状态，并注入无害映射删除/替换、配置变化等反例。当前验收进度和源码对应关系以 [development-status.md](development-status.md) 及 evidence/phase-2d4 为准，不能把有限测试站点扩展为任意生产环境保证。
 
-## 8. 宿主机 Docker 只读发现（开发分支，尚未发布）
+## 8. 宿主机 Docker 只读发现（0.3.0）
 
 `scan` 默认增加独立 DockerReader 能力；其他计划、准备和修复入口仍只使用原有当前系统证据。Docker 容器结果位于报告的 `docker` 字段，各自绑定容器 ID、镜像 ID、文件证据摘要和发行版元数据，不合并进宿主机 packages/assessments，不开放容器原地修复。存在低于已审阅厂商修复线的容器包时，scan 总体为 POTENTIALLY_AFFECTED / exit 1；其他情况仍 UNKNOWN / exit 2。
 

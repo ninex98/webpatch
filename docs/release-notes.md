@@ -1,11 +1,15 @@
-# WebPatch 0.2.0 — Clear results and guided repair / 清晰结果与引导修复
+# WebPatch 0.3.0 — Docker discovery / Docker 自动发现
 
-默认扫描改为分层摘要：结论、可能受影响的包、待核实项和下一步。支持中文/英文、自动终端颜色、NO_COLOR 和 --details；JSON 与退出码保持兼容。安装器收敛成功日志，修复 _apt 读取公开 deb 的权限问题，失败仍显示完整错误。
+在宿主机运行 `webpatch scan --lang zh`，现在会自动发现一个本机 Docker 实例，并逐个列出容器名、镜像、PHP 软件包、常见安装路径、头文件版本和进程线索。无需在容器中安装 WebPatch。权限拒绝、容器停止、读取失败和覆盖限额都有具体说明及下一步；宿主机空清单不再掩盖容器结果。
 
-Default scans now show a readable result, affected packages, remaining checks and next steps. English/Chinese output, terminal colors and --details are available; JSON and scan exit codes remain compatible. Installation shows concise progress and retains complete failure diagnostics.
+Running `webpatch scan` on the host now discovers one local Docker daemon and reports each container's image, PHP packages, conventional installation paths, header versions and process hints. No WebPatch installation inside containers is required. Access failures, stopped containers, read errors and coverage limits have explicit next steps.
 
-`sudo webpatch fix` guides preparation and package repair using the existing supported profiles, manages review files/receipts, and requires the complete displayed plan hash for each change. Existing probes and authenticated package archives remain prerequisites. Missing evidence blocks repair; no --yes, automatic probe deployment or hidden service action is added. Cancelling after preparation does not undo service changes; recovery receipts are retained.
+Scans use bounded local GET/HEAD requests. They do not exec commands in containers, install software or restart services. Use `--docker-socket /absolute/path` for a custom/rootless Unix socket or `--docker off` for the original current-system scope. Remote contexts, other daemons, Kubernetes/containerd and arbitrary custom paths are not automatically covered.
 
-Supported install targets: Ubuntu 22.04/24.04 and Debian 12/13. Confirmed repairs remain limited to official amd64 PHP FPM/mod_php profiles. Other systems/architectures and container in-place repair remain unsupported. All safety results retain safe=false; installation does not establish runtime safety.
+Ubuntu/Debian package versions reuse the existing reviewed vendor rules. Alpine and custom PHP installations remain UNKNOWN; header versions, image names and successful reads do not authenticate running code or patch provenance. Host and container inventories remain separate. A potentially affected container package produces scan exit 1; other incomplete evidence remains exit 2 / UNKNOWN. All safe fields remain false. Containers must be updated through their image/build/deployment workflow; no in-place container repair is added.
 
-Rules still expire at **2026-10-29 00:00 UTC**; this release does not extend their validity. Upgrade by running the installation command again. Old preparation receipts/plans bind implementation hashes and must be regenerated after a program update.
+Supported installer targets remain Ubuntu 22.04/24.04 and Debian 12/13. Confirmed host repairs retain the existing official amd64 PHP FPM/mod_php prerequisites and exact confirmation. Existing plans/receipts bind implementation hashes and must be regenerated after an upgrade.
+
+再次运行 README 中的安装命令即可升级，确认 `webpatch --version` 显示 `0.3.0`，再执行 `webpatch scan --lang zh`。默认只检查一个本机 Docker daemon；需要有访问该 socket 的权限。
+
+Rules still expire at **2026-10-29 00:00 UTC**. This release does not change risk rules or extend their validity.
