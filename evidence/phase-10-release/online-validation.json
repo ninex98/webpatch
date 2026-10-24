@@ -1,0 +1,77 @@
+{
+  "result": "PASS",
+  "results": {
+    "jammy-verify": {
+      "result": {
+        "result": "PASS",
+        "version": "0.3.0",
+        "install": "public latest release",
+        "python_dependency": "installed",
+        "sudo_elevation": "PASS",
+        "scan": "UNKNOWN",
+        "docker_options": "PASS",
+        "scope": "current container only",
+        "dpkg_unchanged": true
+      },
+      "log_sha256": "3fac80220cb058bb9c0fa5aa3bd6583610bf0d5d8143bb7fa244cd08130cc7e8"
+    },
+    "noble-verify": {
+      "result": {
+        "result": "PASS",
+        "version": "0.3.0",
+        "install": "public latest release",
+        "python_dependency": "installed",
+        "sudo_elevation": "PASS",
+        "scan": "UNKNOWN",
+        "docker_options": "PASS",
+        "scope": "current container only",
+        "dpkg_unchanged": true
+      },
+      "log_sha256": "bca27be9db2a271345bc38da215ecf968b30d1a8fbf72399eff1a19fdfbcc7bf"
+    },
+    "bookworm-verify": {
+      "result": {
+        "result": "PASS",
+        "version": "0.3.0",
+        "install": "public latest release",
+        "python_dependency": "installed",
+        "sudo_elevation": "PASS",
+        "scan": "UNKNOWN",
+        "docker_options": "PASS",
+        "scope": "current container only",
+        "dpkg_unchanged": true
+      },
+      "log_sha256": "19604091b90d35c41db1e866b14731e3a91989cff93f0fe39ab15f0cf82af087"
+    },
+    "trixie-verify": {
+      "result": {
+        "result": "PASS",
+        "version": "0.3.0",
+        "install": "public latest release",
+        "python_dependency": "installed",
+        "sudo_elevation": "PASS",
+        "scan": "UNKNOWN",
+        "docker_options": "PASS",
+        "scope": "current container only",
+        "dpkg_unchanged": true
+      },
+      "log_sha256": "ac48bb4888f21d3c008533dfc915d2be7d0e57c5805426f100b421d89e3b8153"
+    },
+    "noble-upgrade": {
+      "result": {
+        "result": "PASS",
+        "upgrade": "0.2.0 -> 0.3.0",
+        "docker_options": true,
+        "quiet_output": true
+      },
+      "log_sha256": "ed87a58ae4b6d8945a46192c1daaef124179774c1a96bae42cba1981c241f592"
+    }
+  },
+  "image_ids": {
+    "jammy": "sha256:2f773b71e75658a501ff9a6d52b115c512b12194ca36c70e45d9cec49e911411",
+    "noble": "sha256:ff130c66eca37059a50d0613db0bba42fe58b2499b35f8a400239947a2ea8b23",
+    "bookworm": "sha256:1d219397d0a77766f88c8bb199b4795a1b2d93a3bcae5bebd96a2e2b8a2c207a",
+    "trixie": "sha256:ee5031efe33ecef44d8d5fc344cf37f588706eeee15693f0dd90f9ff1000fb72"
+  },
+  "no_host_mounts": true
+}

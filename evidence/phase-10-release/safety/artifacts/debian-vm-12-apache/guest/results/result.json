@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "scope": "Debian VM service discovery and signed archive identity only",
+  "package": "libapache2-mod-php8.2",
+  "service": "apache2.service",
+  "runtime_count": 6,
+  "environment": {
+    "os_id": "debian",
+    "version_id": "12",
+    "codename": "bookworm",
+    "scope": "host_or_unidentified_container",
+    "mount_namespace": "mnt:[4026531841]",
+    "scope_sha256": "181e7908dbc9913661ac8d63ab9d7130fd40755f1bf82b86b2b7b63e5c8f1724"
+  }
+}

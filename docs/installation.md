@@ -1,6 +1,6 @@
 # Linux 安装与发布 / Linux installation and releases
 
-**当前状态（2026-10-23）：[v0.2.0 已公开发布](https://github.com/ninex98/webpatch/releases/tag/v0.2.0)。** / v0.2.0 is published. The commands below download the versioned GitHub Release package.
+**当前状态（2026-10-24）：[v0.3.0 已公开发布](https://github.com/ninex98/webpatch/releases/tag/v0.3.0)。** / v0.3.0 is published. The commands below download the versioned GitHub Release package.
 
 ## 用户安装 / Install
 
@@ -25,7 +25,7 @@ Paste the following block to install or upgrade. It retries failed script downlo
 )
 ```
 
-临时文件会自动清理，无需手动管理。上面的重试只覆盖入口脚本的下载；已发布的 0.2.0 安装器后续下载也可能因网络中断失败。需要固定版本时，将 URL 中的 `latest/download` 改为 `download/v0.2.0`，并将执行行改为 `sh "$webpatch_tmp/install.sh" --version 0.2.0`。只有安装成功并确认 `webpatch --version` 为 0.2.0 或更新版本后，才使用 `--lang zh` / `fix`。
+临时文件会自动清理，无需手动管理。上面的重试只覆盖入口脚本的下载；已发布的 0.3.0 安装器后续下载也可能因网络中断失败。需要固定版本时，将 URL 中的 `latest/download` 改为 `download/v0.3.0`，并将执行行改为 `sh "$webpatch_tmp/install.sh" --version 0.3.0`。只有安装成功并确认 `webpatch --version` 为 0.3.0 或更新版本后，即可使用自动 Docker 检查；`--lang zh` / `fix` 从 0.2.0 起提供。
 
 如需先审阅脚本，可自行下载后阅读再执行；快速安装段落在下载成功后会立即运行脚本。
 
@@ -52,7 +52,7 @@ type -a webpatch
 
 若普通 `webpatch` 与 `/usr/bin/webpatch` 版本不同，检查 PATH、别名或旧虚拟环境。若版本仍是 0.1.0，`--lang` 不识别是预期结果，说明当前调用的程序尚未更新。
 
-### 直接安装已校验的 0.2.0 包 / Checked package fallback
+### 直接安装已校验的 0.3.0 包 / Checked package fallback
 
 如果入口脚本的下载仍中断，可使用下面这段固定版本命令。它只下载一个官方 Release 包，强制 IPv4/HTTP 1.1 作为另一条连接尝试，重试失败下载，核对公开 SHA256 后才调用 APT。不能据此认定原错误一定由 IPv6 或 HTTP/2 引起；仅有 IPv6 的环境应移除 `-4`。
 
@@ -64,25 +64,25 @@ type -a webpatch
   curl -4 --http1.1 -fsSL --retry 5 --retry-all-errors --retry-max-time 180 \
     --connect-timeout 15 --max-time 60 \
     --proto '=https' --proto-redir '=https' --tlsv1.2 \
-    https://github.com/ninex98/webpatch/releases/download/v0.2.0/webpatch_0.2.0_all.deb \
-    -o "$webpatch_tmp/webpatch_0.2.0_all.deb"
+    https://github.com/ninex98/webpatch/releases/download/v0.3.0/webpatch_0.3.0_all.deb \
+    -o "$webpatch_tmp/webpatch_0.3.0_all.deb"
   printf '%s  %s\n' \
-    '6cb409a579e05407b296fb6794ae912356cbaaeae0f31aa04d6e08247156b5e6' \
-    "$webpatch_tmp/webpatch_0.2.0_all.deb" | sha256sum -c -
+    'a754f7da55a79fb49073d516353b25097296e5e9af8cd9712788ece00ef8bcd2' \
+    "$webpatch_tmp/webpatch_0.3.0_all.deb" | sha256sum -c -
   chmod 0711 "$webpatch_tmp"
-  chmod 0644 "$webpatch_tmp/webpatch_0.2.0_all.deb"
+  chmod 0644 "$webpatch_tmp/webpatch_0.3.0_all.deb"
   if [ "$(id -u)" -eq 0 ]; then
-    apt-get install -y --no-install-recommends --no-remove "$webpatch_tmp/webpatch_0.2.0_all.deb"
+    apt-get install -y --no-install-recommends --no-remove "$webpatch_tmp/webpatch_0.3.0_all.deb"
   else
-    sudo apt-get install -y --no-install-recommends --no-remove "$webpatch_tmp/webpatch_0.2.0_all.deb"
+    sudo apt-get install -y --no-install-recommends --no-remove "$webpatch_tmp/webpatch_0.3.0_all.deb"
   fi
   /usr/bin/webpatch --version
 )
 ```
 
-确认显示 `0.2.0` 后，运行 `webpatch scan --lang zh`。扫描退出码 1/2 是检查结论，不是升级失败。
+确认显示 `0.3.0` 后，运行 `webpatch scan --lang zh`。扫描退出码 1/2 是检查结论，不是升级失败。
 
-上述 SHA256 对应 [v0.2.0 的官方安装包](https://github.com/ninex98/webpatch/releases/download/v0.2.0/webpatch_0.2.0_all.deb) 与 [SHA256SUMS](https://github.com/ninex98/webpatch/releases/download/v0.2.0/SHA256SUMS)。如果服务器始终无法连接 GitHub，可在能访问 GitHub 的电脑下载这两个文件，传到服务器，先执行 `sha256sum -c SHA256SUMS --ignore-missing`，确认包校验成功，再使用 `sudo apt-get install ./webpatch_0.2.0_all.deb`。校验列表来源仍是 GitHub HTTPS，不是独立发布者签名。
+上述 SHA256 对应 [v0.3.0 的官方安装包](https://github.com/ninex98/webpatch/releases/download/v0.3.0/webpatch_0.3.0_all.deb) 与 [SHA256SUMS](https://github.com/ninex98/webpatch/releases/download/v0.3.0/SHA256SUMS)。如果服务器始终无法连接 GitHub，可在能访问 GitHub 的电脑下载这两个文件，传到服务器，先执行 `sha256sum -c SHA256SUMS --ignore-missing`，确认包校验成功，再使用 `sudo apt-get install ./webpatch_0.3.0_all.deb`。校验列表来源仍是 GitHub HTTPS，不是独立发布者签名。
 
 ## 升级、卸载与边界 / Upgrade, uninstall and boundaries
 

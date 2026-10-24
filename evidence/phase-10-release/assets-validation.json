@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "release_source": "ec1c7783cb8428666de8249774a55629aacea2a0",
+  "release_tag": "v0.3.0",
+  "draft_and_tested_artifacts_match": true,
+  "sha256": {
+    "install.sh": "5dde94933e06e5e9ba67f98cc8d4bc69a9eba15e227824c1e0cf0982547a9cb9",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "SHA256SUMS": "499388e7f83cd9e8433651eeb5c62a7135b98f34f878b7bc292f12bc66e89e69",
+    "webpatch_0.3.0_all.deb": "a754f7da55a79fb49073d516353b25097296e5e9af8cd9712788ece00ef8bcd2"
+  }
+}

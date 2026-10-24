@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "date_policy": "Frozen rule evaluation at 2026-10-23T00:00:00+00:00",
+  "docker_server": "28.0.4",
+  "images": {
+    "webpatch-discovery-packages": "sha256:144e506ca305d987d6e018fd45fc67592b1212c33ee7ad3322defba9bc9920a6",
+    "php:8.3-fpm-alpine": "sha256:f59bd79cb8091642ac0daa96f068d2838352e8b99b54b108df2d6c5b59180a28",
+    "ubuntu:22.04": "sha256:cee13550f97b8a595506e8e4ca74263ba44924248779a4ba4f942e197652acff"
+  },
+  "container_ids": [
+    "ccc1c4c3a24b0b3f122265f8a319176cab1234cb4a2df72902f5fb775432b718",
+    "a5f7b7ed1a743bb40f3b7cdd0c4a85f4434b4bc9f40f6eb43a17f19160481381",
+    "34b28f95bb9d111063ae8cd7be550d34565c8dec912f932502f1002ed109c685",
+    "5d58726871a8aadd62cac137dc99528e239f83a5d3555f905c6e9eec74503fd7"
+  ],
+  "before": {
+    "ccc1c4c3a24b0b3f122265f8a319176cab1234cb4a2df72902f5fb775432b718": {
+      "state": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":8977,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-24T02:55:31.257854619Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:144e506ca305d987d6e018fd45fc67592b1212c33ee7ad3322defba9bc9920a6|true\n",
+      "diff": ""
+    },
+    "a5f7b7ed1a743bb40f3b7cdd0c4a85f4434b4bc9f40f6eb43a17f19160481381": {
+      "state": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":9040,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-24T02:55:31.382370029Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:f59bd79cb8091642ac0daa96f068d2838352e8b99b54b108df2d6c5b59180a28|true\n",
+      "diff": ""
+    },
+    "34b28f95bb9d111063ae8cd7be550d34565c8dec912f932502f1002ed109c685": {
+      "state": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":11572,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-24T02:55:32.726156892Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:cee13550f97b8a595506e8e4ca74263ba44924248779a4ba4f942e197652acff|true\n",
+      "diff": ""
+    },
+    "5d58726871a8aadd62cac137dc99528e239f83a5d3555f905c6e9eec74503fd7": {
+      "state": "{\"Status\":\"created\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"0001-01-01T00:00:00Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:f59bd79cb8091642ac0daa96f068d2838352e8b99b54b108df2d6c5b59180a28|true\n",
+      "diff": ""
+    }
+  },
+  "after": {
+    "ccc1c4c3a24b0b3f122265f8a319176cab1234cb4a2df72902f5fb775432b718": {
+      "state": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":8977,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-24T02:55:31.257854619Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:144e506ca305d987d6e018fd45fc67592b1212c33ee7ad3322defba9bc9920a6|true\n",
+      "diff": ""
+    },
+    "a5f7b7ed1a743bb40f3b7cdd0c4a85f4434b4bc9f40f6eb43a17f19160481381": {
+      "state": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":9040,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-24T02:55:31.382370029Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:f59bd79cb8091642ac0daa96f068d2838352e8b99b54b108df2d6c5b59180a28|true\n",
+      "diff": ""
+    },
+    "34b28f95bb9d111063ae8cd7be550d34565c8dec912f932502f1002ed109c685": {
+      "state": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":11572,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-24T02:55:32.726156892Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:cee13550f97b8a595506e8e4ca74263ba44924248779a4ba4f942e197652acff|true\n",
+      "diff": ""
+    },
+    "5d58726871a8aadd62cac137dc99528e239f83a5d3555f905c6e9eec74503fd7": {
+      "state": "{\"Status\":\"created\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"0001-01-01T00:00:00Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}|0|sha256:f59bd79cb8091642ac0daa96f068d2838352e8b99b54b108df2d6c5b59180a28|true\n",
+      "diff": ""
+    }
+  },
+  "installed_cli": "PASS",
+  "checks": [
+    "four independent container inventories",
+    "native dpkg comparisons",
+    "official PHP custom header",
+    "stopped and non-PHP containers",
+    "unchanged container state and filesystem",
+    "Chinese CLI rendering"
+  ]
+}

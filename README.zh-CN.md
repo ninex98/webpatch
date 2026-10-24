@@ -3,7 +3,7 @@
 **发现 PHP 运行时风险，核实证据，再确认修复。** 扫描只读，证据不足时明确显示 `UNKNOWN`。
 
 <p>
-  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.2.0"><img src="assets/readme/preview-badge.svg" alt="0.2.0 · Linux preview"></a>
+  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.3.0"><img src="assets/readme/preview-badge.svg" alt="0.3.0 · Linux preview"></a>
   <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="Safety checks on main"></a>
   <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="Apache-2.0"></a>
 </p>
@@ -45,7 +45,7 @@ webpatch scan --lang zh
 
 | 命令 | 效果 |
 | :--- | :--- |
-| `webpatch scan --lang zh` | 中文显示 PHP 检查结论、证据缺口和下一步 |
+| `webpatch scan --lang zh` | 检查宿主机 PHP 和本机 Docker 容器，显示结果及下一步 |
 | `webpatch scan --details --lang zh` | 展开具体检查和待核实内容 |
 | `webpatch plan --lang zh` | 预览候选升级和阻断原因，不安装软件包 |
 | `webpatch fix --dry-run --lang zh` | 只检查修复条件，不修改系统 |
@@ -61,13 +61,13 @@ webpatch scan --lang zh
 ## 支持范围
 
 - **PHP 修复：** Ubuntu 22.04/24.04、Debian 12/13 的官方 amd64 软件包，受支持的 FPM/mod_php 环境；精确确认后进行同分支修复。
-- **容器与 Node.js：** 只读清单和容器重建建议；不在容器内原地修复、不自动部署镜像。
+- **Docker 与 Node.js：** 自动发现本机 Docker 容器、读取 Node 运行时清单并提供容器重建建议；不在容器内原地修复、不自动部署镜像。
 - **其他环境：** PPA/Sury/ESM、自编译、不支持的架构及 macOS/Windows 没有认证的修复路径。不提供自动回滚，也不宣称整台服务器安全。
 
 当前 PHP 规则聚焦 PHP2Shell（`CVE-2026-109618` / `CVE-2026-109619`）。内置规则有效至 **2026-10-29 00:00 UTC**，到期后保持 `UNKNOWN`，须经来源审阅后更新。[详细能力与验收记录 →](docs/development-status.md)
 
 ## 更多文档
 
-[安装与排错](docs/installation.md) · [CLI 参考](docs/cli.md) · [架构设计](docs/design.md) · [验收证据](evidence/phase-6c-release/README.md)
+[安装与排错](docs/installation.md) · [CLI 参考](docs/cli.md) · [架构设计](docs/design.md) · [验收证据](evidence/phase-10-release/README.md)
 
 [参与贡献](CONTRIBUTING.md) · [Apache-2.0 许可证](LICENSE)

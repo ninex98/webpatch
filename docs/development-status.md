@@ -1,5 +1,7 @@
 # 开发状态 / Development status
 
+当前公开版本：[v0.3.0](https://github.com/ninex98/webpatch/releases/tag/v0.3.0)（2026-10-24）。Docker 自动发现已通过安装后宿主扫描验收；完整安全矩阵 18/18 PASS。发布记录见 [阶段 10](../evidence/phase-10-release/README.md)。后文较早阶段的日期、版本和证据保留为历史记录。
+
 核对日期：2026-10-23（Asia/Shanghai）。**原设计四阶段已按声明的有限范围完成并分别验收。** 原四阶段最终受测功能/测试/CI 源码 `941040c06cb29fc73cf64dcf81a78867d033f3e8`，Actions [39888070774](https://github.com/ninex98/webpatch/actions/runs/39888070774) **17/17 PASS**。最终文档/证据提交晚于受测源码；源码一致性、制品摘要、日志/JUnit 和各项结果见 [最终验收](../evidence/final-acceptance/README.md)。
 
 ## 阶段 6：终端体验与引导修复 / Readable terminal and guided repair
@@ -56,6 +58,6 @@ collector 协议 3，只接受两项已审阅默认 INI 指令的新增，既有
 
 开发宿主 PHP/APT/系统包/服务未修改；实际安装/服务测试仅在 disposable 容器、GitHub hosted Ubuntu VM 与独立 Debian 客体发生，没有漏洞利用或生产修复。原 README/SVG 工作由 `13c6c9c` 保存，视觉资源保持。自动镜像构建/发布、npm 修复、公开签名 APT 仓库不在原设计四阶段范围内，也未执行；版本化 Release 由上述独立 5A/5B 阶段交付。
 
-## Docker discovery (0.3.0 release candidate)
+## Docker discovery (0.3.0)
 
-`scan` now has a separate read-only local Docker adapter and per-container output. It reads bounded metadata without installing WebPatch or executing commands inside containers, reuses the existing Ubuntu/Debian rules, and keeps custom PHP/Alpine evidence UNKNOWN. Host repair admission is unchanged. See [CLI usage](cli.md#local-docker-discovery-030) and the new stage evidence in [phase-9-docker](../evidence/phase-9-docker/README.md). The 0.3.0 release candidate is awaiting its exact-source safety/distribution CI; it is not in 0.2.0.
+`scan` now has a separate read-only local Docker adapter and per-container output. It reads bounded metadata without installing WebPatch or executing commands inside containers, reuses the existing Ubuntu/Debian rules, and keeps custom PHP/Alpine evidence UNKNOWN. Host repair admission is unchanged. See [CLI usage](cli.md#local-docker-discovery-030) and the new stage evidence in [phase-9-docker](../evidence/phase-9-docker/README.md). Version 0.3.0 source `ec1c7783cb8428666de8249774a55629aacea2a0` passed [18/18 safety jobs](https://github.com/ninex98/webpatch/actions/runs/40056144430), including the installed host CLI against four Docker containers. Python 3.10/3.12 each passed 698 tests. [Distribution](https://github.com/ninex98/webpatch/actions/runs/40056144427) passed all four OS installation targets, 23 cases each. Release and live-download evidence is retained in [phase-10-release](../evidence/phase-10-release/README.md).

@@ -1,0 +1,13 @@
+
+  WebPatch 0.2.0
+  ubuntu 24.04
+
+  [1/3] Downloading release...
+curl: (28) SSL connection timeout
+  [2/3] Checksum and package identity verified.
+  [3/3] Installing WebPatch and required dependencies...
+
+  Installed WebPatch 0.2.0.
+
+  Next: webpatch scan
+

@@ -1,0 +1,846 @@
+{
+  "result": "PASS",
+  "scope": "Debian read-only archive authentication, not repair certification",
+  "environment": {
+    "os_id": "debian",
+    "version_id": "13",
+    "codename": "trixie",
+    "scope": "container",
+    "mount_namespace": "mnt:[4026532219]",
+    "scope_sha256": "32b5f9a39f3ee54c1c3e52657c2532d6625ea63a3e0c88aabb50fc1966b479ed"
+  },
+  "package": {
+    "name": "php8.4-fpm",
+    "version": "8.4.27-1~deb13u1",
+    "architecture": "amd64",
+    "source_name": "php8.4",
+    "source_version": "8.4.27-1~deb13u1",
+    "status": "install ok installed",
+    "sapi": "fpm",
+    "evidence_id": "e8",
+    "provenance": "UNVERIFIED_LOCAL_METADATA"
+  },
+  "identity": {
+    "package_id": "php8.4-fpm:amd64",
+    "status": "AUTHENTICATED_RUNTIME_FILES",
+    "archive_sha256": "4ec57a9b040383c94a70cfcceae5cd53708103ccc99db750144019bb5233b23b",
+    "files": {
+      "/usr/lib/php/8.4/sapi/fpm": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "/usr/lib/php/php8.4-fpm-reopenlogs": "bc55dfffe0d961b8a9e4b36da663eccfcfe9e35f86a394304c7df462a951c4cd",
+      "/usr/lib/systemd/system/php8.4-fpm.service": "4eabf713a657f4242a9ba1302fae001ba65b6555390070cf744e1ecac6471fae",
+      "/usr/lib/tmpfiles.d/php8.4-fpm.conf": "eaf6dd6f6089a66215c4cf470a8d47e9e98b137dd144fdf3015ca528bfb7d2ac",
+      "/usr/sbin/php-fpm8.4": "188476ccd85e7956b2a8a3887d3e7eb92ddae1580eb1d2daacfaed1a4376a8e1"
+    },
+    "blockers": [],
+    "evidence_ids": [
+      "e8",
+      "e95",
+      "e96",
+      "e97",
+      "e98",
+      "e100",
+      "e101",
+      "e102",
+      "e103",
+      "e104",
+      "e105",
+      "e106",
+      "e107"
+    ]
+  },
+  "observed_pinned_signers": [
+    "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+    "5E04A1E3223A19A20706E20F9904613D4CCE68C6"
+  ],
+  "reviewed_pins": {
+    "archive": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+    "security": "5E04A1E3223A19A20706E20F9904613D4CCE68C6",
+    "release": "41587F7DB8C774BCCF131416762F67A0B2C39DE4",
+    "suite": "stable"
+  },
+  "keyring_package_version": "2025.1",
+  "keyring_sha256": {
+    "/usr/share/keyrings/debian-archive-keyring.pgp": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+  },
+  "tampered_signature": "REJECTED",
+  "state_sha256": "25d1e1ad5e36ddf694564c3bd4923aee4f192d3983568d9dab20345418264f82",
+  "evidence": [
+    {
+      "id": "e1",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "3a95c5864ac8347c12d5655cbd74854b72a429d4478330043fa0d6cde8280f74"
+    },
+    {
+      "id": "e2",
+      "operation": "read_text",
+      "target": "/proc/self/cgroup",
+      "outcome": "OK",
+      "sha256": "9430a96d26964e5f486dd7e5069e1d87137761befe4fbd87f4f6d091c6cf4a2b"
+    },
+    {
+      "id": "e3",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "OK",
+      "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+    },
+    {
+      "id": "e4",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e5",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "a2591b13f93c68563c6b2b9998afa22c9422cf2644136b83551f6eb43095b662"
+    },
+    {
+      "id": "e6",
+      "operation": "read_text",
+      "target": "/proc/sys/kernel/random/boot_id",
+      "outcome": "OK",
+      "sha256": "afddf4dc49ccf6c188a1bba75ab8bd2ff6e7089185a5b4fe22a1fd0ef8b57086"
+    },
+    {
+      "id": "e7",
+      "operation": "read_text",
+      "target": "/etc/machine-id",
+      "outcome": "OK",
+      "sha256": "8dd7917dcc695e13630d345bcb4bee88e14c43079fc0c16ff8634ad242b22901"
+    },
+    {
+      "id": "e8",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "1ccaead75207fcc4f3b440a1f1f2acdcbbbe4629cbc4e3ee0d11d3101253d215"
+    },
+    {
+      "id": "e9",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "OK",
+      "sha256": "c21a566539e4a15169db830c9f33409def63361e3fa0a169b789ba74dbe79c92"
+    },
+    {
+      "id": "e10",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e11",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e12",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e13",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e14",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "1a8b6f2f86d19e506c3a8d7f790215bc4c8edfedd7140b5a9423e9f970cf261d"
+    },
+    {
+      "id": "e15",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e16",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "9c045086dca88456de25802ef130c7540413342dc32f0857711d10897a1dbfd7"
+    },
+    {
+      "id": "e17",
+      "operation": "read_text",
+      "target": "/proc/1/comm",
+      "outcome": "OK",
+      "sha256": "9ba0d0f180c19cfcff017d320464bb195f1dde958ed6fd0bb926144d73b930c3"
+    },
+    {
+      "id": "e18",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "83f4338c9afa3a3cbd37178dbe4cf45afa7100b6cdaa510d31261c0cec1713ff"
+    },
+    {
+      "id": "e19",
+      "operation": "listdir",
+      "target": "/etc/php/8.4/fpm/pool.d",
+      "outcome": "OK",
+      "sha256": "b2e30bbb1c148d29d076c89d181fa08794ac6972581425716d63730f9b5fce2f"
+    },
+    {
+      "id": "e20",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "a60b06050426bf7df2525b578a22bc6a0c3b7cde6ccfbcfb1cbbce233ac17729"
+    },
+    {
+      "id": "e21",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/php-fpm.conf",
+      "outcome": "OK",
+      "sha256": "83f4338c9afa3a3cbd37178dbe4cf45afa7100b6cdaa510d31261c0cec1713ff"
+    },
+    {
+      "id": "e22",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/pool.d/www.conf",
+      "outcome": "OK",
+      "sha256": "a60b06050426bf7df2525b578a22bc6a0c3b7cde6ccfbcfb1cbbce233ac17729"
+    },
+    {
+      "id": "e23",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/php.ini",
+      "outcome": "OK",
+      "sha256": "ec64202223861a21dd16056340275069ed31e8708a690cb72fa949771f514234"
+    },
+    {
+      "id": "e24",
+      "operation": "listdir",
+      "target": "/etc/php/8.4/cli/conf.d",
+      "outcome": "OK",
+      "sha256": "1f81ab5f1de21f7faa744c51c91b2ff0799c8b7e6576ab6a5e14564a859d1252"
+    },
+    {
+      "id": "e25",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "921e11ab3d25197ffcc3030a076ba7682fc05aeb6c6a26c57ab0a14ad77f0a7a"
+    },
+    {
+      "id": "e26",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "20c13528ffb4fd6943d06fb42612f46c9f20efb8b1f9c76850ae04c8d258b6e4"
+    },
+    {
+      "id": "e27",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "f8ffe3fad2d3a72876c9110051b168e9e4e7e422525978a89347007d1479a3a8"
+    },
+    {
+      "id": "e28",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "e9d31689eb67a82b66f7b196312cfa3b285b3c58419f5563f23b3456ee86a05c"
+    },
+    {
+      "id": "e29",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "39fd610cd70cdb817a313df87a2f66584584e2b119fcfd76bad552cea923e5ef"
+    },
+    {
+      "id": "e30",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "68a7fddfdcb3314aec0b4f2c6ac4c03c878b5ecafd9e28fadf4a7a7e572d4670"
+    },
+    {
+      "id": "e31",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "04a6edb153a65bd9179f1dba343ab1c8368e4e7468457e17b03fbff5676a4e34"
+    },
+    {
+      "id": "e32",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "51edd59f877d87d11d671b90f4fa2f36ead81a4cbb8a04cfd699d55cb1777bdb"
+    },
+    {
+      "id": "e33",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "2cb86bbde1e03d4688408667b6307f6cc552368a2967b0f48d9e90c5b7fd39dc"
+    },
+    {
+      "id": "e34",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "3b1e7db914f240c2ee086c2d1216a5d4f446cdf3e1f05a6dc41bfdb63d4caf46"
+    },
+    {
+      "id": "e35",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "ed2b6ef3d4d33e5d2e68d61039713f859ad4d31f09251fe86394f898a8be5325"
+    },
+    {
+      "id": "e36",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "6f22e4c3d46337741e83ffa04562b6311c0cd9cea101ddad01db58d3f66123d0"
+    },
+    {
+      "id": "e37",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "c1ead7ccb37b676deacdaa48b5c8ae5b93e1e5d824f8e59f553b984c876f1040"
+    },
+    {
+      "id": "e38",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "11b9bcb264e77ad9ab9bfa978369b6ce24bd4f0ec1514dc7ee0babe8b181c81b"
+    },
+    {
+      "id": "e39",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "db8b6df89ae0cf43e7b72f4d9abfd73b16010f3d4f47aea324479adf1086b373"
+    },
+    {
+      "id": "e40",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "caa3d25f19fb9b2f1e707365ff542cfa3359eed6434f3b1d53ec7eac76eacf33"
+    },
+    {
+      "id": "e41",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "33eb31a9080061da7cfda5d237d1b87a7bfaaf0eb75b412f61f08aa3bb0fcafa"
+    },
+    {
+      "id": "e42",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "1e6653d520e366f405b599a014897b8af2e72a4f71fc3b7016455387c1642a08"
+    },
+    {
+      "id": "e43",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/cli/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "43ecac8c093d974ea7c75475da00a196de41dd79f144d01e21a626599ee07b67"
+    },
+    {
+      "id": "e44",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/php.ini",
+      "outcome": "OK",
+      "sha256": "81dca5c70b540d46d73d4d6e36ed19f4b22fffa52d673c8975d3e36790035fbe"
+    },
+    {
+      "id": "e45",
+      "operation": "listdir",
+      "target": "/etc/php/8.4/fpm/conf.d",
+      "outcome": "OK",
+      "sha256": "1f81ab5f1de21f7faa744c51c91b2ff0799c8b7e6576ab6a5e14564a859d1252"
+    },
+    {
+      "id": "e46",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/10-opcache.ini",
+      "outcome": "OK",
+      "sha256": "921e11ab3d25197ffcc3030a076ba7682fc05aeb6c6a26c57ab0a14ad77f0a7a"
+    },
+    {
+      "id": "e47",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/10-pdo.ini",
+      "outcome": "OK",
+      "sha256": "20c13528ffb4fd6943d06fb42612f46c9f20efb8b1f9c76850ae04c8d258b6e4"
+    },
+    {
+      "id": "e48",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-calendar.ini",
+      "outcome": "OK",
+      "sha256": "f8ffe3fad2d3a72876c9110051b168e9e4e7e422525978a89347007d1479a3a8"
+    },
+    {
+      "id": "e49",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-ctype.ini",
+      "outcome": "OK",
+      "sha256": "e9d31689eb67a82b66f7b196312cfa3b285b3c58419f5563f23b3456ee86a05c"
+    },
+    {
+      "id": "e50",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-exif.ini",
+      "outcome": "OK",
+      "sha256": "39fd610cd70cdb817a313df87a2f66584584e2b119fcfd76bad552cea923e5ef"
+    },
+    {
+      "id": "e51",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-ffi.ini",
+      "outcome": "OK",
+      "sha256": "68a7fddfdcb3314aec0b4f2c6ac4c03c878b5ecafd9e28fadf4a7a7e572d4670"
+    },
+    {
+      "id": "e52",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-fileinfo.ini",
+      "outcome": "OK",
+      "sha256": "04a6edb153a65bd9179f1dba343ab1c8368e4e7468457e17b03fbff5676a4e34"
+    },
+    {
+      "id": "e53",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-ftp.ini",
+      "outcome": "OK",
+      "sha256": "51edd59f877d87d11d671b90f4fa2f36ead81a4cbb8a04cfd699d55cb1777bdb"
+    },
+    {
+      "id": "e54",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-gettext.ini",
+      "outcome": "OK",
+      "sha256": "2cb86bbde1e03d4688408667b6307f6cc552368a2967b0f48d9e90c5b7fd39dc"
+    },
+    {
+      "id": "e55",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-iconv.ini",
+      "outcome": "OK",
+      "sha256": "3b1e7db914f240c2ee086c2d1216a5d4f446cdf3e1f05a6dc41bfdb63d4caf46"
+    },
+    {
+      "id": "e56",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-phar.ini",
+      "outcome": "OK",
+      "sha256": "ed2b6ef3d4d33e5d2e68d61039713f859ad4d31f09251fe86394f898a8be5325"
+    },
+    {
+      "id": "e57",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-posix.ini",
+      "outcome": "OK",
+      "sha256": "6f22e4c3d46337741e83ffa04562b6311c0cd9cea101ddad01db58d3f66123d0"
+    },
+    {
+      "id": "e58",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-readline.ini",
+      "outcome": "OK",
+      "sha256": "c1ead7ccb37b676deacdaa48b5c8ae5b93e1e5d824f8e59f553b984c876f1040"
+    },
+    {
+      "id": "e59",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-shmop.ini",
+      "outcome": "OK",
+      "sha256": "11b9bcb264e77ad9ab9bfa978369b6ce24bd4f0ec1514dc7ee0babe8b181c81b"
+    },
+    {
+      "id": "e60",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-sockets.ini",
+      "outcome": "OK",
+      "sha256": "db8b6df89ae0cf43e7b72f4d9abfd73b16010f3d4f47aea324479adf1086b373"
+    },
+    {
+      "id": "e61",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-sysvmsg.ini",
+      "outcome": "OK",
+      "sha256": "caa3d25f19fb9b2f1e707365ff542cfa3359eed6434f3b1d53ec7eac76eacf33"
+    },
+    {
+      "id": "e62",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-sysvsem.ini",
+      "outcome": "OK",
+      "sha256": "33eb31a9080061da7cfda5d237d1b87a7bfaaf0eb75b412f61f08aa3bb0fcafa"
+    },
+    {
+      "id": "e63",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-sysvshm.ini",
+      "outcome": "OK",
+      "sha256": "1e6653d520e366f405b599a014897b8af2e72a4f71fc3b7016455387c1642a08"
+    },
+    {
+      "id": "e64",
+      "operation": "read_text",
+      "target": "/etc/php/8.4/fpm/conf.d/20-tokenizer.ini",
+      "outcome": "OK",
+      "sha256": "43ecac8c093d974ea7c75475da00a196de41dd79f144d01e21a626599ee07b67"
+    },
+    {
+      "id": "e65",
+      "operation": "read_text",
+      "target": "/etc/nginx/nginx.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e66",
+      "operation": "read_text",
+      "target": "/etc/apache2/apache2.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e67",
+      "operation": "listdir",
+      "target": "/etc/apt/sources.list.d",
+      "outcome": "OK",
+      "sha256": "fe2e73e17e14b2b68ab921f404ae95dae1f1a41f8d05d933fa7f10feebe3f716"
+    },
+    {
+      "id": "e68",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e69",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list.d/debian.sources",
+      "outcome": "OK",
+      "sha256": "92f92b671e7981b33724cd5a6d26e64d7b7b1bed28bc5f21bca6ea17a5f8e120"
+    },
+    {
+      "id": "e70",
+      "operation": "listdir",
+      "target": "/etc/apt/preferences.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e71",
+      "operation": "listdir",
+      "target": "/etc/apt/apt.conf.d",
+      "outcome": "OK",
+      "sha256": "101d4087f1b6f4bfa88c6280173a827b6fe48fd9c6a8c3832f3e74ac78c07d9f"
+    },
+    {
+      "id": "e72",
+      "operation": "read_text",
+      "target": "/etc/apt/preferences",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e73",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e74",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/01autoremove",
+      "outcome": "OK",
+      "sha256": "2780f7b10369fc887acf6ec756f3b6931f9069ec99986bbd986486e4eed382c6"
+    },
+    {
+      "id": "e75",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/70debconf",
+      "outcome": "OK",
+      "sha256": "fed70a45570ce8f79d1613c5ac1178d82bfa3b46b8009135eb230bd0a9866159"
+    },
+    {
+      "id": "e76",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-autoremove-suggests",
+      "outcome": "OK",
+      "sha256": "b9b4182826609045a6a6a4da411b153af1988c198eb8a24a4532f66032350755"
+    },
+    {
+      "id": "e77",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-clean",
+      "outcome": "OK",
+      "sha256": "3b3cd41fe592a9a9834e30e8ef856e8d45d555dc814263b3531b5973fe02a44e"
+    },
+    {
+      "id": "e78",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-gzip-indexes",
+      "outcome": "OK",
+      "sha256": "862839ddb034ee46ef3ad9807d47bc0ba21ce93005ef45b3cc85ccead1ff3f8b"
+    },
+    {
+      "id": "e79",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf.d/docker-no-languages",
+      "outcome": "OK",
+      "sha256": "5d9a6aac9c12da18d4b8f772afb29f0ed6961c6ed6e0bfbf36115751c14e973d"
+    },
+    {
+      "id": "e80",
+      "operation": "read_text",
+      "target": "/var/lib/apt/extended_states",
+      "outcome": "OK",
+      "sha256": "27f3310c304a63cd0c6616e5f08a7fa92d88b170cb098560b6b39ee66057e0d0"
+    },
+    {
+      "id": "e81",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/arch",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e82",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/diversions",
+      "outcome": "OK",
+      "sha256": "ecccf3ae29a16400e4d53fd4beb61bc4faff9ed222afbd2a6d85359a7414f078"
+    },
+    {
+      "id": "e83",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/statoverride",
+      "outcome": "OK",
+      "sha256": "6d282c4e685db3eba6debaa6fdbf49aa36e3f0a09279c70ce880e839eeae6e6d"
+    },
+    {
+      "id": "e84",
+      "operation": "listdir",
+      "target": "/var/lib/dpkg/updates",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e85",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "1ccaead75207fcc4f3b440a1f1f2acdcbbbe4629cbc4e3ee0d11d3101253d215"
+    },
+    {
+      "id": "e86",
+      "operation": "listdir",
+      "target": "/var/lib/apt/lists",
+      "outcome": "OK",
+      "sha256": "f8f099c016dfb0e41275066b94a18d9a7afafb84e16cf65632b2d0e13d2e55d4"
+    },
+    {
+      "id": "e87",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian_dists_trixie_InRelease",
+      "outcome": "OK",
+      "sha256": "4f338b3cef8bff455cacad493b684fd3f0a00a03e54e84a9c9798d2d550bd15d"
+    },
+    {
+      "id": "e88",
+      "operation": "run",
+      "target": "[\"/usr/bin/gpgv\", \"--status-fd=1\", \"--keyring\", \"/usr/share/keyrings/debian-archive-keyring.pgp\", \"/var/lib/apt/lists/deb.debian.org_debian_dists_trixie_InRelease\"]",
+      "outcome": "EXIT_0",
+      "sha256": "ef68019e390114b0d916815a1c506e76f3c82c157cf6469b19f770ef0590c2a2"
+    },
+    {
+      "id": "e89",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian_dists_trixie_InRelease",
+      "outcome": "OK",
+      "sha256": "4f338b3cef8bff455cacad493b684fd3f0a00a03e54e84a9c9798d2d550bd15d"
+    },
+    {
+      "id": "e90",
+      "operation": "package_index",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian_dists_trixie_main_binary-amd64_Packages.lz4",
+      "outcome": "OK",
+      "sha256": "a9144d00934b739c4e5e93ede3c8c323b54329fdd04fc28130e7ab29c86c0f0b"
+    },
+    {
+      "id": "e91",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian_dists_trixie-updates_InRelease",
+      "outcome": "OK",
+      "sha256": "59d9c13e4f82f398e1172cd287918238be6f66ac88a1d16f1da7d9606e074e93"
+    },
+    {
+      "id": "e92",
+      "operation": "run",
+      "target": "[\"/usr/bin/gpgv\", \"--status-fd=1\", \"--keyring\", \"/usr/share/keyrings/debian-archive-keyring.pgp\", \"/var/lib/apt/lists/deb.debian.org_debian_dists_trixie-updates_InRelease\"]",
+      "outcome": "EXIT_0",
+      "sha256": "b99d59a44f15cf0652f74061d2fbc048afac876a09b1b70b53e88817191f4407"
+    },
+    {
+      "id": "e93",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian_dists_trixie-updates_InRelease",
+      "outcome": "OK",
+      "sha256": "59d9c13e4f82f398e1172cd287918238be6f66ac88a1d16f1da7d9606e074e93"
+    },
+    {
+      "id": "e94",
+      "operation": "package_index",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian_dists_trixie-updates_main_binary-amd64_Packages.lz4",
+      "outcome": "OK",
+      "sha256": "010b298a3a14d55fc7a2ab24dac3b957db766979e54ccf8c4947732112f235b4"
+    },
+    {
+      "id": "e95",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian-security_dists_trixie-security_InRelease",
+      "outcome": "OK",
+      "sha256": "818ac5b4bdab53de84fcc7e05b378e4cb48ce42f566c83e51dc1e01259945263"
+    },
+    {
+      "id": "e96",
+      "operation": "run",
+      "target": "[\"/usr/bin/gpgv\", \"--status-fd=1\", \"--keyring\", \"/usr/share/keyrings/debian-archive-keyring.pgp\", \"/var/lib/apt/lists/deb.debian.org_debian-security_dists_trixie-security_InRelease\"]",
+      "outcome": "EXIT_0",
+      "sha256": "c222a1fe26f05b5c28fe07d2c34daa6e18fe588ef72e21bfde45108beefde2a0"
+    },
+    {
+      "id": "e97",
+      "operation": "read_text",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian-security_dists_trixie-security_InRelease",
+      "outcome": "OK",
+      "sha256": "818ac5b4bdab53de84fcc7e05b378e4cb48ce42f566c83e51dc1e01259945263"
+    },
+    {
+      "id": "e98",
+      "operation": "package_index",
+      "target": "/var/lib/apt/lists/deb.debian.org_debian-security_dists_trixie-security_main_binary-amd64_Packages.lz4",
+      "outcome": "OK",
+      "sha256": "2f00b8726d47c6d047348976d356f572b167ea8dfd2e81a97d9bf488710a65c2"
+    },
+    {
+      "id": "e99",
+      "operation": "listdir",
+      "target": "/cache",
+      "outcome": "OK",
+      "sha256": "301020549cb25dbb6e0786d9851627954aadbd296254fed7610aadc565864e90"
+    },
+    {
+      "id": "e100",
+      "operation": "archive_fingerprint",
+      "target": "/cache/php8.4-fpm_8.4.27-1~deb13u1_amd64.deb",
+      "outcome": "OK",
+      "sha256": "224bdf17009adef36aeae2f7470ae97f1dc4d7b1d23bf9f44224cac67b5ff15f"
+    },
+    {
+      "id": "e101",
+      "operation": "package_archive",
+      "target": "[\"/cache/php8.4-fpm_8.4.27-1~deb13u1_amd64.deb\", \"4ec57a9b040383c94a70cfcceae5cd53708103ccc99db750144019bb5233b23b\"]",
+      "outcome": "OK",
+      "sha256": "e48849806a0fbaa9dabe9922aa8d0ba3c9897f220bdcd220facc7f395ce2d7d5"
+    },
+    {
+      "id": "e102",
+      "operation": "archive_fingerprint",
+      "target": "/cache/php8.4-fpm_8.4.27-1~deb13u1_amd64.deb",
+      "outcome": "OK",
+      "sha256": "224bdf17009adef36aeae2f7470ae97f1dc4d7b1d23bf9f44224cac67b5ff15f"
+    },
+    {
+      "id": "e103",
+      "operation": "fingerprint",
+      "target": "/usr/lib/php/8.4/sapi/fpm",
+      "outcome": "OK",
+      "sha256": "96bc602f09881315fd3b4e2e6228c3c1154b284abfa4fbe43b94d98046b5fddf"
+    },
+    {
+      "id": "e104",
+      "operation": "fingerprint",
+      "target": "/usr/lib/php/php8.4-fpm-reopenlogs",
+      "outcome": "OK",
+      "sha256": "eb012576e25fc1556c79a954f0e725a6ec34c93005013779e812d39ea00ffec4"
+    },
+    {
+      "id": "e105",
+      "operation": "fingerprint",
+      "target": "/usr/lib/systemd/system/php8.4-fpm.service",
+      "outcome": "OK",
+      "sha256": "0bc4b4e052ab43d94c7ea6906dcaef8ded546b6b297703c9c784abb9941eebd5"
+    },
+    {
+      "id": "e106",
+      "operation": "fingerprint",
+      "target": "/usr/lib/tmpfiles.d/php8.4-fpm.conf",
+      "outcome": "OK",
+      "sha256": "f2efc802fb30cef1dbc26152d457d2d10417a94e9d248aad2ddde5c5ec995362"
+    },
+    {
+      "id": "e107",
+      "operation": "fingerprint",
+      "target": "/usr/sbin/php-fpm8.4",
+      "outcome": "OK",
+      "sha256": "99d1c200906092ae80a89de9246aa12b5b679dade4726ddb91d1c8b9296db341"
+    },
+    {
+      "id": "e108",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.4.27-1~deb13u1\", \"ge\", \"8.4.27-1~deb13u1\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e109",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.4.27-1~deb13u1\", \"ge\", \"8.4.27-1~deb13u1\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e110",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.4.27-1~deb13u1\", \"ge\", \"8.4.27-1~deb13u1\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e111",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.4.27-1~deb13u1\", \"ge\", \"8.4.27-1~deb13u1\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+[
+    {
+        "Id": "sha256:a52af7537c8abcbb29b08569d4a538699eb9dfdddc46a9fc817033453fb99870",
+        "RepoTags": [
+            "webpatch-release-test:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-24T03:55:35.335223081Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PYTHONDONTWRITEBYTECODE=1"
+            ],
+            "Cmd": [
+                "python3",
+                "tests/integration/installer_check.py"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 179086271,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/xqs1s560vwb0bfewcd3qpamvu/diff:/var/lib/docker/overlay2/orv7lj1wnqn6g5uytimctv9wi/diff:/var/lib/docker/overlay2/3902ae2766bed04449700c7f169a4ce07e8a63c3e3532a43ce60d329310a09e3/diff",
+                "MergedDir": "/var/lib/docker/overlay2/yrswaasc046foztnuodefkaq1/merged",
+                "UpperDir": "/var/lib/docker/overlay2/yrswaasc046foztnuodefkaq1/diff",
+                "WorkDir": "/var/lib/docker/overlay2/yrswaasc046foztnuodefkaq1/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:32ab39660fd51c6dc3aae486b42d42bbe8fe4c1db78eaf57bb9c21198de48a16",
+                "sha256:dfb11045387174906ebed966253a2cdccba4427f93314f894509915e86e7dc32",
+                "sha256:d4cdb1569d78c88313875fb6dcd8ed57836f254685f199bae7504c8f02001a02",
+                "sha256:0652515ba6b45092c5e6ce6e1b4dde9b601d827c497886fda17631b566a25e32"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-24T03:55:36.009721284Z"
+        }
+    }
+]

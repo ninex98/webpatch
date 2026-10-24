@@ -1,0 +1,151 @@
+{
+  "result": "PASS",
+  "successful_upgrades": 8,
+  "post_health_failures": 8,
+  "records": [
+    {
+      "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-22.04-fpm/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-24.04-fpm/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-22.04-apache/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-24.04-apache/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/success/result.json",
+      "status": "VERIFIED_WITHIN_DECLARED_SCOPE",
+      "changed": true,
+      "entry": {
+        "entry": "INSTALLED_GUIDED_CLI",
+        "fault_injection": false
+      }
+    },
+    {
+      "artifact": "debian-vm-13-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-22.04-fpm/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-24.04-fpm/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-22.04-apache/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    },
+    {
+      "artifact": "debian-vm-12-apache/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    },
+    {
+      "artifact": "vm-ubuntu-24.04-apache/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    },
+    {
+      "artifact": "debian-vm-13-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    },
+    {
+      "artifact": "debian-vm-12-fpm/guest/ci-evidence/repair-lifecycle/post-health-failure/result.json",
+      "status": "PARTIAL",
+      "changed": true,
+      "entry": {
+        "entry": "INTERNAL_TYPED_API",
+        "fault_injection": true
+      }
+    }
+  ]
+}

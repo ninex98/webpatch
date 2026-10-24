@@ -1,0 +1,10 @@
+{
+  "status": "PARTIAL",
+  "changed": true,
+  "blockers": [
+    "PREPARATION_APPLICATION_PROBE_FAILED"
+  ],
+  "artifact_sha256": "a315fae05c1a31df2baf02a40b612e001900686b5368c366e6f4659124425b0a",
+  "stage": "preparation before post-health-failure injection",
+  "response": "Rerun failed job in a fresh disposable hosted VM on the same commit; never reuse the changed fixture transaction."
+}

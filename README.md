@@ -3,7 +3,7 @@
 **Find PHP runtime risks. Review the evidence. Confirm the repair.** Scans are read-only; missing evidence stays `UNKNOWN`.
 
 <p>
-  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.2.0"><img src="assets/readme/preview-badge.svg" alt="0.2.0 · Linux preview"></a>
+  <a href="https://github.com/ninex98/webpatch/releases/tag/v0.3.0"><img src="assets/readme/preview-badge.svg" alt="0.3.0 · Linux preview"></a>
   <a href="https://github.com/ninex98/webpatch/actions/workflows/ci.yml"><img src="https://github.com/ninex98/webpatch/actions/workflows/ci.yml/badge.svg?branch=main" alt="Safety checks on main"></a>
   <a href="LICENSE"><img src="assets/readme/license-badge.svg" alt="Apache-2.0"></a>
 </p>
@@ -45,7 +45,7 @@ Actual 0.2.0 output in Ubuntu 24.04 / arm64. This empty inventory stays `UNKNOWN
 
 | Command | Effect |
 | :--- | :--- |
-| `webpatch scan` | Shows PHP findings, missing evidence and the next step |
+| `webpatch scan` | Checks host PHP and local Docker containers, with findings and next steps |
 | `webpatch scan --details` | Expands the evidence and coverage checks |
 | `webpatch plan` | Previews candidate upgrades and blockers; installs nothing |
 | `webpatch fix --dry-run` | Checks repair prerequisites without changing the system |
@@ -61,13 +61,13 @@ Only confirmed `fix` operations can change services/packages among these command
 ## Support and boundaries
 
 - **PHP repair:** official amd64 packages on Ubuntu 22.04/24.04 and Debian 12/13, supported FPM/mod_php profiles, same-branch changes after exact confirmation.
-- **Containers and Node.js:** read-only inventory and container rebuild advice; no in-place container repair or automatic image deployment.
+- **Docker and Node.js:** automatic local Docker container inventory, Node runtime inventory and container rebuild advice; no in-place container repair or automatic image deployment.
 - **Other environments:** PPA/Sury/ESM, custom builds, unsupported architectures and macOS/Windows have no certified repair path. No automatic rollback or global safety guarantee.
 
 PHP rules currently focus on PHP2Shell (`CVE-2026-109618` / `CVE-2026-109619`). Bundled rules expire **2026-10-29 00:00 UTC**; expired rules remain `UNKNOWN` until a source-reviewed update. [Detailed capabilities and validation →](docs/development-status.md)
 
 ## Documentation
 
-[Installation & troubleshooting](docs/installation.md) · [CLI reference](docs/cli.md) · [Design](docs/design.md) · [Validation evidence](evidence/phase-6c-release/README.md)
+[Installation & troubleshooting](docs/installation.md) · [CLI reference](docs/cli.md) · [Design](docs/design.md) · [Validation evidence](evidence/phase-10-release/README.md)
 
 [Contributing](CONTRIBUTING.md) · [Apache-2.0 license](LICENSE)
