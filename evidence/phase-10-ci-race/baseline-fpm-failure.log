@@ -1,0 +1,262 @@
+Get:1 https://security.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:2 https://security.debian.org/debian-security trixie-security/main amd64 Packages [269 kB]
+Get:3 https://security.debian.org/debian-security trixie-security/main Translation-en [166 kB]
+Get:4 https://deb.debian.org/debian trixie InRelease [140 kB]
+Get:5 https://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:6 https://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+Get:7 https://deb.debian.org/debian trixie/main Translation-en [6486 kB]
+Get:8 https://deb.debian.org/debian trixie-updates/main amd64 Packages [720 B]
+Get:9 https://deb.debian.org/debian trixie-updates/main Translation-en [772 B]
+Fetched 16.8 MB in 1s (15.6 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.14.1-2+deb13u7).
+The following additional packages will be installed:
+  libargon2-1 libgcrypt20 libgpg-error-l10n libgpg-error0 nginx-common
+  php-common php8.4-cli php8.4-common php8.4-opcache php8.4-readline
+Suggested packages:
+  gnupg rng-tools fcgiwrap nginx-doc ssl-cert php-pear
+The following NEW packages will be installed:
+  gpgv libargon2-1 libgcrypt20 libgpg-error-l10n libgpg-error0 nginx
+  nginx-common php-cli php-common php8.4-cli php8.4-common php8.4-fpm
+  php8.4-opcache php8.4-readline
+0 upgraded, 14 newly installed, 0 to remove and 3 not upgraded.
+Need to get 7075 kB of archives.
+After this operation, 29.5 MB of additional disk space will be used.
+Get:1 https://security.debian.org/debian-security trixie-security/main amd64 nginx-common all 1.26.3-3+deb13u10 [112 kB]
+Get:2 https://deb.debian.org/debian trixie/main amd64 libgpg-error0 amd64 1.51-4 [82.1 kB]
+Get:3 https://security.debian.org/debian-security trixie-security/main amd64 nginx amd64 1.26.3-3+deb13u10 [614 kB]
+Get:4 https://deb.debian.org/debian trixie/main amd64 libgcrypt20 amd64 1.11.0-7+deb13u1 [843 kB]
+Get:5 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-common amd64 8.4.27-1~deb13u1 [787 kB]
+Get:6 https://deb.debian.org/debian trixie/main amd64 gpgv amd64 2.4.7-21+deb13u1+b5 [241 kB]
+Get:7 https://deb.debian.org/debian trixie/main amd64 libargon2-1 amd64 0~20190702+dfsg-4+b2 [21.4 kB]
+Get:8 https://deb.debian.org/debian trixie/main amd64 libgpg-error-l10n all 1.51-4 [114 kB]
+Get:9 https://deb.debian.org/debian trixie/main amd64 php-common all 2:96 [13.3 kB]
+Get:10 https://deb.debian.org/debian trixie/main amd64 php-cli all 2:8.4+96 [4416 B]
+Get:11 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-opcache amd64 8.4.27-1~deb13u1 [472 kB]
+Get:12 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-readline amd64 8.4.27-1~deb13u1 [13.0 kB]
+Get:13 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-cli amd64 8.4.27-1~deb13u1 [1875 kB]
+Get:14 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-fpm amd64 8.4.27-1~deb13u1 [1883 kB]
+Preconfiguring packages ...
+Fetched 7075 kB in 0s (83.6 MB/s)
+Selecting previously unselected package libgpg-error0:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 20631 files and directories currently installed.)
+Preparing to unpack .../00-libgpg-error0_1.51-4_amd64.deb ...
+Unpacking libgpg-error0:amd64 (1.51-4) ...
+Selecting previously unselected package libgcrypt20:amd64.
+Preparing to unpack .../01-libgcrypt20_1.11.0-7+deb13u1_amd64.deb ...
+Unpacking libgcrypt20:amd64 (1.11.0-7+deb13u1) ...
+Selecting previously unselected package gpgv.
+Preparing to unpack .../02-gpgv_2.4.7-21+deb13u1+b5_amd64.deb ...
+Unpacking gpgv (2.4.7-21+deb13u1+b5) ...
+Selecting previously unselected package libargon2-1:amd64.
+Preparing to unpack .../03-libargon2-1_0~20190702+dfsg-4+b2_amd64.deb ...
+Unpacking libargon2-1:amd64 (0~20190702+dfsg-4+b2) ...
+Selecting previously unselected package libgpg-error-l10n.
+Preparing to unpack .../04-libgpg-error-l10n_1.51-4_all.deb ...
+Unpacking libgpg-error-l10n (1.51-4) ...
+Selecting previously unselected package nginx-common.
+Preparing to unpack .../05-nginx-common_1.26.3-3+deb13u10_all.deb ...
+Unpacking nginx-common (1.26.3-3+deb13u10) ...
+Selecting previously unselected package nginx.
+Preparing to unpack .../06-nginx_1.26.3-3+deb13u10_amd64.deb ...
+Unpacking nginx (1.26.3-3+deb13u10) ...
+Selecting previously unselected package php-common.
+Preparing to unpack .../07-php-common_2%3a96_all.deb ...
+Unpacking php-common (2:96) ...
+Selecting previously unselected package php8.4-common.
+Preparing to unpack .../08-php8.4-common_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-common (8.4.27-1~deb13u1) ...
+Selecting previously unselected package php8.4-opcache.
+Preparing to unpack .../09-php8.4-opcache_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-opcache (8.4.27-1~deb13u1) ...
+Selecting previously unselected package php8.4-readline.
+Preparing to unpack .../10-php8.4-readline_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-readline (8.4.27-1~deb13u1) ...
+Selecting previously unselected package php8.4-cli.
+Preparing to unpack .../11-php8.4-cli_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-cli (8.4.27-1~deb13u1) ...
+Selecting previously unselected package php-cli.
+Preparing to unpack .../12-php-cli_2%3a8.4+96_all.deb ...
+Unpacking php-cli (2:8.4+96) ...
+Selecting previously unselected package php8.4-fpm.
+Preparing to unpack .../13-php8.4-fpm_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-fpm (8.4.27-1~deb13u1) ...
+Setting up php-common (2:96) ...
+Created symlink '/etc/systemd/system/timers.target.wants/phpsessionclean.timer' → '/usr/lib/systemd/system/phpsessionclean.timer'.
+Setting up libgpg-error0:amd64 (1.51-4) ...
+Setting up libargon2-1:amd64 (0~20190702+dfsg-4+b2) ...
+Setting up php8.4-common (8.4.27-1~deb13u1) ...
+Creating config file /etc/php/8.4/mods-available/calendar.ini with new version
+Creating config file /etc/php/8.4/mods-available/ctype.ini with new version
+Creating config file /etc/php/8.4/mods-available/exif.ini with new version
+Creating config file /etc/php/8.4/mods-available/fileinfo.ini with new version
+Creating config file /etc/php/8.4/mods-available/ffi.ini with new version
+Creating config file /etc/php/8.4/mods-available/ftp.ini with new version
+Creating config file /etc/php/8.4/mods-available/gettext.ini with new version
+Creating config file /etc/php/8.4/mods-available/iconv.ini with new version
+Creating config file /etc/php/8.4/mods-available/pdo.ini with new version
+Creating config file /etc/php/8.4/mods-available/phar.ini with new version
+Creating config file /etc/php/8.4/mods-available/posix.ini with new version
+Creating config file /etc/php/8.4/mods-available/shmop.ini with new version
+Creating config file /etc/php/8.4/mods-available/sockets.ini with new version
+Creating config file /etc/php/8.4/mods-available/sysvmsg.ini with new version
+Creating config file /etc/php/8.4/mods-available/sysvsem.ini with new version
+Creating config file /etc/php/8.4/mods-available/sysvshm.ini with new version
+Creating config file /etc/php/8.4/mods-available/tokenizer.ini with new version
+Setting up nginx-common (1.26.3-3+deb13u10) ...
+Created symlink '/etc/systemd/system/multi-user.target.wants/nginx.service' → '/usr/lib/systemd/system/nginx.service'.
+Setting up libgcrypt20:amd64 (1.11.0-7+deb13u1) ...
+Setting up gpgv (2.4.7-21+deb13u1+b5) ...
+Setting up libgpg-error-l10n (1.51-4) ...
+Setting up php8.4-opcache (8.4.27-1~deb13u1) ...
+Creating config file /etc/php/8.4/mods-available/opcache.ini with new version
+Setting up php8.4-readline (8.4.27-1~deb13u1) ...
+Creating config file /etc/php/8.4/mods-available/readline.ini with new version
+Setting up nginx (1.26.3-3+deb13u10) ...
+Upgrading binary: nginx.
+Setting up php8.4-cli (8.4.27-1~deb13u1) ...
+update-alternatives: using /usr/bin/php8.4 to provide /usr/bin/php (php) in auto mode
+update-alternatives: using /usr/bin/phar8.4 to provide /usr/bin/phar (phar) in auto mode
+update-alternatives: using /usr/bin/phar.phar8.4 to provide /usr/bin/phar.phar (phar.phar) in auto mode
+Creating config file /etc/php/8.4/cli/php.ini with new version
+Setting up php8.4-fpm (8.4.27-1~deb13u1) ...
+Creating config file /etc/php/8.4/fpm/php.ini with new version
+Created symlink '/etc/systemd/system/multi-user.target.wants/php8.4-fpm.service' → '/usr/lib/systemd/system/php8.4-fpm.service'.
+Setting up php-cli (2:8.4+96) ...
+update-alternatives: using /usr/bin/php.default to provide /usr/bin/php (php) in auto mode
+update-alternatives: using /usr/bin/phar.default to provide /usr/bin/phar (phar) in auto mode
+update-alternatives: using /usr/bin/phar.phar.default to provide /usr/bin/phar.phar (phar.phar) in auto mode
+Processing triggers for man-db (2.13.1-1) ...
+Processing triggers for libc-bin (2.41-12+deb13u4) ...
+Processing triggers for php8.4-cli (8.4.27-1~deb13u1) ...
+Processing triggers for php8.4-fpm (8.4.27-1~deb13u1) ...
+Get:1 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-fpm amd64 8.4.27-1~deb13u1 [1883 kB]
+Fetched 1883 kB in 0s (46.2 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.4-fpm_8.4.27-1~deb13u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+dpkg-deb: building package 'webpatch' in '/home/webpatch/work/dist/webpatch_0.2.0_all.deb'.
+/home/webpatch/work/dist/webpatch_0.2.0_all.deb
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  webpatch
+0 upgraded, 1 newly installed, 0 to remove and 3 not upgraded.
+Need to get 0 B/117 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Get:1 /home/webpatch/work/dist/webpatch_0.2.0_all.deb webpatch all 0.2.0 [117 kB]
+Selecting previously unselected package webpatch.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 20886 files and directories currently installed.)
+Preparing to unpack .../dist/webpatch_0.2.0_all.deb ...
+Unpacking webpatch (0.2.0) ...
+Setting up webpatch (0.2.0) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 7 reinstalled, 0 to remove and 3 not upgraded.
+Need to get 2108 kB/7138 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Get:1 https://deb.debian.org/debian trixie/main amd64 libc-bin amd64 2.41-12+deb13u4 [638 kB]
+Get:2 https://deb.debian.org/debian trixie/main amd64 man-db amd64 2.13.1-1 [1469 kB]
+Fetched 2108 kB in 0s (45.3 MB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 20945 files and directories currently installed.)
+Preparing to unpack .../libc-bin_2.41-12+deb13u4_amd64.deb ...
+Unpacking libc-bin (2.41-12+deb13u4) over (2.41-12+deb13u4) ...
+Setting up libc-bin (2.41-12+deb13u4) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 20945 files and directories currently installed.)
+Preparing to unpack .../0-man-db_2.13.1-1_amd64.deb ...
+Unpacking man-db (2.13.1-1) over (2.13.1-1) ...
+Preparing to unpack .../1-php8.4-cli_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-cli (8.4.27-1~deb13u1) over (8.4.27-1~deb13u1) ...
+Preparing to unpack .../2-php8.4-common_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-common (8.4.27-1~deb13u1) over (8.4.27-1~deb13u1) ...
+Preparing to unpack .../3-php8.4-fpm_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-fpm (8.4.27-1~deb13u1) over (8.4.27-1~deb13u1) ...
+Preparing to unpack .../4-php8.4-opcache_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-opcache (8.4.27-1~deb13u1) over (8.4.27-1~deb13u1) ...
+Preparing to unpack .../5-php8.4-readline_8.4.27-1~deb13u1_amd64.deb ...
+Unpacking php8.4-readline (8.4.27-1~deb13u1) over (8.4.27-1~deb13u1) ...
+Setting up php8.4-common (8.4.27-1~deb13u1) ...
+Setting up man-db (2.13.1-1) ...
+Updating database of manual pages ...
+man-db.service is a disabled or a static unit not running, not starting it.
+Setting up php8.4-opcache (8.4.27-1~deb13u1) ...
+Setting up php8.4-readline (8.4.27-1~deb13u1) ...
+Setting up php8.4-cli (8.4.27-1~deb13u1) ...
+Setting up php8.4-fpm (8.4.27-1~deb13u1) ...
+Processing triggers for php8.4-cli (8.4.27-1~deb13u1) ...
+Processing triggers for php8.4-fpm (8.4.27-1~deb13u1) ...
+Get:1 https://deb.debian.org/debian trixie/main amd64 libc-bin amd64 2.41-12+deb13u4 [638 kB]
+Fetched 638 kB in 0s (17.0 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/libc-bin_2.41-12+deb13u4_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://deb.debian.org/debian trixie/main amd64 man-db amd64 2.13.1-1 [1469 kB]
+Fetched 1469 kB in 0s (30.2 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/man-db_2.13.1-1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://deb.debian.org/debian trixie/main amd64 php-common all 2:96 [13.3 kB]
+Fetched 13.3 kB in 0s (558 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php-common_2%3a96_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-cli amd64 8.4.27-1~deb13u1 [1875 kB]
+Fetched 1875 kB in 0s (24.9 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.4-cli_8.4.27-1~deb13u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-common amd64 8.4.27-1~deb13u1 [787 kB]
+Fetched 787 kB in 0s (20.2 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.4-common_8.4.27-1~deb13u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-opcache amd64 8.4.27-1~deb13u1 [472 kB]
+Fetched 472 kB in 0s (13.5 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.4-opcache_8.4.27-1~deb13u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Get:1 https://security.debian.org/debian-security trixie-security/main amd64 php8.4-readline amd64 8.4.27-1~deb13u1 [13.0 kB]
+Fetched 13.0 kB in 0s (592 kB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.4-readline_8.4.27-1~deb13u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+PASS: authenticated controlled restart, immutable runtime configuration views, pool attribution and receipt tampering rejection; canonical unit restored.
+Get:1 https://deb.debian.org/debian trixie/main amd64 php8.4-cli amd64 8.4.24-1~deb13u1 [1859 kB]
+Get:2 https://deb.debian.org/debian trixie/main amd64 php8.4-common amd64 8.4.24-1~deb13u1 [776 kB]
+Get:3 https://deb.debian.org/debian trixie/main amd64 php8.4-fpm amd64 8.4.24-1~deb13u1 [1868 kB]
+Get:4 https://deb.debian.org/debian trixie/main amd64 php8.4-opcache amd64 8.4.24-1~deb13u1 [470 kB]
+Get:5 https://deb.debian.org/debian trixie/main amd64 php8.4-readline amd64 8.4.24-1~deb13u1 [12.7 kB]
+Fetched 4987 kB in 0s (59.6 MB/s)
+W: Download is performed unsandboxed as root as file '/var/cache/webpatch-ci/php8.4-cli_8.4.24-1~deb13u1_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages will be DOWNGRADED:
+  php8.4-cli php8.4-common php8.4-fpm php8.4-opcache php8.4-readline
+0 upgraded, 0 newly installed, 5 downgraded, 0 to remove and 3 not upgraded.
+Need to get 4987 kB of archives.
+After this operation, 126 kB disk space will be freed.
+Get:1 https://deb.debian.org/debian trixie/main amd64 php8.4-readline amd64 8.4.24-1~deb13u1 [12.7 kB]
+Get:2 https://deb.debian.org/debian trixie/main amd64 php8.4-opcache amd64 8.4.24-1~deb13u1 [470 kB]
+Get:3 https://deb.debian.org/debian trixie/main amd64 php8.4-fpm amd64 8.4.24-1~deb13u1 [1868 kB]
+Get:4 https://deb.debian.org/debian trixie/main amd64 php8.4-cli amd64 8.4.24-1~deb13u1 [1859 kB]
+Get:5 https://deb.debian.org/debian trixie/main amd64 php8.4-common amd64 8.4.24-1~deb13u1 [776 kB]
+Fetched 4987 kB in 0s (65.6 MB/s)
+dpkg: warning: downgrading php8.4-readline (8.4.27-1~deb13u1) to (8.4.24-1~deb13u1)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 20945 files and directories currently installed.)
+Preparing to unpack .../php8.4-readline_8.4.24-1~deb13u1_amd64.deb ...
+Unpacking php8.4-readline (8.4.24-1~deb13u1) over (8.4.27-1~deb13u1) ...
+dpkg: warning: downgrading php8.4-opcache (8.4.27-1~deb13u1) to (8.4.24-1~deb13u1)
+Preparing to unpack .../php8.4-opcache_8.4.24-1~deb13u1_amd64.deb ...
+Unpacking php8.4-opcache (8.4.24-1~deb13u1) over (8.4.27-1~deb13u1) ...
+dpkg: warning: downgrading php8.4-fpm (8.4.27-1~deb13u1) to (8.4.24-1~deb13u1)
+Preparing to unpack .../php8.4-fpm_8.4.24-1~deb13u1_amd64.deb ...
+Unpacking php8.4-fpm (8.4.24-1~deb13u1) over (8.4.27-1~deb13u1) ...
+dpkg: warning: downgrading php8.4-cli (8.4.27-1~deb13u1) to (8.4.24-1~deb13u1)
+Preparing to unpack .../php8.4-cli_8.4.24-1~deb13u1_amd64.deb ...
+Unpacking php8.4-cli (8.4.24-1~deb13u1) over (8.4.27-1~deb13u1) ...
+dpkg: warning: downgrading php8.4-common (8.4.27-1~deb13u1) to (8.4.24-1~deb13u1)
+Preparing to unpack .../php8.4-common_8.4.24-1~deb13u1_amd64.deb ...
+Unpacking php8.4-common (8.4.24-1~deb13u1) over (8.4.27-1~deb13u1) ...
+Setting up php8.4-common (8.4.24-1~deb13u1) ...
+Setting up php8.4-opcache (8.4.24-1~deb13u1) ...
+Setting up php8.4-readline (8.4.24-1~deb13u1) ...
+Setting up php8.4-cli (8.4.24-1~deb13u1) ...
+Setting up php8.4-fpm (8.4.24-1~deb13u1) ...
+Processing triggers for man-db (2.13.1-1) ...
+Processing triggers for php8.4-cli (8.4.24-1~deb13u1) ...
+Processing triggers for php8.4-fpm (8.4.24-1~deb13u1) ...
+Traceback (most recent call last):
+  File "/home/webpatch/work/tests/integration/repair_lifecycle_check.py", line 152, in <module>
+    assert review.proposal.admission_status=='READY_FOR_CONFIRMATION',review.proposal.blockers
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:21302', 'CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:21303', 'CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:21306', 'CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:21307', 'CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:21308', 'CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:21331', 'CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:21333', 'CONSUMER_PROCESS_SET_CHANGED', 'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:21302', 'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:21303', 'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:21306', 'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:21307', 'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:21308', 'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:21331', 'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:21333')

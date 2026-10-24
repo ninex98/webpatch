@@ -29,3 +29,12 @@ def test_fixture_does_not_hide_changed_or_unrelated_failure(mutation):
     elif mutation=='no-blockers': result['revalidation']['blockers']=[]
     elif mutation=='dependency-only': result['revalidation']['blockers']=['REPAIR_REQUIREMENT_NOT_MET:dependency_changes']
     assert not module.retryable_observation_abort(result)
+
+
+def test_preexecution_review_retries_only_narrow_process_races():
+    assert module.retryable_review_blockers(['CONSUMER_PROCESS_SET_CHANGED'])
+    assert module.retryable_review_blockers(['CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:123',
+                                            'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:124'])
+    for blockers in ([], ['CONSUMER_PROCESS_SET_UNAVAILABLE_OR_LIMIT'], ['PACKAGE_TRUST_UNKNOWN'],
+                     ['CONSUMER_PROCESS_SET_CHANGED', 'RULES_EXPIRED'], ['UNKNOWN_CONSUMER']):
+        assert not module.retryable_review_blockers(blockers)

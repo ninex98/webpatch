@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import time
 import pwd
 import urllib.request
 
@@ -25,7 +26,7 @@ from webpatch.system import LocalSystem
 from webpatch.transaction import AuditJournal
 from webpatch.profiles import php_source_profile
 from webpatch.release_gate import PUBLIC_REPAIR_ENABLED
-from fixture_services import isolate_service,retryable_observation_abort
+from fixture_services import isolate_service,retryable_observation_abort,retryable_review_blockers
 
 assert os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('RUNNER_ENVIRONMENT')=='github-hosted'
 name,service,port,cache=sys.argv[1:]
@@ -121,9 +122,19 @@ for case in ('success','post-health-failure'):
     try:
         assert prepared['status']=='VERIFIED_CONTROLLED_STARTUP',prepared.get('blockers')
         settings_diagnostic('capture')
-        current=scan(reader,package_cache=cache)
-        review=build_repair_review(current,system=reader,simulator=LocalAptSimulator(),controller=controller,probe=capability,
-            startup_receipt=prepared['receipt'],source_cohort=source,package_cache=cache,budget_seconds=600)
+        def fresh_review():
+            group=len(list(folder.glob('review-observation-*')))+1
+            for observation in range(1,4):
+                current=scan(reader,package_cache=cache)
+                candidate=build_repair_review(current,system=reader,simulator=LocalAptSimulator(),controller=controller,probe=capability,
+                    startup_receipt=prepared['receipt'],source_cohort=source,package_cache=cache,budget_seconds=600)
+                (folder/f'review-observation-{group}-{observation}.json').write_text(json.dumps(candidate.document(),indent=2)+'\n')
+                if (candidate.proposal.admission_status=='READY_FOR_CONFIRMATION'
+                        or not retryable_review_blockers(candidate.proposal.blockers)):
+                    break
+                if observation<3: time.sleep(1)
+            return candidate
+        review=fresh_review()
         document=review.document(); (folder/'repair-plan.json').write_text(json.dumps(document,indent=2)+'\n')
         def invoke(confirmation):
             # The success path exercises the installed isolated entry point once
@@ -166,9 +177,7 @@ for case in ('success','post-health-failure'):
             if attempt==3 or not retryable_observation_abort(result): break
             # Never retry an approved plan or changed transaction. Process churn
             # remains blocking in the product; this fixture obtains new evidence.
-            current=scan(reader,package_cache=cache)
-            review=build_repair_review(current,system=reader,simulator=LocalAptSimulator(),controller=controller,probe=capability,
-                startup_receipt=prepared['receipt'],source_cohort=source,package_cache=cache,budget_seconds=600)
+            review=fresh_review()
             document=review.document();(folder/'repair-plan.json').write_text(json.dumps(document,indent=2)+'\n')
             assert review.proposal.admission_status=='READY_FOR_CONFIRMATION',review.proposal.blockers
         (folder/'result.json').write_text(json.dumps(result,indent=2)+'\n')

@@ -4,6 +4,15 @@ import re
 import subprocess
 
 
+def retryable_review_blockers(blockers):
+    """CI only: retry a fresh pre-execution review on narrow process races."""
+    prefixes = ('CONSUMER_PROCESS_DESCRIPTORS_UNREADABLE:',
+                'CONSUMER_PROCESS_UNSTABLE_OR_UNREADABLE:',
+                'CONSUMER_PROCESS_DESCRIPTORS_CHANGED:')
+    return bool(blockers) and all(
+        b == 'CONSUMER_PROCESS_SET_CHANGED' or b.startswith(prefixes) for b in blockers)
+
+
 def retryable_observation_abort(result):
     """CI only: a fresh review may follow an unchanged observation-race abort."""
     if (result.get('status')!='BLOCKED' or result.get('changed') is not False

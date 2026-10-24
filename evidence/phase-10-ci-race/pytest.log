@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.19, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/ninex/Projects/hll-ecosystem/apps/webpatch
+configfile: pyproject.toml
+plugins: cov-6.3.0
+collected 10 items
+
+tests/test_ci_lifecycle_policy.py .........                              [ 90%]
+tests/test_ci_guards.py .                                                [100%]
+
+- generated xml file: /Users/ninex/Projects/hll-ecosystem/apps/webpatch/evidence/phase-10-ci-race/pytest.xml -
+============================== 10 passed in 0.10s ==============================

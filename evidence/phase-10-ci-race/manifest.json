@@ -1,0 +1,17 @@
+{
+  "python": "3.10.19 (main, Oct  9 2025, 15:25:03) [Clang 17.0.0 (clang-1700.3.19.1)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "source_sha256": {
+    "tests/integration/fixture_services.py": "ab86278dfee17ee3d103e2fa5a07c8db604b94ed44ae4c69354c87ffda69c362",
+    "tests/integration/repair_lifecycle_check.py": "3b74082635827ecd7b470426a2d72ddf4245996c6c273d94be7092db73e64ad5",
+    "tests/test_ci_lifecycle_policy.py": "f7c5b72e0dc58593c8d9f1a0e49b8077bf79d29f97b53326ff31ec10d8067f39",
+    "tests/test_ci_guards.py": "b5e2f4a9cfcd28bb67b31f902092c1fd25c958b3892226f8371f4e43abacc7f6"
+  },
+  "artifact_sha256": {
+    "evidence/phase-10-ci-race/pytest.log": "43d5208ad26b503d19d17267921d938b210cc06379b2ffa4d9efce6be5cff8b0",
+    "evidence/phase-10-ci-race/README.md": "273c198ecced18bc7b83d6eda469674069a588fe32c29ffb13c9b4e5c65c0279",
+    "evidence/phase-10-ci-race/pytest.xml": "237b296535b037f6940ae44a9e93b9057710797110bce8aa5bb68cfc1b2f564f",
+    "evidence/phase-10-ci-race/baseline-fpm-failure.log": "1af7d42b3861fea997e450dfe56ab50e7cd44f35a0cd750f61ba751955839c6d"
+  },
+  "remote_ci": "NOT_RUN"
+}
