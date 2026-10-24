@@ -8,6 +8,7 @@ import argparse
 from contextlib import redirect_stdout
 import io
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -38,7 +39,10 @@ def run():
     parser.add_argument('--empty-image', required=True)
     parser.add_argument('--socket', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--installed-cli', action='store_true', help='also verify /usr/bin/webpatch on a disposable hosted VM')
     args = parser.parse_args()
+    if args.installed_cli:
+        assert os.environ.get('GITHUB_ACTIONS') == 'true' and os.environ.get('RUNNER_ENVIRONMENT') == 'github-hosted'
     destination = Path(args.output); destination.mkdir(parents=True, exist_ok=True)
     containers = []
     label = 'webpatch-docker-check-' + uuid.uuid4().hex[:10]
@@ -98,6 +102,18 @@ def run():
             main(['scan', '--lang', 'zh'], system=TestSystem({}),
                  docker_reader=TestReader(args.socket), now=NOW)
         (destination / 'native-zh.txt').write_text(stream.getvalue())
+        if args.installed_cli:
+            installed = command('sudo', '/usr/bin/webpatch', 'scan', '--format', 'json', check=False)
+            (destination / 'installed-docker-report.json').write_text(installed.stdout)
+            assert installed.returncode in {1, 2}, installed.stderr
+            actual = json.loads(installed.stdout)
+            assert not actual['safe'] and actual['docker']['status'] == 'OBSERVED'
+            actual_items = {c['id']: c for c in actual['docker']['containers']}
+            assert set(containers) <= set(actual_items)
+            for ident in containers:
+                expected = items[ident]; observed = actual_items[ident]
+                for field in ('packages', 'assessments', 'hints', 'gaps', 'overall', 'safe'):
+                    assert observed[field] == expected[field], (ident, field)
         assert before == {ident: snapshot(ident) for ident in containers}
         environment = {
             'status': 'PASS', 'date_policy': 'Frozen rule evaluation at ' + NOW.isoformat(),
@@ -105,6 +121,7 @@ def run():
             'images': {image: command('docker', 'image', 'inspect', '--format', '{{.Id}}', image).stdout.strip()
                        for image in (args.package_image, args.custom_image, args.empty_image)},
             'container_ids': containers, 'before': before, 'after': after,
+            'installed_cli': 'PASS' if args.installed_cli else 'NOT_RUN',
             'checks': ['four independent container inventories', 'native dpkg comparisons',
                        'official PHP custom header', 'stopped and non-PHP containers',
                        'unchanged container state and filesystem', 'Chinese CLI rendering'],

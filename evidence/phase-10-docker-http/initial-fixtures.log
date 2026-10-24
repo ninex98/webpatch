@@ -1,0 +1,568 @@
+﻿2026-10-24T02:48:01.6693247Z Current runner version: '2.338.0'
+2026-10-24T02:48:01.6719951Z ##[group]Runner Image Provisioner
+2026-10-24T02:48:01.6720945Z Hosted Compute Agent
+2026-10-24T02:48:01.6721623Z Version: 20261021.618
+2026-10-24T02:48:01.6722332Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-24T02:48:01.6723069Z Build Date: 2026-10-21T00:45:21Z
+2026-10-24T02:48:01.6723801Z Worker ID: {a5405013-fb2a-4cac-b382-8b0654b7f3db}
+2026-10-24T02:48:01.6724551Z Region: eastus
+2026-10-24T02:48:01.6725470Z Cloud: Azure
+2026-10-24T02:48:01.6726161Z ##[endgroup]
+2026-10-24T02:48:01.6727805Z ##[group]Operating System
+2026-10-24T02:48:01.6728574Z Ubuntu
+2026-10-24T02:48:01.6729173Z 24.04.5
+2026-10-24T02:48:01.6730090Z LTS
+2026-10-24T02:48:01.6730833Z ##[endgroup]
+2026-10-24T02:48:01.6731496Z ##[group]Runner Image
+2026-10-24T02:48:01.6732167Z Image: ubuntu-24.04
+2026-10-24T02:48:01.6732745Z Version: 20261012.334.1
+2026-10-24T02:48:01.6734201Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-24T02:48:01.6735781Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-24T02:48:01.6736810Z ##[endgroup]
+2026-10-24T02:48:01.6737998Z ##[group]GITHUB_TOKEN Permissions
+2026-10-24T02:48:01.6740606Z Contents: read
+2026-10-24T02:48:01.6741236Z Metadata: read
+2026-10-24T02:48:01.6741786Z ##[endgroup]
+2026-10-24T02:48:01.6744038Z Secret source: Actions
+2026-10-24T02:48:01.6745233Z Cache mode: write
+2026-10-24T02:48:01.6746226Z Prepare workflow directory
+2026-10-24T02:48:01.7148004Z Prepare all required actions
+2026-10-24T02:48:01.7197392Z Getting action download info
+2026-10-24T02:48:01.9611418Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-24T02:48:02.0564169Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-24T02:48:02.1351022Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-24T02:48:02.3476063Z Complete job name: fixtures (3.12)
+2026-10-24T02:48:02.4347508Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-24T02:48:02.4348579Z with:
+2026-10-24T02:48:02.4349030Z   repository: ninex98/webpatch
+2026-10-24T02:48:02.4352895Z   token: ***
+2026-10-24T02:48:02.4353341Z   ssh-strict: true
+2026-10-24T02:48:02.4353784Z   ssh-user: git
+2026-10-24T02:48:02.4354235Z   persist-credentials: true
+2026-10-24T02:48:02.4354724Z   clean: true
+2026-10-24T02:48:02.4355175Z   sparse-checkout-cone-mode: true
+2026-10-24T02:48:02.4355703Z   fetch-depth: 1
+2026-10-24T02:48:02.4356130Z   fetch-tags: false
+2026-10-24T02:48:02.4356572Z   show-progress: true
+2026-10-24T02:48:02.4357033Z   lfs: false
+2026-10-24T02:48:02.4357443Z   submodules: false
+2026-10-24T02:48:02.4357906Z   set-safe-directory: true
+2026-10-24T02:48:02.4358415Z   allow-unsafe-pr-checkout: false
+2026-10-24T02:48:02.4359228Z ##[endgroup]
+2026-10-24T02:48:02.5369875Z Syncing repository: ninex98/webpatch
+2026-10-24T02:48:02.5372421Z ##[group]Getting Git version info
+2026-10-24T02:48:02.5373612Z Working directory is '/home/runner/work/webpatch/webpatch'
+2026-10-24T02:48:02.5375218Z [command]/usr/bin/git version
+2026-10-24T02:48:02.5495266Z git version 2.55.0
+2026-10-24T02:48:02.5522099Z ##[endgroup]
+2026-10-24T02:48:02.5533989Z Temporarily overriding HOME='/home/runner/work/_temp/530679ac-469e-4cef-801a-fcdd7013ab15' before making global git config changes
+2026-10-24T02:48:02.5536394Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-24T02:48:02.5539823Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-24T02:48:02.5599469Z Deleting the contents of '/home/runner/work/webpatch/webpatch'
+2026-10-24T02:48:02.5607938Z ##[group]Initializing the repository
+2026-10-24T02:48:02.5615731Z [command]/usr/bin/git init /home/runner/work/webpatch/webpatch
+2026-10-24T02:48:02.5758254Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-24T02:48:02.5760301Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-24T02:48:02.5761859Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-24T02:48:02.5763063Z hint: call:
+2026-10-24T02:48:02.5764009Z hint:
+2026-10-24T02:48:02.5764872Z hint: 	git config --global init.defaultBranch <name>
+2026-10-24T02:48:02.5765854Z hint:
+2026-10-24T02:48:02.5766809Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-24T02:48:02.5768384Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-24T02:48:02.5769791Z hint:
+2026-10-24T02:48:02.5770523Z hint: 	git branch -m <name>
+2026-10-24T02:48:02.5771333Z hint:
+2026-10-24T02:48:02.5772374Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-24T02:48:02.5774018Z Initialized empty Git repository in /home/runner/work/webpatch/webpatch/.git/
+2026-10-24T02:48:02.5781853Z [command]/usr/bin/git remote add origin https://github.com/ninex98/webpatch
+2026-10-24T02:48:02.5847380Z ##[endgroup]
+2026-10-24T02:48:02.5848773Z ##[group]Disabling automatic garbage collection
+2026-10-24T02:48:02.5853339Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-24T02:48:02.5891343Z ##[endgroup]
+2026-10-24T02:48:02.5892698Z ##[group]Setting up auth
+2026-10-24T02:48:02.5899215Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-24T02:48:02.5942624Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-24T02:48:02.6380421Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-24T02:48:02.6421537Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-24T02:48:02.6695130Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-24T02:48:02.6742410Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-24T02:48:02.7006089Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-24T02:48:02.7064420Z ##[endgroup]
+2026-10-24T02:48:02.7065455Z ##[group]Fetching the repository
+2026-10-24T02:48:02.7080322Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a4d516f53e6fe854a8236d439d3961afcf462f3e:refs/remotes/origin/main
+2026-10-24T02:48:03.6817278Z From https://github.com/ninex98/webpatch
+2026-10-24T02:48:03.6841207Z  * [new ref]         a4d516f53e6fe854a8236d439d3961afcf462f3e -> origin/main
+2026-10-24T02:48:03.6853191Z ##[endgroup]
+2026-10-24T02:48:03.6854659Z ##[group]Determining the checkout info
+2026-10-24T02:48:03.6856427Z ##[endgroup]
+2026-10-24T02:48:03.6857427Z [command]/usr/bin/git sparse-checkout disable
+2026-10-24T02:48:03.6902558Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-24T02:48:03.6946043Z ##[group]Checking out the ref
+2026-10-24T02:48:03.6947136Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-24T02:48:04.1346545Z Switched to a new branch 'main'
+2026-10-24T02:48:04.1352392Z branch 'main' set up to track 'origin/main'.
+2026-10-24T02:48:04.1447213Z ##[endgroup]
+2026-10-24T02:48:04.1495287Z [command]/usr/bin/git log -1 --format=%H
+2026-10-24T02:48:04.1522155Z a4d516f53e6fe854a8236d439d3961afcf462f3e
+2026-10-24T02:48:04.1786175Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-24T02:48:04.1786693Z with:
+2026-10-24T02:48:04.1786946Z   python-version: 3.12
+2026-10-24T02:48:04.1787436Z   check-latest: false
+2026-10-24T02:48:04.1790065Z   token: ***
+2026-10-24T02:48:04.1790347Z   update-environment: true
+2026-10-24T02:48:04.1790644Z   allow-prereleases: false
+2026-10-24T02:48:04.1790928Z   freethreaded: false
+2026-10-24T02:48:04.1791187Z ##[endgroup]
+2026-10-24T02:48:04.3167790Z ##[group]Installed versions
+2026-10-24T02:48:04.3269093Z (node:2275) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-24T02:48:04.3270456Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-24T02:48:04.3271304Z Successfully set up CPython (3.12.15)
+2026-10-24T02:48:04.3272365Z ##[endgroup]
+2026-10-24T02:48:04.3464487Z ##[group]Run python -m pip install -e '.[test]'
+2026-10-24T02:48:04.3465053Z [36;1mpython -m pip install -e '.[test]'[0m
+2026-10-24T02:48:04.3804440Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-24T02:48:04.3804938Z env:
+2026-10-24T02:48:04.3805322Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.3805843Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T02:48:04.3806352Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.3806819Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.3807282Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.3807769Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T02:48:04.3808177Z ##[endgroup]
+2026-10-24T02:48:05.3661725Z Obtaining file:///home/runner/work/webpatch/webpatch
+2026-10-24T02:48:05.3679164Z   Installing build dependencies: started
+2026-10-24T02:48:06.3276009Z   Installing build dependencies: finished with status 'done'
+2026-10-24T02:48:06.3282176Z   Checking if build backend supports build_editable: started
+2026-10-24T02:48:06.6764582Z   Checking if build backend supports build_editable: finished with status 'done'
+2026-10-24T02:48:06.6771924Z   Getting requirements to build editable: started
+2026-10-24T02:48:07.0222612Z   Getting requirements to build editable: finished with status 'done'
+2026-10-24T02:48:07.0232455Z   Preparing editable metadata (pyproject.toml): started
+2026-10-24T02:48:07.2195790Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+2026-10-24T02:48:07.3625862Z Collecting pytest==8.4.2 (from webpatch==0.3.0)
+2026-10-24T02:48:07.4616276Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+2026-10-24T02:48:07.4952114Z Collecting pytest-cov==6.3.0 (from webpatch==0.3.0)
+2026-10-24T02:48:07.5184787Z   Downloading pytest_cov-6.3.0-py3-none-any.whl.metadata (30 kB)
+2026-10-24T02:48:07.5608104Z Collecting iniconfig>=1 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:07.5924851Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-10-24T02:48:07.6264427Z Collecting packaging>=20 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:07.6478896Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-24T02:48:07.6782025Z Collecting pluggy<2,>=1.5 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:07.6995236Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-10-24T02:48:07.7359141Z Collecting pygments>=2.7.2 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:07.7570819Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-10-24T02:48:08.2651081Z Collecting coverage>=7.5 (from coverage[toml]>=7.5->pytest-cov==6.3.0->webpatch==0.3.0)
+2026-10-24T02:48:08.2870016Z   Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.1 kB)
+2026-10-24T02:48:08.3153528Z Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+2026-10-24T02:48:08.3998528Z Downloading pytest_cov-6.3.0-py3-none-any.whl (25 kB)
+2026-10-24T02:48:08.4231168Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-10-24T02:48:08.4464654Z Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (261 kB)
+2026-10-24T02:48:08.4782144Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-10-24T02:48:08.5011625Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-24T02:48:08.5258135Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-10-24T02:48:08.5717802Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 24.2 MB/s  0:00:00
+2026-10-24T02:48:08.5940825Z Building wheels for collected packages: webpatch
+2026-10-24T02:48:08.5948221Z   Building editable for webpatch (pyproject.toml): started
+2026-10-24T02:48:08.8132718Z   Building editable for webpatch (pyproject.toml): finished with status 'done'
+2026-10-24T02:48:08.8137943Z   Created wheel for webpatch: filename=webpatch-0.3.0-0.editable-py3-none-any.whl size=7704 sha256=7bb75e28cd5984f76749c67cde6b56b8e52d624cbdc4b8ecff38c4125a6a20b1
+2026-10-24T02:48:08.8139758Z   Stored in directory: /tmp/pip-ephem-wheel-cache-7s6q_0pj/wheels/32/66/84/b128119ec3ccccbe54183f123edcc56064e552ce8c95ccfbf9
+2026-10-24T02:48:08.8157554Z Successfully built webpatch
+2026-10-24T02:48:08.8405060Z Installing collected packages: webpatch, pygments, pluggy, packaging, iniconfig, coverage, pytest, pytest-cov
+2026-10-24T02:48:10.1036746Z 
+2026-10-24T02:48:10.1051988Z Successfully installed coverage-7.17.0 iniconfig-2.3.1 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-8.4.2 pytest-cov-6.3.0 webpatch-0.3.0
+2026-10-24T02:48:10.1061400Z 
+2026-10-24T02:48:10.1061908Z [notice] A new release of pip is available: 26.2.1 -> 26.2.2
+2026-10-24T02:48:10.1062366Z [notice] To update, run: pip install --upgrade pip
+2026-10-24T02:48:10.1839047Z ##[group]Run mkdir -p ci-evidence
+2026-10-24T02:48:10.1839402Z [36;1mmkdir -p ci-evidence[0m
+2026-10-24T02:48:10.1840337Z [36;1mpython -m pytest --cov=webpatch --cov-report=term-missing --junitxml=ci-evidence/pytest.xml 2>&1 | tee ci-evidence/pytest.log[0m
+2026-10-24T02:48:10.1841028Z [36;1mpython scripts/evidence_manifest.py ci-evidence[0m
+2026-10-24T02:48:10.1907682Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-24T02:48:10.1908045Z env:
+2026-10-24T02:48:10.1908306Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.1908743Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T02:48:10.1909175Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.1909752Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.1910183Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.1910631Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T02:48:10.1910976Z ##[endgroup]
+2026-10-24T02:48:11.8403382Z ============================= test session starts ==============================
+2026-10-24T02:48:11.8404477Z platform linux -- Python 3.12.15, pytest-8.4.2, pluggy-1.7.0
+2026-10-24T02:48:11.8405015Z rootdir: /home/runner/work/webpatch/webpatch
+2026-10-24T02:48:11.8405447Z configfile: pyproject.toml
+2026-10-24T02:48:11.8405800Z testpaths: tests
+2026-10-24T02:48:11.8406081Z plugins: cov-6.3.0
+2026-10-24T02:48:11.8406360Z collected 697 items
+2026-10-24T02:48:11.8406557Z 
+2026-10-24T02:48:12.0853925Z tests/test_application.py ............................                   [  4%]
+2026-10-24T02:48:12.1096793Z tests/test_archive_sealing.py .......                                    [  5%]
+2026-10-24T02:48:12.1212339Z tests/test_base_versions.py ...                                          [  5%]
+2026-10-24T02:48:12.4510750Z tests/test_boundaries.py ................................                [ 10%]
+2026-10-24T02:48:12.7011412Z tests/test_ci_guards.py .                                                [ 10%]
+2026-10-24T02:48:12.7143166Z tests/test_ci_lifecycle_policy.py .........                              [ 11%]
+2026-10-24T02:48:12.7338705Z tests/test_configuration_policy.py ................                      [ 13%]
+2026-10-24T02:48:12.7995480Z tests/test_consumers.py .................                                [ 16%]
+2026-10-24T02:48:12.8464097Z tests/test_container_rebuild.py ...........                              [ 17%]
+2026-10-24T02:48:12.9942681Z tests/test_coverage.py ................................................. [ 24%]
+2026-10-24T02:48:13.0722624Z ...........                                                              [ 26%]
+2026-10-24T02:48:13.1138344Z tests/test_debian_trust.py ................                              [ 28%]
+2026-10-24T02:48:13.2507069Z tests/test_deployment.py ..................                              [ 31%]
+2026-10-24T02:48:13.4380858Z tests/test_docker_io.py F..F..........                                   [ 33%]
+2026-10-24T02:48:13.6587727Z tests/test_docker_scan.py ...................................            [ 38%]
+2026-10-24T02:48:14.0048802Z tests/test_environments.py ............................................. [ 44%]
+2026-10-24T02:48:16.8991460Z ...............................................................          [ 53%]
+2026-10-24T02:48:17.0556068Z tests/test_execution_inputs.py .............                             [ 55%]
+2026-10-24T02:48:17.2617961Z tests/test_gates.py ..............                                       [ 57%]
+2026-10-24T02:48:22.4308882Z tests/test_guided.py ................                                    [ 59%]
+2026-10-24T02:48:22.4498361Z tests/test_implementation.py .....                                       [ 60%]
+2026-10-24T02:48:22.5693473Z tests/test_maintenance.py ...............                                [ 62%]
+2026-10-24T02:48:22.6261390Z tests/test_node.py .................                                     [ 65%]
+2026-10-24T02:48:22.6488829Z tests/test_package_control.py ........                                   [ 66%]
+2026-10-24T02:48:23.1211800Z tests/test_planning.py ................................                  [ 71%]
+2026-10-24T02:48:23.1610474Z tests/test_platform_proof.py ..........                                  [ 72%]
+2026-10-24T02:48:23.3993435Z tests/test_preparation.py ..............                                 [ 74%]
+2026-10-24T02:48:24.0357175Z tests/test_prepared_verification.py ............                         [ 76%]
+2026-10-24T02:48:24.0625183Z tests/test_profiles.py ....                                              [ 76%]
+2026-10-24T02:48:24.3267667Z tests/test_repair_cli.py ..........                                      [ 78%]
+2026-10-24T02:48:25.0806825Z tests/test_repair_execution.py .........                                 [ 79%]
+2026-10-24T02:48:25.8339169Z tests/test_repair_policy.py ...............                              [ 81%]
+2026-10-24T02:48:25.9119200Z tests/test_runtime.py .........................                          [ 85%]
+2026-10-24T02:48:26.0143887Z tests/test_runtime_evidence.py .....................                     [ 88%]
+2026-10-24T02:48:26.0220440Z tests/test_shared_ownership.py .                                         [ 88%]
+2026-10-24T02:48:26.0692400Z tests/test_sources.py ....................                               [ 91%]
+2026-10-24T02:48:26.3707128Z tests/test_terminal.py ..............                                    [ 93%]
+2026-10-24T02:48:26.7090069Z tests/test_transaction.py .....................                          [ 96%]
+2026-10-24T02:48:27.1980952Z tests/test_trust.py ..........................                           [100%]
+2026-10-24T02:48:27.1981584Z 
+2026-10-24T02:48:27.1981858Z =================================== FAILURES ===================================
+2026-10-24T02:48:27.1982651Z __________ test_real_unix_transport_reads_list_tar_top_and_head_only ___________
+2026-10-24T02:48:27.1983168Z 
+2026-10-24T02:48:27.1983533Z self = <webpatch.docker_io.LocalDockerReader object at 0x7fd4506de930>
+2026-10-24T02:48:27.1984264Z method = 'GET', path = '/containers/json?all=1', limit = 4194304
+2026-10-24T02:48:27.1984664Z 
+2026-10-24T02:48:27.1984831Z     def _request(self, method, path, limit):
+2026-10-24T02:48:27.1985292Z         validate_request(method, path)
+2026-10-24T02:48:27.1985781Z         remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.1986526Z         if remaining <= 0:
+2026-10-24T02:48:27.1986933Z             raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.1987695Z         connection = http.client.HTTPConnection('localhost', timeout=min(3, remaining))
+2026-10-24T02:48:27.1988600Z         channel = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+2026-10-24T02:48:27.1989165Z         try:
+2026-10-24T02:48:27.1989551Z             channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.1990487Z             channel.connect(self.endpoint)
+2026-10-24T02:48:27.1991042Z             connection.sock = channel
+2026-10-24T02:48:27.1991794Z             connection.request(method, path, headers={'Host': 'localhost', 'Connection': 'close'})
+2026-10-24T02:48:27.1992561Z             response = connection.getresponse()
+2026-10-24T02:48:27.1993050Z             if response.status in (403, 401):
+2026-10-24T02:48:27.1993635Z                 raise ProbeError('DOCKER_PERMISSION_DENIED')
+2026-10-24T02:48:27.1994181Z             if response.status == 404:
+2026-10-24T02:48:27.1994619Z                 return None
+2026-10-24T02:48:27.1995014Z             if response.status != 200:
+2026-10-24T02:48:27.1995570Z                 raise ProbeError('DOCKER_HTTP_' + str(response.status))
+2026-10-24T02:48:27.1996140Z             result = bytearray()
+2026-10-24T02:48:27.1996578Z             while method != 'HEAD':
+2026-10-24T02:48:27.1997152Z                 remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.1997619Z                 if remaining <= 0:
+2026-10-24T02:48:27.1998335Z                     raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.1998878Z >               channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.1999377Z E               OSError: [Errno 9] Bad file descriptor
+2026-10-24T02:48:27.1999922Z 
+2026-10-24T02:48:27.2000088Z src/webpatch/docker_io.py:133: OSError
+2026-10-24T02:48:27.2000363Z 
+2026-10-24T02:48:27.2000642Z The above exception was the direct cause of the following exception:
+2026-10-24T02:48:27.2001076Z 
+2026-10-24T02:48:27.2002330Z daemon = (<webpatch.docker_io.LocalDockerReader object at 0x7fd4506de930>, {'/containers/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...", "State": "running", "Command": "secret", "Labels": {"key": "secret"}}]'), ...}, [('GET', '/containers/json?all=1')])
+2026-10-24T02:48:27.2003795Z 
+2026-10-24T02:48:27.2004091Z     def test_real_unix_transport_reads_list_tar_top_and_head_only(daemon):
+2026-10-24T02:48:27.2004666Z         reader, replies, calls = daemon
+2026-10-24T02:48:27.2005346Z         replies[LIST_PATH] = (200, json.dumps([dict(Id=ID, Names=['/app'], Image='php', ImageID='sha256:x',
+2026-10-24T02:48:27.2006252Z                                                  State='running', Command='secret', Labels={'key': 'secret'})]).encode())
+2026-10-24T02:48:27.2007051Z         path = '/containers/' + ID + '/archive?path=%2Fvar%2Flib%2Fdpkg%2Fstatus'
+2026-10-24T02:48:27.2007734Z         replies[path] = (200, tar_bytes(content=STATUS.encode()))
+2026-10-24T02:48:27.2008606Z         replies['/containers/' + ID + TOP_QUERY] = (200, b'{"Titles":["PID","COMMAND"],"Processes":[["123","php-fpm"]]}')
+2026-10-24T02:48:27.2009467Z         hint = '/containers/' + ID + '/archive?path=%2Fusr%2Flocal%2Fbin%2Fphp'
+2026-10-24T02:48:27.2010222Z         replies[hint] = (200, b'')
+2026-10-24T02:48:27.2010631Z >       assert reader.containers()[0]['id'] == ID
+2026-10-24T02:48:27.2011057Z                ^^^^^^^^^^^^^^^^^^^
+2026-10-24T02:48:27.2011279Z 
+2026-10-24T02:48:27.2011422Z tests/test_docker_io.py:58: 
+2026-10-24T02:48:27.2011874Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-24T02:48:27.2012393Z src/webpatch/docker_io.py:163: in containers
+2026-10-24T02:48:27.2012852Z     return parse_containers(self._json(LIST_PATH))
+2026-10-24T02:48:27.2013289Z                             ^^^^^^^^^^^^^^^^^^^^^
+2026-10-24T02:48:27.2013698Z src/webpatch/docker_io.py:154: in _json
+2026-10-24T02:48:27.2014119Z     raw = self._request('GET', path, MAX_JSON)
+2026-10-24T02:48:27.2014743Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-24T02:48:27.2015209Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-24T02:48:27.2015561Z 
+2026-10-24T02:48:27.2015836Z self = <webpatch.docker_io.LocalDockerReader object at 0x7fd4506de930>
+2026-10-24T02:48:27.2016465Z method = 'GET', path = '/containers/json?all=1', limit = 4194304
+2026-10-24T02:48:27.2016823Z 
+2026-10-24T02:48:27.2016974Z     def _request(self, method, path, limit):
+2026-10-24T02:48:27.2017399Z         validate_request(method, path)
+2026-10-24T02:48:27.2017850Z         remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.2018298Z         if remaining <= 0:
+2026-10-24T02:48:27.2018682Z             raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.2019336Z         connection = http.client.HTTPConnection('localhost', timeout=min(3, remaining))
+2026-10-24T02:48:27.2020414Z         channel = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+2026-10-24T02:48:27.2020912Z         try:
+2026-10-24T02:48:27.2021225Z             channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.2021676Z             channel.connect(self.endpoint)
+2026-10-24T02:48:27.2022165Z             connection.sock = channel
+2026-10-24T02:48:27.2022777Z             connection.request(method, path, headers={'Host': 'localhost', 'Connection': 'close'})
+2026-10-24T02:48:27.2023458Z             response = connection.getresponse()
+2026-10-24T02:48:27.2023887Z             if response.status in (403, 401):
+2026-10-24T02:48:27.2024534Z                 raise ProbeError('DOCKER_PERMISSION_DENIED')
+2026-10-24T02:48:27.2025013Z             if response.status == 404:
+2026-10-24T02:48:27.2025374Z                 return None
+2026-10-24T02:48:27.2025704Z             if response.status != 200:
+2026-10-24T02:48:27.2026169Z                 raise ProbeError('DOCKER_HTTP_' + str(response.status))
+2026-10-24T02:48:27.2026659Z             result = bytearray()
+2026-10-24T02:48:27.2027082Z             while method != 'HEAD':
+2026-10-24T02:48:27.2027520Z                 remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.2027969Z                 if remaining <= 0:
+2026-10-24T02:48:27.2028376Z                     raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.2028977Z                 channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.2029495Z                 chunk = response.read1(min(65536, limit + 1 - len(result)))
+2026-10-24T02:48:27.2030175Z                 if not chunk:
+2026-10-24T02:48:27.2030508Z                     break
+2026-10-24T02:48:27.2030832Z                 result.extend(chunk)
+2026-10-24T02:48:27.2031192Z                 if len(result) > limit:
+2026-10-24T02:48:27.2031641Z                     raise ProbeError('DOCKER_RESPONSE_TOO_LARGE')
+2026-10-24T02:48:27.2032170Z             if method != 'HEAD' and response.length not in (None, 0):
+2026-10-24T02:48:27.2032697Z                 raise ProbeError('DOCKER_RESPONSE_TRUNCATED')
+2026-10-24T02:48:27.2033139Z             return bytes(result)
+2026-10-24T02:48:27.2033513Z         except PermissionError as exc:
+2026-10-24T02:48:27.2033972Z             raise ProbeError('DOCKER_PERMISSION_DENIED') from exc
+2026-10-24T02:48:27.2034484Z         except (TimeoutError, socket.timeout) as exc:
+2026-10-24T02:48:27.2034967Z             raise ProbeError('DOCKER_TIMEOUT') from exc
+2026-10-24T02:48:27.2035469Z         except (OSError, http.client.HTTPException) as exc:
+2026-10-24T02:48:27.2036015Z >           raise ProbeError('DOCKER_CONNECTION_FAILED') from exc
+2026-10-24T02:48:27.2036605Z E           webpatch.system.ProbeError: DOCKER_CONNECTION_FAILED
+2026-10-24T02:48:27.2036981Z 
+2026-10-24T02:48:27.2037141Z src/webpatch/docker_io.py:148: ProbeError
+2026-10-24T02:48:27.2037781Z __ test_http_failures_are_explicit_and_never_leak_bodies[200-{-INVALID_JSON] ___
+2026-10-24T02:48:27.2038252Z 
+2026-10-24T02:48:27.2038533Z self = <webpatch.docker_io.LocalDockerReader object at 0x7fd4507dcda0>
+2026-10-24T02:48:27.2039175Z method = 'GET', path = '/containers/json?all=1', limit = 4194304
+2026-10-24T02:48:27.2039950Z 
+2026-10-24T02:48:27.2040116Z     def _request(self, method, path, limit):
+2026-10-24T02:48:27.2040558Z         validate_request(method, path)
+2026-10-24T02:48:27.2041002Z         remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.2041451Z         if remaining <= 0:
+2026-10-24T02:48:27.2041846Z             raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.2042514Z         connection = http.client.HTTPConnection('localhost', timeout=min(3, remaining))
+2026-10-24T02:48:27.2043249Z         channel = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+2026-10-24T02:48:27.2043744Z         try:
+2026-10-24T02:48:27.2044061Z             channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.2044507Z             channel.connect(self.endpoint)
+2026-10-24T02:48:27.2044917Z             connection.sock = channel
+2026-10-24T02:48:27.2045546Z             connection.request(method, path, headers={'Host': 'localhost', 'Connection': 'close'})
+2026-10-24T02:48:27.2046235Z             response = connection.getresponse()
+2026-10-24T02:48:27.2046698Z             if response.status in (403, 401):
+2026-10-24T02:48:27.2047172Z                 raise ProbeError('DOCKER_PERMISSION_DENIED')
+2026-10-24T02:48:27.2047633Z             if response.status == 404:
+2026-10-24T02:48:27.2048008Z                 return None
+2026-10-24T02:48:27.2048356Z             if response.status != 200:
+2026-10-24T02:48:27.2048845Z                 raise ProbeError('DOCKER_HTTP_' + str(response.status))
+2026-10-24T02:48:27.2049548Z             result = bytearray()
+2026-10-24T02:48:27.2050130Z             while method != 'HEAD':
+2026-10-24T02:48:27.2050574Z                 remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.2051035Z                 if remaining <= 0:
+2026-10-24T02:48:27.2051454Z                     raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.2051949Z >               channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.2052427Z E               OSError: [Errno 9] Bad file descriptor
+2026-10-24T02:48:27.2052732Z 
+2026-10-24T02:48:27.2052875Z src/webpatch/docker_io.py:133: OSError
+2026-10-24T02:48:27.2053146Z 
+2026-10-24T02:48:27.2053409Z The above exception was the direct cause of the following exception:
+2026-10-24T02:48:27.2053816Z 
+2026-10-24T02:48:27.2054616Z daemon = (<webpatch.docker_io.LocalDockerReader object at 0x7fd4507dcda0>, {'/containers/json?all=1': (200, b'{'), 'advertised_lengths': {}}, [('GET', '/containers/json?all=1')])
+2026-10-24T02:48:27.2055712Z code = 200, body = b'{', reason = 'INVALID_JSON'
+2026-10-24T02:48:27.2056013Z 
+2026-10-24T02:48:27.2056390Z     @pytest.mark.parametrize('code,body,reason', [(403, b'secret', 'PERMISSION_DENIED'),
+2026-10-24T02:48:27.2057213Z         (500, b'secret', 'HTTP_500'), (200, b'{', 'INVALID_JSON'), (404, b'secret', 'MISSING')])
+2026-10-24T02:48:27.2058020Z     def test_http_failures_are_explicit_and_never_leak_bodies(daemon, code, body, reason):
+2026-10-24T02:48:27.2058768Z         reader, replies, _ = daemon; replies[LIST_PATH] = (code, body)
+2026-10-24T02:48:27.2059385Z         with pytest.raises(ProbeError, match=reason) as failure:
+2026-10-24T02:48:27.2060106Z >           reader.containers()
+2026-10-24T02:48:27.2060361Z 
+2026-10-24T02:48:27.2060503Z tests/test_docker_io.py:70: 
+2026-10-24T02:48:27.2060918Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-24T02:48:27.2061443Z src/webpatch/docker_io.py:163: in containers
+2026-10-24T02:48:27.2061923Z     return parse_containers(self._json(LIST_PATH))
+2026-10-24T02:48:27.2062379Z                             ^^^^^^^^^^^^^^^^^^^^^
+2026-10-24T02:48:27.2062790Z src/webpatch/docker_io.py:154: in _json
+2026-10-24T02:48:27.2063214Z     raw = self._request('GET', path, MAX_JSON)
+2026-10-24T02:48:27.2063634Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-24T02:48:27.2064093Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-24T02:48:27.2064641Z 
+2026-10-24T02:48:27.2064930Z self = <webpatch.docker_io.LocalDockerReader object at 0x7fd4507dcda0>
+2026-10-24T02:48:27.2065582Z method = 'GET', path = '/containers/json?all=1', limit = 4194304
+2026-10-24T02:48:27.2065951Z 
+2026-10-24T02:48:27.2066107Z     def _request(self, method, path, limit):
+2026-10-24T02:48:27.2066533Z         validate_request(method, path)
+2026-10-24T02:48:27.2066983Z         remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.2067425Z         if remaining <= 0:
+2026-10-24T02:48:27.2067814Z             raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.2068468Z         connection = http.client.HTTPConnection('localhost', timeout=min(3, remaining))
+2026-10-24T02:48:27.2069197Z         channel = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+2026-10-24T02:48:27.2069874Z         try:
+2026-10-24T02:48:27.2070201Z             channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.2070654Z             channel.connect(self.endpoint)
+2026-10-24T02:48:27.2071067Z             connection.sock = channel
+2026-10-24T02:48:27.2071683Z             connection.request(method, path, headers={'Host': 'localhost', 'Connection': 'close'})
+2026-10-24T02:48:27.2072360Z             response = connection.getresponse()
+2026-10-24T02:48:27.2072803Z             if response.status in (403, 401):
+2026-10-24T02:48:27.2073279Z                 raise ProbeError('DOCKER_PERMISSION_DENIED')
+2026-10-24T02:48:27.2073748Z             if response.status == 404:
+2026-10-24T02:48:27.2074118Z                 return None
+2026-10-24T02:48:27.2074633Z             if response.status != 200:
+2026-10-24T02:48:27.2075150Z                 raise ProbeError('DOCKER_HTTP_' + str(response.status))
+2026-10-24T02:48:27.2075669Z             result = bytearray()
+2026-10-24T02:48:27.2076023Z             while method != 'HEAD':
+2026-10-24T02:48:27.2076454Z                 remaining = self.deadline - time.monotonic()
+2026-10-24T02:48:27.2076921Z                 if remaining <= 0:
+2026-10-24T02:48:27.2077341Z                     raise ProbeError('DOCKER_SCAN_TIME_LIMIT')
+2026-10-24T02:48:27.2077842Z                 channel.settimeout(min(3, remaining))
+2026-10-24T02:48:27.2078395Z                 chunk = response.read1(min(65536, limit + 1 - len(result)))
+2026-10-24T02:48:27.2078905Z                 if not chunk:
+2026-10-24T02:48:27.2079302Z                     break
+2026-10-24T02:48:27.2079811Z                 result.extend(chunk)
+2026-10-24T02:48:27.2080203Z                 if len(result) > limit:
+2026-10-24T02:48:27.2080652Z                     raise ProbeError('DOCKER_RESPONSE_TOO_LARGE')
+2026-10-24T02:48:27.2081206Z             if method != 'HEAD' and response.length not in (None, 0):
+2026-10-24T02:48:27.2081764Z                 raise ProbeError('DOCKER_RESPONSE_TRUNCATED')
+2026-10-24T02:48:27.2082210Z             return bytes(result)
+2026-10-24T02:48:27.2082582Z         except PermissionError as exc:
+2026-10-24T02:48:27.2083048Z             raise ProbeError('DOCKER_PERMISSION_DENIED') from exc
+2026-10-24T02:48:27.2083569Z         except (TimeoutError, socket.timeout) as exc:
+2026-10-24T02:48:27.2084050Z             raise ProbeError('DOCKER_TIMEOUT') from exc
+2026-10-24T02:48:27.2084554Z         except (OSError, http.client.HTTPException) as exc:
+2026-10-24T02:48:27.2085110Z >           raise ProbeError('DOCKER_CONNECTION_FAILED') from exc
+2026-10-24T02:48:27.2085687Z E           webpatch.system.ProbeError: DOCKER_CONNECTION_FAILED
+2026-10-24T02:48:27.2086056Z 
+2026-10-24T02:48:27.2086215Z src/webpatch/docker_io.py:148: ProbeError
+2026-10-24T02:48:27.2086483Z 
+2026-10-24T02:48:27.2086754Z During handling of the above exception, another exception occurred:
+2026-10-24T02:48:27.2087151Z 
+2026-10-24T02:48:27.2087911Z daemon = (<webpatch.docker_io.LocalDockerReader object at 0x7fd4507dcda0>, {'/containers/json?all=1': (200, b'{'), 'advertised_lengths': {}}, [('GET', '/containers/json?all=1')])
+2026-10-24T02:48:27.2088951Z code = 200, body = b'{', reason = 'INVALID_JSON'
+2026-10-24T02:48:27.2089264Z 
+2026-10-24T02:48:27.2089970Z     @pytest.mark.parametrize('code,body,reason', [(403, b'secret', 'PERMISSION_DENIED'),
+2026-10-24T02:48:27.2090762Z         (500, b'secret', 'HTTP_500'), (200, b'{', 'INVALID_JSON'), (404, b'secret', 'MISSING')])
+2026-10-24T02:48:27.2091555Z     def test_http_failures_are_explicit_and_never_leak_bodies(daemon, code, body, reason):
+2026-10-24T02:48:27.2092275Z         reader, replies, _ = daemon; replies[LIST_PATH] = (code, body)
+2026-10-24T02:48:27.2092883Z >       with pytest.raises(ProbeError, match=reason) as failure:
+2026-10-24T02:48:27.2093377Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-24T02:48:27.2093830Z E       AssertionError: Regex pattern did not match.
+2026-10-24T02:48:27.2094265Z E        Regex: 'INVALID_JSON'
+2026-10-24T02:48:27.2094620Z E        Input: 'DOCKER_CONNECTION_FAILED'
+2026-10-24T02:48:27.2094882Z 
+2026-10-24T02:48:27.2095036Z tests/test_docker_io.py:69: AssertionError
+2026-10-24T02:48:27.2095627Z - generated xml file: /home/runner/work/webpatch/webpatch/ci-evidence/pytest.xml -
+2026-10-24T02:48:27.2096318Z ================================ tests coverage ================================
+2026-10-24T02:48:27.2096928Z _______________ coverage: platform linux, python 3.12.15-final-0 _______________
+2026-10-24T02:48:27.2097352Z 
+2026-10-24T02:48:27.2097543Z Name                                    Stmts   Miss  Cover   Missing
+2026-10-24T02:48:27.2098058Z ---------------------------------------------------------------------
+2026-10-24T02:48:27.2098597Z src/webpatch/__init__.py                    1      0   100%
+2026-10-24T02:48:27.2099317Z src/webpatch/__main__.py                    2      2     0%   1-3
+2026-10-24T02:48:27.2100238Z src/webpatch/application.py               179     74    59%   42, 71-87, 92-145, 156, 174, 179, 184, 196, 202, 209
+2026-10-24T02:48:27.2100968Z src/webpatch/apt.py                        66      1    98%   101
+2026-10-24T02:48:27.2101563Z src/webpatch/archive_policy.py             23      2    91%   28, 37
+2026-10-24T02:48:27.2102366Z src/webpatch/cli.py                       250     39    84%   112, 166-167, 175-195, 206-210, 225-229, 231-232, 236, 250, 254-256, 260-265
+2026-10-24T02:48:27.2103262Z src/webpatch/configuration.py             120     10    92%   40, 65, 77, 88-91, 104-105, 134
+2026-10-24T02:48:27.2103942Z src/webpatch/configuration_policy.py       24      0   100%
+2026-10-24T02:48:27.2104615Z src/webpatch/consumers.py                 137     14    90%   32-33, 38-42, 51, 53, 62, 91, 115, 119, 153
+2026-10-24T02:48:27.2105300Z src/webpatch/container_rebuild.py          31      0   100%
+2026-10-24T02:48:27.2105848Z src/webpatch/coverage.py                  100      0   100%
+2026-10-24T02:48:27.2106466Z src/webpatch/deployment.py                 89      5    94%   46, 50, 56, 99, 105
+2026-10-24T02:48:27.2107163Z src/webpatch/discovery.py                 121      2    98%   35-36
+2026-10-24T02:48:27.2108066Z src/webpatch/docker_io.py                 167     30    82%   44, 53, 66, 91, 105, 132, 142, 144, 146, 157-160, 171, 174-186, 192, 194, 202, 204, 207-208
+2026-10-24T02:48:27.2109023Z src/webpatch/docker_scan.py               147      8    95%   21, 24, 27, 39, 42, 46, 75, 103
+2026-10-24T02:48:27.2109903Z src/webpatch/documents.py                  10      0   100%
+2026-10-24T02:48:27.2110597Z src/webpatch/execution_inputs.py           81      9    89%   16-17, 20-21, 49-51, 80-81
+2026-10-24T02:48:27.2111300Z src/webpatch/gates.py                      65      1    98%   22
+2026-10-24T02:48:27.2112291Z src/webpatch/guided.py                    201     29    86%   43, 104, 107, 127-132, 136, 141, 152, 164-165, 167, 169, 171-172, 174, 176-179, 184, 198, 209, 230, 243-244, 250, 266-267
+2026-10-24T02:48:27.2113266Z src/webpatch/implementation.py             15      0   100%
+2026-10-24T02:48:27.2113947Z src/webpatch/maintenance.py               111      9    92%   17, 19, 44, 49, 59, 66, 77-78, 92
+2026-10-24T02:48:27.2114627Z src/webpatch/models.py                    239      0   100%
+2026-10-24T02:48:27.2115312Z src/webpatch/node_adapter.py               90     15    83%   24, 29, 38-39, 41, 49, 51, 77-82, 86, 102
+2026-10-24T02:48:27.2116242Z src/webpatch/node_rules.py                 48      2    96%   22, 29
+2026-10-24T02:48:27.2117021Z src/webpatch/package_control.py           170     49    71%   66, 93, 99, 115-134, 142-143, 146-175, 194, 208, 212
+2026-10-24T02:48:27.2118192Z src/webpatch/planning.py                  315     25    92%   43, 88, 97, 102, 113, 150-151, 168-169, 180, 218, 231, 238, 244, 255, 265-266, 335, 350, 352, 361, 365, 367, 369, 375
+2026-10-24T02:48:27.2119337Z src/webpatch/platform_proof.py            104     15    86%   15-17, 34-35, 41-42, 48, 52, 57, 62-63, 87, 100, 116
+2026-10-24T02:48:27.2120761Z src/webpatch/preparation.py               230     35    85%   36, 50, 63, 65, 74, 77, 79, 81, 84, 89, 105-106, 117-119, 125, 129, 131, 134, 143, 145, 148, 183, 193, 220-221, 229, 233, 235, 237, 240, 247, 265, 268, 278
+2026-10-24T02:48:27.2121913Z src/webpatch/prepared_verification.py      54      3    94%   35, 49, 53
+2026-10-24T02:48:27.2122560Z src/webpatch/profiles.py                    3      0   100%
+2026-10-24T02:48:27.2123163Z src/webpatch/receipts.py                   51      3    94%   21, 54, 57
+2026-10-24T02:48:27.2123768Z src/webpatch/release_gate.py                2      0   100%
+2026-10-24T02:48:27.2124520Z src/webpatch/repair_execution.py          170     20    88%   34, 116, 121-122, 129, 157-167, 181, 184, 187, 194, 197
+2026-10-24T02:48:27.2125369Z src/webpatch/repair_policy.py             164     10    94%   53-58, 61, 82, 89, 124
+2026-10-24T02:48:27.2126333Z src/webpatch/rules.py                      79      1    99%   66
+2026-10-24T02:48:27.2127138Z src/webpatch/runtime.py                   153      9    94%   22, 36, 39, 143, 147-148, 156, 175, 177
+2026-10-24T02:48:27.2127968Z src/webpatch/runtime_evidence.py          102     10    90%   18, 52-53, 55, 58, 88, 91, 100, 110, 114
+2026-10-24T02:48:27.2128677Z src/webpatch/service.py                    22      0   100%
+2026-10-24T02:48:27.2129487Z src/webpatch/service_control.py           184    155    16%   5-6, 26-31, 35-36, 40-62, 65-69, 72-104, 108-123, 126-180, 183-190, 194-203
+2026-10-24T02:48:27.2130550Z src/webpatch/sessions.py                   46     13    72%   13, 27-38, 45
+2026-10-24T02:48:27.2131314Z src/webpatch/sources.py                   160     12    92%   43, 52, 61, 79, 83, 120, 126, 142-143, 168, 187-188
+2026-10-24T02:48:27.2132585Z src/webpatch/system.py                    326    110    66%   6-7, 97, 100, 103, 106, 117, 129, 135-138, 183, 201, 206-207, 210-214, 217-228, 233-267, 271-303, 308-310, 320, 326, 334, 340, 345-346, 357, 359-360, 374, 380, 385
+2026-10-24T02:48:27.2134108Z src/webpatch/terminal.py                  232     49    79%   51, 139, 166, 173, 179-180, 186, 210, 235-244, 250-258, 266-270, 282, 286-295, 298, 302-306, 310-313, 315, 336-341
+2026-10-24T02:48:27.2135158Z src/webpatch/transaction.py               163      7    96%   65, 70, 93, 96, 101, 119-120
+2026-10-24T02:48:27.2135995Z src/webpatch/trust.py                     214     14    93%   41, 46, 79, 82, 90, 113, 139-140, 146-147, 189, 192, 202-203
+2026-10-24T02:48:27.2136723Z ---------------------------------------------------------------------
+2026-10-24T02:48:27.2137248Z TOTAL                                    5261    792    85%
+2026-10-24T02:48:27.2537692Z =========================== short test summary info ============================
+2026-10-24T02:48:27.2539179Z FAILED tests/test_docker_io.py::test_real_unix_transport_reads_list_tar_top_and_head_only - webpatch.system.ProbeError: DOCKER_CONNECTION_FAILED
+2026-10-24T02:48:27.2541294Z FAILED tests/test_docker_io.py::test_http_failures_are_explicit_and_never_leak_bodies[200-{-INVALID_JSON] - AssertionError: Regex pattern did not match.
+2026-10-24T02:48:27.2542408Z  Regex: 'INVALID_JSON'
+2026-10-24T02:48:27.2542775Z  Input: 'DOCKER_CONNECTION_FAILED'
+2026-10-24T02:48:27.2543292Z ======================== 2 failed, 695 passed in 16.50s ========================
+2026-10-24T02:48:27.3015664Z ##[error]Process completed with exit code 1.
+2026-10-24T02:48:27.3137296Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-24T02:48:27.3137722Z with:
+2026-10-24T02:48:27.3137917Z   name: fixtures-3.12
+2026-10-24T02:48:27.3138131Z   path: ci-evidence/
+2026-10-24T02:48:27.3138341Z   if-no-files-found: warn
+2026-10-24T02:48:27.3138566Z   compression-level: 6
+2026-10-24T02:48:27.3138774Z   overwrite: false
+2026-10-24T02:48:27.3138987Z   include-hidden-files: false
+2026-10-24T02:48:27.3139210Z env:
+2026-10-24T02:48:27.3139454Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:27.3140175Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T02:48:27.3140600Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:27.3140973Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:27.3141350Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:27.3141765Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T02:48:27.3142090Z ##[endgroup]
+2026-10-24T02:48:27.4757950Z (node:2361) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-24T02:48:27.4758843Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-24T02:48:27.4812768Z With the provided path, there will be 2 files uploaded
+2026-10-24T02:48:27.4819637Z Artifact name is valid!
+2026-10-24T02:48:27.4820553Z Root directory input is valid!
+2026-10-24T02:48:27.6584115Z Beginning upload of artifact content to blob storage
+2026-10-24T02:48:27.6873809Z (node:2361) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-24T02:48:27.7321457Z Uploaded bytes 18583
+2026-10-24T02:48:27.7743304Z Finished uploading artifact content to blob storage!
+2026-10-24T02:48:27.7744296Z SHA256 digest of uploaded artifact zip is 36e0deb717c5c8447f7d123ea6bc8bd28f50278a87d7f500db49733f9e1c0926
+2026-10-24T02:48:27.7746349Z Finalizing artifact upload
+2026-10-24T02:48:28.1521795Z Artifact fixtures-3.12.zip successfully finalized. Artifact ID 12545311332
+2026-10-24T02:48:28.1523352Z Artifact fixtures-3.12 has been successfully uploaded! Final size is 18583 bytes. Artifact ID is 12545311332
+2026-10-24T02:48:28.1530749Z Artifact download URL: https://github.com/ninex98/webpatch/actions/runs/40055671792/artifacts/12545311332
+2026-10-24T02:48:28.1732478Z Post job cleanup.
+2026-10-24T02:48:28.2624782Z [command]/usr/bin/git version
+2026-10-24T02:48:28.2668408Z git version 2.55.0
+2026-10-24T02:48:28.2708100Z Temporarily overriding HOME='/home/runner/work/_temp/05e2cb68-0439-46a0-9eb6-d7b593f82dac' before making global git config changes
+2026-10-24T02:48:28.2709815Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-24T02:48:28.2713630Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-24T02:48:28.2754209Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-24T02:48:28.2793245Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-24T02:48:28.3051576Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-24T02:48:28.3106040Z http.https://github.com/.extraheader
+2026-10-24T02:48:28.3109128Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-24T02:48:28.3146678Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-24T02:48:28.3419185Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-24T02:48:28.3466326Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-24T02:48:28.3861709Z Cleaning up orphan processes
+2026-10-24T02:48:28.4225273Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -12,3 +12,14 @@ def test_destructive_debian_harnesses_refuse_non_hosted_context_before_setup(tmp
         result=subprocess.run(command,cwd=tmp_path,env=env,capture_output=True,text=True,timeout=10)
         assert result.returncode!=0
     assert not list(tmp_path.iterdir())
+
+
+def test_installed_docker_harness_refuses_non_hosted_context_before_setup(tmp_path):
+    repository = Path(__file__).resolve().parents[1]
+    env = {**os.environ, 'GITHUB_ACTIONS': 'false', 'RUNNER_ENVIRONMENT': 'local'}
+    command = [sys.executable, str(repository / 'scripts/check_docker_scan.py'),
+               '--installed-cli', '--package-image', 'unused', '--custom-image', 'unused',
+               '--empty-image', 'unused', '--socket', '/unused.sock', '--output', str(tmp_path / 'result')]
+    result = subprocess.run(command, cwd=tmp_path, env=env, capture_output=True, text=True, timeout=10)
+    assert result.returncode != 0
+    assert not list(tmp_path.iterdir())

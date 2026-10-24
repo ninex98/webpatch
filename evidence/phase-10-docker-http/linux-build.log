@@ -1,0 +1,94 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 426B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/webpatch-ui:noble
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 146B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 306.81kB 0.0s done
+#4 DONE 0.0s
+
+#5 [1/7] FROM docker.io/library/webpatch-ui:noble@sha256:48da72bce2014a71653fe28e02d87bc9f2d94b338eeab95623cf8bffbad20524
+#5 resolve docker.io/library/webpatch-ui:noble@sha256:48da72bce2014a71653fe28e02d87bc9f2d94b338eeab95623cf8bffbad20524 0.0s done
+#5 CACHED
+
+#6 [2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3-pytest
+#6 1.509 Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+#6 2.977 Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+#6 4.400 Get:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+#6 5.894 Get:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+#6 9.012 Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [2216 kB]
+#6 11.52 Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1790 kB]
+#6 14.00 Get:7 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1476 kB]
+#6 16.97 Get:8 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1638 kB]
+#6 17.06 Fetched 7498 kB in 17s (449 kB/s)
+#6 17.06 Reading package lists...
+#6 17.96 Reading package lists...
+#6 18.41 Building dependency tree...
+#6 18.53 Reading state information...
+#6 18.67 The following additional packages will be installed:
+#6 18.67   python3-iniconfig python3-packaging python3-pluggy
+#6 18.67 Recommended packages:
+#6 18.67   python3-pygments
+#6 18.71 The following NEW packages will be installed:
+#6 18.71   python3-iniconfig python3-packaging python3-pluggy python3-pytest
+#6 19.41 0 upgraded, 4 newly installed, 0 to remove and 4 not upgraded.
+#6 19.41 Need to get 373 kB of archives.
+#6 19.41 After this operation, 1525 kB of additional disk space will be used.
+#6 19.41 Get:1 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 python3-iniconfig all 1.1.1-2 [6024 B]
+#6 20.47 Get:2 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-packaging all 24.0-1 [41.1 kB]
+#6 21.36 Get:3 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 python3-pluggy all 1.4.0-1 [20.4 kB]
+#6 23.06 Get:4 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 python3-pytest all 7.4.4-1 [305 kB]
+#6 23.16 debconf: delaying package configuration, since apt-utils is not installed
+#6 23.18 Fetched 373 kB in 4s (85.9 kB/s)
+#6 23.20 Selecting previously unselected package python3-iniconfig.
+#6 23.20 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6286 files and directories currently installed.)
+#6 23.22 Preparing to unpack .../python3-iniconfig_1.1.1-2_all.deb ...
+#6 23.22 Unpacking python3-iniconfig (1.1.1-2) ...
+#6 23.23 Selecting previously unselected package python3-packaging.
+#6 23.23 Preparing to unpack .../python3-packaging_24.0-1_all.deb ...
+#6 23.23 Unpacking python3-packaging (24.0-1) ...
+#6 23.24 Selecting previously unselected package python3-pluggy.
+#6 23.24 Preparing to unpack .../python3-pluggy_1.4.0-1_all.deb ...
+#6 23.24 Unpacking python3-pluggy (1.4.0-1) ...
+#6 23.25 Selecting previously unselected package python3-pytest.
+#6 23.25 Preparing to unpack .../python3-pytest_7.4.4-1_all.deb ...
+#6 23.25 Unpacking python3-pytest (7.4.4-1) ...
+#6 23.27 Setting up python3-iniconfig (1.1.1-2) ...
+#6 23.33 Setting up python3-packaging (24.0-1) ...
+#6 23.38 Setting up python3-pluggy (1.4.0-1) ...
+#6 23.42 Setting up python3-pytest (7.4.4-1) ...
+#6 DONE 23.6s
+
+#7 [3/7] WORKDIR /work
+#7 DONE 0.0s
+
+#8 [4/7] COPY src /work/src
+#8 DONE 0.0s
+
+#9 [5/7] COPY tests /work/tests
+#9 DONE 0.0s
+
+#10 [6/7] COPY scripts /work/scripts
+#10 DONE 0.0s
+
+#11 [7/7] COPY pyproject.toml /work/pyproject.toml
+#11 DONE 0.0s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 0.3s done
+#12 exporting manifest sha256:8fd6b143c17247e777df3e7733881107b400c10280b8b57704996a0fa5152bc4 done
+#12 exporting config sha256:1786479621e0095cd6937e12ab8650c70e4ead33d43b7e3cf95dfa23f3fbf39d done
+#12 exporting attestation manifest sha256:edf90fd530e62801f32f18cfc85c97f68baeee595a7cfc80c11e005390111c67 done
+#12 exporting manifest list sha256:0c12eb3d5f7ed8d3742c14b021228131bb2aa2e46b3de5ae2433061db9e97434 done
+#12 naming to docker.io/library/webpatch-py312-tests:release done
+#12 unpacking to docker.io/library/webpatch-py312-tests:release 0.1s done
+#12 DONE 0.4s

@@ -1,0 +1,69 @@
+
+  WebPatch 0.3.0  /  PHP 安全检查
+  ────────────────────────────────────────────────────────────────────────────────────
+  Ubuntu 22.04  ·  当前系统作用域
+
+  检查结果
+  UNKNOWN  ·  尚不能确认运行时安全
+  宿主机未发现 PHP 软件包或运行时线索；容器结果见下方。
+  空清单不代表运行时不存在。
+  宿主机：0 个软件包  ·  0 个已观察进程  ·  0 个包版本状态未知
+
+  尚需核实
+  • 自定义路径和隐藏进程仍可能未覆盖；Docker 结果单独列出。
+
+  Docker 容器
+  已检查 4 / 4 个容器 · 运行安全仍为 UNKNOWN
+
+  webpatch-docker-check-b43ec36777-empty  [running]  44d893252573
+    镜像：webpatch-ui:noble
+    UNKNOWN · 已检查的路径和元数据中未发现 PHP 线索。
+    下一步：核对这个容器承载的应用；若不是 PHP 服务，此处没有 PHP 修复对象。
+
+  webpatch-docker-check-b43ec36777-custom  [running]  7767cfab80b3
+    镜像：php:8.3-fpm-alpine
+    UNKNOWN · 发现 PHP / Web 运行线索，尚未认证实际运行代码。
+    /usr/local/include/php/main/php_version.h: 8.3.36
+    /usr/local/bin/php
+    /usr/local/sbin/php-fpm
+    process: php-fpm
+    下一步：核对该镜像的 Dockerfile／构建来源和 PHP 补丁依据；自编译 PHP、Alpine
+    需另行核对适用公告。
+
+  webpatch-docker-check-b43ec36777-packages  [running]  913a66a18267
+    镜像：webpatch-phase1:jammy
+    UNKNOWN · 发现 PHP / Web 运行线索，尚未认证实际运行代码。
+    libapache2-mod-php 2:8.1+92ubuntu1 [UNKNOWN]
+    libapache2-mod-php8.1 8.1.2-1ubuntu2.28 [版本达到修复线]
+    php-cli 2:8.1+92ubuntu1 [UNKNOWN]
+    php-common 2:92ubuntu1 [UNKNOWN]
+    php-fpm 2:8.1+92ubuntu1 [UNKNOWN]
+    php8.1-cli 8.1.2-1ubuntu2.28 [版本达到修复线]
+    php8.1-common 8.1.2-1ubuntu2.28 [UNKNOWN]
+    php8.1-fpm 8.1.2-1ubuntu2.28 [版本达到修复线]
+    php8.1-opcache 8.1.2-1ubuntu2.28 [UNKNOWN]
+    php8.1-readline 8.1.2-1ubuntu2.28 [UNKNOWN]
+    下一步：核对该镜像的 Dockerfile／构建来源和 PHP 补丁依据；自编译 PHP、Alpine
+    需另行核对适用公告。
+
+  webpatch-docker-check-b43ec36777-stopped  [created]  b32aa35aae61
+    镜像：php:8.3-fpm-alpine
+    UNKNOWN · 发现 PHP / Web 运行线索，尚未认证实际运行代码。
+    /usr/local/include/php/main/php_version.h: 8.3.36
+    /usr/local/bin/php
+    /usr/local/sbin/php-fpm
+    容器未运行；本次只检查了保留的文件元数据。
+    下一步：核对该镜像的 Dockerfile／构建来源和 PHP 补丁依据；自编译 PHP、Alpine
+    需另行核对适用公告。
+  只读取证，未在容器中执行命令、安装或重启。其他 Docker 实例和自定义路径仍可能未覆盖。
+
+  下一步
+  按上方各容器的建议处理；容器更新应通过镜像和部署流程完成。
+  宿主机：当前清单没有可供修复的软件包。
+  展开本次检查的证据：
+    webpatch scan --details --lang zh --docker-socket
+    /Users/ninex/.docker/run/docker.sock
+
+  只读检查 · 未修改系统
+  规则有效期：2026-10-29T00:00:00+00:00
+

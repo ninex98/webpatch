@@ -72,7 +72,9 @@ jobs:
           mkdir -p ci-evidence
           docker build -f tests/integration/DockerDiscovery.Dockerfile -t webpatch-discovery-packages . 2>&1 | tee ci-evidence/docker-build.log
           docker pull php:8.3-fpm-alpine 2>&1 | tee ci-evidence/custom-image-pull.log
-          python scripts/check_docker_scan.py --package-image webpatch-discovery-packages --custom-image php:8.3-fpm-alpine --empty-image ubuntu:22.04 --socket /var/run/docker.sock --output ci-evidence 2>&1 | tee ci-evidence/native.log
+          python scripts/build_deb.py
+          sudo apt-get install -y ./dist/webpatch_$(python scripts/package_version.py)_all.deb
+          python scripts/check_docker_scan.py --package-image webpatch-discovery-packages --custom-image php:8.3-fpm-alpine --empty-image ubuntu:22.04 --socket /var/run/docker.sock --output ci-evidence --installed-cli 2>&1 | tee ci-evidence/native.log
           python scripts/evidence_manifest.py ci-evidence
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

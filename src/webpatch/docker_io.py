@@ -126,7 +126,9 @@ class LocalDockerReader:
             if response.status != 200:
                 raise ProbeError('DOCKER_HTTP_' + str(response.status))
             result = bytearray()
-            while method != 'HEAD':
+            # HTTPResponse may close its last socket reference as soon as the
+            # declared body is consumed (not only after an extra empty read).
+            while method != 'HEAD' and not response.isclosed():
                 remaining = self.deadline - time.monotonic()
                 if remaining <= 0:
                     raise ProbeError('DOCKER_SCAN_TIME_LIMIT')

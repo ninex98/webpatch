@@ -1,0 +1,681 @@
+﻿2026-10-24T02:48:01.7065979Z Current runner version: '2.338.0'
+2026-10-24T02:48:01.7092984Z ##[group]Runner Image Provisioner
+2026-10-24T02:48:01.7093907Z Hosted Compute Agent
+2026-10-24T02:48:01.7094556Z Version: 20261012.601
+2026-10-24T02:48:01.7095199Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-24T02:48:01.7096007Z Build Date: 2026-10-12T17:48:21Z
+2026-10-24T02:48:01.7096703Z Worker ID: {d8969474-cad3-4c0d-b82f-4dea48ce045e}
+2026-10-24T02:48:01.7097445Z Region: eastus
+2026-10-24T02:48:01.7098040Z Cloud: Azure
+2026-10-24T02:48:01.7098561Z ##[endgroup]
+2026-10-24T02:48:01.7100550Z ##[group]Operating System
+2026-10-24T02:48:01.7101230Z Ubuntu
+2026-10-24T02:48:01.7102184Z 24.04.5
+2026-10-24T02:48:01.7102997Z LTS
+2026-10-24T02:48:01.7103668Z ##[endgroup]
+2026-10-24T02:48:01.7104288Z ##[group]Runner Image
+2026-10-24T02:48:01.7104902Z Image: ubuntu-24.04
+2026-10-24T02:48:01.7105516Z Version: 20261012.334.1
+2026-10-24T02:48:01.7106828Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-24T02:48:01.7108412Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-24T02:48:01.7109386Z ##[endgroup]
+2026-10-24T02:48:01.7110782Z ##[group]GITHUB_TOKEN Permissions
+2026-10-24T02:48:01.7113113Z Contents: read
+2026-10-24T02:48:01.7113870Z Metadata: read
+2026-10-24T02:48:01.7114422Z ##[endgroup]
+2026-10-24T02:48:01.7117003Z Secret source: Actions
+2026-10-24T02:48:01.7118128Z Cache mode: write
+2026-10-24T02:48:01.7119043Z Prepare workflow directory
+2026-10-24T02:48:01.7531835Z Prepare all required actions
+2026-10-24T02:48:01.7581335Z Getting action download info
+2026-10-24T02:48:01.9717144Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-24T02:48:02.0716219Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-24T02:48:02.1503557Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-24T02:48:02.3706438Z Complete job name: docker-discovery
+2026-10-24T02:48:02.4616497Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-24T02:48:02.4617586Z with:
+2026-10-24T02:48:02.4618028Z   repository: ninex98/webpatch
+2026-10-24T02:48:02.4622337Z   token: ***
+2026-10-24T02:48:02.4622780Z   ssh-strict: true
+2026-10-24T02:48:02.4623207Z   ssh-user: git
+2026-10-24T02:48:02.4623646Z   persist-credentials: true
+2026-10-24T02:48:02.4624124Z   clean: true
+2026-10-24T02:48:02.4624561Z   sparse-checkout-cone-mode: true
+2026-10-24T02:48:02.4625072Z   fetch-depth: 1
+2026-10-24T02:48:02.4625488Z   fetch-tags: false
+2026-10-24T02:48:02.4625916Z   show-progress: true
+2026-10-24T02:48:02.4626349Z   lfs: false
+2026-10-24T02:48:02.4626745Z   submodules: false
+2026-10-24T02:48:02.4627176Z   set-safe-directory: true
+2026-10-24T02:48:02.4627675Z   allow-unsafe-pr-checkout: false
+2026-10-24T02:48:02.4628476Z ##[endgroup]
+2026-10-24T02:48:02.5672422Z Syncing repository: ninex98/webpatch
+2026-10-24T02:48:02.5675051Z ##[group]Getting Git version info
+2026-10-24T02:48:02.5676288Z Working directory is '/home/runner/work/webpatch/webpatch'
+2026-10-24T02:48:02.5677978Z [command]/usr/bin/git version
+2026-10-24T02:48:02.5792473Z git version 2.55.0
+2026-10-24T02:48:02.5804332Z ##[endgroup]
+2026-10-24T02:48:02.5818210Z Temporarily overriding HOME='/home/runner/work/_temp/a5bc46db-8fcc-4362-bea0-b4a499739ec9' before making global git config changes
+2026-10-24T02:48:02.5821591Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-24T02:48:02.5825106Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-24T02:48:02.5888775Z Deleting the contents of '/home/runner/work/webpatch/webpatch'
+2026-10-24T02:48:02.5898169Z ##[group]Initializing the repository
+2026-10-24T02:48:02.5909223Z [command]/usr/bin/git init /home/runner/work/webpatch/webpatch
+2026-10-24T02:48:02.6031485Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-24T02:48:02.6033195Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-24T02:48:02.6034946Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-24T02:48:02.6036175Z hint: call:
+2026-10-24T02:48:02.6037161Z hint:
+2026-10-24T02:48:02.6037957Z hint: 	git config --global init.defaultBranch <name>
+2026-10-24T02:48:02.6038929Z hint:
+2026-10-24T02:48:02.6039931Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-24T02:48:02.6041726Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-24T02:48:02.6042924Z hint:
+2026-10-24T02:48:02.6043566Z hint: 	git branch -m <name>
+2026-10-24T02:48:02.6044357Z hint:
+2026-10-24T02:48:02.6045464Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-24T02:48:02.6052673Z Initialized empty Git repository in /home/runner/work/webpatch/webpatch/.git/
+2026-10-24T02:48:02.6063408Z [command]/usr/bin/git remote add origin https://github.com/ninex98/webpatch
+2026-10-24T02:48:02.6123503Z ##[endgroup]
+2026-10-24T02:48:02.6124759Z ##[group]Disabling automatic garbage collection
+2026-10-24T02:48:02.6126956Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-24T02:48:02.6166905Z ##[endgroup]
+2026-10-24T02:48:02.6168414Z ##[group]Setting up auth
+2026-10-24T02:48:02.6178555Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-24T02:48:02.6213595Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-24T02:48:02.6659199Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-24T02:48:02.6716769Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-24T02:48:02.6967899Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-24T02:48:02.7015037Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-24T02:48:02.7279522Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-24T02:48:02.7328863Z ##[endgroup]
+2026-10-24T02:48:02.7330536Z ##[group]Fetching the repository
+2026-10-24T02:48:02.7341242Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a4d516f53e6fe854a8236d439d3961afcf462f3e:refs/remotes/origin/main
+2026-10-24T02:48:03.7035860Z From https://github.com/ninex98/webpatch
+2026-10-24T02:48:03.7038482Z  * [new ref]         a4d516f53e6fe854a8236d439d3961afcf462f3e -> origin/main
+2026-10-24T02:48:03.7043924Z ##[endgroup]
+2026-10-24T02:48:03.7045931Z ##[group]Determining the checkout info
+2026-10-24T02:48:03.7047912Z ##[endgroup]
+2026-10-24T02:48:03.7049051Z [command]/usr/bin/git sparse-checkout disable
+2026-10-24T02:48:03.7110000Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-24T02:48:03.7146619Z ##[group]Checking out the ref
+2026-10-24T02:48:03.7161727Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-24T02:48:04.1696224Z Switched to a new branch 'main'
+2026-10-24T02:48:04.1700003Z branch 'main' set up to track 'origin/main'.
+2026-10-24T02:48:04.1758809Z ##[endgroup]
+2026-10-24T02:48:04.1809697Z [command]/usr/bin/git log -1 --format=%H
+2026-10-24T02:48:04.1838835Z a4d516f53e6fe854a8236d439d3961afcf462f3e
+2026-10-24T02:48:04.2114397Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-24T02:48:04.2114995Z with:
+2026-10-24T02:48:04.2115297Z   python-version: 3.12
+2026-10-24T02:48:04.2115845Z   check-latest: false
+2026-10-24T02:48:04.2118932Z   token: ***
+2026-10-24T02:48:04.2119258Z   update-environment: true
+2026-10-24T02:48:04.2119610Z   allow-prereleases: false
+2026-10-24T02:48:04.2119944Z   freethreaded: false
+2026-10-24T02:48:04.2120543Z ##[endgroup]
+2026-10-24T02:48:04.3544857Z ##[group]Installed versions
+2026-10-24T02:48:04.3646253Z (node:2291) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-24T02:48:04.3647690Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-24T02:48:04.3648658Z Successfully set up CPython (3.12.15)
+2026-10-24T02:48:04.3649484Z ##[endgroup]
+2026-10-24T02:48:04.3835723Z ##[group]Run python -m pip install -e '.[test]'
+2026-10-24T02:48:04.3836601Z [36;1mpython -m pip install -e '.[test]'[0m
+2026-10-24T02:48:04.4178270Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-24T02:48:04.4178950Z env:
+2026-10-24T02:48:04.4179479Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.4180433Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T02:48:04.4181162Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.4181827Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.4182476Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:04.4183138Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T02:48:04.4183691Z ##[endgroup]
+2026-10-24T02:48:05.4033152Z Obtaining file:///home/runner/work/webpatch/webpatch
+2026-10-24T02:48:05.4050269Z   Installing build dependencies: started
+2026-10-24T02:48:06.6299339Z   Installing build dependencies: finished with status 'done'
+2026-10-24T02:48:06.6305859Z   Checking if build backend supports build_editable: started
+2026-10-24T02:48:07.1344678Z   Checking if build backend supports build_editable: finished with status 'done'
+2026-10-24T02:48:07.1354149Z   Getting requirements to build editable: started
+2026-10-24T02:48:07.5705221Z   Getting requirements to build editable: finished with status 'done'
+2026-10-24T02:48:07.5714619Z   Preparing editable metadata (pyproject.toml): started
+2026-10-24T02:48:07.7699390Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+2026-10-24T02:48:07.9083559Z Collecting pytest==8.4.2 (from webpatch==0.3.0)
+2026-10-24T02:48:08.0077948Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+2026-10-24T02:48:08.0383722Z Collecting pytest-cov==6.3.0 (from webpatch==0.3.0)
+2026-10-24T02:48:08.0595779Z   Downloading pytest_cov-6.3.0-py3-none-any.whl.metadata (30 kB)
+2026-10-24T02:48:08.0994043Z Collecting iniconfig>=1 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:08.1258373Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-10-24T02:48:08.1566389Z Collecting packaging>=20 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:08.1775631Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-24T02:48:08.2069677Z Collecting pluggy<2,>=1.5 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:08.2282707Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-10-24T02:48:08.2627073Z Collecting pygments>=2.7.2 (from pytest==8.4.2->webpatch==0.3.0)
+2026-10-24T02:48:08.2840253Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-10-24T02:48:08.7975708Z Collecting coverage>=7.5 (from coverage[toml]>=7.5->pytest-cov==6.3.0->webpatch==0.3.0)
+2026-10-24T02:48:08.8192853Z   Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.1 kB)
+2026-10-24T02:48:08.8479646Z Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+2026-10-24T02:48:08.9295994Z Downloading pytest_cov-6.3.0-py3-none-any.whl (25 kB)
+2026-10-24T02:48:08.9536590Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-10-24T02:48:08.9772895Z Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (261 kB)
+2026-10-24T02:48:09.0063865Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-10-24T02:48:09.0302796Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-24T02:48:09.0548595Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-10-24T02:48:09.1001556Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 25.0 MB/s  0:00:00
+2026-10-24T02:48:09.1224972Z Building wheels for collected packages: webpatch
+2026-10-24T02:48:09.1232862Z   Building editable for webpatch (pyproject.toml): started
+2026-10-24T02:48:09.3442990Z   Building editable for webpatch (pyproject.toml): finished with status 'done'
+2026-10-24T02:48:09.3449670Z   Created wheel for webpatch: filename=webpatch-0.3.0-0.editable-py3-none-any.whl size=7704 sha256=7bb75e28cd5984f76749c67cde6b56b8e52d624cbdc4b8ecff38c4125a6a20b1
+2026-10-24T02:48:09.3451656Z   Stored in directory: /tmp/pip-ephem-wheel-cache-5lp1prhc/wheels/32/66/84/b128119ec3ccccbe54183f123edcc56064e552ce8c95ccfbf9
+2026-10-24T02:48:09.3469453Z Successfully built webpatch
+2026-10-24T02:48:09.3714747Z Installing collected packages: webpatch, pygments, pluggy, packaging, iniconfig, coverage, pytest, pytest-cov
+2026-10-24T02:48:10.6045865Z 
+2026-10-24T02:48:10.6068943Z Successfully installed coverage-7.17.0 iniconfig-2.3.1 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-8.4.2 pytest-cov-6.3.0 webpatch-0.3.0
+2026-10-24T02:48:10.6082007Z 
+2026-10-24T02:48:10.6082380Z [notice] A new release of pip is available: 26.2.1 -> 26.2.2
+2026-10-24T02:48:10.6082913Z [notice] To update, run: pip install --upgrade pip
+2026-10-24T02:48:10.6870047Z ##[group]Run mkdir -p ci-evidence
+2026-10-24T02:48:10.6870829Z [36;1mmkdir -p ci-evidence[0m
+2026-10-24T02:48:10.6871868Z [36;1mdocker build -f tests/integration/DockerDiscovery.Dockerfile -t webpatch-discovery-packages . 2>&1 | tee ci-evidence/docker-build.log[0m
+2026-10-24T02:48:10.6873094Z [36;1mdocker pull php:8.3-fpm-alpine 2>&1 | tee ci-evidence/custom-image-pull.log[0m
+2026-10-24T02:48:10.6875070Z [36;1mpython scripts/check_docker_scan.py --package-image webpatch-discovery-packages --custom-image php:8.3-fpm-alpine --empty-image ubuntu:22.04 --socket /var/run/docker.sock --output ci-evidence 2>&1 | tee ci-evidence/native.log[0m
+2026-10-24T02:48:10.6876867Z [36;1mpython scripts/evidence_manifest.py ci-evidence[0m
+2026-10-24T02:48:10.6943827Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-24T02:48:10.6944170Z env:
+2026-10-24T02:48:10.6944435Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.6944929Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T02:48:10.6945370Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.6945764Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.6946155Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:10.6946544Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T02:48:10.6946874Z ##[endgroup]
+2026-10-24T02:48:11.3206410Z #0 building with "default" instance using docker driver
+2026-10-24T02:48:11.3206952Z 
+2026-10-24T02:48:11.3207322Z #1 [internal] load build definition from DockerDiscovery.Dockerfile
+2026-10-24T02:48:11.3208030Z #1 transferring dockerfile: 179B done
+2026-10-24T02:48:11.3208374Z #1 DONE 0.0s
+2026-10-24T02:48:11.3208530Z 
+2026-10-24T02:48:11.3208743Z #2 [auth] library/ubuntu:pull token for registry-1.docker.io
+2026-10-24T02:48:11.3209196Z #2 DONE 0.0s
+2026-10-24T02:48:11.3209347Z 
+2026-10-24T02:48:11.3209589Z #3 [internal] load metadata for docker.io/library/ubuntu:22.04
+2026-10-24T02:48:11.5197732Z #3 DONE 0.4s
+2026-10-24T02:48:11.6370309Z 
+2026-10-24T02:48:11.6371126Z #4 [internal] load .dockerignore
+2026-10-24T02:48:11.6372033Z #4 transferring context: 146B done
+2026-10-24T02:48:11.6372380Z #4 DONE 0.0s
+2026-10-24T02:48:11.6372508Z 
+2026-10-24T02:48:11.6373425Z #5 [1/2] FROM docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956
+2026-10-24T02:48:11.6375710Z #5 resolve docker.io/library/ubuntu:22.04@sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956 done
+2026-10-24T02:48:11.6377198Z #5 sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956 6.69kB / 6.69kB done
+2026-10-24T02:48:11.6378330Z #5 sha256:98510ac07bb4545e389be502a8918b385c018bfe4ceeb5ac7e0375c782268b04 424B / 424B done
+2026-10-24T02:48:11.6379300Z #5 sha256:cee13550f97b8a595506e8e4ca74263ba44924248779a4ba4f942e197652acff 2.05kB / 2.05kB done
+2026-10-24T02:48:11.6380365Z #5 sha256:cf1a5487baaf7d71eb78fd0888933c6cdecb40e59edb896511aa0ef4a896031e 24.12MB / 29.75MB 0.1s
+2026-10-24T02:48:11.7988510Z #5 sha256:cf1a5487baaf7d71eb78fd0888933c6cdecb40e59edb896511aa0ef4a896031e 29.75MB / 29.75MB 0.1s done
+2026-10-24T02:48:11.7989573Z #5 extracting sha256:cf1a5487baaf7d71eb78fd0888933c6cdecb40e59edb896511aa0ef4a896031e 0.1s
+2026-10-24T02:48:12.7972074Z #5 extracting sha256:cf1a5487baaf7d71eb78fd0888933c6cdecb40e59edb896511aa0ef4a896031e 0.9s done
+2026-10-24T02:48:12.8508307Z #5 DONE 1.3s
+2026-10-24T02:48:13.0037765Z 
+2026-10-24T02:48:13.0038351Z #6 [2/2] RUN apt-get update && apt-get install -y --no-install-recommends php-fpm
+2026-10-24T02:48:13.5626425Z #6 0.709 Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+2026-10-24T02:48:13.7131493Z #6 0.709 Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+2026-10-24T02:48:14.0907223Z #6 1.238 Get:3 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [96.8 kB]
+2026-10-24T02:48:14.2212381Z #6 1.251 Get:4 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+2026-10-24T02:48:14.2213531Z #6 1.368 Get:5 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1325 kB]
+2026-10-24T02:48:14.3767683Z #6 1.413 Get:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+2026-10-24T02:48:14.3768663Z #6 1.523 Get:7 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+2026-10-24T02:48:14.5642086Z #6 1.560 Get:8 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+2026-10-24T02:48:14.6206618Z #6 1.767 Get:9 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [4430 kB]
+2026-10-24T02:48:14.9037402Z #6 2.050 Get:10 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [7955 kB]
+2026-10-24T02:48:15.2059064Z #6 2.352 Get:11 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
+2026-10-24T02:48:15.3526120Z #6 2.361 Get:12 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+2026-10-24T02:48:15.3529158Z #6 2.363 Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [4759 kB]
+2026-10-24T02:48:15.3531550Z #6 2.422 Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [104 kB]
+2026-10-24T02:48:15.3532720Z #6 2.423 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [8243 kB]
+2026-10-24T02:48:15.3536959Z #6 2.499 Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1628 kB]
+2026-10-24T02:48:15.5105686Z #6 2.506 Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.6 kB]
+2026-10-24T02:48:15.5106609Z #6 2.507 Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [82.9 kB]
+2026-10-24T02:48:16.5212573Z #6 3.668 Fetched 49.0 MB in 3s (15.3 MB/s)
+2026-10-24T02:48:17.4904002Z #6 3.668 Reading package lists...
+2026-10-24T02:48:18.5227757Z #6 4.683 Reading package lists...
+2026-10-24T02:48:18.7410311Z #6 5.681 Building dependency tree...
+2026-10-24T02:48:18.7411009Z #6 5.888 Reading state information...
+2026-10-24T02:48:18.8950095Z #6 6.042 The following additional packages will be installed:
+2026-10-24T02:48:18.8953653Z #6 6.042   libapparmor1 libargon2-1 libbsd0 libcryptsetup12 libdevmapper1.02.1 libedit2
+2026-10-24T02:48:18.8954672Z #6 6.042   libgdbm-compat4 libgdbm6 libicu70 libip4tc2 libjson-c5 libkmod2 libmagic-mgc
+2026-10-24T02:48:19.0218219Z #6 6.044   libmagic1 libmd0 libperl5.34 libsodium23 libsystemd0 libxml2 mailcap
+2026-10-24T02:48:19.0220567Z #6 6.044   media-types mime-support perl perl-modules-5.34 php-common php8.1-cli
+2026-10-24T02:48:19.0221981Z #6 6.044   php8.1-common php8.1-fpm php8.1-opcache php8.1-readline psmisc systemd
+2026-10-24T02:48:19.0223237Z #6 6.044   tzdata ucf
+2026-10-24T02:48:19.0223878Z #6 6.044 Suggested packages:
+2026-10-24T02:48:19.0224662Z #6 6.044   gdbm-l10n file perl-doc libterm-readline-gnu-perl
+2026-10-24T02:48:19.0225667Z #6 6.044   | libterm-readline-perl-perl make libtap-harness-archive-perl php-pear
+2026-10-24T02:48:19.0226864Z #6 6.044   systemd-container libfido2-1 libtss2-esys-3.0.2-0 libtss2-mu0 libtss2-rc0
+2026-10-24T02:48:19.0227699Z #6 6.044   policykit-1
+2026-10-24T02:48:19.0228145Z #6 6.044 Recommended packages:
+2026-10-24T02:48:19.0229018Z #6 6.044   dmsetup bzip2 file xz-utils netbase default-dbus-system-bus
+2026-10-24T02:48:19.0229979Z #6 6.044   | dbus-system-bus networkd-dispatcher systemd-timesyncd | time-daemon
+2026-10-24T02:48:19.0230946Z #6 6.168 The following NEW packages will be installed:
+2026-10-24T02:48:19.0231634Z #6 6.168   libapparmor1 libargon2-1 libbsd0 libcryptsetup12 libdevmapper1.02.1 libedit2
+2026-10-24T02:48:19.0233296Z #6 6.168   libgdbm-compat4 libgdbm6 libicu70 libip4tc2 libjson-c5 libkmod2 libmagic-mgc
+2026-10-24T02:48:19.1744550Z #6 6.169   libmagic1 libmd0 libperl5.34 libsodium23 libxml2 mailcap media-types
+2026-10-24T02:48:19.1745406Z #6 6.169   mime-support perl perl-modules-5.34 php-common php-fpm php8.1-cli
+2026-10-24T02:48:19.1746466Z #6 6.169   php8.1-common php8.1-fpm php8.1-opcache php8.1-readline psmisc systemd
+2026-10-24T02:48:19.1746991Z #6 6.169   tzdata ucf
+2026-10-24T02:48:19.1747358Z #6 6.170 The following packages will be upgraded:
+2026-10-24T02:48:19.1747753Z #6 6.171   libsystemd0
+2026-10-24T02:48:19.3324078Z #6 6.479 1 upgraded, 34 newly installed, 0 to remove and 2 not upgraded.
+2026-10-24T02:48:19.3324689Z #6 6.479 Need to get 31.3 MB of archives.
+2026-10-24T02:48:19.3325270Z #6 6.479 After this operation, 139 MB of additional disk space will be used.
+2026-10-24T02:48:19.3326235Z #6 6.479 Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsystemd0 amd64 249.11-0ubuntu3.23 [316 kB]
+2026-10-24T02:48:19.9861581Z #6 7.133 Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libapparmor1 amd64 3.0.4-2ubuntu2.5 [39.6 kB]
+2026-10-24T02:48:20.0971338Z #6 7.144 Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libargon2-1 amd64 0~20171227-0.3 [19.5 kB]
+2026-10-24T02:48:20.0973066Z #6 7.150 Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libdevmapper1.02.1 amd64 2:1.02.175-2.1ubuntu5 [139 kB]
+2026-10-24T02:48:20.0974295Z #6 7.192 Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libjson-c5 amd64 0.15-3~ubuntu1.22.04.2 [33.5 kB]
+2026-10-24T02:48:20.0975472Z #6 7.244 Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcryptsetup12 amd64 2:2.4.3-1ubuntu1.3 [211 kB]
+2026-10-24T02:48:20.1992569Z #6 7.346 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libip4tc2 amd64 1.8.7-1ubuntu5.2 [19.9 kB]
+2026-10-24T02:48:20.3620729Z #6 7.350 Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libkmod2 amd64 29-1ubuntu1.1 [48.1 kB]
+2026-10-24T02:48:20.3621797Z #6 7.358 Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 systemd amd64 249.11-0ubuntu3.23 [4587 kB]
+2026-10-24T02:48:20.7419667Z #6 7.889 Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 perl-modules-5.34 all 5.34.0-3ubuntu1.9 [2977 kB]
+2026-10-24T02:48:20.8664562Z #6 8.013 Get:11 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgdbm6 amd64 1.23-1 [33.9 kB]
+2026-10-24T02:48:21.0025783Z #6 8.013 Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgdbm-compat4 amd64 1.23-1 [6606 B]
+2026-10-24T02:48:21.0026829Z #6 8.013 Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libperl5.34 amd64 5.34.0-3ubuntu1.9 [4796 kB]
+2026-10-24T02:48:21.0027836Z #6 8.149 Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 perl amd64 5.34.0-3ubuntu1.9 [232 kB]
+2026-10-24T02:48:21.1862439Z #6 8.186 Get:15 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmd0 amd64 1.0.4-1build1 [23.0 kB]
+2026-10-24T02:48:21.1863403Z #6 8.186 Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 libbsd0 amd64 0.11.5-1 [44.8 kB]
+2026-10-24T02:48:21.1864221Z #6 8.187 Get:17 http://archive.ubuntu.com/ubuntu jammy/main amd64 libicu70 amd64 70.1-2 [10.6 MB]
+2026-10-24T02:48:21.1865164Z #6 8.333 Get:18 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libxml2 amd64 2.9.13+dfsg-1ubuntu0.14 [765 kB]
+2026-10-24T02:48:21.2929561Z #6 8.340 Get:19 http://archive.ubuntu.com/ubuntu jammy/main amd64 media-types all 7.0.0 [25.5 kB]
+2026-10-24T02:48:21.2931126Z #6 8.341 Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 tzdata all 2026e-0ubuntu0.22.04.1 [346 kB]
+2026-10-24T02:48:21.2932024Z #6 8.344 Get:21 http://archive.ubuntu.com/ubuntu jammy/main amd64 ucf all 3.0043 [56.1 kB]
+2026-10-24T02:48:21.2932917Z #6 8.345 Get:22 http://archive.ubuntu.com/ubuntu jammy/main amd64 libedit2 amd64 3.1-20210910-1build1 [96.8 kB]
+2026-10-24T02:48:21.2933858Z #6 8.345 Get:23 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libmagic-mgc amd64 1:5.41-3ubuntu0.1 [257 kB]
+2026-10-24T02:48:21.2934784Z #6 8.348 Get:24 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libmagic1 amd64 1:5.41-3ubuntu0.1 [87.2 kB]
+2026-10-24T02:48:21.2935630Z #6 8.349 Get:25 http://archive.ubuntu.com/ubuntu jammy/main amd64 psmisc amd64 23.4-2build3 [119 kB]
+2026-10-24T02:48:21.2936772Z #6 8.350 Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsodium23 amd64 1.0.18-1ubuntu0.22.04.1 [164 kB]
+2026-10-24T02:48:21.2937743Z #6 8.440 Get:27 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 mailcap all 3.70+nmu1ubuntu1.22.04.1 [23.9 kB]
+2026-10-24T02:48:21.3985790Z #6 8.545 Get:28 http://archive.ubuntu.com/ubuntu jammy/main amd64 mime-support all 3.66 [3696 B]
+2026-10-24T02:48:21.5245035Z #6 8.546 Get:29 http://archive.ubuntu.com/ubuntu jammy/main amd64 php-common all 2:92ubuntu1 [12.4 kB]
+2026-10-24T02:48:21.5246925Z #6 8.547 Get:30 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 php8.1-common amd64 8.1.2-1ubuntu2.28 [1134 kB]
+2026-10-24T02:48:21.5248502Z #6 8.553 Get:31 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 php8.1-opcache amd64 8.1.2-1ubuntu2.28 [366 kB]
+2026-10-24T02:48:21.5250377Z #6 8.555 Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 php8.1-readline amd64 8.1.2-1ubuntu2.28 [13.6 kB]
+2026-10-24T02:48:21.5252019Z #6 8.555 Get:33 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 php8.1-cli amd64 8.1.2-1ubuntu2.28 [1834 kB]
+2026-10-24T02:48:21.5253573Z #6 8.566 Get:34 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 php8.1-fpm amd64 8.1.2-1ubuntu2.28 [1842 kB]
+2026-10-24T02:48:21.5255053Z #6 8.576 Get:35 http://archive.ubuntu.com/ubuntu jammy/universe amd64 php-fpm all 2:8.1+92ubuntu1 [2838 B]
+2026-10-24T02:48:21.5255878Z #6 8.671 debconf: delaying package configuration, since apt-utils is not installed
+2026-10-24T02:48:21.6249457Z #6 8.694 Fetched 31.3 MB in 2s (13.0 MB/s)
+2026-10-24T02:48:21.6250370Z #6 8.705 (Reading database ... 
+2026-10-24T02:48:21.6251100Z (Reading database ... 5%
+2026-10-24T02:48:21.6251567Z (Reading database ... 10%
+2026-10-24T02:48:21.6251939Z (Reading database ... 15%
+2026-10-24T02:48:21.6252179Z (Reading database ... 20%
+2026-10-24T02:48:21.6252413Z (Reading database ... 25%
+2026-10-24T02:48:21.6252634Z (Reading database ... 30%
+2026-10-24T02:48:21.6252849Z (Reading database ... 35%
+2026-10-24T02:48:21.6253092Z (Reading database ... 40%
+2026-10-24T02:48:21.6253310Z (Reading database ... 45%
+2026-10-24T02:48:21.6253525Z (Reading database ... 50%
+2026-10-24T02:48:21.6253740Z (Reading database ... 55%
+2026-10-24T02:48:21.6253955Z (Reading database ... 60%
+2026-10-24T02:48:21.6254390Z (Reading database ... 65%
+2026-10-24T02:48:21.6254787Z (Reading database ... 70%
+2026-10-24T02:48:21.6255278Z (Reading database ... 75%
+2026-10-24T02:48:21.6256115Z (Reading database ... 80%
+2026-10-24T02:48:21.6256540Z (Reading database ... 85%
+2026-10-24T02:48:21.6257065Z (Reading database ... 90%
+2026-10-24T02:48:21.6257534Z (Reading database ... 95%
+2026-10-24T02:48:21.6257929Z (Reading database ... 100%
+2026-10-24T02:48:21.6258421Z (Reading database ... 4393 files and directories currently installed.)
+2026-10-24T02:48:21.6259175Z #6 8.710 Preparing to unpack .../libsystemd0_249.11-0ubuntu3.23_amd64.deb ...
+2026-10-24T02:48:21.6260398Z #6 8.712 Unpacking libsystemd0:amd64 (249.11-0ubuntu3.23) over (249.11-0ubuntu3.22) ...
+2026-10-24T02:48:21.6261274Z #6 8.734 Setting up libsystemd0:amd64 (249.11-0ubuntu3.23) ...
+2026-10-24T02:48:21.6262153Z #6 8.750 Selecting previously unselected package libapparmor1:amd64.
+2026-10-24T02:48:21.6262960Z #6 8.750 (Reading database ... 
+2026-10-24T02:48:21.6263374Z (Reading database ... 5%
+2026-10-24T02:48:21.6263756Z (Reading database ... 10%
+2026-10-24T02:48:21.6264125Z (Reading database ... 15%
+2026-10-24T02:48:21.6264361Z (Reading database ... 20%
+2026-10-24T02:48:21.6264579Z (Reading database ... 25%
+2026-10-24T02:48:21.6264803Z (Reading database ... 30%
+2026-10-24T02:48:21.6265016Z (Reading database ... 35%
+2026-10-24T02:48:21.6265226Z (Reading database ... 40%
+2026-10-24T02:48:21.6265442Z (Reading database ... 45%
+2026-10-24T02:48:21.6265678Z (Reading database ... 50%
+2026-10-24T02:48:21.6265907Z (Reading database ... 55%
+2026-10-24T02:48:21.6266340Z (Reading database ... 60%
+2026-10-24T02:48:21.6266747Z (Reading database ... 65%
+2026-10-24T02:48:21.6267144Z (Reading database ... 70%
+2026-10-24T02:48:21.6267792Z (Reading database ... 75%
+2026-10-24T02:48:21.6268227Z (Reading database ... 80%
+2026-10-24T02:48:21.6268633Z (Reading database ... 85%
+2026-10-24T02:48:21.6269028Z (Reading database ... 90%
+2026-10-24T02:48:21.6269424Z (Reading database ... 95%
+2026-10-24T02:48:21.6269813Z (Reading database ... 100%
+2026-10-24T02:48:21.6270896Z (Reading database ... 4393 files and directories currently installed.)
+2026-10-24T02:48:21.6271777Z #6 8.757 Preparing to unpack .../00-libapparmor1_3.0.4-2ubuntu2.5_amd64.deb ...
+2026-10-24T02:48:21.6272626Z #6 8.757 Unpacking libapparmor1:amd64 (3.0.4-2ubuntu2.5) ...
+2026-10-24T02:48:21.6273339Z #6 8.770 Selecting previously unselected package libargon2-1:amd64.
+2026-10-24T02:48:21.6274168Z #6 8.771 Preparing to unpack .../01-libargon2-1_0~20171227-0.3_amd64.deb ...
+2026-10-24T02:48:21.6274895Z #6 8.772 Unpacking libargon2-1:amd64 (0~20171227-0.3) ...
+2026-10-24T02:48:21.7290449Z #6 8.784 Selecting previously unselected package libdevmapper1.02.1:amd64.
+2026-10-24T02:48:21.7291786Z #6 8.785 Preparing to unpack .../02-libdevmapper1.02.1_2%3a1.02.175-2.1ubuntu5_amd64.deb ...
+2026-10-24T02:48:21.7292823Z #6 8.786 Unpacking libdevmapper1.02.1:amd64 (2:1.02.175-2.1ubuntu5) ...
+2026-10-24T02:48:21.7293682Z #6 8.799 Selecting previously unselected package libjson-c5:amd64.
+2026-10-24T02:48:21.7294607Z #6 8.800 Preparing to unpack .../03-libjson-c5_0.15-3~ubuntu1.22.04.2_amd64.deb ...
+2026-10-24T02:48:21.7295558Z #6 8.801 Unpacking libjson-c5:amd64 (0.15-3~ubuntu1.22.04.2) ...
+2026-10-24T02:48:21.7296458Z #6 8.813 Selecting previously unselected package libcryptsetup12:amd64.
+2026-10-24T02:48:21.7297447Z #6 8.814 Preparing to unpack .../04-libcryptsetup12_2%3a2.4.3-1ubuntu1.3_amd64.deb ...
+2026-10-24T02:48:21.7298385Z #6 8.815 Unpacking libcryptsetup12:amd64 (2:2.4.3-1ubuntu1.3) ...
+2026-10-24T02:48:21.7299195Z #6 8.830 Selecting previously unselected package libip4tc2:amd64.
+2026-10-24T02:48:21.7300379Z #6 8.831 Preparing to unpack .../05-libip4tc2_1.8.7-1ubuntu5.2_amd64.deb ...
+2026-10-24T02:48:21.7301052Z #6 8.832 Unpacking libip4tc2:amd64 (1.8.7-1ubuntu5.2) ...
+2026-10-24T02:48:21.7301555Z #6 8.843 Selecting previously unselected package libkmod2:amd64.
+2026-10-24T02:48:21.7302190Z #6 8.845 Preparing to unpack .../06-libkmod2_29-1ubuntu1.1_amd64.deb ...
+2026-10-24T02:48:21.7302663Z #6 8.846 Unpacking libkmod2:amd64 (29-1ubuntu1.1) ...
+2026-10-24T02:48:21.7303012Z #6 8.860 Selecting previously unselected package systemd.
+2026-10-24T02:48:21.7303670Z #6 8.862 Preparing to unpack .../07-systemd_249.11-0ubuntu3.23_amd64.deb ...
+2026-10-24T02:48:21.7304076Z #6 8.876 Unpacking systemd (249.11-0ubuntu3.23) ...
+2026-10-24T02:48:21.8793208Z #6 9.026 Selecting previously unselected package perl-modules-5.34.
+2026-10-24T02:48:22.0324201Z #6 9.028 Preparing to unpack .../08-perl-modules-5.34_5.34.0-3ubuntu1.9_all.deb ...
+2026-10-24T02:48:22.0324906Z #6 9.029 Unpacking perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
+2026-10-24T02:48:22.1447535Z #6 9.292 Selecting previously unselected package libgdbm6:amd64.
+2026-10-24T02:48:22.3269910Z #6 9.294 Preparing to unpack .../09-libgdbm6_1.23-1_amd64.deb ...
+2026-10-24T02:48:22.3270634Z #6 9.295 Unpacking libgdbm6:amd64 (1.23-1) ...
+2026-10-24T02:48:22.3271069Z #6 9.306 Selecting previously unselected package libgdbm-compat4:amd64.
+2026-10-24T02:48:22.3271722Z #6 9.308 Preparing to unpack .../10-libgdbm-compat4_1.23-1_amd64.deb ...
+2026-10-24T02:48:22.3272537Z #6 9.309 Unpacking libgdbm-compat4:amd64 (1.23-1) ...
+2026-10-24T02:48:22.3273272Z #6 9.321 Selecting previously unselected package libperl5.34:amd64.
+2026-10-24T02:48:22.3273920Z #6 9.323 Preparing to unpack .../11-libperl5.34_5.34.0-3ubuntu1.9_amd64.deb ...
+2026-10-24T02:48:22.3274422Z #6 9.323 Unpacking libperl5.34:amd64 (5.34.0-3ubuntu1.9) ...
+2026-10-24T02:48:22.3302537Z #6 9.477 Selecting previously unselected package perl.
+2026-10-24T02:48:22.5097748Z #6 9.479 Preparing to unpack .../12-perl_5.34.0-3ubuntu1.9_amd64.deb ...
+2026-10-24T02:48:22.5098746Z #6 9.484 Unpacking perl (5.34.0-3ubuntu1.9) ...
+2026-10-24T02:48:22.5099260Z #6 9.505 Selecting previously unselected package libmd0:amd64.
+2026-10-24T02:48:22.5099831Z #6 9.506 Preparing to unpack .../13-libmd0_1.0.4-1build1_amd64.deb ...
+2026-10-24T02:48:22.5100647Z #6 9.507 Unpacking libmd0:amd64 (1.0.4-1build1) ...
+2026-10-24T02:48:22.5101147Z #6 9.520 Selecting previously unselected package libbsd0:amd64.
+2026-10-24T02:48:22.5101682Z #6 9.521 Preparing to unpack .../14-libbsd0_0.11.5-1_amd64.deb ...
+2026-10-24T02:48:22.5102163Z #6 9.522 Unpacking libbsd0:amd64 (0.11.5-1) ...
+2026-10-24T02:48:22.5102629Z #6 9.536 Selecting previously unselected package libicu70:amd64.
+2026-10-24T02:48:22.5103159Z #6 9.537 Preparing to unpack .../15-libicu70_70.1-2_amd64.deb ...
+2026-10-24T02:48:22.5103624Z #6 9.538 Unpacking libicu70:amd64 (70.1-2) ...
+2026-10-24T02:48:22.5104092Z #6 9.657 Selecting previously unselected package libxml2:amd64.
+2026-10-24T02:48:22.7007419Z #6 9.659 Preparing to unpack .../16-libxml2_2.9.13+dfsg-1ubuntu0.14_amd64.deb ...
+2026-10-24T02:48:22.7008232Z #6 9.660 Unpacking libxml2:amd64 (2.9.13+dfsg-1ubuntu0.14) ...
+2026-10-24T02:48:22.7008987Z #6 9.678 Selecting previously unselected package media-types.
+2026-10-24T02:48:22.7009606Z #6 9.680 Preparing to unpack .../17-media-types_7.0.0_all.deb ...
+2026-10-24T02:48:22.7010271Z #6 9.681 Unpacking media-types (7.0.0) ...
+2026-10-24T02:48:22.7010743Z #6 9.694 Selecting previously unselected package tzdata.
+2026-10-24T02:48:22.7011359Z #6 9.696 Preparing to unpack .../18-tzdata_2026e-0ubuntu0.22.04.1_all.deb ...
+2026-10-24T02:48:22.7011963Z #6 9.697 Unpacking tzdata (2026e-0ubuntu0.22.04.1) ...
+2026-10-24T02:48:22.8194085Z #6 9.966 Selecting previously unselected package ucf.
+2026-10-24T02:48:22.9283042Z #6 9.969 Preparing to unpack .../19-ucf_3.0043_all.deb ...
+2026-10-24T02:48:22.9283739Z #6 9.970 Moving old data out of the way
+2026-10-24T02:48:22.9284249Z #6 9.972 Unpacking ucf (3.0043) ...
+2026-10-24T02:48:22.9284881Z #6 9.988 Selecting previously unselected package libedit2:amd64.
+2026-10-24T02:48:22.9285759Z #6 9.990 Preparing to unpack .../20-libedit2_3.1-20210910-1build1_amd64.deb ...
+2026-10-24T02:48:22.9286563Z #6 9.991 Unpacking libedit2:amd64 (3.1-20210910-1build1) ...
+2026-10-24T02:48:22.9287278Z #6 10.00 Selecting previously unselected package libmagic-mgc.
+2026-10-24T02:48:22.9288121Z #6 10.01 Preparing to unpack .../21-libmagic-mgc_1%3a5.41-3ubuntu0.1_amd64.deb ...
+2026-10-24T02:48:22.9289238Z #6 10.01 Unpacking libmagic-mgc (1:5.41-3ubuntu0.1) ...
+2026-10-24T02:48:22.9289945Z #6 10.04 Selecting previously unselected package libmagic1:amd64.
+2026-10-24T02:48:22.9291014Z #6 10.04 Preparing to unpack .../22-libmagic1_1%3a5.41-3ubuntu0.1_amd64.deb ...
+2026-10-24T02:48:22.9291825Z #6 10.04 Unpacking libmagic1:amd64 (1:5.41-3ubuntu0.1) ...
+2026-10-24T02:48:22.9292473Z #6 10.06 Selecting previously unselected package psmisc.
+2026-10-24T02:48:22.9293167Z #6 10.06 Preparing to unpack .../23-psmisc_23.4-2build3_amd64.deb ...
+2026-10-24T02:48:22.9293823Z #6 10.06 Unpacking psmisc (23.4-2build3) ...
+2026-10-24T02:48:22.9294431Z #6 10.08 Selecting previously unselected package libsodium23:amd64.
+2026-10-24T02:48:23.0454846Z #6 10.08 Preparing to unpack .../24-libsodium23_1.0.18-1ubuntu0.22.04.1_amd64.deb ...
+2026-10-24T02:48:23.0455951Z #6 10.08 Unpacking libsodium23:amd64 (1.0.18-1ubuntu0.22.04.1) ...
+2026-10-24T02:48:23.0456731Z #6 10.09 Selecting previously unselected package mailcap.
+2026-10-24T02:48:23.0457350Z #6 10.10 Preparing to unpack .../25-mailcap_3.70+nmu1ubuntu1.22.04.1_all.deb ...
+2026-10-24T02:48:23.0457930Z #6 10.10 Unpacking mailcap (3.70+nmu1ubuntu1.22.04.1) ...
+2026-10-24T02:48:23.0458442Z #6 10.11 Selecting previously unselected package mime-support.
+2026-10-24T02:48:23.0458994Z #6 10.11 Preparing to unpack .../26-mime-support_3.66_all.deb ...
+2026-10-24T02:48:23.0459480Z #6 10.12 Unpacking mime-support (3.66) ...
+2026-10-24T02:48:23.0459928Z #6 10.13 Selecting previously unselected package php-common.
+2026-10-24T02:48:23.0461343Z #6 10.13 Preparing to unpack .../27-php-common_2%3a92ubuntu1_all.deb ...
+2026-10-24T02:48:23.0461900Z #6 10.13 Unpacking php-common (2:92ubuntu1) ...
+2026-10-24T02:48:23.0462380Z #6 10.15 Selecting previously unselected package php8.1-common.
+2026-10-24T02:48:23.0462987Z #6 10.15 Preparing to unpack .../28-php8.1-common_8.1.2-1ubuntu2.28_amd64.deb ...
+2026-10-24T02:48:23.0463560Z #6 10.15 Unpacking php8.1-common (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:23.0464074Z #6 10.19 Selecting previously unselected package php8.1-opcache.
+2026-10-24T02:48:23.1607768Z #6 10.19 Preparing to unpack .../29-php8.1-opcache_8.1.2-1ubuntu2.28_amd64.deb ...
+2026-10-24T02:48:23.1608772Z #6 10.20 Unpacking php8.1-opcache (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:23.1609649Z #6 10.21 Selecting previously unselected package php8.1-readline.
+2026-10-24T02:48:23.1610856Z #6 10.22 Preparing to unpack .../30-php8.1-readline_8.1.2-1ubuntu2.28_amd64.deb ...
+2026-10-24T02:48:23.1611764Z #6 10.22 Unpacking php8.1-readline (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:23.1612301Z #6 10.23 Selecting previously unselected package php8.1-cli.
+2026-10-24T02:48:23.1612869Z #6 10.23 Preparing to unpack .../31-php8.1-cli_8.1.2-1ubuntu2.28_amd64.deb ...
+2026-10-24T02:48:23.1613425Z #6 10.24 Unpacking php8.1-cli (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:23.1613892Z #6 10.27 Selecting previously unselected package php8.1-fpm.
+2026-10-24T02:48:23.1614446Z #6 10.27 Preparing to unpack .../32-php8.1-fpm_8.1.2-1ubuntu2.28_amd64.deb ...
+2026-10-24T02:48:23.1614987Z #6 10.27 Unpacking php8.1-fpm (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:23.1615446Z #6 10.31 Selecting previously unselected package php-fpm.
+2026-10-24T02:48:23.2833292Z #6 10.31 Preparing to unpack .../33-php-fpm_2%3a8.1+92ubuntu1_all.deb ...
+2026-10-24T02:48:23.2834245Z #6 10.31 Unpacking php-fpm (2:8.1+92ubuntu1) ...
+2026-10-24T02:48:23.2834892Z #6 10.34 Setting up libip4tc2:amd64 (1.8.7-1ubuntu5.2) ...
+2026-10-24T02:48:23.2835526Z #6 10.34 Setting up media-types (7.0.0) ...
+2026-10-24T02:48:23.2836203Z #6 10.34 Setting up libapparmor1:amd64 (3.0.4-2ubuntu2.5) ...
+2026-10-24T02:48:23.2836962Z #6 10.34 Setting up libsodium23:amd64 (1.0.18-1ubuntu0.22.04.1) ...
+2026-10-24T02:48:23.2837423Z #6 10.35 Setting up libmagic-mgc (1:5.41-3ubuntu0.1) ...
+2026-10-24T02:48:23.2837796Z #6 10.35 Setting up psmisc (23.4-2build3) ...
+2026-10-24T02:48:23.2838159Z #6 10.35 Setting up libargon2-1:amd64 (0~20171227-0.3) ...
+2026-10-24T02:48:23.2838567Z #6 10.35 Setting up libmagic1:amd64 (1:5.41-3ubuntu0.1) ...
+2026-10-24T02:48:23.2839254Z #6 10.36 Setting up perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
+2026-10-24T02:48:23.2839657Z #6 10.36 Setting up tzdata (2026e-0ubuntu0.22.04.1) ...
+2026-10-24T02:48:23.2839983Z #6 10.43 
+2026-10-24T02:48:23.2840579Z #6 10.43 Current default time zone: 'Etc/UTC'
+2026-10-24T02:48:23.4820401Z #6 10.43 Local time is now:      Sat Oct 24 02:48:23 UTC 2026.
+2026-10-24T02:48:23.4821268Z #6 10.43 Universal Time is now:  Sat Oct 24 02:48:23 UTC 2026.
+2026-10-24T02:48:23.4821773Z #6 10.43 Run 'dpkg-reconfigure tzdata' if you wish to change it.
+2026-10-24T02:48:23.4822136Z #6 10.43 
+2026-10-24T02:48:23.4822343Z #6 10.44 Setting up ucf (3.0043) ...
+2026-10-24T02:48:23.4822713Z #6 10.50 Setting up libdevmapper1.02.1:amd64 (2:1.02.175-2.1ubuntu5) ...
+2026-10-24T02:48:23.4823141Z #6 10.50 Setting up libmd0:amd64 (1.0.4-1build1) ...
+2026-10-24T02:48:23.4823697Z #6 10.51 Setting up libbsd0:amd64 (0.11.5-1) ...
+2026-10-24T02:48:23.4824077Z #6 10.51 Setting up libjson-c5:amd64 (0.15-3~ubuntu1.22.04.2) ...
+2026-10-24T02:48:23.4824478Z #6 10.51 Setting up libkmod2:amd64 (29-1ubuntu1.1) ...
+2026-10-24T02:48:23.4824818Z #6 10.51 Setting up libgdbm6:amd64 (1.23-1) ...
+2026-10-24T02:48:23.4825133Z #6 10.51 Setting up libicu70:amd64 (70.1-2) ...
+2026-10-24T02:48:23.4825455Z #6 10.52 Setting up php-common (2:92ubuntu1) ...
+2026-10-24T02:48:23.4826414Z #6 10.63 Created symlink /etc/systemd/system/timers.target.wants/phpsessionclean.timer → /lib/systemd/system/phpsessionclean.timer.
+2026-10-24T02:48:23.5832269Z #6 10.63 Setting up php8.1-common (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:23.5832868Z #6 10.73 
+2026-10-24T02:48:23.5833859Z #6 10.73 Creating config file /etc/php/8.1/mods-available/calendar.ini with new version
+2026-10-24T02:48:23.7687307Z #6 10.92 
+2026-10-24T02:48:23.7688316Z #6 10.92 Creating config file /etc/php/8.1/mods-available/ctype.ini with new version
+2026-10-24T02:48:23.9539269Z #6 11.10 
+2026-10-24T02:48:23.9539870Z #6 11.10 Creating config file /etc/php/8.1/mods-available/exif.ini with new version
+2026-10-24T02:48:24.1396902Z #6 11.29 
+2026-10-24T02:48:24.1397407Z #6 11.29 Creating config file /etc/php/8.1/mods-available/fileinfo.ini with new version
+2026-10-24T02:48:24.3269047Z #6 11.47 
+2026-10-24T02:48:24.3269746Z #6 11.47 Creating config file /etc/php/8.1/mods-available/ffi.ini with new version
+2026-10-24T02:48:24.5211786Z #6 11.67 
+2026-10-24T02:48:24.5212852Z #6 11.67 Creating config file /etc/php/8.1/mods-available/ftp.ini with new version
+2026-10-24T02:48:24.7146612Z #6 11.86 
+2026-10-24T02:48:24.7147558Z #6 11.86 Creating config file /etc/php/8.1/mods-available/gettext.ini with new version
+2026-10-24T02:48:24.9102067Z #6 12.06 
+2026-10-24T02:48:24.9102835Z #6 12.06 Creating config file /etc/php/8.1/mods-available/iconv.ini with new version
+2026-10-24T02:48:25.1102543Z #6 12.26 
+2026-10-24T02:48:25.1103232Z #6 12.26 Creating config file /etc/php/8.1/mods-available/pdo.ini with new version
+2026-10-24T02:48:25.3064084Z #6 12.45 
+2026-10-24T02:48:25.3064812Z #6 12.45 Creating config file /etc/php/8.1/mods-available/phar.ini with new version
+2026-10-24T02:48:25.5026733Z #6 12.65 
+2026-10-24T02:48:25.5027452Z #6 12.65 Creating config file /etc/php/8.1/mods-available/posix.ini with new version
+2026-10-24T02:48:25.6986950Z #6 12.85 
+2026-10-24T02:48:25.6988208Z #6 12.85 Creating config file /etc/php/8.1/mods-available/shmop.ini with new version
+2026-10-24T02:48:25.8930233Z #6 13.04 
+2026-10-24T02:48:25.8931153Z #6 13.04 Creating config file /etc/php/8.1/mods-available/sockets.ini with new version
+2026-10-24T02:48:26.0903020Z #6 13.24 
+2026-10-24T02:48:26.0903803Z #6 13.24 Creating config file /etc/php/8.1/mods-available/sysvmsg.ini with new version
+2026-10-24T02:48:26.2885982Z #6 13.44 
+2026-10-24T02:48:26.2887230Z #6 13.44 Creating config file /etc/php/8.1/mods-available/sysvsem.ini with new version
+2026-10-24T02:48:26.4841179Z #6 13.63 
+2026-10-24T02:48:26.4841942Z #6 13.63 Creating config file /etc/php/8.1/mods-available/sysvshm.ini with new version
+2026-10-24T02:48:26.6783899Z #6 13.83 
+2026-10-24T02:48:26.6784667Z #6 13.83 Creating config file /etc/php/8.1/mods-available/tokenizer.ini with new version
+2026-10-24T02:48:26.7856141Z #6 13.93 Setting up libedit2:amd64 (3.1-20210910-1build1) ...
+2026-10-24T02:48:26.8870951Z #6 13.93 Setting up libgdbm-compat4:amd64 (1.23-1) ...
+2026-10-24T02:48:26.8871763Z #6 13.94 Setting up libcryptsetup12:amd64 (2:2.4.3-1ubuntu1.3) ...
+2026-10-24T02:48:26.8872512Z #6 13.94 Setting up php8.1-readline (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:26.8873081Z #6 14.03 
+2026-10-24T02:48:26.8873729Z #6 14.03 Creating config file /etc/php/8.1/mods-available/readline.ini with new version
+2026-10-24T02:48:27.0006805Z #6 14.14 Setting up libxml2:amd64 (2.9.13+dfsg-1ubuntu0.14) ...
+2026-10-24T02:48:27.2021502Z #6 14.15 Setting up php8.1-opcache (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:27.2022233Z #6 14.24 
+2026-10-24T02:48:27.2023134Z #6 14.24 Creating config file /etc/php/8.1/mods-available/opcache.ini with new version
+2026-10-24T02:48:27.2024095Z #6 14.35 Setting up libperl5.34:amd64 (5.34.0-3ubuntu1.9) ...
+2026-10-24T02:48:27.3913441Z #6 14.35 Setting up systemd (249.11-0ubuntu3.23) ...
+2026-10-24T02:48:27.3915277Z #6 14.37 Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+2026-10-24T02:48:27.3917275Z #6 14.37 Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+2026-10-24T02:48:27.3918923Z #6 14.38 Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
+2026-10-24T02:48:27.3920677Z #6 14.38 Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
+2026-10-24T02:48:27.3921707Z #6 14.38 ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+2026-10-24T02:48:27.3922837Z #6 14.38 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /lib/systemd/system/systemd-pstore.service.
+2026-10-24T02:48:27.3923728Z #6 14.39 Initializing machine ID from random generator.
+2026-10-24T02:48:27.4087568Z #6 14.56 Setting up perl (5.34.0-3ubuntu1.9) ...
+2026-10-24T02:48:27.5311396Z #6 14.56 Setting up mailcap (3.70+nmu1ubuntu1.22.04.1) ...
+2026-10-24T02:48:27.5312071Z #6 14.58 Setting up mime-support (3.66) ...
+2026-10-24T02:48:27.5312435Z #6 14.58 Setting up php8.1-cli (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:27.5312945Z #6 14.58 update-alternatives: using /usr/bin/php8.1 to provide /usr/bin/php (php) in auto mode
+2026-10-24T02:48:27.5313888Z #6 14.58 update-alternatives: warning: skip creation of /usr/share/man/man1/php.1.gz because associated file /usr/share/man/man1/php8.1.1.gz (of link group php) doesn't exist
+2026-10-24T02:48:27.5314774Z #6 14.58 update-alternatives: using /usr/bin/phar8.1 to provide /usr/bin/phar (phar) in auto mode
+2026-10-24T02:48:27.5315661Z #6 14.58 update-alternatives: warning: skip creation of /usr/share/man/man1/phar.1.gz because associated file /usr/share/man/man1/phar8.1.1.gz (of link group phar) doesn't exist
+2026-10-24T02:48:27.5316623Z #6 14.58 update-alternatives: using /usr/bin/phar.phar8.1 to provide /usr/bin/phar.phar (phar.phar) in auto mode
+2026-10-24T02:48:27.5317638Z #6 14.58 update-alternatives: warning: skip creation of /usr/share/man/man1/phar.phar.1.gz because associated file /usr/share/man/man1/phar.phar8.1.1.gz (of link group phar.phar) doesn't exist
+2026-10-24T02:48:27.5318877Z #6 14.68 
+2026-10-24T02:48:27.5319482Z #6 14.68 Creating config file /etc/php/8.1/cli/php.ini with new version
+2026-10-24T02:48:27.8885626Z #6 15.04 Setting up php8.1-fpm (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:27.9913569Z #6 15.14 
+2026-10-24T02:48:27.9914516Z #6 15.14 Creating config file /etc/php/8.1/fpm/php.ini with new version
+2026-10-24T02:48:28.4544344Z #6 15.60 Created symlink /etc/systemd/system/multi-user.target.wants/php8.1-fpm.service → /lib/systemd/system/php8.1-fpm.service.
+2026-10-24T02:48:28.6485356Z #6 15.62 invoke-rc.d: could not determine current runlevel
+2026-10-24T02:48:28.6486441Z #6 15.62 invoke-rc.d: policy-rc.d denied execution of start.
+2026-10-24T02:48:28.6486996Z #6 15.62 Setting up php-fpm (2:8.1+92ubuntu1) ...
+2026-10-24T02:48:28.6487556Z #6 15.62 Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+2026-10-24T02:48:28.6488186Z #6 15.64 Processing triggers for php8.1-cli (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:28.6488843Z #6 15.64 Processing triggers for php8.1-fpm (8.1.2-1ubuntu2.28) ...
+2026-10-24T02:48:28.6489440Z #6 15.64 invoke-rc.d: could not determine current runlevel
+2026-10-24T02:48:28.6490476Z #6 15.65 invoke-rc.d: policy-rc.d denied execution of restart.
+2026-10-24T02:48:29.4590184Z #6 DONE 16.6s
+2026-10-24T02:48:29.6103513Z 
+2026-10-24T02:48:29.6104003Z #7 exporting to image
+2026-10-24T02:48:29.6104532Z #7 exporting layers
+2026-10-24T02:48:30.4261675Z #7 exporting layers 1.0s done
+2026-10-24T02:48:30.4447599Z #7 writing image sha256:e36385144e396eab1b8492875d0a81798eb54e7bb846a25a496b7e4a701c4621 done
+2026-10-24T02:48:30.4448794Z #7 naming to docker.io/library/webpatch-discovery-packages done
+2026-10-24T02:48:30.4449367Z #7 DONE 1.0s
+2026-10-24T02:48:30.6912779Z 8.3-fpm-alpine: Pulling from library/php
+2026-10-24T02:48:30.7680511Z 7b229517ed22: Pulling fs layer
+2026-10-24T02:48:30.7681021Z fdc8c1f4e1e5: Pulling fs layer
+2026-10-24T02:48:30.7681390Z 2d3c04c4a10c: Pulling fs layer
+2026-10-24T02:48:30.7681738Z ffc4de69c0ca: Pulling fs layer
+2026-10-24T02:48:30.7682081Z 04352f85fccc: Pulling fs layer
+2026-10-24T02:48:30.7682643Z ae359a01f505: Pulling fs layer
+2026-10-24T02:48:30.7683446Z f66c2cd76f3f: Pulling fs layer
+2026-10-24T02:48:30.7683796Z 091163f82015: Pulling fs layer
+2026-10-24T02:48:30.7684370Z f7a05e14a194: Pulling fs layer
+2026-10-24T02:48:30.7684933Z d759b871bcd0: Pulling fs layer
+2026-10-24T02:48:30.7685509Z 4f4fb700ef54: Pulling fs layer
+2026-10-24T02:48:30.7686075Z 0234222c7b78: Pulling fs layer
+2026-10-24T02:48:30.7686610Z f66c2cd76f3f: Waiting
+2026-10-24T02:48:30.7687093Z 091163f82015: Waiting
+2026-10-24T02:48:30.7687584Z f7a05e14a194: Waiting
+2026-10-24T02:48:30.7688069Z d759b871bcd0: Waiting
+2026-10-24T02:48:30.7688542Z 4f4fb700ef54: Waiting
+2026-10-24T02:48:30.7688999Z 0234222c7b78: Waiting
+2026-10-24T02:48:30.7689470Z ffc4de69c0ca: Waiting
+2026-10-24T02:48:30.7689847Z 04352f85fccc: Waiting
+2026-10-24T02:48:30.7690473Z ae359a01f505: Waiting
+2026-10-24T02:48:30.7930653Z 2d3c04c4a10c: Verifying Checksum
+2026-10-24T02:48:30.7931883Z 2d3c04c4a10c: Download complete
+2026-10-24T02:48:30.8229607Z 7b229517ed22: Download complete
+2026-10-24T02:48:30.8261666Z ffc4de69c0ca: Verifying Checksum
+2026-10-24T02:48:30.8262694Z ffc4de69c0ca: Download complete
+2026-10-24T02:48:30.8331102Z fdc8c1f4e1e5: Verifying Checksum
+2026-10-24T02:48:30.8331645Z fdc8c1f4e1e5: Download complete
+2026-10-24T02:48:30.8557967Z ae359a01f505: Verifying Checksum
+2026-10-24T02:48:30.8558485Z ae359a01f505: Download complete
+2026-10-24T02:48:30.8863297Z 091163f82015: Verifying Checksum
+2026-10-24T02:48:30.8864261Z 091163f82015: Download complete
+2026-10-24T02:48:30.9097023Z 04352f85fccc: Verifying Checksum
+2026-10-24T02:48:30.9097796Z 04352f85fccc: Download complete
+2026-10-24T02:48:30.9221979Z f7a05e14a194: Verifying Checksum
+2026-10-24T02:48:30.9222649Z f7a05e14a194: Download complete
+2026-10-24T02:48:30.9239723Z f66c2cd76f3f: Verifying Checksum
+2026-10-24T02:48:30.9240678Z f66c2cd76f3f: Download complete
+2026-10-24T02:48:30.9462261Z d759b871bcd0: Verifying Checksum
+2026-10-24T02:48:30.9462776Z d759b871bcd0: Download complete
+2026-10-24T02:48:30.9527702Z 0234222c7b78: Verifying Checksum
+2026-10-24T02:48:30.9528372Z 0234222c7b78: Download complete
+2026-10-24T02:48:30.9551261Z 4f4fb700ef54: Verifying Checksum
+2026-10-24T02:48:30.9551731Z 4f4fb700ef54: Download complete
+2026-10-24T02:48:30.9689468Z 7b229517ed22: Pull complete
+2026-10-24T02:48:31.1116598Z fdc8c1f4e1e5: Pull complete
+2026-10-24T02:48:31.1214916Z 2d3c04c4a10c: Pull complete
+2026-10-24T02:48:31.1330208Z ffc4de69c0ca: Pull complete
+2026-10-24T02:48:31.1949650Z 04352f85fccc: Pull complete
+2026-10-24T02:48:31.2047456Z ae359a01f505: Pull complete
+2026-10-24T02:48:31.6381707Z f66c2cd76f3f: Pull complete
+2026-10-24T02:48:31.6504891Z 091163f82015: Pull complete
+2026-10-24T02:48:31.6651602Z f7a05e14a194: Pull complete
+2026-10-24T02:48:31.6787291Z d759b871bcd0: Pull complete
+2026-10-24T02:48:31.6871064Z 4f4fb700ef54: Pull complete
+2026-10-24T02:48:31.6985969Z 0234222c7b78: Pull complete
+2026-10-24T02:48:31.7022935Z Digest: sha256:41ebe02446a39ca8fa4e0b2b9e6ce819271b3cf3afac16f9a9a4524f855337ce
+2026-10-24T02:48:31.7035956Z Status: Downloaded newer image for php:8.3-fpm-alpine
+2026-10-24T02:48:31.7041780Z docker.io/library/php:8.3-fpm-alpine
+2026-10-24T02:48:34.3567064Z Traceback (most recent call last):
+2026-10-24T02:48:34.3574038Z   File "/home/runner/work/webpatch/webpatch/scripts/check_docker_scan.py", line 120, in <module>
+2026-10-24T02:48:34.3574838Z     run()
+2026-10-24T02:48:34.3575449Z   File "/home/runner/work/webpatch/webpatch/scripts/check_docker_scan.py", line 85, in run
+2026-10-24T02:48:34.3576234Z     assert any(a['version_status'] in {'MEETS_VENDOR_FIX', 'BELOW_VENDOR_FIX'} for a in package_item['assessments'])
+2026-10-24T02:48:34.3576875Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-24T02:48:34.3577274Z AssertionError
+2026-10-24T02:48:34.3884268Z ##[error]Process completed with exit code 1.
+2026-10-24T02:48:34.4003213Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-24T02:48:34.4003640Z with:
+2026-10-24T02:48:34.4003842Z   name: docker-discovery
+2026-10-24T02:48:34.4004078Z   path: ci-evidence/
+2026-10-24T02:48:34.4004295Z   if-no-files-found: warn
+2026-10-24T02:48:34.4004522Z   compression-level: 6
+2026-10-24T02:48:34.4004734Z   overwrite: false
+2026-10-24T02:48:34.4004944Z   include-hidden-files: false
+2026-10-24T02:48:34.4005173Z env:
+2026-10-24T02:48:34.4005422Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:34.4005855Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T02:48:34.4006296Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:34.4006679Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:34.4007064Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T02:48:34.4007471Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T02:48:34.4007795Z ##[endgroup]
+2026-10-24T02:48:34.5701484Z (node:11753) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-24T02:48:34.5702782Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-24T02:48:34.5795436Z With the provided path, there will be 4 files uploaded
+2026-10-24T02:48:34.5796941Z Artifact name is valid!
+2026-10-24T02:48:34.5797608Z Root directory input is valid!
+2026-10-24T02:48:34.7676916Z Beginning upload of artifact content to blob storage
+2026-10-24T02:48:34.7943022Z (node:11753) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-24T02:48:34.8360260Z Uploaded bytes 11393
+2026-10-24T02:48:34.8538630Z Finished uploading artifact content to blob storage!
+2026-10-24T02:48:34.8540596Z SHA256 digest of uploaded artifact zip is 2d4c7bbea98dbfcf5a4f18eea82c39b42111ebc416949f9c9c807e18f7749f57
+2026-10-24T02:48:34.8541995Z Finalizing artifact upload
+2026-10-24T02:48:35.2413221Z Artifact docker-discovery.zip successfully finalized. Artifact ID 12545690187
+2026-10-24T02:48:35.2414666Z Artifact docker-discovery has been successfully uploaded! Final size is 11393 bytes. Artifact ID is 12545690187
+2026-10-24T02:48:35.2420644Z Artifact download URL: https://github.com/ninex98/webpatch/actions/runs/40055671792/artifacts/12545690187
+2026-10-24T02:48:35.2623686Z Post job cleanup.
+2026-10-24T02:48:35.3477459Z [command]/usr/bin/git version
+2026-10-24T02:48:35.3522945Z git version 2.55.0
+2026-10-24T02:48:35.3564214Z Temporarily overriding HOME='/home/runner/work/_temp/22d6817e-6c50-4945-be64-3a0bf7bb3dad' before making global git config changes
+2026-10-24T02:48:35.3565625Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-24T02:48:35.3569505Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webpatch/webpatch
+2026-10-24T02:48:35.3614340Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-24T02:48:35.3659490Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-24T02:48:35.3927546Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-24T02:48:35.3958968Z http.https://github.com/.extraheader
+2026-10-24T02:48:35.3972493Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-24T02:48:35.4011502Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-24T02:48:35.4306244Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-24T02:48:35.4351833Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-24T02:48:35.4763013Z Cleaning up orphan processes
+2026-10-24T02:48:35.5248634Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,1320 @@
+{
+  "schema_version": 2,
+  "observed_at": "2026-10-23T00:00:00+00:00",
+  "rule_revision": "php2shell-2026-10-23.2",
+  "rule_sha256": "5fee0430b093d1fff8145b727d9d61d0cade94d7b8fe8aa181c5f1b38e2b1c52",
+  "rule_valid_until": "2026-10-29T00:00:00+00:00",
+  "inventory": {
+    "environment": {
+      "os_id": "ubuntu",
+      "version_id": "22.04",
+      "codename": "jammy",
+      "scope": "host_or_unidentified_container",
+      "mount_namespace": "mnt:[1]",
+      "scope_sha256": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+    },
+    "packages": [],
+    "runtime_hints": [],
+    "coverage_gaps": [
+      "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+      "DISCOVERY_NOT_EXHAUSTIVE",
+      "NO_PHP_PACKAGES_OBSERVED_IS_NOT_PROOF_OF_ABSENCE",
+      "OTHER_CONTAINERS_NOT_INSPECTED",
+      "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+      "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED"
+    ],
+    "adapters": [
+      "apt-package-inventory-v1",
+      "php-runtime-hints-v1",
+      "linux-local-runtime-association-v2",
+      "php-static-configuration-v2"
+    ],
+    "runtimes": [],
+    "config_relations": [],
+    "coverage": [
+      {
+        "id": "a6e7d4f3e5ce0403b1c596be667ff15f3f0097c392c277de87d4b6816a451c8c",
+        "requirement": "scan_boundary",
+        "status": "OBSERVED",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [
+          "e5",
+          "e6",
+          "e7"
+        ],
+        "reason": "Current namespace and boot identity only; container/host classification is not exhaustive.",
+        "next_step": "Confirm the intended host/container boundary and inventory other namespaces separately.",
+        "blocks_repair": true
+      },
+      {
+        "id": "f5e7bb5aeee758f6a98dffb0c7e3bea70a125d68fa25afe42025d2055de2196b",
+        "requirement": "discovery_completeness",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [
+          "e16"
+        ],
+        "reason": "Bounded discovery cannot prove absence of hidden/custom runtimes, even with an empty inventory.",
+        "next_step": "Reconcile all services and custom installations with an operator-supplied deployment inventory.",
+        "blocks_repair": true
+      },
+      {
+        "id": "d4efefa53a7f913a4973733da869110652d8ad1d4497de98707e90475ad22d8c",
+        "requirement": "adapter_limit:CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "CONFIGURATION_NOT_PROVEN_LOADED_BY_RUNNING_SERVICE",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "6349d93173971e741de09301a712bf062c447f51fbbc791bdb642b2cb3b824c2",
+        "requirement": "adapter_limit:DISCOVERY_NOT_EXHAUSTIVE",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "DISCOVERY_NOT_EXHAUSTIVE",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "85f505c503f87c7865e9228594dce532e034d8ffe934d4e7397fa6044e0d46f3",
+        "requirement": "adapter_limit:NO_PHP_PACKAGES_OBSERVED_IS_NOT_PROOF_OF_ABSENCE",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "NO_PHP_PACKAGES_OBSERVED_IS_NOT_PROOF_OF_ABSENCE",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "93fff8f186f58eed9694010d039d7aabce977ef2a1d7c49524b935881ec71494",
+        "requirement": "adapter_limit:OTHER_CONTAINERS_NOT_INSPECTED",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "OTHER_CONTAINERS_NOT_INSPECTED",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "8d102bc4133728787a08b860c9cbfacbddad391b97c18ca1f70f341f0291c045",
+        "requirement": "adapter_limit:PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "PACKAGE_ORIGIN_AND_BYTES_UNVERIFIED",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      },
+      {
+        "id": "d319caabf9442357a89a67edad081a6dd4ca4792b117650a1da0b79da14ed75d",
+        "requirement": "adapter_limit:RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+        "status": "UNKNOWN",
+        "subjects": [
+          {
+            "kind": "scope",
+            "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31"
+          }
+        ],
+        "evidence_ids": [],
+        "reason": "RUNNING_IMAGES_AND_WEB_ROUTES_UNVERIFIED",
+        "next_step": "Resolve the named adapter limitation and rescan; consult the entity checks for observed relationships.",
+        "blocks_repair": true
+      }
+    ],
+    "scan_scope": {
+      "id": "6efec161c6e2b042223755f4dbaef79580c95dc4df14483d624d02dc27495f31",
+      "boundary": "host_or_unidentified_container",
+      "completeness": "UNKNOWN",
+      "package_ids": [],
+      "runtime_ids": [],
+      "exclusions": [
+        "Other containers and foreign roots",
+        "Hidden processes and arbitrary custom installation paths",
+        "Loaded configuration, dynamic routes and request attribution"
+      ]
+    }
+  },
+  "assessments": [],
+  "evidence": [
+    {
+      "id": "e1",
+      "operation": "read_text",
+      "target": "/etc/os-release",
+      "outcome": "OK",
+      "sha256": "f302f81ff8b15c2d5dcca30261374a2af95f4dd4532104495adcdd8a15e77bc4"
+    },
+    {
+      "id": "e2",
+      "operation": "read_text",
+      "target": "/proc/self/cgroup",
+      "outcome": "OK",
+      "sha256": "f9ccfaf64372a8c6ddb845bd6a0e48496ccfae88645df5d136f684734c7e833b"
+    },
+    {
+      "id": "e3",
+      "operation": "read_text",
+      "target": "/.dockerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e4",
+      "operation": "read_text",
+      "target": "/run/.containerenv",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e5",
+      "operation": "readlink",
+      "target": "/proc/self/ns/mnt",
+      "outcome": "OK",
+      "sha256": "905e6a93c64ea614a2a7c5df0d3cac68ce668dcd78669765e5d5f24e747297b8"
+    },
+    {
+      "id": "e6",
+      "operation": "read_text",
+      "target": "/proc/sys/kernel/random/boot_id",
+      "outcome": "OK",
+      "sha256": "a903e31492b94590c7a50164a4be4d9e94bf1d5b3a4c1d8c8056a85a286727e5"
+    },
+    {
+      "id": "e7",
+      "operation": "read_text",
+      "target": "/etc/machine-id",
+      "outcome": "OK",
+      "sha256": "3c113780e058a1f3ec5bd94d90356a369cd9c39ccd17d1106da6a7d662f3ac19"
+    },
+    {
+      "id": "e8",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    },
+    {
+      "id": "e9",
+      "operation": "listdir",
+      "target": "/etc/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e10",
+      "operation": "listdir",
+      "target": "/www/server/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e11",
+      "operation": "listdir",
+      "target": "/opt/php",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e12",
+      "operation": "listdir",
+      "target": "/usr/local/bin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e13",
+      "operation": "listdir",
+      "target": "/usr/local/sbin",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e14",
+      "operation": "listdir",
+      "target": "/run",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e15",
+      "operation": "listdir",
+      "target": "/run/containerd",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e16",
+      "operation": "listdir",
+      "target": "/proc",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e17",
+      "operation": "read_text",
+      "target": "/etc/nginx/nginx.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e18",
+      "operation": "read_text",
+      "target": "/etc/apache2/apache2.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e19",
+      "operation": "listdir",
+      "target": "/etc/apt/sources.list.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e20",
+      "operation": "read_text",
+      "target": "/etc/apt/sources.list",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e21",
+      "operation": "listdir",
+      "target": "/etc/apt/preferences.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e22",
+      "operation": "listdir",
+      "target": "/etc/apt/apt.conf.d",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e23",
+      "operation": "read_text",
+      "target": "/etc/apt/preferences",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e24",
+      "operation": "read_text",
+      "target": "/etc/apt/apt.conf",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e25",
+      "operation": "read_text",
+      "target": "/var/lib/apt/extended_states",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e26",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/arch",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e27",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/diversions",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e28",
+      "operation": "read_text",
+      "target": "/var/lib/dpkg/statoverride",
+      "outcome": "FileNotFoundError",
+      "sha256": null
+    },
+    {
+      "id": "e29",
+      "operation": "listdir",
+      "target": "/var/lib/dpkg/updates",
+      "outcome": "OK",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "e30",
+      "operation": "run",
+      "target": "[\"/usr/bin/dpkg-query\", \"-W\", \"-f=${binary:Package}\\t${Version}\\t${Architecture}\\t${source:Package}\\t${source:Version}\\t${Status}\\n\"]",
+      "outcome": "EXIT_0",
+      "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+    }
+  ],
+  "overall": "UNKNOWN",
+  "safe": false,
+  "apt_sources": {
+    "status": "UNKNOWN",
+    "sources": [],
+    "blockers": [
+      "NO_ACTIVE_BINARY_SOURCES"
+    ],
+    "sha256": "f961ca2e8aece02e2066d51195a094dd3cbaa711cb75357bc99dab6ecebe7dd3",
+    "evidence_ids": [
+      "e19",
+      "e20",
+      "e21",
+      "e22",
+      "e23",
+      "e24",
+      "e25",
+      "e26",
+      "e27",
+      "e28",
+      "e29",
+      "e30"
+    ]
+  },
+  "package_trust": {
+    "status": "UNKNOWN",
+    "blockers": [
+      "NO_PACKAGES_TO_AUTHENTICATE"
+    ],
+    "candidates": [],
+    "installed": [],
+    "evidence_ids": []
+  },
+  "docker": {
+    "status": "OBSERVED",
+    "endpoint": "/Users/ninex/.docker/run/docker.sock",
+    "listed_count": 4,
+    "containers": [
+      {
+        "id": "44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439",
+        "name": "webpatch-docker-check-b43ec36777-empty",
+        "image": "webpatch-ui:noble",
+        "image_id": "sha256:48da72bce2014a71653fe28e02d87bc9f2d94b338eeab95623cf8bffbad20524",
+        "state": "running",
+        "environment": {
+          "os_id": "ubuntu",
+          "version_id": "24.04",
+          "codename": "noble",
+          "scope": "container",
+          "mount_namespace": null,
+          "scope_sha256": "772860a731a0865cf29940ef1b35b69a059f7572e1a6ca064aa10301e9d81e4a"
+        },
+        "packages": [],
+        "assessments": [],
+        "hints": [],
+        "gaps": [
+          "CONTAINER_RUNTIME_AND_ROUTES_UNVERIFIED",
+          "CONTAINER_CUSTOM_PATHS_NOT_EXHAUSTIVE",
+          "CONTAINER_PACKAGE_BYTES_UNAUTHENTICATED",
+          "CONTAINER_NO_PHP_OBSERVED_NOT_PROOF_OF_ABSENCE"
+        ],
+        "evidence": [
+          {
+            "id": "docker-44d893252573-1",
+            "operation": "read_file",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/etc/os-release\"]",
+            "outcome": "DOCKER_FILE_NOT_REGULAR_OR_TOO_LARGE",
+            "sha256": null
+          },
+          {
+            "id": "docker-44d893252573-2",
+            "operation": "read_file",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/usr/lib/os-release\"]",
+            "outcome": "OK",
+            "sha256": "c6549a19609dc60a2cb42dc6056e13f48877d5cac85c5d3646a7bd315a2d3e22"
+          },
+          {
+            "id": "docker-44d893252573-3",
+            "operation": "read_file",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/var/lib/dpkg/status\"]",
+            "outcome": "OK",
+            "sha256": "732e6489fda5df433206be134f0f72032a21d768a9dd311ba10f3a26181d6eda"
+          },
+          {
+            "id": "docker-44d893252573-4",
+            "operation": "read_file",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/lib/apk/db/installed\"]",
+            "outcome": "OK",
+            "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+          },
+          {
+            "id": "docker-44d893252573-5",
+            "operation": "read_file",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/usr/local/include/php/main/php_version.h\"]",
+            "outcome": "OK",
+            "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+          },
+          {
+            "id": "docker-44d893252573-6",
+            "operation": "path_exists",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/usr/local/bin/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-44d893252573-7",
+            "operation": "path_exists",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/usr/local/sbin/php-fpm\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-44d893252573-8",
+            "operation": "path_exists",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/www/server/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-44d893252573-9",
+            "operation": "path_exists",
+            "target": "[\"44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439\", \"/opt/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-44d893252573-10",
+            "operation": "processes",
+            "target": "44d893252573d22ca5a3f7eb5b9db8ccb222f9393e4f71250048d76efd819439",
+            "outcome": "OK",
+            "sha256": "96428168e79ec6e8c27fc06afcd0e96ab36fe76faec6a97a5deabb2c89573ea3"
+          }
+        ],
+        "overall": "UNKNOWN",
+        "safe": false
+      },
+      {
+        "id": "7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7",
+        "name": "webpatch-docker-check-b43ec36777-custom",
+        "image": "php:8.3-fpm-alpine",
+        "image_id": "sha256:41ebe02446a39ca8fa4e0b2b9e6ce819271b3cf3afac16f9a9a4524f855337ce",
+        "state": "running",
+        "environment": {
+          "os_id": "alpine",
+          "version_id": "3.24.3",
+          "codename": "unknown",
+          "scope": "container",
+          "mount_namespace": null,
+          "scope_sha256": "a27e550c341fad9a503046efa322b53cd187741a47ca4ebf79552916a964e5a5"
+        },
+        "packages": [],
+        "assessments": [],
+        "hints": [
+          "/usr/local/include/php/main/php_version.h: 8.3.36",
+          "/usr/local/bin/php",
+          "/usr/local/sbin/php-fpm",
+          "process: php-fpm"
+        ],
+        "gaps": [
+          "CONTAINER_RUNTIME_AND_ROUTES_UNVERIFIED",
+          "CONTAINER_CUSTOM_PATHS_NOT_EXHAUSTIVE",
+          "CONTAINER_PACKAGE_BYTES_UNAUTHENTICATED",
+          "CONTAINER_APK_RULES_UNSUPPORTED",
+          "CONTAINER_CUSTOM_PHP_VERSION_UNVERIFIED"
+        ],
+        "evidence": [
+          {
+            "id": "docker-7767cfab80b3-1",
+            "operation": "read_file",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/etc/os-release\"]",
+            "outcome": "DOCKER_FILE_NOT_REGULAR_OR_TOO_LARGE",
+            "sha256": null
+          },
+          {
+            "id": "docker-7767cfab80b3-2",
+            "operation": "read_file",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/usr/lib/os-release\"]",
+            "outcome": "OK",
+            "sha256": "028f4b1b10b14f601acbb4c6e698415f111c5311625d4df4a1bf768fa0a8d2a4"
+          },
+          {
+            "id": "docker-7767cfab80b3-3",
+            "operation": "read_file",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/var/lib/dpkg/status\"]",
+            "outcome": "OK",
+            "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+          },
+          {
+            "id": "docker-7767cfab80b3-4",
+            "operation": "read_file",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/lib/apk/db/installed\"]",
+            "outcome": "OK",
+            "sha256": "1071bf530dae06c8f2104e7dc19cc1fd69b40b3a92be5aaae502e6ddac18d740"
+          },
+          {
+            "id": "docker-7767cfab80b3-5",
+            "operation": "read_file",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/usr/local/include/php/main/php_version.h\"]",
+            "outcome": "OK",
+            "sha256": "6ea68a6555511332fded1c8797a565f5a2a9067cdc14bd55ae4f7e25da1e1f7d"
+          },
+          {
+            "id": "docker-7767cfab80b3-6",
+            "operation": "path_exists",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/usr/local/bin/php\"]",
+            "outcome": "OK",
+            "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          {
+            "id": "docker-7767cfab80b3-7",
+            "operation": "path_exists",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/usr/local/sbin/php-fpm\"]",
+            "outcome": "OK",
+            "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          {
+            "id": "docker-7767cfab80b3-8",
+            "operation": "path_exists",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/www/server/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-7767cfab80b3-9",
+            "operation": "path_exists",
+            "target": "[\"7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7\", \"/opt/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-7767cfab80b3-10",
+            "operation": "processes",
+            "target": "7767cfab80b375f46efdb520b86cd6a158bb29e291e0fa33fde5f0886d2d56c7",
+            "outcome": "OK",
+            "sha256": "926087dd2b53697f31cfe6af1c5bd5a3296520c45b95061c380eb8344d7bb0bf"
+          }
+        ],
+        "overall": "UNKNOWN",
+        "safe": false
+      },
+      {
+        "id": "913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422",
+        "name": "webpatch-docker-check-b43ec36777-packages",
+        "image": "webpatch-phase1:jammy",
+        "image_id": "sha256:7f4aa6234cd4d3cfc8988831f0364e1503afe0f8e29dc2c0e362de8baa897dac",
+        "state": "running",
+        "environment": {
+          "os_id": "ubuntu",
+          "version_id": "22.04",
+          "codename": "jammy",
+          "scope": "container",
+          "mount_namespace": null,
+          "scope_sha256": "244d0fc7a26b5753cbcf8a00fa085ee31321356f4a4a732f8efb51fae128ae97"
+        },
+        "packages": [
+          {
+            "name": "libapache2-mod-php",
+            "version": "2:8.1+92ubuntu1",
+            "architecture": "all",
+            "source_name": "php-defaults",
+            "source_version": "92ubuntu1",
+            "status": "install ok installed",
+            "sapi": "component_or_unknown",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "libapache2-mod-php8.1",
+            "version": "8.1.2-1ubuntu2.28",
+            "architecture": "arm64",
+            "source_name": "php8.1",
+            "source_version": "8.1.2-1ubuntu2.28",
+            "status": "install ok installed",
+            "sapi": "apache2",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php-cli",
+            "version": "2:8.1+92ubuntu1",
+            "architecture": "all",
+            "source_name": "php-defaults",
+            "source_version": "92ubuntu1",
+            "status": "install ok installed",
+            "sapi": "component_or_unknown",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php-common",
+            "version": "2:92ubuntu1",
+            "architecture": "all",
+            "source_name": "php-defaults",
+            "source_version": "92ubuntu1",
+            "status": "install ok installed",
+            "sapi": "component_or_unknown",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php-fpm",
+            "version": "2:8.1+92ubuntu1",
+            "architecture": "all",
+            "source_name": "php-defaults",
+            "source_version": "92ubuntu1",
+            "status": "install ok installed",
+            "sapi": "component_or_unknown",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php8.1-cli",
+            "version": "8.1.2-1ubuntu2.28",
+            "architecture": "arm64",
+            "source_name": "php8.1",
+            "source_version": "8.1.2-1ubuntu2.28",
+            "status": "install ok installed",
+            "sapi": "cli",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php8.1-common",
+            "version": "8.1.2-1ubuntu2.28",
+            "architecture": "arm64",
+            "source_name": "php8.1",
+            "source_version": "8.1.2-1ubuntu2.28",
+            "status": "install ok installed",
+            "sapi": "component_or_unknown",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php8.1-fpm",
+            "version": "8.1.2-1ubuntu2.28",
+            "architecture": "arm64",
+            "source_name": "php8.1",
+            "source_version": "8.1.2-1ubuntu2.28",
+            "status": "install ok installed",
+            "sapi": "fpm",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php8.1-opcache",
+            "version": "8.1.2-1ubuntu2.28",
+            "architecture": "arm64",
+            "source_name": "php8.1",
+            "source_version": "8.1.2-1ubuntu2.28",
+            "status": "install ok installed",
+            "sapi": "component_or_unknown",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          },
+          {
+            "name": "php8.1-readline",
+            "version": "8.1.2-1ubuntu2.28",
+            "architecture": "arm64",
+            "source_name": "php8.1",
+            "source_version": "8.1.2-1ubuntu2.28",
+            "status": "install ok installed",
+            "sapi": "component_or_unknown",
+            "evidence_id": "docker-913a66a18267-3",
+            "provenance": "UNVERIFIED_LOCAL_METADATA"
+          }
+        ],
+        "assessments": [
+          {
+            "package_id": "libapache2-mod-php:all",
+            "cve": "CVE-2026-109618",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "libapache2-mod-php:all",
+            "cve": "CVE-2026-109619",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "libapache2-mod-php8.1:arm64",
+            "cve": "CVE-2026-109618",
+            "version_status": "MEETS_VENDOR_FIX",
+            "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3",
+              "docker-913a66a18267-version-1"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "libapache2-mod-php8.1:arm64",
+            "cve": "CVE-2026-109619",
+            "version_status": "MEETS_VENDOR_FIX",
+            "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3",
+              "docker-913a66a18267-version-2"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php-cli:all",
+            "cve": "CVE-2026-109618",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php-cli:all",
+            "cve": "CVE-2026-109619",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php-common:all",
+            "cve": "CVE-2026-109618",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php-common:all",
+            "cve": "CVE-2026-109619",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php-fpm:all",
+            "cve": "CVE-2026-109618",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php-fpm:all",
+            "cve": "CVE-2026-109619",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": null,
+            "references": [
+              "https://www.php.net/archive/2026.php#2026-10-21-5"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-cli:arm64",
+            "cve": "CVE-2026-109618",
+            "version_status": "MEETS_VENDOR_FIX",
+            "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3",
+              "docker-913a66a18267-version-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-cli:arm64",
+            "cve": "CVE-2026-109619",
+            "version_status": "MEETS_VENDOR_FIX",
+            "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3",
+              "docker-913a66a18267-version-4"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-common:arm64",
+            "cve": "CVE-2026-109618",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-common:arm64",
+            "cve": "CVE-2026-109619",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-fpm:arm64",
+            "cve": "CVE-2026-109618",
+            "version_status": "MEETS_VENDOR_FIX",
+            "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3",
+              "docker-913a66a18267-version-5"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-fpm:arm64",
+            "cve": "CVE-2026-109619",
+            "version_status": "MEETS_VENDOR_FIX",
+            "reason": "VERSION_ONLY_ORIGIN_AND_RUNNING_CODE_UNVERIFIED",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3",
+              "docker-913a66a18267-version-6"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-opcache:arm64",
+            "cve": "CVE-2026-109618",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-opcache:arm64",
+            "cve": "CVE-2026-109619",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-readline:arm64",
+            "cve": "CVE-2026-109618",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          },
+          {
+            "package_id": "php8.1-readline:arm64",
+            "cve": "CVE-2026-109619",
+            "version_status": "UNKNOWN",
+            "reason": "PACKAGE_NOT_A_COVERED_ENGINE_BINARY",
+            "fixed_version": "8.1.2-1ubuntu2.28",
+            "references": [
+              "https://ubuntu.com/security/notices/USN-8948-1",
+              "https://ubuntu.com/security/CVE-2026-109618",
+              "https://ubuntu.com/security/CVE-2026-109619",
+              "https://archive.ubuntu.com/ubuntu/dists/jammy/InRelease"
+            ],
+            "evidence_ids": [
+              "docker-913a66a18267-3"
+            ],
+            "runtime_status": "UNKNOWN"
+          }
+        ],
+        "hints": [],
+        "gaps": [
+          "CONTAINER_RUNTIME_AND_ROUTES_UNVERIFIED",
+          "CONTAINER_CUSTOM_PATHS_NOT_EXHAUSTIVE",
+          "CONTAINER_PACKAGE_BYTES_UNAUTHENTICATED"
+        ],
+        "evidence": [
+          {
+            "id": "docker-913a66a18267-1",
+            "operation": "read_file",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/etc/os-release\"]",
+            "outcome": "DOCKER_FILE_NOT_REGULAR_OR_TOO_LARGE",
+            "sha256": null
+          },
+          {
+            "id": "docker-913a66a18267-2",
+            "operation": "read_file",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/usr/lib/os-release\"]",
+            "outcome": "OK",
+            "sha256": "5f2f45c3a21ab76a76146e561f5587bd43d7a049fe3eed64cecaa9822766994e"
+          },
+          {
+            "id": "docker-913a66a18267-3",
+            "operation": "read_file",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/var/lib/dpkg/status\"]",
+            "outcome": "OK",
+            "sha256": "ed88118922615514027468687b51ac7b71475046fb47887e821850fb036285d5"
+          },
+          {
+            "id": "docker-913a66a18267-4",
+            "operation": "read_file",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/lib/apk/db/installed\"]",
+            "outcome": "OK",
+            "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+          },
+          {
+            "id": "docker-913a66a18267-5",
+            "operation": "read_file",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/usr/local/include/php/main/php_version.h\"]",
+            "outcome": "OK",
+            "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+          },
+          {
+            "id": "docker-913a66a18267-6",
+            "operation": "path_exists",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/usr/local/bin/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-913a66a18267-7",
+            "operation": "path_exists",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/usr/local/sbin/php-fpm\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-913a66a18267-8",
+            "operation": "path_exists",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/www/server/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-913a66a18267-9",
+            "operation": "path_exists",
+            "target": "[\"913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422\", \"/opt/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-913a66a18267-10",
+            "operation": "processes",
+            "target": "913a66a18267d1f8048cd3fe78c99acd5982ffa5139c1bf97bf0f250df3b2422",
+            "outcome": "OK",
+            "sha256": "96428168e79ec6e8c27fc06afcd0e96ab36fe76faec6a97a5deabb2c89573ea3"
+          },
+          {
+            "id": "docker-913a66a18267-version-1",
+            "operation": "run",
+            "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+            "outcome": "EXIT_0",
+            "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+          },
+          {
+            "id": "docker-913a66a18267-version-2",
+            "operation": "run",
+            "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+            "outcome": "EXIT_0",
+            "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+          },
+          {
+            "id": "docker-913a66a18267-version-3",
+            "operation": "run",
+            "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+            "outcome": "EXIT_0",
+            "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+          },
+          {
+            "id": "docker-913a66a18267-version-4",
+            "operation": "run",
+            "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+            "outcome": "EXIT_0",
+            "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+          },
+          {
+            "id": "docker-913a66a18267-version-5",
+            "operation": "run",
+            "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+            "outcome": "EXIT_0",
+            "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+          },
+          {
+            "id": "docker-913a66a18267-version-6",
+            "operation": "run",
+            "target": "[\"/usr/bin/dpkg\", \"--compare-versions\", \"8.1.2-1ubuntu2.28\", \"ge\", \"8.1.2-1ubuntu2.28\"]",
+            "outcome": "EXIT_0",
+            "sha256": "6cc431ca49b5960aabb437a3691ef8cad4c55175a144cc171193cab183379e80"
+          }
+        ],
+        "overall": "UNKNOWN",
+        "safe": false
+      },
+      {
+        "id": "b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00",
+        "name": "webpatch-docker-check-b43ec36777-stopped",
+        "image": "php:8.3-fpm-alpine",
+        "image_id": "sha256:41ebe02446a39ca8fa4e0b2b9e6ce819271b3cf3afac16f9a9a4524f855337ce",
+        "state": "created",
+        "environment": {
+          "os_id": "alpine",
+          "version_id": "3.24.3",
+          "codename": "unknown",
+          "scope": "container",
+          "mount_namespace": null,
+          "scope_sha256": "b4c25eea18a0d9994b6a6f6e015e201fe5ac05d166e4567231d246bb745b433b"
+        },
+        "packages": [],
+        "assessments": [],
+        "hints": [
+          "/usr/local/include/php/main/php_version.h: 8.3.36",
+          "/usr/local/bin/php",
+          "/usr/local/sbin/php-fpm"
+        ],
+        "gaps": [
+          "CONTAINER_RUNTIME_AND_ROUTES_UNVERIFIED",
+          "CONTAINER_CUSTOM_PATHS_NOT_EXHAUSTIVE",
+          "CONTAINER_PACKAGE_BYTES_UNAUTHENTICATED",
+          "CONTAINER_NOT_RUNNING",
+          "CONTAINER_APK_RULES_UNSUPPORTED",
+          "CONTAINER_CUSTOM_PHP_VERSION_UNVERIFIED"
+        ],
+        "evidence": [
+          {
+            "id": "docker-b32aa35aae61-1",
+            "operation": "read_file",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/etc/os-release\"]",
+            "outcome": "DOCKER_FILE_NOT_REGULAR_OR_TOO_LARGE",
+            "sha256": null
+          },
+          {
+            "id": "docker-b32aa35aae61-2",
+            "operation": "read_file",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/usr/lib/os-release\"]",
+            "outcome": "OK",
+            "sha256": "028f4b1b10b14f601acbb4c6e698415f111c5311625d4df4a1bf768fa0a8d2a4"
+          },
+          {
+            "id": "docker-b32aa35aae61-3",
+            "operation": "read_file",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/var/lib/dpkg/status\"]",
+            "outcome": "OK",
+            "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+          },
+          {
+            "id": "docker-b32aa35aae61-4",
+            "operation": "read_file",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/lib/apk/db/installed\"]",
+            "outcome": "OK",
+            "sha256": "1071bf530dae06c8f2104e7dc19cc1fd69b40b3a92be5aaae502e6ddac18d740"
+          },
+          {
+            "id": "docker-b32aa35aae61-5",
+            "operation": "read_file",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/usr/local/include/php/main/php_version.h\"]",
+            "outcome": "OK",
+            "sha256": "6ea68a6555511332fded1c8797a565f5a2a9067cdc14bd55ae4f7e25da1e1f7d"
+          },
+          {
+            "id": "docker-b32aa35aae61-6",
+            "operation": "path_exists",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/usr/local/bin/php\"]",
+            "outcome": "OK",
+            "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          {
+            "id": "docker-b32aa35aae61-7",
+            "operation": "path_exists",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/usr/local/sbin/php-fpm\"]",
+            "outcome": "OK",
+            "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          {
+            "id": "docker-b32aa35aae61-8",
+            "operation": "path_exists",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/www/server/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          {
+            "id": "docker-b32aa35aae61-9",
+            "operation": "path_exists",
+            "target": "[\"b32aa35aae6184d59780978645ae6e1b584ff7c8b4805879b5722adf6b4d4d00\", \"/opt/php\"]",
+            "outcome": "OK",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          }
+        ],
+        "overall": "UNKNOWN",
+        "safe": false
+      }
+    ],
+    "gaps": [
+      "DOCKER_OTHER_DAEMONS_AND_RUNTIME_IDENTITY_UNVERIFIED"
+    ],
+    "evidence": [
+      {
+        "id": "docker-list-1",
+        "operation": "containers",
+        "target": "",
+        "outcome": "OK",
+        "sha256": "554fad52e16d1bbbea8bc9fe778da125e894ee62ca8d2790b9196fb233eb9871"
+      },
+      {
+        "id": "docker-list-2",
+        "operation": "containers",
+        "target": "",
+        "outcome": "OK",
+        "sha256": "554fad52e16d1bbbea8bc9fe778da125e894ee62ca8d2790b9196fb233eb9871"
+      }
+    ],
+    "safe": false
+  }
+}
